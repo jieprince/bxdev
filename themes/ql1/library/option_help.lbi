@@ -1,0 +1,62 @@
+<!-- 
+  add liuhui 2014-12-29  帮助中心
+  
+ -->
+<style>
+	.help_list{background:#fff; padding:5px 10px 5px 10px; border-bottom:1px dashed #ccc;}
+	.help_list_on{background:#fff; padding:5px 10px 5px 10px;border-bottom:1px dashed #ccc; }
+	.help_title{height:35px; line-height:35px; border-bottom:1px dashed #ccc;  font-size:14px; font-weight:bolder; cursor:pointer; background:url(images/help_01.png) center left no-repeat ; padding-left:25px;color:#333;}
+	.help_title_R{float:right; display:inline-block; border:#ccc solid 1px; background:url(images/sanjiao01.png) 45px center no-repeat; width:50px; padding-left:10px; font-size:12px; font-weight:500; line-height:25px; color:#666;}
+	.help_title_Ron{float:right; display:inline-block; border:#ccc solid 1px; background:url(images/sanjiao02.png) 45px center no-repeat; width:50px; padding-left:10px; font-size:12px; font-weight:500; line-height:25px; color:#666;}
+	.help_con{background:url(images/help_02.png) no-repeat top 5px left; margin-top:5px; line-height:25px; padding-left:25px;color:#666}
+</style>
+<h5><span>帮助中心</span></h5>
+<div class="blank"></div>
+<div class="mar_T20 " style="border:1px solid #eee;">
+	<div class="help_list">
+    	<div class="help_title" onClick="show_help(1)"><span style="float:left;">1、如何成为正式会员?</span><!--<span class="help_title_R" id="link_name_01">展 开</span>--><span style="clear:both"></span></div>
+        <div id="help_01" class="help_con">
+        	用户注册成为网站会员后，需要进入用户中心，完善个人信息并提交，由网站管理员审核成功后，即可成为正式会员。
+        </div>	
+    </div>
+    
+    <div class="help_list">
+    	<div class="help_title" onClick="show_help(2)"><span style="float:left;">2、正式会员有哪些收益？</span><!--<span class="help_title_R" id="link_name_02">展 开</span>--><span style="clear:both"></span></div>
+        <div id="help_02" class="help_con">
+        	正式会员，有查询产品服务费率的权限；<br>
+            正式会员，在网站成功产生订单后，可以获得与服务率对应的订单服务费；<br>
+            正式会员，在本网站的账户余额，可以用于支付本网站的任何产品的消费支出，同时，可以在订单对应产品保单生效后，提现至银行账户；<br>
+            正式会员，拥有推荐伙伴加入网站的权力，平台为会员提供专属推荐链接，凡是通过推荐链接注册并加入的会员，平台将锁定推荐关系，被推荐人有订单产生，推荐人可以获得相应的推荐奖励；<br>
+            正式会员，可以将自己满意的产品分享给客户，客户下单成功并付款后，会员可获得与服务费率对应的订单服务费；
+            此外，正式会员，将获得网站不定期推出的各项产品优惠及代金券奖励。
+        </div>	
+    </div>
+    
+    <div class="help_list">
+    	<div class="help_title" onClick="show_help(3)"><span style="float:left;">3、如何通过网站获取收益？</span><!--<span class="help_title_R" id="link_name_03">展 开</span>--><span style="clear:both"></span></div>
+        <div id="help_03" class="help_con">
+        	订单服务费：平台提供下单实时结算模式，订单成功支付后，服务费实时进入会员余额账户。<br>
+            推荐奖励：在用户中心中的“我的推荐”功能下，通过邮件、微信等方式向好友发送推荐链接，被推荐人出单并支付成功，推荐人可以获得相应的推荐奖励。奖励标准网站将根据具体情况不定期进行更新。<br>
+            在用户中心的“资金管理”功能下，可以随时查询服务费和推荐奖励的收益明细记录。
+        </div>	
+    </div>
+    
+</div>
+<!--<script>
+	function show_help(val_num){
+		var dis_flag = $('#help_0'+val_num).css("display");	
+		if(dis_flag=='block'){
+			$('#help_0'+val_num).hide();
+			$('#link_name_0'+val_num).text('展 开');
+			$('#help_0'+val_num).parent().attr("class","help_list");
+			$('#link_name_0'+val_num).attr("class","help_title_R");
+		}else{
+			$('#help_0'+val_num).show();
+			$('#link_name_0'+val_num).text('收 起');
+			$('#link_name_0'+val_num).attr("class","help_title_Ron");
+			
+			$('#help_0'+val_num).parent().attr("class","help_list_on");
+		}
+	}
+</script>
+--> 

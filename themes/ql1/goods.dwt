@@ -1,0 +1,245 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><!--头部开始-->
+<!--滑动门-->
+<script src="dist/js/custom/tab.js"></script>
+<div class="g-wA100 {if $smarty.session.is_iframe neq 1}s-bscT_009c84{/if}">
+	
+    <div class="g-w1077 f-mc f-cb">
+    	<div class="f-fl g-w250">
+        	<div class="f-mt45" align="center">
+            	<img src="{$goods.goods_img}" width="227px;" height="264px;">
+            </div>
+            
+            <div class="f-mt20 g-w250">
+            	<div class="s-bscB_d2d2d2 f-tac">
+                    <span class="f-fs5 f-fwb f-pb10 f-ib">
+                    	<span class="s-c-666666">{$goods.attribute_name}</span>
+                    </span>
+                </div>
+                <div class=" s-c-777777 s-lh20 f-mt20">
+                	{$goods.goods_brief}
+                </div>
+            </div>
+        </div> 
+    	<div class="f-fr g-w800">
+    	 <!-- {if $smarty.session.is_iframe neq 1}-->
+        	<div class="g-h48 s-bscB_d2d2d2 f-tar">
+            	<span class="s-c-666666 f-mt20 f-ib">
+                	<i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                    您的位置：
+                    <span class="s-c-777777">
+                        <a href="#" class="link-009c84">首页</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        <a href="category.php?act=hot_goods_list" class="link-009c84">保险产品</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        <a href="goods.php?id={$goods.goods_id}" class="link-009c84">{$goods.attribute_name}</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        详情 
+                    </span>
+                </span>
+            </div>
+            <!-- {/if} --> 
+            <div class="f-mt20">
+                  
+                 <div >
+                 	 <div class="content_ont">
+                     	<div class="f-pA20">
+                            
+                            <div class="g-w754 f-cb">
+                               <h2 class="f-fs4 s-c-666666 s-bscB_989898 f-pb10 f-fwn f-tac">{$goods.attribute_name}</h2>
+                                <div>
+                                
+								<!--{if $insurer_code == "PAC" || $insurer_code == "PAC01" || $insurer_code == "PAC02" || $insurer_code == "PAC03" || $insurer_code == "PAC04" || $insurer_code == "PAC05" }-->
+ 
+                                            <!--{if $attribute_type == "product" || $attribute_type == "plan"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_plan.lbi" -->
+                                            <!-- #EndLibraryItem -->
+            
+                                            <!--{elseif $attribute_type == "mproduct"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_m.lbi" -->
+                                            <!-- #EndLibraryItem -->
+            
+                                            <!--{elseif $attribute_type == "lvyou"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_lvyou.lbi" -->
+                                            <!-- #EndLibraryItem -->
+											<!--{elseif $attribute_type == "lvyouhuodong"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_lvyou.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                            
+                                            
+                                            <!--{elseif $attribute_type == "jingwailvyou"}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_lvyou_jingwai.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                            <!--{elseif $attribute_type == "jiacaizonghe"}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_jiacaizonghe.lbi" --><!-- #EndLibraryItem -->
+ 											<!--{elseif $attribute_type == "jiajuzonghe"}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_jiajuzonghe.lbi" --><!-- #EndLibraryItem -->
+                                            <!--{elseif $attribute_type == "zhanghuzijin"}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_zhanghuzijin.lbi" --><!-- #EndLibraryItem -->
+                                            <!--{elseif $attribute_type == "Y502" && $attribute_code=='Y502'}-->
+                                            <script type="text/javascript" src="static/js/pac502.js?20150731" charset="utf-8"></script>
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_y502.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                            <!--{elseif $attribute_type == "Y502" && ($attribute_code=='Y502_A' || $attribute_code=='Y502_B')}-->
+                                            <script type="text/javascript" src="static/js/pac502_product.js?20150731" charset="utf-8"></script>
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_pingan_y502_product.lbi" -->
+                                            <!-- #EndLibraryItem -->
+											<!--{elseif strstr($attribute_type , "huodong")}-->
+											<!-- #BeginLibraryItem "/library/page_insproduct_pingan_lvyou.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                            <!--{/if}-->
+
+								<!--{elseif $insurer_code == "TBC01" || $insurer_code == "CPIC_TJ_PROPERTY"}-->
+
+                                    <!--{if $attribute_type == "hangyiwai"}-->
+											<!-- #BeginLibraryItem "/library/page_insproduct_taipingyang_hangyiwai.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                    <!--{else}-->
+											<!-- #BeginLibraryItem "/library/page_insproduct_taipingyang.lbi" -->
+                                            <!-- #EndLibraryItem -->								
+                                    <!--{/if}-->
+								 
+                                <!--{elseif $insurer_code == "CPIC_CARGO"}-->
+                                		<!-- #BeginLibraryItem "/library/page_insproduct_taipingyang.lbi" -->
+                                        <!-- #EndLibraryItem -->	
+								<!--{elseif $insurer_code == "HTS"}-->
+
+									<!-- #BeginLibraryItem "/library/page_insproduct_huatai.lbi" -->
+                                    <!-- #EndLibraryItem -->
+								<!--{elseif $insurer_code == "SINO"}-->
+										<!--{if $attribute_type == "project"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_huaan.lbi" -->
+                                            <!-- #EndLibraryItem -->
+            
+                                            <!--{elseif $attribute_type == "xuepingxian"}-->
+            
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_huaan_xuepingxian.lbi" -->
+                                            <!-- #EndLibraryItem -->
+										<!--{/if}-->
+                                <!--{elseif $insurer_code == "NCI"}-->
+                           
+										<!--{if $attribute_type == "shaoer"}-->
+                                        
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_xinhua_shaoer.lbi" -->
+                                            <!-- #EndLibraryItem -->
+										<!--{/if}-->  
+								<!--{elseif $insurer_code == "CHINALIFE"}-->
+
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_chinalife_product.lbi" -->
+                                            <!-- #EndLibraryItem -->
+								<!--{elseif $insurer_code == "sinosig"}-->
+                                 
+                                	<!--{if $attribute_type == "product"}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_yangguang_plan.lbi" -->
+                                            <!-- #EndLibraryItem -->
+                                    <!--{elseif $attribute_type == "personal_account"}-->
+                                    		<!-- #BeginLibraryItem "/library/page_insproduct_yangguang_personal_account.lbi" -->
+                                            <!-- #EndLibraryItem -->
+            						<!--{/if}-->
+                                            
+                              	<!--{elseif $insurer_code == "EPICC"}-->
+                               		
+                                    <!--{if $attribute_type == 'product'}-->
+                                    	<!-- #BeginLibraryItem "/library/page_insproduct_epicc_product.lbi" -->
+                                        <!-- #EndLibraryItem -->	
+                                    <!--{elseif $attribute_type == 'lvyou' || $attribute_type == "jingwailvyou"}-->
+                                    	<!-- #BeginLibraryItem "/library/page_insproduct_epicc_lvyou.lbi" -->
+                                        <!-- #EndLibraryItem -->
+                                	<!--{/if}-->		 
+                                            
+								<!--{elseif $insurer_code == "picclife"}-->
+                                	<!--{if $attribute_type == "ijiankang"}-->
+                                			<!-- #BeginLibraryItem "/library/page_insproduct_picclife_ijiankang.lbi" -->
+                                            <!-- #EndLibraryItem -->	
+                                	<!--{elseif $attribute_type == "BWSJ"}-->
+                                    		<!-- #BeginLibraryItem "/library/page_insproduct_picclife_bwsj.lbi" -->
+                                            <!-- #EndLibraryItem -->	
+                                    <!--{elseif $attribute_type == "TTL"}-->
+                                    		<!-- #BeginLibraryItem "/library/page_insproduct_picclife_ttl.lbi" -->
+                                            <!-- #EndLibraryItem -->	
+                                    <!--{elseif $attribute_type == "KLWYLQX"}-->
+                                    		<!-- #BeginLibraryItem "/library/page_insproduct_picclife_klwylqx.lbi" -->
+                                            <!-- #EndLibraryItem -->		
+                                    <!--{else}-->
+                                            <!-- #BeginLibraryItem "/library/page_insproduct_picclife_product.lbi" -->
+                                            <!-- #EndLibraryItem -->	
+                                   <!--{/if}-->
+								<!--{/if}-->
+							 	
+							 	
+							 	<!-- {if $insurer_code == "SSBQ"} -->
+							 	 	<!-- #BeginLibraryItem "/library/page_insproduct_pingan_plan.lbi" --><!-- #EndLibraryItem -->
+							 	<!-- {/if} -->
+							</div>
+
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+                 
+                 <div class="f-cb f-mt30">
+                 	<div id="tab_design" class="tabs">
+                        
+                        <nav class="tab_menu f-cb">
+                            <ul>
+                                <li class="active">
+                                    <a href="javascript:void(0)">
+                                        产品简介
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        投保须知
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        常见问题
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                    	保险条款
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        理赔指南
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav><!-- e: .tab_menu -->
+                        <div class="tab_contents">
+                            <ul>
+                                <li>
+									{$goods.description}
+                                </li>
+                                <li style="display:none">
+                                     {$goods.cover_note}
+                                </li>
+                                <li style="display:none">
+                                     	{$goods.insurance_faq}
+                                </li>
+                                <li style="display:none">
+                                    	{$goods.insurance_clauses}
+                                </li>
+                                <li style="display:none">
+                                 	{$goods.claims_guide}
+                                </li>
+                            </ul>
+                        </div><!-- e: .tab_contents -->
+                    </div><!-- e: #tab_design -->	
+                 </div>
+            </div>
+             
+        </div>
+    </div>
+    
+     
+</div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+

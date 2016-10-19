@@ -1,0 +1,481 @@
+{if $full_page}
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<div class="form-div">
+  <form action="javascript:searchUser()" name="searchForm" id="users_list_form">
+    <table>
+	<tbody>
+<!--<tr>
+	<td>
+  	
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	
+    &nbsp;{$lang.label_rank_name} 
+	<select name="user_rank"><option value="0">{$lang.all_option}</option>{html_options options=$user_ranks }</select>
+    &nbsp;{$lang.label_pay_points_gt}&nbsp;<input type="text" name="pay_points_gt" size="8" />&nbsp;
+	{$lang.label_pay_points_lt}&nbsp;<input type="text" name="pay_points_lt" size="10" />
+	</td>
+	</tr>
+	 -->
+	<tr>
+		<td align="right">{$lang.label_user_name}</td><td><input type="text" name="keyword" /> </td>
+	    <td align="right">{$lang.label_user_realname}</td><td><input type="text" name="real_name" /> </td>
+	    
+	    <td align="right">会员类型</td>
+	    <td>
+	     		<select name="user_rank">
+		     		<option value="0">{$lang.all_option}</option>
+		     		{html_options options=$user_ranks }
+	     		</select>
+	     </td> 
+	</tr>
+	<tr>
+		<td align="right">{$lang.referrer}帐号</td><td><input type="text" name="referrer" /> </td>
+	    <td align="right">{$lang.referrer}姓名</td><td><input type="text" name="referrer_real_name" /> </td>
+	    <td align="right">渠道名称</td><td><input type="text" name="d_name" value="{$institution_name}"/> </td>
+	    	     
+		<td>平台来源</td>
+		<td>
+			<select name="platform_id">
+				<option value="">--请选择--</option>
+<!-- 				<option value="android">android</option>
+				<option value="iPhone">iPhone</option> -->
+				<option value="weixin">weixin</option>
+				<option value="pc">pc</option>
+			</select>
+	    </td>
+	    
+	    
+	</tr>
+	<tr>
+		<td align="right">{$lang.label_user_mobilephone}</td>
+		<td><input type="text" name="mobile_phone" /> </td>
+	    <td align="right">{$lang.label_user_email}</td>
+	    <td><input type="text" name="email" /> </td>
+	    
+	    <td align="right">省份</td>
+	    <td>
+	      	<select name="province">
+	    		<option></option>
+	    		<!-- {foreach from=$province_list item=item} -->
+	    		<option value='{$item.region_id}'>{$item.region_name}</option>
+	    		<!-- {/foreach} -->
+	    	</select>
+		</td>
+		
+		<td>是否禁用</td>
+	    <td >
+	    	<select name="is_disable">
+	    		<option></option>
+	    		<option value='0'>否</option>
+	    		<option value='1'>是</option>
+	    	</select>
+	    </td>
+	    	    <!-- add yes123 2015-01-06 添加最后更新时间查询 -->
+	</tr>	
+	<tr>
+  		<td>注册时间</td>
+		<td><input class="Wdate" type="text"  id="start_reg_time" name="start_reg_time" value="{$filter.start_reg_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+  		<td align="center">至</td>
+  		<td>	
+  			<input class="Wdate" type="text" id="end_reg_time" name="end_reg_time" value="{$filter.end_reg_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+  		</td>
+<!-- 		<td>{$lang.last_time}</td>
+	    <td>
+	    	<select name="last_time">
+	    		<option></option>
+	    		<option value='DESC'>倒序</option>
+	    		<option value='ASC'>正序</option>
+	    	</select>
+	     </td>  --> 
+	
+	  <!--{if $filter.check_status neq 'checked' } add yes123 2015-01-06 添加是否申请审核查询--> 
+<!-- 	   <td>	{$lang.check_status}</td>
+	   <td>
+	   		<select name="check_status">
+				{foreach from=$check_status_list item=check_status key=key}
+					{if $key neq 'checked'}
+					<option value="{$key}">{$check_status}</option>
+					{/if}
+				 {/foreach}
+			</select>
+	
+	    </td> -->
+	    <!--{/if} -->
+	    <td><input type="submit" value="{$lang.button_search}" /></td>
+	    
+	    <td align="right" colspan="6"><input type="button" onclick="export_users_list();" value="导出会员信息" style="float: right;"></td>
+	    
+	    
+	    
+	</tr>
+	  
+	  
+		  </tbody>
+	  </table>
+	
+  </form>
+</div>
+
+<form method="POST" action="users.php" name="listForm" onsubmit="return confirm_bath()">
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+{/if}
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox">
+      <a href="javascript:listTable.sort('user_id'); ">{$lang.record_id}</a>{$sort_user_id}
+    </th>
+    <th><a href="javascript:listTable.sort('user_name'); ">{$lang.username}</a>{$sort_user_name}</th>
+	
+	    <th><a href="javascript:listTable.sort('user_name'); ">{$lang.realname}</a>{$sort_user_name}</th>
+	<th>省份</th>
+	
+		 <th>{$lang.referrer}</th>
+	<th>渠道</th>
+<!--     <th><a href="javascript:listTable.sort('email'); ">{$lang.email}</a>{$sort_email}</th> -->
+    <th><a href="javascript:listTable.sort('user_rank'); ">类型</a></th>
+   <!--  <th><a href="javascript:listTable.sort('check_status'); ">审核状态</a></th> -->
+    <th><a href="javascript:listTable.sort('is_disable'); ">是否启用</a></th>
+    <th><a href="javascript:listTable.sort('is_validated'); ">{$lang.is_validated}</a>{$sort_is_validate}</th>
+	<!--
+		修改日期：2014/7/16
+		修改者：鲍洪州
+		功能：添加审批栏目
+	-->
+<!-- del yes123 2015-01-07 不要是否已审批和二维码  	<th>{$lang.ischeack}</th>
+	<th>{$lang.is_twodimension}</th> -->
+    <th>{$lang.user_money}</th>
+ <!--    <th>{$lang.frozen_money}</th> -->
+<!-- del yes123 2015-01-06 暂时不需要，积分      <th>{$lang.rank_points}</th>
+    <th>{$lang.pay_points}</th> -->
+    <th>
+    	<a href="javascript:listTable.sort('last_update_time'); ">{$lang.last_time}</a>
+    </th>
+    <th><a href="javascript:listTable.sort('reg_time'); ">{$lang.reg_date}</a>{$sort_reg_time}</th>
+    <th>平台来源</th>
+    <th>{$lang.handler}</th>
+  <tr>
+  {foreach from=$user_list item=user name=name}
+  <tr>
+  
+  	
+    <td><input type="checkbox" name="checkboxes[]" value="{$user.user_id}" notice="{if $user.user_money ne 0}1{else}0{/if}"/>{$user.user_id}</td>
+    <td class="first-cell">
+    	<!-- 添加用户资金明细超链接  yes123 2014-10-13 -->
+     	<a href="account_log.php?act=list&user_id={$user.user_id}" >{$user.user_name|escape}</a>
+	</td>
+	 <td class="first-cell">{$user.real_name}</td>
+	 <td class="first-cell">{$user.region_name}</td>
+	 <td class="first-cell">
+		 	<a href="users.php?act=edit&id={$user.parent_id}">
+		 		{if $user.referrer_real_name}
+		 				{$user.referrer_real_name}
+		 			{else}
+		 				{$user.referrer_user_name}
+		 		{/if}
+		 	</a>
+
+	 </td>
+	 
+	 <td class="first-cell">
+		 	<a href="distributor.php?act=organization_edit&user_id={$user.institution_id}">{$user.institution_username}</a>
+	 </td>
+	<!-- 
+    <td><span onclick="listTable.edit(this, 'edit_email', {$user.user_id})">{$user.email}</span></td>
+	-->
+	
+<!-- 	 <td align="center">{$user.email}</td> -->
+	 <td align="center">
+	 	<!-- {if $user.rank_name eq '普通会员'} -->
+	 			{$user.rank_name}
+	 		<!-- {elseif $user.rank_name eq '认证会员' } -->
+	 		<span style="color: #19A347">{$user.rank_name}</span>
+	 		<!-- {elseif $user.rank_name eq '服务专员' } -->
+	 		<span style="color: #254B8F">{$user.rank_name}</span>
+	 		<!-- {elseif $user.rank_name eq '渠道会员' } -->
+	 		<span style="color: #400BF4">{$user.rank_name}</span>
+	 	<!-- {/if} -->
+	 </td>
+	 
+<!-- 	<td align="center">
+	 	{if $user.check_status eq 'saved'}
+	 			已保存
+	 		{elseif $user.check_status eq 'pending' }
+	 		<span style="color: #19A347">待审核</span>
+	 		{elseif $user.check_status eq 'checked' }
+	 		<span style="color: green;">已审核</span>
+	 		{elseif $user.check_status eq 'no_pass' }
+				<a href="javascript:show_content('content_{$smarty.foreach.name.iteration}');">
+					<span style="color: red">未通过</span>
+					<span id="content_{$smarty.foreach.name.iteration}" style="display: none;">
+						{$user.check_result}
+					</span>
+				</a>
+	 	{/if}
+	 </td> -->
+	 
+	 <td align="center">  <!-- disableAndEndEnabled(salesman_id,is_disable,checkValue){ -->
+	 	
+			{if $user.is_disable eq 1} 
+				{if $user.rank_code eq 'organization'}
+					<a href="javascript:disable_enabled_salesman({$user.user_id},2);"> <img src="images/no.gif"></a>
+					{else}
+					<a href="javascript:disableAndEndEnabled({$user.user_id},0);"> <img src="images/no.gif"></a>
+				{/if}
+			{else}
+				{if $user.rank_code eq 'organization'}
+				<a href="javascript:disable_enabled_salesman({$user.user_id},1);"> <img src="images/yes.gif"></a>
+				{else}
+				<a href="javascript:disableAndEndEnabled({$user.user_id},1);"> <img src="images/yes.gif"></a>
+			{/if}
+			
+		{/if}
+	</td>
+    <td align="center">{if $user.is_validated eq 1} <img src="images/yes.gif"> {else} <img src="images/no.gif"> {/if}</td>
+
+    <td>{$user.user_money}</td>
+<!--     <td>{$user.frozen_money}</td> -->
+<!--  del yes123 2015-01-06 暂时不需要，积分   <td>{$user.rank_points}</td>
+    <td>{$user.pay_points}</td> -->
+    <td>{$user.last_update_time}</td>
+    <td align="center">{$user.reg_time}</td>
+    <td align="center">{$user.platform_id}</td>
+    <td align="center">
+     <!-- {if $user.rank_code eq 'organization'} -->
+     	<a href="distributor.php?act=organization_edit&user_id={$user.user_id}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+     	<!-- {else} -->
+     	<a href="users.php?act=edit&id={$user.user_id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+     <!-- {/if} -->
+      
+      <!-- <a href="users.php?act=address_list&id={$user.user_id}" title="{$lang.address_list}"><img src="images/book_open.gif" border="0" height="16" width="16" /></a> -->
+      <a href="order.php?act=list&user_id={$user.user_id}" title="{$lang.view_order}"><img src="images/icon_view.gif" border="0" height="16" width="16" /></a>
+      <a href="account_log.php?act=list&user_id={$user.user_id}" title="{$lang.view_deposit}"><img src="images/icon_account.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:confirm_redirect('{if $user.user_money ne 0}{$lang.still_accounts}{/if}{$lang.remove_confirm}', 'users.php?act=remove&id={$user.user_id}&distributor_id={$distributor_id}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+      <!--  <a href="users.php?act=check_view&id={$user.user_id}"  title="{$lang.check}"><img src="images/check.png" border="0" height="16" width="16" /></a> -->
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+  <tr>
+      <td colspan="2">
+      <input type="hidden" name="act" value="batch_remove" />
+      <input type="submit" id="btnSubmit" value="{$lang.button_remove}" disabled="true" class="button" /></td>
+      <td align="right" nowrap="true" colspan="8">
+      {include file="page.htm"}
+      </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end users list -->
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+{literal}
+onload = function()
+{
+    document.forms['searchForm'].elements['keyword'].focus();
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 搜索用户keyword
+ */
+function searchUser()
+{
+    listTable.filter['keywords'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+	
+	listTable.filter['real_name'] = Utils.trim(document.forms['searchForm'].elements['real_name'].value);
+	listTable.filter['province'] = Utils.trim(document.forms['searchForm'].elements['province'].value);
+	listTable.filter['platform_id'] = Utils.trim(document.forms['searchForm'].elements['platform_id'].value);
+		
+	listTable.filter['mobile_phone'] = Utils.trim(document.forms['searchForm'].elements['mobile_phone'].value);
+	
+	//add yes123 2015-03-13 注册日期
+	listTable.filter['start_reg_time'] = Utils.trim(document.forms['searchForm'].elements['start_reg_time'].value);
+	listTable.filter['end_reg_time'] = Utils.trim(document.forms['searchForm'].elements['end_reg_time'].value);
+	
+	listTable.filter['email'] = Utils.trim(document.forms['searchForm'].elements['email'].value);
+	
+	
+	listTable.filter['is_disable'] = Utils.trim(document.forms['searchForm'].elements['is_disable'].value); 
+	//add yes123 2015-01-06 添加是否申请审核和最后更新时间查询
+
+	//listTable.filter['last_time'] = Utils.trim(document.forms['searchForm'].elements['last_time'].value);
+	
+	listTable.filter['referrer'] = Utils.trim(document.forms['searchForm'].elements['referrer'].value); //推荐人查询
+	listTable.filter['referrer_real_name'] = Utils.trim(document.forms['searchForm'].elements['referrer_real_name'].value); //推荐人查询
+	listTable.filter['d_name'] = Utils.trim(document.forms['searchForm'].elements['d_name'].value); //推荐人查询
+    listTable.filter['rank'] = document.forms['searchForm'].elements['user_rank'].value;
+   // listTable.filter['pay_points_gt'] = Utils.trim(document.forms['searchForm'].elements['pay_points_gt'].value);
+   // listTable.filter['pay_points_lt'] = Utils.trim(document.forms['searchForm'].elements['pay_points_lt'].value);
+    listTable.filter['page'] = 1;
+    listTable.loadList();
+}
+
+function confirm_bath()
+{
+  userItems = document.getElementsByName('checkboxes[]');
+
+  cfm = '{$lang.list_remove_confirm}';
+
+  for (i=0; userItems[i]; i++)
+  {
+    if (userItems[i].checked && userItems[i].notice == 1)
+    {
+      cfm = '{$lang.list_still_accounts}' + '{$lang.list_remove_confirm}';
+      break;
+    }
+  }
+
+  return confirm(cfm);
+}
+//-->
+$('#disqualification').on('click', function(){
+	$.layer({
+	    type: 2,
+	    border: [0],
+	    title: '会员列表',
+	    maxmin: true,
+	    iframe: {src : 'users.php?act=list&type=dialog_users_list&d_id={$distributor_id}'},
+	    area: ['860px', '400px'],
+	    offset : ['120px', ''],
+	    success: function(index){
+	    	layer.full(layer.index , {area : ['860px','400px'],offset : ['120px',''],border : [6]});
+	    },
+	    close: function(index){
+	    	location.reload();
+	    }
+	});
+});
+
+</script>
+
+<script type="text/javascript">
+	function disableAndEndEnabled(user_id,is_disable)
+	{
+		if(is_disable==0)
+		{
+			msg='确定要启用该用户吗？';
+		}else{
+			msg='确定要禁用该用户吗？';
+		}
+		if(window.confirm(msg)){
+	 		$.ajax({
+				   type: "GET",
+				   url: "users.php",
+				   data: "act=disable_enabled_salesman&user_id="+user_id+"&is_disable="+is_disable,
+				   dataType:'text',
+				   success: function(data){
+				       var data = $.parseJSON(data);
+					   if(data.code==0){
+						     if(is_disable==0){
+						    	 alert('启用成功');
+						     }else{
+						    	 alert('禁用成功');
+						     } 
+						     $("#users_list_form").submit();
+					   }else{
+						   alert('操作失败！');
+					   }
+					   
+					
+				   }
+			}); 
+		}
+	}
+
+	function disable_enabled_salesman(user_id,status)
+	{
+		var msg ="";
+		if(status==1)
+		{
+			msg="禁用后，此渠道和此此渠道下的会员将无法登录，确定禁用吗？"
+		}else{
+			status=0;
+			msg="启用后，此渠道和此渠道下的会员将恢复正常，确定启用吗？"
+		}
+		
+		var pageii = $.layer({
+		    shade: [0],
+		    area: ['auto','auto'],
+		    dialog: {
+		        msg: msg,
+		        btns: 2,                    
+		        type: 4,
+		        btn: ['确定','取消'],
+		        yes: function(){
+		    		$.get("distributor.php?act=disable_enabled_salesman", { "salesman_id": user_id, "is_disable": status},
+		  				  function(data){
+		  						data = jQuery.parseJSON(data);
+		  						if(data.code==0)
+		  						{
+		  							layer.close(pageii);
+		  							alert(data.msg);
+		  							$("#users_list_form").submit();
+		  							
+		  						}
+		  			 	  });
+		        }, no: function(){
+		        	layer.close(pageii);
+		        }
+		    }
+		});
+		
+	}
+	
+    function show_content(content_id){
+	    var str = $("#"+content_id).html();
+	    var pagei = $.layer({
+	    	   type: 1,   //0-4的选择,
+	    	    title: false,
+	    	    border: [0],
+	    	    closeBtn: [0],
+	    	    shadeClose: true,
+	    	    area: ['460px', '280px'],
+	    	    page: {
+	    	        html: '<\div style="width:460px; height:280px; background-color:#81BA25; color:#fff;"><\div style="padding:20px;">'+str+'<\/div><\/div>' //此处放了防止html被解析，用了\转义，实际使用时可去掉
+	    	    }
+	    	});
+    	
+    }
+    
+	 function export_users_list(){
+		  var ids='';
+		  $('input[name="checkboxes[]"]:checked').each(function(){
+		    ids+=$(this).val()+',';
+		  }); 
+		  var reg=/,$/gi;
+		  ids=ids.replace(reg,"");
+		  ids = ids.split(",");
+		  console.info(ids);
+		  if(ids!=''){
+			  window.location.href="users.php?act=export_users_list&user_ids="+ids; 
+		  }else{
+			  alert('请选择要导出的会员');
+			  
+		  }
+		  
+	 }
+	
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

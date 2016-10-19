@@ -1,0 +1,46 @@
+        <div id="que_content_list">
+            <div class="g-w1077 f-mc f-cb itemchild">
+                <div class="f-fl g-w490">
+                    <div><a href="article.php?act=article_detail&id={$first_article.article_id}&article_type=faq"><img src="{$first_article.article_img}" width="490" height="224"></a></div>
+                    <div class="f-mt10">
+                        <span class="s-c-777777 s-lh20 f-db">
+                            <a href="article.php?act=article_detail&id={$first_article.article_id}&article_type=faq" class="link-777777 f-fs2">1、{$first_article.title}</a>
+                        </span>
+<!--                         <span class="s-c-777777 s-lh20 f-db" style="width:490px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+                            <a href="article.php?act=article_detail&id={$first_article.article_id}" class="link-777777 f-fs1">
+                            {$first_article.content}
+                            </a>
+                        </span> -->
+                    </div>
+                    
+                </div>
+                <div class="f-fr g-w520 f-mr30">
+                    <ul class="m-list-2">
+                     {foreach from=$article_list item=item name=name}
+                     	{if $smarty.foreach.name.iteration neq 1}
+                        <li>
+                            <a href="article.php?act=article_detail&id={$item.article_id}&article_type=faq"><em>{$smarty.foreach.name.iteration}</em> {$item.title}</a>
+                        </li>
+                        {/if}
+                     {/foreach}   
+                    </ul>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <script type="text/javascript">
+	    	function change_index_faq(cat_id){
+	    		$.ajax({
+	    			   type: "POST",
+	    			   url: "article.php",
+	    			   data: "act=change_index_faq&article_type=faq&cat_id="+cat_id,
+	    			   success: function(res){
+	    				   res = $.parseJSON(res);
+	    			       $("#faq_content").html(res.content);	
+	    			   }
+	    			});
+	    		
+	    	}
+        </script>

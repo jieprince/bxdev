@@ -1,0 +1,61 @@
+{if $_SESSION['is_iframe'] != 1} 
+<footer class="g-wA100 s-bg-f2f2f2 f-pt40 f-pb40 f-mt80">
+	<div class="g-w1077 f-mc f-cb">
+    	<div align="center">
+               <ul class="footernav-list f-cb">
+               	<!--{eval $indexQs=1;}-->	
+                  			<!--{loop $config_data[navigator_list][bottom] $key $nav}-->
+					   			<li>
+				<!-- {if  $indexQs!=1 } --><span class="s-c-666666 f-ml5 f-mr5">|</span><!-- {/if} --><a href="../$nav[url]" {if $nav[opennew] == 1} target="_blank" {/if}>$nav[name]</a>
+				        		</li>
+				        		<!--{eval $indexQs++;}-->
+				        	<!--{/loop}-->
+                </ul>
+                
+                
+                
+                <div class="f-mt10 f-tac s-c-666666" >
+        			<span class="s-lh25 f-fs2">
+                    Beijing quanlianjingji co.,LTD  © 2015 All rights reserved. 
+                    <br>
+                    	$_SESSION['icp_number']
+                    <br>
+                    <i class="iconfont">&#xf00a2;</i>
+                    $_SESSION['service_phone']
+                     
+                    <i class="iconfont">&#xf0138;</i>
+                    $_SESSION['service_email']
+                    </span>
+        		</div>
+                <div class="f-mt15">
+                	<a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01af;</i></a>
+                    <a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01c7;</i></a>
+                    <a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01b0;</i></a>
+                </div>
+                
+            
+        </div>
+        <div class="g-zfR-30">
+            <img src="../themes/ql1/images/weixin_img.png">
+        </div>
+    </div>
+    
+</footer>
+<div id="share">
+     <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=3193389429&Site=QQ客服&Menu=yes>
+        <i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>①</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2017415521&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>②</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2733867915&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>③</span>
+    </a>
+    <a id="totop" title=""><i class="iconfont">&#xf02aa;</i></a>
+</div>
+{/if}
+</body>
+</html>

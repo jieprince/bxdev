@@ -1,0 +1,158 @@
+<!--{template header_cshop}-->
+<div class="g-wA100 s-bscT_009c84">
+    <div class="g-w1077 f-mc">
+ 	    <!--{template cp_product_buy_view_header}-->
+ 		 
+        
+        <div class="f-mt40 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title">被保险人信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+                	<tr>
+                    	<th width="150">被保险人类型：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{if $user_info_applicant.applicant_type==2}
+                            		单位
+                            		{else}
+                            		个人
+                            	{/if}
+                            </div>
+                        </td>
+                        <th width="150"></th>
+                        <td width="348"></td>
+                        
+                    </tr>
+                	<tr>
+                    	<th width="150">
+                    		{if $user_info_applicant.applicant_type==2}
+                    		单位（公司）：
+                    		{else}
+                    		姓 名：
+                    		{/if}
+                    	</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$user_info_applicant[fullname]}
+                            </div>
+                        </td>
+                        {if $user_info_applicant.applicant_type==2}
+                        <th width="150">联系人：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$user_info_applicant[cus_contact]}
+                            </div>
+                        </td>
+                        {/if}
+                    </tr>
+                     {if $user_info_applicant.applicant_type==1}
+                    <tr>
+                   
+                    	<th>证件类型：</th>
+                        <td>
+                        	<div class="f-pl10">
+                        	$attr_certificates_type_ssbq[$user_info_applicant[certificates_type]]
+                            </div>
+                        </td>
+                        <th>证件号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[certificates_code]
+                            </div>
+                        </td>
+                    </tr>
+                     {/if}
+                    <tr>
+                    	<th>邮箱地址：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[email]
+                            </div>
+                        </td>
+                        <th>手机号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[mobiletelephone]
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>律师事务所：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	 $user_info_applicant[law_office]
+                            </div>
+                        </td>
+                        <th>联系地址：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	 $user_info_applicant[address]
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        
+	
+	
+	  {if $all_attachment[required_info] } 
+	    <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title" style="width: 280px;">核保报价已提交资料清单</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+            	{loop $all_attachment[required_info] $key $value}
+					<tr>
+                     <td colspan="4">
+                     	<div class="f-pl10">
+                     		{if $value[file_url_list]}
+                     			<a>$value[field_desc]</a>
+                     				{loop $value[file_url_list] $key2 $value2}
+                     				<br/>
+                     				&#12288;<a href="../$value2[url]" target="_blank">$value2[name]</a>
+                     				{/loop}
+                     			{else}
+                     			<a href="../$value[value]" target="_blank">$value[field_desc]</a>
+                     		{/if}
+                         	
+                         </div>
+                     </td> 
+                 </tr>
+          		{/loop}
+                </table>
+            </section>
+        </div>
+		{/if}
+
+		
+	  {if $all_attachment[other_info] } 
+	    <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title" style="width: 350px;">已提交出单所需资料</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+            	{loop $all_attachment[other_info] $key $value}
+					<tr>
+                     <td colspan="4">
+            				{if $value[file_url_list]}
+                     			<a>$value[field_desc]</a>
+                     				{loop $value[file_url_list] $key2 $value2}
+                     				<br/>
+                     				&#12288;<a href="../$value2[url]" target="_blank">$value2[name]</a>
+                     				<br/>
+                     				{/loop}
+                     			{else}
+                     			<a href="../$value[value]" target="_blank">$value[field_desc]</a>
+                     		{/if}
+                     </td> 
+                 </tr>
+          		{/loop}
+                </table>
+            </section>
+        </div>
+		{/if}
+
+		<!--{template cp_product_buy_view_footer}-->
+    </div>
+</div>
+ 
+<!--{template footer_cshop}-->	

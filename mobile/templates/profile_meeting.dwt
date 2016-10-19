@@ -1,0 +1,426 @@
+<!-- 用户中心-修改密码页 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon.png" />
+<title>个人资料 - {$shop_name}</title>
+<link rel='stylesheet' type='text/css' href='css/safety.css' />
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/head.css" rel="stylesheet" type="text/css" />
+<link href="css/foot.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/checkedweixin.js"></script>
+<script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+<script src="../js/profile.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+        document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(/images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+    </script>
+</head>
+<body>
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a> <span class="headline">修改资料</span> 
+	</div>
+	<section>
+		<div class="safety">
+			<!-- tab切换 -->
+			<div class="tab-label clearfix">
+				<a href="javascript:void(0)" class="login on">会员资料</a> <a href="javascript:void(0)" class="pay">登录密码</a>
+			</div>
+			<div class="cutline"></div>
+			<div class="tab-content code-area hide">
+				<form name="formPassword" id="formPassword" action="user.php?act=act_edit_password" method="post">
+					<input name="is_weixin" value="1" type="hidden">
+					<p>原密码</p>
+					<input class="pass" type="password" name="old_password" id="old_password" />
+					<p>新密码</p>
+					<input class="pass" type="password" name="new_password" id="new_password" />
+					<p>再次输入新密码</p>
+					<input class="pass" type="password" name="comfirm_password" id="comfirm_password" />
+					<div class="align">
+						<input  type="button" class="sub_btn" id="btn" onclick="checkNewPassword();" value="修改密码" />
+					</div>
+				</form>
+			</div>
+			<!-- 用户资料修改 -->
+    <script type="text/javascript">
+    	function checkNewPassword(){
+    		var new_password = $("#formPassword input[name=new_password]").val();
+    		var comfirm_password = $("#formPassword input[name=comfirm_password]").val();
+    		var old_password =  $.trim($("#formPassword input[name=old_password]").val());
+    		
+    		if(old_password.length<1){
+    			alert('请输入旧密码！');
+    			return;
+    		}
+    		
+    		if (/^.*?[\d]+.*$/.test(new_password) && /^.*?[A-Za-z].*$/.test(new_password) && /^.{6,16}$/.test(new_password)) {
+    	        if(new_password==comfirm_password){
+    	        	//$('#formPassword input[type="submit"]').trigger("click");
+    	        	$.post('user.php?act=act_edit_password',{
+    	        		'old_password':old_password,
+    	        		'new_password':new_password,
+    	        		'is_weixin':1
+    	        	},function(data){
+    	        		console.info(data);
+    	        		if(data.code==1){
+    	        			alert(data.msg);
+    	        		}else{
+    	        			alert("更改密码成功！");
+    	        			window.location="user.php?act=login";
+    	        		}
+    	        		
+    	        	},'json')
+    	        	
+    	        }else{
+    	        	alert('新密码和确认密码不一致！');
+    	        }
+    	        
+    		}else{
+    			alert('密码长度必须大于6位！\n必须由数字与字母组成！');
+    			return;
+    		}
+    		
+    	}
+    </script>
+			<div class="tab-content pay-index">
+				<form id="formEdit"  method="post">
+					<input type="hidden" name="apply_check" id="apply_check">
+					<!-- 真实姓名 -->
+
+					<div class="mbt10">
+						<p><span class="f-fdib_w75_tr">会员编号：</span>{$profile.user_id}</p>
+						<!--{if $profile.is_cheack == 0}-->
+						<p>真实姓名</p>
+						<input type="text" name="real_name" id="real_name" class="pass" value="{$profile.real_name}" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">真实姓名：</span>
+						<span> <!--{$profile.real_name}-->
+						</span> <input type="hidden" name="real_name" value="{$profile.real_name}" />
+						<!-- {/if} -->
+					</div>
+
+					<!-- 邮箱 -->
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack == 0}-->
+						<p>邮箱</p>
+						<input name="email" id="user_info_email" value="{$profile.email}" class="pass" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">邮箱：</span>
+						<input name="email" type="hidden" value="{$profile.email}" class="pass" /> <span>{$profile.email}</span>
+						<!-- {/if} -->
+					</div>
+
+					<!-- 手机号码 -->
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack == 0}-->
+						<p>手机号码</p>
+						<input name="extend_field5" id="user_info_phone" value="{$profile.mobile_phone}" class="pass" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">手机号码：</span>
+						<input name="extend_field5" type="hidden" value="{$profile.mobile_phone}" class="pass" /> <span>{$profile.mobile_phone}</span>
+						<!-- {/if} -->
+					</div>
+
+					<!-- 身份证号码 -->
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack ==0}-->
+						<p>身份证号</p>
+						<input name="CardId" type="text" id="CardId" class="pass" value="{$profile.CardId}"
+							onchange="javascript:setBirthday();" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">身份证号：</span>
+						<span>{$profile.CardId}</span> <input name="CardId" type="hidden" value="{$profile.CardId}" />
+						<!-- {/if} -->
+					</div>
+
+                    <!--{if 0}-->
+					<!-- 生日 -->
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack == 0}-->
+						<p>出生日期</p>
+						<input type="text" name="birthday" id="birthday" class="pass" value="{$profile.birthday}" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">出生日期：</span>
+						<span>{$profile.birthday} </span> <input type="hidden" name="birthday" value="{$profile.birthday}">
+						<!-- {/if} -->
+					</div>
+
+
+					<!-- 性别 -->
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack == 0}-->
+						<p>性别</p>
+						<label><input type="radio" name="sex" value="0" {if $profile.sex==0}checked= "checked"{/if} />保密&nbsp;&nbsp;</label>
+						<label><input type="radio" name="sex" value="1" {if $profile.sex==1}checked= "checked"{/if} />男&nbsp;&nbsp;</label>
+						<label><input type="radio" name="sex" value="2" {if $profile.sex==2}checked= "checked"{/if} />女</label>
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">性别：</span>
+						<label><input type="radio" name="sex" value="0" {if $profile.sex==0}checked= "checked"{/if} disabled />保密&nbsp;&nbsp;</label>
+						<label><input type="radio" name="sex" value="1" {if $profile.sex==1}checked= "checked"{/if} disabled />男&nbsp;&nbsp;</label>
+						<label><input type="radio" name="sex" value="2" {if $profile.sex==2}checked= "checked"{/if} disabled />女</label>
+						<!-- {/if} -->
+					</div>
+                    <div class="mbt10">&nbsp;资格证</div>
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack == 0}-->
+						<p>证书类别</p>
+						<label><input type="radio" name="Category" value="0" {if $profile.Category==0}checked= "checked"{/if} />经纪人&nbsp;&nbsp;</label>
+						<label><input type="radio" name="Category" value="1" {if $profile.Category==1}checked= "checked"{/if} />代理人&nbsp;&nbsp;</label>
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">证书类别：</span>
+						<label><input type="radio" name="Category" value="0" {if $profile.Category==0}checked=
+							"checked"{/if} disabled />经纪人&nbsp;&nbsp;</label> <label><input type="radio" name="Category" value="1"
+							{if $profile.Category==1}checked= "checked"{/if} disabled />代理人&nbsp;&nbsp;</label> <input type="hidden" name="Category"
+							value="{$profile.Category}">
+						<!-- {/if} -->
+					</div>
+
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack ==0}-->
+						<p>证书编号</p>
+						<input name="CertificateNumber" type="text" class="pass" value="{$profile.CertificateNumber}" />
+						<!-- {else} -->
+						<span class="f-fdib_w75_tr">证书编号：</span>
+						<span>{$profile.CertificateNumber}</span> <input name="CertificateNumber" type="hidden" class="pass"
+							value="{$profile.CertificateNumber}" />
+						<!-- {/if} -->
+					</div>
+
+
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack ==0}-->
+						<p>有效期</p>
+						<!-- {if $profile.certificate_expiration_date eq '永久有效'}  -->
+						<input class="Wdate" width="40px;" type="text" id="certificate_expiration_date" name="certificate_expiration_date"
+							onclick="javascript:clearOtherDate(2);"
+							onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})" /> <input
+							name="certificate_expiration_date_no" type="checkbox" value="永久有效" id="yjyx"
+							onclick="javascript:clearOtherDate(1);" checked="checked" />永久有效
+						<!-- {else} -->
+						<input class="Wdate" width="40px;" type="text" id="certificate_expiration_date" name="certificate_expiration_date"
+							onclick="javascript:clearOtherDate(2);" value="{$profile.certificate_expiration_date}"
+							onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})" /> <input
+							name="certificate_expiration_date_no" type="checkbox" value="永久有效" id="yjyx"
+							onclick="javascript:clearOtherDate(1);" />永久有效
+						<!-- {/if} -->
+						<!-- {else} -->
+						<span  class="f-fdib_w75_tr">有效期：</span>
+						<span>{$profile.certificate_expiration_date}</span> <input type="hidden"
+							value="{$profile.certificate_expiration_date}">
+						<!-- {/if} -->
+					</div>
+
+					<div class="mbt10">
+
+						<!--{if $profile.is_cheack ==0}-->
+						<p>所在省份/城市</p>
+						<select name="province" id="selProvinces" onchange="region.changed(this.value, 2, 'selCities')">
+							<option value="0">{$lang.select_please}</option>
+							<!--  {foreach from=$provinces item=pro} -->
+							<option value="{$pro.region_id}" {if $pro.region_id eq $profile.Province} selected="selected"{/if}>{$pro.region_name}</option>
+							<!-- {/foreach} -->
+						</select> <select name="city" id="selCities">
+							<option value="0">{$lang.select_please}</option>
+							<!--  {foreach from=$citys item=city} -->
+							<option value="{$city.region_id}" {if $city.region_id eq $profile.city} selected="selected"{/if}>{$city.region_name}</option>
+							<!--{/foreach} -->
+						</select>
+						<!-- {else} -->
+						<span>省份/城市：</span>
+						<input name="province" type="hidden" class="pass" value="{$profile.Province}" /> <input name="city" type="hidden"
+							class="pass" value="{$profile.city}" /> <span>{$province_name_my}</span> <span>{$city_name_my}</span>
+						<!-- {/if} -->
+					</div>
+					<div class="mbt10">
+					    <!--{if $profile.is_cheack ==0}-->
+						<p>详细地址</p>
+						<!--{else}-->
+						<span>详细地址：</span>
+						<!--{/if}-->
+						<input name="address" type="text" class="pass" value="{$profile.address}" />
+					</div>
+					<!--{/if}-->
+					 
+					<div class="align mbt20">
+						<input name="submit" type="button" onclick="check_revise();" class="sub_btn" id="btn" value="保存" />
+						<!-- add yes123 2015-01-06 只有未审核的用户才能看到申请审核的按钮
+						{if $profile.is_cheack == 0}-->
+						&#12288; <input name="submit" type="button" onclick="submit_check();" class="sub_btn" id="btn" value="提交审核" />
+						<!-- {/if} -->
+					</div>
+				</form>
+			</div>
+
+
+
+		</div>
+	</section>
+	<script type="text/javascript">
+<!--
+$(function(){
+		var $label1 = $('.pay');
+		var $label2 = $('.login');
+	
+		var $tab1_code = $('.code-area');
+		var $tab2_pay = $('.pay-index');
+		$label1.click(function(){
+			$(this).addClass("on");
+			$tab1_code.removeClass('hide');
+			$tab2_pay.addClass('hide');			
+			$label2.removeClass('on');
+		});
+		$label2.click(function(){
+			$(this).addClass("on");
+			$tab1_code.addClass('hide');
+			$tab2_pay.removeClass('hide');
+			$label1.removeClass('on');
+		});
+});
+//-->
+</script>
+
+	{include file='foot.dwt'}
+	<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+		
+	 	//start add yes123 2014-12-29 通过身份证 号码获取并设置生日  
+	 	function setBirthday(){
+	 	 	var cardId =$.trim( $("#CardId").val());
+	 	 	isCardNo(cardId);
+	 		var birthday = getBirthdatByIdNo(cardId);
+	 		
+	 		$("#birthday").val(birthday);
+	 		$("input[name='sex'][value="+getSexById(cardId)+"]").attr("checked", true);
+	 		
+	 	}
+	 	
+	 	//获取生日
+		function getBirthdatByIdNo(iIdNo) {
+		    var tmpStr = "";
+			var strReturn = "";
+			if (iIdNo.length == 15) {
+		      tmpStr = iIdNo.substring(6, 12);
+			  tmpStr = "19" + tmpStr;
+		      tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6)
+		      return tmpStr;
+			}else {
+		      tmpStr = iIdNo.substring(6, 14);
+		      tmpStr = tmpStr.substring(0, 4) + "-" + tmpStr.substring(4, 6) + "-" + tmpStr.substring(6)
+			  return tmpStr;
+		     }
+		}
+		
+	 	//获取性别
+		function getSexById(cardId){
+	 		if(cardId.length==15){
+	 			var sex = cardId.substr(14, 1)%2?1:2;
+	 		}else if(cardId.length==18){
+	 			var sex = cardId.substr(16, 1)%2?1:2;
+	 		}
+	 		return sex;
+			
+		}
+		 //通过 省份ID查询城市
+		 var region = new Object();
+		 region.changed = function(parentId, type, selName)
+		 {
+		 	  $.ajax({
+		 		   dataType:"json",
+		 		   type: "GET",
+		 		   url: "../region.php",
+		 		   data: "type=2&target=selCities&parent="+parentId,
+		 		   success: function(data){
+		 			   var citys ="<option value='0'>请选择</option>";
+		 			   $.each(data.regions,function (k,v)
+		 				{
+		 				  	citys+="<option value='"+v.region_id+"'>"+v.region_name+"</option>"
+		 				});
+		 			   
+		 			   $("#selCities").html(citys);
+		 		     	
+		 		   }
+		 		});
+
+		 }
+		   function check_revise() {
+		        //alert("asdasda");
+				var msg = data_validation();
+				if (msg) 
+				{
+					alert(msg);
+					return;
+				} 
+				else 
+				{
+				    //alert("asdasdas");
+					//var obj = serializeObject($("#formEdit"));
+					
+					var obj = 'act=act_edit_profile_meeting&is_weixin=1&'+$('#formEdit').serialize();
+					$.ajax({
+						   type: "POST",
+						   url: "user.php",
+						   data: obj,
+						   success: function(data){
+							 var obj = $.parseJSON(data);
+						     if(obj.code==0)
+							 {
+						    	 alert(obj.msg);
+						    	 window.location="user.php?act=profile";
+						     }
+							 //start add by wangcya, 2015029, for bug[238], 增加一个会议活动注册的功能,可以在这个地方做跳转			  
+							 else if(obj.code=="meeting")
+							  {//
+							    window.location= obj.url;
+							  }
+							  //end add by wangcya, 2015029, for bug[238], 增加一个会议活动注册的功能,可以在这个地方做跳转
+							 else{
+						    	alert(obj.msg); 
+						    }
+						   }
+					});
+					
+					
+				}
+			}
+		   function data_validation(){
+			   var msg="";
+			   {if $profile.is_cheack == 0}
+			    msg+=email_validate($("#user_info_email").val(),1);
+			    msg+=phone_validate($("#user_info_phone").val(),1);
+			    msg+=isCardNo($("#CardId").val(),1);  
+			    //msg+=certificate_expiration_date($("#certificate_expiration_date").val(),1); 
+			    msg+=real_name($.trim($("#real_name").val()),1); 
+			    // msg+=Zone_Code($("#user_info_ZoneCode").val(),1); 邮政编码取消
+			   {/if}
+			   // msg+=Zone_Code($("#user_info_ZoneCode").val(),1);
+			   
+			 
+			   return msg;
+		   } 
+		   
+			   //提交审核
+			function submit_check(){
+				   $("#apply_check").val(1);
+					check_revise(); 
+			}
+</script>
+</body>
+</html>

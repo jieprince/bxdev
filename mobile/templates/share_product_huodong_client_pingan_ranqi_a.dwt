@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="description" content="平安燃气险--全联保险经纪网" />
+    <title>"1分钱抢"平安燃气用户意外伤害保险--全联保险经纪网</title>
+
+    <link rel="stylesheet" href="../mobile_page/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../mobile_page/dist/fonts/font-awesome/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="../mobile_page/dist/css/style_spring_active_mobile.css">
+	<script type="text/javascript" src="js/checkedweixin.js"></script>
+</head>
+<body>
+<script>
+	document.addEventListener('WeixinJSBridgeReady',
+		function onBridgeReady() {WeixinJSBridge.call('showOptionMenu');WeixinJSBridge.call('showToolbar');});
+</script>
+<style>
+	body{ background:#f5f5f5;}
+	.layermcont{padding:0px 10px 30px 10px;}
+	.layermchild h3 {
+		border-bottom: 1px solid #ebebeb;
+		border-radius: 5px 5px 0 0;
+		font-size: 16px;
+		font-weight: 400;
+		height: 30px;
+		line-height: 15px;
+		padding: 0 45px 0 10px;
+	}
+	</style>
+ 
+<div class="container-fluid">
+
+    <div class="max_wid_c">
+
+        <header>
+        	<div id='wx_pic' style='margin:0 auto;display:none;'>
+                <img src='../mobile_page/images/huodong/ranqi/mobile/img_C_300.png' />
+                <h1>"1分钱抢"平安燃气用户意外伤害保险!</h1>
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_01.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_02.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_03.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_04.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_05.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_06.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_07.png" class="img-responsive">
+            </div>
+            <div >
+                <img src="../mobile_page/images/huodong/ranqi/mobile/images_C_08.png" class="img-responsive">
+            </div>
+            
+        </header>
+
+        <div>
+            <div>
+                <input type="hidden" id="sessionuid" value="{$smarty.session.user_id}">
+                <input type="hidden" id="is_cheack" value="{$smarty.session.is_cheack}">
+				<div> 
+                	<img src="../mobile_page/images/huodong/ranqi/mobile/images_C_09.png" class="img-responsive">
+                </div>
+				<div> 
+                	<img src="../mobile_page/images/huodong/ranqi/mobile/images_C_10.png" class="img-responsive">
+                </div>
+                <div> 
+                	<img src="../mobile_page/images/huodong/ranqi/mobile/images_C_11.png" class="img-responsive">
+                </div>
+                <div class="tab-content bg_ffffff">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                         
+                        <div align="center" class="">
+                            <div class=" row" style="margin: 0px;"> 
+                                <div class="col-sm-6 col-xs-6"><a class=" btn-f85200" href="javascript:go_insure('{$ranqi_gid}','{$url_huodong_ranqi}');">马上领取</a></div>
+                                <div class="col-sm-6 col-xs-6"><a class=" btn-68bbf9" href="javascript:void(0)" onClick="show_info()">分享给朋友</a></div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="padd_A15B0 padd_T45">
+                        <span class="font_14 ">注：每个微信号或手机号限领一款产品</span>
+                    </div>
+                    <div class="text-center padd_A15T0">
+                        <a class=" btn-fd9e02" style="background:#f85200" href="javascript:void(0)" onclick="show_userinfo()">咨询保险顾问</a>
+                    </div>
+                    <div>
+                        <div class="text-center">已有{$buy_detail.policy_count}人领取了~</div>
+                        <div id="photoList" class="mar_T10" align=center >
+                          {foreach from=$buy_detail.policy_list item=policy name=orderit}
+                            <p class="text-center" style="margin:0px;padding:0px;">{$policy.text}</p>
+                          {/foreach}
+                        </div>
+                    </div>
+
+                    <div class="text-center padd_A15T0 padd_T20">本次活动解释权归全联保险经纪网所有</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../mobile_page/dist/js/jquery.min.js"></script>
+<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+<script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+<script src="../mobile_page/dist/js/respond.min.js"></script>
+<script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/MSClass.js"></script>
+
+<script>
+    $().ready(function(){
+       var tempsTes = '{$uid}';
+        if(tempsTes!="" && $('#sessionuid').val()!="" && $('#sessionuid').val()!=undefined){
+            if(tempsTes.split(',')[0]==$('#sessionuid').val()){
+                show_info();
+            }
+        }
+        new Marquee("photoList",0,1,"100%",20,50,0,0,0);
+        
+    });
+	function show_info(){
+		
+		var sessionuid = $('#sessionuid').val();
+		//var is_cheackT = $('#is_cheack').val();
+        var temps = '{$uid}';
+		if(sessionuid && sessionuid!=undefined &&  sessionuid!="" && temps!=""){
+			
+			var html_temp = '<div align=right><img src="../mobile_page/images/bg_jt.png"></div><div style="border-radius: 5px; background: #fff; padding:20px 10px;"><span style="color:#090">点击右上角,选择【发送给朋友】或者【分享到朋友圈】，给他们送礼包啦!</span></div>';
+			layer.open({
+				content: html_temp,
+				fixed:false,
+				style:'width:'+document.documentElement.clientWidth+'px;background: none;top:0;',
+				top:0
+			});
+		}else{
+			window.location.href='../client/user.php';
+		}
+	}
+
+	function selectProduct(){
+		var sessionuid = $('#sessionuid').val();
+		//var is_cheackT = $('#is_cheack').val();
+		var session_url = '{$url_huodong_ranqi}';
+		var temps = '{$uid}';
+
+		if(sessionuid && sessionuid!=undefined && sessionuid!="" && temps!=""){
+			var html_pr = '<div align=center><a href="..{$url_huodong_ranqi}" class="btn-c30d23">平安燃气</a></div>';
+			layer.open({
+				content: html_pr,
+				title:'选择产品',
+				fixed:true,
+				style:'width:'+document.documentElement.clientWidth+'px;'
+			});
+		}else{
+			window.location.href='user.php';
+		}
+	}
+	
+	//去投保
+	function go_insure(gid,url){
+		var uid = "{$uid}";
+	    $.post('spring_activity.php?act=go_insure',{
+	    		'uid':uid,
+	    		'url':url,
+	    		'gid':gid
+	    	
+	    },function(data){
+				if(data.code==0){
+					window.location.href="../"+data.url;
+				}else if(data.code==10){
+					alert(data.msg);
+				}else if(ata.code==11){
+					alert(data.msg);
+				}
+	    },'json');
+	   
+	}
+
+	function show_userinfo(){
+	    var html_info = '<div align=left><span>姓名：{$insurance_agent_info[real_name]}</span><br><span style="line-height:25px;">手机：{$insurance_agent_info[mobile_phone]}</span><span><a href="tel:{$insurance_agent_info[mobile_phone]}"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span></div>';
+        layer.open({
+            content: html_info,
+            title:'您的保险顾问',
+            fixed:true,
+            style:'width:'+document.documentElement.clientWidth+'px;'
+        });
+	}
+</script>
+</body>
+</html>

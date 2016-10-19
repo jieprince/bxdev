@@ -1,0 +1,222 @@
+
+                    <div class="xqcont">
+                    	 
+                        <div class="dataForm">
+
+						<form name="feeDataForm" method="post" action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" >
+						 
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                   
+								    <li class="app_li">
+								    	承保年龄：{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁
+										 
+									</li>
+									<li class="app_li">
+										保险期限：12个月
+									</li>
+									<li class="app_li">
+										限购份数：{$ins_product_selected.number}
+									</li>
+                                    
+									<li class="app_li">
+									<label>家庭财产保障：</label>
+									<select class="prod_txt feestItem" name="property_ensure" data-value_type='MP02000013' id="product_factor_price_01" onChange="setAjax_option('product_factor_price_01');"  style="padding:5px 0px;">
+				                     <!--{foreach from=$main_product_id_list key=key item=value}-->   
+                                        
+                                     	<!--{foreach from=$value.period_list key=key2 item=value2}-->            			                       	
+				                     	<option  value="{$value2[factor_code]}" >{$value2[factor_name]}</option>
+                                     	<!--{/foreach}-->	
+                                         
+									 <!--{/foreach}-->	
+									</select>
+									</li>
+                                    <li>
+                                    	<table cellpadding="0" cellspacing="0" class="border_table_05" id="addtional_list01">
+                                 
+                             			</table> 
+                                    </li>  
+									 
+									
+                                </ul> 
+                            <div class="buyBar">
+                                  <input type="hidden" id="temp_priceA" value=""/> 
+                                  <input type="hidden" id="temp_priceB" value=""/> 
+                                  <input type="hidden" id="temp_addtional_idsA" value=""/> 
+                                  <input type="hidden" id="temp_addtional_idsB" value=""/> 
+								  <input type="hidden" id="attribute_id" name="attribute_id" value="{$attribute_id}" />
+                                  <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                                  <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" /> 
+                                  <input type="hidden" name="period" value="365">
+                                  <input type="hidden" id="temp_price" name="price" value="" />
+                                  
+                                  <input type="hidden" id="temp_addtional_ids" name="duty_price_ids" value="" /> 
+                                  <input type="submit" value="{$lang.insure}"  class="btn_products_02_01 margin_T0_50" />
+
+                            </div>
+                        </div> <!--baseForm-->
+						</form>
+						
+                       
+                      </div>
+                    </div>
+					
+					
+<script>
+	$().ready(function() {
+        setAjax_option('product_factor_price_01');
+		setAjax_option('product_factor_price_02');
+    });
+	function setAjax_option(ef){
+		if($('#'+ef).val()!="E"){
+		$.ajax({
+			type: "post",
+			url : "oop/business/getPAC502Data.php",
+			dataType:'json',
+			data: {'insurer_code':'PAC04','attribute_id':$('#attribute_id').val(),'period_factor_code':$('#'+ef).val(),'product_code':$('#'+ef).data('value_type')}, 
+			success: function(data){
+				 
+				if(data!=null&&data!=""){
+					var res = data; 
+					var addtional_html =''; 
+					var sts_proces =0;
+					var product_duty_price_idsTemp = [];
+					$.each(res,function(i,n){
+						var product_name = '';
+						var product_duty_name = ''; 
+						var pr_duty_list = [];
+						var product_id = 0;
+						var main_product_name = '';
+						var main_product_duty_name = '';
+						
+						if(n.product_type=='mainsss'){
+							 
+						}else{
+							$.each(n.product_duty_list,function(i_p,n_p){
+								if(n.product_duty_list==1){
+									addtional_html += '<tr><td style="padding-left:0px;">'+n.product_name+'</td><td>&nbsp;&nbsp;'+n_p.duty_name+'</td><td>&nbsp;保额(元)：';					if(n_p.duty_price_list.length>0){
+										$.each(n_p.duty_price_list,function(i_A,n_A){
+											addtional_html += number2million(n_A.amount);	
+											 
+											sts_proces = accAdd(n_A.premium,sts_proces);
+											product_duty_price_idsTemp.push(n_A.product_duty_price_id);
+										});
+									}else{
+										addtional_html += '不投保';
+									}
+									 
+									addtional_html += '</td></tr>';	
+								}else{
+									
+									if(i_p==0){
+										addtional_html += '<tr><td rowspan="'+n.product_duty_list.length+'" style="padding-left:0px;">'+n.product_name+'</td><td>&nbsp;&nbsp;'+n_p.duty_name+'</td><td>&nbsp;保额(元)：';
+										if(n_p.duty_price_list.length>0){
+											$.each(n_p.duty_price_list,function(i_A,n_A){
+												addtional_html += number2million(n_A.amount);
+												 
+												sts_proces = accAdd(n_A.premium,sts_proces);
+												product_duty_price_idsTemp.push(n_A.product_duty_price_id);
+											});
+										}else{
+											addtional_html += '不投保';
+										}
+										addtional_html += '</td></tr>';		
+									}else{
+										addtional_html += '<tr><td>&nbsp;&nbsp;'+n_p.duty_name+'</td><td>&nbsp;保额(元)：';
+										if(n_p.duty_price_list.length>0){
+											$.each(n_p.duty_price_list,function(i_A,n_A){
+												addtional_html += number2million(n_A.amount);	
+												
+												sts_proces = accAdd(n_A.premium,sts_proces);
+												product_duty_price_idsTemp.push(n_A.product_duty_price_id);
+											});
+										}else{
+											addtional_html += '不投保';
+										}
+										 
+										addtional_html += '</td></tr>';		
+									}
+								}
+								
+							});
+							if(ef=='product_factor_price_01'){
+								$('#addtional_list01').html(addtional_html);
+								$('#temp_priceA').val(sts_proces);
+								$('#temp_addtional_idsA').val(product_duty_price_idsTemp.join(','));
+							}else if(ef=='product_factor_price_02'){
+								$('#addtional_list02').html(addtional_html);
+								$('#temp_priceB').val(sts_proces);
+								$('#temp_addtional_idsB').val(product_duty_price_idsTemp.join(','));
+							}
+							
+						}
+						 
+					});
+					reFeeButtom();
+				}
+			}
+		}); 
+		}else{
+			if(ef=='product_factor_price_01'){
+				$('#addtional_list01').html('');
+				$('#temp_priceA').val(0);
+				
+			}else if(ef=='product_factor_price_02'){
+				$('#addtional_list02').html('');
+				$('#temp_priceB').val(0);
+				$('#temp_addtional_idsB').val('');
+			}
+			reFeeButtom();
+		}
+		
+			
+	} 
+	function reFeeButtom(){
+		var price_01 = $('#temp_priceA').val();
+		var price_02 = $('#temp_priceB').val();
+		var temp_addtional_idsA = $('#temp_addtional_idsA').val();
+		var temp_addtional_idsB = $('#temp_addtional_idsB').val();
+		var temp_addtional_idsAll = '';
+		var price_sumsTempq = accAdd(price_01,price_02);
+		if(temp_addtional_idsA!="" && temp_addtional_idsB!=""){
+			temp_addtional_idsAll = temp_addtional_idsA+'_'+temp_addtional_idsB;
+		}else{
+			temp_addtional_idsAll = temp_addtional_idsA+temp_addtional_idsB;
+		}
+		$('#temp_price').val(price_sumsTempq);
+		$('#temp_addtional_ids').val(temp_addtional_idsAll);
+		$('#productPrem_ strong').html(price_sumsTempq);
+	}
+	
+	function accAdd(arg1,arg2){
+	var r1,r2,m,mz=0;
+	 
+	try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0};
+	try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0};
+	m=Math.pow(10,Math.max(r1,r2));
+	if(r1>r2){
+		mz = r1;
+	}else{
+		mz = r2;
+	}
+	return parseFloat(parseInt((arg1*m+arg2*m))/m).toFixed(mz);
+} 
+
+function number2million(number_str){
+	var s1_length = number_str.toString().split(".")[0].length;
+	var s2_length = 0;
+	var mi_str = number_str;
+	try{s2_length=number_str.toString().split(".")[1].length}catch(e){s2_length=0};
+	 
+	if(s2_length==0&&s1_length>=5){
+		mi_str = ((number_str)/10000)+'万';
+	}
+	 
+	return 	mi_str;
+}
+
+
+			
+							
+</script>
+					

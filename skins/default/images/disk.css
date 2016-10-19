@@ -1,0 +1,94 @@
+@charset "utf-8";
+body,html{margin:0;overflow:hidden;}
+a:link,a:visited,a:active{color:#333333;text-decoration:none;}
+a:hover{color:#333333;text-decoration:none;}
+
+#top{height:60px;background-image:url(disk-top-bg.png);}
+#logo{display:inline-block;background-image:url(disk-logo.png);height:60px;width:240px;background-repeat:no-repeat;background-position:center top;vertical-align:middle;}
+#contentLeft{background-color:#F0F1F2;}
+#contentLeft div{display:none;}
+#contentLeft a{display:block;height:50px;line-height:50px;padding-left:20px;}
+#contentLeft .selected{background-image:url(left-item-bg.png);color:#FFF;font-weight:bold;}
+#contentRight .page{display:none;}
+#topRightNav{position:absolute;right:30px;top:18px;_top:23px;}
+#topRightNav *{vertical-align:middle;}
+#topRightNavSpaceBox{display:inline-block;height:14px;width:120px;font-size:1px;line-height:1px;background-image:url(progress.png);position:relative;}
+#topRightNavSpaceBox i{display:block;position:absolute;background-image:url(progress.png);width:5px;height:14px;background-position:right 0;right:0;top:0;}
+#topRightNavSpaceBoxProgressBar{height:18px;background-image:url(progress-bar.png);margin-left:-1px;position:relative;_height:14px;_margin-left:0;}
+#topRightNavSpaceBoxProgressBar b{display:block;position:absolute;background-image:url(progress-bar.png);width:3px;height:18px;background-position:right 0;right:0;top:0;margin-right:-3px;_background-image:url(progress-bar-ie6.png);_height:14px;_margin-right:0;}
+#topRightNavUploading{cursor:pointer;display:none;}
+
+#page1{padding-top:20px;overflow-y:scroll;}
+#page2PathTxt{border:0 none;border-top:1px solid #cfd1d8;padding:10px;width:100%;}
+
+#filesBox{overflow-y:scroll;}
+#filesBox a{display:inline-block;border-bottom:solid 1px transparent;_border-bottom:solid 1px #FFFFFF;line-height:14px;}
+#filesBox a:hover{border-bottom:solid 1px #333333;}
+#uploadWinFilesBox{height:250px;overflow-y:scroll;}
+#uploadWinTitle{padding:10px;text-align:center;font-size:14px;font-weight:bold;width:700px;background-color:#F0F1F2;}
+#uploadBtn-queue{display:none;}
+#uploadWinSpeedBox{position:absolute;right:5px;bottom:26px;right:20px;}
+
+#moveWinFilesBox{height:250px;width:350px;overflow:auto;border:1px solid #999999;margin-top:10px;}
+.moveWinItem{padding:5px;background-image:url(../../common/images/icon/sys-folder.gif);background-repeat:no-repeat;background-position:5px center;padding-left:26px;cursor:pointer;}
+
+.tips{background-color:#000;color:#FFF;padding:0;position:absolute;line-height:1;font-size:1px;border-radius:10px;}
+.topNavItem{display:inline-block;vertical-align:middle;padding:0 40px;height:60px;line-height:60px;position:relative;}
+.topNavItem i{display:block;position:absolute;height:60px;width:10px;right:0;top:0;}
+.topNavItemHover{text-decoration:none;background-image:url(disk-top-item.png);}
+.topNavItemHover i{background-image:url(disk-top-item.png);background-position:right 0;}
+.topNavItemSelected{background-image:url(disk-top-item-selected.png);color:#FFF !important;font-weight:bold;}
+.topNavItemSelected i{background-image:url(disk-top-item-selected.png);background-position:right 0;width:30px;}
+
+.box{border:solid 1px #CFD1D8;margin:20px 20px 0 20px;box-shadow:0 0 3px rgba(0, 0, 0, 0.1);}
+.boxBody{padding:10px;}
+.boxBody *{vertical-align:middle;}
+.boxBody a{color:#333333;font-weight:bold;}
+.boxBody a:hover{color:#286FBF;text-decoration:none;}
+.boxBodyContent{margin-top:5px;}
+.boxBottom{padding:10px;border-top:1px solid #CFD1D8;position:relative;background-color:#F0F1F2;}
+.boxBottom *{vertical-align:middle;}
+.boxBottomRight{position:absolute;right:10px;top:17px;}
+
+.button{height:33px;display:inline-block;vertical-align:middle;}
+.button a{display:inline-block;height:41px;padding:0 24px 0 25px;color:#FFF !important;background-image:url(button-bg-gray.png);line-height:32px;vertical-align:middle;outline:0 none;position:relative;}
+.button i{display:block;background-image:url(button-bg-gray.png);width:5px;height:41px;background-position:right 0; position:absolute;right:0;top:0;}
+.button a:hover{text-decoration:none;background-position:left -41px;}
+.button a:hover i{background-position:right -41px;}
+.button a:active{background-position:left -82px;}
+.button a:active i{background-position:right -82px;}
+.buttonHover a{text-decoration:none;background-position:left -41px;}
+.buttonHover a i{background-position:right -41px;}
+.buttonActive a{background-position:left -82px;}
+.buttonActive a i{background-position:right -82px;}
+
+.buttonOrange a{background-image:url(button-orange-bg-gray.png);color:#333333 !important;}
+.buttonOrange a:hover{color:#FFF !important;}
+.buttonOrange a:active{color:#FFF !important;}
+.buttonOrange i{background-image:url(button-orange-bg-gray.png);}
+
+.buttonBlue a{background-image:url(button-blue-bg-gray.png);color:#333333 !important;}
+.buttonBlue a:hover{color:#FFF !important;}
+.buttonBlue a:active{color:#FFF !important;}
+.buttonBlue i{background-image:url(button-blue-bg-gray.png);}
+
+.page1Loading{background-image:url(../../common/images/ajax-loader.gif);background-repeat:no-repeat;background-position:center center;padding:60px;}
+.page1Bottom{padding:60px;color:#666666;font-size:16px;text-align:center;}
+.page2Nav{background-color:#F0F1F2;padding:20px;}
+
+.filesTable td,.filesTable th{padding:10px;border-top:1px solid #cfd1d8;}
+.filesTable th{background-color:#F0F1F2;}
+.filesTable td{cursor:pointer;}
+.filesTable td *{vertical-align:middle;}
+
+.window{position:absolute;left:200px;top:200px;box-shadow:0 0 5px rgba(0, 0, 0, 0.3);background-color:#FFF;color:#333333;border:1px solid #999999;display:none;}
+.windowContent{padding:20px;}
+.windowBottom{background-color:#F0F1F2;border-top:solid 1px #CFD1D8;padding:20px;text-align:center;}
+.windowMask{background-color:#000;left:0;top:0;position:absolute;display:none;}
+
+.sTable td{padding-top:10px;}
+.sTable .textbox{border:1px solid #DCDEE0;padding:5px;width:250px;}
+
+.mask{position:absolute;background-color:#000;width:100%;height:100%;left:0;top:0;display:none;}
+.shareIcon{background-image:url(../../common/images/icon/sys-share.gif);width:8px;height:8px;position:absolute;left:9px;top:13px;_top:10px;font-size:1px;}
+.shareIconSub{background-image:url(../../common/images/icon/sys-share-sub.png);width:8px;height:8px;position:absolute;left:10px;top:13px;_top:10px;_background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="skins/common/images/icon/sys-share-sub.png");font-size:1px;}

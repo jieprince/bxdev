@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>全联保险经纪 管理中心 - 新添银行账户 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="bank_account.php?act=account_list">
+银行账户列表</a></span>
+<span class="action-span1"><a href="index.php?act=main">全联保险经纪 管理中心</a> </span><span id="search_id" class="action-span1"> - 新添银行账户 </span>
+<div style="clear:both"></div>
+</h1>
+<!-- 新添银行账户 -->
+  <!-- start goods list -->
+          <div class="blank"></div>
+		   <script language="javascript" type="text/javascript">
+			function check()
+			{
+			var account = document.form1.account.value;
+			var reg = /^\d{16,19}$|^\d{6}[- ]\d{10,13}$|^\d{4}[- ]\d{4}[- ]\d{4}[- ]\d{4,7}$/;   // 以19位数字开头，以19位数字结尾
+			if( !reg.test(account) )
+			{
+			   alert("账号：格式错误，应该是16-19位数字！");
+			}
+		  }
+		  </script>
+		  <div style="width:450px;margin:auto;">
+		    <form method="post" action="bank_account.php" name="form1">
+				<table>
+					<tr>
+					  <td style="text-align:right;">{$lang.bank_user_name}:</td>
+					  <td><input type="text" name="bank_name"/></td>
+					</tr>
+					<tr>
+					  <td style="text-align:right;">{$lang.open_bank}:</td>
+					  <td>
+						<select name="b_account">
+						   <option>支付宝</option>
+						   <option>中国工商银行</option>
+						   <option>中国农行银行</option>
+						   <option>中国建设银行</option>
+						   <option>中国银行</option>
+						   <option>交通银行</option>
+						   <option>招商银行</option>
+						   <option>中国中信银行</option>
+						   <option>中国民生银行</option>
+						   <option>中国光大银行</option>
+						   <option>上海浦东发展银行</option>
+						   <option>兴业银行</option>
+						   <option>平安银行</option>
+						   <option>华夏银行</option>
+						   <option>广发银行</option>
+						   <option>恒丰银行</option>
+						</select>
+						其他：<input type="text" name="rests"/>
+					  </td>
+					</tr>
+					<tr>
+					  <td style="text-align:right;">{$lang.sub_branch}:</td>
+					  <td><input type="text" name="sub_branch"/></td>
+					</tr>
+					<tr>
+					  <td style="text-align:right;">{$lang.account_number}:</td>
+					  <td><input type="text" name="bank_code" id="account" onblur="check()"/></td>
+					</tr>
+					<tr>
+					  <td colspan="2">
+					  <input type="hidden" name="act" value="add"/>
+					   <input style=" float:left;background: #F60; width: 72px; height: 21px; display: block; line-height: 21px; text-align: center; color: #fff; font-size: 12px; text-decoration: none; margin-left: 88px;border:0px;" type="submit" value="提&nbsp;&nbsp;交"/></td>
+					  <!--<td colspan="2">
+						<a href="user.php?act=add_account" style=" float:left;background: #F60; width: 72px; height: 21px; display: block; line-height: 21px; text-align: center; color: #fff; font-size: 12px; text-decoration: none; margin-left: 55px;">提&nbsp;&nbsp;交</a>-->
+					  </td>
+					</tr>
+				</table>
+			</form>
+		  </div>
+<div id="footer">
+<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+<!-- 新订单提示信息 -->
+<div id="popMsg">
+  <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#cfdef4" border="0">
+  <tr>
+    <td style="color: #0f2c8c" width="30" height="24"></td>
+    <td style="font-weight: normal; color: #1f336b; padding-top: 4px;padding-left: 4px" valign="center" width="100%"> 新订单通知</td>
+    <td style="padding-top: 2px;padding-right:2px" valign="center" align="right" width="19"><span title="关闭" style="cursor: hand;cursor:pointer;color:red;font-size:12px;font-weight:bold;margin-right:4px;" onclick="Message.close()" >×</span><!-- <img title=关闭 style="cursor: hand" onclick=closediv() hspace=3 src="msgclose.jpg"> --></td>
+  </tr>
+  <tr>
+    <td style="padding-right: 1px; padding-bottom: 1px" colspan="3" height="70">
+    <div id="popMsgContent">
+      <p>您有 <strong style="color:#ff0000" id="spanNewOrder">1</strong> 个新订单以及       <strong style="color:#ff0000" id="spanNewPaid">0</strong> 个新付款的订单</p>
+      <p align="center" style="word-break:break-all"><a href="order.php?act=list"><span style="color:#ff0000">点击查看新订单</span></a></p>
+    </div>
+    </td>
+  </tr>
+  </table>
+</div>
+</body>
+</html>

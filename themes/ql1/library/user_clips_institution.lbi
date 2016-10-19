@@ -1,0 +1,149 @@
+
+<div class="border_BD padd_B10 padd_T10" style="width: 900px;">
+	<span class="font18 "><b class="f10"> 
+	<!-- {if $smarty.session.real_name}-->
+			{$smarty.session.real_name}
+			<!-- {else} --> 
+			{$info.username} 
+		<!-- {/if} -->
+	</b> <span class="f11 ">{$lang.welcome_to}！</span></span> <span>{$lang.last_time}
+		: {$info.last_time}</span>
+</div>
+
+
+<div id="check_result" class="mar_A10">
+
+	<span id="notice_msg" class="color_57 font14  mar_L15"> 
+	<!--{ if $info.check_status neq 'checked'}-->
+		<span><img src="images/wrim.png" width="16" height="14"
+			style="vertical-align: top; padding-top: 2px;" /> <a
+			href="user.php?act=organ_info"> {$lang.organ_check_infoing} </a> </span> 
+			<!--{else}-->
+		<span><img src="images/ok.png" width="16" height="16"
+			style="vertical-align: top; padding-top: 2px;" /></span> <span>{$lang.format_organ_infoing}</span>
+		<!-- {/if} --> 
+		<!--{if $info.check_result}--> 
+			<br />&nbsp;&nbsp;&nbsp;
+			<span><img src="images/wrim.png" width="16" height="14"
+				style="vertical-align: top; padding-top: 2px;" />
+				审核结果为：{$info.check_result} </span> 
+		<!--{/if}-->
+	</span>
+
+    <div class="mar_A10">
+        <!--{if $info.is_validate eq 0} -->
+        <span class="mar_L15"><img src="images/wrim.png" width="16" height="14" style=" vertical-align:top; padding-top:2px;" /></span>
+         <span id='not_send_mail' >
+        {$lang.not_validated} <a href="javascript:sendHashMail()" style="color:#006bd0;">{$lang.resend_hash_mail}</a><br />
+         </span>
+         <!--{/if} -->
+         <!--{if $info.is_validate eq 2} -->
+          <span class="mar_L15"><img src="images/wrim.png" width="16" height="14" style=" vertical-align:top; padding-top:2px;" /></span>
+          <span id='send_mail_finished' >
+         验证邮件已发送到你的邮箱{$info.email}，请登录邮箱进行验证！<br />
+          </span>
+         <!--{/if} -->
+    </div>
+	<div class="clear"></div>
+	<div class="border_table_02 ">
+		<div class="wid_500 height_220 float_L border_RB"
+			style="width: 697px;">
+			<div class="padd_A2032 border_BD">
+				<div class="float_L">
+					<div class="font14 color_57 ">账户余额</div>
+					<div class="font18 color_ea5413 fontbloder mar_T10">{$info.surplus}</div>
+				</div>
+				<div class="float_R text_left padd_T10 wid_210">
+					<a href="./user.php?act=account_deposit" class="btn_out02">充值</a>&nbsp;
+					<a href="./user.php?act=account_raply" class="btn_out02">提现</a>&nbsp;
+					<!-- del yes123 2015-01-22取消转账功能  <a href="./user.php?act=transfer_accounts" class="btn_out02">转账</a> -->
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="padd_A2032 ">
+				<div class="float_L">
+					<div class="font14 color_57">累积收益</div>
+					<div class="font18 color_ea5413 fontbloder mar_T10">
+						￥
+						<!-- {if $user_base_info.income_total} -->
+						{$user_base_info.income_total}
+						<!-- {else} -->
+						0.00
+						<!-- {/if} -->
+						元
+					</div>
+				</div>
+				<div class="float_R text_left padd_T10 wid_210">
+					<a href="./user.php?act=account_income" class="btn_out02">收入明细</a>&nbsp;
+					<a href="./user.php?act=account_detail">账户明细</a>&nbsp;&nbsp;|&nbsp;
+					<a href="./user.php?act=account_log">申请记录</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="wid_195 height_220 float_L border_RB">
+			<div class="text_center mar_T50">
+				<span class="color_57 font14 ">会员总数</span>
+			</div>
+			<div class="text_center mar_T10">
+				<span class="font18 color_ea5413 fontbloder">{$user_base_info.user_total}</span>
+			</div>
+			<div class="text_center mar_T10">
+				<a href="user.php?act=salesman_list" class="btn_out02">查看</a>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<div class="padd_T20 padd_B10"></div>
+	<!-- {if $attribute_list } -->
+	<form action="user.php" id="affiliate_query_form">
+		<div>
+			<span style="float: left; font-size: 14px;"> 产品费率表: </span> <span
+				style="float: right;"> 产品名： <input type="text"
+				name="attribute_name" value="{$condition.attribute_name}"
+				class="padd_TB5" /> <input type="submit" value="查询"  class="chaxun"/>
+			</span>
+
+		</div>
+	</form>
+
+	<div class="blank"></div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0"
+		class="border_table_05">
+		<tr align="center">
+			<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">产品名称</td>
+			<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">保险公司</td>
+			<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">服务费率</td>
+			<!-- {if $institution_id } -->
+			<!-- {else} -->
+			<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">渠道费率</td>
+			<!-- {/if} -->
+		</tr>
+
+		<!-- {foreach from=$attribute_list  item=val } -->
+		<tr align="center">
+			<td bgcolor="#ffffff"><a href="goods.php?id={$val.goods_id}">
+					{$val.attribute_name} </a></td>
+			<td bgcolor="#ffffff">{$val.insurer_name}</td>
+			<td bgcolor="#ffffff">{$val.rate_myself}</td>
+			<!-- {if $institution_id } -->
+			<!-- {else} -->
+			<td bgcolor="#ffffff" class="color_94">{$val.rate_organization}</td>
+			<!-- {/if} -->
+		</tr>
+
+
+		<!-- {/foreach} -->
+
+	</table>
+	<!-- #BeginLibraryItem "/library/pages.lbi" -->
+	<!-- #EndLibraryItem -->
+
+	<!-- {/if} -->
+
+</div>

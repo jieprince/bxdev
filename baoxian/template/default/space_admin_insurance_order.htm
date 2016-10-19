@@ -1,0 +1,167 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+<div id="toolbar">
+
+
+<ul>
+      
+     
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a  onclick="submit_form();">
+		<img src="template/images/deleteButton.gif" alt="删除">
+            删除</a>
+    </li>
+    
+     
+ <li>
+	<form method="get" action="space.php" style="float:left;">
+		<script type="text/javascript" src="source/script_livesearch.js"></script>
+		<input name="searchkey" id="searchkey" value="" size="40" class="t_input" onkeyup="showResult_tmp(this,'mtag_search')" type="text" style="float:left;width:100px;">
+		<input name="searchsubmit" value="搜索" class="submit" type="submit">
+		<input name="searchmode" value="1" type="hidden">
+		<input name="do" value="admin_insurance_order" type="hidden">
+		<input name="view" value="insurance_order" type="hidden">
+		</form>	
+			
+    </li>
+    
+  
+</ul>
+
+</div>
+                                <div id="error">
+
+</div>
+                                <div id="navigator">
+
+
+    <div class="content">
+        当前位置：
+        
+             
+                险种类别
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+    function selectAllCheckBox() {
+        checkAllBox(document.forms['productForm']);
+    }
+	
+	 function submit_form() 
+	 {
+	   // alert("dddddddddd");
+		document.getElementById('submitbutton').click();
+       // checkAllBox(document.forms['productForm']);
+    }
+	
+
+</script>
+
+<form name="productForm" method="post" action="cp.php?ac=admin_insurance_order&op=delete">
+   
+    <input value="保存" id="submitbutton" type="submit" style="display:none;" onclick="return confirm('本操作不可恢复，确认删除？');">
+   	<input type="hidden" name="deletesubmit" id="deletesubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+
+    <div class="list">
+        <div class="listData">
+            <div>
+
+
+<table class="listTable">
+    <tbody><tr class="listTitle">
+        <td width="5%">序号</td>
+        <td width="5%"><label>
+		<input name="checkAll" onclick="selectAllCheckBox()" type="checkbox"></label></td>
+        <td width="10%"><a href="/productAction.do?method=search&amp;order=code">订单号</a></td>
+		
+	        <td width="10%"><a href="/productAction.do?method=search&amp;order=code">保单</a></td>
+				
+        <td width="15%"><a href="/productAction.do?method=search&amp;order=name">产品名称</a></td>
+
+        <td width="5%"><a href="/productAction.do?method=search&amp;order=parent">总费用</a></td>
+		
+		        <td width="5%"><a href="/productAction.do?method=search&amp;order=parent">支付方式</a></td>
+				
+				        <td width="5%"><a href="/productAction.do?method=search&amp;order=parent">支付时间</a></td>
+		
+		
+		 <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">用户</a></td>
+				
+			 <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">订单日期</a></td>
+		
+					
+			 <td width="8%">状态</td>
+			 
+	
+		
+			 
+     </tr>
+    
+      <!--{loop $list $key $value}-->   
+        
+            <tr class="tdContent">
+              
+                <td>$key</td>
+              
+                <td>
+				<input name="ids[]" value="$value[order_id]" type="checkbox">
+				</td>
+              
+                <td><a href="$theurl&order_id=$value[order_id]" target="_blank"><span title="订单号">$value[order_num]</span></a></td>
+              
+			    <td>
+                <a href="space.php?do=products_list&policy_id=$value[policy_id]" target="_blank">$value[policy_id]</a>
+                </td>
+				
+                <td>
+                <a href="space.php?do=products_list&product_id=$value[product_id]" target="_blank">$value[product_name]</a>
+                </td>
+                
+				 <td>$value[order_premium]</td>
+				 
+				  <td>$value[payment_type]</td>
+				  
+				   <td>$value[payment_dateline]</td>
+			   
+			    <td>
+                <a href="space.php?uid=$value[uid]" target="_blank">$value[username]</a>
+                </td>
+				
+				   <td>$value[dateline]</td>
+				   
+				   <td>$value[order_status]</td>
+	            
+            </tr>
+        
+      <!--{/loop}-->
+</tbody></table>
+</div>
+        </div>
+    </div>
+
+    <div style="border-bottom: 1px solid #A5B5C0;"></div>
+
+    
+    <div class="page">$multi</div>
+    
+</form>
+</div>
+
+ </div>  <!-- content-body -->
+ 
+ </div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

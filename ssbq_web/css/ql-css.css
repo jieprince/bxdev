@@ -1,0 +1,95 @@
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+img{display:inline-block}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+a,button{cursor:pointer;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font-size:12px; font-family:Microsoft YaHei,arial,\5b8b\4f53;color:#333;outline:0;}
+
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-mc{margin: 0 auto}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-pr{position:relative;}
+.g-wA100{width:100%;}
+.f-mt45{margin-top:45px;}
+.f-mt55{margin-top:55px;}
+.f-mt20{margin-top:20px;}
+.f-pt55{padding-top:55px;}
+.f-pt30{padding-top:30px;}
+.f-pb30{padding-bottom:30px;}
+.f-pt140{padding-top:140px;}
+.f-pr5{padding-right:5px;}   .f-pl5{padding-left:5px;}
+.f-tac{text-align:center;}
+.f-vam,.f-vama *{vertical-align:middle;}
+.g-lh28{line-height:28px;}
+.f-fs6{font-size:24px;}
+.f-fs2{font-size:16px;}
+.s-c-cccccc{color:#ccc;}
+.s-c-cccccc:hover{color:#ccc;}
+.s-c-000000{color:#000000;}
+.s-c-7b7a7a{color:#7b7a7a;}
+.s-c-c16f32{color:#c16f32;}
+.s-c-c16f32:hover{color:#c16f32;}
+.s-bg-fa7233{background:#fa7233;}/*产品*/
+.s-bg-84ccc9{background:#84ccc9;}/*业务*/
+.s-bg-f29c9f{background:#f29c9f;}/*案例*/
+.s-bg-acd598{background:#acd598;}/*诉讼*/
+.g-ht{height:190px;}
+.s-lh35{line-height:35px;}
+
+.wid{width:1000px;margin:0px auto;padding:0px auto;}
+.wid800{width:800px;}
+.ql-atical strong{width:100px;height:100px;border-radius:50px;display:inline-block;text-align:center;vertical-align:middle;}
+.ql-atical span{color:#000;font-size:24px;padding-left:15px;}
+.ql-list-1{margin:0px;padding:0px;}
+.ql-list-1 li{float:left;width:25%;line-height:96px;}
+.ql-list-1 li a{display:block;}
+.ql-list-1 li a strong{width:100px;height:100px;border-radius:50px;display:inline-block;text-align:center;vertical-align:middle;}
+.ql-list-1 li a span{color:#000;font-size:24px;padding-left:15px;}
+.ql-list-1 li a:hover img{animation: 0.5s ease 0s alternate none 1 running icon-bounce;}
+
+@keyframes icon-bounce {
+0%, 100% {
+    transform: rotate(0deg);
+}
+25% {
+    transform: rotate(15deg);
+}
+50% {
+    transform: rotate(-15deg);
+}
+75% {
+    transform: rotate(5deg);
+}
+85% {
+    transform: rotate(-5deg);
+}
+}
+@keyframes icon-bounce {
+0%, 100% {
+    transform: rotate(0deg);
+}
+25% {
+    transform: rotate(15deg);
+}
+50% {
+    transform: rotate(-15deg);
+}
+75% {
+    transform: rotate(5deg);
+}
+85% {
+    transform: rotate(-5deg);
+}
+}

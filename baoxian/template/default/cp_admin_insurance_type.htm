@@ -1,0 +1,184 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+                                <div id="toolbar">
+
+
+
+
+
+
+</div>
+                                <div id="error">
+
+
+
+
+
+
+
+
+
+</div>
+                                <div id="navigator">
+
+
+
+
+
+    <div class="content">
+        当前位置：
+        
+            
+            
+                
+            
+            
+              <a href="space.php?do=admin_insurance_type">  险种类别 </a>
+            
+        
+            <label class="separator">&gt;</label>
+            
+                
+            
+            
+                新建
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400662460096', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+<form name="productForm" method="POST" action="cp.php?ac=admin_insurance_type&id=$blog[id]">
+
+	<input type="hidden" name="blogsubmit" id="blogsubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+     <input name="id" value="$id" type="hidden">
+
+    <table class="list">
+        <tbody><tr valign="top">
+            <td class="listData">
+
+
+
+<table class="editable-table">
+    <tbody><tr>
+        <td colspan="4" class="editable-header"><span class="tdTitle">类别</span>基本信息</td>
+    </tr>
+    <tr>
+        <td class="tdTitle">上级：</td>
+        <td class="tdEditArea">
+           
+			
+			<!--{if 0}-->
+			
+			<input name="parent_id" value="$blog[parent_id]" type="hidden">
+            <input name="parent_name" value="$blog[parent_name]" readonly="readonly" class="ref" type="text">
+			<!--{/if}-->
+			
+			
+		<select id="parent_id" name="parent_id">
+			<option value="0">&nbsp;</option>
+			
+			<!--{loop $list_parent $key $value}-->
+			<option value="$value[id]" $parent_arr[$value[id]]>$value[name]</option>
+			<!--{/loop}-->
+			
+		</select>
+			
+			<!--{if 0}-->
+            <a href="javascript: void(0)" onclick="javascript: openReferenceDialog('/productAction.do?method=list&amp;type=select', 'parent', 'false')"><img src="template/images/select.gif">
+			</a>
+            <!--{/if}-->
+			
+        </td>
+		
+		<!--{if 0}-->
+      
+	    <td class="requiredField">产品类别：</td>
+        <td class="tdEditArea">
+            <input name="type_id" value="$blog[type_id]" type="hidden">
+            <input name="type_name" value="$blog[type_name]" readonly="readonly" class="ref" type="text">
+            <a href="javascript: void(0)" onclick="javascript: openReferenceDialog('/baseDataAction.do?method=list&amp;type=select&amp;baseType=productType', 'productType', 'false')"><img src="/pages/images/select.gif"></a>
+            
+        </td>
+		<!--{/if}-->
+    </tr>
+    <tr>
+        <td class="requiredField">编码：</td>
+        <td class="tdEditArea">
+		<input name="code" value="$blog[code]" type="text"></td>
+        <td class="requiredField">名称：</td>
+        <td class="tdEditArea">
+		<input name="name" value="$blog[name]" type="text">
+		</td>
+    </tr>
+    <tr>
+        <td class="requiredField">简称：</td>
+        <td class="tdEditArea" colspan="3">
+		<input name="abbr_name" value="$blog[abbr_name]" class="long" type="text"></td>
+    </tr>
+    <tr>
+        <td class="tdTitle">描述：</td>
+        <td class="tdEditArea" colspan="3">
+		
+		<textarea name="brief" class="editor">$blog[brief]</textarea>
+		</td>
+		
+    </tr>
+    
+    <tr>
+        <td class="tdTitle">备注信息：</td>
+        <td class="tdEditArea" colspan="3">
+		<textarea name="note" class="note">$blog[note]</textarea></td>
+    </tr>
+</tbody>
+</table>
+</td>
+        </tr>
+    </tbody></table>
+    
+    <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>
+    
+</form>
+
+
+</div>
+                            </div>
+
+
+ </div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

@@ -1,0 +1,204 @@
+<!--{template cp_product_buy_view_header}-->	
+         <script src="js/mobile/pingan_jingwailvyou.js"></script>    
+        <div class="container">
+             <div class="panel panel-default">
+                    <ul class="list-group" >
+                      <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                    </ul>
+             </div>
+             
+             <div class="panel panel-default">
+                    
+                    <ul class="list-group" >
+                      <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                       
+                      <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">年龄范围</span>
+                            <span class="f-fs2 pull-right s-c-aaaaaa">$product[age_min] 至  $product[age_max]岁</span>
+                      </li> 
+                       
+                      <li class="list-group-item" >
+                      		<span class="s-c-aaaaaa">购买份数</span>
+                            <span class="pull-right s-c-aaaaaa">
+                            	<span>{$policy_arr['apply_num']}份</span>
+                            </span>
+                      </li>
+                      <li class="list-group-item" >
+                      		<span class="s-c-aaaaaa">金额</span>
+                            <span class="f-fs2 pull-right">￥<span>{$total_price}</span>元</span>
+                      </li>
+                      
+                      <li class="list-group-item" >
+                      		<span class="s-c-aaaaaa">保险起期</span>
+                            <span class="pull-right">
+                            	<span class="text-right s-c-ed462f">{$policy_arr[start_date]}</span>
+                            </span>
+                      </li>
+                       
+                      <li class="list-group-item">
+                      		<span class="s-c-aaaaaa">保险止期</span>
+                            <span class="pull-right ">
+                            	<span class="text-right s-c-ed462f">{$policy_arr[end_date]}</span>
+                            </span>
+                      </li> 
+                      
+                    </ul>
+            </div>
+              
+             <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                  		投保人信息
+                        <span class="pull-right" style="height:20px; width:20px; display:block">
+                        	<img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                        </span>
+                  </div>
+                  <ul class="list-group">
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">投保人类型</span>
+                            <span class="pull-right"><span >个人</span></span>
+                       </li>
+                       <li class="list-group-item">
+                            <span class="s-c-aaaaaa">姓名</span>
+                            <span class="f-fs2 pull-right">{$user_info_applicant[fullname]}</span>
+                       </li>  
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">英文名</span>
+                           <span class="f-fs2 pull-right">
+                                <span>{$user_info_applicant[fullname_english]}</span>
+                           </span>
+                       </li>   
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">证件类型</span>
+                            <span class="pull-right">$user_info_applicant[certificates_type_str]</span>
+                       </li>
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">证件号码</span>
+                            <span class="f-fs2 pull-right">$user_info_applicant[certificates_code]</span>
+                       </li> 
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">性别</span>
+                            <span class="pull-right">$user_info_applicant[gender_str]</span>
+                       </li>
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">出生日期</span>
+                            <span class="pull-right">$user_info_applicant[birthday]</span>
+                       </li>
+                         
+                       <!--公用-->
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">手机</span>
+                            <span class="f-fs2 pull-right">$user_info_applicant[mobiletelephone]</span>
+                       </li> 
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">Email</span>
+                            <span class="f-fs2 pull-right">$user_info_applicant[email]</span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">与被保险人关系</span>
+                           <span class="pull-right">
+                               <span>{$relationship_with_insured_str}</span>
+                                
+                           </span>
+                       </li>
+                    </ul> 
+            </div>
+            
+             
+            <div class="panel panel-default">
+                  <!-- 被保险人信息 -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                  		被保险人信息
+                        <span class="pull-right" style="height:20px; width:20px; display:block">
+                        	<img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                        </span>
+                  </div>
+                  <ul class="list-group">
+                  		 
+                       
+                        
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">姓名</span>
+                           <span class="f-fs2 pull-right">
+                                <span>{$insurant_info[fullname]}</span>
+                           </span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">英文名</span>
+                           <span class="f-fs2 pull-right">
+                                <span>{$insurant_info[fullname_english]}</span>
+                           </span>
+                       </li>  
+                        
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">证件类型</span>
+                            <span class="pull-right">
+                                <span>{$insurant_info[certificates_type_str]}</span>
+                                
+                            </span>
+                       </li>
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">证件号码</span>
+                            <span class="f-fs2 pull-right">
+                            	<span>{$insurant_info[certificates_code]}</span>
+                            </span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">性别</span>
+                           <span class="pull-right">
+                               <span>{$insurant_info[gender_str]}</span>
+                           </span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">出生日期</span>
+                           <span class="f-fs2 pull-right">
+                           		<span>{$insurant_info[birthday]}</span>
+                           </span>
+                       </li> 
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">手机</span>
+                            <span class="f-fs2 pull-right">$insurant_info[mobiletelephone]</span>
+                       </li> 
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">Email</span>
+                            <span class="f-fs2 pull-right">$insurant_info[email]</span>
+                       </li> 
+                        
+                  </ul> 
+                   
+                  
+            </div> 
+            
+            
+            <div class="panel panel-default">
+                  <!-- 受益人信息 -->
+                  <div class="panel-body f-csp">
+                  		受益人信息 
+                  </div>
+                  <ul class="list-group">
+                  		<li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">受益人</span>
+                            <span class="pull-right">
+                                <span>法定</span>
+                            </span>
+                       </li> 
+                  </ul>
+           </div>
+           
+           <div class="panel panel-default">
+                  <!-- 受益人信息 -->
+                  <div class="panel-body f-csp">
+                  		其他信息 
+                  </div>
+                  <ul class="list-group">
+                  		<li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">出行目的地</span>
+                            <span class="pull-right">
+                                <span>{$policy_arr[destinationCountry]}</span>
+                            </span>
+                       </li> 
+                  </ul>
+           </div>
+<!--{template cp_product_buy_view_footer}-->            

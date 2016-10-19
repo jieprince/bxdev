@@ -1,0 +1,146 @@
+<!--{template header_cshop}-->
+<div class="g-wA100 s-bscT_009c84">
+    <div class="g-w1077 f-mc">
+ 	    <!--{template cp_product_buy_view_header}-->
+ 		 
+        
+        <div class="f-mt40 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title">投保人信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+                	<tr>
+                    	<th width="150">姓 名：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$user_info_applicant[fullname]}
+                            </div>
+                        </td>
+                        <th width="150">手机号码：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	$user_info_applicant[mobiletelephone]
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                    	<th>证件类型：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[certificates_type_str]
+                            </div>
+                        </td>
+                        <th>证件号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[certificates_code]
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	
+                        <th>生日：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[birthday]
+                            </div>
+                        </td>
+                        <th>性 别：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[gender_str]
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>邮箱地址：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$user_info_applicant[email]
+                            </div>
+                        </td>
+                        <th>保险期间：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$policy_arr.start_date} 至 {$policy_arr.end_date}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        
+         
+        
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title">被保险人信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+                	 
+                	<tr>
+                    	<th width="150">姓 名：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	$insurant_info[fullname]
+                            </div>
+                        </td>
+                        <th width="150">与投保人关系：</th>
+                        <td width="348">
+                            <div class="f-pl10">
+                                $relationship_with_insured_str 
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                    	<th>证件类型：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[certificates_type_str]
+                            </div>
+                        </td>
+                        <th>证件号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[certificates_code]
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	
+                        <th>生日：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[birthday]
+                            </div>
+                        </td>
+                        <th>性 别：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[gender_str]
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>Email：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[email]
+                            </div>
+                        </td>
+                        <th>手机号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	$insurant_info[mobiletelephone]
+                            </div>
+                        </td> 
+                    </tr>
+                </table>
+            </section>
+        </div>
+ 
+		<!--{template cp_product_buy_view_footer}-->
+    </div>
+</div>
+ 
+<!--{template footer_cshop}-->	

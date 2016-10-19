@@ -1,0 +1,117 @@
+<!-- 
+<div class="item">
+	<a href="user.php?act=organ_info">基本信息</a>
+</div>
+<div class="item">
+	<a href="user.php?act=department_list">部门管理</a>
+</div>
+<div class="item">
+	<a href="user.php?act=salesman_list">会员账户</a>
+</div>
+<div class="item">
+	<a href="user.php?act=child_organ_list">子渠道</a>
+</div>
+<div class="item">
+	<a href="user.php?act=order_manage_list">会员订单</a>
+</div>
+<div class="item">
+	<a href="user.php?act=policy_manage_list">会员保单</a>
+</div>
+{if $smarty.session.d_institution_type eq 'private'}
+<div class="item">
+	<a href="user.php?act=organ_goods_list">渠道产品</a>
+</div>
+{/if}
+
+ -->
+
+
+<div class="f-fr g-w720 g-h43 f-mt8" align="right">
+	<ul class="nav-list_2 f-cb">
+
+		<li><a href="user.php?act=organ_info" id="organ_info" {if $action=='organ_info'} class="p_active" {/if}>基本信息</a></li>
+		<li><a href="user.php?act=salesman_list" id="salesman_list" {if $action=='salesman_list'} class="p_active" {/if}>会员管理</a></li>
+		<li><a href="user.php?act=child_organ_list" id="child_organ_list" {if $action=='child_organ_list' || $action=='child_organ_add'} class="p_active" {/if}>子渠道管理</a></li>
+		<li><a href="user.php?act=order_manage_list" id="order_manage_list" {if $action=='order_manage_list'} class="p_active" {/if}>会员订单</a>
+		<li><a href="user.php?act=policy_manage_list" id="policy_manage_list" {if $action=='policy_manage_list'} class="p_active" {/if}>会员保单</a></li>
+		<!-- {if $smarty.session.d_institution_type eq 'private'} -->
+		<li><a href="user.php?act=organ_goods_list" id="organ_goods_list" {if $action=='organ_goods_list'} class="p_active" {/if}>渠道产品</a></li>
+		<!-- {/if} -->
+	</ul>
+	<hr>
+</div>
+
+<!-- <script type="text/javascript">
+	$().ready(function(){
+		organ_menu_class("{$action}")
+	})
+	var action_arr = {"organ_info":['organ_info'],
+					  "salesman_list":['salesman_list','control_add'],
+					  "order_manage_list":['order_manage_list'],
+					  "policy_manage_list":['policy_manage_list']              
+	}			
+	
+	function organ_menu_class(action){
+  		$.each(action_arr,function(name,value) {
+  			console.info("22222222name:"+name);
+  			console.info("22222222value:"+value);
+  			
+ 			if(value.indexOf(action)!=-1){
+ 				$("#"+value).addClass("p_nacitve");
+ 			}else{
+ 				$("#"+value).removeAttr("class");
+ 			}
+ 			
+		});  
+	}
+	
+</script> -->
+<div class="f-fr g-w800 s-bg-eff1f1">
+{if $action eq 'organ_info'}
+	<!-- {include file='library/organ_info.lbi'}  -->
+{/if}
+{if $action eq 'department_list'}
+	<!-- {include file='library/department_list.lbi'}  -->
+	<!-- {include file='library/pages.lbi'}  -->
+{/if}
+{if $action eq 'salesman_list'}
+	<!-- {include file='library/salesman_list.lbi'}  -->
+	<!-- {include file='library/pages.lbi'}  -->
+{/if}
+{if $action eq 'child_organ_list'}
+	<!-- {include file='library/child_organ_list.lbi'}  -->
+	<!-- {include file='library/pages.lbi'}  -->
+{/if}
+{if $action eq 'child_organ_add'}
+	<!-- {include file='library/organ_info.lbi'}  -->
+>
+{/if}
+{if $action eq 'order_manage_list'}
+	<!-- {include file='library/order_manage_list.lbi'}  -->
+	<!-- {include file='library/pages.lbi'}  -->
+
+{/if}
+{if $action eq 'policy_manage_list'}
+	<!-- {include file='library/policy_manage_list.lbi'}  -->
+{/if}
+{if $action eq 'organ_goods_list'}
+	<!-- {include file='library/organ_goods_list.lbi'}  -->
+	<!-- {include file='library/pages.lbi'}  -->
+{/if}
+
+{if $action eq 'control_add' || $action eq 'salesman_detail'}
+	<!-- {include file='library/control_add.lbi'}  -->
+{/if}
+
+{if $action eq 'child_organ_info'}
+	<!-- {include file='library/organ_info.lbi'}  -->
+{/if}
+
+
+
+</div>
+
+	
+
+
+

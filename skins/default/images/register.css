@@ -1,0 +1,12 @@
+@charset "utf-8";
+#content{background-image:url(bg.png);}
+#contentBody{height:530px;width:1000px;margin:auto;padding-top:20px;}
+#contentBodyBox{background-color:#FFF;height:490px;padding-top:20px;}
+#regBox{border:1px solid #D5D5D5;margin-left:550px;height:470px;margin-right:20px;}
+#contentBodyBox{background-image:url(register-bg.png);background-repeat:no-repeat;background-position:20px 20px;}
+
+.textboxEx{border:1px solid #D5D5D5;padding:10px;margin:20px;border-radius:5px;position:relative;}
+.textboxEx input{border:none 0px;width:100%;outline:none;line-height:16px;height:16px;}
+.textboxEx span{position:absolute;left:10px;top:7px;font-size:14px;color:#D5D5D5;background-color:#FFF;display:block;}
+
+.closeinfoBox{text-align:center;padding:150px 0 0 0;}

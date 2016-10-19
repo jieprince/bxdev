@@ -1,0 +1,135 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bg-f2f0f0"> 
+    <div class="g-w1000 f-mc f-pt20">
+        <div class="g-h35 f-tal">
+            <span class="s-c-666666 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-333333">
+                    <a href="#" class="link-777777">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    <a href="#" class="link-777777">保险产品</a> 
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    详情 
+                </span>
+            </span>
+        </div> 
+        
+        <div class="f-cb">
+        	
+            <div class="f-fl g-w243">
+            	<div class="f-ml3">
+                	<img src="images/zxzx.png" width="240" height="130">
+                </div>
+                <div>
+                	<h2 class="s-c-666666 f-fwn s-bg-ffffff f-pt20 f-pb20 f-ml3">
+                    	<span class="f-fs4 f-ml45">保险产品</span>
+                    	<span class="f-fs2">Products</span>
+                    </h2>
+                    <ul class="m-list-3">
+                      {foreach from=$article_cat_list item=article_cat}
+                      
+                      	<li>
+                        	<a href="javascript:void(0)" class="p_active" onClick="show_pul(this)">
+                                <span class="f-cb">
+                                	<span class="f-ml45 f-fl">{$article_cat.cat_name}</span>
+                                	<span class="f-fr"><i class="iconfont icon-jian"></i></span>
+                                </span>
+                            </a>
+                            
+                            {if $article_cat.article_title_list}
+                            <ul>
+                            	{foreach from=$article_cat.article_title_list item=article_title}
+                            		{if strlen($article_title.link) < 10}
+                            			<li><a href="article.php?act=product_article&id={$article_title.article_id}" {if $article_title.article_id eq $article.article_id}class="c_active"{/if}>{$article_title.title}</a></li>
+                            			{else}
+                            			<li><a href="{$article_title.link}"  {if $article_title.article_id eq $article.article_id}class="c_active"{/if}>{$article_title.title}</a></li>
+                            		{/if}
+                            	
+                                {/foreach}
+                            </ul>
+                            {/if}
+                        </li>
+                    
+                      {/foreach}
+                    </ul>
+                    <div class="s-bg-ffffff g-h60 f-ml3"></div>
+                </div>
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/tel.png" width="16"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	电话：{$service_phone}<br>
+                            传真：{$service_phone}<br>
+                            E-MAIL：{$service_email}
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/weizhi.png" width="14"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	网址：www.aalib.com.cn<br>
+                            地址：上海市杨浦区政熙路80号
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="f-fr g-w725">
+            	<div class="f-pA20  s-bg-ffffff">
+                	<div class="s-bscB4_e5f3f7 f-pb10">
+                    	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf003c;</i></span>
+                        <span class="f-fs4 s-c-008fc7 f-vam">保险产品</span>
+                    </div>
+                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+                    	 
+                        <div class="f-tac">
+                            <span class="f-db f-fs3 s-c-008fc7">{$article.title}</span>
+                            <span class=" f-db s-c-666666 f-fs1 f-mt10">
+                                {$article.formated_add_time}   分类：<a href="#" class="link-777777">{$article.cat_name}</a>
+                                <i class="iconfont f-fs7">&#xf02d4;</i>{$article.click_num}
+                            </span>
+                            
+                        </div>
+                        
+                        <div class="f-mt20 f-fs1 s-lh25 s-c-777777">
+							{$article.content}
+                        </div>
+                        <div class="f-mt10 g-w459 f-mc">
+                            <div class="bdsharebuttonbox" style="margin-left:50px;">
+                                <a href="#" class="bds_more" data-cmd="more">分享到：</a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone">QQ空间</a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina">新浪微博</a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq">腾讯微博</a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren">人人网</a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin">微信</a></div>
+<script>
+    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+                        </div>
+                        
+                    </div>
+                </div>
+            	 
+            </div>
+            
+        </div>
+        
+          
+    </div>
+</div>
+<script>
+	function show_pul(ef){
+		 
+		if($(ef).children().children("span.f-fr").children("i.icon-jia").length>0){
+			$(ef).children().children("span.f-fr").children("i.icon-jia").addClass("icon-jian");	
+			$(ef).children().children("span.f-fr").children("i.icon-jia").removeClass("icon-jia");
+			$(ef).parent().children("ul").show(); 
+		}else{
+			$(ef).children().children("span.f-fr").children("i.icon-jian").addClass("icon-jia");	
+			$(ef).children().children("span.f-fr").children("i.icon-jian").removeClass("icon-jian");	
+			$(ef).parent().children("ul").hide();
+		}
+		 
+	}
+</script>
+<!-- #BeginLibraryItem "/library/en_page_footer.lbi" --><!-- #EndLibraryItem -->

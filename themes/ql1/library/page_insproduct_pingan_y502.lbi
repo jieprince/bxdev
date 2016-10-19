@@ -1,0 +1,105 @@
+<div class="xqcont">
+                    
+                   
+                 <!--基本信息开始-->
+                        <div class="panel" style="margin: 0 0 8px 0;" >
+                             
+                            <div class="panel-body">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                 
+                                  <tr>
+                                      <td>保险期间&nbsp;</td>
+                                      <td>
+                                          &nbsp;<select id="period"  name="period" style="width:200px;" onChange="getInsurset_init()">
+                                              
+                                              <!--{foreach from=$arr_period_list item=item key=key}-->
+                                              	{if $key==0}
+                                                <option value="{$item.factor_code}" selected="selected" >{$item.factor_name}</option>
+                                                {else}
+                                                <option value="{$item.factor_code}">{$item.factor_name}</option>
+                                                {/if}
+                                              <!--{/foreach}-->
+                                           </select>&nbsp;
+                                      </td>
+                                       
+                                </tr>
+                                <tr><td colspan="2" height="10"></td></tr>
+                                <tr>
+                                	<td>职业代码查询表</td>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mobile_page/Y502_jisuan.html" style="color:#060; padding:2px 5px; background:#d1d1d1; border-radius:3px;" target="_blank">平安职业分类在线查询表</a></td>
+                                </tr>
+                            </table>
+                           </div>
+                        </div>
+                  <!--基本信息结束-->
+                  
+                   <!--附加险开始-->
+                         <div class="panel" style="margin: 0 0 8px 0;" >
+                              
+                             <div class="panel-body" >
+                              <table cellpadding="0" cellspacing="0" class="border_table_05" id="addtional_list">
+                                 
+                             </table>
+                             </div>
+                         </div>
+                    <!--附加险结束-->
+                    <!--投保人开始-->
+                    <!--<div class="panel" style="margin: 0 0 8px 0;">
+                         <div class="panel-header">
+                                <div class="panel-title">投保人信息</div>
+                         </div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <td>团体名称</td><td>&nbsp;<input type="text" size="40" /></td>
+                                    <td>&nbsp;团体证件类型</td><td>&nbsp;
+                                        <select  name="career" style="width:200px;">
+                                              <option value="01">组织机构代码证</option>
+                                              <option value="02">税务登记证</option>   
+                                              <option value="03">异常证件</option>                           
+                                        </select>
+                                    </td>
+
+                                    <td>&nbsp;团体证件号码</td><td>&nbsp;<input type="text" /></td>
+                                </tr>
+                             </table>
+                        </div>
+                    </div>-->
+                    <!--投保人结束-->
+                    <!--被保险人信息开始-->
+                    <!-- <div class="panel" style="margin: 0 0 8px 0;">
+                         <div class="panel-header">
+                                <div class="panel-title">被保险人信息</div>
+                         </div>
+                         <div class="panel-body">
+                              <table>
+                                <tr>
+                                    <td>被保险人Excel文件</td><td><input type="file" /></td>
+                                    <td>模板下载</td><td><a href="#">点击下载</a></td>
+                                </tr>
+                             </table>
+                         </div>
+                    </div>-->
+                    <!--被保险人信息结束-->
+                    
+                    <div class="panel">
+                    	<form action="baoxian/cp.php?ac=product_buy" id="save_form" method="post">
+                        	  <input type="hidden" id="attribute_id" name="attribute_id" value="{$attribute_id}" />
+                              <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                              <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" /> 
+                              
+                              <input type="hidden" id="temp_person_list" name="person_list" value="" /> 
+                              <input type="hidden" id="temp_person_sum" name="person_sum" value="" /> 
+                              <input type="hidden" id="temp_career" name="career" value="" /> 
+                              <input type="hidden" id="temp_period" name="period" value="" /> 
+                              <input type="hidden" id="temp_price" name="price" value="" /> 
+                              <input type="hidden" id="temp_addtional_ids" name="duty_price_ids" value="" /> 
+                             <input type="button" value="{$lang.insure}"  class="btn_products_02_01 " onClick="save_cp()"/>
+                    	</form>
+                    </div>
+                   
+</div>
+					
+					
+					
+					

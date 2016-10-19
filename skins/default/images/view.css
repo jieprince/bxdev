@@ -1,0 +1,32 @@
+@charset "utf-8";
+body{background-color:#EFEFEF;}
+#top{height:60px;background-image:url(disk-top-bg.png);}
+#topContent{width:1000px;margin:auto;position:relative;}
+#logo{display:inline-block;background-image:url(logo.png);height:59px;width:140px;}
+
+#content{width:1000px;margin:30px auto;border:solid 1px #D8D8D8;box-shadow:inset 0 0 3px rgba(0, 0, 0, 0.2);background-color:#FFF;}
+#contentBody{padding:20px;}
+#bottom{background-color:#EFEFEF;border-top:solid 5px #D8D8D8;padding:30px;text-align:center;color:#666666;}
+
+#fileContent{width:300px;background-image:url(../../common/images/icon/sys-file-64.gif);margin:90px auto;padding-left:94px;background-repeat:no-repeat;background-position:left center;font-size:14px;}
+#fileContent strong{font-size:18px;}
+#fileDownloadBox{text-align:center;padding-bottom:70px;}
+#fileTipsBox{text-align:center;color:#B2B2B2;}
+
+#downurlGetMask{position:absolute;left:100px;top:100px;padding:10px 30px;font-size:16px;background-color:#000;color:#FFF;border-radius:10px;box-shadow:0 0 5px rgba(0,0,0,.5);display:none;}
+
+#topRightNav{position:absolute;right:0;top:18px;_top:23px;}
+#topRightNav *{vertical-align:middle;}
+
+.button{height:33px;display:inline-block;vertical-align:middle;}
+.button a{display:inline-block;height:41px;padding:0 24px 0 25px;color:#FFF !important;background-image:url(button-bg-white.png);line-height:32px;vertical-align:middle;outline:0 none;position:relative;}
+.button i{display:block;background-image:url(button-bg-white.png);width:5px;height:41px;background-position:right 0; position:absolute;right:0;top:0;}
+.button a:hover{text-decoration:none;background-position:left -41px;}
+.button a:hover i{background-position:right -41px;}
+.button a:active{background-position:left -82px;}
+.button a:active i{background-position:right -82px;}
+
+.buttonBlue a{background-image:url(button-blue-bg-white.png);color:#333333 !important;}
+.buttonBlue a:hover{color:#FFF !important;}
+.buttonBlue a:active{color:#FFF !important;}
+.buttonBlue i{background-image:url(button-blue-bg-white.png);}

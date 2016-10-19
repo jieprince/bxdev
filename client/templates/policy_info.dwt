@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+<!-- 	<div class="" align="center">
+    	<img src="images/logo.png" class="img-responsive">
+    </div> -->
+    <div>
+        <div class="panel panel-primary" style="border-color: #ed462f" >
+            <div class="panel-heading f-fwb text-center" style="background: #ed462f;border-color: #ed462f">
+                保单详情
+            </div>
+            <div class="panel-body">
+                <div>
+                	<div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            产品信息
+                        </span>
+                 <!--{foreach from=$list_subject key=key item=subject}-->  
+			 	 	<!--{foreach from=$subject[list_subject_product] item=product}-->
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">&#12288;保单号：{$policy.policy_no}</p>
+                            <p class="list-group-item-text f-lh25">产品名称：
+	                            {$product.attribute_name-bak}
+								{$product.product_name}
+							</p>
+							<p class="list-group-item-text f-lh25">保单状态：<span class="f-c-red f-fwb">{$policy.policy_status_str}</span></p>
+							<p class="list-group-item-text f-lh25">保费金额：{$policy.total_premium}</p>
+                            <p class="list-group-item-text f-lh25">保险期限：{$start_and_end_date.start_date} &nbsp;&nbsp;0时&nbsp;至&nbsp;{$start_and_end_date.end_date}&nbsp;&nbsp;24时</p>
+                           <!-- {if $order.insurer_code eq	'CHINALIFE' && $goods.goods_brief} -->
+                            <p class="list-group-item-text f-lh25">
+                            	{$goods.goods_brief}
+                            </p>
+                            <!-- {/if} -->
+                           <!--  <p class="list-group-item-text f-lh25">适应人群：{$product.age_min}-{$product.age_max}周岁</p> 
+                            <p class="list-group-item-text f-lh25">投保份数：{$product.number}</p>-->
+
+                        </span>
+				  <!--{/foreach}-->
+				<!--{/foreach}-->
+                    </div>
+<!--                     <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            保单详情
+                        </span>
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">&#12288;保单号：{$policy.policy_no}</p>
+                            <p class="list-group-item-text f-lh25">保单状态：<span class="f-c-red f-fwb">{$policy.policy_status_str}</span></p>
+                           
+                            <p class="list-group-item-text f-lh25">保费金额：{$policy.total_premium}</p>
+                            <p class="list-group-item-text f-lh25">保险起期：{$policy.start_date}</p>
+                            <p class="list-group-item-text f-lh25">保险止期：{$policy.end_date}</p>
+                            {if $policy.policy_status eq 'insured'} 
+                            	<p class="list-group-item-text f-lh25">
+                            		电子保单：<a href="user.php?act=download_policy_doc&policy_id={$policy.policy_id}&download_token={$download_token}&uid={$policy.agent_uid}">下载</a>&nbsp;|&nbsp;
+                            	</p>
+                            {/if}
+                        </span>
+
+                    </div> -->
+                    
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            投保人信息
+                        </span>
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">&#12288;投保人：{$user_info_applicant.fullname}</p>
+                            <p class="list-group-item-text f-lh25">性&#12288;&#12288;别：{$user_info_applicant.gender_str}</p>
+                            <p class="list-group-item-text f-lh25">证件类型：{$user_info_applicant.certificates_type_str}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;证件号：{$user_info_applicant.certificates_code}</p>
+                            <p class="list-group-item-text f-lh25">手机号码：{$user_info_applicant.mobiletelephone}</p>
+                             
+                         <!--   <p class="list-group-item-text f-lh25">与被保险人关系：{$order.relationship_with_insured_str-bak}</p>
+                             <p class="list-group-item-text f-lh25">受益关系：{$order.beneficiary_str-bak}</p>
+                            <p class="list-group-item-text f-lh25">业务类型：{$order.business_type_str-bak}</p> -->
+                        </span>
+                    </div>
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            被保险人信息
+                        </span>
+                       <!--{if $insurer_code=="CHINALIFE"}--> 
+                       <!--{foreach from=$list_subject[0].list_subject_insurant item=item}-->
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">姓&#12288;&#12288;名：{$item.fullname}</p>
+                            <p class="list-group-item-text f-lh25">性&#12288;&#12288;别：{$item.birthday}</p>
+                            <p class="list-group-item-text f-lh25">证件类型：{$item.certificates_type_str}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;证件号：{$item.certificates_code}</p>
+                        </span>
+                        <!--{/foreach}-->
+                        <!--{else}-->
+                        <!--{foreach from=$list_subject[0].list_subject_insurant item=item}-->
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">姓&#12288;&#12288;名：{$item.fullname}</p>
+                            <p class="list-group-item-text f-lh25">性&#12288;&#12288;别：{$item.birthday}</p>
+                            <p class="list-group-item-text f-lh25">证件类型：{$item.certificates_type_str}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;证件号：{$item.certificates_code}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;省市区：{$item.province}-{$item.city}-{$item.county}</p>
+                        </span>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+		//注销保单
+		function withdraw_policy(policy_id){
+			
+		     var ret = confirm("您确认要注销保单吗？");
+			 if(!ret)
+			 {
+			 	return;
+			 }
+			   			         			
+			 $.get("../baoxian/cp.php", 
+			       { 
+				   "ac": "product_buy",
+				   "policy_id": policy_id ,
+				   "op": "withdraw",
+				   "dataType":"json",//服务器返回的数据类型 可选XML ,Json jsonp script html text等 
+				   },
+				   function(data){
+					   
+					//data = $(data);
+					//console.info(data);
+					var data = $.parseJSON(data); 
+					var retcode = data.retcode;
+					var retmsg =  data.retmsg;
+					
+					//alert("retcode: "+retcode);
+					
+					if(data.retcode == "0")
+					{
+					   alert("注销保单成功！");
+					   window.location.href = "user.php?act=policy_detail&policy_id="+policy_id;
+					}
+					else
+					{
+					  alert(retmsg);
+					}
+				
+		   	}, ""); 
+			
+			
+		}
+</script>
+<script>
+window.onload=function(){
+ if (location.href.indexOf("?xyz=")<0)
+ {
+ 	location.href=location.href+"?xyz="+Math.random();
+ }
+}
+</script>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+</body>
+</html>

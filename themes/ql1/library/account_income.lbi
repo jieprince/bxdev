@@ -1,0 +1,79 @@
+
+	<form action="user.php" method="get">
+		<input type="hidden" name="act" value="account_income" />
+		<table class="table_user_04">
+			<tr bgcolor="#f5f5f5">
+				<td colspan="4">
+					<span class="f-fs1 f-ml5">订单号：</span>
+					<span><input name="order_sn" value="{$condition.order_sn}" class="s-input-4 g-w200"  /></span>
+					<span class="f-fs1 f-ml5">来源类型：</span>	
+					<span>
+						<select name="incoming_type" class="s-select">
+						<option value="" {if $condition.incoming_type eq ''}selected="selected"{/if}>--请选择--</option>
+						{foreach from=$income_type_list key=key item=item }
+							<option value="{$key}" {if $condition.incoming_type eq $key}selected="selected"{/if}>{$item}</option>
+						{/foreach}
+						
+						<option value="-1" {if $condition.incoming_type eq '-1'}selected="selected"{/if}>退保扣除费</option>
+					</select></span>
+					
+					<span class="f-fs1 f-ml5">状态：</span>	
+					<select name="closed_account" class="s-select">
+						<option value="-1" {if $closed_account eq '-1'}selected="selected"{/if}>--全部--</option>
+						<option value="0" {if $condition.closed_account eq '0'}selected="selected"{/if}>未结算</option>
+						<option value="1" {if $condition.closed_account eq '1'}selected="selected"{/if}>已结算</option>
+					</select>
+					
+				</td>
+				
+				
+			</tr>
+			<tr bgcolor="#f5f5f5">  
+				<td colspan="4">
+		             <span class="f-fs1 f-ml5">开始时间：</span>
+                     <span><input type="text" name="s_change_time" id="start_time" value="{$condition.s_change_time}" class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+                     
+                     <span class="f-fs1 f-ml5">结束时间：</span>
+                     <span><input type="text" name="e_change_time" id="end_time"  value="{$condition.e_change_time}"class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+                     <span class="f-ib f-ml5"><input type="submit" class="btn-b18147-1"></span>
+
+				</td>
+			</tr>
+		</table>
+	</form>
+<div class="f-pl15 f-pr15 f-mt20">
+<table class="table_user_01">
+    <tr>
+        <td colspan="6" align="center" bgcolor="#ffffff"><div align="right" style="color: red;float: left; padding-left:10px; font-size: 14px; font-weight:bold;">{$lang.current_total}{$shouru_money_total}</div></td>
+    </tr>
+	<tr align="center">
+		<th >{$lang.process_time}</th>
+		<th >{$lang.money}</th>
+		<th >{$lang.surplus_pro_type}</th>
+		<th >{$lang.cname}</th>
+		<th >{$lang.detail_order_sn}</th>
+		<th >状态</th>
+	</tr>
+	<!--{foreach from=$account_log item=item}-->
+	<tr>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$item.change_time}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$item.amount}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$item.incoming_type}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$item.cname}</td>
+		<td bgcolor="#ffffff" align="center" title="{$item.change_desc}" class="color_94">&nbsp;&nbsp;{$item.order_sn}</td>
+		<td bgcolor="#ffffff" align="center" class="color_94">
+		{if $item.closed_account eq '1'}
+				已结算
+				{else}
+				未结算
+		{/if}
+		</td>
+	</tr>
+	<!--{/foreach}-->
+
+</table>
+
+    <div class="pagelist f-mt40">
+	{include file='library/pages.lbi'} 
+</div>
+</div>

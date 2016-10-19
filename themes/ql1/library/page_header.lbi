@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$shop_name}</title>
+
+<link rel="stylesheet" href="dist/fonts/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="dist/css/shangcheng_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/SuperSlide/css/shangcheng_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/layer/skin/layer.css">
+<script src="dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="dist/js/plugin/SuperSlide/js/jquery.shangcheng_SuperSlide.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/custom/public.js"></script>
+<script type="text/javascript" src="dist/js/plugin/layer/layer.js"></script>
+<script src="dist/js/plugin/laydate/laydate.js"></script>
+</head>
+<body>
+
+ <!-- {if $smarty.session.is_iframe neq 1}-->
+<div class="g-wA100 s-bscB_ececec">
+    <header class="g-w1077 f-mc f-cb s-lh43 ">
+    	<div class="f-fl">
+    		 <a href="default.php" class="link-009c84">
+        	 	<span class="s-c-009c84">返回官网首页！</span>
+        	 </a>
+             <span class="s-c-009c84">全国热线：</span>
+             <span class="s-c-009c84 f-fs2 f-fwb f-fsi">{$service_phone}</span>
+        </div>
+        <div class="f-fr f-tar">
+        	<span class="f-db">
+            	<span class="f-ib g-w247 s-lh20">
+                	<div id="search_bar" class="search_bar">
+                        <form id="myform" action="category.php" method="get">
+                        	<input type="hidden" name="act" value="hot_goods_list">
+                            <input class="input" placeholder="填写保险名称..." type="text" name="goods_name" id="search">
+                            <input class="search_btn" type="submit" value="">
+                            <span class="search_ico"><i class="iconfont">&#xf012c;</i></span>
+                        </form>
+                    </div>
+                </span>
+                <!-- {if $smarty.session.user_id}-->
+                	<i class="iconfont s-c-009c84 f-ml10">&#xf00b0;</i>
+                		<a href="user.php" class="link-009c84">
+		                		<!-- {if $smarty.session.real_name}-->
+									{$smarty.session.real_name}
+									<!-- {else}-->
+									{$smarty.session.user_name}
+								<!-- {/if}-->
+						</a>
+						&#12288;
+						<a href="user.php?act=logout" class="link-009c84">退出</a>
+
+                	<!-- {else} -->
+		            	<a href="user.php" class="link-009c84 f-ml10" class="link-009c84">登录</a>
+		                <span class="s-c-009c84 f-ml10 f-mr10">|</span>
+		                <a href="user.php?act=register" class="link-009c84" class="link-009c84">注册</a>
+                <!-- {/if} -->
+
+
+                   <!--{if $navigator_list.top}-->
+				   <span class="f-ml10">
+				    <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+				    	    <i class="iconfont s-c-009c84">&#xf0148;</i>
+                    		<a href="{$nav.url}" class="link-009c84">{$nav.name}</a>
+				            <!-- {if !$smarty.foreach.nav_top_list.last} -->
+				             |
+				            <!-- {/if} -->
+				    <!-- {/foreach} -->
+				   </span>
+				   <!-- {/if} -->
+            </span>
+
+        </div>
+    </header>
+</div>
+<div class="g-wA100 f-mt20">
+    <nav class="g-w1077 f-mc f-cb">
+    	<div class="f-fl g-w356">
+        	<a href="default.php"><img src="images/shop_logo.png" width="326"></a>
+        </div>
+    	<div class="f-fr g-w720 g-h43 f-mt8" align="right">
+        	<ul class="nav-list f-cb">
+			  <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+			  	     <li>
+					  	<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="p_active"{/if}>{$nav.name}</a>
+				  	   	{if $nav.child_nav_list}
+				  	   		<ul>
+				  	   			{foreach from=$nav.child_nav_list item=item }
+				  	   				<li><a href="{$item.url}">{$item.name}</a></li>
+				  	   			{/foreach}
+				  	   		</ul>
+				  	    {/if}
+			  	    </li>
+			  <!-- {/foreach} -->
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- {/if} -->

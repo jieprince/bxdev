@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+ 
+<title>全联企业网站</title>
+ 
+<link rel="stylesheet" href="dist/fonts/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="dist/css/qiye_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/SuperSlide/css/qiye_style.css">
+<script src="dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="dist/js/plugin/SuperSlide/js/jquery.qiye_SuperSlide.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/custom/public.js"></script>
+ 
+</head>
+
+<body class="s-bg-f2f0f0">
+ 
+<div class="g-wA100 s-bg-ffffff">
+    <header class="g-w1000 f-mc f-cb g-h115 ">
+    	<div class="f-fl f-mt20">
+        	<a href="#"><img src="images/logo.png"></a>
+        </div>
+        <div class="f-fr f-mt10 f-tar">
+        	<span class="f-db">
+            	<a href="#" class="link-777777">登录</a>
+                <span class="s-c-777777 f-ml10 f-mr10">|</span>
+                <a href="#" class="link-777777">注册</a>
+            </span>
+            <span class="f-db f-mt15">
+            	 <input class="f-input g-w340" name="search" placeholder="财产险,货运险">
+                 <a href="#"><i class=" iconfont icon-sousuo f-search"></i></a>
+            </span>
+        </div>
+    </header>
+</div>
+<div class="g-wA100 s-bg-22497d g-h45"> 
+    <nav class="g-w1000 f-mc">
+    	<ul class="nav-list f-cb">
+        	<li><a href="#">首页</a></li>
+            <li>
+            	<a href="#">资讯中心</a>
+                <ul>
+                	<li><a href="#">公司动态</a></li>
+                    <li><a href="#">业务公告</a></li>
+                    <li><a href="#">媒体关注</a></li>
+                    <li></li>
+                </ul>
+            </li>
+            <li><a href="#">企业服务</a></li>
+            <li><a href="#" class="p_active">保险产品</a></li>
+            <li><a href="#">咨询预约</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">在线商城</a></li>
+            <li class="gg_bg">400-666-1234</li>
+        </ul>
+    </nav>
+</div>
+<div class="g-wA100"> 
+    <div class="g-w1000 f-mc f-pt20">
+        <div class="g-h35 f-tal">
+            <span class="s-c-666666 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-333333">
+                    <a href="#" class="link-777777">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    <a href="#" class="link-777777">保险产品</a> 
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    详情 
+                </span>
+            </span>
+        </div> 
+        
+        <div class="f-cb">
+        	
+            <div class="f-fl g-w243">
+            	<div class="f-ml3">
+                	<img src="images/zxzx.png" width="240" height="130">
+                </div>
+                <div>
+                	<h2 class="s-c-666666 f-fwn s-bg-ffffff f-pt20 f-pb20 f-ml3">
+                    	<span class="f-fs4 f-ml45">保险产品</span>
+                    	<span class="f-fs2">Products</span>
+                    </h2>
+                    <ul class="m-list-3">
+                    	<li>
+                        	<a href="javascript:void(0)" class="p_active" onClick="show_pul(this)">
+                                <span class="f-cb">
+                                	<span class="f-ml45 f-fl">职业责任保险</span>
+                                	<span class="f-fr"><i class="iconfont icon-jian"></i></span>
+                                </span>
+                            </a>
+                            <ul>
+                            	<li><a href="#" class="c_active">财务总监责任险</a></li>
+                                <li><a href="#">财务总监责任险</a></li>
+                                <li><a href="#">财务总监责任险</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                        	<a href="#">
+                            	<span class="f-cb">
+                                	<span class="f-ml45 f-fl">中介机构责任险</span>
+                                	<span class="f-fr"></span>
+                                </span>
+                            	 
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="#">
+                            	<span class="f-ml45">媒体关注</span>
+                            </a>
+                        </li>
+                         
+                    </ul>
+                    <div class="s-bg-ffffff g-h60 f-ml3"></div>
+                </div>
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/tel.png" width="16"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	电话：021-65667179<br>
+                            传真：021-65667179<br>
+                            E-MAIL：36073699@qq.com
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/weizhi.png" width="14"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	网址：www.aalib.com.cn<br>
+                            地址：上海市杨浦区政熙路80号
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="f-fr g-w725">
+            	<div class="f-pA20  s-bg-ffffff">
+                	<div class="s-bscB4_e5f3f7 f-pb10">
+                    	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf003c;</i></span>
+                        <span class="f-fs4 s-c-008fc7 f-vam">保险产品</span>
+                    </div>
+                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+                    	 
+                        <div class="f-tac">
+                            <span class="f-db f-fs3 s-c-008fc7">职业责任保险</span>
+                            <span class=" f-db s-c-666666 f-fs1 f-mt10">
+                                2015-8-18   分类：<a href="#" class="link-777777">职业责任保险</a>
+                                <i class="iconfont f-fs7">&#xf02d4;</i>304
+                            </span>
+                            
+                        </div>
+                        
+                        <div class="f-mt20 f-fs1 s-lh25 s-c-777777">
+                        	律师职业责任保险属于职业责任保险范畴，赔偿责任包括三项：
+一是，在保险单规定的期间，被保险人在中华人民共和国境内从事诉讼或非诉讼业务时，由于疏忽或过失给委托人造成经济损失，依法应承担的经济赔偿责任，由保险公司赔偿；
+二是，保险事故发生后，律师事务所和委托人上访不能通过协商解决，可能引起诉讼，如果在诉讼前律师事务所征得了保险公司的书面同意，那么产生的有关费用由保险公司承担，包括案件受理费、鉴定费、律师费等；
+三是，发生保险责任事故后，被保险人为缩小或减少赔偿责任所支付的必要的、合理的费用，保险公司负责赔偿，如抢救费等。但对于因战争、自然灾害等不可抗力因素造成的损害、被保险人无有效执业证书和故意行为所产生的责任，保险人是不负责赔偿的。此外，精神损害也不属于保险责任。
+律师职业责任保险的推出，对推动我国律师服务业健康有序地发展将起到重要作用。
+                        </div>
+                        <div class="f-mt10 g-w459 f-mc">
+                            <div class="bdsharebuttonbox" style="margin-left:50px;">
+                                <a href="#" class="bds_more" data-cmd="more">分享到：</a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone">QQ空间</a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina">新浪微博</a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq">腾讯微博</a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren">人人网</a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin">微信</a></div>
+<script>
+    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+                        </div>
+                        
+                    </div>
+                </div>
+            	 
+            </div>
+            
+        </div>
+        
+          
+    </div>
+</div>
+<footer class="g-wA10 s-bg-008fc7 f-mt80">
+	<div class="g-w1000 f-cb f-mc f-pt30">
+    	<div class="g-w210 f-fl f-mt15">
+        	<a href="#"><img src="images/footer_logo.png"></a>
+        </div>
+        <div class="g-w150 f-fl f-ml45">
+        	<ul class="footernav-list">
+            	<li class="f-pb10">资讯中心</li>
+                <li><a href="#">公司动态</a></li>
+                <li><a href="#">业务公告</a></li>
+                <li><a href="#">媒体关注</a></li>
+                 
+            </ul>
+        </div>
+        <div class="g-w150 f-fl">
+        	<ul class="footernav-list">
+            	<li class="f-pb10">企业服务</li>
+                <li><a href="#">财产险</a></li>
+				<li><a href="#">货运险</a></li>
+                <li><a href="#">船舶险</a></li>
+                <li><a href="#">第三方责任保险</a></li>
+                 
+            </ul>
+        </div>
+        <div class="g-w150 f-fl">
+        	<ul class="footernav-list">
+            	<li class="f-pb10">保险产品</li>
+                <li><a href="#">中介机构责任险</a></li>
+                <li><a href="#">行业责任险</a></li>
+                <li><a href="#">金融信用保险</a></li>
+                <li><a href="#">水险</a></li>
+                <li><a href="#">财产险</a></li>
+                <li><a href="#">团险</a></li>
+                 
+                 
+            </ul>
+        </div>
+        <div class="g-w150 f-fl">
+        	<ul class="footernav-list">
+            	<li class="f-pb10">关于我们</li>
+                <li><a href="#">公司介绍</a></li>
+                <li><a href="#">合作伙伴</a></li>
+               
+            </ul>
+        </div>
+        <div class="f-fr f-mt15">
+        	<div>
+            	<img src="images/weixin_img.png" width="145">
+            </div>
+            <div class="f-mt15" align="center">
+            	<a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01af;</i></a>
+                <a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01c7;</i></a>
+                <a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01b0;</i></a>
+            </div>
+        </div>
+        
+    </div>
+    <div class=" f-pt30 f-pb30 g-w1000 f-cb f-mc s-c-010101 f-fs2">
+    	<div class="f-fl g-w340">
+        	<i class="iconfont icon-shouji s-c-19af98"></i>
+            400-666-1234
+            <i class=" f-ml10 iconfont icon-youjian s-c-19af98"></i>
+            ql-service@aalib.com.cn
+        </div>
+        <div class="f-fl">
+        	Beijing quanlianjingji co.,LTD  © 2015 All rights reserved. 
+        </div>
+        <div class="f-fr">
+        	 ICP备 00008 号   公网安备 00008 号
+        </div>
+    </div>
+</footer>
+<div id="share">
+     <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=3193389429&Site=QQ客服&Menu=yes>
+        <i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>①</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2017415521&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>②</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2733867915&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>③</span>
+    </a>
+    <a id="totop" title=""><i class="iconfont">&#xf02aa;</i></a>
+</div>
+<script>
+	function show_pul(ef){
+		 
+		if($(ef).children().children("span.f-fr").children("i.icon-jia").length>0){
+			$(ef).children().children("span.f-fr").children("i.icon-jia").addClass("icon-jian");	
+			$(ef).children().children("span.f-fr").children("i.icon-jia").removeClass("icon-jia");
+			$(ef).parent().children("ul").show(); 
+		}else{
+			$(ef).children().children("span.f-fr").children("i.icon-jian").addClass("icon-jia");	
+			$(ef).children().children("span.f-fr").children("i.icon-jian").removeClass("icon-jian");	
+			$(ef).parent().children("ul").hide();
+		}
+		 
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+       <table cellpadding="0" cellspacing="0" class="table_user_02">
+          <tr align="center" height="34" >
+            <td ><input onclick='selectAll("checkboxes")' type="checkbox" />序号</td>
+            <td  width="150">产品名</td>
+			  <td >投保人</td>
+            <td >投保份数</td>
+            <td > <span style="cursor:pointer" onclick="warrantyListOrder()">总费用 </span></td>
+			<td >状态</td>
+			<td >时间</td>
+			<td >操作</td>
+
+          </tr>
+          <!--{foreach from=$warranty item=item}-->
+          <tr>
+            <td align="center" ><input type="checkbox" name="checkboxes" value="{$item.policy_id}" /><a href="user.php?act=policy_detail&policy_id={$item.policy_id}" class="f6">{$item.policy_id}</a></td>
+			
+            <td align="center" >{$item.attribute_name}</td>
+			 <td align="center" >{$item.applicant_username}</td>
+			 
+            <td align="center" >{$item.apply_num}</td>
+            <td align="center" >
+            	 {$item.total_premium}            
+            </td>
+
+			<td align="center" >{$item.policy_status_str}</td>
+   			<td align="center" >{$item.dateline}</td>
+   			<td align="center" >
+				<a href="user.php?act=policy_detail&policy_id={$item.policy_id}" target="_blank">查看</a>|
+				<a href="javascript:remove_policy({$item.policy_id});" >删除</a>
+			</td>
+          </tr>
+          	<!-- {foreachelse} -->
+          		<tr>
+          			<td align="center" colspan="10">
+		       			 购物车为空！<a href="category.php?act=hot_goods_list" class="btn-ec6941-1">去购物></a>
+		       		</td>	
+		        </tr>
+          <!--{/foreach}-->   
+          
+          </table>
+		
+		<!-- {if $warranty } -->
+		<div align="center">
+				 <h2 class="f-fs2 f-pA10 s-c-ec6941">总保费:{$total_premium}</h2>
+				 <input type="button" class="btn-ec6941-108 s-lh25" value="去结算" onclick="go_payment();" />
+		</div>
+		<!-- {/if} -->
+<script type="text/javascript">
+	
+	//全选或者反选
+	function selectAll(name){
+		var checkboxs=document.getElementsByName(name);
+		for (var i=0;i<checkboxs.length;i++) {
+		  	var e=checkboxs[i];
+		  	e.checked=!e.checked;
+		}
+	}
+	
+	 function go_payment(){
+		 ids = get_selected_id();
+		  if(ids!=""){
+		  	  var go_url = "flow.php?step=add_bx&policy_ids="+ids;
+			  window.location.href=go_url; 
+			  //http://localhost/bxdev/flow.php?step=add_bx&policy_id=4994&gid=43&cart_insure_id=2409&uid=
+		  }else{
+			 showMsg("请选择要结算的投保单",0);
+		  }
+	 }	
+	
+	function showMsg(msg_str,type){
+			var showFn =  $.layer({
+			    shade: [0],
+			    area: ['auto','auto'],
+			    dialog: {
+			        msg: msg_str,
+			        btns: 1,                    
+			        type: type,
+			        btn: ['确定'],
+			        yes: function(){
+			        	if(type){
+				        	location.replace("order.php?act=invoice_list");
+			        	}else{
+			        		layer.close(showFn);
+			        	}
+			        }
+			    }
+			});
+			
+		}
+
+   		
+   		function remove_policy(policy_ids){
+		    if(!policy_ids){
+		    	policy_ids = get_selected_id();
+		    }
+		    
+		    if(policy_ids!=''){
+	   			if (confirm('您要确定删除吗？')){
+		   			$.ajax({
+					   type: "GET",
+					   url: "user.php",
+					   async:false,
+					   data: "act=remove_policy&policy_ids="+policy_ids,
+					   success: function(res){
+						  res = $.parseJSON(res);
+						  alert(res.msg);
+						  if(res.code==0){
+							  location.reload();
+						  }
+					   }
+					});
+	   			}
+		    }else{
+		    	 showMsg("请选择要删除的投保单",0);
+		    }
+   			
+   		}
+		
+   		
+   		function  get_selected_id(){
+	  		  var ids='';
+			  $('input[name="checkboxes"]:checked').each(function(){
+			    ids+=$(this).val()+',';
+			  }); 
+			  
+			  var reg=/,$/gi;
+			  ids=ids.replace(reg,"");
+			  ids = ids.split(",");
+			  return ids;
+   		}
+   		
+</script>	
+
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+
+	
+	//add yes123 2015-01-15 保单分页单独处理..
+	function other_page(url){
+		var page_size = $("#page_size").val();
+		location.assign(url+"&size="+page_size);
+	}
+	
+	 $(function(){
+	        $('#page_size').bind('keypress',function(event){
+	            if(event.keyCode == "13")    
+	            {
+	            	var url = window.location.href;
+	            	//如果存在，替换否则拼接
+	            	if(url.indexOf('size')>0){
+		            	var old_size = "size={$pager.size}";
+		            	var new_size = "size="+$("#page_size").val();
+		            	url = url.replace(old_size,new_size);
+	            	}else{
+	            		url = url+"&size="+$("#page_size").val();
+	            	}
+	            	window.location.href=url;
+	            }
+	        });
+	 });
+
+</script>	

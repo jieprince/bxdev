@@ -1,0 +1,217 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_view_header}-->
+<input id="career" value="$user_info_applicant.career_type" type="hidden">	
+<input id="product_code" value="$policy_arr.product_flag" type="hidden">	
+<div class="x_p_a_c c"><h2 class="l">保障内容</h2></div>
+<div>
+   <table align="center" class="border_table_05 " cellpadding="0" cellspacing="0" width="870" id="dutu_list_mineTemp">
+                                     <tr><td class="tac fwb">类型</td><td class="tac fwb">产品名称</td><td class="tac fwb">责任</td><td class="tac fwb">保额(元)</td><td class="tac fwb" id="value_001">1~3类保费(元)</td><td class="tac fwb" id="value_002">4类保费(元)</td><td class="tac fwb" id="value_003">5-6类保费(元)</td></tr>
+                                        <!--{loop $list_product_duty_price[0] $index $value1}-->
+                                        	  
+                                             	<!--{if $value1[product_type]=='main'}-->
+                                                <tr>
+                                                <td width="80" class="tac">主险</td>
+                                                <td width="300" class="tac">$value1[product_name]</td>
+                                                <td width="240" class="tac">{$value1[duty_name]}</td>
+                                                <td width="130" class="tac">$value1[amount]</td>
+                                                <td width="130" class="tac">{$value1[price]}</td>
+                                                <td width="130" class="tac">
+                                                {if $list_product_duty_price[1]}
+                                                <!--{loop $list_product_duty_price[1] $index $value2}-->
+                                                 {if $value1[product_name]==$value2[product_name] && $value1[duty_name]==$value2[duty_name]}
+                                                 	{$value2[price]}
+                                                 {/if}
+                                                <!--{/loop}-->
+                                                {/if}
+                                                </td>
+                                                <td width="130" class="tac">
+                                                  {if $list_product_duty_price[2]}
+                                                	<!--{loop $list_product_duty_price[2] $index $value3}-->
+                                                     {if $value1[product_name]==$value3[product_name] && $value1[duty_name]==$value3[duty_name]}
+                                                        {$value3[price]}
+                                                        
+                                                     {/if}
+                                                    <!--{/loop}-->
+                                                   
+                                                  {/if}
+                                                </td>
+                                                </tr>
+                                            	<!--{/if}-->
+                                              
+                                              
+                                        <!--{/loop}-->
+                                        <!--{loop $list_product_duty_price[0] $index $value1}-->
+                                             
+                                             
+                                             	<!--{if $value1[product_type]=='additional' }-->
+                                                <tr>
+                                                <td class="tac">附加险</td>
+                                                
+                                                <td class="tac">$value1[product_name]</td>
+                                                <td class="tac">{$value1[duty_name]}</td>
+                                                <td class="tac">$value1[amount]</td>
+                                                <td width="130" class="tac">{$value1[price]}</td>
+                                                <td width="130" class="tac">
+                                                {if $list_product_duty_price[1]}
+                                                <!--{loop $list_product_duty_price[1] $index $value2}-->
+                                                 {if $value1[product_name]==$value2[product_name] && $value1[duty_name]==$value2[duty_name]}
+                                                 	{$value2[price]}
+                                                 {/if}
+                                                <!--{/loop}-->
+                                                {/if}
+                                                </td>
+                                                <td width="130" class="tac">
+                                                {if $list_product_duty_price[2]}
+                                                	<!--{loop $list_product_duty_price[2] $index $value3}-->
+                                                     {if $value1[product_name]==$value3[product_name] && $value1[duty_name]==$value3[duty_name]}
+                                                        {$value3[price]}
+                                                        
+                                                     {/if}
+                                                    <!--{/loop}-->
+                                                   
+                                                  {/if}
+                                                </td>
+                                                </tr>
+                                            	<!--{/if}--> 
+                                              
+                                              
+                                        <!--{/loop}-->
+                                     </table>
+</div>
+                
+                <div class="x_p_a_c c"><h2>投保人信息</h2></div>
+				<!--保险计划-->
+				<!--投保人信息-->
+				 <table  cellpadding="0" cellspacing="0" cellpadding="0" align="center" style="padding:10px 0px; display:block" width="90%" >
+					<tbody><tr>
+						
+						<td width="80" class="check_td_left">机构名称：</td>
+						<td width="100" class="check_td_right">{$user_info_applicant[group_name]}</td>
+						<td width="80" class="check_td_left">机构类型：</td>
+						<td class="check_td_right">{$user_info_applicant[company_attribute]}</td>
+						<td width="80" class="check_td_left">证件类型：</td>
+						<td width="120" class="check_td_right">组织机构代码证</td>
+						<td width="80" class="check_td_left">证件号码：</td>
+						<td class="check_td_right">$user_info_applicant[group_certificates_code]</td>
+					</tr>
+					
+						<tr>
+                        <td class="check_td_left">姓名：</td>
+						<td class="check_td_right">$user_info_applicant[applicant_fullname]</td>
+                        <td class="check_td_left">手机号码：</td>
+						<td class="check_td_right">$user_info_applicant[mobiletelephone]</td>
+                        <td class="check_td_left">电子邮箱：</td>
+						<td  class="check_td_right" colspan="3">$user_info_applicant[email]</td>
+ 
+					</tr>
+					 
+					</tbody>
+					</table>
+					 
+					<div class="x_p_a_c c">
+                  			<h2>被保人信息</h2>
+                  		</div>
+<style>
+.border_table_05 {}
+.border_table_05 td {border-bottom: 1px solid #dddddd;}
+.border_table_05 th { border-bottom: 1px solid #dddddd;border-top: 1px solid #dddddd;}
+.tac{text-align:center;}
+</style>
+                    <table width="90%" cellspacing="0" cellpadding="0" border="1" class="border_table_05" style="margin-top:10px;margin-bottom:10px;" >
+                    <tr><th class="fwb tac">姓名</th><th class="fwb tac">证件类型</th><th class="fwb tac">证件号码</th><th class="fwb tac">职业代码</th><th class="fwb tac">性别</th><th class="fwb tac">生日</th><th class="fwb tac">邮箱</th><th class="fwb tac">手机号</th></tr>
+                    
+                    <!--{loop $list_subject $index2 $value2}-->
+                    	
+                        <!--{loop $value2.list_subject_insurant $index $value}--> 
+                        
+                        <tr><td data-value="fullname" class=" tac">$value[fullname]</td>
+                        <td data-value="certificates_type" class=" tac">$value[certificates_type_str]</td>
+                        <td data-value="certificates_code" class=" tac">$value[certificates_code]</td>
+                        <td data-value="career_type" class=" tac">$value[occupationClassCode]</td>
+                        <td data-value="gender" class=" tac">$value[gender_str]</td>
+                        <td data-value="birthday" class=" tac">$value[birthday]</td>
+                        <td data-value="email" class=" tac">$value[email]</td>
+                        <td data-value="mobiletelephone" class=" tac">$value[mobiletelephone]</td></tr>
+                       <!--{/loop}--> 
+                       <tr><td colspan="8" style="border:0px; border-top: solid 3px #CCC;"></td></tr>
+                   <!--{/loop}--> 
+                   </table>
+					
+					<div class="x_p_a_c c">
+                  			<h2>身故受益人信息</h2></div>
+                  			<table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+							<tbody><tr>
+		                             <td width="150" class="check_td_left">法定</td>
+		                             <td width="617" class="check_td_right"></td>
+                       		  </tr>
+                         </tbody>
+						 </table>
+		
+			<div class="x_p_a_c c"><h2>保单信息</h2></div>
+				<table cellpadding="0" cellspacing="0" width="700">
+							
+					<tbody>
+					
+					<tr>
+						<td width="176" height="45" align="center" class="insure_cen_table_td insure_cen_table_das">保险期限：
+						</td>
+						
+						<td width="605" class="check_td_right" style="font-weight:bolder">
+							
+							$policy_arr[start_date]&nbsp;&nbsp;至&nbsp;&nbsp;$policy_arr[end_date]
+							
+						</td>
+					</tr>
+					
+					</tbody>
+			</table>
+           <script>
+           	$().ready(function() {
+                 
+				 var careertemp = $('#career').val();
+				   
+				 if($('#product_code').val()=='Y502' || $('#product_code').val()=='Aplan1' || $('#product_code').val()=='Aplan2' || $('#product_code').val()=='Aplan3' || $('#product_code').val()=='Aplan4'|| $('#product_code').val()=='Aplan5' || $('#product_code').val()=='Bplan1'|| $('#product_code').val()=='Bplan2' || $('#product_code').val()=='Bplan3'){
+					 
+					 if(careertemp==1){
+						
+						$('#value_001').html('1~3类保费(元)');
+						$('#value_002').html('');
+						$('#value_003').html('');
+					 }else if(careertemp==4){
+						
+						$('#value_001').html('4类保费(元)');
+						$('#value_002').html('');
+						$('#value_003').html(''); 
+					 }else if(careertemp==5){
+						
+						$('#value_001').html('5~6类保费(元)');
+						$('#value_002').html('');
+						$('#value_003').html('');
+					 }else if(careertemp=='1_4'){
+						 
+						$('#value_001').html('1~3类保费(元)');
+						$('#value_002').html('4类保费(元)');
+						$('#value_003').html('');
+					 }else if(careertemp=='1_5'){
+						 
+						$('#value_001').html('1~3类保费(元)');
+						$('#value_002').html('5~6类保费(元)');
+						$('#value_003').html(''); 
+					 }else if(careertemp=='4_5'){
+						
+						$('#value_001').html('4类保费(元)');
+						$('#value_002').html('5~6类保费(元)');
+						$('#value_003').html(''); 
+					 } else if(careertemp=='1_4_5'){
+						
+						$('#value_001').html('1~3类保费(元)');
+						$('#value_002').html('4类保费(元)');
+						$('#value_003').html('5~6类保费(元)');  
+					 } 
+					  
+					 
+				 }
+            });
+           </script>
+<!--{template cp_product_buy_view_footer}-->
+<!--{template footer_cshop}-->				

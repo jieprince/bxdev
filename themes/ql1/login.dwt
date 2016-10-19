@@ -1,0 +1,72 @@
+<!-- #BeginLibraryItem "/library/page_header_register.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bg-reg f-mt20"> 
+	<div class="g-w1077 f-mc f-pt55" align="right" >
+        <div class="login_form">
+            <form action="user.php" method="post" id="login_form">
+                <div class="f-pT50L100">
+                    <h2 class="f-fs5 s-c-666666 f-ml30">用户登录</h2>
+                    <div>
+                        <div class="f-pt30">
+                            <span class="s-c-c9c8c8"><i class="iconfont f-fs6">&#xf012d;</i></span>
+                            <span class="f-ml10">
+                            	<input type="text" class="g-h35 g-w250 f-pl5 f-pr5" placeholder="手机号" name="username">
+                            </span>
+                        </div>
+                        <div class="f-pt20">
+                            <span class="s-c-c9c8c8"><i class="iconfont f-fs6">&#xf00c9;</i></span>
+                            <span class="f-ml10">
+                            	<input type="password" class="g-h35 g-w250 f-pl5 f-pr5" placeholder="密码" name="password" data-rule="密码: required;password;">
+                            </span>
+                        </div>
+			          
+			         <!-- 判断是否启用验证码{if $enabled_captcha} -->
+	      				 <div class="f-pt20">
+	      					<span class="f-ml30 f-pl5">
+                            	<input type="text" size="5" name="captcha"  class="g-h35 g-w130 f-pl5 f-pr5" placeholder="验证码"/>
+                            	<span class="f-ib f-ml10 f-vam">
+                            		<img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: top; cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+	      				 		</span>
+	      				 	</span>
+					       </div>
+				      <!--{/if}-->
+                        
+                        
+                        <div class="f-pt20">
+                            
+                            <span class="f-ml30 f-pl5 f-vam">
+                            	 <input type="checkbox" name="remember" id="remember">
+                            </span>
+                            <span class="f-fs2 s-c-666666 f-ml5">记住登录状态</span>
+                            <span class="f-ml30 f-fs2">
+                            	<a href="user.php?act=get_password" class="link-666666">忘记密码?</a>
+                            </span>
+                        </div>
+                        <div class="f-pt25 f-ml30 f-pl5">
+                            <input type="hidden" name="act" value="act_login" /> 
+                            <input type="hidden" name="back_act" value="{$back_act}" />
+                        	<input type="submit" class="btn-ec6941-2" value="立即登录">
+                        </div>
+                        <div class="f-mt20 f-ml30 f-pl5">
+                        	<span class="s-c-666666  f-fs1">还没有全联账号吗？赶快 <a href="user.php?act=register" class="link-ec6941">[点击注册]</a> 加入我们吧！</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$('#login_form').validator({
+    rules: {
+    	username: [/^1[3458]\d{9}$/, '请检查手机号格式']
+    	
+    },
+    fields: {
+    	username: 'required; username'
+    }
+});
+
+
+</script>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

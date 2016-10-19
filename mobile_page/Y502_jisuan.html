@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>平安职业分类在线查询表--全联保险经纪网</title>
+    <link type="text/css" rel="stylesheet" href="../themes/inserance_02/css/ebaoins.css"> 
+    <link rel="stylesheet" href="dist/css/Y502.css">
+    <link rel="stylesheet" href="dist/css/animate.min.css">
+    <script src="images/mdrt_img/jquery-1.8.3.min.js"></script>
+    <script src="../js/mark.js"></script>
+    <script src="../js/roll.js"></script>
+    <script src="../js/lanrenzhijia.js"></script>
+    <script src="dist/js/wow.min.js"></script>
+	
+     
+</head>
+
+<body>
+<div class="container">
+
+    <div id="container">
+        <div class="header">
+            <div class="header_02">
+                <div class="logo"><a href="../index.php"><img src="../themes/inserance_02/images/logo.png" height="80" width="376" id="url_logo"></a></div>
+                <div class="header_01">
+                    <div class="info">
+                        <ul>
+                            <li>咨询热线：<span>4006-900-618</span></li>
+
+                            <li><a href="../user.php">登录</a></li>
+                            <li><a href="../user.php?act=register">注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav" id="tab_001"  style="width:660px;" >
+                    	<ul class="title-list" >
+                            <li class=""><a href="../index.php">首页</a></li>
+                            <li><a href="../category.php?act=hot_goods_list">热销产品</a></li>
+                            <li><a href="chexianlist.html">车险</a></li>
+                            <li  class="on"><a href="../category.php?act=special">e保专题</a></li>
+                            <li><a href="../category.php?act=introduce">平台介绍</a></li>
+                            <li><a href="../category.php?act=about">关于我们</a></li>
+                            <p style="left: 330px;"><b></b></p>
+                        </ul>
+                    </div>
+                    <div class="nav" id="tab_002"  style="width:440px; display:none;" >
+                    	
+                        <ul class="title-list" >
+                        	 
+                            <li><a href="../index.php">首页</a></li>
+                            <li><a href="../category.php?act=hot_goods_list">产品</a></li> 
+                            <li><a href="../category.php?act=introduce">平台介绍</a></li>
+                            <li><a href="../category.php?act=article_list&click=faq">常见问题</a></li>
+                            <p style="left:0px;"><b></b></p>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+     
+    <div class="bg_f5f5f5">
+        <div class="pagebody" style="background:none; width:1205px;">
+    
+            <div class="hotproducts_list" style="padding:50px 0px 100px 0px;">
+            	 <div style="padding-bottom:50px; text-align:center"><h1>平安职业分类在线查询表</h1></div>
+                 <table width="1000" align="center" class="border_table_05" id="table_list">
+                 	<tr>
+                    	<th>行业选择</th>
+                        <td colspan="8">
+                        	<select style="padding:5px 2px;" id="level_one_0" onChange="setclasstype('level_two',0)">
+                            	 
+                            </select>
+                        </td>
+                         
+                    </tr>
+                    <tr data-value="0">
+                    	<th>职业类别</th>
+                        <td>
+                        	<select style="padding:5px 2px;" id="level_two_0" onChange="setclasstype('level_three',0)">
+                            	 
+                            </select>&nbsp;&nbsp;
+                            <select style="padding:5px 2px;" id="level_three_0" onChange="setclasstypethree(this,0)">
+                            	 
+                            </select>
+                        </td>
+                        <th>职业代码</th>
+                        <td>
+                        	 <span id="carsse_0"></span>
+                        </td>
+                        <th>职业类别</th>
+                        <td>
+                             <span id="carssetype_0"></span>类
+                        </td>
+                        <th>参保人数</th>
+                        <td colspan="2">
+                        	 <input type="text" style="padding:5px 2px;" id="person_0" >
+                        </td>
+                         
+                    </tr>
+                     
+                 </table>
+                 
+                 <div align="center" class="f-mt30">
+                 	<a href="javascript:void(0)" onClick="addclasstype()" class="btn_products09">增加工种信息</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onClick="getSumpersons()" class="btn_products08">人员统计</a>
+                 </div>
+                 
+                 <table width="1000" align="center" class="border_table_05" style="padding-top:30px; display:none" id="person_list">
+                 	<tr>
+                    	<th>职业类别</th>
+                        <th>
+                        	 1~3类
+                        </th>
+                        <th>
+                        	 4类
+                        </th>
+                        <th>
+                        	 5~6类
+                        </th>
+                        <th>
+                        	总计
+                        </th>
+                    </tr>
+                    <tr>
+                    	<th>人员分类统计</th>
+                        <th class="text_c_e91717">
+                        	<span id="le_01">0</span> 人 
+                        </th>
+                        <th class="text_c_e91717">
+                        	<span id="le_02">0</span> 人 
+                        </th>
+                        <th class="text_c_e91717">
+                        	<span id="le_03"></span> 人
+                        </th>
+                        <th class="text_c_e91717">
+                        	<span id="le_s">0</span> 人 
+                        </th>
+                        
+                    </tr>
+                     
+                     
+                 </table>
+            </div>
+    
+        </div>
+    </div>
+    
+
+    <div class="clear"></div>
+    <div class="foot02 ">
+ 
+    	<div class="footer_1180">
+            <div class="footer_left">
+                <div class="footer1">
+                    <ul class="insur02">
+                        <li><a href="article.php?act=index_article_by_id&id=43">法律安全</a>&nbsp;|&nbsp;</li>
+                        <li><a href="article.php?act=index_article_by_id&id=44">隐私政策</a>&nbsp;|&nbsp;</li>
+                        <li><a href="article.php?act=index_article_by_id&id=45">法律声明</a>&nbsp;|&nbsp;</li>
+                        <li><a href="category.php?act=about">关于我们</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="footer2">
+                    <p class="text" id="q_text">经营保险代理业务许可证：201974000000800&nbsp;&nbsp;&nbsp;中天信合保险代理（北京）有限公司：110104011479456&nbsp;&nbsp;&nbsp;</p>
+                    <p class="text">ICP备案号：京ICP备12031115号 &nbsp; &nbsp; Copyright@2014 全联保险经纪网版权所有</p>
+                </div>
+            </div>
+            
+            <div class="footer_right">
+                <span class="q_code" id="q_code_img"><img src="images/gongzhonghao.jpg" width="90" height="90"></span>
+                <span class="q_codelist">
+                <span id="q_code_title"><span class="q_title" >微信扫码，投保么么哒！</span><br></span>
+                    <span >客服邮箱：service@ebaoins.cn</span><br>
+                    <span >客服热线：4006-900-618</span><br>
+                </span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    <div>
+    </div>
+    <style>
+        /* jump */
+        #ebt_jump{position:fixed;bottom:100px;right:10px;width:40px;z-index:1000;}
+        *html #ebt_jump{position:absolute;top:expression(documentElement.scrollTop + "px");margin:300px 0 0 0;}
+        #ebt_jump li{height:50px;overflow:hidden;}
+        #ebt_top1,#ebt_top,#ebt_share,#ebt_reply,#ebt_sina,#ebt_ceping,#ebt_weixin,#ebt_qq,#ebt_qq_01,#ebt_qq_02,#ebt_qq_03,#ebt_qq_04{display:block;width:40px;height:42px;overflow:hidden;cursor:pointer;}
+        #ebt_top{background:url(../themes/inserance_02/images/top.png) no-repeat;}
+        #ebt_top1{background:url(../themes/inserance_02/images/top.png) no-repeat;}
+        #ebt_share{background:url(.../themes/inserance_02/images/share.png) no-repeat;}
+        #ebt_reply{background:url(../themes/inserance_02/images/reply.png) no-repeat;}
+        #ebt_sina{background:url(../themes/inserance_02/images/sina.png) no-repeat;}
+        #ebt_weixin{background:url(../themes/inserance_02/images/weixin.png) no-repeat;}
+        #ebt_top:hover{background:url(../themes/inserance_02/images/toped.png) no-repeat;}
+        #ebt_share:hover{background:url(../themes/inserance_02/images/shared.png) no-repeat;}
+        #ebt_reply:hover{background:url(../themes/inserance_02/images/replyed.png) no-repeat;}
+        #ebt_sina:hover{background:url(../themes/inserance_02/images/sinad.png) no-repeat;}
+        #ebt_weixin:hover{background:url(../themes/inserance_02/images/weixind.png) no-repeat;}
+        #ebt_ceping{background:url(../themes/inserance_02/images/ceping.png) no-repeat;}
+        #ebt_ceping:hover{background:url(../themes/inserance_02/images/cepinged.png) no-repeat;}
+        #ebt_qq{background:url(../themes/inserance_02/images/qq.png) no-repeat;}
+        #ebt_qq:hover{background:url(../themes/inserance_02/images/qqed.png) no-repeat;}
+        #ebt_qq_01{background:url(../themes/inserance_02/images/qq01.png) no-repeat;}
+        #ebt_qq_01:hover{background:url(../themes/inserance_02/images/qqed01.png) no-repeat;}
+        #ebt_qq_02{background:url(../themes/inserance_02/images/qq02.png) no-repeat;}
+        #ebt_qq_02:hover{background:url(../themes/inserance_02/images/qqed02.png) no-repeat;}
+        #ebt_qq_03{background:url(../themes/inserance_02/images/qq03.png) no-repeat;}
+        #ebt_qq_03:hover{background:url(../themes/inserance_02/images/qqed03.png) no-repeat;}
+        #ebt_qq_04{background:url(../themes/inserance_02/images/qq04.png) no-repeat;}
+        #ebt_qq_04:hover{background:url(../themes/inserance_02/images/qqed04.png) no-repeat;}
+        #ebt_EWM{position:absolute;left:-150px;display:none;}
+        #ebt_EWM img{width:150px;height:150px;}
+    </style>
+
+
+    <ul id="ebt_jump">
+        <li style="display:none;"><a id="ebt_top" href="#ebt_top"></a></li>
+        <li><a id="ebt_qq_01" href="http://wpa.qq.com/msgrd?uin=3188972503&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+        <li><a id="ebt_qq_02" href="http://wpa.qq.com/msgrd?uin=2491125478&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+        <li><a id="ebt_qq_03" href="http://wpa.qq.com/msgrd?uin=873922146&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+        <li><a id="ebt_qq_04" href="http://wpa.qq.com/msgrd?uin=1419082122&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+
+        <li>
+            <a id="ebt_weixin" href="javascript:void(0)" onMouseOver="showEWM()" onMouseOut="hideEWM()">
+                <div id="ebt_EWM"><img src="../themes/inserance_02/images/weixin_code.png"></div>
+            </a>
+        </li>
+
+        <li><a id="ebt_top1" href="#ebt_top"></a></li>
+    </ul>
+	 
+    <script type="text/javascript">
+        $(document).ready(function(){
+			
+			 
+			setclasstype('level_one',0);
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    $('#ebt_jump li:eq(0)').fadeIn(800);
+                } else {
+                    $('#ebt_jump li:eq(0)').fadeOut(800);
+                }
+            });
+
+            $("#ebt_top").click(function() {
+                $('body,html').animate({
+                            scrollTop: 0
+                        },
+                        1000);
+                return false;
+            });
+            $("#ebt_top1").click(function() {
+                $('body,html').animate({
+                            scrollTop: 0
+                        },
+                        1000);
+                return false;
+            });
+
+        });
+        function showEWM(){
+            document.getElementById("ebt_EWM").style.display = 'block';
+        }
+        function hideEWM(){
+            document.getElementById("ebt_EWM").style.display = 'none';
+        }
+		
+		
+		function setclasstype(str_mun,sq_num){
+			$('#person_list').hide();
+			if(str_mun=='level_two'){
+				$('#table_list tr').each(function(i, n) {
+                    if(i>1){
+						$(this).remove();	
+					}
+                });
+			}
+			var lever_type = str_mun;
+			var data_json = {'query_career_code':lever_type} ;
+			if(lever_type=='level_two'){
+				data_json['level_one']=$('#level_one_0').val();
+			}else if(lever_type=='level_three'){
+				data_json['level_two']=$('#level_two_'+sq_num).val();
+			}
+			$.ajax({
+			 type: 'POST',
+			 url: '../oop/business/getPAC502Data.php' ,
+		     dataType: "JSON",
+			 data: data_json,
+			 async:false,
+			 success: function(data){
+				
+				var html_op = '<option value="0">请选择行业</option>';
+				if(lever_type=='level_one'){
+					html_op = '<option value="0">请选择行业</option>';
+				}else if(lever_type=='level_two'){
+					html_op = '<option value="0">请选择职业</option>'; 
+				}else if(lever_type=='level_three'){
+					html_op = '<option value="0">请选择工种</option>';  
+				}	
+				 
+				$(data).each(function(i, n) {
+					if(lever_type!='level_three'){
+                    	html_op+='<option value="'+n+'">'+n+'</option>'; 
+					}else{
+						html_op+='<option value="'+n.career_code+'" data-value="'+n.career_type+'">'+n.type_three+'</option>'; 
+					}
+                });
+				 
+				if(lever_type=='level_one'){
+					 
+					$('#level_one_'+sq_num).html(html_op);
+					$('#level_two_'+sq_num).html('<option value="0">请选择职业</option>');
+					$('#level_three_'+sq_num).html('<option value="0">请选择工种</option>');
+				}else if(lever_type=='level_two'){
+					$('#level_two_'+sq_num).html(html_op); 
+					$('#level_three_'+sq_num).html('<option value="0">请选择工种</option>');
+				}else if(lever_type=='level_three'){
+					$('#level_three_'+sq_num).html(html_op);  
+				}	
+			}
+			
+		
+		});	
+			
+		}
+		
+		function setclasstypethree(ef,str_t){
+			$('#person_list').hide();
+			$('#person_'+str_t).data('value',$(ef).children("option:selected").data('value'));
+			$('#carsse_'+str_t).text($(ef).val());
+			$('#carssetype_'+str_t).text($(ef).children("option:selected").data('value'));
+		}
+		function remove_class(efs){
+			$('#person_list').hide();
+			$(efs).parent().parent().remove("tr");	
+		}
+		function addclasstype(){
+			$('#person_list').hide();
+			var num_number = $('#table_list tr:last').data('value');
+			num_number = parseInt(num_number)+1;
+			var html_tr = '<tr data-value="1"><th>职业类别</th><td><select style="padding:5px 2px;" id="level_two_'+num_number+'" onChange="setclasstype(\'level_three\','+num_number+')">'+$('#level_two_0').html()+'</select>&nbsp;&nbsp;<select style="padding:5px 2px;" id="level_three_'+num_number+'" onChange="setclasstypethree(this,'+num_number+')"><option value="0">请选择工种</option></select></td><th>职业代码</th><td><span id="carsse_'+num_number+'"></span></td><th>职业类别</th><td><span id="carssetype_'+num_number+'"></span>类</td><th>参保人数</th><td><input type="text" style="padding:5px 2px;" id="person_'+num_number+'"></td><td><a href="javascript:void(0)" onClick="remove_class(this)">删除</a></td></tr>';
+			$('#table_list').append(html_tr);
+		}
+		function getSumpersons(){
+			
+			var person_temp_sum_01 = 0;
+			var person_temp_sum_02 = 0;
+			var person_temp_sum_03 = 0;
+			$('#table_list input').each(function() {
+                var person_temp = $(this).val();
+				var persondata_temp = $(this).data('value');
+				if(persondata_temp==1 || persondata_temp==2 ||persondata_temp==3){
+					person_temp_sum_01 = parseInt(person_temp_sum_01)+parseInt(person_temp);
+				}else if(persondata_temp==4){
+					person_temp_sum_02 = parseInt(person_temp_sum_02)+parseInt(person_temp);
+				}else if(persondata_temp==5 || persondata_temp==6){
+					person_temp_sum_03 = parseInt(person_temp_sum_03)+parseInt(person_temp);
+				}
+            });	
+			$('#le_01').text(person_temp_sum_01);
+			$('#le_02').text(person_temp_sum_02);
+			$('#le_03').text(person_temp_sum_03);
+			$('#le_s').text(person_temp_sum_03+person_temp_sum_02+person_temp_sum_01);
+			$('#person_list').show();
+		}
+    </script>
+
+    
+     
+</div>
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->
+
+<input id="applyNum" name="applyNum" value="1" type="hidden">
+<input id="period_code" name="period_code" value="$period_code" type="hidden">
+	 
+<input type="hidden" name="metType" value="ordercheck">
+<input type="hidden" name="bean.shipType" value="">
+<input type="hidden" name="bean.virtualPay" value="">
+<input type="hidden" name="curChannelId" value="index">
+<input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+<input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+<input id="period_code" name="period_code" value="$period_code" type="hidden">
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name" value="huatai" type="hidden">
+
+<div class="x_p_a_c c"><h2 class="l">保险信息</h2></div>
+<table cellpadding="0" cellspacing="0" style="width:600px; margin-left:118px;">
+
+    <tbody>
+					 
+    <tr class="">
+        <th width="25%" align="right" class="pad_R21">
+            <span class="a_x">*</span>年龄范围</th>
+
+        <td align="left">
+            <span> $product[age_min]</span> 至 <span> $product[age_max]</span>岁
+
+        </td>
+									
+        <th width="25%" align="right" class="pad_R21">
+            <span class="a_x">*</span>保险期限</th>
+
+        <td align="left">
+            <span>$prodcutPeriod</span>
+
+        </td>
+    </tr>
+    <tr class="">
+        <th width="25%" align="right" class="pad_R21">
+            <span class="a_x">*</span>保险起期</th>
+
+        <td align="left">
+            <input value="" maxlength="50" name="startDate" id="startDate" title="购保险起期" class="i_f pa_ui_element_normal prod_txt"  type="text" readonly="readonly">
+            <span id="clientNameSpan" style="display:none;"></span>
+        </td>
+				
+								
+        <th width="25%" align="right" class="pad_R21">
+            <span class="a_x">*</span>保险止期</th>
+
+        <td align="left">
+            <input value="" maxlength="50" name="endDate" id="endDate" title="购保险起期" class="i_f pa_ui_element_normal prod_txt" type="text" readonly="readonly">
+            <span id="clientNameSpan" style="display:none;"></span>
+        </td>
+				
+    </tr>
+    </tbody>
+</table>
+
+<div class="pro_more">
+    <div class="pro_more_div">
+        <span onclick="change_pro2more(1)" class="pre_more_on">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="1" id="assured_input_type_manual" title="手工输入" type="radio" checked="checked" >
+            <label for="man" class="ch" >单个录入</label>
+        </span><span onclick="change_pro2more(2)" class="pre_more_out">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="2" id="assured_input_type_xls" title="xls批量导入" type="radio" >
+            <label for="man" class="ch">批量导入</label>
+        </span>
+        <span class="pro_more_font">如果被保险人是多人，可以在此选择【批量导入】方式录入人员信息!</span>
+    </div>
+</div>
+
+<div style="border:#CCC solid 1px;">
+    <div id="table_input_type_manual">
+        <!-- 投保人、被保人、受益人Div -->
+
+        <!-- 投保人信息 -->
+        <div class="x_p_a_c c"><h2 class="l">投保人信息</h2></div>
+
+        <input type="hidden" name="appntId" id="appntId" value="">
+        <input type="hidden" name="ischecked" id="ischecked" value="false">
+
+        <!-- 常用投保人table -->
+
+        <!-- 投保人录入项table -->
+        <table cellpadding="0" cellspacing="0" style="width:800px; margin-left:110px;">
+            <tbody>
+            <tr>
+                <td width="96" align="right" class="pad_R21">
+                    <span class="a_x">*</span>投保人姓名</td>
+
+                <td colspan="3" align="left">
+                    <input name="appName" type="text" class="prod_txt" id="appName" onfocus="javascript:showwarn('appName_warn');" onblur="javascript:checkappName();" value="" maxlength="24">
+                    <strong style="display: none;color:red" id="appName_warn" class="warn_strong">请输入名称</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>英文名
+                </td>
+
+                <td colspan="3" align="left">
+                    <input name="appEnglishName" type="text" class="prod_txt" id="appEnglishName" onfocus="javascript:showwarn('appEnglishName_warn');" onblur="checkappEnglishName();" value="" maxlength="30">
+                    <strong style="display: none;color:red" id="appEnglishName_warn" class="warn_strong">如：张三，填写拼音ZHANG SAN</strong>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="96" class="pad_R21"><span class="a_x">*</span>证件类型</td>
+
+                <td align="left" width="203">
+                    <select id="certType" name="certType" class="ind_txt2" onchange="javascript:choosetcardtype(this)">
+
+                        <option value="1">身份证</option>
+                        <option value="3">护照</option>
+
+                    </select>
+                </td>
+
+                <td width="103" align="right" class="pad_R21"><span class="a_x">*</span>证件号</td>
+
+                <td width="460" align="left">
+                    <input type="text" id="certCode" name="certCode" class="prod_txt" maxlength="18" value="" onfocus="javascript:showwarn('tcard_warn');" onchange="javascript:getBirthDay(this,'certType','appBirthday','appSex','appAge','','');" onblur="javascript:checktcard(); getBirthDay(this,'certType','appBirthday','appSex','appAge','','');">
+
+                    <strong style="display: none;color:red" id="tcard_warn" class="warn_strong"> </strong>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>性别
+                </td>
+                <td colspan="3" align="left">
+                    <label>
+                        <input type="radio" id="checktsex_M" name="appSex" value="M" onclick="clearappSex();">男
+                    </label>
+
+                    <label>
+                        <input type="radio" id="checktsex_F" name="appSex" value="F" onclick="clearappSex();">女
+                    </label>
+                    <span id="appSex_warn" style="color:red"> </span>
+                </td>
+            </tr>
+            <tr>
+                <td width="96" align="right" class="pad_R21">
+                    <span class="a_x">*</span>出生日期
+                </td>
+
+                <td colspan="3" align="left">
+                    <input name="appBirthday" class="prod_txt" id="appBirthday" onblur="getBirthDay(this,'certType','appBirthday','appSex','appAge','','');" onchange="javascript:checktbirthday();getBirthDay(this,'certType','appBirthday','appSex','appAge','','');" onclick="WdatePicker();" value="" maxlength="15">
+                    <span id="appBirthday_warn" style="color:red">格式为： 2010-01-02</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>手机号
+                </td>
+
+                <td colspan="3" align="left">
+                    <input class="prod_txt" type="text" id="appCell" name="appCell" value="" maxlength="11" onfocus="javascript:showwarn('appCell_warn');" onblur="javascript:checktphone();">
+                    <strong style="display: none;color:red" id="appCell_warn" class="warn_strong"> </strong>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>电子邮箱
+                </td>
+
+                <td colspan="3" align="left">
+                    <input name="appEmail" type="text" class="prod_txt" id="appEmail" onfocus="javascript:showwarn('appEmail_warn');" onblur="javascript:checktemail();" value="" maxlength="50">
+                    <strong style="display: none;color:red;" id="appEmail_warn" class="warn_strong"> </strong>
+                </td>
+            </tr>
+            <tr height="50px">
+                <td width="96" align="right" class="pad_R21">
+                    <span class="a_x">*</span>通讯地址
+                </td>
+
+                <td colspan="3" align="left">
+                    <div>
+                        <span>
+                            <select class="ind_txt2" name="insureareaprov_code" id="insureareaprov_code">
+                                <option value="">
+                                    请选择省份
+                                </option>
+
+                                <!--
+                                                                    <option value="860100">北京</option>
+                                                                    <option value="860200">上海</option>
+                                                                    <option value="860500">广东</option>
+                                                                    <option value="860600">江苏</option>
+                                                                    <option value="860700">浙江</option>
+                                                                    <option value="860800">山东</option>
+                                                                    <option value="860900">福建</option>
+                                                                    <option value="861200">四川</option>
+                                                                    <option value="861500">湖南</option>
+                                                                    <option value="861600">湖北</option>
+                                                                    <option value="861700">江西</option>
+                                                                    <option value="862100">河南</option>
+                                                                    <option value="862300">内蒙古</option>
+                                                                    <option value="861100">河北</option>
+                                                                    -->
+                                <option value="101">北京</option>
+                                <option value="102">浙江</option>
+                                <option value="103">四川</option>
+                                <option value="104">江苏</option>
+                                <option value="105">上海</option>
+                                <option value="106">山东</option>
+                                <option value="107">河南</option>
+                                <option value="108">福建</option>
+                                <option value="109">湖南</option>
+                                <option value="110">广东</option>
+                                <option value="111">江西</option>
+                                <option value="112">内蒙古</option>
+                                <option value="113">湖北</option>
+                                <option value="114">河北</option>
+
+                            </select>
+
+                            <input type="hidden" id="insureareaprov" name="insureareaprov" value="" >
+                        </span>
+                        &nbsp;&nbsp;
+                        <span id="orderareadiv">
+
+                            <select name="insureareacity_code" id="insureareacity_code" class="ind_txt2" onchange="check_t_region();">
+                            </select>
+
+                            <input type="hidden" id="insureareacity" name="insureareacity" value="" >
+                        </span>
+
+                        <span style="color:red" id="insureareaprov_code_warn">
+
+                        </span>
+                    </div>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>详细地址
+                </td>
+
+                <td colspan="3" align="left">
+                    <input name="appAddress" type="text" class="prod_txt" id="appAddress" onblur="checkaddrdetail()" value="" maxlength="100">
+
+                    <span id="appAddress_warn" style="color:red"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="pad_R21">
+                    <span class="a_x">*</span>邮政编码
+                </td>
+
+                <td colspan="3" align="left">
+                    <input type="text" id="appPostcode" name="appPostcode" value="" class="prod_txt" maxlength="6" onblur="javascript:checktpostcode();">
+                    <span id="appPostcode_warn" style="color:red"></span>
+                </td>
+            </tr>
+            <input type="hidden" name="appAge" value="">
+            <!-- 常用投保人 -->
+            </tbody>
+        </table>
+        <!--  被保人信息start-->
+        <input type="hidden" name="insCount">
+        <div class="x_p_a_c c"><h2 class="l">被保人信息</h2></div>
+        <div id="fists" style="padding-top:10px;">
+            <span style="color:#CC9900;margin-left:50px;">同一被保险人在同一保险期间不能拥有两张有效的华泰人寿环球无忧出国险保单，投保时候请确认是否发生重复投保的问题。
+            </span>
+        </div>
+        <div id="insShow1" class="c_p_a_d">
+            <table cellpadding="0" cellspacing="0" style="width:800px; margin-left:110px;">
+            <tbody>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>关系
+                    </td>
+                    <td colspan="3" align="left">
+                        <span style="float:left" id="tb2">
+                            被保人是投保人
+                            <input name="appName2" type="text" class="prod_txt" id="appName2" onclick="checkappName()" value="" maxlength="24" readonly="readonly">
+                            的
+                        </span>
+                        <select style="margin-top:3px" name="relationShipApp" class="ind_txt2" id="guanxi" value="" onchange="javascript:chooserelation(this,'18','75y');">
+                            <option value="">请选择</option>
+                            <!--
+                                                <option value="a">本人</option>
+                                                <option value="b">妻子</option>
+                                                <option value="c">丈夫</option>
+                                                <option value="d">父亲</option>
+                                                <option value="e">母亲</option>
+                                                <option value="f" selected>儿子</option>
+                                                <option value="g">女儿</option>
+                                                -->
+
+                            <!--{if $product[product_code]=="60041331"||  $product[product_code]=="60041341"}-->
+                            <option value="2" selected>子女</option>
+                            <!--{else}-->
+                            <option value="1">配偶</option>
+                            <option value="2" selected>子女</option>
+                            <option value="3">父母</option>
+                            <option value="5">本人</option>
+                            <!--{/if}-->
+
+                            <!--
+                                                <option value="4">亲属</option>
+                                                <option value="6">其它</option>
+                                                <option value="0">无关或不确定</option>
+                                                -->
+
+                        </select>
+                        <strong style="display: none;color:red" id="tb_warn" name="tx_show_one">请选择被保人关系</strong>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="tb1">
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>被保人姓名
+                    </td>
+
+                    <td colspan="3" align="left">
+                        <input name="insName" type="text" class="prod_txt" id="insName" onfocus="javascript:showwarn('insName_warn',this);" onblur="clearinsName(this);" value="" maxlength="24">
+                        <span style="display: none;color:red" id="insName_warn" name="tx_show_one">请填写被保人姓名</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>英文名
+                    </td>
+
+                    <td colspan="3" align="left">
+
+                        <input name="insEnglishName" type="text" class="prod_txt" id="insEnglishName" onblur="clearinsEnglishName(this);" onchange="javascript:checkinsEnglishName();" value="" maxlength="30">
+
+                        <span id="insEnglishName_warn" name="tx_show_one" style="display:none;color:red">请填写英文名</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>证件类型
+                    </td>
+
+                    <td  align="left" width="203">
+                        <span class="span_left">
+                            <select id="insCertType" name="insCertType"  value="" class="select_middle ind_txt2" onchange="javascript:choosebcardtype(this);" >
+
+                                <option value="1">身份证</option>
+                                <option value="2">军官证</option>
+                                <option value="3">护照</option>
+                                <option value="4">驾驶执照</option>
+                                <option value="5">返乡证</option>
+                                <option value="6">其他</option>
+
+
+                            </select>
+                        </span>
+
+                    </td>
+                    <td align="right" width="103" class="pad_R21">
+                        <span class="a_x">*</span>证件号
+                    </td>
+
+                    <td width="460">
+                        <input type="text" id="insCertCpde" name="insCertCpde" class="prod_txt" maxlength="18" value="" onfocus="javascript:showwarn('insCertCpde_warn',this);" onchange="javascript:getBirthDay(this,'insCertType','insBirthday','insSex','insAge','$product[age_min]y','$product[age_max]y');" onblur="javascript:checkbcard();getBirthDay(this,'insCertType','insBirthday','insSex','insAge','$product[age_min]y','$product[age_max]y');">
+                        <span style="display: none;color:red" id="insCertCpde_warn" name="tx_show_one" class="warn_strong">请填写证件号码</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>性别
+                    </td>
+                    <td colspan="3" align="left">
+                        <label>
+                            <input type="radio" id="insSex_M" name="insSex" value="M">男
+                        </label>
+
+                        <label>
+                            <input type="radio" id="insSex_F" name="insSex" value="F">女
+                        </label>
+                        <span id="insSex_warn" style="color:red;display:none;" name="tx_show_one">请选择性别</span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td align="right" width="96" class="pad_R21">
+                        投保年龄范围
+                    </td>
+                    <td  colspan="3" align="left" >
+                        <span > 	$product[age_min]</span> 至
+                        <span > $product[age_max]</span>岁
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>出生日期
+                    </td>
+
+                    <td colspan="3" align="left">
+                        <input name="insBirthday" class="prod_txt" id="insBirthday" onchange="checkbbirthday(this.value,('$product[age_min]y','$product[age_max]y');clearinsBirthday(this);" onclick="WdatePicker();" value="" maxlength="15" style="float:left;">
+                        <span id="insBirthday_warn" style="color:red;display:block;" name="tx_show_one">格式为：2010-01-02</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>手机号
+                    </td>
+                    <td colspan="3" align="left">
+                        <input class="prod_txt" type="text" id="insCell" name="insCell" value="" maxlength="11" onfocus="javascript:showwarn('insCell_warn');" onblur="javascript:checktphone_ins();">
+                        <strong style="display: none;color:red" id="insCell_warn" class="warn_strong"> </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="96" class="pad_R21">
+                        <span class="a_x">*</span>电子邮箱
+                    </td>
+                    <td colspan="3" align="left">
+                        <input name="insEmail" type="text" class="prod_txt" id="insEmail" onfocus="javascript:showwarn('insEmail_warn');" onblur="javascript:checktemail_ins();" value="" maxlength="50">
+                        <strong style="display: none;color:red;" id="insEmail_warn" class="warn_strong"> </strong>
+                    </td>
+                </tr>
+                <input type="hidden" name="insAge" value="">
+            </tbody>
+
+        </table>
+        </div>
+        <div id="insShow2"></div>
+        <div id="insShow3"></div>
+        <!--  被保人信息end-->
+
+        <!-- 其它信息 -->
+
+        <div class="x_p_a_c c"><h2>其它信息</h2></div>
+        <table cellpadding="0" cellspacing="0" style="width:800px; margin-left:88px;">
+
+            <tbody><tr>
+                <td align="right" class="pad_R21" width="96">
+                    <span class="a_x">*</span>出行目的
+                </td>
+
+                <td align="left">
+                    <input id="Purposehide" type="hidden" name="otherInfoName">
+                    <select id="Purpose" title="出行目的" name="Purpose" class="ind_txt2">
+                        <option value="">请选择</option>
+                        <option value="1">商务活动</option>
+                        <option value="2">留学</option>
+                        <option value="3">培训</option>
+                        <option value="4">探亲</option>
+                        <option value="5">旅游</option>
+                        <option value="6">访友</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right" class="pad_R21" width="96">
+                    <span class="a_x">*</span>出行目的地
+                </td>
+                <td align="left">
+                    <div style="float:left;">
+                        <select id="destination_area" name="destination_area" title="出行目的地" class="ind_txt2">
+                            <option selected="selected" value="">请选择</option>
+                            <option value="Asia">亚洲</option>
+                            <option value="M-East">中东</option>
+                            <option value="E-EuropeAsia">欧亚</option>
+                            <option value="W-Europe">西欧</option>
+                            <option value="E-Europe">东欧</option>
+                            <option value="N-America">北美洲</option>
+                            <option value="S-America">南美洲</option>
+                            <option value="Oceania">大洋洲</option>
+                            <option value="Africa">非洲</option>
+                        </select>
+                        
+                    </div>
+                    <div style="float:left; margin-left:20px;" id="guo">
+                        <select id="destination_country" name="destination_country" title="出行目的地" class="ind_txt2">
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="pad_R21" width="96">
+                    <span class="a_x">*</span>签证办理城市
+                </td>
+                <td align="left">
+                    <input id="VisaCityhide" type="hidden" name="otherInfoName">
+                    <input checked="checked" id="VisaCity" type="text" title="签证办理城市" name="VisaCity" value="" class="prod_txt">
+                    <span style="color:#C8C8C8;">请填您填写签办城市</span>
+                </td>
+            </tr>
+        </tbody>
+
+        </table>
+    </div>
+    <!--批量投保-->
+    <div id="more_upload_list" style="display:none;">
+        <div class="x_p_a_c c"><h2 class="l">批量录入</h2></div>
+        <div class="f-pA10" style="margin-left: 120px">
+            <div >
+                <p><span class="pro_more_font">人员清单导入模板(Excel版本)&nbsp;</span></span><a href="ziliao/huatai/chuguo/chuguo_yiwai.xls" class="btn_down" target="_blank">点击下载模板</a></p>
+                <p>(3000 >= EXCEL人员数 >= 1)</p>
+            </div>
+            <div class="upload-contentarea " style="margin: 20px 0px 0px">
+                <span class="pro_more_font">下载并填写完成后,在此上传!&nbsp;</span>
+                <a href="javascript:void(0)" class="upload-img tac"><label for="inputExcel">上传文件</label></a>
+                <input type="file" class="" name="inputExcel" id="inputExcel" accept="xls,xlsx" onchange="if(this.value=='') alert('请选择xls文件'); else importXLs('inputExcel',$product[product_id],1,3000);"/>
+                <input type="hidden" id="excel_check" value="0" />
+                <input type="hidden" id="excel_content" name="data_user_info" value="" />
+            </div>
+            <div id="progress">
+                <div class="bar" style="width: 0%;"></div>
+            </div>
+            <div id="excel_wrong" class="warn_strong"></div>
+        </div>
+        <div id="ps_list"></div>
+    </div>
+    <!--  受益人信息-->
+    <div class="x_p_a_c c"><h2>身故受益人信息</h2></div>
+
+    <table cellpadding="0" cellspacing="0" style="width:800px; margin-left:88px;">
+        <tbody>
+        <tr>
+            <td align="right" class="pad_R21" width="96">
+                <span class="a_x">*</span>受益人
+            </td>
+
+            <td width="19" align="center">
+                <input checked="checked" id="ben" type="radio" name="fading" value="1" class="no_line">
+            </td>
+            <td width="658" align="left">
+                <span style="margin:0 0 0 3px">法定继承人</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->	

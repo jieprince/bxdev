@@ -1,0 +1,275 @@
+
+	   
+	    <!--{if $nosearch!=1 }-->
+       <form action="user.php" id="warranty_list_form" method="get">
+       	<input type="hidden" name="act" value="policy_manage_list" />
+	       <table class="table_user_02">
+	       	<tr>
+	       		<td width="82" align="right">保单号：</td>
+	       		<td><input type="text" name="policy_no" value="{$condition.policy_no}" class="f-pA5"/></td>
+	       		
+	       		<td width="88"  align="right">保险公司：</td>
+	       		<td>
+	       			<select name="brand_id" class="f-pA5">
+	       				<option value=''></option>
+	       				{foreach from=$brand_list item=item key=key}
+	       					<option value='{$key}' {if $key eq $condition.brand_id} selected="selected"{/if}>{$item}</option>
+	       				{/foreach}
+	       			</select>
+	       			
+	       		</td>
+	       		
+	       		<td width="88"  align="right">产品名：</td>
+	       		<td><input type="text" name="attribute_name" value="{$condition.attribute_name}" class="f-pA5"/></td>
+	       </tr>
+		   
+		   <tr>
+		   
+		   		<td align="right">用户名：</td>
+	       		<td><input type="text" name="user_name" value="{$condition.user_name}" class="f-pA5"/></td>
+		   
+           		<td width="82" align="right">真实姓名：</td>
+                <td align="left"><input type="text" name="real_name" value="{$condition.real_name}" class="f-pA5"/></td>
+  	       		 
+		   </tr>
+		   
+	       	<tr>
+	       		<td  align="right">{$lang.start_date}：</td>
+	       		<td>
+	       		<input class="Wdate f-pA5" type="text"  name="s_add_time" value="{$condition.s_add_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	       		<td  align="right">{$lang.end_date}：</td>
+				<td><input class="Wdate f-pA5" type="text"  name="e_add_time" value="{$condition.e_add_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	       		<td>
+	       			<input type="submit" value="查询" class="btn-ec6941-4"/>
+                   
+	       		</td>
+                
+
+	       	</tr>
+	       </table>
+
+           <div class="f-mt20 f-pb20 f-cb">
+               <div class="f-fl">
+                   <span style="color: red;font-size: 14px;">  </span>
+               </div>
+               <div class="f-fr" align="right">
+                   {if $recent==$lang.one_week}
+                   <input type="submit" name="recent" value="{$lang.one_week}" class="btn-ec6941-6_a" />
+                   {else}
+                   <input type="submit" name="recent" value="{$lang.one_week}" class="btn-ec6941-6" />
+                   {/if}
+                   {if $recent==$lang.one_month}
+                   <input type="submit" name="recent" value="{$lang.one_month}" class="btn-ec6941-6_a" />
+                   {else}
+                   <input type="submit" name="recent" value="{$lang.one_month}" class="btn-ec6941-6" />
+                   {/if}
+                   {if $recent==$lang.three_month}
+                   <input type="submit" name="recent" value="{$lang.three_month}"  class="btn-ec6941-6_a" />
+                   {else}
+                   <input type="submit" name="recent" value="{$lang.three_month}" class="btn-ec6941-6"  />
+                   {/if}
+                   {if $recent==$lang.six_month}
+                   <input type="submit" name="recent" value="{$lang.six_month}"  class="btn-ec6941-6_a" />
+                   {else}
+                   <input type="submit" name="recent" value="{$lang.six_month}" class="btn-ec6941-6" />
+                   {/if}
+               </div>
+           </div>
+	       
+       </form>
+       <!--{/if}-->
+       {if $total_premium}
+
+       {/if}
+       <table class="table_user_01">
+          <tr align="center" height="34" >
+            <td bgcolor="#ffffff" ><input onclick='selectAll("checkboxes")' type="checkbox" />序号</td>
+           	<td bgcolor="#ffffff" >保单号</td>
+			<td bgcolor="#ffffff" >订单号</td>
+            <td bgcolor="#ffffff" width="150">产品名</td>
+			<td bgcolor="#ffffff">用户名</td>
+			<td bgcolor="#ffffff">姓名</td>
+			
+            <td bgcolor="#ffffff">投保份数</td>
+            <td bgcolor="#ffffff"> <span style="cursor:pointer" onclick="warrantyListOrder()">总费用 </span></td>
+          
+			<td bgcolor="#ffffff">状态</td>
+			<!-- <td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">操作</td> -->
+			<td bgcolor="#ffffff">时间</td>
+
+          </tr>
+          <!--{foreach from=$warranty item=item}-->
+          <tr>
+            <td align="center" ><input type="checkbox" name="checkboxes" value="{$item.policy_id}" /><a href="user.php?act=policy_detail&policy_id={$item.policy_id}" class="f6">{$item.policy_id}</a></td>
+            <td align="center"><a href="user.php?act=policy_detail&policy_id={$item.policy_id}" class="f6"></a>{$item.policy_no}</td>
+			   <td align="center"><a href="user.php?act=order_detail&order_id={$item.order_id}" class="f6"></a>{$item.order_sn}</td>
+			
+            <td align="center" class="color_94">{$item.attribute_name}</td>
+			 <td align="center"  class="color_94">{$item.user_name}</td>
+			  <td align="center"  class="color_94">{$item.real_name}</td>
+            <td align="center" class="color_94">{$item.apply_num}</td>
+            <td align="center" class="color_94">
+            	 {$item.total_premium}            
+            </td>
+           
+           
+
+			<td align="center" class="color_94">{$item.policy_status_str}</td>
+   		<td align="center"  class="color_94">{$item.dateline}</td>
+
+       
+          </tr>
+          <!--{/foreach}-->   
+          
+          </table>
+    {if $warranty}
+		<div class="f-mt20 f-pb20">
+            <input type="button" class="btn-ec6941-1 f-csp" value="导出" onclick="export_policy_list();" />
+		</div>
+	{/if}
+<script type="text/javascript">
+	
+	//全选或者反选
+	function selectAll(name){
+		var checkboxs=document.getElementsByName(name);
+		for (var i=0;i<checkboxs.length;i++) {
+		  	var e=checkboxs[i];
+		  	e.checked=!e.checked;
+		}
+	}
+	
+	//导出发票列表 2015-01-08 yes123
+	 function export_policy_list(){
+		  var ids='';
+		  $('input[name="checkboxes"]:checked').each(function(){
+		    ids+=$(this).val()+',';
+		  }); 
+		  
+		  var reg=/,$/gi;
+		  ids=ids.replace(reg,"");
+		  ids = ids.split(",");
+		  if(ids!=""){
+			  window.location.href="user.php?act=export_policy_list&policy_ids="+ids; 
+		  }else{
+			 showMsg("请选择要导出的保单",0);
+		  }
+	 }	
+	
+		function showMsg(msg_str,type){
+			var showFn =  $.layer({
+			    shade: [0],
+			    area: ['auto','auto'],
+			    dialog: {
+			        msg: msg_str,
+			        btns: 1,                    
+			        type: type,
+			        btn: ['确定'],
+			        yes: function(){
+			        	if(type){
+				        	location.replace("order.php?act=invoice_list");
+			        	}else{
+			        		layer.close(showFn);
+			        	}
+			        }
+			    }
+			});
+			
+		}
+
+</script>	
+
+<!-- add yes123 2015-01-15 保单分页单独处理.. -->
+<!--翻页 start-->
+<!-- {if $pager.styleid eq 0 } -->
+<div id="pager">
+  {$lang.pager_1}{$pager.record_count}{$lang.pager_2}{$lang.pager_3}{$pager.page_count}{$lang.pager_4} 
+  <span> 
+  	<a href="{$pager.page_first}">{$lang.page_first}</a> 
+  	<a href="{$pager.page_prev}">{$lang.page_prev}</a> 
+  	<a href="{$pager.page_next}">{$lang.page_next}</a> 
+  	<a href="{$pager.page_last}">{$lang.page_last}/a> 
+  </span>
+    <!--{foreach from=$pager.search key=key item=item}-->
+      {if $key eq 'keywords'}
+          <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+        {else}
+          <input type="hidden" name="{$key}" value="{$item}" />
+      {/if}
+    <!--{/foreach}-->
+    <select name="page" id="page" onchange="selectPage(this)">
+    {html_options options=$pager.array selected=$pager.page}
+    </select>
+</div>
+<!--{else}-->
+
+<!--翻页 start-->
+ <div id="pager" class="pagebar">
+  <span class="f_l f6" style="margin-right:10px;">{$lang.pager_1}<b>{$pager.record_count} </b> {$lang.pager_2}
+    &nbsp;&nbsp; <font color="#000000">每页</font> <input type="text" id="page_size" value="{$pager.size}" style="width: 30px;">
+  </span>
+  <!-- {if $pager.page_first} --><a href="javascript:other_page('{$pager.page_first}')">{$lang.page_first} ...</a><!-- {/if} -->
+  <!-- {if $pager.page_prev} --><a class="prev" href="javascript:other_page('{$pager.page_prev}')">{$lang.page_prev}</a><!-- {/if} -->
+  <!-- {if $pager.page_count neq 1} -->
+    <!--{foreach from=$pager.page_number key=key item=item}-->
+      <!-- {if $pager.page eq $key} -->
+      <span class="c" style="color:#f00;">{$key}</span> <!-- 当前被选中的页 -->
+      <!-- {else} -->
+      <a href="javascript:other_page('{$item}');" >[{$key}]</a><!--没有被选中的页码  -->
+      <!-- {/if} -->
+    <!--{/foreach}-->
+  <!-- {/if} -->
+
+  <!-- {if $pager.page_next} --><a class="next" href="javascript:other_page('{$pager.page_next}');">{$lang.page_next}</a><!-- {/if} 下一页-->
+   <!-- {if $pager.page_last} --><a class="last" href="javascript:other_page('{$pager.page_last}')">...{$lang.page_last}</a><!-- {/if} 末页 --> 
+  <!-- {if $pager.page_kbd} -->
+    <!--{foreach from=$pager.search key=key item=item}-->
+      {if $key eq 'keywords'}
+          <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+        {else}
+          <input type="hidden" name="{$key}" value="{$item}" />
+      {/if}
+    <!--{/foreach}-->
+    <span style="float:left; margin-left:8px; position:relative; bottom:3px;">
+    	<!-- <input type="text" name="page" onkeydown="if(event.keyCode==13)selectPage(this)" size="3" class="B_blue" />  -->
+    </span>
+    <!-- {/if} -->
+</div>
+<!--翻页 END-->
+
+<!-- {/if} -->
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+
+	
+	//add yes123 2015-01-15 保单分页单独处理..
+	function other_page(url){
+		var page_size = $("#page_size").val();
+		location.assign(url+"&size="+page_size);
+	}
+	
+	 $(function(){
+	        $('#page_size').bind('keypress',function(event){
+	            if(event.keyCode == "13")    
+	            {
+	            	var url = window.location.href;
+	            	//如果存在，替换否则拼接
+	            	if(url.indexOf('size')>0){
+		            	var old_size = "size={$pager.size}";
+		            	var new_size = "size="+$("#page_size").val();
+		            	url = url.replace(old_size,new_size);
+	            	}else{
+	            		url = url+"&size="+$("#page_size").val();
+	            	}
+	            	window.location.href=url;
+	            }
+	        });
+	 });
+
+</script>	

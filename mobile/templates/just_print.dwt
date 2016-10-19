@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>已购买 - {$shop_name}</title>
+	<link rel='stylesheet' type='text/css' href='css/order-list.css' />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script><script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/goto.js"></script>
+	<script type="text/javascript">
+	var _hmt=_hmt||[];(function(){var e=document.createElement("script");
+	var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+	document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+	</script>
+</head>
+<body> 
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a>
+	</div>
+	<section>
+<div class="pending-order">
+	<!--订单列表begin-->
+	<ul class="list">
+    {foreach from=$just_print_array item=order_data name=orderit}
+		<li>
+			<!--订单基本信息begin-->
+			<div class="info">				
+                            <p class="price">保险公司：<strong>{$order_data.brand_name}</strong></p>
+                            <p class="id">产品名：<a href="goods.php?id={$order_data.goods_id}"><font color="#F7762E">{$order_data.goods_name}</font></a></p>
+                            <p class="date">购买时间：{$order_data.pay_time}</p>
+                            <span class="more"><span class="inner"></span></span>
+			</div>
+			<!--订单基本信息end-->
+			<!--已关闭 & 已完成订单begin-->
+			<!--<div class="close">
+				{$order_data.handler}
+			</div>-->
+			<!--已关闭 & 已完成订单end-->
+		</li>
+    {foreachelse}
+    <li>暂时您还没有投保</li>
+    {/foreach}
+
+	</ul>
+	<!--订单列表end-->
+{if $pagebar}
+	{$pagebar}
+{/if}
+</div>
+</section>
+<script type="text/javascript">
+function payEben(orderid){	
+	window.wst.payEben(orderid);
+}
+</script>
+{include file='foot.dwt'}
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<div class="xqcont">  
+                 <!--基本信息开始-->
+                        
+                        <div  style="margin-left:8px;" >
+                            <div >
+                                <div class="panel-title">基本信息</div>
+                            </div>
+                            <div >
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                 
+                                  <tr>
+                                      <td>工程造价&nbsp;</td>
+                                      <td>
+                                          &nbsp;<select id="period"  name="period" style="width:200px;" onChange="getInsurData()">
+                                              
+                                              <!--{foreach from=$arr_project_list item=item key=key}-->
+                                              	{if $key==0}
+                                                <option value="{$item.cost.product_influencingfactor_id}" data-value="{$item.cost.factor_code}" selected="selected" >{$item.cost.factor_name}</option>
+                                                {else}
+                                                <option value="{$item.cost.product_influencingfactor_id}" data-value="{$item.cost.factor_code}" >{$item.cost.factor_name}</option>
+                                                {/if}
+                                              <!--{/foreach}-->
+                                           </select>&nbsp;
+                                      </td>
+                                      <td>&nbsp;工期&nbsp;</td>
+                                      <td>
+                                           &nbsp;<select id="career" name="career" style="width:200px;" onChange="ajax_ins_prem()"></select>
+                                      </td>
+                                </tr>
+                            </table>
+                           </div>
+                        </div>    
+                  <!--基本信息结束-->
+                  <form action="baoxian/cp.php?ac=product_buy" id="save_form" method="post">
+                  <!--主险开始-->
+                         <div  style="margin: 0 0 8px 0;font-size:12px;" >
+                            <div class="panel-header">
+                                <div class="panel-title font_bold">第三者责任限额</div>
+                            </div>
+                               <div >
+                             <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    
+                                    <td>&nbsp;(累计,每次,每人)(万元)/保费(元起)：<select id="duty_price_ids" name="duty_price_ids" onChange="setprices()"></select>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                	<td id="beizhu_huaan" >
+                                    </td>
+                                </tr>
+                            </table>
+                               </div>
+                         </div>
+                   <!--主险结束-->
+                     
+                    <div class="panel">
+                    
+                       
+                             <input type="hidden" id="cost_name" name="cost_name" value="" />
+                             <input type="hidden" id="cost_factor_code" name="cost_factor_code" value="" />
+                             <input type="hidden" id="period_name" name="period_name" value="" />
+                             <input type="hidden" id="period_fator_code" name="period_fator_code" value="" />
+                             <input type="hidden" id="price_temp" name="price" value="" />
+                        	 <input type="hidden" id="attribute_id" name="attribute_id" value="{$attribute_id}" />
+                             <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                             <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" />  
+                             <input type="submit" value="{$lang.insure}"  class="btn_products_02_01 margin_T0_50"/>
+                   
+                    </div>
+                  </form>	   
+                   
+</div>
+
+<script type="text/javascript">
+var list_Json = [];
+function dataIn(){
+    list_Json = [];
+    <!--{foreach from=$arr_project_list item=item key=key}-->
+        var tempcode = "{$item.cost.factor_code}";
+        var tempname = "{$item.cost.factor_name}";
+        var tempid = "{$item.cost.product_influencingfactor_id}";
+        var child_Json = {'code':tempcode,'name':tempname,'id':tempid,'period':[]};
+        <!--{foreach from=$item['period'] item=items}-->
+            var tempc_code = "{$items.factor_code}";
+            var tempc_name = "{$items.factor_name}";
+            var tempc_id = "{$items.product_influencingfactor_id}";
+            child_Json['period'].push({'c_code':tempc_code,'c_name':tempc_name,'c_id':tempc_id});
+    <!--{/foreach}-->
+     list_Json.push(child_Json);
+     <!--{/foreach}-->
+}
+
+
+	$().ready( function(){
+        dataIn();
+	     getInsurData();
+		 
+	});
+	
+	
+	
+	function getInsurData(){
+		var option_child = '';
+		$(list_Json).each(function(i_p, n_p) {
+			 
+			if($('#period').val()==n_p.id){
+				$(n_p.period).each(function(i_c, n_c) {
+					if(i_c==0){
+						option_child += '<option value="'+n_c.c_id+'" selected="selected" data-value="'+n_c.c_code+'" >'+n_c.c_name+'</option>';
+					}else{
+						option_child += '<option value="'+n_c.c_id+'" data-value="'+n_c.c_code+'">'+n_c.c_name+'</option>';	
+					}
+				});	
+			}
+		});
+		$('#career').html(option_child);
+		ajax_ins_prem();
+	}
+	
+	function ajax_ins_prem(){
+		 
+     var datajson = {'cost_id':$('#period').val(),'period_id':$('#career').val(),'product_id':$('#product_id').val()};
+     $.ajax({
+        type : "post",
+        url : "oop/business/get_SINO_Data.php",
+        data : datajson,
+        success : function(data){
+			
+           if(data!=null&&data!=""){
+			   data = $.parseJSON(data)[0];
+			    
+			   if(data.duty_price_list.length>0){
+				    var duty_html = '';
+				  	$(data.duty_price_list).each(function(i_d, n_d) {
+                    	if(i_d==0){
+							duty_html += '<option value="'+n_d.product_duty_price_id+'" data-value="'+n_d.amount+'" data-did="'+n_d.premium+'" selected="selected">'+n_d.amount+'/'+n_d.premium+'</option>';	
+						}else{
+							duty_html += '<option value="'+n_d.product_duty_price_id+'" data-value="'+n_d.amount+'" data-did="'+n_d.premium+'" >'+n_d.amount+'/'+n_d.premium+'</option>';	
+						}
+						
+						
+                   	});
+					$('#duty_price_ids').html(duty_html);
+			   }
+			   
+				setprices();	 
+		   }
+            
+           
+        },
+        error : function(data){
+        
+        }
+    });	
+		
+			
+	}
+	
+	function setprices(){
+		var price_tempsT = $('#duty_price_ids option:selected').data('did');
+		if(price_tempsT!=""&&price_tempsT!=null){
+			$('#productPrem_ strong').text(price_tempsT+'起');	
+		}else{
+			$('#productPrem_ strong').text('0.00');
+		}
+		
+		var temp_cost_code = $('#period option:selected').data("value");
+		var temp_period_fator_code = $('#career option:selected').data("value");
+		$('#cost_name').val($('#period option:selected').text());
+		$('#cost_factor_code').val(temp_cost_code);
+		$('#period_name').val($('#career option:selected').text());
+		$('#period_fator_code').val(temp_period_fator_code);
+		$('#price_temp').val(price_tempsT);
+		var duty_beizhu = $('#duty_price_ids option:selected').data('value').split(',');
+		var duty_beizhu_html = '&nbsp;备注：<br>&nbsp;&nbsp;每次事故赔偿限额：'+duty_beizhu[1]+'万元<br>&nbsp;&nbsp;每次事故每人赔偿限额：'+duty_beizhu[2]+'万元<br>&nbsp;&nbsp;累计赔偿限额：'+duty_beizhu[0]+'万元';
+	 	$('#beizhu_huaan').html(duty_beizhu_html);
+	}
+	 
+</script>
+					
+					
+					
+					

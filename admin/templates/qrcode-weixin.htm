@@ -1,0 +1,61 @@
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,validator.js"}
+<div class="main-div">
+<form method="post" action="shop_config.php?act=weixin" name="theForm" onsubmit="return validate()">
+<table width="100%" >  
+  <tr>
+      <td class="label"><a href="javascript:showNotice('Type_money_a');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>
+          AppId</td>
+      <td><input name="info[appid]" type="text" size="20" class="inputBg" value="{$info.appid}"/><br />
+          <span class="notice-span" {if $help_open}style="display:block;" {else} style="display:none;" {/if} id="Type_money_a">
+                  不能为空,修改后请更新缓存,否则无效</span></td>
+  </tr>
+  <tr>
+      <td class="label"><a href="javascript:showNotice('Type_money_a');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>
+          AppSecret</td>
+      <td><input name="info[appsecret]" type="text" size="40" class="inputBg" value="{$info.appsecret}"/><br />
+          <span class="notice-span" {if $help_open}style="display:block;" {else} style="display:none;" {/if} id="Type_money_a">
+                  不能为空,修改后请更新缓存,否则无效</span></td>
+  </tr>
+  {if $info.add_time}
+  <tr>
+      <td class="label">添加时间:</td>
+      <td>{$info.add_time}</td>
+  </tr>
+  {/if}
+  {if $info.update_time}
+  <tr>
+      <td class="label">更新时间:</td>
+      <td>{$info.update_time}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td colspan="2" align="center">      
+      <input type="submit" name="submit" value="{$lang.button_submit}并更新缓存 " class="button" />      
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="handle" value="{$handle}" />
+      <input type="hidden" name="id" value="{$info.id}" />    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+
+<script language="JavaScript">
+<!--
+{literal}
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("info[appid]", 'AppId 不能为空', true);
+    validator.required("info[appsecret]", 'AppSecret 不能为空', true);
+    return validator.passed();
+}
+//-->
+{/literal}
+</script>
+
+{include file="pagefooter.htm"}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>{$goods_info.goods_name}的详细介绍 - {$shop_name}</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script><script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/goto.js"></script>
+        
+                <!-- 手机弹窗 -->
+    <script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+    <link href="layer-mobile/need/layer.css" rel="stylesheet" type="text/css" />
+    <script src="../mobile_page/dist/js/jquery.min.js"></script>
+    <script src="dist/js/jquery.cookie.js" type="text/javascript"></script>
+	<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+	<script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+	<script src="../mobile_page/dist/js/respond.min.js"></script>
+	<script src="../mobile_page/dist/js/jquery.qrcode.min.js"></script>
+	<script src="../mobile_page/dist/js/jquery.touchSwipe.min.js"></script>
+	<script src="../mobile_page/dist/js/public.js"></script>
+    <link rel="stylesheet" href="../mobile_page/../mobile_page/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../mobile_page/dist/css/style.css">
+    
+	<script type="text/javascript">
+	var _hmt=_hmt||[];(function(){var e=document.createElement("script");
+	var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+	document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(/images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+	</script>
+</head>
+<body> 
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a>
+		<span class="headline">产品详情</span>
+	</div>
+	<section>
+	<div class="project">
+		<h2>{$goods_info.attribute_name}</h2>	
+        <!-- {foreach from=$properties item=property_group key=key} -->
+	    <article>
+        <!-- {foreach from=$property_group item=property} -->
+	    	<p><font color="#CD000C">[{$property.name|escape:html}]</font>：{$property.value}</p>
+        <!-- {/foreach}-->
+            <div class="clearfix"></div>
+	    </article>
+        <!-- {/foreach}-->
+	</div>
+<!-- baohongzhou 14-12-15 下午2:33 -->
+<div class="prodesc">
+<!--    <h5><em>产品简介</em><div>&nbsp;<span>Introduction</span></div></h5>
+    <div class="pro_cont clearfix">{goods_desc}</div>            
+    <div class="clearfix"></div>-->
+    <!-- {if $in_description} -->
+        <h5><em>产品简介</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix">{$in_description}</div>            
+        <div class="clearfix"></div>
+    <!-- {elseif $cover_note} -->
+        <h5><em>投保须知</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix">{$cover_note}</div>            
+        <div class="clearfix"></div>
+    <!-- {elseif $limit_note} -->
+        <h5><em>常见问题</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix">{$limit_note}</div>            
+        <div class="clearfix"></div>
+    <!-- {elseif $insurance_clauses} -->
+        <h5><em>保险条款</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix" id="insurance_clauses">
+        	{$insurance_clauses}
+        </div>            
+        <div class="clearfix"></div>
+    <!-- {elseif $claims_guide} -->
+        <h5><em>理赔指南</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix">{$claims_guide}</div>            
+        <div class="clearfix"></div>
+    <!-- {else} -->
+        <h5><em>{$desc}</em><div>&nbsp;</div></h5>
+        <div class="pro_cont clearfix">暂无描述</div>            
+        <div class="clearfix"></div>
+    <!-- {/if} -->
+</section>
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+		
+		$().ready(function(){
+			$('#insurance_clauses a').bind("click",function(){
+				var useragent = navigator.userAgent;
+				if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+				}else{
+					wx_msg();
+				}
+				
+			});
+		});
+		
+		function wx_msg(){
+			i_search = layer.open({
+			    content: $('#wx_msg').html(),
+			    shadeClose: true,
+			    fixed:false,
+			    top:(0) 
+			    
+			});
+		}
+		
+</script>
+<div id="wx_msg" style="display: none;" >
+	<div class="container-fluid">
+		<div class="container ">
+	    	<div align="right"><img src="../mobile_page/images/bg_jt.png"></div>
+	    	<div class="panel panel-default ">
+	              
+	              <div class="panel-body color_a3 font_12 line_h25">
+	                <div><i class=" glyphicon glyphicon-book"></i>下载请点击右上角按钮选择在<span style="color:#090">【浏览器中打开】</span></div>
+	              </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div id="app_space" style="height:20px; display:none;">&nbsp;</div>
+<div id="footer_app">
+{include file='foot.dwt'}	
+</div>
+<script>
+	//url中数据的提取
+	var app_useridTemp = $.cookie("app_userid");
+	var app_platformIdTemp = $.cookie("app_platformId"); 
+	if(app_useridTemp!="" &&app_useridTemp!=null && app_platformIdTemp!="" &&  app_platformIdTemp!=null){
+		$('.header').hide();	
+		$('#footer_app').hide();
+		$('#section_app').css("margin-top",'-3%');
+		$('#app_space').show();
+	}
+</script>
+
+</body>
+</html>

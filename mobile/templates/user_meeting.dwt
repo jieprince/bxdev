@@ -1,0 +1,197 @@
+<!-- 用户中心首页 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon.png"/>
+    <title>报名信息</title>
+    <link rel='stylesheet' type='text/css' href='css/user.css' />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/head.css" rel="stylesheet" type="text/css" />
+    <link href="css/foot.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/checkedweixin.js"></script><script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+    <script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/goto.js"></script>
+    <script src="../js/profile.js"></script>
+    <script type="text/javascript">
+        document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(/mobile/images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+    </script>
+</head>
+<body>
+<div class="header"> <a class="back" href="javascript:history.back();"></a> <span class="headline">报名信息</span> </div>
+<section style="width:100%;margin:15px auto 0;overflow:hidden;">
+  <div class="user">
+    <!--顶部基本信息begin-->
+    <div class="info">
+	 用户：{$smarty.session.user_name}
+      <!-- 排行榜logo -->
+      </div>
+    <!--顶部基本信息end-->
+	 <form id="formEdit"  method="post">
+	 
+	<input type="hidden" name="apply_check" id="apply_check">		
+    <input type="hidden" id="is_checked" value="{$user_info.is_cheack}">
+    		
+    <div class="management order" >
+        <h2>个人信息</h2>
+		 <!--{if $user_info['is_cheack'] eq 1}-->
+            <ul class="pending" style="padding:0px 20px;">
+            
+                <li> 真实姓名：<input type="text" name="real_name" value="{$profile.real_name}" readonly></li>
+                <li> 身份证号：<input type="text" name="CardId" value="{$profile.CardId}" readonly></li>
+                <li> 手机号码：<input type="text" name="extend_field5"  value="{$profile.mobile_phone}" readonly></li>
+                <li> 邮箱地址：<input type="text" name="email"  value="{$profile.email}" readonly></li>
+               
+            </ul>
+			<!--{else}-->
+			<ul class="pending" style="padding:0px 20px;">
+                 <li> 真实姓名：<input type="text" name="real_name" id="user_realname"  value="{$profile.real_name}" ></li>
+                <li> 身份证号：<input type="text" name="CardId" id="user_CardId"  value="{$profile.CardId}" ></li>
+                <li> 手机号码：<input type="text" name="extend_field5" id="user_phone"  value="{$profile.mobile_phone}" ></li>
+                <li> 邮箱地址：<input type="text" name="email" id="user_email"  value="{$profile.email}" ></li>
+            </ul>
+			<!--{/if}-->
+    </div>
+	
+		
+	{if $meeting_list}
+	<div class="management order" >
+	<h2>活动信息</h2>
+		<!--订单列表begin-->
+
+	    {foreach from=$meeting_list item=meeting_data}
+
+              <ul class="pending" style="padding:0px 20px;">
+                <li> 名称：<a href="user.php?act=pay_meeting&mr_id={$meeting_data.act_id}" style="display:inline-block;margin:0px 0px;">{$meeting_data.act_name}</a></li>
+        		<li> 是否收费：{$meeting_data.need_pay_str}</li>
+				<li> 费用：¥{$meeting_data.price}</li>
+        		<li> 状态：{$meeting_data.registered_str}</li>
+        		<li> 注册时间：{$meeting_data.dateline_reg}</li>
+        		<li> 付费时间：{$meeting_data.dateline_pay}</li>
+        		<!---{if $meeting_data.show_pay}->
+				<li><a href="javascript:void(0)" onClick="toFormaction('{$meeting_data.mr_id}')" style="width: 100px; height: 30px;line-height: 30px;color: #fff;  background:#ff0000;padding:0px;text-align: center;border-radius: 3px;">报名</a></li>
+				<!--{/if}-->
+              </ul>
+
+		 {/foreach}
+	</div>	
+    {/if}
+</form>
+    
+<script>
+<!--动态获取会议的id 动态赋值rorm action-->
+	function toFormaction(val_mrid){
+		var url_temp = 'user.php?act=pay_meeting&mr_id='+val_mrid;
+		var obj = 'act=act_edit_profile_meeting&is_weixin=1&'+$('#formEdit').serialize();
+		 
+		var msg = data_validation();  //验证手机号  真实姓名 身份证 邮箱地址
+		if($('#is_checked').val()==0){ 
+			if (msg){
+				alert(msg);
+				return;
+			}else{
+				
+				$.ajax({
+					   type: "POST",
+					   url: "user.php",
+					   data: obj,
+					   success: function(data){
+						 var obj = $.parseJSON(data);
+						 if(obj.code==0)
+						 {
+							 alert(obj.msg);
+							 window.location="user.php";
+						 }
+						 //start add by wangcya, 2015029, for bug[238], 增加一个会议活动注册的功能,可以在这个地方做跳转			  
+						 else if(obj.code=="meeting")
+						  {//
+							window.location= url_temp;
+						   // window.location= obj.url;
+						  }
+						  //end add by wangcya, 2015029, for bug[238], 增加一个会议活动注册的功能,可以在这个地方做跳转
+						 else{
+							alert(obj.msg); 
+						}
+					   }
+					});	
+				
+			} 
+		}else{
+			window.location= url_temp;	
+		}
+	}
+	//验证手机号  真实姓名 身份证 邮箱地址 
+	 
+	function data_validation(){
+	    var msg="";       
+		msg+=email_validate($("#user_email").val(),1);
+		msg+=phone_validate($("#user_phone").val(),1);
+		msg+=isCardNo($("#user_CardId").val(),1);  
+		//msg+=certificate_expiration_date($("#certificate_expiration_date").val(),1); 
+		msg+=real_name($.trim($("#user_realname").val()),1); 
+		// msg+=Zone_Code($("#user_info_ZoneCode").val(),1); 邮政编码取消
+	   
+	   // msg+=Zone_Code($("#user_info_ZoneCode").val(),1);
+	   
+	 
+	   return msg;
+   } 
+</script>
+    <!--订单管理begin-->
+    <div class="management order">
+      <!--<h2>历史订单</h2>-->
+      <ul class="pending">
+        <li> <a class="last" href="user.php?act=order_list" title="" target="">我的订单&nbsp;</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+		
+			<!--{if 0}-->
+		<li> <a class="last" href="user.php?act=policy_list" title="" target="">我的保单&nbsp;</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+			<!--{/if}-->
+      </ul>
+ 
+    </div>
+    <!--订单管理end-->
+	
+
+	 <!--{if 0}-->
+    <!--账户管理begin-->
+    <div class="account order">
+      <h2>账户管理</h2>
+      <ul class="pending">
+
+        <li> <a class="first" href="favorites.php">我的收藏</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="user.php?act=affiliate">我的推荐</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="account.php?act=account_detail">资金管理</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <!--<li> <a href="user.php?act=address_list">收货地址</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>-->
+        <li> <a href="user.php?act=bank_account">银行账户</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+
+		<li> <a href="user.php?act=profile_meeting">修改资料</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+
+        <li> <a href="user.php?act=just_print">已购买</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="kefu.php" class="red">客服中心</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+
+      </ul>
+    </div>
+ <!--{/if}-->
+	
+    <!--账户管理end-->
+    <!-- 更多设置begin -->
+    <!-- 更多设置end -->
+    <!-- 退出登录begin -->
+    <div class="quit"> <a href="user.php?act=logout" id="btn_quit" class="btn">退出登录</a> </div>
+    <!-- 退出登录end -->
+  </div>
+</section>
+{include file='foot.dwt'}
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+</script>
+</body>
+</html>

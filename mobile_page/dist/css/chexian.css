@@ -1,0 +1,133 @@
+body{ background: #fff;}
+.banner_bg_images{background: url(../../images/chexian/banner_bg_images.png)center; width: 100%; height:418px;}
+.banner_bg_1{background: url(../../images/chexian/images_01.png)  center no-repeat ; width: 100%; height:418px;}
+
+.bg_line{background: #FFF url(../../images/chexian/images_line.png) top center no-repeat ; width: 1087px;}
+.bg_right{background: url(../../images/chexian/images_pbg.png) right bottom no-repeat ; width: 1087px;}
+.title_chexian_bg{background: url(../../images/chexian/title_bg.png) right bottom no-repeat ; width: 1180px; height:57px;}
+.pagebody{ background:#fff;}
+.bg_eee{background: #fbca35;}
+.bg_f5f5f5{background: #f5f5f5;}
+.bg_e6e6e6{ background:#e6e6e6;}
+.bg_ffffff{background: #ffffff;}
+.border_aaa{ border:dashed 1px #aaa; margin-bottom:20px;}
+.border_e6e6e6_20{border:#e6e6e6 solid 20px;}
+.border_faca75{border:#faca75 solid 1px; border-top:none;}
+.boder_B5_adbcf5{ border-bottom:5px solid #adbcf5}
+img{ display:block; margin:0 auto;}
+.f-fl img{margin:-10px 0 0 15px;}
+.bg_4949aa{background: #4949aa}
+.bg_ee5c0f{background: #ee5c0f}
+.text_c_e91717{color:#e91717}
+.text_c_717171{color:#717171}
+.text_c_333333{color:#333333}
+.text_c_ffffff{color:#ffffff}
+.text_c_494c51{color:#494c51}
+.text_c_fa780e{color:#fa780e}
+.font_wb{font-weight: bolder}
+.lh_30{ line-height: 30px;}
+.lh_80{ line-height: 80px;}
+.height80{height: 80px;}
+.font_14{font-size: 14px;}
+.font_16{font-size: 16px;}
+.font_18{font-size: 18px;}
+.font_20{font-size: 20px;}
+.font_24{font-size: 24px;}
+.font_30{font-size: 30px;}
+.font_34{font-size: 34px;}
+.font_38{font-size: 38px;}
+.link_e91717{color: #e91717;}
+.link_e91717:hover{color: #ae1212;}
+.link_ea5413{color:#ea5413}
+.link_ea5413:hover{color:#cd480e}
+.link_btn{display:inline-block; padding:5px 30px;}
+.link_ffffff{background:url(../../images/chexian/fffbg.png) no-repeat left top; padding:0; color:#333; font-size:17px; text-align:center; line-height:45px;}
+.link_ffffff:hover{background:url(../../images/chexian/fffbg_hover.png); color:#ea6e13}
+.link_ea6e13{background:url(../../images/chexian/e35bg.png) no-repeat left top; padding:0; color:#fff; font-size:17px; text-align:center; line-height:45px;}
+.link_ea6e13:hover{background:url(../../images/chexian/e35bg-hover.png); color:#fff}
+.padd_L28{padding-left: 28px;}
+.padd_A20{padding:20px;}
+.padd_A15{padding:15px;}
+.padd_A10{padding:10px;}
+.padd_B20{padding-bottom:20px;}
+.padd_B30{padding-bottom:35px;}
+.padd_B50{padding-bottom:50px; background:#ffeed1;}
+.padd_T10{padding-top:10px}
+.padd_T13{padding-top:13px}
+.padd_T20{padding-top:20px}
+.padd_T70{padding-top:26px}
+.padd_TB50{padding:50px 0px;}
+.padd_T53{padding-top:53px;}
+.mar_T10{margin-top: 10px;}
+.mar_T20{margin-top: 20px;}
+.mar_T28{margin-top: 28px;}
+.mar_T30{margin-top: 27px; width:144px; height:45px; display:inline-block;}
+.mar_T40{margin-top: 40px;}
+.mar_T53{margin-top: 53px;}
+.mar_T73{margin-top: 73px;}
+.mar_T360{margin-top: 360px;}
+.mar_L5{margin-left:5px;}
+.mar_L25{margin-left:25px;}
+.mar_L37{margin-left:37px;}
+.mar_L45{margin-left:45px;}
+.mar_L142{margin-left: 142px;}
+.mar_r80{margin-right: 90px;}
+.mar_r10{margin-right: 10px;}
+.wid_A100{width: 100%;}
+.wid_100{width: 100px;}
+.wid_400{width: 400px;}
+.wid_750{width: 750px;}
+.wid_890{width: 890px;}
+.wid_1180{width: 1180px;}
+.wid_1120{width: 1120px;}
+.wid_1087{width: 1087px;}
+.lineheight20{line-height:20px;}
+.lineheight100{line-height:100px;}
+.border_table_04{ width:100%;}
+.border_table_04 td{ padding:20px;}
+.border_table_04 td.lineL{  border-left:solid 1px #e6e6e6;}
+.border_table_04 td.lineR{ border-right:solid 1px #e6e6e6;}
+.nav_list{ background:url(../../images/chexian/nav-bg.png) repeat-x left center; height:42px; line-height:45px; width:100%; border-top:#CCC solid 1px;}
+.nav_list_ul01{width:730px; float:left;}
+.nav_list_ul01 li{ float:left; }
+.nav_list_ul01 li a{ display:block; height:45px; line-height:45px;padding:0px 20px; color:#FFF; font-size:16px;}
+.nav_list_ul01 li a:hover{ margin-top:2px; height:43px; line-height:41px; color:#ee5c0f; background:#FFF;}
+.nav_list_ul01 li a.on{ margin-top:2px; height:40px; line-height:41px;  color:#ee5c0f; background:#FFF;}
+.nav_list_ul01 li.line{width:2px; margin-top:8px;}
+.line01{ display:inline-block; width:1px; height:30px; background:url(../../images/chexian/nav-line.png) no-repeat left center;}
+.line02{ display:inline-block; width:1px; height:30px; background:none;}
+.nav_list_ul02{width:350px; float:right;}
+.nav_list_ul02 li{ float:right;}
+.nav_list_ul02 li a{display:block; height:42px; line-height:42px;padding:0px 20px; color:#FFF; font-size:16px;}
+.nav_list_ul02 li.gywm a{background:#17d6fe;}
+.nav_list_ul02 li.gywm a:hover{ color:#fff; background:#12bfe3;}
+.nav_list_ul02 li.ebzt a{background:#00b2ed;}
+.nav_list_ul02 li.ebzt a:hover{ color:#fff; background:#02a2d7;}
+.m-list{ padding:25px 0px 30px 25px; font-family:微软雅黑;} 
+.m-list li{ float:left; width:137px; line-height:20px; margin:0px 30px; }
+/*焦点图*/
+.focus{ position:relative; width:1055px; height:825px; text-align: center}
+.focus img{ width: 889px; height: 825px;  margin-left:85px; }
+.focus .shadow .title{width: 260px; height: 65px;padding-left: 30px;padding-top: 20px;}
+.focus .shadow .title a{ text-decoration:none; color:#fff; font-size:14px; font-weight:bolder; overflow:hidden; }
+.focus .btn{ position:absolute; bottom:34px; left:510px; overflow:hidden; zoom:1;}
+.focus .btn a{position:relative; display:inline; width:13px; height:13px; border-radius:7px; margin:0 5px;color:#B0B0B0;font:12px/15px "\5B8B\4F53"; text-decoration:none; text-align:center; outline:0; float:left; background:#D9D9D9; }
+.focus .btn a:hover,.focus .btn a.current{  cursor:pointer;background:#fc114a;}
+.focus .fPic{ position:absolute; left:0px; top:0px; }
+.focus .D1fBt{ overflow:hidden; zoom:1;  height:16px; z-index:10;  }
+.focus .shadow{  width:100%;color:#fff; position:absolute; bottom:0; z-index:10; height:40px; line-height: 40px; background:rgba(0,0,0,0.6);
+    filter:progid:DXImageTransform.Microsoft.gradient( GradientType = 0,startColorstr = '#80000000',endColorstr = '#80000000')\9;  display:block;  text-align:center; }
+.focus .shadow a{ text-decoration:none; color:#fff; font-size:20px; overflow:hidden; margin-left:10px; font-family: "\5FAE\8F6F\96C5\9ED1";}
+.focus .fcon{ position:relative; width:100%; float:left;  display:none;  }
+.focus .fcon img{ display:block; }
+.focus .fbg{bottom:25px; right:40px; position:absolute; height:21px; text-align:center; z-index: 200; }
+.focus .fbg div{margin:4px auto 0;overflow:hidden;zoom:1;height:14px}
+.focus .D1fBt a{position:relative; display:inline; width:12px; height:12px; border-radius:7px; margin:0 5px;color:#B0B0B0;font:12px/15px "\5B8B\4F53"; text-decoration:none; text-align:center; outline:0; float:left; background:#D9D9D9; }
+.focus .D1fBt .current,.focus .D1fBt a:hover{background:#fc114a;}
+.focus .D1fBt img{display:none}
+.focus .D1fBt i{display:none; font-style:normal; }
+.focus .prev,.focus .next{position:absolute;width:40px;height:74px;background: url(../../images/mdrt_img/focus_btn.png) no-repeat;}
+.focus .prev{top: 50%;margin-top: -37px; left: 0;background-position:0 -74px; cursor:pointer; }
+.focus .next{top: 50%;margin-top: -37px; right: 0;  background-position:-40px -74px;  cursor:pointer;}
+.focus .prev:hover{  background-position:0 0; }
+.focus .next:hover{  background-position:-40px 0;}

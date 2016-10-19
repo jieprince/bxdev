@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪用户中心</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+
+</head>
+<body>
+<div class="container-fluid">
+	
+    <div>
+        <div class="panel panel-primary" style="border-color: #ed462f; border-radius: 0px" >
+            <div class="panel-heading f-fwb text-left" style="background: #ed462f;border-color: #ed462f;border-radius: 0px">
+                最新订单
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777 clearfix" >
+                            <span class="f-fl">订单详情</span>
+                            <span class="f-fr">
+                                 
+                            </span>
+                        </span>
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">订单编号：{$order.order_sn}</p>
+                            <p class="list-group-item-text f-lh25">订单金额：{$order.formated_goods_amount}</p>
+                            <p class="list-group-item-text f-lh25">订单状态：<span class="f-c-red f-fwb">{$order.order_status}</span></p>
+                            <p class="list-group-item-text f-lh25">支付状态：<span class="f-c-red f-fwb">{$order.pay_status}</span></p>
+                            <p class="list-group-item-text f-lh25">
+                            	{if $order.order_amount gt 0}
+                            		在线支付：{$order.pay_online}
+                            		{else}
+                            		支付方式：{$order.pay_name}
+                                {/if}
+                            </p>
+                        </span>
+
+                    </div>
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            产品
+                        </span>
+                        <!-- {foreach from=$goods_list item=goods name=goods} -->
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">保险公司：{$goods.brand_name}</p>
+                            <p class="list-group-item-text f-lh25">产品名称：<a href="#">{$goods.goods_name}×{$goods.goods_number}</a></p>
+                            <p class="list-group-item-text f-lh25">实付金额：<span class="f-c-red f-fwb">{$goods.goods_price}</span></p>
+                        </span>
+ 						<!-- {/foreach} -->
+                    </div>
+                </div>
+                <div class="row">
+                     
+                    <!-- {if $policy.policy_status eq 'insured'} -->
+                    <div class="col-xs-6">
+                    	<a href="user.php?act=policy_detail&policy_id={$policy.policy_id}" class="btn btn-primary  "><i class="fa fa-eye-slash"></i> 查看保单</a>
+                    </div>
+                    <div class="col-xs-6">
+                    	
+                    	<a href="user.php?act=download_policy_doc&policy_id={$policy.policy_id}&download_token={$download_token}&uid={$policy.agent_uid}" class="btn btn-danger f-mL10"><i class="fa fa-download"></i> 下载保单</a>
+                    </div>
+                    <!-- {else} -->
+                    <div class="col-xs-12">
+                    	<a href="user.php?act=policy_detail&policy_id={$policy.policy_id}" class="btn btn-primary  "><i class="fa fa-eye-slash"></i> 查看保单</a>
+                    </div>
+                    <!-- {/if} -->
+					
+                </div>
+                
+                 <a class=" btn-fd9e02 text-center" href="javascript:void(0)" onclick="show_userinfo()">咨询保险顾问</a>
+                
+            </div>
+        </div>
+    </div>
+    <div class="f-mT20">
+    	
+        <div class="list-group">
+            <span class="list-group-item active f-fwb" style="border-radius: 0px">
+                用户中心
+            </span>
+             
+            <a href="user.php?act=order_list" class="list-group-item clearfix"><span class="f-fl">订单列表</span><i class="fa fa-angle-right f-fr"></i></a>
+            <a href="user.php?act=policy_list" class="list-group-item clearfix"><span class="f-fl">保单列表</span><i class="fa fa-angle-right f-fr"></i></a>
+            <a href="user.php?act=profile" class="list-group-item clearfix"><span class="f-fl">修改密码</span><i class="fa fa-angle-right f-fr"></i></a>
+            <a href="kefu.php" class="list-group-item clearfix"><span class="f-fl">客服中心</span><i class="fa fa-angle-right f-fr"></i></a>
+        </div>
+    </div>
+
+</div>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+<!-- 手机弹窗 -->
+<script src="../mobile/layer-mobile/layer.m.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var type_product = '{$policy.insurer_code}';
+	var temp_agentmobile_phone = "{$agent[mobile_phone]}";
+	 
+	var check_status = "{$agent[check_status]}";
+    
+	function show_userinfo(){
+	    //var html_info = '<div align=left><span>{$agent.real_name_str}</span><br><span style="line-height:25px;">联系方式：{$agent.mobile_phone}</span><span><a href="tel:{$agent.mobile_phone}"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span></div>';
+	    var html_info = '<div align=left><span>{$agent.real_name_str}</span><br><span style="line-height:25px;">联系方式：'+temp_agentmobile_phone+'</span><span><a href="tel:'+temp_agentmobile_phone+'"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span><br><span style="line-height:25px;">中国人寿客服电话：95519</span></div>';
+        if(check_status!='checked'){
+        	html_info = '<div align=left><span>{$agent.real_name_str}</span><br><span style="line-height:25px;">中国人寿客服电话：95519</span><span><a href="tel:95519"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span></div>';
+        }
+	    layer.open({
+	        content: html_info,
+	        title:'您的保险顾问',
+	        fixed:true,
+	        style:'width:'+document.documentElement.clientWidth+'px;'
+	    });
+	}
+</script>
+
+</body>
+</html>

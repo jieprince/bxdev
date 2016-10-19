@@ -1,0 +1,198 @@
+<!--{template cp_product_buy_view_header}-->	
+         <script src="js/mobile/taipingyang_cpic_cargo_internal.js"></script>    
+        <div class="container">
+             <div class="panel panel-default">
+                    <ul class="list-group" >
+                      <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                    </ul>
+             </div>
+             
+             <div class="panel panel-default">
+                    
+                    <ul class="list-group" >
+                      <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                       
+                      <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">投保人名称</span>
+                            <span class="f-fs2 pull-right">{$user_info_applicant[group_name]}</span>
+                      </li> 
+                      <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">被保险人名称</span>
+                            <span class="f-fs2 pull-right">{$insurant_info[fullname]}</span>
+                      </li>  
+                      <li class="list-group-item" >
+                      		<span class="s-c-aaaaaa">险种</span>
+                            <span class="pull-right">
+                            	<span>{$policy_arr[classtype]}</span>
+                            </span>
+                      </li>
+                      <li class="list-group-item" >
+                      		<span class="s-c-aaaaaa">金额</span>
+                            <span class="f-fs2 pull-right">￥<span>{$total_price}</span>元</span>
+                      </li>
+                       
+                    </ul>
+            </div>
+              
+             <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                  		货运信息
+                        <span class="pull-right" style="height:20px; width:20px; display:block">
+                        	<img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                        </span>
+                  </div>
+                  <ul class="list-group">
+                  		
+                       
+                       
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">标记/发票号码/运单号</span>
+                            <span class="pull-right"><span >{$policy_arr[mark]}</span></span>
+                       </li>
+                       <li class="list-group-item">
+                            <span class="s-c-aaaaaa">起运日期</span>
+                            <span class="f-fs2 pull-right">{$policy_arr[saildate]}</span>
+                       </li>  
+                        
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">货物名称</span>
+                            <span class="pull-right">$policy_arr[item]</span>
+                       </li>
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">货物类型</span>
+                            <span class="f-fs2 pull-right">{$policy_arr[itemcode]}</span>
+                       </li> 
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">包装及数量</span>
+                            <span class="pull-right">$policy_arr[quantity]</span>
+                       </li>
+                       <li class="list-group-item" >
+                            <span class="s-c-aaaaaa">货物包装</span>
+                            <span class="pull-right">$policy_arr[packcode]</span>
+                       </li>
+                         
+                        
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">运输方式</span>
+                            <span class="f-fs2 pull-right">$policy_arr[kind]</span>
+                       </li> 
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">运输工具</span>
+                            <span class="f-fs2 pull-right">$policy_arr[kindname]</span>
+                       </li>
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">航次/车牌号</span>
+                            <span class="f-fs2 pull-right">$policy_arr[voyno]</span>
+                       </li>
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">运输路线(自)</span>
+                            <span class="f-fs2 pull-right">{$policy_arr[startport]}</span>
+                       </li>
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">运输路线(到)</span>
+                            <span class="f-fs2 pull-right">{$policy_arr[endport]}</span>
+                       </li>
+                      
+                        
+                        
+                    </ul> 
+            </div>
+            <div class="panel panel-default">
+                   
+                  <div class="panel-body f-csp">
+                  		所选条款 
+                  </div>
+                  <ul class="list-group">
+                  	   <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">主要条款：</span>
+                            <span class="f-fs2">{$policy_arr[mainitemcode]}</span>
+                             
+                       </li> 
+                        
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">详细内容：</span>
+                            <span class="f-fs2">{$policy_arr[itemcontent]}</span>
+                             
+                       </li> 
+                        
+                  </ul>
+           </div>
+             
+            <div class="panel panel-default">
+                  <!-- 被保险人信息 -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                  		保险信息
+                        <span class="pull-right" style="height:20px; width:20px; display:block">
+                        	<img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                        </span>
+                  </div>
+                  <ul class="list-group">
+                  		 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">保险金额</span>
+                           <span class="f-fs2 pull-right">
+                                <span>{$policy_arr[amount]}元</span>
+                           </span>
+                       </li> 
+                        
+                        
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">保险费率</span>
+                            <span class="pull-right">
+                                <span>{$policy_arr[rate]}</span>
+                                
+                            </span>
+                       </li>
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">保费</span>
+                            <span class="f-fs2 pull-right">
+                            	<span>{$policy_arr[premium]}</span>
+                            </span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">签单日期</span>
+                           <span class="pull-right">
+                               <span>{$policy_arr[effectdate]}</span>
+                           </span>
+                       </li> 
+                       <li class="list-group-item" >
+                           <span class="s-c-aaaaaa">发票抬头</span>
+                           <span class="f-fs2 pull-right">
+                           		<span>{$user_info_applicant[group_name]}</span>
+                           </span>
+                       </li> 
+                       
+                       <li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">免赔条件</span>
+                             
+                       </li> 
+                       <li class="list-group-item" style="border-top:0px; padding-top:0px;" >
+                       		<span class="f-fs2">{$policy_arr[franchise]}</span>
+                             
+                       </li> 
+                      
+                  </ul> 
+                   
+                  
+            </div> 
+            
+            
+            <div class="panel panel-default">
+                  <!-- 受益人信息 -->
+                  <div class="panel-body f-csp">
+                  		受益人信息 
+                  </div>
+                  <ul class="list-group">
+                  		<li class="list-group-item" >
+                       		<span class="s-c-aaaaaa">受益人</span>
+                            <span class="pull-right">
+                                <span>法定</span>
+                            </span>
+                       </li> 
+                  </ul>
+           </div>
+<!--{template cp_product_buy_view_footer}-->            

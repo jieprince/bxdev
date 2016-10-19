@@ -1,0 +1,175 @@
+{if $full_page}
+<!-- $Id: user_account_list.htm 17030 2010-02-08 09:39:33Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+.button02{
+	color: #666;
+	font-size: 12px;
+	font-weight: 400;
+	text-decoration: none;
+	display: block;
+	padding: 2px 2px 2px 2px;
+	border-width: 1px 2px 2px 1px;
+	border-style: solid;
+	border-color: #278296;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+}
+</style>
+
+
+<div class="form-div">
+  <form action="javascript:searchUser()" name="searchForm">
+  	<table>
+  		<tr>
+	  		<td> {$lang.user_id}</td>
+	  		<td> <input type="text" name="keyword" size="10" /></td>
+	  		
+	  		<td>&#12288;&#12288;姓名</td>
+			<td><input type="text" name="real_name" size="10"></td>
+  		</tr>
+  		
+		<tr>
+			<td>支付方式</td>
+			<td>
+				<select name="payment">
+					  <option value="">--请选择--</option>
+				      {html_options options=$payment_list}
+		       </select>
+			</td>
+			
+			<td>&#12288;&#12288;状态</td>
+			<td>
+				  <select name="is_paid">
+			        <option value="-1">--请选择--</option>
+			        <option value="0" {$is_paid_0}>{$lang.unconfirm}</option>
+			        <option value="1" {$is_paid_1}>{$lang.confirm}</option>
+			        <option value="2">{$lang.cancel}</option>
+			      </select>
+			</td>
+		</tr>  	
+		
+		<tr>
+			<td>
+			    开始时间
+			</td>
+			<td>
+				<input class="Wdate" type="text"  name="start_date" value="{$filter.start_date}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+			</td>
+			<td>结束时间</td>
+			<td>
+				<input class="Wdate" type="text"  name="end_date" value="{$filter.end_date}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+			</td>
+			<td width="720px;"> 
+				<input type="submit" value="{$lang.button_search}" class="button" />
+				<a href="user_account.php?act=withdraw_rule_cfg_list"  class="button02" style="float: right;">设置提现规则</a>
+			</td>
+		</tr>
+				
+  	</table>
+	
+  </form>
+  
+
+</div>
+
+<form method="POST" action="" name="listForm">
+<!-- start user_deposit list -->
+<div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+  	<th>编号</th><!-- add yes123 2015-04-09 显示编号 -->
+    <th><a href="javascript:listTable.sort('user_name', 'DESC'); ">{$lang.user_id}</a>{$sort_user_name}</th>
+    <th>姓名</th>
+    <th><a href="javascript:listTable.sort('add_time', 'DESC'); ">{$lang.add_date}</a>{$sort_add_time}</th>
+    
+<!--del yes123 2014-12-19 充值申请和提现申请分开后，这里就不需要了     <th><a href="javascript:listTable.sort('process_type', 'DESC'); ">{$lang.process_type}</a>{$sort_process_type}</th> -->
+    <th><a href="javascript:listTable.sort('amount', 'DESC'); ">{$lang.surplus_amount}</a>{$sort_amount}</th>
+    <th><a href="javascript:listTable.sort('payment', 'DESC'); ">{$lang.pay_mothed}</a>{$sort_payment}</th>
+    <th><a href="javascript:listTable.sort('is_paid', 'DESC'); ">{$lang.status}</a>{$sort_is_paid}</th>
+    <th>{$lang.admin_user}</th>
+    <th>{$lang.handler}</th>
+  </tr>
+  {foreach from=$list item=item}
+  <tr>
+  	<td align="center">{$item.id}</td><!-- add yes123 2015-04-09 显示编号 -->
+    <td><!-- 2014-10-10 yes123  bug#150 -->
+    	<a href="account_log.php?act=list&user_id={$item.user_id}">
+    		{if $item.user_name}{$item.user_name}{else}{$lang.no_user}{/if}
+    	</a>
+    </td>
+    <td align="center">{$item.real_name}</td>
+    <td align="center">{$item.add_date}</td>
+<!---del yes123 2014-12-19 充值申请和提现申请分开后，这里就不需要了      <td align="center">{$item.process_type_name}</td> -->
+    <td align="right">{$item.surplus_amount}</td>
+    <td>{if $item.payment}{$item.payment}{else}N/A{/if}</td>
+    <td align="center">{if $item.is_paid}{$lang.confirm}{else}{$lang.unconfirm}{/if}</td>
+    <td align="center">{$item.admin_user}
+    <td align="center">
+    {if $item.is_paid}
+    <a href="user_account.php?act=edit&id={$item.id}" title="{$lang.surplus}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+    {else}
+    <a href="user_account.php?act=check&id={$item.id}" title="{$lang.check}"><img src="images/icon_view.gif" border="0" height="16" width="16" />
+    <a href="javascript:;" onclick="listTable.remove({$item.id}, '{$lang.drop_confirm}')" title="{$lang.drop}" ><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+    {/if}
+    </td>
+  </tr>
+  {foreachelse}
+  <tr>
+    <td class="no-records" colspan="8">{$lang.no_records}</td>
+  </tr>
+  {/foreach}
+
+<table id="page-table" cellspacing="0">
+<tr>
+  <td>&nbsp;</td>
+  <td align="right" nowrap="true">
+  {include file="page.htm"}
+  </td>
+</tr>
+</table>
+{if $full_page}
+</div>
+<!-- end user_deposit list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+<!--
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+/**
+ * 搜索用户
+ */
+function searchUser()
+{
+    listTable.filter['keywords'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+    listTable.filter['real_name'] = document.forms['searchForm'].elements['real_name'].value;
+    listTable.filter['start_date'] = document.forms['searchForm'].elements['start_date'].value;
+    listTable.filter['end_date'] = document.forms['searchForm'].elements['end_date'].value;
+    listTable.filter['payment'] = Utils.trim(document.forms['searchForm'].elements['payment'].value);
+    listTable.filter['is_paid'] = document.forms['searchForm'].elements['is_paid'].value;
+    listTable.filter['page'] = 1;
+    listTable.loadList();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

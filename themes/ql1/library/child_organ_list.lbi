@@ -1,0 +1,307 @@
+<form action="user.php" method="post" id="search_form">
+<div style="float: left;">
+		<input type="hidden" name="act" value="child_organ_list" />
+		<input type="hidden" name="sort" value="{$condition.sort}" />
+		<input type="hidden" name="order" value="{$condition.order}" />
+		<table class="m-table-2">
+			<tr>
+				<td align="right">渠道名称：</td>
+				<td><input name="d_name" value="{$condition.d_name}" class="f-pA5 n-invalid" /></td>
+		    	<td align="right">是否禁用：</td>
+	            <td>
+		            <select name="is_disable"  class="s-select-1">
+		             <option value="">-请选择-</option>
+		             <option value="1"  {if $condition.is_disable eq "1"}selected="selected" {/if}>是</option>
+		             <option value="2" {if $condition.is_disable eq "2"} selected="selected" {/if}>否</option>
+		            </select>
+	            </td>  
+			</tr>
+	
+			<tr>  
+				<td align="right">贡献 &nbsp;保单数&nbsp;总保费：</td>
+				<td><input class="f-pA5 " type="text" name="start_time" value="{$condition.start_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" />
+					~<input class="f-pA5 " type="text" name="end_time" value="{$condition.end_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" />
+				</td>
+			    <td></td>
+				<td><input type="submit" class="btn-ec6941-4" value="查询" /></td>
+			</tr> 
+		</table>
+</div>
+
+	<div class="f-fr f-mt10 f-mr10" align="right">
+                <a href="user.php?act=child_organ_add" class="btn-009C84">新增子渠道</a>
+        </div>
+<div style="float: right;margin-right: 10px;">
+	<!-- <a href="user.php?act=child_organ_add" class="btn_on02" style="float: right">新增子渠道</a> 
+	
+
+	
+	<div style="margin-top: 100px;">
+		<input type="button" onclick="by_time_search('A');" value="今天">
+		<input type="button" onclick="by_time_search('B');" value="一周">
+		<input type="button" onclick="by_time_search('C');" value="一个月">
+		<input type="button" onclick="by_time_search('D');" value="三个月">
+	</div> -->
+</div>
+
+</form>
+
+<table class="table_user_01">
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">编号</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">渠道名称</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">联系人</td>
+		<!-- <td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">推荐人</td> 
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">上级渠道</td>-->
+		<!--<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">
+		 <a href="javascript:sort_search('ogran_money_total');">贡献</a></td> -->
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">会员总数</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">
+			<a href="javascript:sort_search('policy_num');"></a>保单数	
+		</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">
+		<a href="javascript:sort_search('total_premium');"></a>总保费</td>
+
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">注册时间</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">审核状态</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">操作</td>
+	</tr>
+	<!--{foreach from=$user_list item=user}-->
+	<tr>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$user.user_id}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">
+		<a href="user.php?act=child_organ_info&child_organ_id={$user.user_id}">{$user.d_name}</a></td>
+		<td align="center" bgcolor="#ffffff" class="color_94">{$user.d_contacts}</td>
+		<!-- <td align="center" bgcolor="#ffffff" class="color_94">{$user.parent_d_name}</td> -->
+		<td align="center" bgcolor="#ffffff" class="color_94">{$user.user_num}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">
+			{if $user.policy_num}
+				{$user.policy_num}
+			{else}
+				0
+			{/if} 
+		</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">
+			{if $user.total_premium}
+				{$user.total_premium}
+			{else}
+				0
+			{/if}
+		</td>
+		
+		
+		<td align="center" bgcolor="#ffffff" class="color_94">{$user.reg_time}</td>
+		<td align="center" bgcolor="#ffffff" class="color_94">
+			{if $user.check_status eq 'no_pass'}
+				<a href="javascript:show_content('content_{$smarty.foreach.name.iteration}');">
+					<span style="color: red">{$user.check_status_str}</span>
+					<span id="content_{$smarty.foreach.name.iteration}" style="display: none;">
+						{$user.check_result}
+					</span>
+				</a>
+				{else}
+				{$user.check_status_str}
+			{/if}
+			
+		</td>
+		<td bgcolor="#ffffff" align="center" title="{$item.change_desc}" class="color_94">
+			<a href="user.php?act=child_organ_info&child_organ_id={$user.user_id}">查看/编辑</a>
+			<!-- <a href="user.php?act=remove_salesman&salesman_id={$user.user_id}">移除</a> -->
+			<!-- {if $user.is_disable==1} -->
+				<a href="javascript:disable_enabled_salesman({$user.user_id},2);">
+					<span style="color: red">启用</span>
+				</a>
+				<!-- {else} -->
+				<a href="javascript:javascript:disable_enabled_salesman({$user.user_id},1);">
+					<span style="color: green;">禁用</span>
+				</a>  
+			<!-- {/if} -->
+			
+			<a href="javascript:remove_dialog({$user.user_id})">移除</a>
+		</td>
+	</tr>
+	<!--{/foreach}-->
+<!-- 	<tr>
+		<td colspan="6" align="center" bgcolor="#ffffff"><div align="right">{$lang.current_total}{$shouru_money_total}</div></td>
+	</tr> -->
+</table>
+
+
+
+<script type="text/javascript">
+	
+	function remove_dialog(user_id){
+		
+		var html = '<div align="center" style="margin-top: 30px;">'
+		 html += '<input type="button" onclick="remove_binding_disable('+user_id+');" value="移除关系并禁止此用户" class="btn-ec6941-4">';
+		 html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="remove_binding('+user_id+');" value="仅移除关系" class="btn-ec6941-4">';
+		 html += '</div>';
+		
+		var index = layer.open({
+		    type: 1,
+		    skin: 'layui-layer-lan', //样式类名
+		    shift: 0,
+		    title:false,
+		 	area: ['340px', '180px'],
+		    shadeClose: true, //开启遮罩关闭
+		    content:html
+		   
+		});
+	 	layer.style(index, {
+			'background-color': '#F5F5F5',
+		});  
+	}
+	
+	
+	function remove_binding(uid){
+		$.ajax({
+			   type: "POST",
+			   url: "user.php",
+			   data: "act=remove_disable_salesman&type=remove_salesman&salesman_id="+uid,
+			   success: function(msg){
+			     alert(msg);
+			     location=location;
+			   }
+			});
+		
+	}
+	
+	function remove_binding_disable(uid){
+		$.ajax({
+			   type: "POST",
+			   url: "user.php",
+			   data: "act=remove_disable_salesman&type=remove_disable_salesman&salesman_id="+uid,
+			   success: function(msg){
+			     alert(msg);
+			     location=location;
+			   }
+			});
+
+	}
+	
+	//add yes123 2015-03-09 排序
+	function sort_search(sort){
+		$("#search_form input[name=sort]").val(sort);
+		if('{$condition.order}'=='DESC'){
+			$("#search_form input[name=order]").val("ASC");
+		}else{
+			$("#search_form input[name=order]").val("DESC");
+		}
+		$("#search_form").submit();
+	}
+	
+	//add yes123 2015-03-09按照时间查询
+	function by_time_search(time_type){
+		var date = new Date();
+		var year = date.getFullYear(); //年
+		var month = date.getMonth();//月
+		var day = date.getDate();//日
+		var start_time = year + "-";   
+        if(month < 10) {
+        	start_time += "0";   
+        } 
+        start_time += month +1+ "-";   
+         
+        if(day < 10)  {
+        	start_time += "0";   
+        } 
+        start_time += day + " ";   
+        
+        switch (time_type) {   
+	        case 'A' :
+		        $("#search_form input[name=start_time]").val(start_time+"00:00");
+		        $("#search_form input[name=end_time]").val(dateOperator(start_time,1,"+")+" 00:00");
+		        break;
+	        case 'B' : 
+		        $("#search_form input[name=start_time]").val(dateOperator(start_time,7,"-")+" 00:00");
+		        $("#search_form input[name=end_time]").val(dateOperator(start_time,1,"+")+" 00:00");
+		        break;
+	        case 'C' :  
+		        $("#search_form input[name=start_time]").val(dateOperator(start_time,30,"-")+" 00:00");
+		        $("#search_form input[name=end_time]").val(dateOperator(start_time,1,"+")+" 00:00");
+		        break;
+	        case 'D' :  
+		        $("#search_form input[name=start_time]").val(dateOperator(start_time,90,"-")+" 00:00");
+		        $("#search_form input[name=end_time]").val(dateOperator(start_time,1,"+")+" 00:00");
+        }
+		$("#search_form").submit();
+	}
+	
+	
+	
+	function disable_enabled_salesman(user_id,status)
+	{
+		var msg ="";
+		if(status==1)
+		{
+			msg="禁用后，此会员将无法登录，确定禁用吗？"
+		}else{
+			status=0;
+			msg="启用后，此会员将恢复正常，确定启用吗？"
+		}
+		
+		
+		layer.confirm(msg, {
+		    btn: ['确定','取消'] //按钮
+		}, function(){
+    		$.get("user.php?act=disable_enabled_salesman", { "salesman_id": user_id, "is_disable": status},
+	  				  function(data){
+	  						data = jQuery.parseJSON(data);
+	  						if(data.code==0)
+	  						{
+	  							layer.closeAll()
+	  							alert(data.msg);
+	  							$("#search_form").submit();
+	  							
+	  						}
+	  			 	  });
+		}, function(){
+			layer.closeAll();
+		});
+	
+		
+		
+		
+/* 		var pageii = $.layer({
+		    shade: [0],
+		    area: ['auto','auto'],
+		    dialog: {
+		        msg: msg,
+		        btns: 2,                    
+		        type: 4,
+		        btn: ['确定','取消'],
+		        yes: function(){
+		    		$.get("user.php?act=disable_enabled_salesman", { "salesman_id": user_id, "is_disable": status},
+		  				  function(data){
+		  						data = jQuery.parseJSON(data);
+		  						if(data.code==0)
+		  						{
+		  							layer.close(pageii);
+		  							alert(data.msg);
+		  							$("#search_form").submit();
+		  							
+		  						}
+		  			 	  });
+		        }, no: function(){
+		        	layer.close(pageii);
+		        }
+		    }
+		}); */
+		
+	}
+    function show_content(content_id){
+	    var str = $("#"+content_id).html();
+	    var pagei = $.layer({
+	    	   type: 1,   //0-4的选择,
+	    	    title: false,
+	    	    border: [0],
+	    	    closeBtn: [0],
+	    	    shadeClose: true,
+	    	    area: ['460px', '280px'],
+	    	    page: {
+	    	        html: '<\div style="width:460px; height:280px; background-color:#81BA25; color:#fff;"><\div style="padding:20px;">'+str+'<\/div><\/div>' //此处放了防止html被解析，用了\转义，实际使用时可去掉
+	    	    }
+	    	});
+    	
+    }
+</script>

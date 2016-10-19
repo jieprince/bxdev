@@ -1,0 +1,119 @@
+<!--{template header_cshop}-->
+
+<div id="simple_wrapper">
+<input type="hidden" name="lottery" value='' />
+
+
+<div id="contain">
+
+<div class="insure">
+		<div class="insure_main">
+		<!-- <div class="insure_title">$product_arr[product_name]&nbsp;&nbsp;<span style="color:#09c;margin:0;padding:0;"></span></div>
+		<div class="insure_step"><a href="#"><img src="/images/insure11.jpg" width="284" height="40"></a><a href="#"><img src="/images/insure22.jpg" width="280" height="40"></a><a href="#"><img src="/images/insure03.jpg" width="276" height="40"></a></div> -->
+		
+		
+		<form id="fgNewOrderSearchForm" name="fgNewOrderSearchForm" method="POST" action="cp.php?ac=product_buy&product_id=$product[product_id]&policy_id=$policy_id&gid=$gid&step=2">
+			<div class="insure_cen">
+			
+	<input type="hidden" name="orderbuysubmit" id="orderbuysubmit" value="true" />
+										
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	
+	<input type="hidden" id="goumaifangshi" name="goumaifangshi"  value="">
+	
+	  	<!--{if $insurer_code == "PAC" || $insurer_code == "PAC01" || $insurer_code == "PAC02" || $insurer_code == "PAC03" || $insurer_code == "PAC05"}-->
+		 
+	   	<!--{template cp_product_buy_pingan_yiwai_view}-->
+		
+		   
+		<!--{elseif $insurer_code == "TBC01"}-->   
+		
+		   	<!--{template cp_product_buy_taipingyang_yiwai_view}-->
+		
+		<!--{elseif $insurer_code == "HTS"}-->   
+		
+		   <!--{template cp_product_buy_huatai_chuguo_yiwai_view}-->
+			   
+	    <!--{/if}-->
+	
+		<div class="insure_cen_title" style=""><h1>保险费用</h1></div>
+					<table>
+						<tbody width="100%">
+							<tr>
+								<td>
+								<div class="order_cost" style="color:#C33; width:100%;margin:10px 0 10px 15%;">
+									<div id="newstat" class="cost_num_wap2">		
+										<p>￥
+											<font size="+1" style="font-size:16px;">
+												
+												<!--保费-->
+												<strong>
+												$policy_arr['total_premium']
+												</strong>元
+													</font>
+													<!--
+												<span class="sub">
+													（您本次可以获得<font color="#3399FF">10.0</font>积分）
+												</span>
+												-->
+										</p>
+									<input id="reprice" type="hidden" value="200.00">
+									</div>
+								</div>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					
+	
+	<div class="insure_cen_title" style=""><h1>投保声明</h1></div>
+	
+		<div width="100%" style=" padding:25px 0px 0px 25px">
+			
+			$product[insurance_declare]
+			
+		</div>
+			
+		<div class="state_list" style="border-top:1px solid #ddd;width:100%; padding:0;">
+				
+				<label width="100%" align="center" style="display:block; margin-top:5%;">
+					<input type="checkbox" id="readerId" name="reader" value="true">&nbsp;我已认真阅读并同意以上投保声明
+				</label>
+				
+			
+		
+			<!--重要通知-->
+			<div class="order_state">
+					<div class="order_btn" align="left">
+						
+					
+					<div class="order_btn" align="center">
+						<div id="sub1" style="margin-bottom:20px;">
+							<img onclick="orderCheckSubmit(this,2);" src="../images/icon15.jpg" style="cursor:pointer;" width="181" height="47">
+							
+						</div>
+						<div id="sub2" style="display:none;">
+							<div><img src="../images/big_load.gif" style="cursor:pointer;" width="181" height="47"></div>
+							<div><font color="#CC3333">正在与保险公司通讯中，请稍等(请不要刷新浏览器)</font></div>
+						</div>
+						<!-- 立即购买 -->
+					</div>
+				</div>
+		</div>
+	</div>
+		
+	</div>
+	
+	</form>
+</div>
+
+</div>
+			
+</div> <!--contain-->
+		
+		
+</div> <!-- simple_wrapper -->
+
+<!--{template footer_cshop}-->		

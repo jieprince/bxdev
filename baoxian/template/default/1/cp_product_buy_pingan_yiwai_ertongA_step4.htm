@@ -1,0 +1,303 @@
+<div id="main">
+			<!--{kefu}-->
+			<div id="kefu">
+				<div id="kefurexian" style="right:1px; top:60px;">
+	               <a href="#" title="在线客服" otype="button" otitle="在线客服" class="flat_zxke" onclick="window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800023223&amp;eid=2188z8p8p8p8K8P8K8K8P&amp;o=shop.pingan.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');return false;"></a>
+	         	</div>
+			</div>
+			<!--{navigation}-->
+			<div class="m_a" id="nav_main">
+				<div class="ps_ll"></div>
+				<div class="ps_rr"></div>
+				<ul id="step_4" class="c nav_step">
+					<li><span class="left_stepfirst"><span class="right_stepfirst"><span class="bg_num">1</span><span class="text">报价</span></span></span></li>
+					<li class=""><span class="left_step"><span class="right_step"><span class="bg_num">2</span><span class="text">填写保单信息</span></span></span></li>
+					<li><span class="left_step"><span class="right_step"><span class="bg_num">3</span><span class="text">投保确认</span></span></span></li>
+					<li class="last_step focus"><span class="right_steplast"><span class="left_steplast"><span class="bg_num">4</span><span class="text">支付</span></span></span></li>
+				</ul>
+				<ul id="step_3" class="c nav_step dspn">
+					<li><span class="left_stepfirst"><span class="right_stepfirst"><span class="bg_num">1</span><span class="text">续保登陆</span></span></span></li>
+					<li><span class="left_step"><span class="right_step"><span class="bg_num">2</span><span class="text">续保确认</span></span></span></li>
+					<li class="last_step focus"><span class="right_steplast"><span class="left_steplast"><span class="bg_num">3</span><span class="text">支付</span></span></span></li>
+				</ul>
+			</div>
+
+			<!--{content_box}-->
+			<div class="content_box m_a">
+				<!--{content}-->
+				<div class="content">
+					<div id="orderInfo">
+						<p class="font14">
+							<span test="${not empty flowAttrs.paymentRequestDTO.throughPayApplyPolicyNos}" style="display:none;">
+								您的订单已成功提交，请在<span style="color:red;">今天23:59</span>之前完成网上支付，如果逾期支付，投保单${flowAttrs.paymentRequestDTO.throughPayApplyPolicyNos }保险起期将顺延一天。
+							</span>
+							<span test="${not empty flowAttrs.paymentRequestDTO.delayPayNewBeginDate}" style="display:none;">
+								现在支付投保单，由于已逾期，保险起期将顺延到${flowAttrs.paymentRequestDTO.delayPayNewBeginDate}。保障内容及保费均不变，为了您的保单及时生效，请在<span style="color:red;">今天23:59</span>之前完成支付。
+							</span>
+							<span>您的订单已成功提交，请尽快付款。</span>
+						</p>
+					</div>
+					<div class="ml20" id="showContent" style="display:none;"><p class="font14">您的订单已成功提交，距离<span style="color:#FF0000">${overDueCode}</span>保单生效日期仅剩<span style="color:#FF0000">${minConf}</span>分钟了，为保障您的权益让保单及时生效，请在<span style="color:#FF0000">今天23:59</span>前完成网上支付。</p></div>
+					<div class="bg_ta">
+						<table class="table_a" id="tblPolicy" cellpadding="0" cellspacing="0" width="100%">
+							<tbody><tr>
+								<td class="ml10"><strong>产品名称</strong></td>
+								<td class="tac" width="25%"><strong>订单创建时间</strong></td>
+								<td class="tac" width="30%"><strong>订单金额</strong></td>
+							</tr>
+						</tbody>
+						<tbody><tr class="P0111A3">
+							<td class="tal ml10">
+								<span style="float:left">少儿综合保险</span><!--产品名称-->
+								<div class="por_qipao" style="display:inline; float:right;">
+									<a otype="button" otitle="详细订单" title="详细订单" class="ec7823 btnDingDan btn">详细订单</a>
+									<div class="container" style="display:none;">
+										<div class="policyItemWrap">
+											<p class="close_gb"><a class="c_4c8f04 btnClosePao btn" otype="button" otitle="关闭" title="关闭">关闭</a></p>
+											<p class="policyItem">投保单号：GP0100A003858469 <span class="vsb">保费</span>保费：<span class="actualPremium">95.00</span> 元</p>
+										</div>
+										<span class="qipao_btm" style="top:10px;"><span class="qipao_top"></span></span>
+									</div>
+								</div>
+						   </td>
+						   <td class="tac">2014-05-19</td><!--订单创建时间-->
+						   <td class="tac ec7823"><strong><span class="actualPremiumTotal">95.00</span> 元<!--订单总额--></strong></td>
+					   </tr>
+					
+						<tr class="bbn">
+							<td></td>
+							<td></td>
+							<td class="tar"><p class="mr50"><strong>总计：<span class="ec7823" id="payPremiumTotal"></span>95.00 元</strong></p></td>
+						</tr>  
+					</tbody></table>
+					</div>
+					<script type="text/template" id="policyTemplate" style="display:none;">
+						<tr class="${productCode}">
+							<td class="tal ml10">
+								<span style="float:left">${productName}</span><!--产品名称-->
+								<div class="por_qipao" style="display:inline; float:right;">
+									<a otype="button" otitle="详细订单" title="详细订单" class="ec7823 btnDingDan btn">详细订单</a>
+									<div class="container" style="display:none;" >
+										<div class="policyItemWrap">
+											<p class="close_gb"><a class="c_4c8f04 btnClosePao btn" otype="button" otitle="关闭" title="关闭">关闭</a></p>
+											<p class="policyItem">投保单号：${applyPolicyNo} <span class="vsb">保费</span>保费：<span class="actualPremium">${actualPremium}</span> 元</p>
+										</div>
+										<span class="qipao_btm" style="top:10px;"><span class="qipao_top"></span></span>
+									</div>
+								</div>
+						   </td>
+						   <td class="tac">${orderCreateDate}</td><!--订单创建时间-->
+						   <td class="tac ec7823"><strong><span class="actualPremiumTotal">${actualPremium}</span> 元<!--订单总额--></strong></td>
+					   </tr>
+					</script>
+					<script type="text/template" id="policyTemplateTotal" style="display:none;">
+						<tr class="bbn">
+							<td></td>
+							<td></td>
+							<td class="tar"><p class="mr50"><strong>总计：<span class="ec7823" id="payPremiumTotal"></span>${payPremium} 元</strong></p></td>
+						</tr>  
+					</script>
+					<div class="ml20 mt4" id="newcar_zhifua_Msg" style="display:none;"></div><!--{OFFER}-->				
+				</div>
+				
+				<div id="emt_zhifua_Msg" class="ml20 mt4" style="display:none;"></div>
+				
+				<div id="pageWrap"><div id="paySelectInner">
+	<!-- 访问银行的参数,只提交从shop接口返回的参数 -->
+	<form name="bankForm" id="bankForm" method="post" action="/pa18shopemt/payment/page/waitToNetBank.html" target="_blank">	</form>
+	<!--{content_a}-->
+	<div class="content_a">
+		<div class="bgright">
+			<div class="bor_a">
+				<div class="bgtop"><!--{Tab}-->
+					<div class="bor_b">
+						<ul class="tab_a c ml10 pay_way_tabs" id="contextTabHead"><li class="margin">选择付款方式：</li><li class="foucs w70" otype="button" otitle="信用卡" id="tabLiCredit" style=""><s class="icon_l"></s><span class="foucs_right" otype="button" otitle="信用卡">信用卡</span><s class="icon_r"></s><div class="icon_trian"><s></s></div></li><li class="w70" otype="button" otitle="借记卡" id="tabLiBank" style=""><s class="icon_l"></s><span class="foucs_right" otype="button" otitle="借记卡">借记卡</span><s class="icon_r"></s><div class="icon_trian"><s></s></div></li><li class="w70" otype="button" otitle="第三方" id="tabLiThird" style=""><s class="icon_l"></s><span class="foucs_right" otype="button" otitle="第三方">第三方</span><s class="icon_r"></s><div class="icon_trian"><s></s></div></li></ul>
+					</div>
+				</div><!--{Tab end}-->
+				
+				<div id="contextAll"><!--{Tab内容}-->
+					<div style="display: none;" id="bank_ajaxLoading" class="select_ajax_loading"><img src="https://www.pingan.com/app_images/toubao/v10/general/loading.gif" style="vertical-align:middle;"> 银行列表加载中，请稍候...</div>
+					<!-- {信用卡支付} -->
+					<div id="credit_card" class="con_a" style="">
+						<div class="c_p_d_second3" id="emt_zhifub_Msg" style="display:none;"></div>
+						<p class="font14" id="credit_card_title" style=""><span class="ec7823"><strong>无需开通网银</strong></span>&nbsp;方便快捷，安全可靠，推荐使用! </p>
+						<div style="display: block;" id="creditContent" class="creditContent c">
+							<div id="creditContent1" style="">
+								<div class="creditTitle" style="display:none;"></div>
+								<div id="credit1" class="creditList c">
+									<ul><li><input ptype="billcredit" otype="button" otitle="信用卡-平安银行-信用卡" name="a" class="ra" goothersys="false" value="0001" id="0001" type="radio"><label class="por_label" for="0001"><img class="img_a" otype="button" otitle="信用卡-平安银行-信用卡" value="0001" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0001.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0001.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0001" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-招商银行-信用卡" name="a" class="ra" goothersys="false" value="0004" id="0004" type="radio"><label class="por_label" for="0004"><img class="img_a" otype="button" otitle="信用卡-招商银行-信用卡" value="0004" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0004.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0004.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0004" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中国工商银行-信用卡" name="a" class="ra" goothersys="false" value="0003" id="0003" type="radio"><label class="por_label" for="0003"><img class="img_a" otype="button" otitle="信用卡-中国工商银行-信用卡" value="0003" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0003.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0003.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0003" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中国建设银行-信用卡" name="a" class="ra" goothersys="false" value="0005" id="0005" type="radio"><label class="por_label" for="0005"><img class="img_a" otype="button" otitle="信用卡-中国建设银行-信用卡" value="0005" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0005.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0005.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0005" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中国银行-信用卡" name="a" class="ra" goothersys="false" value="0002" id="0002" type="radio"><label class="por_label" for="0002"><img class="img_a" otype="button" otitle="信用卡-中国银行-信用卡" value="0002" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0002.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0002.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0002" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中国农业银行-信用卡" name="a" class="ra" goothersys="false" value="0007" id="0007" type="radio"><label class="por_label" for="0007"><img class="img_a" otype="button" otitle="信用卡-中国农业银行-信用卡" value="0007" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0007.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0007.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0007" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中国交通银行-太平洋卡" name="a" class="ra" goothersys="false" value="0006" id="0006" type="radio"><label class="por_label" for="0006"><img class="img_a" otype="button" otitle="信用卡-中国交通银行-太平洋卡" value="0006" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0006.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0006.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0006" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-深圳发展银行-信用卡" name="a" class="ra" goothersys="false" value="0014" id="0014" type="radio"><label class="por_label" for="0014"><img class="img_a" otype="button" otitle="信用卡-深圳发展银行-信用卡" value="0014" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0014.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0014.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0014" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-广东发展银行-信用卡" name="a" class="ra" goothersys="false" value="0011" id="0011" type="radio"><label class="por_label" for="0011"><img class="img_a" otype="button" otitle="信用卡-广东发展银行-信用卡" value="0011" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0011.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0011.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0011" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-中信银行-信用卡" name="a" class="ra" goothersys="false" value="0012" id="0012" type="radio"><label class="por_label" for="0012"><img class="img_a" otype="button" otitle="信用卡-中信银行-信用卡" value="0012" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0012.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0012.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0012" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-兴业银行-信用卡" name="a" class="ra" goothersys="false" value="0013" id="0013" type="radio"><label class="por_label" for="0013"><img class="img_a" otype="button" otitle="信用卡-兴业银行-信用卡" value="0013" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0013.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0013.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0013" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-民生银行-信用卡" name="a" class="ra" goothersys="false" value="0010" id="0010" type="radio"><label class="por_label" for="0010"><img class="img_a" otype="button" otitle="信用卡-民生银行-信用卡" value="0010" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0010.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0010.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0010" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-江苏银行-信用卡" name="a" class="ra" goothersys="false" value="0018" id="0018" type="radio"><label class="por_label" for="0018"><img class="img_a" otype="button" otitle="信用卡-江苏银行-信用卡" value="0018" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0018.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0018.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0018" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-大连银行-信用卡" name="a" class="ra" goothersys="false" value="0019" id="0019" type="radio"><label class="por_label" for="0019"><img class="img_a" otype="button" otitle="信用卡-大连银行-信用卡" value="0019" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0019.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0019.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0019" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-上海农商行-信用卡" name="a" class="ra" goothersys="false" value="0017" id="0017" type="radio"><label class="por_label" for="0017"><img class="img_a" otype="button" otitle="信用卡-上海农商行-信用卡" value="0017" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0017.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0017.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0017" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-光大银行-信用卡" name="a" class="ra" goothersys="false" value="0020" id="0020" type="radio"><label class="por_label" for="0020"><img class="img_a" otype="button" otitle="信用卡-光大银行-信用卡" value="0020" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0020.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0020.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0020" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="billcredit" otype="button" otitle="信用卡-宁波银行-信用卡" name="a" class="ra" goothersys="false" value="0021" id="0021" type="radio"><label class="por_label" for="0021"><img class="img_a" otype="button" otitle="信用卡-宁波银行-信用卡" value="0021" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0021.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0021.jpg" title="" alt=""></label><div class="ml16"><p id="hdcb0021" class="a8a4a1 offerMsg"></p></div></li>
+									
+									</ul>
+								</div>
+							</div>
+							<div id="creditContent2" style="">
+								<div class="bg_dashed"></div>
+								<div class="creditTitle">信用卡网银:</div>
+								<div id="credit2" class="creditList c">
+									<ul><li><input ptype="alipayBank" otype="button" otitle="信用卡网银-中国建设银行" name="a" class="ra" goothersys="true" id="wy03" value="03" type="radio"><label class="por_label" for="wy03"><img class="img_a" otype="button" otitle="信用卡网银-中国建设银行" value="wy03" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/03.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/03.jpg" title="" alt=""></label><div class="ml16"><p id="hdncb03" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="信用卡网银-平安银行" name="a" class="ra" goothersys="true" id="wy10" value="10" type="radio"><label class="por_label" for="wy10"><img class="img_a" otype="button" otitle="信用卡网银-平安银行" value="wy10" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/10.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/10.jpg" title="" alt=""></label><div class="ml16"><p id="hdncb10" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="信用卡网银-交通银行" name="a" class="ra" goothersys="true" id="wy06" value="06" type="radio"><label class="por_label" for="wy06"><img class="img_a" otype="button" otitle="信用卡网银-交通银行" value="wy06" src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/06.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/06.jpg" title="" alt=""></label><div class="ml16"><p id="hdncb06" class="a8a4a1 offerMsg"></p></div></li>
+										
+										<li style="" id="btnSelectCreditBankOther">
+											<div class="ml30">
+												<a otype="button" otitle="信用卡网银-选择其他" title="信用卡网银-选择其他" class="other ec7823 font14 selectOtherWy">选择其他</a>
+												<p class="ml16"><a otype="button" otitle="信用卡网银-选择其他" title="信用卡网银-选择其他" class="icon_02 selectOtherWy"></a></p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="mtl_a">
+								<a otype="button" otitle="信用卡-提交" title="信用卡-提交" id="next" class="zhifu_btn"><b class="btn_right">下一步</b></a>
+							</div>
+						</div>
+						<!--信用网银其他银行列表展示-->
+						<div id="creditBankOtherDiv" style="display:none;">
+							<div class="creditContent c otherBankInner">
+								<div id="creditBankOther" class="creditList c otherBankWrap">
+									<ul>
+										
+									</ul>
+								</div>
+								<div class="mtl_a t_center">
+									<a otype="button" otitle="信用卡-提交" title="信用卡-提交" class="zhifu_btn nextOther" id="nextOther"><b class="btn_right">登录网银支付</b></a>
+								</div>
+								<p class="mtl_a">
+									<span class="ec7823 ml20 font14 otherCardMsg">请选择银行!</span>
+								</p>
+								<div class="ceilingMsgOther"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- {借记卡支付} -->
+					<div id="bank_card" class="con_a dn" style="display: none;">
+						<div class="c_p_d_second3" id="emt_zhifuc_Msg" style="display:none;"></div>
+						<div id="bankContent" class="bankContent c">
+							<div id="bankContent1" style="">
+								<div class="bankTitle">个人网银:</div>
+								<div id="credit4" class="bankList c">
+									<ul><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-招商银行" name="b" class="ra" goothersys="true" value="02" id="02" type="radio"><label class="por_label" for="02"><img class="img_a" otype="button" otitle="借记卡-个人网银-招商银行" value="02" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/02.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb02" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-中国工商银行" name="b" class="ra" goothersys="true" value="01" id="01" type="radio"><label class="por_label" for="01"><img class="img_a" otype="button" otitle="借记卡-个人网银-中国工商银行" value="01" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/01.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb01" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-中国建设银行" name="b" class="ra" goothersys="true" value="03" id="03" type="radio"><label class="por_label" for="03"><img class="img_a" otype="button" otitle="借记卡-个人网银-中国建设银行" value="03" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/03.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb03" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-中国农业银行" name="b" class="ra" goothersys="true" value="04" id="04" type="radio"><label class="por_label" for="04"><img class="img_a" otype="button" otitle="借记卡-个人网银-中国农业银行" value="04" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/04.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb04" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-中国银行" name="b" class="ra" goothersys="true" value="29" id="29" type="radio"><label class="por_label" for="29"><img class="img_a" otype="button" otitle="借记卡-个人网银-中国银行" value="29" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/29.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb29" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-平安银行" name="b" class="ra" goothersys="true" value="10" id="10" type="radio"><label class="por_label" for="10"><img class="img_a" otype="button" otitle="借记卡-个人网银-平安银行" value="10" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/10.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb10" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-交通银行" name="b" class="ra" goothersys="true" value="06" id="06" type="radio"><label class="por_label" for="06"><img class="img_a" otype="button" otitle="借记卡-个人网银-交通银行" value="06" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/06.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb06" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-上海浦东发展银行" name="b" class="ra" goothersys="true" value="25" id="25" type="radio"><label class="por_label" for="25"><img class="img_a" otype="button" otitle="借记卡-个人网银-上海浦东发展银行" value="25" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/25.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb25" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-广东发展银行" name="b" class="ra" goothersys="true" value="17" id="17" type="radio"><label class="por_label" for="17"><img class="img_a" otype="button" otitle="借记卡-个人网银-广东发展银行" value="17" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/17.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb17" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-中信银行" name="b" class="ra" goothersys="true" value="27" id="27" type="radio"><label class="por_label" for="27"><img class="img_a" otype="button" otitle="借记卡-个人网银-中信银行" value="27" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/27.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb27" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="alipayBank" otype="button" otitle="借记卡-个人网银-兴业银行" name="b" class="ra" goothersys="true" value="16" id="16" type="radio"><label class="por_label" for="16"><img class="img_a" otype="button" otitle="借记卡-个人网银-兴业银行" value="16" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/16.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb16" class="a8a4a1 offerMsg"></p></div></li>
+										
+										<li style="" id="btnSelectBankOther">
+											<div class="ml30">
+												<a otype="button" otitle="借记卡网银-选择其他" title="借记卡网银-选择其他" class="other ec7823 font14 selectAllBank">选择其他</a>
+												<p class="ml16"><a otype="button" otitle="借记卡网银-选择其他" title="借记卡网银-选择其他" class="selectAllBank icon_02"></a></p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div id="bankContent2" style="display:none;">
+								<div class="bg_dashed"></div>
+								<div class="bankTitle">企业网银:</div>
+								<div id="credit42" class="bankList c">
+									<ul>
+									</ul>
+								</div>
+							</div>
+							<div class="mtl_a">
+								<div class="m_a"><a id="pay_btn_2" class="zhifu_btn" otype="button" otitle="借记卡-登陆网银支付" title="借记卡-登陆网银支付"><b class="btn_right" otype="button" otitle="借记卡-登陆网银支付" title="借记卡-登陆网银支付">登录网银支付</b></a></div>
+								<input id="showDialog" name="showDialog" value="notDiglog" type="hidden">
+							</div>
+						</div>
+						<!--借记卡企业网银其他银行列表展示-->
+						<div id="bankOtherDiv" style="display:none;">
+							<div class="bankContent c otherBankInner">
+								<div id="bankOther" class="bankList c otherBankWrap">
+									<ul>
+										
+									</ul>
+								</div>
+								<div class="mtl_a t_center">
+									<div class="m_a"><a class="zhifu_btn nextOther" otype="button" otitle="借记卡-登陆网银支付" title="借记卡-登陆网银支付" id="pay_btn_2_Other"><b class="btn_right" otype="button" otitle="借记卡-登陆网银支付" title="借记卡-登陆网银支付">登录网银支付</b></a></div>
+								</div>
+								<p class="mtl_a">
+									<span class="ec7823 ml20 font14 otherCardMsg">请选择银行!</span>
+								</p>
+								<div class="ceilingMsgOther"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- {第三方支付} -->
+					<div id="third_party" class="con_a dn" style="display:none;">
+						<div class="c_p_d_second3" id="emt_zhifud_Msg" style="display:none;"></div>
+						<p><span class="ec7823"><strong class="font14">请选择第三方支付平台：</strong></span></p>
+						<div id="thirdPartyContent" class="thirdPartyContent c">
+							<div id="credit5" class="bankList c">
+								<ul><li><input checked="checked" ptype="thirdOnePurse" otype="button" otitle="第三方支付-壹钱包" name="c" class="ra" goothersys="true" value="78" id="78" type="radio"><label class="por_label" for="78"><img class="img_a" otype="button" otitle="第三方支付-壹钱包" value="78" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/78.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb78" class="a8a4a1 offerMsg"></p></div></li><li><input ptype="thirdAlipay" otype="button" otitle="第三方支付-支付宝" name="c" class="ra" goothersys="true" value="12" id="12" type="radio"><label class="por_label" for="12"><img class="img_a" otype="button" otitle="第三方支付-支付宝" value="12" src="/pa18shopemt/payment/images/bank/blank.jpg" realsrc="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/12.jpg" title="" alt=""></label><div class="ml16"><p id="hdnb12" class="a8a4a1 offerMsg"></p></div></li>
+									
+								</ul>
+							</div>
+							<div class="mtl_a">
+								<a otype="button" otitle="第三方支付-提交" title="第三方支付-提交" id="pay_btn_3" class="zhifu_btn"><b class="btn_right" otype="button" otitle="第三方支付-提交" title="第三方支付-提交">下一步</b></a>
+							</div>
+						</div>
+					</div>
+
+				</div><!-- {Tab内容end} -->
+				<div style="display: none;" class="ceilingMsg"></div>
+			</div>
+		</div>
+	</div><!-- {content_a end} -->
+
+	<!-- {支付提示模态对话框} -->
+	<div id="payTipModelBox" style="display:none;">
+		<div class="ml30">
+			<div class="m_a payTipModelBox">
+				<p class="b1">请根据具体情况选择如下操作：</p>
+				<ul class="l_a payStatic">
+					<li class="btnLi"><p><span class="b1">付款成功：</span>您关闭此页面以后，您可以去会员中心查询保单详情。
+						<button onclick="javascript:if(window.top){window.top.location='http://www.pingan.com/ebusiness/member/index.screen';}" id="btn-close" class="close_btn" otype="button" otitle="支付成功" title="支付成功">支付成功</button>
+					</p></li>
+					<li class="btnLi"><p><span class="b1">付款失败：</span>您的银行卡未被扣款，建议您返回支付页面重新选择。
+						<button onclick="$.paui.dialog.close();" id="btn-reste" class="close_btn" otype="button" otitle="重新选择" title="重新选择">重新选择</button>
+					</p></li>
+				</ul>
+				<p class="b1">支付小贴士：</p>
+				<div class="tips l_a">
+					<ul>
+						<li>付款未完成前请不要关闭本页面。 </li>
+						<li class="netBankModel payTipModelLi" style="display:none;">如银行页面没有打开，请您检查您的浏览器是否为允许弹出，并确保已经正确安装了银行的ActiveX安全控件。</li>
+						<li class="netBankModel payTipModelLi" style="display:none;">如您同时打开多个银行支付页面，请确保在一个银行页面完成支付，避免重复支付。</li>
+						<li class="thirdPayModel payTipModelLi" style="display:none;">如第三方支付公司页面没有打开，请您检查您的浏览器是否为允许弹出。</li>
+						<li class="thirdPayModel payTipModelLi" style="display:none;">如您同时打开多个第三方支付公司页面，请确保在一个第三方支付页面完成支付，避免重复支付。</li>
+						<li class="phonePayModel payTipModelLi" style="display:none;">如您长时间未能收到银行的回拨电话，请确保您的手机是否正常接收电话。</li>
+						<li class="btnLi">如您的银行卡已被扣款，但未生成保单，请您不用担心，这可能是由于网络传输问题造成的，请您联系客服，我们将第一时间为您处理。
+						<button onclick="window.open('http://b.qq.com/webc.htm?new=0&amp;sid=4008000000&amp;eid=218808P8z8p8Q8z8q8z8x&amp;o=chexian.pingan.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');return false;" id="btn-qq" class="close_btn" otype="button" otitle="在线客服" title="在线客服">在线客服</button></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div>
+
+				<!-- {content_b} -->
+				<div class="content_b">
+					<div class="wenxintishi">
+						<p><strong>温馨提示：</strong></p>
+						<ul class="l_a">
+							<li>请使用本人信用卡或已由持卡人授权的信用卡进行支付。</li>
+							<li>支付前请确保您的信用卡信用余额足够支付本次保费。</li>
+							<li>如有疑问，请咨询在线客服或拨打服务热线：40088-95512转2。</li>
+						</ul>
+					</div>
+					<div class="mt4">
+						<p><strong>支付遇到问题：</strong></p>
+						<ul class="l_a">
+							<li>通过信用卡无卡支付是否需要开通网上银行?<p>答：选择网上银行付款需要开通网上银行，选择信用卡无卡付款不需要开通网上银行。</p></li>
+							<li>为什么银行卡已经扣款，但没有显示?<p>答：有可能因为网络原因导致，将在第二个工作日进行补单处理。</p></li>
+							<li>如果支付失败，如何继续支付保费？ 
+							<p>答：如果您因为账户余额不足等情况未能支付成功，您可以稍后通过平安网站的“网站会员专区”找回您的投保记录，继续支付。如果您还没有注册，您只要使用您购买保险时使用的email注册成为我们的网站会员，登陆找到您的购买记录即可支付。</p></li>
+							<li>
+								我是企业用户，可以企业网银进行支付吗？
+								<p>答：支持的银行包括：工商银行，招商银行，农业银行，建设银行，中国银行。方法如下：</p>
+								<p>1、请选择第三方，选择支付宝，登陆支付宝界面后，在储蓄卡栏下，选择合适的企业网上银行。</p>
+								<p>2、或者选择第三方，选择财付通，登陆财付通界面后，在网上银行支付栏下，选择合适的企业网上银行。</p>
+								<p>3、或者选择第三方，选择快钱，登陆快钱界面后，在企业网银栏下，选择合适的企业网上银行。</p>
+							</li>
+						</ul>
+					</div>
+				</div><!-- {content_b end} -->
+
+			</div><!-- {content_box m_a} -->
+		</div>

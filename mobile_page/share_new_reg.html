@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>注册--全联保险经纪网</title>
+<link rel="stylesheet" href="../mobile/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../mobile/dist/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../mobile/dist/layer.m/need/layer.css">
+<link rel="stylesheet" href="../mobile/dist/css/style.css">
+</head>
+
+<body>
+<div class="container-fluid " id="head_top">
+    <div class="s-bg-ed462f g-lh60 g-wA100 f-cb s-c-ffffff">
+        <span class="f-fl"><i class="fa fa-angle-left fa-2x f-vam"></i><span class="f-ml5 f-fs3 f-fwb">注册</span></span>
+        <span class="f-fr f-mr10"></span>
+    </div>
+</div>
+<div class="container-fluid" style="background:#f6e4d8; ">
+	 
+	<div class="container">
+    	  
+         		<div class="f-pt20" align="center">
+                	<img src="images/share_reg_login/baner_02.png" class="img-responsive"> 
+                </div>
+                <div class="f-pt20" align="center">
+                	<img src="images/share_reg_login/images_02.png" class="img-responsive"> 
+                </div>
+         
+         
+         
+         <div class="f-pb10 f-pt20">
+         	<a class="btn btn-ed462f btn-block f-pt10 f-pb10" id="reg_html" href="#">我要注册</a>
+         </div>
+    </div>
+    
+</div>
+<script src="../mobile/dist/js/jquery.min.js"></script>
+<script src="../mobile/dist/js/bootstrap.min.js"></script>
+<script src="../mobile/dist/js/html5shiv.min.js"></script>
+<script src="../mobile/dist/js/respond.min.js"></script>
+<script src="../mobile/dist/js/stickUp.min.js"></script>
+<script src="../mobile/dist/layer.m/layer.m.js"></script>
+<script src="../mobile/dist/js/public.js"></script>
+<script type="text/javascript">
+	jQuery(function($) {
+		$(document).ready( function() {
+		  //enabling stickUp on the '.navbar-wrapper' class
+		  $('#head_top').stickUp();
+		});
+	});
+ 	var uid  = getUrlParam("uid");
+	$('#reg_html').attr("href",'../mobile_page/reg.html?uid='+uid);
+</script>
+</body>
+</html>

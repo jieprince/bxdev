@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>全联保险经纪 管理中心 - 银行账户列表 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="bank_account.php?act=account_add">
+添加新账户</a></span>
+<span class="action-span1"><a href="index.php?act=main">全联保险经纪 管理中心</a> </span><span id="search_id" class="action-span1"> - 银行账户列表 </span>
+<div style="clear:both"></div>
+</h1>
+<!-- 银行账户列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+    <script> 
+	  function ConfirmDel() {
+		  if (confirm("真的要删除吗？")){
+			 return true;
+		   }else{
+			 return false;
+          }
+	   }
+	</script>
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>户名 </th>
+    <th>开户银行</th>
+    <th>开户行分行支行</th>
+    <th>账号</th>
+    <th>操作</th>
+  </tr>
+    {foreach from=$bank item=bankAccount} 
+	<tr>
+    <td align="center">{$bankAccount.bank_name}</td>
+    <td class="first-cell" align="center">{$bankAccount.b_account}</td>
+    <td align="center">{$bankAccount.sub_branch}</td>
+    <td align="center">{$bankAccount.bank_code}</td>
+    <td align="center">
+      <a href="bank_account.php?act=edit&bid={$bankAccount.bid}" title="编辑"><img src="images/icon_edit.gif" width="16" height="16" border="0" /></a>
+	  <a href="bank_account.php?act=drop&bid={$bankAccount.bid}" title="删除"><img src="images/icon_drop.gif" width="16" height="16" border="0" onclick="return ConfirmDel()"/></a>
+   </tr>
+  {/foreach}
+ </table>
+<!-- end goods list -->
+</div>
+</form>
+<div id="footer">
+<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+<!-- 新订单提示信息 -->
+<div id="popMsg">
+  <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#cfdef4" border="0">
+  <tr>
+    <td style="color: #0f2c8c" width="30" height="24"></td>
+    <td style="font-weight: normal; color: #1f336b; padding-top: 4px;padding-left: 4px" valign="center" width="100%"> 新订单通知</td>
+    <td style="padding-top: 2px;padding-right:2px" valign="center" align="right" width="19"><span title="关闭" style="cursor: hand;cursor:pointer;color:red;font-size:12px;font-weight:bold;margin-right:4px;" onclick="Message.close()" >×</span><!-- <img title=关闭 style="cursor: hand" onclick=closediv() hspace=3 src="msgclose.jpg"> --></td>
+  </tr>
+  <tr>
+    <td style="padding-right: 1px; padding-bottom: 1px" colspan="3" height="70">
+    <div id="popMsgContent">
+      <p>您有 <strong style="color:#ff0000" id="spanNewOrder">1</strong> 个新订单以及       <strong style="color:#ff0000" id="spanNewPaid">0</strong> 个新付款的订单</p>
+      <p align="center" style="word-break:break-all"><a href="order.php?act=list"><span style="color:#ff0000">点击查看新订单</span></a></p>
+    </div>
+    </td>
+  </tr>
+  </table>
+</div>
+</body>
+</html>

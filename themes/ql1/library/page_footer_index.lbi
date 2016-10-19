@@ -1,0 +1,76 @@
+<!-- {if $smarty.session.is_iframe neq 1}-->
+<div class="f-mt40"></div>
+<div class="t-g-wA100 s-bg-ffffff f-pt30 f-pb30">
+    <div class="g-w1200 f-cb f-mc">
+        <div class="f-fl t-end-l">
+          {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav}
+            <dl>
+            	<dt><a href="javascript:;">{$nav.name} </a></dt>
+             		{foreach name=name from=$nav.child_nav_list item=item}
+                		<dd><a href="javascript:;">{$item.name}</a></dd>
+                    {/foreach}
+            </dl>
+          {/foreach}
+        
+        </div>
+        <div class="f-fr">
+            <div class="f-fl f-mr15">
+                <p class="s-c-040404 f-fs3 f-tar f-mt10">联系我们</p>
+                <strong class="f-fs5 f-ff0 f-mt10 f-mb10 f-tar f-fr">{$service_phone}</strong>
+                <p class="s-c-040404 f-fs3 f-tar">{$service_email}</p>
+            </div>
+            <div class="f-fl"><img src="images/weixin_img.png" width="98" height="98" /></div>
+
+        </div>
+    </div>
+</div>
+<div class="t-g-wA100 s-bg-008c7d f-pt30 f-pb40">
+    <div class="g-w1200 f-mc s-c-aaaaaa">
+        <div class="f-mb20">AALIANCE INSURANCE BROKERS CO,LTD  ©  All rights reserved.
+            <a class="t-link-aaaaaa f-pl10" target="_blank" href="http://www.miitbeian.gov.cn/">{$icp_number}</a>
+            <script type="text/javascript">
+                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1256835151'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256835151' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+        </div>
+        <div class="f-cb">
+            <div class="f-fl f-fs4 f-mr20 s-lh25 g-80 f-db">友情链接</div>
+            <div class="f-fl s-lh25 g-w1100">
+            
+            {foreach from=$txt_links item=item name=name}
+            	{if $smarty.foreach.name.iteration lt 8}
+            	<a href="{$item.url}" class="t-link-aaaaaa" target="_blank">{$item.name}</a>
+            	{if $smarty.foreach.name.iteration lt 7}
+            	 <span class="f-pr5 f-pl5">|</span>
+            	 {/if}
+            	{/if}
+            {/foreach}
+        <!--     
+                
+                <span class="f-pr5 f-pl5">|</span><a href="javascript:;" class="t-link-aaaaaa" target="_blank">自驾租车</a>
+                <span class="f-pr5 f-pl5">|</span> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div id="share">
+     <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=3193389429&Site=QQ客服&Menu=yes>
+        <i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>①</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2017415521&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>②</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2733867915&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>③</span>
+    </a>
+    <a id="totop" title=""><i class="iconfont">&#xf02aa;</i></a>
+</div>	
+
+
+
+<!-- {/if} -->
+</body>
+</html>

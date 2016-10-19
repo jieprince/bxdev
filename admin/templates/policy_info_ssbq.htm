@@ -1,0 +1,306 @@
+<script type="text/javascript" src="../dist/js/plugin/layer/layer.js"></script>
+   <!--#保单详情界面 start-->
+   
+       <h5><span>投保单信息</span></h5>
+       <div class="blank"></div>
+       <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+	   
+	      <tr align="center">
+		 
+            <td bgcolor="#ffffff">订单id</td>
+            <td bgcolor="#ffffff"><a href="order.php?act=info&order_id={$policy.order_id}">{$policy.order_id}</a></td>
+			
+			<td bgcolor="#ffffff">订单号</td>
+            <td bgcolor="#ffffff"><a href="order.php?act=info&order_id={$policy.order_id}">{$policy.order_sn}<a></td>
+			
+		 </tr>
+		 
+	     <tr align="center">
+		 
+            <td bgcolor="#ffffff">投保单id</td>
+            <td bgcolor="#ffffff">{$policy.policy_id}</td>
+            
+			
+            <td bgcolor="#ffffff">
+            	{if $user_info_applicant.applicant_type eq 1}	
+            		投保人
+            		{else}
+            		投保单位（公司）
+            	{/if}
+            </td>
+            <td bgcolor="#ffffff">{$user_info_applicant.fullname}</td>
+			
+		 </tr>
+		{if $user_info_applicant.applicant_type eq 2}	
+		  <tr align="center">
+  
+            <td bgcolor="#ffffff">联系人</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.cus_contact}</td>
+			
+			<td bgcolor="#ffffff"></td>
+            <td bgcolor="#ffffff"></td>
+			
+          </tr>
+		{/if}
+		
+		
+		
+		{if $user_info_applicant.applicant_type eq 1}		  
+		  <tr align="center">
+  
+            <td bgcolor="#ffffff">证件类型</td>
+            <td bgcolor="#ffffff">
+            {$policy.attr_certificates_type_ssbq[$user_info_applicant.certificates_type]}
+            
+            </td>
+			
+			<td bgcolor="#ffffff">证件号码</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.certificates_code}</td>
+			
+          </tr>
+		{/if}
+		  <tr align="center">
+  
+            <td bgcolor="#ffffff">手机号码</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.mobiletelephone}</td>
+			
+			<td bgcolor="#ffffff">email</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.email}</td>
+			
+          </tr>
+    	
+    	
+    	  <tr align="center">
+            <td bgcolor="#ffffff">律师事务所</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.law_office}</td>
+			
+			<td bgcolor="#ffffff">地址</td>
+            <td bgcolor="#ffffff">{$user_info_applicant.address}</td>
+          </tr>
+          <tr align="center">
+            <td bgcolor="#ffffff">保险起期</td>
+            <td bgcolor="#ffffff">{$policy.start_date}</td>
+            <td bgcolor="#ffffff">保险止期</td>
+            <td bgcolor="#ffffff">{$policy.end_date}</td>
+          </tr>          
+        <tr align="center">
+            <td bgcolor="#ffffff">保单号</td>
+            <td bgcolor="#ffffff">
+			<!--{if $policy.policy_no}-->
+			<a href ="policy.php?act=getpolicyfile&policy_id={$policy.policy_id}" target="_blank">{$policy.policy_no}</a>
+			<!--{else}-->
+			<form id="fileupload" action="policy.php?act=policy_pdf_upload" method="POST" enctype="multipart/form-data">
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+      
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+      
+        {if $policy.policy_status eq 'payed'}
+        
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                 
+            
+			<input name="policy_id" id="policy_id" value="{$policy.policy_id}" type="hidden">	
+			
+			<span>电子保单号：</span>  
+			<input type="text" name="policy_no" id="policy_no" placeholder="输入电子保单号" >
+			
+			<span>电子保单文件：</span>
+			<input type="file" id="input_policy_pdf" name="input_policy_pdf" />
+			
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>上传</span>
+                </button>
+			
+                <span class="fileupload-process"></span>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        
+        {/if}
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </form>
+			
+			<!--{/if}-->
+			</td>
+            <td bgcolor="#ffffff">保单状态</td>
+            <td bgcolor="#f567ff">{$policy.policy_status_str}</td>
+          </tr>
+		  
+		  
+          <tr align="center">
+            <td bgcolor="#ffffff">业务类型</td>
+            <td bgcolor="#ffffff">{$policy.business_type_str}</td>
+            <td bgcolor="#ffffff">代理人</td>
+            <td bgcolor="#ffffff">
+            	<a href="account_log.php?act=list&user_id={$policy.agent_uid}" target="_blank"> 
+            		{$policy.agent_username}
+            	</a>
+            </td>
+          </tr>
+          <tr align="center">
+            <td bgcolor="#ffffff">时间</td>
+            <td bgcolor="#ffffff">{$policy.dateline_str}</td>
+			 <td bgcolor="#ffffff">操作</td>
+            
+			<td bgcolor="#ffffff">
+			
+				
+				{if $policy.pay_status neq 2 }
+						<a href="javascript:set_rate();">设置费率</a>
+						<script type="text/javascript">
+						$(function() {
+							window.__Object_toJSONString = Object.prototype.toJSONString;
+							delete Object.prototype.toJSONString;
+							});
+						
+						
+							function set_rate(){
+							   
+								layer.open({
+								    type: 1,
+								    title:'设置费率',
+								    btn: ['确定', '取消'], //可以无限个按钮
+								    skin: 'layui-layer-rim', //样式类名
+								    closeBtn: 0, //不显示关闭按钮
+								    shift: 0,
+								    area: ['320px', '220px'], //宽高
+								    shadeClose: true, //开启遮罩关闭
+								    content: $("#set_rate_div"),
+								    yes: function(index, layero){ //或者使用btn1
+								       var parm = $("#set_rate_form").serialize();
+								       $.ajax({
+								    	   type: "POST",
+								    	   url: "policy.php",
+								    	   data: parm,
+								    	   success: function(res){
+								    		   res =  $.parseJSON(res)
+								    		   if(res.code==0){
+								    			   alert("操作成功");
+								    			   location=location;
+								    		   }
+								    		   else{
+								    			   alert("操作失败");
+								    		   }
+								    	   }
+								    	});
+								    	
+								    },cancel: function(index){ //或者使用btn2
+								        //按钮【按钮二】的回调
+								    }
+								    
+								});
+								
+							}
+						
+						</script>
+						
+				{/if}
+				
+				{if $policy.policy_status eq 'insured'}
+					<a href="policy.php?act=getpolicyfile&policy_id={$policy.policy_id}">电子保单</a>
+				{/if}
+				
+			</td>
+          </tr> 
+		   
+          </table>
+
+
+		  <h5><span>产品费用费率</span></h5>
+		  <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+             <tr align="center">
+                <td bgcolor="#ffffff">保费</td>
+                <td bgcolor="#ffffff">订单服务费率</td>
+                <td bgcolor="#ffffff">推荐服务费率</td>
+                <td bgcolor="#ffffff">渠道服务费率</td>
+              </tr>
+
+              <tr align="center">
+                <td bgcolor="#ffffff">{$policy.total_premium}</td>
+                <td bgcolor="#ffffff">{$policy.rate_myself}%</td>
+                 <td bgcolor="#ffffff">{$policy.rate_recommend}%</td>
+                 <td bgcolor="#ffffff">{$policy.rate_organization}%</td>
+              </tr>
+       
+          </table>
+
+
+
+		
+		<!--{foreach from=$list_subject key=key item=subject}-->  
+		  <h5><span>产品</span></h5>
+		  <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+	    <!--{if $policy.attribute_type !='Y502' }-->
+             <tr align="center">
+                <td bgcolor="#ffffff">产品名</td>
+                <td bgcolor="#ffffff">最小投保年龄</td>
+                <td bgcolor="#ffffff">最大投保年龄</td>
+                <td bgcolor="#ffffff">投保周期</td>
+              </tr>
+              
+            <!--{foreach from=$subject[list_subject_product] item=product}-->
+              <tr align="center">
+                <td bgcolor="#ffffff"><a href="../goods.php?ins_product_id={$product.product_id}" target="_blank">{$product.product_name}</a></td>
+                <!--
+                <td bgcolor="#ffffff">{$product.premium}</td>
+                -->
+                
+                <td bgcolor="#ffffff">{$product.age_min}</td>
+                <td bgcolor="#ffffff">{$product.age_max}</td>
+                 <td bgcolor="#ffffff">{$product.period}</td>
+                
+                
+              </tr>
+            <!--{/foreach}-->
+		<!--{/if}-->  
+          </table>
+   <!--{/foreach}-->
+ 
+<div id="set_rate_div" style="display: none;">
+	<form action="policy.php" method="post" id="set_rate_form">
+	<input type="hidden" name="act" value="set_rate">
+	<input type="hidden" name="policy_id" value="{$policy.policy_id}">
+	<table style="margin-left: 50px;">
+		<tr>
+			<td align="right">保费</td>
+			<td>
+				<input type="text" name="total_premium" value="{$policy.total_premium}" style="width: 50px;" >元
+			</td>
+		</tr>
+		<tr>
+			<td align="right">订单服务费率</td>
+			<td>
+				<input type="text" name="rate_myself" value="{$policy.rate_myself}" style="width: 50px;">%
+			</td>
+		</tr>
+		<tr>
+			<td align="right">推荐服务费率</td>
+			<td>
+				<input type="text" name="rate_recommend" value="{$policy.rate_recommend}" style="width: 50px;">%
+			</td>
+		</tr>
+		<tr>
+			<td align="right">渠道服务费率</td>
+			<td>
+				<input type="text" name="rate_organization" value="{$policy.rate_organization}" style="width: 50px;">%
+			</td>
+		</tr>
+		
+	</table>
+	</form>
+	</div>

@@ -1,0 +1,150 @@
+{include file='header.dwt'}
+<body>
+<header class="container-fluid f-pt15 f-pb15">
+	<div style="display: none;">
+		<img src="images/sm_logo.png" width="300" height="300">
+	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-7 f-pl0 f-pr0">
+                <img src="images/logo.png" class="img-responsive">
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-5 f-pl0 f-pr0 f-tar" align="right">
+                {if $smarty.session.user_id}
+                <a href="user.php" class="btn btn-default btn-sm">用户中心</a>
+                {else}
+            	<a href="../mobile_page/login_reg.html" class="btn btn-default btn-sm">登录/注册</a>
+                {/if}
+
+            </div>
+        </div>
+    </div>
+</header>
+<div align="center">
+	<a href="../baoxian/cp.php?ac=product_buy&product_id=170&gid=122">
+    <img src="image/banner_01.png" class="img-responsive"></a>
+</div>
+<div class="container-fluid f-pt20 f-pb20 img_bg">
+    <div class="container">
+        <div class="row">
+        {foreach from=$navigator_list.weixin item=item name=name}
+        	{if $smarty.foreach.name.iteration lt 4}
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="{$item.url}"><img src="../{$item.icon}" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    {$item.name}
+                </div>
+            </div>
+            {/if}
+        {/foreach}    
+
+        </div>
+        
+        
+        <div class="row f-mt20">
+        	<div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="javascript:window.close();"><img src="images/3-3.png" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 微信咨询
+                </div>
+            </div>
+          {foreach from=$navigator_list.weixin item=item name=name}
+        	{if $smarty.foreach.name.iteration == 7 }
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="{$item.url}"><img src="../{$item.icon}" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 {$item.name}
+                </div>
+            </div>
+              {/if}
+              {/foreach}  
+              <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="../mobile_page/qq_html.html"><img src="images/4-4.png" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 QQ咨询
+                </div>
+            </div> 
+
+        </div>
+        
+        
+       <div class="row f-mt20">
+          {foreach from=$navigator_list.weixin item=item name=name}
+        	{if  $smarty.foreach.name.iteration ==5}
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="{$item.url}"><img src="../{$item.icon}" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 {$item.name}
+                </div>
+            </div>
+            {elseif  $smarty.foreach.name.iteration ==6}
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="{$item.url}"><img src="../{$item.icon}" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 {$item.name}
+                </div>
+            </div>
+            {elseif  $smarty.foreach.name.iteration ==8}
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="{$item.url}"><img src="../{$item.icon}" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    	 {$item.name}
+                </div>
+            </div>
+              {/if}
+              {/foreach}   
+
+        </div>
+        
+        
+<!--         <div class="row f-mt20">
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="tel:02165667179"><img src="image/icon_05.png" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    一键通话
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="get_module.php?module_id=liuyan"><img src="image/icon_06.png" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    在线咨询
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-4 f-pl5 f-pr5" align="center">
+                <div>
+                    <a href="get_module.php?module_id=lianxiwomen"><img src="image/icon_07.png" class="img-responsive"></a>
+                </div>
+                <div class="f-mt5 f-fs1 s-c-444444">
+                    联系我们
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+    <div class="f-pt20" align="center">
+    	<a href="get_module.php?module_id=zixun_one&a_id=195"><img src="images/2.jpg" class="img-responsive"></a>
+    </div>
+	<div class="f-pt10" align="center">
+    	<a href="get_module.php?module_id=zixun_one&a_id=196"><img src="images/5.jpg" class="img-responsive"></a>
+    </div>
+</div>
+
+</body></html>

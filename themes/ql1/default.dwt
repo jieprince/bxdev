@@ -1,0 +1,234 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100">
+	<div class="index_focus">
+
+        <a href="javascript:;" class="index_focus_pre" title="上一张">上一张</a>
+        <a href="javascript:;" class="index_focus_next" title="下一张">下一张</a>
+        
+        <div class="bd">
+            <ul>
+	            {foreach from=$flash_data item=item}
+	            
+	                <li>
+	                    <a href="{$item.img_url}" class="pic">
+	                         
+	                        <img class="pic" src="{$item.img_file_src}" width="2000" height="340" alt="">
+	                    </a>
+	                </li>
+	            {/foreach}
+            </ul>
+        </div>
+        
+        <div class="slide_nav" align="center">
+        	{foreach from=$flash_data item=item key=n name=name}
+        	 	{if $smarty.foreach.name.iteration eq 1}
+	            	<a class="on" href="javascript:;">●</a>
+	            	{else}
+	            	<a href="javascript:;">●</a>
+	            {/if}
+            {/foreach}
+        </div>
+        
+    </div>
+</div>
+<div class="g-wA100 f-mt40">
+	<div class="g-w1000 f-mc">
+    	<div class="s-bg-title g-h35 f-tac s-bscB_008fc7">
+        	<span class="s-c-ffffff f-fs4 s-lh35">主要</span><span class="s-c-ffffff f-fs4">产品</span>
+        </div>
+<!--         <div class="f-mt15 s-lh20 f-fs2 s-c-666666 f-tac">
+        	企业保险服务简要描述企业保险服务简要描述企业保险服务简要描述<br>
+企业保险服务简要描述企业保险服务简要描述
+        </div> -->
+        <div class="f-mt30">
+        	<table cellpadding="0" cellspacing="0" class="box_shadow">
+            	<!--<tr>
+                	<td rowspan="2">
+                    	<div class="box_shadow_a1">
+                        	<img src="{$bx_services[0].article_img}" title="{$bx_services[0].title}" width="217px;" height="272">
+                            <div class="g-paT260 s-c-ffffff f-ml25">
+                                <a href="article.php?act=product_article&id={$bx_services[0].article_id}">
+                                <span >
+                                    <span class="f-db f-fs4 s-bscB_ffffff f-pb10">{$bx_services[0].title}</span>
+                                    <span class="f-db f-fs2 f-mt10 s-c-ffffff"> {$bx_services[0].desc}</span>
+                                </span>
+                               </a>
+                           </div>
+                           <div class="g-paT360"></div>
+                           <div class="g-paT460 s-c-ffffff f-ml25">
+                                <a href="article.php?act=product_article&id={$bx_services[1].article_id}">
+                                <span>
+                                    <span class="f-db f-fs4 s-bscB_ffffff f-pb10">{$bx_services[1].title}</span>
+                                    <span class="f-db f-fs2 f-mt10 s-c-ffffff"> {$bx_services[1].desc}</span>
+                                </span>
+                               </a>
+                           </div>
+                        </div>
+                        
+                    </td>
+                   </tr>  -->
+                    {foreach from=$bx_services item=item name=name}
+                    {if $smarty.foreach.name.iteration eq 4}
+                    <tr><td height="20" colspan="3"></td></tr>		
+                    <tr>
+                    			  
+                    	<td width="320">
+                                <div class="box_shadow_a2" style="background:#e8fff7">{$item.discription}
+                                    <a href="article.php?act=product_article&id={$item.article_id}">
+                                    <img src="{$item.article_img}" width="320px;" height="167">
+                                    <span class="g-paT35 s-c-ffffff f-ml10">
+                                        <span class="f-db f-fs4 s-bscB_ececec f-pb10"><span class="s-c-000000">{$item.title}</span></span>										
+                                        <span class="f-db f-fs2 f-mt10 s-c-999999">{$item.description}</span>
+                                    </span>
+                                    <span class="g-paT25"><i class="iconfont">&#xf005f;</i></span> 
+                                    </a>
+                                </div>
+                            </td>
+                    		{else}
+	                    	<td {if $smarty.foreach.name.iteration neq 1} class="f-pl20" {/if} width="320">{$item.discription}
+		                    	<div class="box_shadow_a2" style="background:#e8fff7">
+		                    		<a href="article.php?act=product_article&id={$item.article_id}">
+                                    <img src="{$item.article_img}" width="320px;" height="167">
+                                    <span class="g-paT35 s-c-ffffff f-ml10">
+                                        <span class="f-db f-fs4 s-bscB_ececec f-pb10"><span class="s-c-000000">{$item.title}</span></span>										
+                                        <span class="f-db f-fs2 f-mt10 s-c-999999">{$item.description}</span>
+                                        {if $smarty.foreach.name.iteration eq 1}<span class="g-paT25-1"><i class="iconfont">&#xf005f;</i></span> {/if}
+                                    </span> 
+                                    </a>
+                                </div>
+		                    </td>
+                    		{/if}
+                    {/foreach}
+                      </tr>
+            </table>
+        </div>
+        
+        <div class="f-cb">
+        	<div class="f-fl g-w474">
+            	<div class="f-cb s-bscB_008fc7 f-mt67 f-pb15">
+                	<span class="f-fl s-c-008fc7 f-fs4">
+                    	新闻动态
+                    </span>
+                    <span class="f-fr">
+                    	<a href="category.php?act=article_list&cat_id=44&article_type=information" class="link-777777 f-fs2 f-ib f-pt5">更多 ></a>
+                    </span>
+                </div>
+                <div class="f-mt10">
+                	<ul>
+                	{foreach from=$new_article.article_list item=item}
+	                        <li class="f-pt10">
+	                            <div class="f-cb">
+	                                <div class="f-fl g-w150">
+	                                    <a href="article.php?act=article_detail&article_type=information&id={$item.article_id}"><img src="{$item.article_img}" width="147" height="97"></a>
+	                                </div>
+	                                <div class="f-fr g-w300 f-mt5">
+	                                    <h2>
+	                                        <a href="article.php?act=article_detail&article_type=information&id={$item.article_id}" class="link-777777 f-fs3 f-db g-w300 f-toe">{$item.title}</a>
+	                                    </h2>
+	                                    <section class="f-mt10 s-lh20 s-c-777777">
+	                            			{$item.description|truncate:66}
+	                                    </section>
+	                                </div>
+	                            </div>
+	                        </li>
+                    {/foreach}
+                    </ul>
+                </div>
+            </div>
+            <div class="f-fr g-w490">
+            	<div class="f-cb s-bscB_008fc7 f-mt67 f-pb15">
+                	<span class="f-fl s-c-008fc7 f-fs4">
+                    	行业资讯
+                    </span>
+                    <span class="f-fr">
+                    	<a href="category.php?act=article_list&cat_id=47&article_type=information" class="link-777777 f-fs2 f-ib f-pt5">更多 ></a>
+                    </span>
+                </div>
+                <div class="f-mt10">
+                	<ul>
+                        <li class="f-pt10">
+                            <div class="f-cb">
+                                <div class="f-fl g-w150">
+                                    <a href="article.php?act=article_detail&id={$hy_article.article_list[0].article_id}&article_type=information"><img src="{$hy_article.article_list[0].article_img}" width="147" height="97"></a>
+                                </div>
+                                <div class="f-fr g-w300 f-mt5">
+                                    <h2>
+                                        <a href="article.php?act=article_detail&id={$hy_article.article_list[0].article_id}&article_type=information" class="link-777777 f-fs3 f-db g-w300 f-toe">{$hy_article.article_list[0].title}</a>
+                                    </h2>
+                                    <section class="f-mt10 s-lh20 s-c-777777">
+                                    	{$hy_article.article_list[0].description|truncate:66}
+                                    </section>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="s-bg-008fc7 f-pA20  f-mt20 s-lh25">
+                	<ul>
+                		{foreach from=$hy_article.article_list item=item name=name}
+                		{if $smarty.foreach.name.iteration neq 1}
+                    	<li>
+                        	<div class="f-cb">
+                            	<div class="f-fl g-w370">
+                                	<a href="article.php?act=article_detail&id={$item.article_id}&article_type=information" class="link-ffffff f-fs2 g-w370 f-db f-toe"><i class="iconfont f-fs0-6 f-vam f-mr5">&#xf01c4;</i>{$item.title}</a>
+                                </div>
+                                <div class="f-fr g-w80 f-tar f-fs2 s-c-ffffff">
+                                	{$item.formated_add_time}
+                                </div>
+                            </div>
+                        </li>
+                        {/if}
+                        {/foreach}    
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="s-bg-title g-h35 f-tac s-bscB_008fc7 f-mt80">
+        	<span class="s-c-ffffff f-fs4 s-lh35">常见</span><span class="s-c-ffffff f-fs4">问题</span>
+        </div>
+        <div>
+            <div class="f-mt30">
+                <ul class="m-list-1 f-cb" id="que_titleList">
+                    
+                	{foreach from=$article_cat_list key=key item=item}
+                     {if $key<7}
+	                 	<li><a {if $key==0} class="pactive" {/if} href="javascript:change_index_faq({$item.cat_id});"><i class="iconfont">&#xf01c4;</i>{$item.cat_name}</a></li>
+                     {/if}
+                    	 
+	                {/foreach}
+                </ul>
+            </div>
+		 <div id="faq_content" class="f-mt20" style="height:320px">
+	         <!-- #BeginLibraryItem "/library/en_index_faq.lbi" --><!-- #EndLibraryItem -->
+         </div>
+        </div>
+        
+        <div class="g-h35 f-tac s-bscB_008fc7 f-mt80 f-pb10">
+        	<span class="s-c-008fc7 f-fs4 s-lh35">合作伙伴</span>
+        </div>
+        <div class="f-mt45">
+        	<div class="box">
+                <div class="picbox">
+                    <ul class="piclist mainlist">
+                 <!--开始图片类型的友情链接{foreach from=$img_links item=link}-->
+                      <li><a href="{$link.url}" target="_blank"><img src="{$link.logo}" width="115" height="105" alt="{$link.name}"/></a></li>
+                     <!--结束图片类型的友情链接{/foreach}-->
+                    </ul>
+                    <ul class="piclist swaplist"></ul>
+                </div>
+                <div class="og_prev"></div>
+                <div class="og_next"></div>
+            </div>
+        </div>
+         
+    </div>
+</div>
+<script>
+    function show_userlogin(){
+
+    }
+</script>
+<!-- #BeginLibraryItem "/library/en_page_footer_1.lbi" --><!-- #EndLibraryItem -->
+

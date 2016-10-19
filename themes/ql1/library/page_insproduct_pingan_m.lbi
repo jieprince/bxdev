@@ -1,0 +1,63 @@
+ 
+				
+                    <div class="xqcont">
+					
+					 
+                    {if $ins_product_list}
+					    <div class="xq_title2">
+						选择产品：
+						
+						<!--{foreach from=$ins_product_list key=key item=value}-->
+                            <span class="plan current">
+							<a href="goods.php?id={$goods.goods_id}&ins_id={$key}">{$value[product_name]}</a>
+							</span>
+                            
+						<!--{/foreach}-->	
+                        </div>
+						{/if}
+                        <div class="dataForm">
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                  
+								    <input type="text" id="max" value="1" style="display:none"><input type="text" id="min" value="" style="display:none">
+                                  
+								  <!--
+								    <li class="app_li"><label>保单生效时间：</label><p><input id="effectivedate" type="text" value="{$ins_product[]}" name="effectiveStartDate" class="date"> 0时起</p></li>
+									<li class="app_li"><label>保单终止时间：</label><p><input id="enddate" type="text" value="" readonly="readonly" name="enddate" class="date"> 24时止</p></li>                    -->
+									
+                                    <li class="app_li">
+									<label>保险期限：</label>
+									<p><label>{$ins_product.period}个月</label></p>
+									</li>
+                                 
+								    <li class="app_li"><label>承保年龄：</label>
+									<p><label>{$ins_product.age_min}-{$ins_product.age_max}周岁</label> <select id="00000000000000002854_TextAge" name="TextAge_app" style="display:none"><option value="60D-6Y">60天-6周岁</option></select></p></li>
+									
+									<li class="app_li">
+									<label>份数：</label>
+									<p><label>每人限1份</label> 
+									{$ins_product.number}
+									</p>
+									</li>
+									
+								
+									
+                                </ul> 
+                            <div class="buyBar">
+                                 
+								<!-- 
+                                <input type="button" class="buyBtn" value="立即购买" id="baoxian_an">
+                                <input type="button" value="" class="buyBtn disBuyBtn" disabled="disabled"/> 
+                                <input type="submit" id="buy_submit" class="btn_products_02_01 margin_T0_50" value="立即投保" >
+                                <input type="text" id="Prop2" value="" style="display:none">
+                                <input type="text" id="SupplierCode" value="2049" style="display:none">
+                                <input type="hidden" value="230.00" id="prodcutMarkPrice" name="prodcutMarkPrice">-->
+                            </div>
+                        </div>
+                       
+                      </div>
+                    </div>
+					
+					
+					
+					

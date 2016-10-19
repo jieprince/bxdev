@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>国寿学生儿童保险计划，六一儿童节，吉林首发，多重保障，仅需百元！</title>
+    <link rel="stylesheet" href="../mobile_page/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../mobile_page/dist/css/style_guoshou_mobile.css?1">
+    <link rel="stylesheet" href="../mobile_page/dist/fonts/font-awesome/css/font-awesome.min.css">
+    <script src="../mobile_page/dist/js/jquery.min.js"></script>
+	<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+    <script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+    <script src="../mobile_page/dist/js/respond.min.js"></script>
+    <script type="text/javascript" src="js/checkedweixin.js"></script>
+    <script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/MSClass.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <style>
+    	.layermchild h3{margin: 0;}
+    </style>
+</head>
+ 
+<body>
+<script>
+	document.addEventListener('WeixinJSBridgeReady',
+		function onBridgeReady() {WeixinJSBridge.call('showOptionMenu');WeixinJSBridge.call('showToolbar');});
+</script>
+<div class="container-fluid">
+	<header>
+    	<div id='wx_pic' style='margin:0 auto;display:none;'>
+            <img src='../mobile_page/images/guoshou_xueping/app/banner01.png' />
+            <h1>国寿学生儿童保险计划，六一儿童节，吉林首发，多重保障，仅需百元！</h1>
+        </div>
+    </header>
+	<div class="container">
+        <div class="header">
+            <a class="back" href="javascript:history.back();"></a>
+            <span class="headline">中国人寿学生儿童保险计划</span>
+             
+        </div>
+    </div>
+    <input type="hidden" id="sessionuid" value="{$smarty.session.user_id}">
+    <input type="hidden" id="is_cheack" value="{$smarty.session.is_cheack}">
+    <div class="bg_img_c max_wid_c ">
+
+        <div class="mar_T58">
+            <img src="../mobile_page/images/guoshou_xueping/app/banner01.png" class="img-responsive">
+        </div>
+
+        <div class="">
+        	<form method="post" action="../baoxian/cp.php?ac=product_buy&product_id=61&gid=74">
+             <div class="bg_fb5d07 line_h40">
+             	  <span class="text_c_ffffff font_14 font_bolder mar_L30">国寿学生儿童保险计划（儿童版）</span>
+             </div>
+             <div class="border_LRB9a9a9a mar_LR10 padd_B30">
+             	 <div class="">
+                 	<span class="zhuanti_title">
+                    	产品简介
+                    </span>
+                 </div>
+                 <div class="padd_A10 ">
+                      <span class="text_c_666666 font_12 line_h25">
+                             
+                            <span>
+                                <span class="font_bolder">产品特色：</span>在保险期间内，被保险人发生意外死亡、意外残疾、意外门诊及住院、15种重大疾病，保险公司将按照约定给付保险金。
+                            </span>
+                      </span>
+                      <div class="text_c_666666 font_12 line_h25">
+                            
+                            <span>
+                                <span class="font_bolder">针对人群：</span>3-6周岁,身体健康的儿童；
+                                <br>
+                                <span class="font_bolder">保险期间：</span>1年;
+                                <br>
+                                <span class="font_bolder">保险生效：</span>自投保之日起10日内起保。
+                                <br>
+                                <span class="font_bolder">限制份数：</span>每个被保险人限制购买一份
+                                <br>
+                                <span class="font_bolder">销售区域：</span>吉林省
+                                <br>
+                                <span class="font_bolder">销售时间：</span>2015年5月4日 至 2015年6月30日
+                            </span>
+                      </div>
+                      <br>
+                      <span class="bg_fb6907 font_12 padd_A5 text_c_ffffff">
+                            保费：100元
+                      </span>
+                 </div>
+                 <div class="mar_T10">
+                 	<span class="zhuanti_title">
+                    	投保限制
+                    </span>
+                 </div>
+                 <div class="mar_LR10  padd_T10 ">
+                         
+                        <div class="text_c_ff0000 mar_L10">如果被保险人在保险公司已购买保单，且保单的有效身故保险金额总和有如下情况：</div>
+                        <div class="line_h25 mar_L10">
+                        	1.小于等于8万元，选择此方案；<br>
+                        	2.大于8万，则不予投保。
+                        </div>
+                  </div>
+                 <div class="mar_T10">
+                 	<span class="zhuanti_title">
+                    	保障方案
+                    </span>
+                 </div>
+                  
+                 <div class="padd_A10">
+                      <table cellpadding="0" cellspacing="0" border="0" class="table_border_01">
+                        <tr>
+                            <th>保障范围</th>
+                            <th>赔付比例</th>
+                            <th>免赔额</th>
+                            <th>保险金额</th>
+                        </tr>
+                        <tr>
+                            <td>意外身故/意外伤残</td>
+                            <td align="center"><div style="white-space:nowrap;">按条款规定</div></td>
+                            <td align="center">--</td>
+                            <td align="center">2万元</td>
+                        </tr>
+                        <tr>
+                            <td>意外门诊/意外住院</td>
+                            <td align="center">80%</td>
+                            <td align="center">50</td>
+                            <td align="center">5000元</td>
+                        </tr>
+                        <tr>
+                            <td>重大疾病</td>
+                            <td align="center"><div style="white-space:nowrap;">按条款规定</div></td>
+                            <td align="center">--</td>
+                            <td align="center" class="text_c_ff0000">2万元</td>
+                        </tr>
+                      </table>
+                      
+                      <div class="text_c_666666 font_12 line_h25 border_bs_show">
+                            <span>
+                                <button type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">投保声明 >></button >
+                            </span>
+                            <span>
+                                <button type="button"  data-toggle="modal" data-target=".bs-example-modal-sm-tiaokuan">保险条款 >></button >
+                            </span>
+                      </div>
+                 </div>
+                  
+                  
+                 <div class="mar_T20 row " style="margin-left:0px;margin-right:0px;">
+                      <div class="col-xs-6">
+                            <a href="javascript:void(0)" onClick="show_info()" class="btn btn-info  btn-block text-center" >分享产品</a>
+                      </div>
+                      <div class="col-xs-6">
+                            <button type="button" class="btn btn-danger btn-block text-center" onClick="go_insure('{$url_youer}',{$youer_activity_id},'{$youer_msg}')">立即购买</button>
+                      </div>
+                       
+                 </div> 
+                  
+             </div>
+               
+             </form>
+        </div>
+        
+        
+        <div style="padding-top:30px;">
+        	 <form  method="post" action="../baoxian/cp.php?ac=product_buy&product_id=62&gid=74">
+              <div class="bg_12a827  line_h40">
+             	  <span class="text_c_ffffff font_14 font_bolder mar_L30">国寿学生儿童保险计划（学生版）</span>
+                  
+             </div>
+             <div class="border_LRB9a9a9a mar_LR10 padd_B30">
+             	 <div class="">
+                 	<span class="zhuanti_title">
+                    	产品简介
+                    </span>
+                 </div>
+                 <div class=" mar_LR10 padd_A10">
+                      <div class="text_c_666666 font_12 line_h25">
+                            <span class="font_bolder">产品特色：</span>在保险期间内，被保险人发生意外死亡、意外残疾、意外门诊及住院、疾病及意外住院、15种重大疾病，保险公司将按照约定给付保险金。
+                      </div>
+                      <div class="text_c_666666 font_12 line_h25">
+                            <span class="font_bolder">针对人群：</span>6-18周岁,身体健康,能够正常进行日常学习和生活的在册的各类全日制学生;
+                            <br>
+                            <span class="font_bolder">保险期间：</span>1年;
+                            <br>
+                            <span class="font_bolder">保险生效：</span>自投保之日起10日内起保。
+                            <br>
+                            <span class="font_bolder">限制份数：</span>每个被保险人限制购买一份
+                            <br>
+                            <span class="font_bolder">销售区域：</span>吉林省
+                            <br>
+                            <span class="font_bolder">销售时间：</span>2015年5月4日 至 2015年6月30日
+                             
+                      </div>
+                       
+                      
+                      <br> 
+                      <span class="bg_fb6907 font_12 padd_A5 text_c_ffffff">
+                            保费：100元
+                      </span>
+                 </div>
+                 <div class="mar_T10">
+                 	<span class="zhuanti_title">
+                    	投保限制
+                    </span>
+                 </div>
+                 <div class="mar_LR10  padd_T10 ">
+                         
+                        <div class="text_c_ff0000 mar_L10">如果被保险人在保险公司已购买保单，且保单的有效身故保险金额总和有如下情况：</div>
+                        <div class="line_h25 mar_L10">
+                        	1.小于等于8万元，选择方案一；<br>
+                        	2.大于9.5万元，则不能购买。
+                        </div>
+                  </div>
+                  <div class="mar_T10 padd_B10">
+                 	<span class="zhuanti_title">
+                    	保障方案
+                    </span>
+                 </div>
+                 <div class=" mar_LR10 mar_T10">
+                       
+                      <table cellpadding="0" cellspacing="0" border="0" class="table_border_01">
+                        <tr>
+                            <th>保障范围</th>
+                            <th>赔付比例</th>
+                            <th >免赔额</th>
+                            <th>保险金额</th>
+                        </tr>
+                        <tr>
+                            <td>意外身故/疾病身故</td>
+                            <td align="center">--</td>
+                            <td align="center">--</td>
+                            <td align="center">2万元</td>
+                        </tr>
+                        <tr>
+                            <td>意外伤残</td>
+                            <td align="center"><div style="white-space:nowrap;">按条款规定</div></td>
+                            <td align="center">--</td>
+                            <td align="center">5000元</td>
+                        </tr>
+                        <tr>
+                            <td>意外门诊/意外住院</td>
+                            <td align="center">90%</td>
+                            <td align="center">扣除基本医疗报销部分后</td>
+                            <td align="center">5000元</td>
+                        </tr>
+                        <tr>
+                            <td>疾病/意外住院</td>
+                            <td align="center">70%</td>
+                            <td align="center">扣除基本医疗报销部分后</td>
+                            <td align="center" class="text_c_ff0000">5万元</td>
+                        </tr>
+                        <tr>
+                            <td>重大疾病</td>
+                            <td align="center"><div style="white-space:nowrap;">按条款规定</div></td>
+                            <td align="center">--</td>
+                            <td align="center" class="text_c_ff0000">2万元</td>
+                        </tr>
+                      </table>
+                        
+                      
+                       
+                 </div>
+                  
+                 <div class="mar_LR10 text_c_666666 font_12 line_h25 border_bs_show">
+                        <span>
+                            <button type="button"  data-toggle="modal" data-target=".bs-example-modal-sm-02">投保声明 >></button >
+                        </span>
+                        <span>
+                            <button type="button"  data-toggle="modal" data-target=".bs-example-modal-sm-02-tiaokuan">保险条款 >></button >
+                        </span>
+                  </div>
+                 
+                 <div class="mar_T40 row " style="margin-left:0px;margin-right:0px;">
+                      <div class="col-xs-6">
+                            <a href="javascript:void(0)" onClick="show_info()" class="btn btn-info  btn-block text-center" >分享产品</a>
+                      </div>
+                      <div class="col-xs-6">
+                            <button type="button" class="btn btn-danger btn-block text-center" onClick="go_insure('{$url_xuesheng_fangan1}',{$xuesheng_activity_id},'{$xuesheng_msg}')">立即购买</button>
+                      </div>
+                       
+                 </div> 
+                  
+             </div>
+              
+              
+             </form>
+        </div>
+		 
+
+    </div>
+
+</div>
+<div class="text-center padd_A15T0">
+    <a class=" btn-fd9e02" style="background:#f85200" href="javascript:void(0)" onclick="show_userinfo()">咨询保险顾问</a>
+</div>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-sm">
+  	
+    <div class="modal-content">
+    	<div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 id="mySmallModalLabel" class="modal-title">投保人声明<a href="#mySmallModalLabel" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+        	<span class="text_c_ff0000">1.本人已知晓保监会关于未成年人的投保规定,并如实告知:目前是否已经参加或正在申请中的其他保险公司包含身故保险责任的人身保险；<br>2.根据中国保险监督管理委员会《关于父母为其未成年子女投保以死亡为给付保险金条件人身保险有关问题的通知》（保监发（2010）95号）要求，如果被保险人在我公司及其他保险公司已承保的有效身故保险金额总和小于等于8万元，可选择投保此方案；如果被保险人在我公司及其他保险公司已承保的有效身故保险金额总和大于8万元，则不予投保；<br>3.本人对上述保险的保险责任和责任免除内容已经详细阅读、理解；<br>4.本人同意为被保险人投保该保险。</span>
+        </div>
+      	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+           
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-sm-02" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-sm">
+  	
+    <div class="modal-content">
+    	<div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 id="mySmallModalLabel" class="modal-title">投保人声明<a href="#mySmallModalLabel" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+        		 <span class="text_c_ff0000">
+        				1.本人已知晓保监会关于未成年人的投保规定,并如实告知:目前是否已经参加或正在申请中的其他保险公司包含身故保险责任的人身保险；
+                        <br>
+                        2.根据中国保险监督管理委员会《关于父母为其未成年子女投保以死亡为给付保险金条件人身保险有关问题的通知》（保监发（2010）95号）要求，如果被保险人在我公司及其他保险公司已承保的有效身故保险金额总和小于等于8万元，则自动选择投保方案一；如果被保险人在我公司及其他保险公司已承保的有效身故保险金额总和大于8万元，小于等于9.5万元，自动选择投保方案二；如果被保险人在我公司及其他保险公司已承保的有效身故保险金额总和大于9。5万元，则不予投保。
+                        <br>
+                        3.本人对上述保险的保险责任和责任免除内容已经详细阅读、理解；
+                        <br>
+                        4.本人同意为被保险人投保该保险。
+                </span>
+        </div>
+      	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+           
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm-tiaokuan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-sm">
+  	
+    <div class="modal-content">
+    	<div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 id="mySmallModalLabel" class="modal-title">投保条款<a href="#mySmallModalLabel" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+        	 <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/1/001.pdf">国寿附加学生儿童重大疾病保险（A 型）.pdf</a><br>
+             <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/1/002.pdf">国寿附加学生儿童住院费用补偿医疗保险(A款).pdf</a><br>
+             <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/1/003.pdf">国寿学生儿童伤残意外伤害保险(2013版).pdf</a>
+        </div>
+      	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+           
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-sm-02-tiaokuan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-sm">
+  	
+    <div class="modal-content">
+    	<div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 id="mySmallModalLabel" class="modal-title">投保条款<a href="#mySmallModalLabel" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+        	<a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/2/001.pdf">国寿附加学生儿童伤残意外伤害保险(2013版).pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/2/002.pdf">国寿附加学生儿童意外伤害费用补偿医疗保险（A款）.pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/2/003.pdf">国寿附加学生儿童重大疾病保险（A 型）.pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/2/004.pdf">国寿附加学生儿童住院费用补偿医疗保险(A款).pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/2/005.pdf">国寿学生儿童定期寿险(A款).pdf</a>
+        		
+        </div>
+      	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+           
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm-03-tiaokuan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-sm">
+  	
+    <div class="modal-content">
+    	<div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 id="mySmallModalLabel" class="modal-title">投保条款<a href="#mySmallModalLabel" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+        	<a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/3/001.pdf">国寿附加学生儿童意外伤害费用补偿医疗保险（A款）.pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/3/002.pdf">国寿附加学生儿童重大疾病保险（A 型）.pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/3/003.pdf">国寿附加学生儿童住院费用补偿医疗保险(A款).pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/3/004.pdf">国寿学生儿童定期寿险(A款).pdf</a><br>
+            <a href="../mobile_page/downpdf.html?pdf_url=images/guoshou_xueping/tiaokuan/3/005.pdf">国寿学生儿童伤残意外伤害保险(2013版).pdf</a><br>
+        		
+        </div>
+      	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+           
+        </div>
+    </div>
+  </div>
+</div>
+ 
+<script>
+    $().ready(function(){
+       var tempsTes = '{$uid}';
+        if(tempsTes!="" && $('#sessionuid').val()!="" && $('#sessionuid').val()!=undefined){
+            if(tempsTes.split(',')[0]==$('#sessionuid').val()){
+                show_info();
+            }
+        }
+        
+        
+    });
+	function show_info(){
+		 
+		var sessionuid = $('#sessionuid').val();
+		//var is_cheackT = $('#is_cheack').val();
+        var temps = '{$uid}';
+		
+		if(sessionuid && sessionuid!=undefined &&  sessionuid!="" && temps!=""){
+			
+			var html_temp = '<div align=right><img src="../mobile_page/images/bg_jt.png"></div><div style="border-radius: 5px; background: #fff; padding:20px 10px;"><span style="color:#090">点击右上角,选择【发送给朋友】或者【分享到朋友圈】，给他们送礼包啦!</span></div>';
+			layer.open({
+				content: html_temp,
+				fixed:false,
+				style:'width:'+document.documentElement.clientWidth+'px;background: none;top:0;',
+				top:0
+			});
+		}else{
+			window.location.href='../client/user.php';
+		}
+	}
+
+	function selectProduct(act_id,msg_text){
+		if(act_id!=0){
+			var html_pr = '<div class="text_c_ff0000">投保限制：<br>如果被保险人在保险公司已购买保单，且保单的有效身故保险金额总和有如下情况：<br>1.小于等于8万元，选择方案一；<br>2.大于8万,不足9.5万元，选择方案二；<br>3.大于9.5万元，则不能购买。<br></div><div align=center><a href="javascript:go_insure(\'{$url_xuesheng_fangan1}\','+act_id+',\''+msg_text+'\');" class="btn-c30d23">方案一<i class="fa fa-angle-right right-20"></i></a><a href="javascript:go_insure(\'{$url_xuesheng_fangan2}\','+act_id+',\''+msg_text+'\');" class="btn-c30d23">方案二<i class="fa fa-angle-right right-20"></i></a></div>';
+			layer.open({
+				content: html_pr,
+				title:'选择产品',
+				fixed:true,
+				style:'width:'+document.documentElement.clientWidth+'px;'
+			});
+		}else{
+			layer.open({
+				content: msg_text,
+				title:'温馨提示',
+				fixed:true,
+				style:'width:'+document.documentElement.clientWidth+'px;',
+				btn: ['确定']
+			});	
+		}
+		 
+	}
+	
+	//去投保
+	function go_insure(url,act_id,msg_text){
+	//mod by zhangxi, 20150429, 写死不能购买先
+	//act_id = 0;
+		if(act_id!=0){
+			var uid = "{$uid}";
+			$.post('chinalife_zhuanti.php?act=go_insure',{
+					'uid':uid,
+					'url':url
+				
+			},function(data){
+					if(data.code==0){
+						window.location.href="../"+data.url;
+					}else if(data.code==10){
+						alert(data.msg);
+					}else if(ata.code==11){
+						alert(data.msg);
+					}
+			},'json');
+		}else{
+			layer.open({
+				content: msg_text,
+				title:'温馨提示',
+				fixed:true,
+				style:'width:'+document.documentElement.clientWidth+'px;',
+				btn: ['确定']
+			});		
+		}
+	}
+
+	function show_userinfo(){
+		var temp_userpre_id = "{$insurance_agent_info[user_id]}";
+		var temp_agentmobile_phone = "{$insurance_agent_info[mobile_phone]}";
+		var sessionuidq = $('#sessionuid').val();
+		var is_cheackT = "{$insurance_agent_info[is_cheack]}";
+        var tempsq = '{$uid}';
+		temp_userpre_id = "{$insurance_agent_info[user_id]}";
+		temp_agentmobile_phone = "{$insurance_agent_info[mobile_phone]}";
+	    var html_info = '<div align=left><span>服务工号：000'+temp_userpre_id+'</span><br><span style="line-height:25px;">联系方式：'+temp_agentmobile_phone+'</span><span><a href="tel:'+temp_agentmobile_phone+'"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span><br><span style="line-height:25px;">中国人寿客服电话：95519</span></div>';
+	    if(is_cheackT==0){
+        	html_info = '<div align=left><span>服务工号：000'+temp_userpre_id+'</span><br><span style="line-height:25px;">中国人寿客服电话：95519</span><span><a href="tel:95519"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span></div>';
+        }
+	    
+	    layer.open({
+            content: html_info,
+            title:'您的保险顾问',
+            fixed:true,
+            style:'width:'+document.documentElement.clientWidth+'px;'
+        });
+	}
+	
+	 
+</script>
+ 
+</body>
+</html>

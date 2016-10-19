@@ -1,0 +1,147 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+<div id="content-body">
+
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+              <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			  <label class="separator">&gt;</label>
+			 <a>  影响因素 </a>
+			   
+            <label class="separator">&gt;</label>
+            
+                新建
+			<label class="separator">&gt;</label>
+            <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+      </div>
+
+</div>
+
+<div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_influencingfactor&product_id=$product_id&product_influencingfactor_id=$product_influencingfactor_id">
+
+
+<input type="hidden" name="product_influencingfactor_submit" id="product_influencingfactor_submit" value="true" />
+
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="editable-table">
+    <tbody>
+	
+	
+	<!--
+	<tr>
+        
+		<td colspan="8" class="editable-header">父节点: 
+		<a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+		</td>
+		<td colspan="8" class="editable-header">基本信息</td>
+		
+    </tr>
+	-->
+	
+	<!--{loop $list_count $key $value}-->
+	  <tr>
+        <td class="requiredField" width="80">类型：</td>
+        <td class="tdEditArea">
+		<select id="product_influencingfactor_type_$key" name="influencingfactor[$key][product_influencingfactor_type]">
+					
+			<!--{loop $list_type $key1 $value1}-->
+			<option value="$value1" $type_arr_selected[$value1]>$value1</option>
+			<!--{/loop}-->
+			
+		</select>
+	    </td>
+	
+	 <td class="requiredField">因素名称：</td>
+        <td class="tdEditArea">
+		<input name="influencingfactor[$key][factor_name]" value="" type="text" style="width:auto">
+    </td>	
+	
+	
+	<td class="requiredField">因素代码：</td>
+        <td class="tdEditArea">
+		<input name="influencingfactor[$key][factor_code]" value="" type="text" placeholder="可选" style="width:auto">
+    </td>	
+	
+		 <td class="requiredField">保费：</td>
+        <td class="tdEditArea">
+		<input name="influencingfactor[$key][factor_price]" value="" type="text" style="width:auto">
+    </td>	
+	 <td class="requiredField">产品编码：</td>
+        <td class="tdEditArea">
+		<input name="influencingfactor[$key][additional_code]" value="0" type="text" style="width:auto">
+    </td>	
+	<td class="requiredField">最小天数：</td>
+        <td class="tdEditArea">
+ 
+		<input name="influencingfactor[$key][period_min]" value="0" type="text" style="width:auto">
+ 
+    </td>	
+	<td class="requiredField">最大天数：</td>
+        <td class="tdEditArea">
+ 
+		<input name="influencingfactor[$key][period_max]" value="0" type="text" style="width:auto">
+ 
+    </td>	
+		
+   </tr>
+   <!--{/loop}-->
+   
+   
+	  
+    </tbody>
+	</table>
+    
+    <table class="buttonArea">
+       <tbody>
+		<tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody>
+	</table>
+    
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div> <!--main-body-->
+
+</div> <!--content-body-->
+
+</div> <!--id="main-content"-->
+ 
+<!--{template footer}-->

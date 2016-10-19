@@ -1,0 +1,173 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+
+<div id="main-body">
+
+<a href="space.php?do=admin_insurance_company"> 返回类别列表 </a>
+
+
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+<div style="float: left; margin-left: 17px; ">
+	<img alt="" src='$value[logo]' >
+</div><br/>
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="4" class="view-header">基本信息</td>
+    </tr>
+    <tr>
+        <td class="view-first-title">编码</td>
+        <td class="view-first-text">$value[insurer_code]</td>
+        <td class="view-first-title">名称</td>
+        <td class="view-top-right-text">$value[insurer_name]</td>
+    </tr>
+
+    <tr>
+        <td class="view-title">简称</td>
+        <td class="view-text">$value[insurer_abbrname]</td>
+        <td class="view-title">上级</td>
+        <td class="view-right-text">$value[parent_name]</td>
+    </tr>
+    <tr>
+        <td class="view-title">类别</td>
+        <td class="view-text">财产保险公司</td>
+        <td class="view-title">所在地区</td>
+        <td class="view-right-text">北京市</td>
+    </tr>
+	
+	<tr>
+        <td class="view-title">合作伙伴名（partnerName）</td>
+        <td class="view-text">$value[partnerName]</td>
+        <td class="view-title">业务落地点代码（BANK_CODE）</td>
+        <td class="view-right-text">$value[BANK_CODE]</td>
+    </tr>
+	
+	
+    <tr>
+		<td class="view-title">业务落地点代码（BRNO）</td>
+        <td class="view-text">$value[BRNO]</td>
+		
+        <td class="view-title">简介</td>
+        <td class="view-right-text" colspan="3">$value[brief]</td>
+    </tr>
+	
+	
+</tbody>
+
+</table>
+
+
+<a href="cp.php?ac=admin_insurance_company&insurer_id=$insurer_id" target="_self">
+<img src="template/images/updateButton.gif" alt="修改">修改</a>
+
+
+<a href="cp.php?ac=admin_insurance_company_insure_type&insurer_id=$insurer_id" target="_self">
+<img src="template/images/updateButton.gif" alt="增加不同险种代码围">增加不同产品类型</a>
+
+
+<!--{if $list_company_insure_type}-->
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_company_insure_type&insurer_id=$insurer_id">
+
+
+<input type="hidden" name="company_insure_order_submit" id="company_insure_order_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="view-table">
+    <tbody>
+	<tr>
+        <td colspan="6" class="view-header">产品类型（每家保险公司产品产品类型不同，例如旅游险，Y502）</td>
+    </tr>
+    <tr class="listTitle">
+        <td class="list-first-title" width="5%">显示顺序</td>
+        <td class="list-title" width="10%">保险公司id</td>
+		 <td class="list-title" width="10%">产品类型</td>
+		<td class="list-title" width="10%">注释</td>
+		 <td class="list-title" width="10%">修改</td>
+		  <td class="list-title" width="10%">删除</td>
+    </tr>
+    
+	<!--{loop $list_company_insure_type $key $valued}-->
+    
+    <tr class="tdContent">
+	
+		<td class="list-content">	
+			<input name="view_order_ids[{$valued[insurance_company_insure_type_id]}]" id="view_order_$key" value="$valued[view_order]" type="text">		
+			</td>
+			
+	    <td class="list-content">$valued[insurer_id]</td>
+        <td class="list-first-content">
+		<input name="attribute_type_ids[{$valued[insurance_company_insure_type_id]}]" id="attribute_type_$key" value="$valued[attribute_type]" type="text">		
+	    </td>
+		
+		  <td class="list-content">
+		  <input name="note_ids[{$valued[insurance_company_insure_type_id]}]" id="note_$key" value="$valued[note]" type="text">		
+		  </td>
+		
+      
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_company_insure_type&insurance_company_insure_type_id=$valued[insurance_company_insure_type_id]">修改</a>
+	  </td>
+	  
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_company_insure_type&insurance_company_insure_type_id=$valued[insurance_company_insure_type_id]&op=delete">删除</a>
+	  </td>
+	  
+    </tr>
+    
+    
+    <!--{/loop}-->
+     
+    
+	<tr>
+		    <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+              
+            </td>
+	</tr>   
+		
+</tbody>
+</table>
+</form>
+
+<!--{/if}-->
+
+
+                <table class="view-table">
+                    <tbody><tr>
+                        <td colspan="4" class="view-header">元数据信息</td>
+                    </tr>
+                    <tr>
+                        <td class="view-first-title">状态标志</td>
+                        <td class="view-first-text">
+                            正常
+                            
+                            
+                        </td>
+                        <td class="view-first-title">操作人</td>
+                        <td class="view-top-right-text">超级用户</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">创建时间</td>
+                        <td class="view-text">2014-01-22</td>
+                        <td class="view-title">更新时间</td>
+                        <td class="view-top-right-text">2014-03-24</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">显示序号</td>
+                        <td class="view-text">1001</td>
+                        <td class="view-title">备注信息</td>
+                        <td class="view-right-text"></td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

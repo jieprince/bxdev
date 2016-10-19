@@ -1,0 +1,187 @@
+    	{if $product.insurer_code!='SSBQ'}
+	    	{if $_SESSION['is_iframe'] != 1} 
+	        <div class="g-h48 f-tar">
+	            <span class="s-c-666666 f-mt20 f-ib">
+	                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+	                您的位置：
+	                <span class="s-c-777777">
+	                    <a href="../index.php" class="link-009c84">首页</a>
+	                    <i class="iconfont f-fs2">&#xf02af;</i>
+	                    <a href="../category.php?act=hot_goods_list" class="link-009c84">保险产品</a>
+	                    <i class="iconfont f-fs2">&#xf02af;</i>
+	                    <a href="../goods.php?id={$gid}" class="link-009c84">$product[attribute_name]</a>
+	                    <i class="iconfont f-fs2">&#xf02af;</i>
+	                    <a href="../goods.php?id={$gid}&ins_product_id={$product.product_id}" class="link-009c84">$product[product_name]</a>
+	                    <i class="iconfont f-fs2">&#xf02af;</i>
+	                    投保填写页
+	                </span>
+	            </span>
+	        </div> 
+	        {/if} 
+        {/if} 
+        <div class="f-mt30" align="center">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td><img src="template/default/images/buy_img_01.png" width="209" height="25"></td>
+                    <td><img src="template/default/images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="template/default/images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="template/default/images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="template/default/images/buy_img_03.png" width="185" height="25"></td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="20"></td>
+                </tr>
+                {if $product.insurer_code!='SSBQ'}
+                <tr>
+                	<td align="right"><span class="cirle_title_sum">1</span></td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">填写投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">2</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25 f-pl10">确认投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">3</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25 f-pl10">支付保费</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">4</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="s-c-989898 f-fs3 s-lh25 f-pl10">完成投保</span>
+                    </td>
+                </tr>
+                {else}
+                <tr>
+                	<td align="right"><span class="cirle_title_sum">1</span></td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25">上传基本投保资料</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">2</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25">确认保费并提供承保资料</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">3</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25">支付保费并提供支付凭证</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">4</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="s-c-989898 f-fs3 s-lh25">收到保单及保函扫描件</span>
+                    </td>
+                </tr>
+                {/if}
+            </table>
+        </div>
+        
+        <form id="orderForm" name="orderForm" method="POST"  action="cp.php?ac=product_buy&product_id=$product[product_id]&uid=$_REQUEST['uid']" enctype="multipart/form-data" onsubmit="return checkedAll()">
+            <input type="hidden" name="buysubmit" id="buysubmit" value="true" />
+                                                
+            <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+            
+            <input type="hidden" name="step" id="step" value="1" />
+           
+		    <input type="hidden" id="insurer_code" value="$product['insurer_code']" />
+			
+			<input type="hidden" id="attribute_type" value="$attribute_type" />
+			
+		    <input type="hidden" name="start_day" id="start_day" value="$product[start_day]" />
+           
+            <input type="hidden" name="server_time" id="server_time" value="$product[server_time]" />		
+                
+                
+            <input name="product_id" id="product_id" value="$product[product_id]" type="hidden">		
+                    
+            <input type="hidden" name="businessType" id="businessType" value="$businessType" />	
+			
+			<input type="hidden" name="bat_post_policy" id="bat_post_policy" value="$bat_post_policy" />
+            
+            <input id="totalModalPremium_single" name="totalModalPremium_single" value="$totalModalPremium_single" type="hidden">		
+            
+            <input id="totalModalPremium" name="totalModalPremium" value="$prodcutMarkPrice" type="hidden">
+                                                    
+            <input id="period" name="period" value="$period_day" type="hidden">
+ 
+			<input id="period_uint" name="period_uint" value="{$period_uint}" type="hidden"> 
+           
+             <input id="age_min" name="age_min" value="$product[age_min]" type="hidden">       
+             <input id="age_max" name="age_max" value="$product[age_max]" type="hidden">
+             <input id="product_code" name="product_code" value="$product[product_code]" type="hidden">		
+             <input name="gid" value="$gid" type="hidden">
+             <input id="applyMum_sums" value="{$product[number]}" type="hidden"> 
+        {if $product.insurer_code!='SSBQ'}        
+        <div class="f-mt40 f-cb s-bg-eff1f1">
+        	<div class="f-fl s-bg-buy">
+            	<div class="f-pA40  s-c-ffffff">
+                	<h2 class="f-fs10">$product[attribute_name]</h2>
+                    <section class="f-fs3 f-mt15 s-lh25">
+                    	承保年龄：{$product[age_min]} 至  {$product[age_max]} 周岁<br>
+                        保险期限：{$period_day}{if $period_day!=365}{if $period_uint=='year'}年{elseif $period_uint=='month'}个月{else}天{/if}{else}年{/if}
+                    </section>
+                    <section class="f-mt15">
+                    	<a href="javascript:void(0)" class="btn-abd7ba_on">{$product[product_name]}</a>
+                         
+                    </section>
+                    <section class="f-cb s-bscT_8fcab6 f-mt30 f-pt20">
+                    	<span class="f-fl f-ib f-fs2">
+                        	¥ <span class="f-fs14 f-fwb f-fsi">$prodcutMarkPrice</span> 元/年/份
+                        </span>
+                        <span class="f-fr f-db f-fs2 f-mt15  f-mr40">
+                        	份数
+                            <select name="applyNum" id="applyNum" class="s-select g-w80">
+                            	<option value="1">1</option>
+                            </select>
+                            份/人
+                        </span>
+                    </section>
+                    <div class="f-fs2 f-mt15 f-tar f-mr40">（ 每个被保人最多投保{$product[number]} 份 ）</div>
+                </div>
+            </div>
+            <div class="f-fr g-w506">
+            	<div class="f-pr40 f-pt40">
+                	<h3 class="cirle_title">投保须知</h3> 
+                    <section class="f-fs2 s-c-666666 s-lh25 f-mt20 " style="height: 200px;overflow: auto">
+                       {if $_TPL['css']=='cp_product_buy_huaan_xueping'}
+		                {$product[insurance_declare]}
+		                {else}
+						{$product[cover_note]}
+		               {/if}
+                    </section>
+                    <section class="f-fs2 s-c-666666 s-lh25 f-mt15 s-bscT_8fcab6 f-pt10">
+                    	<ul>
+                    	
+                    		<li>
+                    			$product[insurance_clauses]
+                    		</li>
+                    	
+                    	
+                     	  <!-- <li>
+                            	<i class="iconfont s-c-56abe4">&#xf00bd;</i>
+                                <a href="#" class="link-666666">个人人身意外伤害保险（2013版）条款.pdf</a>
+                            </li>
+                            <li>
+                            	<i class="iconfont s-c-56abe4">&#xf00bd;</i>
+                                <a href="#" class="link-666666">个人人身意外伤害保险（2013版）条款.pdf</a>
+                            </li> -->
+                            
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+        {else}
+        <h2 class="f-fs10 f-mt30 f-tac">$product[attribute_name]</h2>
+        {/if}
+        
+        

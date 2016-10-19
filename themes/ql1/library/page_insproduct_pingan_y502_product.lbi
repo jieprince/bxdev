@@ -1,0 +1,112 @@
+<div class="xqcont">
+                    
+                  
+                 <!--基本信息开始-->
+                        <div class="panel" style="margin: 0 0 8px 0;" >
+                        
+                            {if $ins_product_list}
+                            <div class="xq_title2">
+                            选择产品
+                            <!--{foreach from=$ins_product_list key=key item=value}-->
+                            
+                            {assign var="sid" value=$value[product_id]}
+                                <span class="plan {$classattr[$sid]}">
+                                <a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+                                </span>
+                                
+                            <!--{/foreach}-->
+                                
+                            </div>
+                            {/if} 
+                            <div class="panel-body">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                 
+                                <tr>
+                                      <td>保险期间：</td>
+                                      <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;12个月</td>  
+                                </tr>
+                                <tr>
+                                      <td>职业类别：</td>
+                                      <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;{if $attribute_code=='Y502_A'}1~3类{else}4类{/if}</td> 
+                                </tr>
+                                <tr>
+                                      <td>承保年龄：</td>
+                                      <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</td> 
+                                </tr>
+                                <tr>
+                                      <td>最大购买份数：</td>
+                                      <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<!--{if 999 == $ins_product_selected.number }-->
+											无限制
+											{else}
+											  每人限{$ins_product_selected.number}份
+										 <!--{/if}--></td> 
+                                </tr>
+                                 
+                            </table>
+                           </div>
+                        </div>
+                  <!--基本信息结束-->
+                    
+                    <!--投保人开始-->
+                    <!--<div class="panel" style="margin: 0 0 8px 0;">
+                         <div class="panel-header">
+                                <div class="panel-title">投保人信息</div>
+                         </div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <td>团体名称</td><td>&nbsp;<input type="text" size="40" /></td>
+                                    <td>&nbsp;团体证件类型</td><td>&nbsp;
+                                        <select  name="career" style="width:200px;">
+                                              <option value="01">组织机构代码证</option>
+                                              <option value="02">税务登记证</option>   
+                                              <option value="03">异常证件</option>                           
+                                        </select>
+                                    </td>
+
+                                    <td>&nbsp;团体证件号码</td><td>&nbsp;<input type="text" /></td>
+                                </tr>
+                             </table>
+                        </div>
+                    </div>-->
+                    <!--投保人结束-->
+                    <!--被保险人信息开始-->
+                    <!-- <div class="panel" style="margin: 0 0 8px 0;">
+                         <div class="panel-header">
+                                <div class="panel-title">被保险人信息</div>
+                         </div>
+                         <div class="panel-body">
+                              <table>
+                                <tr>
+                                    <td>被保险人Excel文件</td><td><input type="file" /></td>
+                                    <td>模板下载</td><td><a href="#">点击下载</a></td>
+                                </tr>
+                             </table>
+                         </div>
+                    </div>-->
+                    <!--被保险人信息结束-->
+                    
+                    <div class="panel">
+                    	<form action="baoxian/cp.php?ac=product_buy" id="save_form" method="post">
+                        	  <input type="hidden" id="product_plan_typeTemp" value="{$ins_product_selected.product_code}">
+                        	  <input type="hidden" id="attribute_code_Temp" value="{$attribute_code}">
+                        	  <input type="hidden" id="attribute_id" name="attribute_id" value="{$attribute_id}" />
+                              <input type="hidden" id="attribute_id_y502temp" value="{$Y502_attribute_id}" /><!--Y502的产品属性id-->
+                              <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                              <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" />
+                              
+                              <input type="hidden" id="temp_person_list" name="person_list" value="5" /> 
+                              <input type="hidden" id="temp_person_sum" name="person_sum" value="5" /> 
+                              <input type="hidden" name="career" value="{if $attribute_code=='Y502_A'}1{else}4{/if}" /> 
+                              <input type="hidden" id="temp_period" name="period" value="12" /> 
+                              <input type="hidden" id="temp_price" name="price" value="" /> 
+                              <input type="hidden" id="temp_addtional_ids" name="duty_price_ids" value="" /> 
+                             <input type="submit" value="{$lang.insure}"  class="btn_products_02_01"/>
+                    	</form>
+                    </div>
+                   
+</div>
+					
+					
+					
+					

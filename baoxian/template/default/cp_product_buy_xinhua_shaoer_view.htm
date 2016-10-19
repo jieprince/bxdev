@@ -1,0 +1,460 @@
+<!--{template header_cshop}-->
+<div id="simple_wrapper">
+
+<input type="hidden" name="lottery" value='' />
+
+
+<div id="contain">
+
+<div class="insure">
+		<div class="insure_main">
+		
+		<div class="insure_step"><img src="../images/insure11.jpg" width="386" height="47"><img src="../images/insure22.jpg" width="392" height="47"><img src="../images/insure03.jpg" width="332" height="47"></div>
+		<div class="insure_title">$policy_arr[attribute_name]&nbsp;&nbsp;> &nbsp;&nbsp;$policy_arr[product_name]&nbsp;&nbsp;<span style="color:#09c;margin:0;padding:0;"></span></div>
+        <div id="step_gaozhi">
+        	<div class="x_p_a_c c"><h2 class="l">健康告知</h2></div>
+            <div class="c_p_a_d" style="margin: 10px 0px 10px 30px;line-height: 30px;font-size:14px;">
+                <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" id="jiankangxuzhi">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    <tr class="">
+                        <td align="left" class="fwb">1.您是否向任何保险公司提交过人身保险理赔申请？是否在投保或复效时被拒保、延期、加费或除外责任承保？ </td>
+                    </tr>
+                    <tr class="">
+                        
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti01" value="1" />是 </span>
+                            <span><input type="radio" name="wenti01" value="0" />否</span>
+                        </td>
+                                            
+                    </tr>
+                    <tr class="">
+                        <td align="left" class="fwb">2.您在近三个月内是否出现过以下症状？不明原因的发热、头晕、气喘、腹痛、贫血、出血倾向（如牙龈、鼻腔出血或皮下有出血点）、身体包块或肿物、消瘦、血液检查白细胞异常增高或过低。</td>                
+                    </tr>
+                    <tr class="">
+                        
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti02" value="1" />是 </span>
+                            <span><input type="radio" name="wenti02" value="0" />否</span>
+                        </td>
+                                            
+                    </tr>
+                    <tr class="">
+                        <td align="left" id="wenxun_checjbox" class="fwb">
+                            3.您目前是否患有或者曾经患有以下的疾病：
+                             
+                        </td>
+                                          
+                    </tr>
+                    <tr class="">
+                        <td align="left">
+                             
+                            (1)聋哑、高度近视（800度以上）或失明、肢体残缺、畸形或者运动障碍；
+                            <br />
+                            (2)心脑血管疾病、川崎氏病、神经系统及精神疾病（脑炎、脑膜炎、严重脑损伤、智障、癫痫、多发性硬化、重症肌无力、进行性脊肌萎缩症、抑郁症、孤独症）；
+                            <br />
+                            (3)恶性肿瘤、颅内良性肿瘤、糖尿病、肝炎、肝硬化、肾病、白血病、再生障碍性贫血、烧烫伤、艾滋病？ 
+                            
+                        </td>
+                                          
+                    </tr>
+                    <tr class="">
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti03" value="1" />是 </span>
+                            <span><input type="radio" name="wenti03" value="0" />否</span>
+                        </td>
+                                          
+                    </tr>
+                    <tr class="">
+                        <td align="left" class="fwb">4.您在过去一年内的体检是否有异常？ </td>                
+                    </tr>
+                    <tr class="">
+                        
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti04" value="1" />是 </span>
+                            <span><input type="radio" name="wenti04" value="0" />否</span>
+                        </td>
+                                            
+                    </tr>
+                    <tr class="">
+                        <td align="left" class="fwb">5.出生时体重是否小于2.5公斤？ </td>                
+                    </tr>
+                    <tr class="" >
+                        
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti05" value="1" />是 </span>
+                            <span><input type="radio" name="wenti05" value="0" />否</span>
+                        </td>
+                                            
+                    </tr>
+                    <tr class="">
+                        <td align="left" class="fwb">6.出生时是否有早产、难产、产伤、窒息、缺氧等异常情况？ </td>                
+                    </tr>
+                    <tr class="">
+                        
+                        <td align="left" class="fwb">
+                        	<span><input type="radio" name="wenti06" value="1" />是 </span>
+                            <span><input type="radio" name="wenti06" value="0" />否</span>
+                        </td>
+                                            
+                    </tr>
+                                                  
+                    </tbody>
+                </table>
+            </div>
+        	<div style="margin:0 auto; text-align:center; padding-bottom:30px;">
+        		<img onclick="jiankangxuzhi();" src="../images/icon15.jpg" style="cursor:pointer;"> 
+            </div>
+        </div>
+		<div id="step_orderShow" style="display:none;">
+            <form id="fgNewOrderSearchForm" name="fgNewOrderSearchForm" method="POST" action="cp.php?ac=product_buy&product_id=$product[product_id]&policy_id=$policy_id&gid=$gid&step=2&uid=$uid&flag_check_policy=$flag_check_policy">
+                <div class="insure_cen">
+                
+        <input type="hidden" name="orderbuysubmit" id="orderbuysubmit" value="true" />
+                                            
+        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+        
+        <input type="hidden" id="goumaifangshi" name="goumaifangshi"  value="">
+        
+        <input type="hidden" id="cart_insure_id" name="cart_insure_id"  value="$cart_insure_id">
+        
+        <!--{if 0}-->
+         <!--{loop $policy_ids $key1 $policy_id}-->
+        <input type="hidden" id="policy_ids_$key1" name="policy_ids[]"  value="$policy_id">
+         <!--{/loop}-->
+        <!--{/if}-->
+    <!--{if $bat_post_policy == 0}-->
+            <!--保险计划-->
+            <!--投保人信息-->
+             
+            <div class="x_p_a_c c"><h2>投保人信息</h2></div>
+            <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+     
+                    <tr>
+                        <td width="150" class="check_td_left">投保人姓名：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[fullname]}</td>
+                        <td width="150" class="check_td_left">国籍：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[nation_code]</td> 
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">证件类型：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[certificates_type_str]</td>
+                        <td width="150" class="check_td_left">证件号：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[certificates_code]</td>
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">证件有效期：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[cardValidDate]}-{if $user_info_applicant.cardExpDate}{$user_info_applicant[cardExpDate]}{else}长期{/if}</td>
+                        <td width="150" class="check_td_left">邮政编码：</td>
+                        <td width="190" class="check_td_right" colspan="3">$user_info_applicant[zipcode]</td>
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">性别：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[gender_str]</td>
+                        <td width="150" class="check_td_left">出生日期：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[birthday]</td>
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">移动电话：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[mobiletelephone]</td>
+                        <td width="150" class="check_td_left">电子邮箱：</td>
+                        <td width="190" class="check_td_right">$user_info_applicant[email]</td>
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">服务机构：</td>
+                        <td width="190" class="check_td_right">$policy_arr[serviceOrgCode]</td>
+                        <td width="150" class="check_td_left">职业：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[business_type]}--{$user_info_applicant[occupationClassCode]}</td>
+                    </tr>
+                     
+                    <tr>
+                         
+                        <td width="150" class="check_td_left">省市区：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[province_code]}{$user_info_applicant[city_code]}{$user_info_applicant[county_code]}</td>
+                         
+                        <td width="150" class="check_td_left">通讯地址：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[address]}</td>
+                         
+                    </tr>
+                    
+                </table>
+    
+            <div class="x_p_a_c c"><h2>被保险人信息</h2></div>
+            <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                    <tr>
+                        
+                        <td width="150" class="check_td_left">被保险人姓名：</td>
+                        <td width="190" class="check_td_right">$insurant_info[fullname]</td>
+                        <td width="150" class="check_td_left">与投保人关系：</td>
+                        <td width="190" class="check_td_right">$relationship_with_insured_str</td>
+                    </tr>
+    
+                    <tr>
+                        <td width="150" class="check_td_left">证件类型：</td>
+                        <td width="190" class="check_td_right">$insurant_info[certificates_type_str]</td>
+                        <td width="150" class="check_td_left">证件号：</td>
+                        <td width="190" class="check_td_right">$insurant_info[certificates_code]</td>
+    
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">证件有效期：</td>
+                        <td width="190" class="check_td_right">{$insurant_info[cardValidDate]}-{if $insurant_info.cardExpDate}{$insurant_info[cardExpDate]}{else}长期{/if}</td>
+                        <td width="150" class="check_td_left">移动电话：</td>
+                        <td width="190" class="check_td_right" colspan="3">$insurant_info[mobiletelephone]</td>
+                    </tr>
+    
+                    <tr>
+                        <td width="150" class="check_td_left">性别：</td>
+                        <td width="190" class="check_td_right">$insurant_info[gender_str]</td>
+                        <td width="150" class="check_td_left">出生日期：</td>
+                        <td width="190" class="check_td_right">$insurant_info[birthday]</td>
+                    </tr>
+                    <tr>
+                     
+                        <td width="150" class="check_td_left">国籍：</td>
+                        <td width="190" class="check_td_right">$insurant_info[nation_code]</td>
+                        <td width="150" class="check_td_left">职业：</td>
+                        <td width="190" class="check_td_right">{$insurant_info[business_type]}--{$insurant_info[occupationClassCode]}</td>
+                        
+                    </tr>
+                    <tr>
+                     
+                        <td width="150" class="check_td_left">省市区：</td>
+                        <td width="190" class="check_td_right">{$insurant_info[province_code]}{$insurant_info[city_code]}{$insurant_info[county_code]}</td>
+                        <td width="150" class="check_td_left">通讯地址：</td>
+                        <td width="190" class="check_td_right">{$user_info_applicant[address]}</td>
+                        
+                    </tr>
+                    
+                </table>
+    
+     
+    <!--{/if}-->
+                
+                <div class="x_p_a_c c"><h2>受益人信息</h2></div>
+                {if $policy_arr.beneficiary==1 }
+                <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                        
+                        <tr>
+                            <td width="150" class="check_td_left"></td>
+                            <td width="617" class="check_td_right">法定继承人的继承顺序：<br />
+                                第一顺序：配偶、子女、父母<br />
+                                第二顺序：兄弟姐妹、祖父母、外祖父母</td>
+                        </tr>
+        
+                </table>
+                {else}
+                <div>
+                    <!--{loop $list_beneficiary $key $value}-->
+                    <div style="padding-top:20px;">
+                        <div class="benegiciary_title">
+                            <span style="float:left">受益人{if $key==0}一{elseif $key==1}二{else}三{/if}</span>
+                        
+                            <span style="float:right">
+                                   
+                            </span>
+                            <span style=" clear:both"></span>
+                        </div>
+                        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                            <tr>
+                                <td width="150" class="check_td_left">姓名：</td>
+                                <td width="190" class="check_td_right">$value.name</td>
+                                <td width="150" class="check_td_left">与被保险人关系：</td>
+                                <td width="190" class="check_td_right">$value.benefitRelation</td>
+                            </tr>
+            
+                            <tr>
+                                <td width="150" class="check_td_left">证件类型：</td>
+                                <td width="190" class="check_td_right">$value.cardType</td>
+                                <td width="150" class="check_td_left">证件号：</td>
+                                <td width="190" class="check_td_right">$value.cardNo</td>
+            
+                            </tr>
+                            <tr>
+                                <td width="150" class="check_td_left">证件有效期：</td>
+                                <td width="190" class="check_td_right">{$value.cardValidDate}--{if $value.cardExpDate}{$value.cardExpDate}{else}长期{/if}</td>
+                                <td width="150" class="check_td_left">国籍：</td>
+                                <td width="190" class="check_td_right" colspan="3">$value.nativePlace</td>
+                            </tr>
+            
+                            <tr>
+                                <td width="150" class="check_td_left">性别：</td>
+                                <td width="190" class="check_td_right">$value.sex</td>
+                                <td width="150" class="check_td_left">出生日期：</td>
+                                <td width="190" class="check_td_right">$value.birthday</td>
+                            </tr>
+                            <tr>
+                             
+                                
+                                <td width="150" class="check_td_left">受益顺序：</td>
+                                <td width="190" class="check_td_right">{$value.benefitSort}</td> 
+                                <td width="150" class="check_td_left">受益比例：</td>
+                                <td width="190" class="check_td_right">{$value.benefitScale}</td>
+                            </tr>
+                            
+                        </table> 
+                    </div>
+                    <!--{/loop}-->
+                </div>
+                {/if}
+                {if $policy_arr.payPeriod!=0}
+                <div class="c_p_a_d">
+                    <div style="margin:20px 0px;" class="x_p_a_c c"><h2 class="l">
+                        续期交费信息
+                        <span style="color:#ff6600" class="text_info">(*分期交付的保险费将从续期账号中扣除)</span>
+                    </h2></div>
+                     <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                        <tr>
+                            <td width="150" class="check_td_left">续期交费银行：</td>
+                            <td width="190" class="check_td_right">{$policy_arr["partPayBankCode"]}</td>
+                            <td width="150" class="check_td_left">续期交费账户姓名：</td>
+                            <td width="190" class="check_td_right">{$policy_arr["partPayAcctName"]}</td>
+                        </tr>
+                        <tr>
+                            <td width="150" class="check_td_left">续期交费账户卡号：</td>
+                            <td width="190" class="check_td_right" colspan="3">{$policy_arr["partPayAcctNo"]}</td>
+                            
+                        </tr> 
+                    </table>
+            
+                </div>		
+                {/if}
+            <div class="x_p_a_c c"><h2>保单信息</h2></div>
+            <table cellpadding="0" cellspacing="0" width="700">
+    
+                    <tbody>
+    
+                    <tr>
+                        <td width="176" height="45" align="center" class="insure_cen_table_td insure_cen_table_das">保险期限：
+                        </td>
+    
+                        <td width="605" class="check_td_right" style="font-weight:bolder">
+    
+                            $policy_arr[start_date]&nbsp;&nbsp;至&nbsp;&nbsp;$policy_arr[end_date]
+    
+                        </td>
+                    </tr>
+    
+                    </tbody>
+            </table>
+                        
+                
+                        
+            <div class="x_p_a_c c"><h2>保障内容：</h2></div>
+            <div align="left">
+                <table cellpadding="0" cellspacing="0" width="700" >
+    
+                        <tr>
+                            <td style="text-align: center; width:200px; font-weight:bolder; font-size:14px;"><strong>保险责任</strong></td>
+                            <td style="text-align: center;font-weight:bolder;font-size:14px;"><strong>保险金额</strong></td>
+                        </tr>
+    
+                    <!--{loop $product_duty_list $key $value}-->
+                    <tr>
+                        <td class="check_td_left">$value[duty_name]</td>
+                        <td align="center" style="color:#ff9900">$value[amount]</td>
+                    </tr>
+                    <!--{/loop}-->
+    
+                </table>
+            </div>
+    <div class="x_p_a_c c"><h2>保险费用</h2></div>
+            <table>
+                            <tbody><tr width="785">
+                                <td>
+                                <div class="order_cost" style="color:#C33;">
+                                    <div id="newstat" class="cost_num_wap2">
+        
+                                                
+                                        <p>￥
+                                            <span style="font-size:20px;">
+                                                
+                                                <!--保费-->
+                                                <strong>
+                                                {$total_price}
+                                                </strong>元
+                                                    </span>
+                                                    <!--
+                                                <span class="sub">
+                                                    （您本次可以获得<font color="#3399FF">10.0</font>积分）
+                                                </span>
+                                                -->
+                                        </p>
+    <input id="reprice" type="hidden" value="200.00">
+    </div>
+                                    </div></td><td>
+                                
+                            </td></tr>
+                        </tbody>
+                        </table>
+             
+            <div class="x_p_a_c c"><h2>投保声明</h2></div>
+        
+            <div style=" padding:25px 0px 0px 25px; text-align:left;">
+                 <div>$product_attribute_arr[insurance_declare]</div>
+                 <div style="padding:10px 0px;"><h1 >保险条款</h1></div>
+                 <div style="padding:10px 0px;">
+                     
+                    $product_attribute_arr[insurance_clauses]
+                     
+                 </div>
+            </div>
+                
+            <div class="state_list" style="border:1px solid #ddd;padding-left:10px;">
+                    
+                    <label>
+                        <input type="checkbox" id="readerId" name="reader" value="true">&nbsp;我已认真阅读并同意以上投保声明
+                    </label>
+                    
+                
+            
+                    <!--重要通知-->
+                    <div class="order_state">
+                        <div class="order_btn" align="left">
+                            
+                        
+                            <div class="order_btn" align="center">
+                                <div id="sub1">
+                                    <img onclick="orderCheckSubmit(this,2);" src="../images/icon15.jpg" style="cursor:pointer;"> 
+                                </div>
+                                <div id="sub2" style="display:none;">
+                                    <div><img src="../images/big_load.gif" style="cursor:pointer;" width="181" height="47"></div>
+                                    <div><font color="#CC3333">正在与保险公司通讯中，请稍等(请不要刷新浏览器)</font></div>
+                                </div>
+                                <!-- 立即购买 -->
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        
+        </form>
+    	</div>
+</div>
+
+</div>
+			
+</div> <!--contain-->
+<script>
+	$().ready(function() {
+       $('#step_gaozhi').show();
+	   $('#step_orderShow').hide(); 
+    });
+	function jiankangxuzhi(){
+		var length_radio = $('#jiankangxuzhi input[value="0"]:checked').length;	
+		if(length_radio==6){
+			$('#step_gaozhi').hide();
+			$('#step_orderShow').show();
+		}else{
+			$('#step_gaozhi').show();
+			$('#step_orderShow').hide();
+			layer.alert('健康告知填写不符合投保要求!',9,'温馨提示');	
+			return false;
+		}
+	}
+</script>	
+		
+</div> <!-- simple_wrapper -->
+<!--{template footer_cshop}-->			

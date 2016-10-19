@@ -1,0 +1,128 @@
+<!-- 
+发票明细
+by yes123
+2014-11-24
+ -->
+
+{include file="pageheader.htm"} 
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<!-- 订单列表 -->
+<div class="list-div">
+	<table width="100%" cellpadding="3" cellspacing="1">
+	  <tr>
+	    <th colspan="4">发票申请信息</th>
+	  </tr>
+		<tr>
+			<td width="18%"><div align="right"><strong>发票抬头：</strong></div></td>
+		    <td width="34%">{$invoice_detail.fp_title}</td>
+		    
+		    <td width="18%"><div align="right"><strong>发票金额：</strong></div></td>
+		    <td width="34%">{$invoice_detail.total_premium}</td>
+			
+		</tr>
+		<tr>
+		    <td width="18%"><div align="right"><strong>邮寄地址：</strong></div></td>
+		    <td width="34%">{$invoice_detail.address}</td>
+		   	<td width="18%"><div align="right"><strong>邮政编码：</strong></div></td>
+		    <td width="34%">{$invoice_detail.zonecode}</td>
+		</tr>
+		<tr>
+			<td width="18%"><div align="right"><strong>收件人：</strong></div></td>
+		    <td width="34%">{$invoice_detail.username}</td>
+			<td width="18%"><div align="right"><strong>手机号码：</strong></div></td>
+		    <td width="34%">{$invoice_detail.tel}</td>
+		</tr>
+		<tr>
+		<!-- {if $smarty.session.admin_name eq 'admin'}-->
+			<td width="18%"><div align="right"><strong>申请人：</strong></div></td>
+		    <td width="34%">{$invoice_detail.real_name}</td>
+		<!-- {/if} -->
+		    <td width="18%"><div align="right"><strong>申请日期：</strong></div></td>
+		    <td width="34%">{$invoice_detail.receipt_add_time}</td>
+		</tr>
+		
+		<tr>
+			<td width="18%"><div align="right"><strong>&#12288;&#12288;附言：</strong></div></td>
+		    <td width="34%">{$invoice_detail.postscript}</td>
+		</tr>
+		
+	</table>
+	
+	<!-- add yes123 2014-12-15 添加显示邮寄信息 -->
+	<table width="100%" cellpadding="3" cellspacing="1">
+		<tr>
+	    	<th colspan="4">受理信息</th>
+	    </tr>
+		<tr>
+			<td width="18%"><div align="right"><strong>受理人：</strong></div></td>
+		    <td width="34%">{$invoice_detail.send_those}</td>
+		    
+		    <td width="18%"><div align="right"><strong>受理日期：</strong></div></td>
+		    <td width="34%">{$invoice_detail.assigned_time}</td>
+		</tr>
+		
+		<tr>
+			<td width="18%"><div align="right"><strong>快递公司：</strong></div></td>
+		    <td width="34%">{$invoice_detail.express_company}</td>
+
+		    <td width="18%"><div align="right"><strong>快递单号：</strong></div></td>
+		    <td width="34%">{$invoice_detail.mail_sn}</td>
+		
+		</tr>
+		
+		<tr>
+			<td width="18%"><div align="right"><strong>邮寄时间：</strong></div></td>
+		    <td width="34%">{$invoice_detail.mail_time}</td>
+		    
+		    <td width="18%"><div align="right"><strong>联系电话：</strong></div></td>
+		    <td width="34%">{$invoice_detail.send_those_phone}</td>
+	
+		</tr>
+		<tr>
+		    <td width="18%"><div align="right"><strong>Email地址：</strong></div></td>
+		    <td width="34%">{$invoice_detail.send_those_email}</td>
+		</tr>
+	</table>
+	
+	<table width="100%" cellpadding="3" cellspacing="1">
+		<tr align="center">
+			<th>保单号</th>
+			<th>产品名</th>
+			<th>投保人</th>
+			<th>被保险人</th>
+			<th>保险起期</th>
+			<th>金额</th>
+		</tr>
+		{foreach from=$invoice_detail.policy_list item=item key=key}
+		<tr align="center">
+			<td>
+			<!-- {if $smarty.session.action_list eq 'all'}-->
+					<a href="policy.php?act=info&policy_id={$item.policy_id}">{$item.policy_no}</a>
+				<!-- {else} -->
+					{$item.policy_no}
+			<!-- {/if} -->
+			</td>
+			<td>{$item.attribute_name}</td>
+			<td>{$item.applicant_username}</td>
+			<td>{$item.assured_fullname}</td>
+			<td>{$item.start_date}</td>
+			<td>{$item.total_premium}</td>
+		</tr>
+		{/foreach}
+		<tr>
+			<td colspan="6" align="right">总计:{$invoice_detail.total}&#12288;&#12288;&#12288;&#12288;</td>
+		</tr>
+	</table>
+	<div align="center">
+		{if $invoice_detail.receipt_assigned eq '0'}
+			<button style="font-size: 20px;font-weight: 600;" onclick="invoice_assigned({$invoice_detail.id});">受理</button> 
+		{/if}
+	</div>
+	
+</div>
+<!-- add yes123 2014-12-15 添加显示邮寄信息  start -->
+{include file="invoice_assigned.htm"}
+
+{/literal} {include file="pagefooter.htm"}

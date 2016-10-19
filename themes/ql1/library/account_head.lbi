@@ -1,0 +1,68 @@
+
+   
+ <!--
+   --2014/7/31
+   --bhz
+   --隐藏 订单详情页面 不需要信息 start
+   -->
+     <!-- ==========订单详情页面,包括：订单状态，商品列表，费用总计，收货人信息，支付方式，其它信息========== -->
+   
+ 
+    <!--#会员余额 start-->
+  <!--{if $action eq "account_raply" || $action eq "account_log" || $action eq "transfer_accounts" || $action eq "account_deposit" || $action eq "account_income" || $action eq "account_detail" } -->
+  <script type="text/javascript">
+          {foreach from=$lang.account_js item=item key=key}
+            var {$key} = "{$item}";
+          {/foreach}
+        </script>
+         
+         
+        <!--{if $action eq "account_income"}--> 
+        <h5><span>收益明细</span></h5>
+        <!--{else}--> 
+        <h5><span>{$str_name}</span></h5>
+        <!--{/if}--> 
+        <div class="blank"></div>
+         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05">
+          <tr>
+           
+            <td align="left" bgcolor="#ffffff" >
+            <span style="float:left; margin-left:20px; line-height:46px; display:block;" class="userlink_bg">
+             账户余额：￥<span class="fontbloder">
+                    <!-- {if $user_base_info.user_money} -->
+                             {$user_base_info.user_money}
+                             <!-- {else} -->
+                              0.00
+                       <!-- {/if} -->
+             </span>元 &nbsp;&nbsp;&nbsp;&nbsp;
+                累积收益：￥<span class="fontbloder">
+               <!-- {if $user_base_info.income_total} -->
+                          {$user_base_info.income_total}
+                        <!-- {else} -->
+                           0.00
+               <!-- {/if} --></span>元 
+                 <!--<a href="user.php?act=account_income" class="f6">累积收益</a>-->
+             </span>
+                    <span style="float:right;display:block; margin-top:10px;">
+             {if $wdtj neq 'wdtj'}
+             	 {if $smarty.session.rank_code neq 'organization'}
+              		<a href="user.php?act=account_deposit" class="{if $action=='account_deposit'}btn_on02{else}btn_out02{/if}">{$lang.surplus_type_0}</a>
+            	 {/if}
+             
+              <a href="user.php?act=account_raply" class="{if $action=='account_raply'}btn_on02{else}btn_out02{/if}">{$lang.surplus_type_1}</a>
+            <!-- del yes123 2015-01-22取消转账功能  <a href="user.php?act=transfer_accounts" class="{if $action=='transfer_accounts'}btn_on02{else}btn_out02{/if}">{$lang.transfer_accounts}</a> -->
+              <a href="user.php?act=account_detail" class="{if $action=='account_detail'}btn_on02{else}btn_out02{/if}">{$lang.add_surplus_log}</a>
+              <a href="user.php?act=account_income" class="{if $action=='account_income'}btn_on02{else}btn_out02{/if}">{$lang.income_log}</a>
+              <!-- modify yes123 2014-11-28  充值和申请记录分开 -->
+              {if $smarty.session.rank_code neq 'organization'}
+              	<a href="user.php?act=account_log&process_type=0" class="{if $action=='account_log' && $process_type eq 0 }btn_on02{else}btn_out02{/if}">{$lang.view_application_append}</a>
+              {/if}
+              <a href="user.php?act=account_log&process_type=1" class="{if $action=='account_log' && $process_type eq 1}btn_on02{else}btn_out02{/if}">{$lang.view_application_subtract}</a>
+              {/if}
+                 </span>
+                 <span class="clear"></span>
+            </td>
+           
+          </tr>
+        </table>
+        <!-- {/if} -->

@@ -1,0 +1,18 @@
+{include file='header.dwt'}
+
+<div class="f-pb20"> 
+     {foreach from=$artciles_list item=item name=name}
+		<section class="f-mt20 f-pA10 s-bscT-b5b5b5 s-bscB-b5b5b5  s-bg-ffffff">
+	    	 <h3 class="f-fs3 f-tal s-c-030303 f-pb10 f-mt10">
+	    	 <a href="get_module.php?module_id=zixun_one&a_id={$item.id}">{$item.title}</a></h3> 
+	         <h5 class="f-fs1 s-c-929292">时间：{$item.add_time}</h5>
+	         <p class="f-ti2 f-fs2 s-c-6b6b6b s-lh20 f-mt15 f-pb10">
+	         {$item.description}
+	         </p>
+	    </section>
+     {/foreach}
+  
+</div>
+{include file='foot.dwt'}
+</body>
+</html>

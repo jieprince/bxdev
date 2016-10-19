@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+ 
+<title>全联保险经纪有限公司官网</title>
+ 
+<link rel="stylesheet" href="dist/fonts/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="dist/css/qiye_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/en_SuperSlide/css/qiye_style.css">
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/plugin/en_SuperSlide/js/jquery.qiye_SuperSlide.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/en_custom/public.js"></script>
+<script src="dist/js/en_custom/index.js"></script>
+</head>
+
+<body>
+<div class="g-wA100">
+	<div class="s-bscB_ececec ">
+    	<div class="f-cb g-w1000 f-mc">
+            <div class="f-fl s-lh35">
+                 <span class="s-c-009c84">欢迎访问全联保险经纪网站！</span>
+                 <span class="s-c-009c84">全国热线：</span>
+                 <span class="s-c-009c84 f-fs2 f-fwb f-fsi">{$service_phone}</span>
+            </div>
+            
+            <div class="f-fr f-mt10 f-tar">
+                <span class="f-db">
+    <!--             	<a href="#" class="link-777777">登录</a>
+                    <span class="s-c-777777 f-ml10 f-mr10">|</span>
+                    <a href="#" class="link-777777">注册</a> -->
+                    
+                    
+                      <!-- {if $smarty.session.user_id}-->
+                        <i class="iconfont s-c-009c84">&#xf00b0;</i>
+                            <a href="user.php" class="link-009c84">
+                                    <!-- {if $smarty.session.real_name}-->
+                                        {$smarty.session.real_name}
+                                        <!-- {else}-->
+                                        {$smarty.session.user_name}
+                                    <!-- {/if}-->
+                            </a>
+                            &#12288;
+                            <a href="user.php?act=logout" class="link-009c84">退出</a>
+                            
+                        <!-- {else} -->
+                            <a href="user.php" class="link-009c84 f-ml10">登录</a>
+                            <span class="s-c-009c84 f-ml10 f-mr10">|</span>
+                            <a href="user.php?act=register" class="link-009c84">注册</a>
+                    <!-- {/if} -->
+                    
+                    
+                </span>
+                
+            </div>
+        </div>
+    </div>
+    <header class="g-w1000 f-mc f-cb g-h115 ">
+    	<div class="f-fl f-mt20">
+        	<a href="default.php"><img src="images/logo.png"></a>
+        </div>
+        <div class="f-fr f-mt10 f-tar">
+        	 
+            <span class="f-db f-mt20">
+             <form id="myform" action="article.php" method="get" > 
+             	<input type="hidden" name="act" value="search_article">
+            	 <input class="f-input g-w340" name="title" placeholder="财产险,货运险" value="{$search_title} ">
+                 <a href="javascript:search_goods();" class="f-ib"><i class=" iconfont icon-sousuo f-search"></i></a>
+             </form>
+             <script type="text/javascript">
+             	function search_goods(){
+             		$("#myform").submit();
+             	}
+             
+             </script>
+            </span>
+        </div>
+    </header>
+</div>
+<div class="g-wA100 s-bg-22497d g-h45"> 
+    <nav class="g-w1000 f-mc">
+    	<ul class="nav-list f-cb">
+           
+   		  <!-- {foreach name=nav_middle_list from=$navigator_list.en_middle item=nav} -->
+          		
+		  	   <li>
+				  	<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1}class="p_active"{/if}>{$nav.name}</a>
+				  <!--{if $nav.child_nav_list}-->
+				  	<ul>
+				  		  <!-- {foreach from=$nav.child_nav_list item=item} -->
+				  		  		<li><a href="{$item.url}">{$item.name}</a></li>
+				  		  <!-- {/foreach} -->
+				  		   <li></li>
+				    </ul>
+				  <!-- {/if} -->
+				  	
+		  	   </li>
+		  <!-- {/foreach} -->
+		    
+            <li class="gg_bg"><a href="index.php" target="_blank"><i class="iconfont f-fwn f-vat f-mr5">&#xf0148;</i><span>在线商城</span><em class="f-hot">hot</em></a></li>
+            <li><a href="article.php?act=article_detail&article_type=com_article&id=186" target="_blank" {if $article_type eq 'com_article'}class="p_active"{/if}><span>平台入口</span></a></li>
+        </ul>
+    </nav>
+</div>

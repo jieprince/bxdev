@@ -1,0 +1,76 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<div id="main-body">
+
+<a href="space.php?do=admin_insurance_duty"> 返回类别列表 </a>
+
+<form name="insuranceDutyForm" method="POST" action="/insuranceDutyAction.do?method=view">
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+                
+
+
+<a href="cp.php?ac=admin_insurance_duty&duty_id=$value[duty_id]">修改 </a>
+
+
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="4" class="view-header">基本信息</td>
+    </tr>
+
+    <tr>
+        <td class="view-title">责任编码</td>
+        <td class="view-text">$value[duty_code]</td>
+        <td class="view-title">责任名称</td>
+        <td class="view-right-text">$value[duty_name]</td>
+    </tr>
+	
+	<tr>
+        <td class="view-first-title">保险公司</td>
+        <td class="view-first-text">$value[insurer_name]</td>
+    </tr>
+	
+</tbody></table>
+
+
+                <table class="view-table">
+                    <tbody><tr>
+                        <td colspan="4" class="view-header">元数据信息</td>
+                    </tr>
+                    <tr>
+                        <td class="view-first-title">状态标志</td>
+                        <td class="view-first-text">
+                            正常
+                            
+                            
+                        </td>
+                        <td class="view-first-title">操作人</td>
+                        <td class="view-top-right-text">超级用户</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">创建时间</td>
+                        <td class="view-text">2014-02-01</td>
+                        <td class="view-title">更新时间</td>
+                        <td class="view-top-right-text">2014-02-01</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">显示序号</td>
+                        <td class="view-text">1</td>
+                        <td class="view-title">备注信息</td>
+                        <td class="view-right-text"></td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

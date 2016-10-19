@@ -1,0 +1,377 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<!-- 
+发票列表
+by yes123
+2014-11-24
+ -->
+<!-- 订单搜索 -->
+<div class="form-div">
+	<!-- yes123 2014-11-12  布局调整 -->
+	<form action="javascript:searchOrder()" name="searchForm">
+		<table>
+			<tr>
+				<td align="right">保单号：</td>
+				<td><input type="text" name="policy_no"/></td>
+				
+				<td align="right">保险产品：</td> 
+				<td><input type="text" name="product_name"></td>	
+			</tr>
+			<tr>
+				<td align="right">投保人：</td>
+				<td><input type="text" name="applicant_username"></td>
+				<td align="right">被保险人：</td>
+				<td><input type="text" name="assured_fullname"></td>
+				
+			</tr>
+			<!-- add yes123 2014-12-16  快递信息 -->		
+			<tr>
+				<td align="right">快递公司：</td>
+				<td><input type="text" name="express_company"></td>
+				<td align="right">邮寄单号：</td>
+				<td><input type="text" name="mail_sn"></td>
+				
+			</tr>
+			
+			<tr>
+				<!-- {if $see_all} -->
+					<td align="right">保险公司：</td>
+					<td>
+						<select name="insurer_code">
+							<option value="">--请选择--</option>
+							<!--{foreach from=$list_insurance_company item=item}-->
+								<option value="{$item.insurer_code}">{$item.insurer_name}</option>
+							<!--{/foreach}-->
+						</select>
+						<!-- {else}  查询条件用的name-->
+						<input type="hidden" name="insurer_code">
+					</td>
+				<!-- {/if} -->
+			</tr>
+			
+		</table>
+		&nbsp;时间类型：<select name="date_type">
+						<option value="">--请选择--</option>
+						<option value="order_date">订单日期</option>
+						<option value="policy_date">保险起期</option>
+						<option value="receipt_date">申请发票日期</option>
+			  </select>
+		起止日期：
+		<input class="Wdate" type="text" id="start_time" name="start_time" value="{$condition.start_time}"
+					onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" />
+		~<input class="Wdate" type="text" id="end_time" name="end_time" value="{$condition.end_time}"
+					onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" />
+	 	
+	 	<input type="submit" value="{$lang.button_search}" class="button" />
+
+	<span style="float: right;margin-right: 10px">
+		受理状态：
+		<a href="order.php?act=invoice_list&receipt_assigned=all">
+			{if $filter.receipt_assigned eq 'all'} <span style="background-color: #008FB5;font-size: 16px;color:#fff;padding: 3px;margin:0 3px">全部 </span> 
+				{else}
+				全部
+			{/if}
+		
+		</a>
+		<a href="order.php?act=invoice_list&receipt_assigned=waiting_process">
+			{if $filter.receipt_assigned eq 'waiting_process'} <span style="background-color: #008FB5;font-size: 16px;color:#fff;padding: 3px;margin:0 3px">待受理 </span> 
+				{else}
+				待受理
+			{/if}
+		
+		</a>
+	 	<a href="order.php?act=invoice_list&receipt_assigned=processed">
+	 		{if $filter.receipt_assigned eq 'processed'} <span style="background-color: #008FB5;font-size: 16px;color:#fff;padding: 3px;margin:0 3px">已受理 </span> 
+				{else}
+				已受理 
+			{/if}
+	 	
+	 	</a>
+	</span>
+
+	
+	</form>
+</div>
+
+<!-- 订单列表 -->
+<form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()">
+	<div class="list-div" id="listDiv">
+		{/if}
+
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th><input onclick='selectAll(this)' type="checkbox" />发票ID</th>
+				<!-- {if $see_all} -->
+				<th>保险公司</th>
+                 <th>代理人</th>
+               <!-- {/if} -->
+    
+				<th>投保人</th>
+				<th>发票抬头</th>
+				<th>收件人</th>
+				<th>手机号码</th>
+				<!-- <th>联系电话</th>
+				
+				<th>邮寄地址</th>
+				<th>邮政编码</th> 
+				<th>投保人</th>-->
+				<th>申请日期</th>
+				<th>状态</th>
+				  <!-- add yes123 2014-12-06 添加受理人 -->
+				<th>受理人</th>
+				<th>受理日期</th>
+				<th>操作</th>
+			<tr>{foreach from=$invoice_list item=invoice key=key}
+			<tr align="center">
+				<td valign="top" nowrap="nowrap">
+				{if $invoice.receipt_assigned eq 0} 
+					<input type="checkbox" name="invoice_id" value="{$invoice.id}" />
+						{$invoice.id}
+						{else}
+					&#12288;&#12288;{$invoice.id}
+				{/if}
+					
+				</td>
+				<!-- {if $see_all} -->
+				<td>{$invoice.insurer_name}</td>
+      			<td>	
+    					<!-- {if $invoice.real_name}  -->
+    						{$invoice.real_name}
+    					<!-- {else} -->
+    						{$invoice.user_name}
+    					<!-- {/if} -->
+      			</td>
+				<!-- {/if} -->
+				<!-- 投保人 -->
+				<td>{$invoice.applicant_username}</td>
+				<!-- 发票抬头 -->
+				<td>{$invoice.fp_title}<br /></td>
+				<!-- 收件人 -->
+				<td >
+					{$invoice.username}
+				</td>
+							<!--手机号码 -->
+				<td>{$invoice.tel}</td>
+				<!-- 电话
+				<td>{$invoice.phone-bak}</td> -->
+	
+				<!--邮寄地址
+				<td>{$invoice.address-bak}</td>  -->
+				<!--邮政编码  
+				<td>{$invoice.zonecode-bak}</td>-->
+				
+				<!-- 投保人 
+				<td>{$invoice.applicant_username-bak}</td>-->
+				<!-- 申请日期 -->
+				<td>{$invoice.receipt_add_time}</td>
+				<!-- 状态 -->
+				<td align="center" valign="top" nowrap="nowrap">
+					{if $invoice.receipt_assigned eq 0} 
+						未受理 
+						{else} 
+						已受理 
+					{/if}
+				</td>
+				
+				<td>{$invoice.handlers}</td> <!-- add yes123 2014-12-06 添加受理人 -->
+				
+				<td>{$invoice.assigned_time}</td>
+				
+				<td align="center" valign="top" nowrap="nowrap">
+					{if $invoice.receipt_assigned eq 0} 
+						<a href="javascript:invoice_assigned({$invoice.id});">受理</a> 
+					{/if}
+					<a href="order.php?act=invoice_detail&id={$invoice.id}">查看明细</a>
+				</td>
+				<!-- 操作 -->
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+		{if $full_page}
+	</div>
+	<div>
+		<!-- <input type="button" onclick="batch_invoice_assigned();" value="受理">  -->
+		<!-- <input type="button" onclick="invoice_export_list();" value="导出"> -->
+	</div>
+</form>
+<!-- 发票受理窗口 -->
+{include file="invoice_assigned.htm"}
+
+<script language="JavaScript">
+listTable.query = "invoice_query";
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索订单
+     */
+    function searchOrder()
+    {
+    	listTable.filter['policy_no'] = Utils.trim(document.forms['searchForm'].elements['policy_no'].value);
+        listTable.filter['product_name'] = Utils.trim(document.forms['searchForm'].elements['product_name'].value);
+        //listTable.filter['user_name'] = Utils.trim(document.forms['searchForm'].elements['user_name'].value);
+		//listTable.filter['realname'] = Utils.trim(document.forms['searchForm'].elements['realname'].value);
+		listTable.filter['insurer_code'] = Utils.trim(document.forms['searchForm'].elements['insurer_code'].value);
+        //listTable.filter['certificates_code'] = Utils.trim(document.forms['searchForm'].elements['certificates_code'].value);
+        listTable.filter['applicant_username'] = document.forms['searchForm'].elements['applicant_username'].value;
+        listTable.filter['assured_fullname'] = document.forms['searchForm'].elements['assured_fullname'].value;
+        listTable.filter['date_type'] = document.forms['searchForm'].elements['date_type'].value;
+        listTable.filter['start_time'] = document.forms['searchForm'].elements['start_time'].value;
+        listTable.filter['end_time'] = document.forms['searchForm'].elements['end_time'].value;
+        //add yes123 2014-12-16  快递信息	
+        listTable.filter['express_company'] = document.forms['searchForm'].elements['express_company'].value;
+        listTable.filter['mail_sn'] = document.forms['searchForm'].elements['mail_sn'].value;
+        
+        
+        listTable.filter['page'] = 1;
+        listTable.query = "invoice_query";
+        listTable.loadList();
+    }
+
+    function check()
+    {
+      var snArray = new Array();
+      var eles = document.forms['listForm'].elements;
+      for (var i=0; i<eles.length; i++)
+      {
+        if (eles[i].tagName == 'INPUT' && eles[i].type == 'checkbox' && eles[i].checked && eles[i].value != 'on')
+        {
+          snArray.push(eles[i].value);
+        }
+      }
+      if (snArray.length == 0)
+      {
+        return false;
+      }
+      else
+      {
+        eles['order_id'].value = snArray.toString();
+        return true;
+      }
+    }
+    
+    
+		function invoice_info(order_id){
+   			var pageii = $.layer({
+   			  	type: 1,
+       	        title: false, //不显示默认标题栏
+       	        shade: [0], //不显示遮罩
+       	        area: ['400px', '320px'],
+   			    page:{html:"<form id=fp_form action=flow.php method=post>"+
+   			    	"<input type=hidden name=order_id value="+order_id+">"+
+   			    	"<input type=hidden name=step value=save_fp><table>"+
+   			 		"<tr><td>发票抬头：</td><td><input type=text name=fp_title readonly=readonly></td></tr> "+
+   			     	"<tr><td>&#12288;收件人：</td><td><input type=text name=username readonly=readonly></td></tr>"+
+   			     	"<tr><td>联系电话：</td><td><input type=text name=phone readonly=readonly></td></tr>"+
+   			     	"<tr><td>手机号码：</td><td><input type=text name=tel readonly=readonly></td></tr>"+
+   			     	"<tr><td>邮寄地址：</td><td><input type=text name=address style='width: 275px;' readonly=readonly></td></tr>"+
+   			     	//2014-10-11 添加邮政编码字段bug#148
+   			     	"<tr><td>邮政编码：</td><td><input type=text name=zonecode style='width: 275px;' readonly=readonly></td></tr>"+
+   			     	"<tr><td valign='top'>&#12288;&#12288;附言：</td><td></tr>"+
+   			     	"<tr><td></td><td><textarea rows=5 cols=30 name=postscript   readonly=readonly ></textarea></td></tr>"+
+   			     	"</table></form>"
+   			    }
+   			});
+   			findReceiptById_and_show(order_id);
+   		}
+		
+		function findReceiptById_and_show(order_id){
+   			$.post("order.php", { "act": "findReceiptById", "order_id": order_id },
+	 			function(data){
+	   				data = data.parseJSON();
+	   					$("input[name='fp_title']").val(data.fp_title);
+	   					$("input[name='username']").val(data.username);
+	   					$("input[name='phone']").val(data.phone);
+	   					$("input[name='tel']").val(data.tel);
+	   					$("input[name='address']").val(data.address); 
+	   					$("input[name='zonecode']").val(data.zonecode); 
+	   					$("textarea[name='postscript']").val(data.postscript);
+	   					
+	 		   	}, "text"); 
+		}
+		
+		//批量受理
+		function batch_invoice_assigned(){
+			  var ids='';
+			  $('input[name="invoice_id"]:checked').each(function(){
+			    ids+=$(this).val()+',';
+			  }); 
+			  var reg=/,$/gi;
+			  ids=ids.replace(reg,"");
+			  ids = ids.split(",");
+			  
+			  if($.trim(ids)){
+				  invoice_assigned(ids);
+				  
+			  }else{
+				  showMsg('请选择要受理的发票',3); 
+			  }
+		}
+		
+/* 		function showMsg(msg_str,type,url){
+			var showFn =  $.layer({
+			    shade: [0],
+			    area: ['auto','auto'],
+			    dialog: {
+			        msg: msg_str,
+			        btns: 1,                    
+			        type: type,
+			        btn: ['确定'],
+			        yes: function(){
+			        	if(type){
+				        	location.replace(url);
+			        	}else{
+			        		layer.close(showFn);
+			        	}
+			        }
+			    }
+			});
+			
+		}	 */	
+	//导出发票列表 2014-10-30 yes123
+	 function invoice_export_list(){
+		  var ids='';
+		  $('input[name="order_id"]:checked').each(function(){
+		    ids+=$(this).val()+',';
+		  }); 
+		  var reg=/,$/gi;
+		  ids=ids.replace(reg,"");
+		  ids = ids.split(",");
+		  if(ids!=""){
+		  	 window.location.href="order.php?act=invoice_export_list&order_ids="+ids; 
+		  }else{
+			 showMsg("请选择要导出的发票",0);
+		  }
+	 }	
+	
+	function selectAll(obj){
+		var ids=$("input[name='invoice_id']");  
+		for(var i=0;i<ids.length;i++)
+		{  
+			if(ids[i].checked==true)
+			{    
+				ids[i].checked="";   
+
+			}else{   
+			 　　　ids[i].checked="checked";  
+			}  
+		}
+	}
+	
+		
+</script>
+{/literal} {include file="pagefooter.htm"} {/if}

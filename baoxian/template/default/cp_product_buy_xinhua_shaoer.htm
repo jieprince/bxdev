@@ -1,0 +1,621 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->	
+
+<input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+<input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+<input id="period_code" name="period_code" value="$period_code" type="hidden">
+<input name="applyNum" value="{$applyNum}" type="hidden">
+<input type="hidden" name="startDate" value="{$startDate}" />
+<input type="hidden" name="endDate" value="{$endDate}" />
+<input type="hidden" name="duty_price_ids" value="{$duty_price_ids}" />
+<input id="gender_temp" value="{$assured_gender}" type="hidden">
+<input id="assured_birthdayTemp" value="{$assured_birthday}" type="hidden">
+<input type="hidden" name="payPeriodUnit"  id="payPeriodUnit" value="{$payPeriodUnit}" />
+<input type="hidden" name="payPeriod" id="payPeriod" value="{$payPeriod}" />
+{if $payPeriod==0}
+<input type="hidden" name="payMode" value="5" />
+{else}
+<input type="hidden" name="partPayMode" value="3" />
+<input type="hidden" name="payMode" value="1" />
+{/if}
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name" value="xinhua_shaoer" type="hidden">
+
+<div class="x_p_a_c c"><h2 class="l">购买信息</h2></div>
+<div class="c_p_a_d">
+    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+        <tr class="">
+            <th width="30%">保费</th>
+            <td>
+                {$prodcutMarkPrice} 元 {if $payPeriod!=0}/年{/if}
+            </td>
+        </tr>
+        <tr class="">
+            <th width="30%">交费期间</th>
+            <td>
+                {if $payPeriod==0}一次性交清{else}{if $payPeriod==18} 至18周岁保单生效对应日前一日 {else}{$payPeriod} 年{/if}{/if}
+            </td>
+        </tr>
+        
+        <tr class="">
+            <th width="30%">保险期限</th>
+            <td >
+                {$startDate} 至 {$endDate}
+            </td>
+        </tr>
+        <tr class="">
+            <th width="30%">年龄范围</th>
+            <td><span> $product[age_min]</span> 至 <span> $product[age_max]</span>岁</td>
+                                
+        </tr>
+        <tr class="">
+            <th width="30%">购买份数</th>
+            <td>
+                {$applyNum} 份
+            </td>
+        </tr>
+		 
+    </table>
+</div>
+
+<div class="pro_more">
+    <div class="pro_more_div">
+        <span class="pre_more_on">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="1" id="assured_input_type_manual" title="手工输入" type="radio" checked="checked" >
+            <label for="man" class="ch" >单个录入</label>
+        </span> 
+         
+    </div>
+</div>
+<div style="border:#CCC solid 1px;">
+    <div id="table_input_type_manual">
+        <div class="x_p_a_c c">
+            <h2 class="l">投保人信息</h2>
+            <div class=""></div>
+        </div>
+
+        <!--投保类型-->
+        <div class="c_p_a_d">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>投保人类型</th>
+                    <td width="70%">
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="applicant_type" value="1" id="applicant_type_single" title="个人" type="radio" checked="checked" >
+                            <label for="man" class="ch">个人</label>&nbsp;&nbsp;&nbsp;
+                             
+                        </span>
+                         
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
+        <!--个人投保人开始-->
+        <div class="c_p_a_d" id="applicant_info_single">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="applicant_fullname" id="applicant_fullname" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onblur="check_cn_name('applicant_fullname',1);">
+                        <span id="applicant_fullname_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+
+
+                <tr class="">
+                    <th><span class="a_x">*</span>证件类型</th>
+                    <td >
+                        <select title="身份证类别" name="applicant_certificates_type" id="applicant_certificates_type" class="i_e">
+                             
+                            <!--{loop $attr_xinhua_certificates_type $index $value1}-->
+                            <option value="{$index}">{$value1}</option>
+                            <!--{/loop}-->
+                            
+                        </select>
+                        <span id="applicant_certificates_type_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+
+                <tr class="">
+                    <th><span class="a_x">*</span>证件号码</th>
+                    <td >
+                        <input value="" maxlength="50" name="applicant_certificates_code" id="applicant_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onblur="check_All_card('applicant_certificates_type','applicant_certificates_code',1,true,'applicant_birthday','applicant_gender',false)">
+
+                        <span id="applicant_certificates_code_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                
+                <tr class="">
+                    <th><span class="a_x">*</span>证件有效期</th>
+                    <td>
+                        <input name="applicant_cardValidDate" id="applicant_cardValidDate" class="i_f pa_ui_element_normal" type="text" >
+						至 <input name="applicant_cardExpDate" id="applicant_cardExpDate" class="i_f pa_ui_element_normal" type="text" >
+                       <input type="checkbox" id="applicant_cardValidExps" /> 长期有效 
+                       <span id="applicant_cardValidDate_warn applicant_cardExpDate_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                
+                <tr class="">
+                    <th><span class="a_x">*</span>性别</th>
+                    <td>
+                        <span >
+                            <input class="pa_ui_element_normal" name="applicant_gender" value="M" type="radio" onclick="gender_ass_appli(this.value,'relationshipWithInsured');" >
+
+                            <label for="man" class="ch">男</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="applicant_gender" value="F" type="radio" onclick="gender_ass_appli(this.value,'relationshipWithInsured');"><label for="woman" class="ch"  >女</label>
+                        </span>
+                        <span id="applicant_gender_warn" class="warn_strong"></span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th>
+                        <span class="a_x">*</span>
+                        生日
+                    </th>
+                    <td>
+                        <input value="" maxlength="50" name="applicant_birthday" id="applicant_birthday" class="i_f pa_ui_element_normal" type="text"  onblur="check_birthdays('applicant_birthday',1)">
+
+                        <span id="applicant_birthday_warn" style="color:red;display:inline-block" class="warn_strong">格式为： 2010-01-02</span>
+                    </td>
+                </tr>
+                
+                <tr class="">
+                    <th><span class="a_x">*</span>国籍</th>
+                    <td>
+                         
+                            <select name="applicant_nation_code" id="applicant_nation_code" class="i_e">
+                            	<option value="37">中国</option>
+                            </select>
+                        	
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>通信地址</th>
+                    <td>
+                        
+                        <select name="applicant_province_code" id="applicant_province_code" class="i_e" onchange="provice_city_Ajax('applicant_city_code','city_by_province');">
+                             
+                        </select>
+                        <select class="i_e" name="applicant_city_code" id="applicant_city_code" onchange="provice_city_Ajax('applicant_county_code','county_by_city');">
+                             
+                        </select>
+                        <select class="i_e" name="applicant_county_code" id="applicant_county_code">
+                             
+                        </select>
+                            
+                       
+                    </td>
+                </tr>
+                <tr class="">
+                    <th></th>
+                    <td>
+                        <input type="text" name="applicant_address" id="applicant_address" class="i_f pa_ui_element_normal" onblur="checkAll_Null('applicant_address')"/>
+                        <span id="applicant_address_warn" class="warn_strong"></span>
+                    </td>
+                </tr>
+				<tr class="">
+                    <th><span class="a_x">*</span>服务机构</th>
+                    <td>
+                        
+                        <select class="i_e" name="applicant_p_organization" id="applicant_p_organization" onchange="get_organization('applicant_child_organization','C');">
+                             
+                        </select>
+                        <select class="i_e" name="serviceOrgCode" id="applicant_child_organization">
+                             
+                        </select>
+                             
+                       
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>邮政编码</th>
+                    <td>
+                        <input name="applicant_zipcode" id="applicant_zipcode" value="" maxlength="11" class="i_f pa_ui_element_normal" type="text" onblur="check_zipcode('applicant_zipcode');">
+
+                        <span id="applicant_zipcode_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>移动电话</th>
+                    <td>
+                        <input name="applicant_mobiletelephone" id="applicant_mobiletelephone" value="" maxlength="11" class="i_f pa_ui_element_normal" type="text" onblur="check_mobilephones('applicant_mobiletelephone');">
+
+                        <span id="applicant_mobiletelephone_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>电子邮箱</th>
+                    <td>
+                        <div>
+                            <input name="applicant_email" id="applicant_email" value="" class="i_f pa_ui_element_normal" type="text" onblur="check_emails('applicant_email');">
+
+                            <span id="applicant_email_warn" style="float left;" class="warn_strong"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr class="">
+                    <th><span class="a_x">*</span>职业</th>
+                    <td>
+                        <select class="i_e" name="applicant_business_type" id="applicant_business_type" onchange="get_industry_info('applicant_occupationClassCode','career')">
+                             
+                        </select>
+                        <select class="i_e" name="applicant_occupationClassCode" id="applicant_occupationClassCode">
+                             
+                        </select>
+                    </td>
+                </tr>
+				
+            </table>
+        </div>
+        <!--个人投保人结束-->
+  
+
+
+        <!--单个被保险人-->
+        <div class="c_p_a_d" id="div_assured" >
+            <div class="x_p_a_c c" style="margin:20px 0px;"><h2 class="l">被保险人信息</h2></div>
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" >
+            	<tr class="" id="tr_assured_fullname">
+                    <th width="30%">与投保人关系</th>
+                    <td width="70%">
+                        <select title="与被保人关系" name="relationshipWithInsured" id="relationshipWithInsured" class="i_e" disabled="disabled">
+                            <!--{loop $attr_xinhua_relationship_with_applicant $index $value1}-->
+                            <option value="{$index}">{$value1}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+
+                </tr>
+                <tr class="" id="tr_assured_fullname">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="assured[0][assured_fullname]" id="assured_fullname" class="i_f pa_ui_element_normal" type="text"  onblur="check_cn_name('assured_fullname',2)">
+                        <span id="assured_fullname_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+
+                <tr class="">
+                    <th ><span class="a_x">*</span>证件类型</th>
+                    <td>
+                        <select title="投保人身份证类别" name="assured[0][assured_certificates_type]" id="assured_certificates_type" class="i_e">
+                            <!--{loop $attr_xinhua_certificates_type $index $value1}-->
+                            <!--{if $index!=2}-->
+                            <option value="{$index}">{$value1}</option>
+                            <!--{/if}-->
+                            <!--{/loop}-->
+                        </select>
+                        <span id="assured_certificates_type_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+                <tr class="" id="tr_assured_certificates_code">
+                    <th><span class="a_x">*</span>证件号码</th>
+                    <td>
+                        <input value="" maxlength="50" name="assured[0][assured_certificates_code]" id="assured_certificates_code" class="i_f pa_ui_element_normal" type="text" onblur="check_All_card('assured_certificates_type','assured_certificates_code',2,true,'assured_birthday','assured[0][assured_gender]',true)">
+
+                        <span id="assured_certificates_code_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>证件有效期</th>
+                    <td >
+                        <input name="assured[0][assured_cardValidDate]" id="assured_cardValidDate" class="i_f pa_ui_element_normal" type="text" >
+						至 <input name="assured[0][assured_cardExpDate]" id="assured_cardExpDate" class="i_f pa_ui_element_normal" type="text" >
+                       <input type="checkbox" id="assured_cardValidExps" /> 长期有效 
+                       <span id="assured_cardValidDate_warn assured_cardExpDate_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                <tr class="" id="tr_assured_sex">
+                    <th><span class="a_x">*</span>性别</th>
+                    <td>
+                        <span id="clientSexInput">
+                        	 
+                            <input class="pa_ui_element_normal" name="assured[0][assured_gender]" value="M" type="radio" {if $assured_gender=="M"} checked="checked" {/if}  disabled="disabled">
+                            <label for="man" class="ch">男</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="assured[0][assured_gender]" value="F"  type="radio" {if $assured_gender=="F"} checked="checked" {/if} disabled="disabled">
+                            <label for="woman" class="ch">女</label>
+                            
+                        </span>
+                         
+                    </td>
+                </tr> 
+                <tr class="" id="tr_assured_birthday">
+                    <th>
+                        出生日期
+                    </th>
+
+                    <td>
+                        <input value="{$assured_birthday}" maxlength="50" name="assured[0][assured_birthday]" id="assured_birthday" class="i_f pa_ui_element_normal" type="text" onblur="check_birthdays('assured_birthday',2)" disabled="disabled" >
+ 						<span id="assured_birthday_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>国籍</th>
+                    <td>
+                         
+                        <select name="assured[0][assured__nation_code]" id="assured__nation_code" class="i_e">
+                            <option value="37">中国</option>
+                        </select>
+                        
+                        	
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>通信地址</th>
+                    <td>
+                        
+                        <select name="assured[0][assured_province_code]" id="assured_province_code" class="i_e" onchange="provice_city_Ajax('assured_city_code','city_by_province',2);">
+                             
+                        </select>
+                        <select class="i_e" name="assured[0][assured_city_code]" id="assured_city_code" onchange="provice_city_Ajax('assured_county_code','county_by_city',2);">
+                             
+                        </select>
+                        <select class="i_e" name="assured[0][assured_county_code]" id="assured_county_code">
+                             
+                        </select>
+                            
+                       
+                    </td>
+                </tr>
+                <tr class="">
+                    <th></th>
+                    <td>
+                        <input type="text" name="assured[0][assured_address]" id="assured_address" class="i_f pa_ui_element_normal" onblur="checkAll_Null('assured_address')"/>
+                        <span id="assured_address_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>职业</th>
+                    <td>
+                        
+                        
+                        <select class="i_e" name="assured[0][assured_business_type]" id="assured_business_type">
+                            <option value="NCL_W001">文教、图书、出版业</option>
+                        </select>
+                        <select class="i_e" name="assured[0][assured_occupationClassCode]" id="assured_occupationClassCode">
+                             <option value="NCL_W001002">学生</option>
+                             <option value="NCL_W001013">学龄前儿童</option>
+                        </select>
+                        
+                    </td>
+                </tr>
+                <tr class="" id="tr_assured_mobilePhone">
+                    <th><span class="a_x">*</span>移动电话</th>
+                    <td>
+                        <input name="assured[0][assured_mobilephone]" id="assured_mobilephone" value="" maxlength="11" class="i_f pa_ui_element_normal" type="text" onblur="check_mobilephones('assured_mobilephone');">
+                        <span id="assured_mobilephone_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+
+                </tr>
+                 
+            </table>
+        </div>
+
+    </div>
+    
+    <!--受益人-->
+    <div class="c_p_a_d">
+    	<div class="x_p_a_c c" style="margin:20px 0px;"><h2 class="l">受益人</h2></div>
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>受益人</th>
+                <td width="70%">
+
+                    <select title="受益人" name="beneficiary" id="beneficiary" class="i_e">
+                        <option value="1" selected="selected">被保险人的法定继承人</option>
+                        <option value="0" >其他受益人</option>
+                    </select>
+                    <input type="hidden" name="beneficiary_info" id="beneficiary_info_value" />
+                </td>
+            </tr>
+            
+        </table>
+        <div id="beneficiary_info">
+        	<table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+                <tr class="">
+                    <th width="30%">
+                     </th>
+                    <td width="70%">
+                        法定继承人的继承顺序：<br />
+                        第一顺序：配偶、子女、父母<br />
+            			第二顺序：兄弟姐妹、祖父母、外祖父母
+                    </td>
+                </tr>  
+            </table>
+        </div>
+        <div id="beneficiary_list" style="display:none" >
+        	<div id="beneficiary_list_mode">
+                <div id="beneficiary_info_01" data-value="1" style="padding-top:20px;">
+                    <div class="benegiciary_title">
+                    	<span style="float:left">受益人一</span>
+                    
+                    	<span style="float:right">
+                        	  <a href="javascript:void(0)" onclick="del_beneficiary(1)" class="delebtn">删 除</a>
+                        </span>
+                        <span style=" clear:both"></span>
+                    </div>
+                    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" style=" border: dashed #ccc 1px;" >
+                    	 
+                        
+                        <tr class="" id="tr_assured_fullname">
+                            <th ><span class="a_x">*</span>姓名</th>
+                            <td data-title="beneficiary_name">
+                                <input value="" maxlength="50" class="i_f pa_ui_element_normal" id="beneficiary_name_01" type="text" onblur="check_cn_name('beneficiary_name_01',3)">
+                                <span id="beneficiary_name_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+        
+                        </tr>
+        
+                        <tr class="">
+                            <th ><span class="a_x">*</span>证件类型</th>
+                            <td data-title="beneficiary_certificates_type">
+                                <select id="beneficiary_certificates_type_01" class="i_e">
+                                    <!--{loop $attr_xinhua_certificates_type $index $value1}-->
+                                    <option value="{$index}">{$value1}</option>
+                                    <!--{/loop}-->
+                                </select>
+                                <span id="beneficiary_certificates_type_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+        
+                        </tr>
+                        <tr class="">
+                            <th><span class="a_x">*</span>证件号码</th>
+                            <td data-title="beneficiary_certificates_code">
+                                <input value="" maxlength="50" id="beneficiary_certificates_code_01" class="i_f pa_ui_element_normal" type="text" onblur="check_All_card('beneficiary_certificates_type_01','beneficiary_certificates_code_01',3,true,'beneficiary_birthday_01','beneficiary_sex_01',false)">
+                                <span id="beneficiary_certificates_code_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <th><span class="a_x">*</span>证件有效期</th>
+                            <td data-title="beneficiary_cardValidDate">
+                                <input id="beneficiary_cardValidDate_01" class="i_f pa_ui_element_normal" type="text" >
+                                至 <input id="beneficiary_cardExpDate_01" class="i_f pa_ui_element_normal" type="text" >
+                               <input type="checkbox" id="beneficiary_cardValidExps_01" /> 长期有效 
+                               <span id="beneficiary_cardValidDate_01_warn beneficiary_cardExpDate_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+                        </tr>
+                        <tr class="" id="tr_assured_sex">
+                            <th><span class="a_x">*</span>性别</th>
+                            <td data-title="beneficiary_sex">
+                                 
+                                    <input class="pa_ui_element_normal"  value="M" name="beneficiary_sex_01" type="radio"  onclick="gender_ass_beneficiary(this.value,'beneficiary_benefitRelation_01');">
+                                    <label for="man" class="ch">男</label>&nbsp;&nbsp;&nbsp;
+                                    <input class="pa_ui_element_normal" value="F" name="beneficiary_sex_01" type="radio" onclick="gender_ass_beneficiary(this.value,'beneficiary_benefitRelation_01');">
+                                    <label for="woman" class="ch">女</label>
+                               
+                            </td>
+                        </tr> 
+                        <tr class="" id="tr_assured_birthday">
+                            <th>
+                                出生日期
+                            </th>
+        
+                            <td data-title="beneficiary_birthday">
+                                <input id="beneficiary_birthday_01" class="i_f pa_ui_element_normal" type="text">
+         						<span id="beneficiary_birthday_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+                        </tr>
+                        <tr class="" id="tr_assured_fullname">
+                            <th width="30%">与被保险人关系</th>
+                            <td width="70%" data-title="beneficiary_benefitRelation">
+                                <select class="i_e" id="beneficiary_benefitRelation_01" disabled="disabled">
+                                    <!--{loop $attr_xinhua_relationship_benefit_with_applicant $index $value1}-->
+                                    <option value="{$index}">{$value1}</option>
+                                    <!--{/loop}-->
+                                </select>
+                            </td>
+        
+                        </tr>
+                        <tr class="">
+                            <th><span class="a_x">*</span>国籍</th>
+                            <td data-title="beneficiary_nativePlace">
+                                 
+                                    <select id="beneficiary_nativePlace_01" class="i_e">
+                                        <option value="37">中国</option>
+                                    </select>
+                                    
+                            </td>
+                        </tr>
+                         
+                        <tr class="">
+                            <th><span class="a_x">*</span>收益比例</th>
+                            <td data-title="beneficiary_benefitScale">
+                                <input type="text" class="i_f pa_ui_element_normal" id="beneficiary_benefitScale_01" onblur="check_numberAFloat('beneficiary_benefitScale_01')"  maxlength=5/>%
+                                <span id="beneficiary_benefitScale_01_warn" style="float left;" class="warn_strong"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style=" border: dashed #ccc 2px;  text-align:center; width:90%; margin:0 auto; margin-top:20px;" >
+            	<div style="padding:10px;">
+            		<a href="javascript:void(0)" class="btn" onclick="add_beneficiary()">+ 添加受益人</a> 最多可添加 3 个受益人
+                </div>
+            </div>
+        </div>
+    </div>
+    {if $payPeriodUnit!=0}
+    <!--续期交费信息-->
+    <div class="c_p_a_d" id="bank_infos">
+    	<div class="x_p_a_c c" style="margin:20px 0px;"><h2 class="l">
+            续期交费信息
+            <span class="text_info" style="color:#ff6600">(*此产品暂不支持信用卡支付！分期交付的保险费将从续期账号中扣除,请您填写续期账号信息)</span>
+        </h2></div>
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>续期交费银行</th>
+                <td width="70%">
+
+                     <select name="partPayBankCode" id="bank_name" class="i_e" >
+                     	
+                     </select>
+                </td>
+            </tr>
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>续期交费账户姓名</th>
+                <td width="70%">
+                     <input name="partPayAcctName" class="i_f pa_ui_element_normal" id="bank_username"  disabled="disabled"/>
+                      <span id="bank_username_warn" style="float left;" class="warn_strong"></span>
+                </td>
+            </tr>
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>续期交费账户卡号</th>
+                <td width="70%">
+
+                     <input name="partPayAcctNo" class="i_f pa_ui_element_normal" id="bank_cardnumber" onblur="checkAll_Null('bank_cardnumber')" />
+                      <span id="bank_cardnumber_warn" style="float left;" class="warn_strong"></span>
+                </td>
+            </tr>
+            <tr class="">
+                <th width="30%"></th>
+                <td width="70%">
+
+                     <input type="checkbox" id="bank_checkbox"  /> 同意保险费自动转账授权声明 (<a href="javascript:void(0)" onclick="show_xqlist(this)" data-value="1" style="color:#060">查看详情</a>)
+                </td>
+            </tr>
+            
+        </table>
+        <div style="font-size:12px; color:#000; line-height:22px; display:none; width:90%; margin:10px auto;" id="xiangqing_list">
+        	
+    1、投保人同意授权您公司通过开户银行从投保人提供的账户中转账支付与您公司约定的续期保费。<br />
+    2、投保人保证此账号有足够的金额支付应交保险费，若因账户存款月不足造成转账不成功，致合同不能成立或不能持续有效，因此引起的责任概由投保人承担（为避免清户，账户中余额要始终保持>10元）。<br />
+    3、投保人同意您公司将多收的保险费及因延期承保、撤销投保申请、撤单、退保等引起的退费通过投保人提供的该账户返还给投保人。<br />
+    4、投保人因故结清该账户，应重新开立账户，并及时通知您公司进行变更。<br />
+    5、如因系统原因保费划转不成功，造成合同未成立，保险公司不承担责任。
+        </div>
+    </div>
+    {/if}
+</div>
+<script>
+	function show_xqlist(ef){
+		var data_valTemp = $(ef).data("value");	
+		if(data_valTemp==1){
+			$(ef).data("value",0);
+			$(ef).text("关闭详情");
+			$('#xiangqing_list').show();
+		}else{
+			$(ef).data("value",1);
+			$(ef).text("查看详情");
+			$('#xiangqing_list').hide();
+		}
+	}
+</script>							
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->								

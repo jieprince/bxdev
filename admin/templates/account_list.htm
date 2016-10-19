@@ -1,0 +1,199 @@
+<!-- $Id: account_list.htm 14928 2008-10-06 09:25:48Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<div class="form-div">
+
+<form method="post" action="account_log.php?act=list&user_id={$smarty.get.user_id}" name="searchForm">
+<!--   <select name="incoming_type" onchange="document.forms['searchForm'].submit()">
+    <option value="" {if $incoming_type eq ''}selected="selected"{/if}>--请选择--</option>
+    <option value="{$lang.quan_bu}" {if $incoming_type eq '所有收入'}selected="selected"{/if}>{$lang.quan_bu}</option>
+    <option value="{$lang.ge_ren}" {if $incoming_type eq '个人服务费收入'}selected="selected"{/if}>{$lang.ge_ren}</option>
+    <option value="{$lang.ji_gou}" {if $incoming_type eq '渠道服务费收入'}selected="selected"{/if}>{$lang.ji_gou}</option>
+    <option value="{$lang.tui_jian}" {if $incoming_type eq '推荐收入'}selected="selected"{/if}>{$lang.tui_jian}</option>
+  </select> -->
+
+	  <strong>{$lang.label_user_name}</strong>{$user.user_name}
+	  <strong>金额</strong>{$user.formated_user_money}
+	  <strong>{$lang.label_frozen_money}</strong>{$user.formated_frozen_money}
+	  <strong>{$lang.label_rank_points}</strong>{$user.rank_points}
+	  <strong>{$lang.label_pay_points}</strong>{$user.pay_points} 
+    	
+  </form>
+
+ <form method="post" action="account_log.php" name="searchForm" id="searchForm"> 
+ 	<input type="hidden" name="act" value="list">
+ 	<input type="hidden" name="user_id" value="{$user_id}">
+	 <table>
+	  <!-- modify yes123 2015-01-04 查询条件换行 -->
+	  <tr>
+	  	<td>账户变动原因:</td>
+	    <td><input name="change_desc" type="text" value={$filter.change_desc}></td>  	
+	  	<td>订单号</td> 
+	    <td><input type="text" name="order_sn" value="{$filter.order_sn}"></td> 
+	    <td>开始日期:</td>
+	    <td><input class="Wdate" type="text"  name="s_change_time" value="{$filter.s_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    
+	   	<td>截止日期:</td>
+	    <td><input class="Wdate" type="text"  name="e_change_time" value="{$filter.e_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    
+	    <td><input type="submit" value="查询"></td>
+
+	  </tr>
+	  
+	  
+	</table>
+</form>
+
+	
+
+</div>
+<input type="button" value="导出" onclick="export_data();">
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+{/if}
+
+  <table cellpadding="3" cellspacing="1">
+    <tr>
+      <th width="15%">
+      	<input onclick='listTable.selectAll(this, "log_id")' type="checkbox" />
+      	{$lang.change_time}</th>
+  		<th width="10%">{$lang.change_desc}</th>
+      	<th >{$lang.surplus_pro_type}</th>
+        <th>金额</th>
+<!--        <th>{$lang.frozen_money}</th>
+      <th>{$lang.rank_points}</th>
+      <th>{$lang.pay_points}</th> --> 
+      <th >来源会员</th>
+      <th>订单号</th> 
+      <th>保单ID</th> 
+    </tr>
+    {foreach from=$account_list item=account}
+    <tr>
+      <td>
+      <input type="checkbox" name="log_id" value="{$account.log_id}" />
+      {$account.change_time}</td>
+      <td>{$account.change_desc|escape:html}</td>
+    
+		<td align="center">{$account.incoming_type}
+			
+		</td>
+		<!--!<td align="center">{$account.user_name}</td>
+		<td align="center">{$account.cname}</td> -->
+   
+      <td align="center">
+        {if $account.user_money gt 0}
+          <span style="color:#0000FF">+{$account.user_money}</span>
+        {elseif $account.user_money lt 0}
+          <span style="color:#FF0000">{$account.user_money}</span>
+        {else}
+          {$account.user_money}
+        {/if}
+      </td>
+      <td align="center">
+      	<a href="account_log.php?act=list&user_id={$account.cname_user_id}}">	{$account.cname_user_name}</a>
+      </td>
+      
+      
+<!--       <td align="right">
+        {if $account.frozen_money gt 0}
+          <span style="color:#0000FF">+{$account.frozen_money}</span>
+        {elseif $account.frozen_money lt 0}
+          <span style="color:#FF0000">{$account.frozen_money}</span>
+        {else}
+          {$account.frozen_money}
+        {/if}
+      </td> 
+       <td align="right">
+        {if $account.rank_points gt 0}
+          <span style="color:#0000FF">+{$account.rank_points}</span>
+        {elseif $account.rank_points lt 0}
+          <span style="color:#FF0000">{$account.rank_points}</span>
+        {else}
+          {$account.rank_points}
+        {/if}
+      </td> 
+  <td align="right">
+        {if $account.pay_points gt 0}
+          <span style="color:#0000FF">+{$account.pay_points}</span>
+        {elseif $account.pay_points lt 0}
+          <span style="color:#FF0000">{$account.pay_points}</span>
+        {else}
+          {$account.pay_points}
+        {/if}
+      </td> 
+    -->   
+      <td align="center">
+      <a href="order.php?act=info&order_sn={$account.order_sn}">	{$account.order_sn}</a>
+      </td>
+      <td align="center">
+      	<a href="policy.php?act=info&policy_id={$account.policy_id}">	{$account.policy_id}</a>
+      </td>
+    </tr>
+    {foreachelse}
+    <tr><td class="no-records" colspan="6">{$lang.no_records}</td></tr>
+    {/foreach}
+  </table>
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+</form>
+
+<script type="text/javascript" language="javascript">
+  <!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+      // 开始检查订单
+      startCheckOrder();
+  }
+  {/literal}
+  //-->
+  
+ function export_data(){
+	 //获取条件
+	var user_id = $("#searchForm input[name=user_id]").val();
+	var change_desc = $("#searchForm input[name=change_desc]").val();
+	var s_change_time = $("#searchForm input[name=s_change_time]").val();
+	var e_change_time = $("#searchForm input[name=e_change_time]").val();
+	var order_sn = $("#searchForm input[name=order_sn]").val();
+	var url = "account_log.php?act=export_account_detail&user_id="+user_id+
+			  "&user_name={$user.user_name}&change_desc="+change_desc+
+			  "&s_change_time="+s_change_time+"&e_change_time="+e_change_time+"&order_sn="+order_sn;
+	 
+	var ids='';
+	$('input[name="log_id"]:checked').each(function(){
+	  ids+=$(this).val()+',';
+	}); 
+	var reg=/,$/gi;
+	ids=ids.replace(reg,"");
+	ids = ids.split(",");
+	if(ids!=""){
+		url+="&log_ids="+ids
+		window.location.href=url; 
+	}else{
+	alert("请选择要导出的日志");
+	} 
+
+
+
+	 
+ }
+</script>
+{include file="pagefooter.htm"}
+{/if}

@@ -1,0 +1,70 @@
+
+ 
+<div class="g-wA100 g-h80 s-bg-f2f0f0"></div>
+<footer class="g-wA100 s-bg-008fc7">
+	<div class="g-w1000 f-cb f-mc f-pt30">
+    	<div class="g-w210 f-fl f-mt15 f-mr40">
+        	<a href="#"><img src="images/footer_logo.png"></a>
+        </div>
+        
+         <!-- {foreach name=nav_middle_list from=$navigator_list.en_bottom item=nav} -->
+	        <div class="g-w120 f-fl">
+	        	<ul class="footernav-list">
+	            	<li class="f-pb10">{$nav.name}</li>
+	            	<!-- {foreach  from=$nav.child_nav_list item=item} -->
+	            		<li><a href="{$item.url}">{$item.name}</a></li>
+	            	<!-- {/foreach} -->
+	            </ul>
+	        </div>
+         <!-- {/foreach} -->
+        
+        <div class="f-fr f-mt15">
+        	<div>
+            	<img src="images/weixin_img.png" width="145">
+            </div>
+            <div class="f-mt15" align="center">
+            	<a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01af;</i></a>
+                <a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01c7;</i></a>
+                <a href="#" class="link-bcbbbbs"><i class="iconfont">&#xf01b0;</i></a>
+            </div>
+        </div>
+        
+    </div>
+    <div class=" f-pt30 f-pb10 g-w1000 f-mc s-c-010101 f-fs2">
+    	<div class="f-tac">
+        	<i class="iconfont icon-shouji s-c-19af98"></i>
+            {$service_phone}
+            <i class=" f-ml10 iconfont icon-youjian s-c-19af98"></i>
+            {$service_email}
+            
+            AALIANCE INSURANCE BROKERS CO,LTD  © 2015 All rights reserved. 
+        </div>
+         
+        
+    </div>
+    <div class="f-pb30 f-tac s-c-010101 f-fs2">
+         {$icp_number}
+         <script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256835151'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256835151' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+    </div>
+</footer>
+<div id="share">
+     <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=3193389429&Site=QQ客服&Menu=yes>
+        <i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>①</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2017415521&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>②</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2733867915&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>③</span>
+    </a>
+    <a id="totop" title=""><i class="iconfont">&#xf02aa;</i></a>
+</div>
+
+</body>
+</html>

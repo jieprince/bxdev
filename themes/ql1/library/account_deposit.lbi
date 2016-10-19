@@ -1,0 +1,183 @@
+<div class="f-pl15 f-pr15">
+
+
+<form id="formSurplus" name="formSurplus" method="post" action="user.php" >
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05">
+            <tr><td colspan="2" style="border: 0px;"></td></tr>
+            <tr>
+              <td align="right" width="15%" class="f-pr10">{$lang.deposit_money}:</td>
+              <td align="left"  class="f-pl10" colspan="2">
+              <input type="text" name="amount" id="amount"  class="s-input-4" value="{$order.amount|escape}" size="10" /></td>
+            </tr>
+            <tr>
+              <td align="right" class="f-pr10">{$lang.process_notic}:</td>
+              <td align="left"  class="f-pl10" colspan="2"><textarea name="user_note" cols="55" rows="6" style="border:1px solid #ccc;">{$order.user_note|escape}</textarea></td>
+            </tr>
+           
+            <tr align="center">
+              <td  colspan="3" align="left" class="f-fwb f-pl10">{$lang.payment}:</td>
+            </tr>
+            <tr align="center">
+              <td align="center" class="f-fwb">{$lang.pay_name}</td>
+              <td width="60%" align="center" class="f-fwb">{$lang.pay_desc}</td>
+              <td  width="17%" align="center" class="f-fwb">{$lang.pay_fee}</td>
+            </tr>
+            <!-- {foreach from=$payment item=list} -->
+            <tr>
+              <td  align="right"  class="f-pr10">
+               <input type="radio" name="pay_code" value="{$list.pay_code}" style="vertical-align:middle" /> 
+               <span style="width:50px; display:inline-table; vertical-align:middle">{$list.pay_name} </span>
+              </td>
+              <td  align="left" class="f-pl10">{$list.pay_desc}
+              	    <!-- {if $list.pay_code eq 'bank'} -->
+			     <div id="img_button">
+					<input type="button"  onclick="upload_img_dialog('汇款凭证')" value="上传凭证" class="btn-ffffff f-csp"> 
+				 </div>
+					<!--{/if}  -->
+              </td>
+              <td align="center">{$list.pay_fee} </td>
+            </tr>
+         	<!-- {if $list.pay_code eq 'bank'} -->
+			     
+			<!--{/if}  -->
+			          
+            <!-- {/foreach} -->
+            <tr>
+        <td colspan="3"  align="center" style="">
+        <input type="hidden" name="surplus_type" value="0" />
+          <input type="hidden" name="rec_id" value="{$order.id}" />
+          <input type="hidden" name="act" value="act_account" />
+          <span class="f-ib">
+        <input type="submit" name="submit"  value="提 交" class="btn-d22f08-3 f-csp" /> 
+        </span>
+        <span class="f-ib f-ml110">
+        <input type="reset" name="reset"  value="重 置" class="btn-ffffff f-csp"/>
+        </span>
+        </td>
+      </tr>
+     </table>
+     <!-- 汇款凭证 -->
+     <input type="hidden" name="pay_document" value="">
+</form>
+<div style="display: none;" id="upload_img_div">
+	<div class="padd_A10">
+	<form id='myupload' action='user.php?act=upload_img&path_type=3' method='post' enctype='multipart/form-data'>
+		<input class="padd_TB5" id="fileupload" type="file" name="image" onchange="upload_img()" />
+		<div class="progress">
+			<span class='bar'></span>
+			<span class="percent">0%</span >
+		</div>
+		<div id="showimg"></div>
+	</form>
+	</div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+	var pageii;
+	function upload_img_dialog(title_str){
+		pageii = layer.open({
+		    type: 1,
+		    skin: 'layui-layer-demo', //样式类名
+		     
+		    shift: 2,
+		 	area: ['500px', '400px'],
+		    shadeClose: true, //开启遮罩关闭
+		    content: $('#upload_img_div') 
+		});
+	   
+	 }
+	
+	  function upload_img()
+	  {
+		  var bar = $('.bar');
+		  var percent = $('.percent');
+		  var showimg = $('#showimg');
+		  var progress = $(".progress");
+		  var files = $(".files");
+		  
+		   $("#myupload").ajaxSubmit({
+	    	    dataType : 'json',
+	    	    beforeSend : function() {
+	        	     showimg.empty();
+	        	     progress.show();
+	        	     var percentVal = '0%';
+	        	     bar.width(percentVal);
+	        	     percent.html(percentVal);
+	        	     //btn.html("上传中...");
+	    	    },
+	    	    uploadProgress : function(event, position, total, percentComplete) {
+	        	     var percentVal = percentComplete + '%';
+	        	     bar.width(percentVal);
+	        	     percent.html(percentVal);
+	    	    },
+	    	    success : function(data) {
+	        	     if (data.code!=0) { //modify yes123 2014-12-09
+	        	      	alert(data.msg);
+	        	     } else {
+	        	      //files.html("<b>" + data.name + "(" + data.size + "k)</b> <span class='delimg"+num+"' rel='"+data.pic+"'>删除</span>");
+	        	      var img = data.pic;
+	        	      console.info("success-img:"+img);
+	        	      showimg.html(
+	        	    		  '<img style="width: 480px;height:270px; float:left;margin-left:10px;" src="'+img+'">'+
+	        	      		'<a class="btn-d22f08-3" style="float:left;margin-left:230px; margin-top:10px;"  href="javascript:set_img(\''+img+'\')">确定</a>'
+	        	      );
+	        	      			
+	        	     }
+	    
+	    	    },
+	    	    error : function(xhr) {
+	        	     btn.html("上传失败");
+	        	     bar.width('0')
+	        	     files.html(xhr.responseText);
+	    	    }
+		   });
+		  
+	  }
+	  
+	  function set_img(img)
+	  {		
+		  var upload_button = '<input type=button  onclick=upload_img_dialog("汇款凭证") value="上传凭证" class="upload_btn">'; 
+		  var show_button ='<input type="button" id="show_img" onclick=showImg('+img+'); value="浏 览" class="view_btn">' 
+		  $("#img_button").html(upload_button+show_button);
+		  //add yes123 2014-12-09 上传后即可预览
+		  $('#show_img').attr("class","view_btn");
+		  $('input[name=pay_document]').val(img);
+		  $('#show_img').removeAttr("onclick"); //移除click
+		  $('#show_img').click(function () {
+			  showImg(img);
+		  });
+	
+		  layer.close(pageii);
+	  }
+	  //浏览图片
+	  function showImg(img){
+			pageii = layer.open({
+			    type: 1,
+			    skin: 'layui-layer-demo', //样式类名
+			    
+			    shift: 2,
+			 	area: ['500px', '400px'],
+			    shadeClose: true, //开启遮罩关闭
+			    content: '<div><img  style="width: 480px;height:350px;" src="'+img+'"></div>' 
+			});
+			
+	  }
+
+		$("#amount").keyup(function () {
+		    var reg = $(this).val().match(/\d+\.?\d{0,2}/);
+		    var txt = '';
+		    if (reg != null) {
+		        txt = reg[0];
+		    }
+		    $(this).val(txt);
+		}).change(function () {
+		    $(this).keypress();
+		    var v = $(this).val();
+		    if (/\.$/.test(v))
+		    {
+		        $(this).val(v.substr(0, v.length - 1));
+		    }
+		});
+</script>

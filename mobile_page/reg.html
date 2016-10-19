@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>用户注册</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+
+<body>
+
+<div class="container-fluid">
+	 
+	<div class="container">
+        <div class="header">
+            <a class="back" href="javascript:history.back();"></a>
+            <span class="headline">用户注册</span>
+            <a class="search" href="#"></a>
+        </div>
+    </div>
+    
+<!-- 	<div class="container mar_T65">
+    	<div>
+			<a href="">
+				<img src="images/banner.png" class="img-rounded img-responsive"/>
+			</a>
+        </div>
+    </div> -->
+	<div class="container mar_T15">
+    	<div class="panel panel-default">
+              <div class="panel-heading color_36 font_bolder font_14"><i class="glyphicon glyphicon-user"></i><span class="mar_L10">用户注册</span></div>
+              <div class="panel-body ">
+                	 <form role="form" id="regFormUser" action="#" onsubmit="return register();"  name="formUser" method="post">
+                	 <input name="act" type="hidden" value="act_register"> 
+                	 <input name="is_weixin" type="hidden" value="1"> 
+                      <div class="form-group">
+                        <div class="input-group">
+                          <label class="input-group-addon ">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+                          <input class="form-control" type="text" placeholder="手机号" name="username" id="username" onblur="phone(this.value)">
+                          
+                        </div>
+                      </div>
+                      <div class="form-inline">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <label class="input-group-addon">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label>
+                              <input class="form-control " name="checkCode" type="text" placeholder="验证码" style="width:80px;" id="checkCode" >
+                              <span class="mar_L10"><input type="button" class="btn btn-info btn-sm" value="免费获取验证码" id="get_code_btn" onClick="my_get_code(1,'common_msg')" /></span>
+                            </div>
+                          </div>
+                           <p id="get_code" style="display: none;" >
+						&#12288;&#12288;&#12288;&#12288;&#12288;<a href="javascript:show_contact();">没收到短信？点击此处联系管理员</a></p>
+                      </div>
+                       
+                      <div class="form-group mar_T15">
+                        <div class="input-group">
+                          <div class="input-group-addon">密&#12288;&#12288;码</div>
+                          <input class="form-control" type="password" placeholder="密码" name="password" id="password1" onblur="check_password(this.value);">
+                        </div>
+                        <div class="font_10 color_ccc mar_T5 text-right">
+                        	6-30个字符;支持字母、数字、及_~@#$^
+                      	</div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon">确认密码</div>
+                          <input class="form-control" placeholder="确认密码" name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);">
+                        </div>
+                        
+                      </div> 
+                      <div class="form-group">
+                        <div class="input-group">
+                          <label class="input-group-addon ">推&nbsp;&nbsp;荐&nbsp;&nbsp;人</label>
+                          <input class="form-control" type="text" placeholder="推荐人账号" name="parent_name" id="username" onblur="phone(this.value)">
+                          
+                        </div>
+                      </div>
+                      <div class="checkbox">
+                        <label class="font_12">
+                          <input type="checkbox" id="agreement" name="agreement"> 我已看过并接受<a href="../article.php?act=index_article_by_id&id=6" target="_blank">《用户协议》</a>
+                        </label>
+                      </div>
+                      <div>
+                      	<button type="submit" class="btn btn-primary font_bolder" style="width:100%">立 即 注 册</button>
+                      </div>
+                    </form>
+                     
+              </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+<script src="../js/profile.js"></script>
+<script src="../js/public.js"></script>
+<script src="dist/js/jquery.md5.js"></script>
+<script src="dist/js/cus_reg_share.js?2"></script>
+<script>
+    $().ready(function(){
+        var uidtemp =  getUrlParam('uid');
+		var activity=getUrlParam('activity_id');
+        $('#regFormUser').attr('action','../mobile/user.php?u='+uidtemp+"&activity="+activity);
+
+    });
+    
+    function show_contact(){
+    	alert('电话：010-83005550');
+    }
+    
+	function my_get_code(type,msg_type){
+		
+	 	var arrayObj = {};
+	 	arrayObj.type = type;
+	 	arrayObj.msg_type = msg_type;
+	 	arrayObj.is_mobile = 1;
+
+		
+		//校验手机号码
+		var username = $.trim($("#username").val());
+		var flag = mobile_phone_validate(username,true);
+		if(flag){
+			arrayObj.username = username;
+			get_check_code(arrayObj)
+		}
+	}
+</script>
+ 
+</body>
+</html>

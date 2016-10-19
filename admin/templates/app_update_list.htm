@@ -1,0 +1,144 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<div class="form-div">
+<form action="javascript:searchUser()" name="searchForm" id="app_update_list_form">
+  <input type="hidden" value="list" name="act">
+    <table>
+	<tbody>
+	<tr>
+		<td align="right">文件名</td><td><input type="text" name="fileName" /> </td>
+	    <td align="right">版本</td><td><input type="text" name="version" /> </td>
+
+	</tr>
+	<tr>
+		<td align="right">平台</td>
+	    <td>
+	      <select name="platformId">
+	       <option value="">--请选择--</option>
+	       <option value="android">Android</option>
+	       <option value="iPhone">IPhone</option>
+	      </select>
+	     </td>
+	     
+	     <td align="right">是否需要检查</td>
+	     <td>
+	    	<select name="releaseFlag">
+	    	    <option value="">--请选择--</option>
+		    	<option value="1">是</option>
+			    <option value="0">否</option>
+	      </select>  
+	     </td>
+	    <td><input type="submit" value="{$lang.button_search}" /></td>
+	</tr>
+  
+		  </tbody>
+	  </table>
+  </form>
+</div>
+
+
+<form method="post" action="oapp.php?act=list" name="listForm" onsubmit="return check()">
+	<div class="list-div" id="listDiv">
+		{/if}
+
+		<table >
+			<tr>
+				<th>编号</th>
+				<th>文件名</th>
+				<th>版本</th>
+				<th>大小</th>
+				<th>平台</th>
+				<th>发布时间</th>
+				<th>是否需要检查</th>
+         <!--        <th>更新内容</th> -->
+				<th>操作</th>
+			<tr>
+			{foreach from=$data item=value key=key}
+			<tr align="center">
+				<td >{$value.ID}</td>
+				
+				<td >{$value.fileName}</td>
+				<td >{$value.version}</td>
+				<td >{$value.size}</td>
+				<td >{$value.platformId}</td>
+				<td >{$value.releaseTime}</td>
+				<td >
+					{if $value.releaseFlag eq 0 }
+						否
+						{else}
+						是
+					{/if}	
+				</td>
+				<td><a href="app.php?act=add_edit_view&type=edit&id={$value.ID}" title="{$lang.edit}">
+						<img src="images/icon_edit.gif" border="0" height="16" width="16" />
+					</a>
+					<a href="javascript:confirm_redirect('确定要移除吗？', 'javascript:remove({$value.ID})')" title="移除"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+				<!-- 	<a href="javascript:confirm_redirect('确定要移除吗？', 'app.php?act=remove&id={$value.ID}')" title="移除"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+					 -->
+				
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<!-- <input type="button" onclick="batch_invoice_assigned();" value="受理">  -->
+		<!-- <input type="button" onclick="invoice_export_list();" value="导出"> -->
+	</div>
+</form>
+<!-- 发票受理窗口 -->
+{include file="invoice_assigned.htm"}
+
+<script language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索订单
+     */
+    function searchUser()
+    {
+    	listTable.filter['fileName'] = Utils.trim(document.forms['searchForm'].elements['fileName'].value);
+        listTable.filter['version'] = Utils.trim(document.forms['searchForm'].elements['version'].value);
+		listTable.filter['platformId'] = Utils.trim(document.forms['searchForm'].elements['platformId'].value);
+		listTable.filter['releaseFlag'] = Utils.trim(document.forms['searchForm'].elements['releaseFlag'].value);
+        listTable.filter['page'] = 1;
+        listTable.loadList();
+    }
+	
+    function remove(id)
+    {
+    	$.ajax({
+    		   type: "GET",
+    		   url: "app.php",
+    		   data: "act=remove&id="+id,
+    		   success: function(res){
+    			   res = $.parseJSON(res);
+    			   if(res.code==0){
+    				   alert(res.msg);
+    				   $("#app_update_list_form").submit();
+    			   }else{
+    				   alert(res.msg);
+    			   }
+    		   }
+    		});
+    }
+
+    
+</script>
+{/literal} {include file="pagefooter.htm"} 

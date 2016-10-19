@@ -1,0 +1,280 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.form.js"></script>
+<div id="content-body">
+                                <div id="toolbar">
+
+
+
+
+
+
+</div>
+                                <div id="error">
+
+
+
+
+
+
+
+
+
+</div>
+                                <div id="navigator">
+
+
+
+
+
+    <div class="content">
+        当前位置：
+        
+            
+            
+                
+            
+            
+             <a href="space.php?do=admin_insurance_company">   保险公司 </a>
+            
+        
+            <label class="separator">&gt;</label>
+            
+                
+            
+            
+                新建
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+
+
+<form name="productForm" method="POST" action="cp.php?ac=admin_insurance_company&insurer_id=$blog[insurer_id]">
+
+	<input type="hidden" name="blogsubmit" id="blogsubmit" value="true" />
+	<input type="hidden" name="logo" id="logo" value="" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+     <input name="id" value="$id" type="hidden">
+
+    <table class="list">
+        <tbody><tr valign="top">
+            <td class="listData">
+
+
+<table class="editable-table">
+
+
+    <tbody>
+
+    
+       <tr> <td colspan="4" class="editable-header"><span class="tdTitle">保险公司</span>基本信息</td>
+        
+    </tr>
+    <tr>
+
+        <td class="tdTitle">
+   
+        上级：</td>
+        <td class="tdEditArea">
+			<!--{if 0}-->
+			
+            <input name="parent_id" value="$blog[parent_id]" type="hidden">
+            <input name="parent_name" value="$blog[parent_name]" readonly="readonly" class="ref" type="text">
+            <a href="javascript: void(0)" onclick="javascript: openReferenceDialog('/productAction.do?method=list&amp;type=select', 'parent', 'false')"><img src="/pages/images/select.gif">
+			<!--{/if}-->
+			
+					
+		<select id="parent_id" name="parent_id">
+			<option value="0">&nbsp;</option>
+			
+			<!--{loop $list_parent $key $value}-->
+			<option value="$value[insurer_id]" $parent_arr[$value[insurer_id]]>$value[insurer_name]</option>
+			<!--{/loop}-->
+			
+		</select>
+		
+		
+			</a>
+            
+        </td>
+		
+		 <td class="tdTitle">地区：</td>
+        <td class="tdEditArea">
+            <input name="area_id" value="$blog[area_id]" type="hidden">
+            <input name="area_name" value="$blog[area_name]" readonly="readonly" class="ref" type="text">
+            <a href="javascript: void(0)" onclick="javascript: openReferenceDialog('/productAction.do?method=list&amp;type=select', 'parent', 'false')"><img src="/pages/images/select.gif">
+			</a>
+            
+        </td>
+		
+		<!--{if 0}-->
+      
+	    <td class="requiredField">类别：</td>
+        <td class="tdEditArea">
+            <input name="type_id" value="$blog[type_id]" type="hidden">
+            <input name="type_name" value="$blog[type_name]" readonly="readonly" class="ref" type="text">
+            <a href="javascript: void(0)" onclick="javascript: openReferenceDialog('/baseDataAction.do?method=list&amp;type=select&amp;baseType=productType', 'productType', 'false')"><img src="/pages/images/select.gif"></a>
+            
+        </td>
+		<!--{/if}-->
+    </tr>
+    <tr>
+        <td class="requiredField">编码：</td>
+        <td class="tdEditArea">
+		<input name="insurer_code" value="$blog[insurer_code]" type="text"></td>
+        <td class="requiredField">名称：</td>
+        <td class="tdEditArea">
+		<input name="insurer_name" value="$blog[insurer_name]" type="text">
+		</td>
+    </tr>
+	
+	<tr>
+        <td class="requiredField">合作伙伴名（partnerName）：</td>
+        <td class="tdEditArea">
+		<input name="partnerName" value="$blog[partnerName]" type="text"></td>
+        <td class="requiredField">（BANK_CODE）：</td>
+        <td class="tdEditArea">
+		<input name="BANK_CODE" value="$blog[BANK_CODE]" type="text">
+		</td>
+    </tr>
+	
+	<tr>
+        <td class="requiredField">（BRNO）：</td>
+        <td class="tdEditArea">
+		<input name="BRNO" value="$blog[BRNO]" type="text"></td>
+    </tr>
+	
+    <tr>
+    	<td>
+    	     Logo:<input id="fileupload" type="file" name="logo">
+	        <div class="progress">
+	    		<span class="bar"></span><span class="percent">0%</span >
+			</div>
+			     <div class="files"></div>
+	        <div id="showimg">
+	        	<img alt="" src='$blog[logo]'>
+	        </div>
+    	</td>
+    </tr>
+    <tr>
+        <td class="requiredField">
+  
+        简称：</td>
+        <td class="tdEditArea" colspan="3">
+		<input name="insurer_abbrname" value="$blog[insurer_abbrname]" class="long" type="text"></td>
+    </tr>
+    <tr>
+        <td class="tdTitle">描述：</td>
+        <td class="tdEditArea" colspan="3">
+		
+		<textarea name="brief" class="editor">$blog[brief]</textarea>
+		</td>
+		
+    </tr>
+    
+    <tr>
+        <td class="tdTitle">备注信息：</td>
+        <td class="tdEditArea" colspan="3">
+		<textarea name="note" class="note">$blog[note]</textarea></td>
+    </tr>
+</tbody>
+</table>
+</td>
+        </tr>
+    </tbody></table>
+    
+    <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>
+    
+</form>
+
+
+</div>
+                            </div>
+
+
+ </div> 
+ 
+<script type="text/javascript">
+$(function () {
+	var bar = $('.bar');
+	var percent = $('.percent');
+	var showimg = $('#showimg');
+	var progress = $(".progress");
+	var files = $(".files");
+	var btn = $(".btn span");
+	$("#fileupload").wrap("<form id='myupload' action='uploadImg.php' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){
+		$("#myupload").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+        		showimg.empty();
+				progress.show();
+        		var percentVal = '0%';
+        		bar.width(percentVal);
+        		percent.html(percentVal);
+				btn.html("上传中...");
+    		},
+    		uploadProgress: function(event, position, total, percentComplete) {
+        		var percentVal = percentComplete + '%';
+        		bar.width(percentVal);
+        		percent.html(percentVal);
+    		},
+			success: function(data) {
+				files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'>删除</span>");
+				var img = "../images/"+data.pic;
+				console.info('img:'+img);
+				$("#logo").val(img);
+				showimg.html("<img src='"+img+"'>");
+				btn.html("添加附件");
+			},
+			error:function(xhr){
+				btn.html("上传失败");
+				bar.width('0')
+				files.html(xhr.responseText);
+			}
+		});
+	});
+	
+	$(".delimg").live('click',function(){
+		var insurer_id = 0;
+	/* 	if($blog[insurer_id]){
+			insurer_id=$blog[insurer_id];
+		} */
+		var pic = $(this).attr("rel");
+		console.info("pic="+pic);
+		$.post("uploadImg.php?act=delimg",{imagename:pic,insurer_id:'$blog[insurer_id]'},function(msg){
+			if(msg==1){
+				files.html("删除成功.");
+				$("#logo").val("");
+				showimg.empty();
+				progress.hide();
+			}else{
+				alert(msg);
+			}
+		});
+	});
+});
+</script>
+ 
+ <!--id="main-content"-->
+ 
+ <!--{template footer}-->

@@ -1,0 +1,25 @@
+*{margin:0; padding:0;}
+html{ border:0;}
+body{font-size:12px; font-family:Verdana,"宋体"; color:#666;} /* 定义页面的默认字体 */
+table, div, p, td, li, dd, a, span{font:inherit;}
+select, input, textarea, button {font:inherit;}
+h1{font:inherit; font-size:26px; color:#f30; line-height:135%;} /* 定义页面H1标题 */
+h2{font:inherit; font-size:14px; font-weight:bold; color:#666;} /* 定义页面H2标题 */
+h3{font:inherit; font-size:12px; font-weight:bold; color:#666;} /* 定义页面H3标题 */
+ul{list-style:none;} /* 定义所以列表都没黑圆点 */
+p{line-height:20px;} /* 定义段落行高 */
+a img{border:0;} /* 定义所有图片链接都没边框 */
+a{text-decoration:none; color:#666;} /*定义默认文字链接为灰色无下滑线 */
+a:hover{text-decoration:underline; color:#f30;} /*定义默认文字链接选中样式为：红色有下滑线 */
+.c{zoom:1;} /* 清除浮动 */
+.c:after {content:"."; display:block; height:0; clear:both; visibility:hidden;}  /* 清除浮动 */
+.l{float:left;} /* 左浮动 */
+.r{float:right;} /* 右浮动 */
+.fixed{overflow:hidden; white-space :nowrap; text-overflow:ellipsis;}
+.dn{display:none;}
+.tac{text-align:center;} /* 文字居中对齐 */
+.tal{text-align:left;}  /* 文字居左对齐 */
+.tar{text-align:right;}  /* 文字居右对齐 */
+.in24{ text-indent:24px;} /* 文字缩进两个中文字符 */
+.ch{cursor:pointer; cursor:hand;} /* 光标为手指 */
+.inside{float:left; width:100%;}

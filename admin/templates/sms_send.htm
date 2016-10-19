@@ -1,0 +1,67 @@
+<!-- $Id: account_list.htm 14928 2008-10-06 09:25:48Z testyang $ -->
+{include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<table style="width: 700px;" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td >
+		<!-- 	<input type="radio" name="is_check" value="1" onclick="select_user_type(this.value)" checked="checked"> 已审核会员
+			<input type="radio" name="is_check" value="2" onclick="select_user_type(this.value)"> 未审核  
+			<input type="radio" name="is_check" value="3" onclick="select_user_type(this.value)"> 所有 
+			<input type="radio" name="is_check" value="4" onclick="select_user_type(this.value)"> 自定义 -->
+		</td>
+   </tr>
+   <tr id="mobile_phone_tr" >
+   		<td>手机号码：</td>
+   		<td>
+<!-- 			<textarea name="mobile_phone" id="mobile_phone" rows="3" cols="60" disabled="disabled" style="text-align: left"
+			placeholder="手机号码，如有多个，已英文,逗号分割"></textarea> -->
+			<input type="text" name="mobile_phone" id="mobile_phone" placeholder="手机号码"/>
+		</td>
+   </tr>
+   <tr>
+   		<td>发送内容：</td>
+   		<td>
+			<textarea name="content" id="content" rows="5" cols="60"></textarea>
+		</td>
+   </tr>
+	<tr>
+		<td colspan="2" align="center"><input type="button" value="发送" onclick="send();"></td>
+		
+	</tr>
+</table>
+
+<script type="text/javascript">
+	var loadi;
+ 	function send(){
+ 		//var user_type = $.trim($("[type=radio]:radio:checked").val()); 
+ 		var content = $.trim($("#content").val());
+ 		var mobile_phone = $.trim($("#mobile_phone").val());
+ 		
+		if(!mobile_phone){
+			alert("请输入手机号码！");return;
+		}
+	
+		if(!content){
+			alert("请输入发送内容！");return;
+		}
+		
+		loadi = layer.load('正在发送，请稍后..');
+		$.post("sms.php?act=send",{
+			"mobile_phone":mobile_phone,
+			"content":content
+		},function(data){
+			layer.close(loadi);
+			var data = jQuery.parseJSON(data);
+			if(data.code==0){
+				alert('发送成功');
+			}else{
+				alert('发送失败');
+			}
+		},"text");
+
+	}
+</script>
+{include file="pagefooter.htm"}

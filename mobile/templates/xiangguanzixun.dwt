@@ -1,0 +1,44 @@
+{include file='header.dwt'}
+
+
+ 
+<div class="container-fluid f-pt20"> 
+	<div class="container">
+    	<div class="list-group s-lh20">
+          {foreach from=$artciles_list item=item name=name}
+          <a href="get_module.php?module_id=zixun_one&a_id={$item.id}" class="list-group-item">
+              <h4 class="list-group-item-heading f-fs3 f-toe">{$item.title}</h4>
+              <p class="list-group-item-text s-lh20">{$item.description}</p>
+          </a>
+          {/foreach}
+        </div>
+        <nav>
+        
+        {if $pagebar}
+			{$pagebar}
+		{/if}
+        
+<!--           <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul> -->
+        </nav>
+    </div>
+</div>
+{include file='foot.dwt'}
+ 
+</body>
+</html>

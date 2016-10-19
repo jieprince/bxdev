@@ -1,0 +1,20 @@
+{include file='header.dwt'}
+<div class="container-fluid f-pt20 f-pb20">
+    <div class="container">
+        <h3 class="f-fs3 f-tac s-bscB-b5b5b5 s-c-030303 f-pb15">{$article_data.title}</h3>
+
+        <section class="s-lh25 f-mt15 f-fs2 s-c-6b6b6b">
+        {if $article_data }
+        	{$article_data.content}
+        	{else}
+        	地址错误
+        {/if}
+           		
+        </section>
+    </div>
+</div>
+
+{include file='foot.dwt'}
+ 
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!--{template header_cshop}-->
+<script src="js/quanlianshop/script_input_check_yangguang_product.js"></script>
+<div class="g-wA100 s-bscT_009c84">
+    <div class="g-w1077 f-mc">
+ 	    <!--{template cp_product_buy_header}-->
+        <input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+        <input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+        <input id="period_code" name="period_code" value="$period_code" type="hidden">
+        <!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+        <input id="cp_name" value="yangguang_product" type="hidden">
+        <input type="radio" name="assured_input_type" checked="checked" style="display:none" value="1" /><!--1个单 2批量-->
+        <input type="radio" name="applicant_type" checked="checked" value="1" style="display:none" /><!--1个人  2机构-->
+        <input type="hidden" name="data_user_info" id="assured_info" /><!--被保险人信息-->
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title">投保人信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_01">
+                	<tr>
+                    	<th width="150">姓 名：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	<input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="姓名" id="applicant_fullname" name="applicant_fullname" onblur="check_applicant_name('applicant_fullname','tbr','pc')" >
+                                <span class="mes_right" id="applicant_fullname_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                        <th width="150">手机号码：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	<input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="手机号码" name="applicant_mobilephone" id="applicant_mobilephone" onblur="check_applicant_mobilephone('applicant_mobilephone','pc')">
+                                <span class="mes_right" id="applicant_mobilephone_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                    	<th>证件类型：</th>
+                        <td>
+                        	<div class="f-pl10">
+	                       <select name="applicant_certificates_type" id="applicant_certificates_type" class="s-select-1">
+	                            <!--{loop $attr_certificates_type_sinosig $index $value}-->
+                                <option value="{$index}" selected>{$value}</option>
+	                            <!--{/loop}--> 
+	                        </select>
+                                <span class="mes_right" id="applicant_certificates_type_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                        <th>证件号码：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	<input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="证件号码" name="applicant_certificates_code" id="applicant_certificates_code" onblur="check_All_card('applicant_certificates_type','applicant_certificates_code',1,true,'applicant_birthday','applicant_sex')">
+                                <span class="mes_right" id="applicant_certificates_code_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	
+                        <th>生日：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	<input type="text" class="g-h35 g-w210 f-pl5 f-pr5" name="applicant_birthday" id="applicant_birthday" >
+                                <span class="mes_right" id="applicant_birthday_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                        <th>性 别：</th>
+                        <td>
+                        	<div class="f-pl10" id="applicant_sex_s">
+                            	<input type="radio" name="applicant_sex" value="1" data-rule="checked"> 男
+                                <input type="radio" name="applicant_sex" value="2"> 女
+                                <span class="mes_right" id="applicant_sex_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th><!--居住城市：--></th>
+                        <td>
+                        	<!--<div class="f-pl10">
+                            	 <select name="applicant_city" id="applicant_city" class="s-select-1">
+                                     <option value="01">天津市</option>
+                                 </select>
+                                 &nbsp;
+                                 <select name="applicant_county" id="applicant_county" class="s-select-1">
+                                     <option value="01">天津市</option>
+                                 </select>
+                            </div>-->
+                        </td>
+                        <th>保险期间：</th>
+                        <td>
+                        	<div class="f-pl10">
+                        		<input  class="g-h35 g-w130 f-pl5 f-pr5" type="text" name="startDate" id="startDate" readonly="readonly"/>
+                            	 
+                                至	
+                                <input type="text" class="g-h35 g-w130 f-pl5 f-pr5" name="endDate" id="endDate" readonly="readonly">
+                                <span class="mes_right" id="startDate_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                                <span class="mes_right" id="endDate_warn">
+                                    <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        
+        
+        
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class="cirle_title">被保险人信息</h3>
+            
+            <section class="f-fs2 s-c-666666" id="assured_list">
+            	<div class="f-mt20" id="assured_child_01" data-value="01">
+                    <table cellpadding="0" cellspacing="0" border="0" class="table_buy_01 s-bsc_solid_d2d2d2">
+                         
+                        <tr class="s-bscB_dashed_d2d2d2">
+                            <td width="150"><div class="f-pl10"><h4>被保险人(<span class="persion_index">1</span>)</h4></div></td>
+                            <td width="348" colspan="3">
+                                 
+                            </td>
+                             
+                        </tr>
+                        <tr>
+                            <th width="150">与投保人关系：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    <select id="relationshipWithInsured_01" class="s-select-1">
+                                        <!--{loop $attr_relationship_applicant_with_insured_sinosig $index $value}-->
+                                            <option value="{$index}" selected>{$value}</option>
+                                        <!--{/loop}--> 
+                                    </select>
+                                </div>
+                            </td>
+                            <th width="150">姓 名：</th>
+                            <td width="348">
+                                <div class="f-pl10">
+                                    <input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="姓名" id="assured_fullname_01" onblur="check_applicant_name('assured_fullname_01','bbxr','pc')" >
+                                    <span class="mes_right" id="assured_fullname_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <th>证件类型：</th>
+                            <td>
+                                <div class="f-pl10">
+                                   <select id="assured_certificates_type_01" class="s-select-1">
+                                        <!--{loop $attr_certificates_type_sinosig $index $value}-->
+                                        <option value="{$index}" selected>{$value}</option>
+                                        <!--{/loop}--> 
+                                    </select>
+                                    
+                                    <span class="mes_right" id="assured_certificates_type_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <th>证件号码：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    <input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="证件号码"  id="assured_certificates_code_01" onblur="check_All_card('assured_certificates_type_01','assured_certificates_code_01',2,true,'assured_birthday_01','assured_sex_01')">
+                                    <span class="mes_right" id="assured_certificates_code_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                             
+                            <th>生日：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    <input type="text" class="g-h35 g-w210 f-pl5 f-pr5" id="assured_birthday_01">
+                                    <span class="mes_right" id="assured_birthday_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <th>性 别：</th>
+                            <td>
+                                <div class="f-pl10" id="assured_sex_s_01">
+                                    <input type="radio" name="assured_sex_01" value="1" checked > 男
+                                    <input type="radio" name="assured_sex_01" value="2"> 女
+                                    <span class="mes_right" id="assured_sex_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>E-mail：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    <input type="text" class="g-h35 g-w210 f-pl5 f-pr5" id="assured_email_01" onblur="check_applicant_email('assured_email_01','pc')">
+                                    <span class="mes_right" id="assured_email_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <th width="150">手机号码：</th>
+                            <td width="348">
+                                <div class="f-pl10">
+                                    <input type="text" class="g-h35 g-w210 f-pl5 f-pr5" placeholder="手机号码" id="assured_mobilephone_01" onblur="check_applicant_mobilephone('assured_mobilephone_01','pc')">
+                                    <span class="mes_right" id="assured_mobilephone_01_warn">
+                                        <span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span><span class="mes_text"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                 
+            </section>
+            <div class="f-mt20" align="center">
+            	<a href="javascript:void(0)" class="btn btn-info" onclick="add_assured()">增加被保险人</a>
+            </div>
+        </div>
+    	<div class="f-mt30 f-cb">
+        	 
+            	<div class="s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+                    <h3 class="cirle_title-1">受益人信息</h3>
+                    <section class="f-fs2 s-c-666666 f-mt20">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table_buy_01">
+                            <tr>
+                                <th width="105">受益人：</th>
+                                <td width="348">
+                                    <div class="f-pl10">
+                                        <select class="s-select-1" name="beneficiary">
+                                            <option value="1">法定</option>
+                                             
+                                        </select>
+                                         
+                                    </div>
+                                </td>
+                                 
+                            </tr>
+                             
+                        </table>
+                    </section>
+                </div>
+            
+        </div>
+	    <!--{template cp_product_buy_footer}-->
+        
+    </div>
+    
+    
+</div>
+ 
+<!--{template footer_cshop}-->	

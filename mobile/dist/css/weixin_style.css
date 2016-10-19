@@ -1,0 +1,167 @@
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+img{display: block}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 Microsoft YaHei,arial,\5b8b\4f53;color:#333;outline:0;}
+a{blr:expression(this.onFocus=this.close());} /* 只支持IE，过多使用效率低 */
+a{blr:expression(this.onFocus=this.blur());} /* 只支持IE，过多使用效率低 */
+a:focus { -moz-outline-style: none; } /* IE不支持 */
+a{outline:0 none;}
+ 
+/*公用css*/
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-mc{margin: 0 auto}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-pr{position:relative;}
+
+.f-prz{position:relative;zoom:1;}
+.f-oh{overflow:hidden;}
+.f-ff0{font-family:arial,\5b8b\4f53;}
+.f-ff1{font-family:"Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial,\5b8b\4f53;}
+.f-fs0-6{font-size:6px}
+.f-fs0{font-size:11px;}
+.f-fs1{font-size:12px;}
+.f-fs1-1{font-size:13px;}
+.f-fs2{font-size:14px;}
+.f-fs3{font-size:16px;}
+.f-fs4{font-size:18px;}
+.f-fs5{font-size:20px;}
+.f-fs6{font-size:22px;}
+.f-fs7{font-size:24px;}
+.f-fs10{font-size:32px;}
+.f-fs12{font-size:36px;}
+.f-fs14{font-size:40px;}
+.f-fs16-2{font-size:45px;}
+.f-fs19{font-size:50px;}
+.f-br8{border-radius: 8px;}
+.f-br4{border-radius: 4px;}
+.f-fwn{font-weight:normal;}
+.f-fwb{font-weight:bold;}
+.f-tal{text-align:left;}
+.f-tac{text-align:center;}
+.f-tar{text-align:right;}
+.f-taj{text-align:justify;text-justify:inter-ideograph;}
+.f-vam,.f-vama *{vertical-align:middle;}
+.f-vat{vertical-align:top;}
+.f-wsn{word-wrap:normal;white-space:nowrap;}
+.f-pre{overflow:hidden;text-align:left;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;}
+.f-wwb{white-space:normal;word-wrap:break-word;word-break:break-all;}
+.f-ti{overflow:hidden;text-indent:-30000px;}
+.f-ti2{text-indent:2em;}
+.f-lhn{line-height:normal;}
+.f-tdu,.f-tdu:hover{text-decoration:underline;}
+.f-tdn,.f-tdn:hover{text-decoration:none;}
+.f-toe{overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;content:"..." }
+.f-csp{cursor:pointer;}
+.f-csd{cursor:default;}
+.f-csh{cursor:help;}
+.f-csm{cursor:move;}
+.f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;}
+.f-oc{opacity: 0.65;}
+.f-textshadow{text-shadow: 3px 3px 3px #555;}
+.f-boxshadow{box-shadow:0px 0px 2px #555;}
+.f-wto{width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;}
+.f-pA0{padding:0px}  .f-pl0{padding-left:0px}  .f-pr0{padding-right:0px}  .f-pt0{padding-top:0px}  .f-pb0{padding-bottom:0px}
+.f-pA5{padding:5px}  .f-pl5{padding-left:5px}  .f-pr5{padding-right:5px}  .f-pt5{padding-top:5px}  .f-pb5{padding-bottom:5px}
+.f-pA10{padding:10px}  .f-pl10{padding-left:10px}  .f-pr10{padding-right:10px}  .f-pt10{padding-top:10px}  .f-pb10{padding-bottom:10px}
+.f-pA15{padding:15px}  .f-pl15{padding-left:15px}  .f-pr15{padding-right:15px}  .f-pt15{padding-top:15px}  .f-pb15{padding-bottom:15px}
+.f-pA20{padding:20px}  .f-pl20{padding-left:20px}  .f-pr20{padding-right:20px}  .f-pt20{padding-top:20px}  .f-pb20{padding-bottom:20px}
+.f-pA25{padding:25px}  .f-pl25{padding-left:25px}  .f-pr25{padding-right:25px}  .f-pt25{padding-top:25px}  .f-pb25{padding-bottom:25px}
+.f-pA30{padding:30px}  .f-pl30{padding-left:30px}  .f-pr30{padding-right:30px}  .f-pt30{padding-top:30px}  .f-pb30{padding-bottom:30px}
+.f-mA0{margin:0px}  .f-ml0{margin-left:0px}  .f-mr0{margin-right:0px}  .f-mt0{margin-top:0px}  .f-mb0{margin-bottom:0px} 
+.f-mA5{margin:5px}  .f-ml5{margin-left:5px}  .f-mr5{margin-right:5px}  .f-mt5{margin-top:5px}  .f-mb5{margin-bottom:5px}
+.f-mA10{margin:10px}  .f-ml10{margin-left:10px}  .f-mr10{margin-right:10px}  .f-mt10{margin-top:10px}  .f-mb10{margin-bottom:10px}
+.f-mA15{margin:15px}  .f-ml15{margin-left:15px}  .f-mr15{margin-right:15px}  .f-mt15{margin-top:15px}  .f-mb15{margin-bottom:15px}
+.f-mA20{margin:20px}  .f-ml20{margin-left:20px}  .f-mr20{margin-right:20px}  .f-mt20{margin-top:20px}  .f-mb20{margin-bottom:20px}
+.f-mA25{margin:25px}  .f-ml25{margin-left:25px}  .f-mr25{margin-right:25px}  .f-mt25{margin-top:25px}  .f-mb25{margin-bottom:25px}
+.f-mA30{margin:30px}  .f-ml30{margin-left:30px}  .f-mr30{margin-right:30px}  .f-mt30{margin-top:30px}  .f-mb30{margin-bottom:30px}
+.f-mA40{margin:40px}  .f-ml40{margin-left:40px}  .f-mr40{margin-right:40px}  .f-mt40{margin-top:40px}  .f-mb40{margin-bottom:40px}
+.f-mA45{margin:45px}  .f-ml45{margin-left:45px}  .f-mr45{margin-right:45px}  .f-mt45{margin-top:45px}  .f-mb45{margin-bottom:45px}
+.f-ml3{margin-left:3px}
+.f-mt67{margin-top:67px}
+.f-mt80{margin-top:80px}
+.f-ml100{margin-left:100px}
+.f-ml60{margin-left:60px}
+.f-mt2{margin-top:2px}
+body{background:#f3f2f3;}
+/*三角形 css3 create an arrow that points up */
+.f-arrow-up {width:0px;height:0px;border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:5px solid #2f2f2f; font-size:0px; line-height:0px;}
+ 
+/* create an arrow that points down */
+.f-arrow-down {width:0px;height:0px;border-left:5px solid transparent; border-right:5px solid transparent;border-top:5px solid #2f2f2f;font-size:0px;line-height:0px;}
+ 
+/* create an arrow that points left */
+.f-arrow-left { width:0px;height:0px;border-bottom:5px solid transparent;border-top:5px solid transparent;border-right:5px solid #2f2f2f; font-size:0px;line-height:0px;}
+ 
+/* create an arrow that points right */
+.f-arrow-right {width:0px; height:0px;border-bottom:5px solid transparent;border-top:5px solid transparent; border-left:5px solid #2f2f2f; font-size:0px;line-height:0px;}
+
+.container-fluid{margin:0px;padding-left:10px; padding-right:10px;}
+.container{margin:0px auto; padding-left:0px; padding-right:0px;}
+.row{margin-left:0px; margin-right:0px;}
+.form-control{border:0px; border-radius:0px; box-shadow:none}
+
+
+.s-c-a0a0a0{color:#a0a0a0}
+.s-c-030303{color:#030303}
+.s-c-444444{color:#444444} 
+.s-c-cfcfcf{color:#cfcfcf}
+.s-c-ffffff{color:#ffffff}
+.s-c-6b6b6b{color:#6b6b6b}
+.s-c-929292{color:#929292}
+.s-c-008fc7{color:#008fc7}
+.s-c-03a912{color:#03a912}
+.s-c-ff0000{color:#ff0000}
+.s-lh25{line-height:25px;}
+.s-lh20{line-height:20px;}
+.s-bscT-b5b5b5{border-top: solid #b5b5b5 1px;}
+.s-bscB-b5b5b5{border-bottom: solid #b5b5b5 1px;}
+.s-bscBD-e3e3d3{border-bottom: dashed #e3e3d3 1px;}
+.g-h60{height:60px;}
+.img_bg{ background:url(../../mobile/image/contain_bg.png) center bottom no-repeat; background-size:100%;}
+
+.s-bg-f5f5f5{background:#f5f5f5}
+.s-bg-ffffff{background:#ffffff}
+.s-bg-008fc7{background:#008fc7}
+
+.btn-008fc7{color:#ffffff; background:#008fc7; border:0px;  border-radius:3px; font-size:16px; padding:15px 0px;}
+.btn-008fc7:visited{background:#008fc7;color:#ffffff; }
+.btn-008fc7:focus{background:#008fc7;color:#ffffff; }
+.btn-008fc7:hover{background:#03709b;color:#ffffff; }
+.btn-008fc7:active{background:#03709b;color:#ffffff; }
+
+.btn-c2e2ee{color:#008fc7; background:#c2e2ee; border:0px;  border-radius:3px; font-size:16px; padding:8px 40px;}
+.btn-c2e2ee:visited{background:#a2c4d1;color:#008fc7; }
+.btn-c2e2ee:focus{background:#a2c4d1;color:#008fc7; }
+.btn-c2e2ee:hover{background:#a2c4d1;color:#008fc7; }
+.btn-c2e2ee:active{background:#a2c4d1;color:#008fc7; }
+
+
+ 
+.m-list-1{ margin-top:10px;}
+.m-list-1 a{ color:#444; font-size:18px; margin-left:15px; border-bottom:solid 2px #fff}
+.m-list-1 a.p_active{color:#008fc7;border-bottom:solid 2px #008fc7}
+
+ 
+ 
+ 

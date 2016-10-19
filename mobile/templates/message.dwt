@@ -1,0 +1,20 @@
+﻿{include file='header.dwt'}
+
+<section class="wrap" style="padding-bottom:5rem">
+  <ul class="radius10 itemlist">
+    <div style="margin:1rem auto; text-align:center">
+      <p style="font-size:2rem; font-weight:bold; color: red;">{$message.content}</p>
+      <div class="blank"></div>
+      <!-- {if $message.url_info} --> 
+      <!--{foreach from=$message.url_info key=info item=url}-->
+      <p class="info"><a href="{$url}">{$info}</a></p>
+      <!--{/foreach}--> 
+      <!--{/if}--> 
+    </div>
+  </ul>
+</section>
+
+{include file='foot.dwt'}
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+   <div id="toolbar">
+
+</div>
+   <div id="error">
+</div>
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+             <a href="space.php?do=admin_insurance_product">   保险产品</a>
+			 <!--{if !$product[product_id]}-->
+            <label class="separator">&gt;</label>     
+                新建
+			 <!--{else}-->
+			  <label class="separator">&gt;</label> 
+			  修改
+			   <label class="separator">&gt;</label> 
+			   <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+			 <!--{/if}--> 	
+            
+      </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product&product_id=$product[product_id]&attribute_id=$attribute_id">
+
+
+<input type="hidden" name="blogsubmit" id="blogsubmit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+<input name="product_id" value="$product_id" type="hidden">
+
+   
+<table class="editable-table">
+    <tbody>
+	
+	<tr>
+        <td colspan="4" class="editable-header">基本信息</td>
+    </tr>
+	
+		
+    <tr>
+        <td class="requiredField">产品编码：</td>
+        <td class="tdEditArea">
+		<input name="product_code" value="$product[product_code]" type="text">
+		</td>
+		
+        <td class="requiredField">产品名称：</td>
+        <td class="tdEditArea">
+		<input name="product_name" value="$product[product_name]" type="text">
+		</td>
+    </tr>
+	
+	
+    <tr>
+        <td class="requiredField">产品属性：</td>
+        <td class="tdEditArea">
+		<select id="attribute_id" name="attribute_id">
+			<!--{loop $list_product_attribute $key $value}-->
+			<option value="$value[attribute_id]" $attribute_arr_selected[$value[attribute_id]]>$value[attribute_name]</option>
+			<!--{/loop}-->
+			
+		</select>
+	     </td>
+		
+	
+	    <td class="requiredField">产品类型：</td>
+        <td class="tdEditArea">
+		    <select name="product_type">
+			   <option value="main" $product_type_arr_selected[main]>主险</option>
+               <option value="additional" $product_type_arr_selected[additional]>附加险</option>
+			   <option value="plan" $product_type_arr_selected[plan]>计划类</option>
+			   
+			</select>	
+		</td>
+    </tr>
+		
+    <tr>
+	    <td class="requiredField">计划代码：</td>
+        <td class="tdEditArea">
+		<input name="plan_code" value="$product[plan_code]" type="text">
+		</td>
+		
+        <td class="requiredField">计划名称：</td>
+        <td class="tdEditArea">
+		<input name="plan_name" value="$product[plan_name]" type="text">
+		</td>
+	     
+    </tr>
+	
+	
+	<tr>
+	
+	    <td class="requiredField">产品责任价格关联类型：</td>
+        <td class="tdEditArea">
+			
+			<select name="product_duty_price_type">
+			   <option value="single" $product_duty_price_type_arr_selected[single]>single</option>
+               <option value="multiple" $product_duty_price_type_arr_selected[multiple]>multiple</option>
+		
+			</select>	
+			
+		</td>
+		
+    </tr>
+  	
+    <tr>
+        <td class="tdTitle">显示图标：</td>
+        <td class="attachment" colspan="3">
+            <a href="javascript: void(0)" onclick="javascript: upload('/uploadFileAction.do?method=prepare&amp;action=upload&amp;ownerType=1', 'attachmentList')">添加附件</a>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="tdEditArea" colspan="3">
+            <div id="attachmentList" class="attachmentWrapper"></div>
+        </td>
+    </tr>
+    
+	<!--{if 0}-->
+	<tr>
+        <td class="tdTitle">显示序号：</td>
+        <td class="tdEditArea" colspan="3">
+		<input name="showOrderString" value="19" class="long" type="text"></td>
+    </tr>
+	<!--{/if}-->
+	
+
+</tbody>
+</table>
+
+
+<!--{if 1}-->
+
+   
+<table class="editable-table">
+    <tbody>
+	
+	<tr>
+        <td colspan="5" class="editable-header">附件信息</td>
+    </tr>
+
+    <tr>
+	    <td class="requiredField">总保费：</td>
+        <td class="tdEditArea">
+		<input name="premium" value="$product_additional[premium]" type="text">
+		<span>元</span>
+		</td>
+		
+		<td class="requiredField">投保份数：</td>
+        <td class="tdEditArea">
+		<input name="number" value="$product_additional[number]" type="text">
+		</td>
+	</tr>
+
+    <tr> <!-- add yes123 2015-04-24 总保额 -->
+        <td class="requiredField">总保额：</td>
+        <td class="tdEditArea">
+           <input type="text" name="sum_insured" value="$product_additional[sum_insured]">
+           <span>元</span>
+        </td>
+        
+	    <td class="requiredField">保险期限：</td>
+        <td class="tdEditArea">
+		<input name="period" value="$product_additional[period]" type="text">
+		</td>
+		
+		 <td class="tdEditArea">
+		<span>
+		<input name="period_uint" id="islock_0" value="year" type="radio"  $product_period_uint_checked[year]>年
+		<input name="period_uint" id="islock_1" value="month" type="radio"  $product_period_uint_checked[month]>月
+		<input name="period_uint" id="islock_2" value="day" type="radio"  $product_period_uint_checked[day]>天
+		</span>
+		
+		</td>
+	</tr>
+	
+	
+	<tr>			
+        <td class="requiredField">最小承保年龄：</td>
+        <td class="tdEditArea">
+		<input name="age_min" value="$product_additional[age_min]" type="text">
+		<span>周岁</span>
+		</td>
+		
+		<td class="requiredField">最大承保年龄：</td>
+        <td class="tdEditArea">
+		<input name="age_max" value="$product_additional[age_max]" type="text">
+		<span>周岁</span>
+		</td>
+	     
+    </tr>
+		<tr>			
+        <td class="requiredField">保险费率：</td>
+        <td class="tdEditArea">
+		<input name="rate" value="$product_additional[rate]" type="text">
+		<span>不能大于1。举例：保险费率为千分之一，则输入0.001</span>
+		</td>
+	     
+    </tr>
+	
+	
+</tbody>
+</table>
+<!--{/if}-->
+    
+    <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>
+    
+</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div>
+                            </div>
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

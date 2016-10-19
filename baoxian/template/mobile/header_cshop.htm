@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="Generator" content="ECSHOP v2.7.3" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="$product[product_name]" />
+<title>$product[product_name]_全联保险经纪</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="../image/gif" />
+<!--
+	修改时间：2014/7/18
+	修改者：鲍洪州
+	内容：加载CSS、js文件
+-->
+<link type="text/css" rel="stylesheet" href="../static/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../static/css/mobile.css">
+<link type="text/css" rel="stylesheet" href="../static/css/bxxq.css">
+<link type="text/css" rel="stylesheet" href="../static/css/global.css">
+<link type="text/css" rel="stylesheet" href="../mobile/css/head.css">
+<link type="text/css" rel="stylesheet" href="../mobile/css/foot.css">
+<script type="text/javascript" src="../mobile/js/checkedweixin.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../layer/layer.min.js"></script>
+<script src="../layer/extend/layer.ext.js"></script>
+
+<script src="../static/js/jquery-1.5.2.min.js"></script>
+<script src="../js/jquery.md5.js" type="text/javascript"></script>
+<script src="../static/js/global.js"></script>
+<!--<link href="../themes/inserance/style_coffee.css" rel="stylesheet" type="text/css" />-->
+<script type="text/javascript" src="../js/common.js"></script>
+<script src="js/jquery.min.js"></script>
+<link href="js/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-ui.min.js"></script>
+<style type="text/css">
+
+@import url(template/mobile/products.css);
+@import url(template/mobile/insurance_product.css);
+
+@import url(template/mobile/base.css);
+@import url(template/mobile/global.css);
+
+@import url(template/mobile/base-all.css);
+@import url(template/mobile/global-all.css);
+
+
+@import url(template/mobile/huatai/myreset.css);
+@import url(template/mobile/huatai/public.css);
+
+@import url(template/mobile/newflat3.css);
+@import url(template/mobile/newflat.css);
+
+@import url(template/mobile/public.css);
+@import url(template/mobile/buy_pro_det.css);
+@import url(template/mobile/simple_header.css);
+@import url(template/mobile/common.css);
+
+<!--{if $_TPL['css'] == 'cp_product_buy_pingan'}-->
+
+<!--{elseif $_TPL['css'] == 'cp_product_buy_taipingyang'}-->
+
+<!--{elseif $_TPL['css'] == 'cp_product_buy_huatai'}-->
+@import url(template/mobile/huatai/myreset.css);
+@import url(template/mobile/huatai/public.css);
+
+
+<!--{/if}-->
+</style>
+
+<script src="js/script_pub.js" language="javascript" type="text/javascript"></script>
+<script src="js/script_common_check.js" language="javascript" type="text/javascript"></script>
+<script src="js/script_function_common.js" language="javascript" type="text/javascript"></script>
+
+
+<!--{if $_TPL['css'] == 'cp_product_buy_pingan' || $_TPL['css'] == 'cp_product_buy_pingan_jingwai'}-->
+ 			
+<script src="js/pingan/script_pingan_check_function.js" language="javascript" type="text/javascript"></script>
+<script src="js/pingan/script_input_check_pingan.js" language="javascript" type="text/javascript"></script>
+<script src="js/script_bat_import.js" language="javascript" type="text/javascript"></script>
+
+<!--{elseif $_TPL['css'] == 'cp_product_buy_huaan'}-->
+
+ <script src="js/huaan/script_huaan_check_function.js" language="javascript" type="text/javascript"></script>
+<script src="js/huaan/script_input_check_huaan.js" language="javascript" type="text/javascript"></script>
+
+<!--{elseif $_TPL['css'] == 'cp_product_buy_huatai'}-->
+
+<script src="js/huatai/script_huatai_WdatePicker.js" language="javascript" type="text/javascript"></script>
+<script src="js/huatai/script_huatai_ajax.js" language="javascript" type="text/javascript"></script>
+<script src="js/huatai/script_huatai_neworderAdd.js" language="javascript" type="text/javascript"></script>
+
+<script src="js/huatai/script_input_check_huaitai.js" language="javascript" type="text/javascript"></script>
+
+
+<!--{elseif $_TPL['css'] == 'cp_product_buy_taipingyang'}-->
+<!--
+
+<script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/jQuery-File-Upload-9.8.0/js/vendor/jquery.ui.widget.js"></script>
+<script src="../js/jQuery-File-Upload-9.8.0/js/jquery.iframe-transport.js"></script>
+<script src="../js/jQuery-File-Upload-9.8.0/js/jquery.fileupload.js"></script>
+<script src="../js/jquery.min.js"></script>
+-->
+ 
+						
+<script src="js/taipingyang/script_common_taipingyang.js" language="javascript" type="text/javascript"></script>
+<script src="js/taipingyang/script_input_check_taipingyang.js" language="javascript" type="text/javascript"></script>
+<script src="js/script_bat_import.js" language="javascript" type="text/javascript"></script>
+<!--{/if}-->
+
+<script type="text/javascript">
+/*
+function $id(element) {
+  return document.getElementById(element);
+}
+*/
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str){
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+  for(var i=0;i<bt.length;i++){
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+    bt[i].onclick=function(){
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++){
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+</script>
+<!--
+	修改时间：2014/7/21
+	修改者：鲍洪州
+	内容：整个页面调整
+-->
+</head>
+<body style="">
+
+<!--
+	修改时间：2014/7/16
+	修改者：鲍洪州
+	内容：首页头部
+-->
+<style type="text/css">
+	body{
+	   font-size:12px;
+	   margin:0;
+	}
+</style>
+

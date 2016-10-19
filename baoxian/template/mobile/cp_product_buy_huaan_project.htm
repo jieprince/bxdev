@@ -1,0 +1,181 @@
+<!--{template cp_product_buy_header}-->	
+             <script src="js/mobile/huaan_jiangongxian.js"></script>
+            <!-- 以下是私有的变量--> 
+            <input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+            <input id="time_temp_pr" name="time_temp_pr" value="{$period_limit}" type="hidden">
+            <input id="applyNum" name="applyNum" value="1" type="hidden">
+            <input id="duty_price_ids" name="duty_price_ids" value="{$duty_price_ids}" type="hidden">
+            <input id="cost_limit" name="cost_limit" value="{$cost_limit}" type="hidden">
+            
+             
+        <div class="container">
+             <div class="panel panel-default">
+                    <ul class="list-group" >
+                      <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                    </ul>
+             </div>
+             <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">产品责任及限额<span class="pull-right" style="height:20px; width:20px; display:block"><img src="../mobile/dist/images/drop_down_card_btn_close.png" class="img-responsive" ></span></div>
+                    
+                  <ul class="list-group s-c-aaaaaa" style="display:none" >
+                 	 	<!--{loop $list_product_duty_price $index $value1}-->
+            			<li class="list-group-item">
+                            <span class="f-db">产品名称：$value1[product_name]</span> 
+                        </li>
+                        <li class="list-group-item">  
+                            <span class="f-db">责任：$value1[duty_name]</span> 
+                        </li>
+                        <li class="list-group-item">
+                            <span class="f-db">(累计,每次,每人)(万元)/保费(元起)：</span>
+                            <span class="f-db" id="xiane_price" data-amount="{$value1[amount]}">$value1[amount]/$value1[price]</span> 
+                        </li>
+                        <li class="list-group-item" id="beizhu_huaan">
+                             
+                        </li>
+                        <!--{/loop}-->
+                  </ul>
+            </div>
+             <div class="panel panel-default">
+                    
+                    <ul class="list-group" >
+                      <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                      <li class="list-group-item" ><span class="s-c-aaaaaa">工程造价范围</span><span class="f-fs2 pull-right s-c-aaaaaa">{$cost_name}</span></li> 
+                      <li class="list-group-item" ><span class="s-c-aaaaaa">工程工期范围</span><span class="f-fs2 pull-right s-c-aaaaaa">{$period_name}</span></li>  
+                      <li class="list-group-item" ><span class="s-c-aaaaaa">购买份数</span><span class="pull-right s-c-aaaaaa"><span>1份</span></span></li>
+                      <li class="list-group-item" ><span class="s-c-aaaaaa">金额</span><span class="f-fs2 pull-right">￥<span><input placeholder="{$prodcutMarkPrice}元起" class="input_b text-right s-c-ed462f g-w150" id="q_prodcutMarkPrice" ></span>元</span></li> 
+                      <li class="list-group-item" ><span class="s-c-aaaaaa">保险起期</span><span class="pull-right"><span ><input class="input_b text-right s-c-ed462f g-w150" id="startDate" name="startDate" type="text" readonly ></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></li>
+                       
+                      <li class="list-group-item"><span class="s-c-aaaaaa">保险止期</span><span class="pull-right "><span ><input class="input_b text-right s-c-ed462f g-w150" name="endDate" id="endDate" readonly></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></li> 
+                       
+                    </ul>
+            </div>
+             <div id="datePlugin"></div>
+             
+             <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">投保人信息<span class="pull-right" style="height:20px; width:20px; display:block"><img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" ></span></div>
+                  <ul class="list-group">
+                  		<input type="hidden" name="applicant_type" value="1" id="applicant_type">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_select_applicant_type_P" onClick="showSelect_applicant_type('text_select_applicant_type','text_select_applicant_type_P')" data-value='[{"applicant_type_id":1,"applicant_type_name":"个人"},{"applicant_type_id":2,"applicant_type_name":"机构"}]' ><span class="s-c-aaaaaa">投保人类型</span><span class="pull-right"><span id="text_select_applicant_type" data-applicant_type_id="1" data-applicant_type_name="个人">个人</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       <li class="list-group-item" style="padding:0px; margin:0px; border:0px;">
+                           <ul class="f-pA0 f-mA0" id="applicant_geren">
+                               <!-- 个人-->
+                               
+                               <li class="list-group-item"><span class="s-c-aaaaaa">姓名</span><span class="f-fs2 pull-right"><input type="text" name="applicant_fullname" placeholder="名字长度至少2的汉字" id="applicant_fullname" class="input_b text-right g-w150"><i class=" f-ml10 fa fa-user s-c-aaaaaa"></i></span></li>  
+                               <input type="hidden" name="applicant_sex" value="0" id="applicant_sex">
+                               <a class="list-group-item" href="javascript:void(0)" id="text_select_toubaoren_sex_P" onClick="showSelect_base('text_select_toubaoren_sex','text_select_toubaoren_sex_P','sex')" data-value='[{"sex_id":0,"sex_name":"男"},{"sex_id":1,"sex_name":"女"}]'><span class="s-c-aaaaaa">性别</span><span class="pull-right"><span id="text_select_toubaoren_sex"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                            
+                           </ul>
+                           <ul class="f-pA0 f-mA0" id="applicant_jigou" style="display:none" >
+                           
+                               <!-- 机构-->
+                               <li class="list-group-item" ><span class="s-c-aaaaaa">机构名称</span><span class="f-fs2 pull-right"><input type="text" name="applicant_fullname" id="applicant_fullname" class="input_b text-right g-w150"></span></li> 
+                               <li class="list-group-item" ><span class="s-c-aaaaaa">固定电话</span><span class="f-fs2 pull-right"><input type="text" name="telephone" id="telephone" class="input_b text-right g-w150"></span></li> 
+                            
+                           </ul>
+                       </li>
+                       <!--公用-->
+                        
+                       <input type="hidden" name="applicant_certificates_type" id="applicant_certificates_type" value="">
+                       
+                       <a class="list-group-item" href="javascript:void(0)" id="text_applicant_certificates_type_P" onClick="showSelect_base('text_applicant_certificates_type','text_applicant_certificates_type_P','applicant_certificates_type')" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_applicant_type_huaan $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"applicant_certificates_type_id":"{$index}","applicant_certificates_type_name":"{$value1}"}{/loop}]'><span class="s-c-aaaaaa">证件类型</span><span class="pull-right"><span id="text_applicant_certificates_type"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">证件号码</span><span class="f-fs2 pull-right"><input type="text" name="applicant_certificates_code" id="applicant_certificates_code" class="input_b text-right g-w150"></span></li> 
+                        
+                       
+                       <!--公用-->
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">手机</span><span class="f-fs2 pull-right"><input type="text" name="applicant_mobilephone" id="applicant_mobilephone" class="input_b text-right g-w150"></span></li> 
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">Email</span><span class="f-fs2 pull-right"><input type="text" name="applicant_email" id="applicant_email"  class="input_b text-right g-w150"></span></li> 
+                       
+                       <input type="hidden" name="nation_code" id="nation_code" value="">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_nation_code_P" onClick="showSelect_base('text_nation_code','text_nation_code_P','nation_code')" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_nationality_huaan  $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"nation_code_id":"{$index}","nation_code_name":"{$value1}"}{/loop}]'><span class="s-c-aaaaaa">国籍</span><span class="pull-right"><span id="text_nation_code"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a> 
+                    </ul> 
+                     
+                  
+            </div>
+            
+             
+            <div class="panel panel-default">
+                   
+                  <div class="panel-body">工程关系方</div>
+                  
+                  <div class="f-mr10 text-right">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-ed462f">增加关系方</button>
+                          <button type="button" class="btn btn-ed462f dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="fa fa-plus-square"></span>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li class="text-center">增加关系方</li>
+                            <li class="divider"></li>
+                            <!--{loop $attr_assured_type_huaan $index $value1}-->
+                            <li class="text-right"><a href="javascript:void(0)" onClick="add_assured(this)" data-value="{$index}">{$value1}</a></li>
+                            <!--{/loop}-->
+                          </ul>
+                        </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div id="gongcheng_list" class="f-pt10">
+                  		<!--{eval $indexas=1;}-->
+                  	  <!--{loop $attr_assured_type_huaan $index $value1}-->
+                      <div class="panel panel-default f-mA10" id="lists_{$index}" data-value="{$index}" style="display:{if $indexas!=1}none;{/if}">
+                          <div class="panel-body f-csp" onClick="show_hide(this,true)"><span class="assured_type">{$value1}</span><span class="pull-right" style="height:20px; width:20px; display:block"><img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" ></span></div>
+                          <ul class="list-group"> 
+                               <li class="list-group-item"><span class="s-c-aaaaaa">名称</span><span class="f-fs2 pull-right"><input type="text"  placeholder="名字长度至少2的汉字" class="input_b text-right" id="fullname_{$index}"><i class=" f-ml10 fa fa-user s-c-aaaaaa"></i></span></li> 
+                                 
+                               <a class="list-group-item" href="javascript:void(0)" id="certificates_type_P_{$index}" onClick="showSelect_base('certificates_type_{$index}','certificates_type_P_{$index}','applicant_certificates_type')" data-value='[<!--{eval $indexQsm=1;}-->{loop $attr_applicant_type_huaan $indexsq $value1}{if $indexQsm!=1},{/if}<!--{eval $indexQsm++;}-->{"applicant_certificates_type_id":"{$indexsq}","applicant_certificates_type_name":"{$value1}"}{/loop}]' ><span class="s-c-aaaaaa">证件类型</span><span class="pull-right"><span id="certificates_type_{$index}"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                               <li class="list-group-item"><span class="s-c-aaaaaa">证件号码</span><span class="f-fs2 pull-right"><input type="text" name="cade" class="input_b text-right" id="certificates_code_{$index}"></span></li>
+                                
+                               <li class="list-group-item" ><span class="s-c-aaaaaa">手机</span><span class="f-fs2 pull-right"><input type="text" class="input_b text-right" id="assured_mobilephone_{$index}"></span></li> 
+                                
+                               <a class="list-group-item" href="javascript:void(0)" id="be_assured_P_{$index}" onClick="showSelect_base('be_assured_{$index}','be_assured_P_{$index}','be_ased')" data-value='[{"be_ased_id":0,"be_ased_name":"否"},{"be_ased_id":1,"be_ased_name":"是"}]' ><span class="s-c-aaaaaa">是否被保险人</span><span class="pull-right"><span id="be_assured_{$index}"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a> 
+                               
+                            </ul> 
+                      </div>
+                      <!--{eval $indexas++;}-->
+                      <!--{/loop}-->
+                       
+                  </div>
+                  <input type="hidden" name="assured_info" id="assured_info" value="" />
+            </div>
+             
+             <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp" onClick="show_hide(this,true)">工程信息<span class="pull-right" style="height:20px; width:20px; display:block"><img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" ></span></div>
+                  <ul class="list-group">
+                        
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">工程名称</span><span class="f-fs2 pull-right"><input type="text" name="project_name" id="project_name"  class="input_b text-right"><i class=" f-ml10 fa fa-user s-c-aaaaaa"></i></span></li> 
+                       <input type="hidden" name="project_type" id="project_type">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_project_type_P" onClick="showSelect_base('text_project_type','text_project_type_P','project_type')" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_project_type_huaan $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"project_type_id":"{$index}","project_type_name":"{$value1}"}{/loop}]'><span class="s-c-aaaaaa">工程类型</span><span class="pull-right"><span id="text_project_type"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">工程造价</span><span class="f-fs2 pull-right"><input type="text" name="project_price" id="project_price" class="input_b text-right"><span class="s-c-aaaaaa">元</span></span></li> 
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">邮政编码</span><span class="f-fs2 pull-right"><input type="text" name="project_zipcode" id="project_zipcode" class="input_b text-right"></span></li> 
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">施工起期</span><span class="pull-right"><span ><input class="input_b text-right s-c-ed462f g-w150" id="project_start_date" name="project_start_date" type="text" readonly ></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></li>
+                       
+                      <li class="list-group-item"><span class="s-c-aaaaaa">施工止期</span><span class="pull-right "><span ><input class="input_b text-right s-c-ed462f g-w150" name="project_end_date" id="project_end_date" readonly></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></li> 
+                       
+                       <input type="hidden" name="project_content" id="project_content">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_project_content_P" onClick="showSelect_base('text_project_content','text_project_content_P','project_content')" data-value='[{"project_content_name":"商场装修"},{"project_content_name":"商铺装修"},{"project_content_name":"室内装修"}]' ><span class="s-c-aaaaaa">施工内容</span><span class="pull-right"><span id="text_project_content"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       
+                       <input type="hidden" name="province_name" id="province_name">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_select_province_P" onClick="showSelectprovince('text_select_province','text_select_province_P','province')" ><span class="s-c-aaaaaa">施工省份</span><span class="pull-right"><span id="text_select_province"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       
+                       <input type="hidden" name="city_name" id="city_name">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_select_city_P" onClick="showSelect_base('text_select_city','text_select_city_P','city')" ><span class="s-c-aaaaaa">施工城市</span><span class="pull-right"><span id="text_select_city"></span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       <li class="list-group-item" ><span class="s-c-aaaaaa">施工地址</span><span class="f-fs2 pull-right"><input type="text" name="project_location" id="project_location" class="input_b text-right"></span></li> 
+                        
+                    </ul> 
+                   
+                  
+            </div>
+            
+            <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-body f-csp">受益人信息<span class="pull-right" style="height:20px; width:20px; display:block"><img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" ></span></div>
+                  <ul class="list-group">
+                       <a class="list-group-item" href="javascript:void(0)" id="text_beneficiary_P" onClick="showSelect_base_beneficiary('text_beneficiary','text_beneficiary_P','beneficiary')" data-value='[{"beneficiary_id":1,"beneficiary_name":"法定"},{"beneficiary_id":2,"beneficiary_name":"指定"}]' ><span class="s-c-aaaaaa">受益人类型</span><span class="pull-right"><span id="text_beneficiary" data-beneficiary_id="1" data-beneficiary_name="法定">法定</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                       <li class="list-group-item" id="beneficiary_LI" style="display:none"><span class="s-c-aaaaaa">指定信息</span><span class="f-fs2 pull-right"><input type="text" name="beneficiary" id="beneficiary_text" value="法定"  placeholder="200字之内" class="input_b text-right"><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></li>
+                  </ul> 
+                   
+                  
+            </div>
+<!--{template cp_product_buy_footer}-->

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-1.9.1.js"></script>
+</head>
+<body>
+	<form action="Partner/patnerDispaterAction.php" id="my_submit">
+		<input type="hidden" name="cooperator" value="{$cooperator}">
+		<input type="hidden" name="buyerId" value="{$buyerId}">
+		<input type="hidden" name="type" value="">
+		
+		<table>
+			<tr>
+				<td width="200px;">
+					加密后的合作伙伴代码
+				</td>
+				<td >
+					<input value="{$cooperator}" type="text" style="width: 300px;">
+				</td>
+			</tr>
+		
+			<tr>
+				<td >
+					加密后的用户ID
+				</td>
+				<td  >
+					<input value="{$buyerId}" type="text" style="width: 300px;">
+				</td>
+			</tr>
+	
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="去产品列表" onclick="goods_list();">  
+					<input type="button" value="订单列表列表" onclick="order_list();">  
+					<input type="button" value="去保单列表" onclick="policy_list();">  
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+		function goods_list()
+		{
+			$('#my_submit').submit();
+			
+		}
+		function order_list()
+		{
+			$('#my_submit').attr("action","Partner/displayResource.php");
+			$('#my_submit input[name=type]').val('order_list');
+			
+			$('#my_submit').submit();
+			
+		}
+		function policy_list(){
+			$('#my_submit input[name=type]').val('policy_list');
+			$('#my_submit').attr("action","Partner/displayResource.php");
+			$('#my_submit').submit();
+			
+		}
+		
+	</script>
+	
+	
+</body>
+</html>
+

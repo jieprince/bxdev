@@ -1,0 +1,42 @@
+{include file='header.dwt'}
+
+
+	<section>
+	<div class="m_cat f-mt20">
+		<table width=99% cellspacing=5 cellpadding=5 border=0>
+            <tr><td>
+            	<div class="f-fs3 s-c-ff0000 s-lh25 f-pA10 f-fwb f-tac">
+            		{$tips}
+            	</div>
+            </td></tr>
+            <tr><td>
+            	<div class="f-fs3 s-c-ff0000 s-lh25 f-pl10 f-pr10 f-tac">
+            		订单号：
+		             {if $order.activity_id}
+		             	<a href='../client/user.php'>{$order.order_sn}</a>
+		             	{else}
+		             	<a href='user.php?act=order_detail&order_id={$order.order_id}'>{$order.order_sn}</a>
+		             {/if}
+            	</div>
+            	
+            	
+            </td></tr>
+            <tr><td  class="onlinepay">
+            	<div class="f-fs3 s-c-ff0000 s-lh25 f-pA10 f-mt10">
+            		资料上传完成，将尽快进行核保审核！有任何疑问，可以拨打全联客服热线：021-65667179!
+            		<br>
+            		如还需上传资料,请至我的订单-订单详情中进行上传！
+            	</div>
+            	
+            </td></tr>
+            <tr><td height="50" align="center" valign="middle" class="onlinepay">{$pay_online}</td></tr>
+        </table>
+	</div>
+	</section>
+{include file='foot.dwt'}
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+</script>
+</body>
+</html>

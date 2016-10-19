@@ -1,0 +1,169 @@
+{if $policy_arr.insurer_code!='SSBQ'}        
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title-2">投保产品详细信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+                	 
+                	<tr>
+                    	<th width="150">保险项目：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$product[attribute_name]}-{$product[product_name]}
+                            </div>
+                        </td>
+                        <th width="150">生效日期：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$policy_arr.start_date}
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                    	<th>保 费：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$total_price}
+                            </div>
+                        </td>
+                        <th>投保份数：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	1 份
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>保障期间：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$policy_arr.start_date} 至 {$policy_arr.end_date}
+                            </div>
+                        </td>
+                    	<th>受益人：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	法定
+                            </div>
+                        </td>
+                    	
+                         
+                    </tr>
+                </table>
+            </section>
+            <section class="f-mt30 f-cb s-bg-ffffff f-pT30L60  s-c-666666">
+            	<div class="f-fl g-w110 f-tal f-fs4">重要说明：</div>
+                <div class="f-fr g-w767 f-tal f-fs2 s-lh25">
+                	 {$product_attribute_arr.insurance_declare}
+                </div>
+            </section>
+        </div>
+        <div class="f-mt40 f-cb f-fs2 s-c-666666">
+        	<div class="f-fl g-w500 f-tar f-mt20">
+            	<input type="radio" name="reader" id="readerId" > 我已认真阅读并同意以上投保声明
+            </div>
+            <div class="f-fr g-w500 f-tal">
+            	保费总计： ¥ <span class="f-fs10 s-c-ec6941 f-fsi f-fwb" id="showprice">$total_price</span> 元
+            </div>
+        </div>
+        <div class="f-mt40 f-cb f-pb40" align="center">
+        	 <span class="f-ib">
+                <a href="javascript:history.go(-1)" class="btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">上一步</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf0292;</i></span>
+                    </span>
+                </a>
+            </span>
+        	<span class="f-ib f-ml15">
+                <button  type="submit" class="btn-ec6941-3">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">下一步</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf02af;</i></span>
+                    </span>
+                </button>
+            </span>
+            
+            <span class="f-ib f-ml15">
+                <a href="javascript:void(0)" class="btn-c1c0c0" onclick="save_dialog();">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">暂存信息</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf01be;</i></span>
+                    </span>
+                </a>
+            </span> 
+             
+        </div>
+{else}
+		<div class="f-mt40 f-cb f-fs2 s-c-666666" style="display:none;">
+        	<div class="f-fl g-w500 f-tar f-mt20">
+            	<input type="radio" name="reader" id="readerId"  checked="checked" > 
+            </div>
+        </div>
+        <div class="f-mt40 f-cb f-pb40" align="center">
+        	 
+            <span class="f-ib">
+                <a href="javascript:history.go(-1)" class="btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">上一步</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf0292;</i></span>
+                    </span>
+                </a>
+            </span>
+        	<span class="f-ib f-ml15">
+                <button  type="submit" class="btn-ec6941-3">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">下一步</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf02af;</i></span>
+                    </span>
+                </button>
+            </span>
+            
+            
+        </div>
+{/if}        
+        
+		</form>
+		 
+<script type="text/javascript">
+var loadi;
+function save_dialog(){
+	 if (document.getElementById('readerId').checked == false)
+	 {
+	 	alert("请详细阅读《投保声明》。")
+	 	document.getElementById('readerId').focus();
+	 	return false;
+	 }	
+	
+	//ajax保存 
+	var cart_insure_id =  $("#cart_insure_id").val();
+	
+	loadi = layer.msg('正在保存..', {icon: 16});
+	
+	$.ajax({
+		   type: "GET",
+		   url: "cp.php",
+		   data: "ac=product_buy&op=save_to_cart&cart_insure_id="+cart_insure_id,
+		   success: function(data){
+			   data = $.parseJSON(data);
+			   if(data['code']==200){
+					
+					layer.confirm('保存成功！', {
+					    btn: ['继续投保','去支付'] //按钮
+					}, function(){
+							var url = '../category.php?act=hot_goods_list';
+				        	window.location.href=url; 
+					}, function(){
+				             var url = '../user.php?act=cart_list';
+				             window.location.href=url; 
+					});
+					 
+			   }
+		   }
+	});
+	
+	 
+	
+}
+
+</script>

@@ -1,0 +1,81 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+<!--{if $op == "update_diubuliao"}-->
+
+<!--{elseif $op == update_order_status}-->
+
+<div id="content-body">
+
+	<form id="inputForm" name="inputForm" method="post"  action="space.php?do=admin_tool">
+	<table>				
+	<tbody>
+	<tr>
+	<td>		
+	<input type="hidden" name="toolsubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+    请输入订单号：
+    <input name="order_sn" value="" type="input">
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<input value="保存" class="webButton" type="submit">
+	</td>
+	</tr>
+	</tbody>
+	</table>	
+	</form>
+
+</div>
+
+<!--{elseif $op == "upload_taipingyang_excel"}-->
+
+
+<div id="content-body">
+    
+	<form id="inputForm" name="inputForm" method="post"  action="space.php?do=admin_tool&op=upload_taipingyang_excel"  enctype="multipart/form-data">
+	<table>				
+	<tbody>
+	<tr> 
+	<td> 返回结果：</td>
+	<td> $msg </td>
+	
+	</tr>
+	
+	<tr>
+	<td>		
+	<input type="hidden" name="toolsubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+	
+	<input type="hidden" name="leadExcel" value="true">
+	
+ 
+    文件名：
+     <input type="file" name="inputExcel">
+	
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	 <input type="submit" class="webButton" value="导入数据">
+	</td>
+	</tr>
+	</tbody>
+	</table>	
+	</form>
+
+</div>
+
+
+<!--{/if}-->
+
+</div> <!-- main-content-->
+
+<!--{template footer}-->

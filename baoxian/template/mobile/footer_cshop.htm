@@ -1,0 +1,139 @@
+<!--页面底部-->
+<div  style="clear:both"></div>
+		<div class="viewport">
+			<div id="footer" class="footer">
+				<div class="row g_1">
+					<a href="../mobile/index.php">首页</a>
+					{if $smarty.session.user_id}<a href="../mobile/user.php?act=user_center">用户中心</a>{else}<a href='user.php?act=login'>会员登录</a>{/if}
+					<!--<a href="cart.php">购物车</a>-->
+				</div>
+				<div class="row g_2">
+					<a href="javascript:window.scrollTo(0,0);">返回顶部</a>
+				</div>
+				<div class="row g_3">
+					<p>©2014 {$shop_name}</p>
+				</div>
+			</div>
+		</div>
+<!--页面底部-->
+
+<!--
+	修改时间：2014/7/16
+	修改者：鲍洪州
+	内容：首页底部
+-->
+<!--<div class="clear"></div>
+<div class="foot">-->
+	<!--<div class="footer">
+    	<dl>
+        	<dt>新手指南</dt>
+            <dd><a href="#">投保演示</a></dd>
+            <dd><a href="#">使用说明</a></dd>
+            <dd><a href="#">代金券使用说明</a></dd>
+            <dd><a href="#">产品问题大全</a></dd>
+        </dl>
+        <dl>
+        	<dt>新手指南</dt>
+            <dd><a href="#">投保演示</a></dd>
+            <dd><a href="#">使用说明</a></dd>
+            <dd><a href="#">代金券使用说明</a></dd>
+            <dd><a href="#">产品问题大全</a></dd>
+        </dl>
+        <dl>
+        	<dt>新手指南</dt>
+            <dd><a href="#">投保演示</a></dd>
+            <dd><a href="#">使用说明</a></dd>
+            <dd><a href="#">代金券使用说明</a></dd>
+            <dd><a href="#">产品问题大全</a></dd>
+        </dl>
+        <dl>
+        	<dt>新手指南</dt>
+            <dd><a href="#">投保演示</a></dd>
+            <dd><a href="#">使用说明</a></dd>
+            <dd><a href="#">代金券使用说明</a></dd>
+            <dd><a href="#">产品问题大全</a></dd>
+        </dl>
+        <dl>
+        	<dt>新手指南</dt>
+            <dd><a href="#">投保演示</a></dd>
+            <dd><a href="#">使用说明</a></dd>
+            <dd><a href="#">代金券使用说明</a></dd>
+            <dd><a href="#">产品问题大全</a></dd>
+        </dl>
+        <dl>
+        	<dt>微信公众平台</dt>
+        	
+            <dd style="margin-top: 5px;">
+            <img src="baoxian/image/ad02.jpg" width="80px" height="80px">
+            </dd>
+        </dl>
+    </div>-->
+	<!--<div class="footer">
+		<ul>
+			<li><a href="#">法律安全</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">隐私政策</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">法律声明</a>&nbsp;|&nbsp;</li>
+			<li><a href="#">关于我们</a></li>
+		</ul>
+	</div>
+    <div class="clear"></div>
+    <div class="footer2">
+    	<p>经营保险代理业务许可证：201974000000800  中天信合保险代理（北京）有限公司：110104011479456 ICP备案号：京ICP备12031115号</p>
+        <p>Copyright@2006-2014 {$shop_name}版权所有</p>
+    </div>
+</div>-->
+</body>
+
+
+<!--
+	<script type="text/javascript">
+	var goods_id = 33;
+	var goodsattr_style = 1;
+	var gmt_end_time = 0;
+		var day = "天";
+		var hour = "小时";
+		var minute = "分钟";
+		var second = "秒";
+		var end = "结束";
+		var goodsId = 33;
+	var now_time = 1407319141;
+	
+	onload = function(){
+	  changePrice();
+	  fixpng();
+	  try {onload_leftTime();}
+	  catch (e) {}
+	}
+	
+
+	/**
+	 * 点选可选属性或改变数量时修改商品价格的函数
+	 */
+	function changePrice()
+	{
+	  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+	  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+	  Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+	}
+	/**
+	 * 接收返回的信息
+	 */
+	function changePriceResponse(res)
+	{
+	  if (res.err_msg.length > 0)
+	  {
+		alert(res.err_msg);
+	  }
+	  else
+	  {
+		document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+		if (document.getElementById('ECS_GOODS_AMOUNT'))
+		  document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+	  }
+	}
+	
+	</script>
+	
+		-->
+		
+</html>

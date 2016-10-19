@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>保单详细 - {$shop_name}</title>
+	<link rel='stylesheet' type='text/css' href='css/order-detial.css' />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<link href="css/head_foot.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script>
+	<script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="dist/js/jquery.cookie.js" type="text/javascript"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+    
+	<script type="text/javascript">
+	var _hmt=_hmt||[];(function(){var e=document.createElement("script");
+	var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+	document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+	</script>
+</head>
+<body> 
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a>
+		<span class="headline">保单详情</span>
+	</div>
+    
+	<section id="section_app">
+<div class="pending-detial">
+		<h2>保单详情</h2>
+		<!--订单信息begin-->
+		<div class="order-info">
+			<ul>
+				<li class="clearfix">
+					<p class="title">保&nbsp;单&nbsp;&nbsp;号：</p>
+					<p class="sum">{$order.policy_no}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">保单状态：</p>
+					<p class="sum"><span style="color: red">{$order.policy_status_str}</span></p>
+				</li>
+				<li class="clearfix">
+					<p class="title">保险总价：</p>
+					<p>{$order.total_premium}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">保险起期：</p>
+					<p>{$order.start_date}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">保险止期：</p>
+					<p>{$order.end_date}</p>
+				</li>
+				<!-- {if $order.insurer_code eq	'CHINALIFE'} -->
+						<li class="clearfix" id="down_app">
+							<div style="margin-left:30px;">{$goods.goods_brief}</div>
+					
+						</li>
+					<!-- {else} -->
+					<!-- {if $order.policy_status eq 'insured'} --> 
+						<li class="clearfix" id="down_app">
+							<p class="title">电子保单：</p>
+							<p> <a href="javascript:download_policy_doc({$order.policy_id})" ><span style="color: red">下载</span></a>
+							&nbsp;|&nbsp;&nbsp;<a href ="javascript:withdraw_policy({$order.policy_id});"><span style="color: red">注销保单</span></a>
+							</p>
+						</li>
+						<!-- {/if} -->
+				<!-- {/if} -->
+
+
+			</ul>
+		</div>
+		<!--订单信息end-->
+		
+				<!--产品信息begin-->
+		<h2>产品信息</h2>
+		<div class="order-info">
+
+			<!--{foreach from=$list_subject key=key item=subject}-->  
+			 <!--{foreach from=$subject[list_subject_product] item=product}-->
+			<ul>
+				<li class="clearfix">
+					<p class="title">保险名称：</p>
+					<p><a href="goods.php?attribute_id={$order.attribute_id}">
+							{$product.attribute_name}->
+							{$product.product_name}
+					</a></p>
+				</li>
+			
+				<li class="clearfix">
+					<p class="title">保险期限：</p>
+					<p class="sum"><strong>{$product.period}</strong></p>
+				</li>
+				
+				<li class="clearfix">
+					<p class="title">适应人群：</p>
+					<p>{$product.age_min}-{$product.age_max}周岁</p>
+				</li>
+			
+	            
+				<li class="clearfix">
+					<p class="title">投保份数：</p>
+					<p class="sum"><strong>{$order.apply_num}</strong></p>
+				</li>               
+			</ul>
+			  <!--{/foreach}-->
+			<!--{/foreach}-->
+		</div>
+		<!--产品信息end-->
+        <!--{if $order.insurer_code!="CPIC_CARGO"}-->
+		<h2>投保人信息</h2>
+		<!--投保人信息begin-->
+        
+		<div class="order-info">
+
+			<ul>
+				<li class="clearfix">
+					<p class="title">投&nbsp;&nbsp;保&nbsp;&nbsp;人：</p>
+					<p>{$user_info_applicant.fullname}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</p>
+					<p>{$user_info_applicant.gender_str}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">证件类型：</p>
+					<p>{$user_info_applicant.certificates_type_str}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">证&nbsp;&nbsp;件&nbsp;&nbsp;号：</p>
+					<p>{$user_info_applicant.certificates_code}</p>
+				</li>
+				
+				<li class="clearfix">
+					<p class="title">手机号码：</p>
+					<p>{$user_info_applicant.mobiletelephone}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title" style="width:120px;">与被保险人关系：</p>
+					<p>{$order.relationship_with_insured_str}</p>
+				</li>
+				
+				<li class="clearfix">
+					<p class="title">收益关系：</p>
+					<p>{$order.beneficiary_str}</p>
+				</li>
+				<li class="clearfix">
+					<p class="title">业务类型：</p>
+					<p>{$order.business_type_str}</p>
+				</li>
+
+			</ul>
+		</div>
+      
+		<!--投保人信息end-->
+		<h2>被保人信息</h2>
+		<!--被保人信息begin-->
+		<div class="order-info">
+ 			<!--{if $insurer_code=="CHINALIFE"}--> 
+			
+             <!--{foreach from=$list_subject[0].list_subject_insurant item=item}-->
+				<ul>
+					<li class="clearfix">
+						<p class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</p>
+						<p >{$item.fullname}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</p>
+						<p>{$item.birthday}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">证件类型：</p>
+						<p>{$item.certificates_type_str}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">证&nbsp;&nbsp;件&nbsp;&nbsp;号：</p>
+						<p>{$item.certificates_code}</p>
+					</li>
+                    <li class="clearfix">
+						<p class="title">证件类型：</p>
+						<p>{$item.certificates_type_str}</p>
+					</li>
+                   
+					<li class="clearfix">
+						<p class="title">省份：</p>
+						<p>{$item.province}</p>
+					</li>
+                    <li class="clearfix">
+						<p class="title">城市：</p>
+						<p>{$item.city}</p>
+					</li>
+                    <li class="clearfix">
+						<p class="title">地区：</p>
+						<p>{$item.county}</p>
+					</li>
+                    
+	
+				</ul>
+                
+			 <!--{/foreach}-->
+             <!--{else}--> 
+             <!--{foreach from=$list_subject[0].list_subject_insurant item=item}-->
+				<ul>
+					<li class="clearfix">
+						<p class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</p>
+						<p >{$item.fullname}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</p>
+						<p>{$item.birthday}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">证件类型：</p>
+						<p>{$item.certificates_type_str}</p>
+					</li>
+					<li class="clearfix">
+						<p class="title">证&nbsp;&nbsp;件&nbsp;&nbsp;号：</p>
+						<p>{$item.certificates_code}</p>
+					</li>
+                    <li class="clearfix">
+						<p class="title">证件类型：</p>
+						<p>{$item.certificates_type_str}</p>
+					</li>
+                     
+	
+				</ul>
+			 <!--{/foreach}-->
+             <!--{/if}--> 
+		</div>
+        <!--被保人信息end-->
+        <!--{/if}-->
+        <!--{if $order.insurer_code=='CPIC_CARGO'}-->
+      		<!--{if $order.attribute_type == 'other_cargo'}-->
+        		<h2>人员信息</h2>
+                
+                <div class="order-info">
+                	<ul>
+                    	
+                    	<li class="clearfix">
+                            <p class="title">被保险人名称：</p>
+                            <p>{$subject[list_subject_insurant][0].fullname}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">证件号码：</p>
+                            <p>{$subject[list_subject_insurant][0].certificates_code}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">邮政编码：</p>
+                            <p>{$subject[list_subject_insurant][0].zipcode}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">联系地址：</p>
+                            <p>{$subject[list_subject_insurant][0].address}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">联系人：</p>
+                            <p>{$user_info_applicant[fullname]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">手机号码：</p>
+                            <p>{$user_info_applicant[mobiletelephone]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">Email：</p>
+                            <p>{$user_info_applicant[email]}</p>
+                        </li>
+                    </ul>
+                 </div>
+                 <h2>车辆运单信息</h2>
+                
+                 <div class="order-info">
+                    <ul>
+                        
+                        <li class="clearfix">
+                            <p class="title">道路运输许可证：</p>
+                            <p>{$order[RoadLicenseNumber]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">累计承保车辆：</p>
+                            <p>1辆</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">运输车辆号码：</p>
+                            <p>{$order[CarNumber]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">运输货物名称：</p>
+                            <p>{$order[GoodsName]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">行驶证车主：</p>
+                            <p>{$order[VehicleOwners]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">辆核定载量：</p>
+                            <p>{$order[TransportVehiclesApprovedTotal]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">车辆车架号：</p>
+                            <p>{$order[FrameNumber]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">发动机号码：</p>
+                            <p>{$order[EngineNo]}</p>
+                        </li>
+                        {if $order.BusinessType=='05'}
+                        <li class="clearfix">
+                            <p class="title">运单号：</p>
+                            <p>{$order[DeliverorderNo]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">起运日期：</p>
+                            <p>{$order[SailDate]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">起运地：</p>
+                            <p>{$order[StartPlace]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">目的地：</p>
+                            <p>{$order[EndPlace]}</p>
+                        </li>
+                        {/if}
+                   </ul>
+                </div>
+                
+                <h2>车辆运单信息</h2>
+                
+                 <div class="order-info">
+                    <ul>
+                        
+                        <li class="clearfix">
+                            <p class="title">业务类型：</p>
+                            <p>{if $order.BusinessType=='05'}单次业务{else}单车业务{/if}</p>
+                        </li>
+                         
+                        <li class="clearfix">
+                            <p class="title">累计责任限额：</p>
+                            <p>{$order[SumAmount]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">保险费率：</p>
+                            <p>{$order[Rate]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">保费：</p>
+                            <p>{$order[Premium]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">每次事故赔偿限额：</p>
+                            <p>{$order[TimeAmount]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">免赔条件：</p>
+                            <p>{$order[EachAccidentFranchise]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">特别约定：</p>
+                            <p>{$order[Specialterm]}</p>
+                        </li>
+                         
+                   </ul>
+                </div>
+        	<!--{else}-->
+            	<h2>基本信息</h2>
+                
+                <div class="order-info">
+                	<ul>
+                    	
+                    	<li class="clearfix">
+                            <p class="title">投保人名称：</p>
+                            <p>{$user_info_applicant.group_name}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">险种：</p>
+                            <p>{$order.classtype}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">被保险人名称：</p>
+                            <p>{$subject[list_subject_insurant][0].fullname}</p>
+                        </li>
+                         
+                    </ul>
+                 </div>
+                 <h2>货运信息</h2>
+                
+                 <div class="order-info">
+                    <ul>
+                        
+                        <li class="clearfix">
+                            <p class="title">运单号：</p>
+                            <p>{$order[mark]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">起运日期：</p>
+                            <p>{$order[saildate]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">货物名称：</p>
+                            <p>{$order[item]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">货物类型：</p>
+                            <p>{$order[itemcode]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">包装及数量：</p>
+                            <p>{$order[quantity]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">货物包装：</p>
+                            <p>{$order[packcode]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">运输方式：</p>
+                            <p>{$order[kind]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">运输工具：</p>
+                            <p>{$order[kindname]}</p>
+                        </li>
+                       
+                        <li class="clearfix">
+                            <p class="title">航次/车牌号：</p>
+                            <p>{$order[voyno]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">运输路线：</p>
+                            <p>{$order[startport]}--{$order[endport]}</p>
+                        </li>
+                        
+                        
+                   </ul>
+                </div>
+                <h2>所选条款</h2>
+                
+                 <div class="order-info">
+                    <ul>
+                        
+                        <li class="clearfix">
+                            <p class="title">主要条款：</p>
+                            <p>{$order[mainitemcode]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">详细内容：</p>
+                            <p>{$order[itemcontent]}</p>
+                        </li>
+                    </ul>
+                </div>
+                <h2>保险信息</h2>
+                
+                 <div class="order-info">
+                    <ul>
+                        
+                        
+                         
+                        <li class="clearfix">
+                            <p class="title">保险金额：</p>
+                            <p>{$order[amount]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">保险费率：</p>
+                            <p>{$order[rate]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">保费：</p>
+                            <p>{$order[premium]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">签单日期：</p>
+                            <p>{$order[effectdate]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">发票抬头：</p>
+                            <p>{$user_info_applicant[group_name]}</p>
+                        </li>
+                        
+                        <li class="clearfix">
+                            <p class="title">免赔条件：</p>
+                            <p>{$order[franchise]}</p>
+                        </li>
+                        <li class="clearfix">
+                            <p class="title">特别约定：</p>
+                            <p>{$order[specialize]}</p>
+                        </li>
+                         
+                   </ul>
+                </div>
+            
+            <!--{/if}-->      
+    	<!--{/if}--> 
+	  
+		
+		
+		<!--收货地址begin-->
+	<!--
+		<div class="user-info">
+			<h3>收货地址</h3>
+			<ul>
+				<li>
+					<p class="title">联络贵宾：</p>
+					<p class="user">{$order.consignee}</p>
+				</li>
+				<li>
+					<p class="title">联络电话：</p>
+					<p class="user">{$order.tel}&nbsp;&nbsp;&nbsp;&nbsp;{$order.mobile}</p>
+				</li>
+				<li class="add">
+					<p class="title">收货地址：</p>
+					<p class="user">{$order.address}</p>
+				</li>
+			</ul>
+		</div>
+	-->
+		<!--收货地址end-->
+
+	
+	</div>
+</section>
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+		
+		//注销保单
+		function withdraw_policy(policy_id){
+			
+		     var ret = confirm("您确认要注销保单吗？");
+			 if(!ret)
+			 {
+			 	return;
+			 }
+			   			         			
+			 $.get("../baoxian/cp.php", 
+			       { 
+				   "ac": "product_buy",
+				   "policy_id": policy_id ,
+				   "op": "withdraw",
+				   "dataType":"json",//服务器返回的数据类型 可选XML ,Json jsonp script html text等 
+				   },
+				   function(data){
+					   
+					//data = $(data);
+					//console.info(data);
+					var data = $.parseJSON(data); 
+					var retcode = data.retcode;
+					var retmsg =  data.retmsg;
+					
+					//alert("retcode: "+retcode);
+					
+					if(data.retcode == "0")
+					{
+					   alert("注销保单成功！");
+					   window.location.href = "user.php?act=policy_detail&policy_id="+policy_id;
+					}
+					else
+					{
+					  alert(retmsg);
+					}
+				
+		   	}, ""); 
+			
+			
+		}
+</script>
+<div id="app_space" style="height:20px; display:none;">&nbsp;</div>
+<div id="footer_app">
+{include file='foot.dwt'}
+</div>
+<script>
+	//url中数据的提取
+	function getUrlParam(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r!=null) return unescape(r[2]); return null;	
+	}
+	var app_uid = getUrlParam('uid');
+	var app_platformId = getUrlParam('platformId');
+	 
+	if(app_uid!="" &&app_uid!=null && app_platformId!="" &&  app_platformId!=null){
+		$('.header').hide();	
+		$('#footer_app').hide();
+		$('#down_app').hide();
+		$('#section_app').css("margin-top",'-3%');
+		$('#app_space').show();
+	}
+	
+	//下载电子保单
+	function download_policy_doc(policy_id){
+		//生成token
+		$.ajax({
+			   type: "GET",
+			   url: "user.php",
+			   data: "act=get_download_policy_token&policy_id="+policy_id,
+			   success: function(data){
+				   data = $.parseJSON(data);
+				   if(data.code==0){
+					  var url = "user.php?act=download_policy_doc&policy_id="+policy_id+"&uid={$order.agent_uid}&download_token="+data.token;
+					  window.location.href=url;
+				   }
+			   }
+			});
+		
+		
+	}
+	
+</script>
+
+</body>
+</html>

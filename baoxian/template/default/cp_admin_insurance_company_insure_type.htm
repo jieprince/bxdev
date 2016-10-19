@@ -1,0 +1,105 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+<div id="content-body">
+
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+              <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			  <label class="separator">&gt;</label>
+			 <a>  影响因素 </a>
+			   
+            <label class="separator">&gt;</label>
+            
+                新建
+            
+      </div>
+
+</div>
+
+<div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_company_insure_type&insurer_id=$insurer_id&insurance_company_insure_type_id=$insurance_company_insure_type_id">
+
+
+<input type="hidden" name="insurance_company_insure_type_submit" id="insurance_company_insure_type_submit" value="true" />
+
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="editable-table">
+    <tbody>
+	
+	
+	<!--{loop $list_count $key $value}-->
+	  <tr>
+       	
+	 <td class="requiredField">产品类型：</td>
+        <td class="tdEditArea">
+		<input name="companyinsuretype[$key][attribute_type]" value="" type="text">
+    </td>	
+	
+	
+	<td class="requiredField">注释：</td>
+        <td class="tdEditArea">
+		<input name="companyinsuretype[$key][note]" value="" type="text" placeholder="可选">
+    </td>	
+	
+		
+   </tr>
+   <!--{/loop}-->
+   
+   
+	  
+    </tbody>
+	</table>
+    
+    <table class="buttonArea">
+       <tbody>
+		<tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody>
+	</table>
+    
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div> <!--main-body-->
+
+</div> <!--content-body-->
+
+</div> <!--id="main-content"-->
+ 
+<!--{template footer}-->

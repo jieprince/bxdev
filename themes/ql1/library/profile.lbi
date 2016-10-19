@@ -1,0 +1,550 @@
+<script type="text/javascript" src="fullAvatarEditor/scripts/fullAvatarEditor.js"></script>
+<script type="text/javascript" src="fullAvatarEditor/scripts/swfobject.js"></script>
+<script src="js/jquery.md5.js"></script>
+<script src="js/profile.js"></script>
+<link rel="stylesheet" href="js/nice-validator-0.7.3/jquery.validator.css">
+<script type="text/javascript" src="js/nice-validator-0.7.3/jquery.validator.js"></script>
+<script type="text/javascript" src="js/nice-validator-0.7.3/local/zh_CN.js"></script>
+<script type="text/javascript" src="dist/js/plugin/laydate/laydate.js"></script>
+<script type="text/javascript" src="js/user_check.js"></script>
+
+<div class="g-w1077 f-mc f-cb f-mt25">
+
+	<div class="f-fr g-w800 ">
+		<div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+			<form action="user.php?act=act_edit_profile" method="post" id="act_edit_profile">
+				<div class="f-pt20">
+					<table cellpadding="0" cellspacing="0" class="table_user_02">
+						<tr>
+							<th colspan="4"><span class="s-c-040404 f-fs3"> <span
+									class="f-ml30 s-c-666666"><i class="iconfont">&#xf00f4;</i></span>
+									<span>个人基本信息</span>
+							</span></th>
+
+						</tr>
+						<tr>
+							<td width="100" align="right">姓名：</td>
+							<td width="290" align="left">
+								<div class="f-pl10">
+									<input class="f-pA10 g-w210" type="text" value="{$profile.real_name}" name="real_name">
+								</div>
+							</td>
+							<td width="100" align="right">性别：</td>
+							<td width="290" align="left">
+								<div class="f-pl10">
+									<span> 
+										<input type="radio" value="1" name="sex" {if $profile.sex==1}checked= "checked"{/if} id="profile_male"> 男
+									</span> 
+									<span class="f-ml10"> 
+										<input type="radio" value="2" {if $profile.sex==2}checked= "checked"{/if} name="sex" id="profile_female" data-rule="checked" > 女
+									</span>
+									<span class="msg-box n-right" style="position:static;" for="sex"></span>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td width="100" align="right">证件类型：</td>
+							<td width="290" align="left">
+								<div class="f-pl10">
+									<select class="s-select-1" name="CertificatesType">
+									{foreach from=$zhengjian_type_list key=key item=item}
+										<option value="{$key}" {if $key eq $profile.CertificatesType} selected="selected"{/if}>{$item}</option>
+									{/foreach}
+									</select>
+								</div>
+							</td>
+							<td width="100" align="right">证件号码：</td>
+							<td width="290" align="left">
+								<div class="f-pl10">
+									<input class="f-pA10 g-w210" type="text" value="{$profile.CardId}" name="CardId">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td width="100" align="right">出生日期：</td>
+							<td width="290" align="left" >
+								<div class="f-pl10">
+									<input class="f-pA10 g-w210 laydate-icon" type="text" id="profile_birthday" name="birthday" onclick="laydate()" readonly value="{$profile.birthday}">
+								</div>
+							</td>
+							<td width="100" align="right">地址：</td>
+							<td width="290" align="left">
+								<div class="f-pl10">
+								       <select name="province" id="selProvinces" class="s-select-1" onchange="region.changed(this.value, 2, 'selCities')">
+								         <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+								         <!-- {foreach from=$province_list item=province} -->
+								         <option value="{$province.region_id}" {if $profile.Province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+								         <!-- {/foreach} -->
+								       </select>
+								       
+								       <select name="city" id="selCities" class="s-select-1" onchange="region.changed(this.value, 3, 'selDistricts')">
+								         <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+								         <!-- {foreach from=$city_list item=city} -->
+								         <option value="{$city.region_id}" {if $profile.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+								         <!-- {/foreach} -->
+								       </select>
+								       
+								       <select name="district" id="selDistricts" class="s-select-1" {if !$district_list} style="display:none"{/if}>
+								         <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+								         <!-- {foreach from=$district_list item=district} -->
+								         <option value="{$district.region_id}" {if $profile.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+								         <!-- {/foreach} -->
+								        </select>
+								
+								</div>
+							</td>
+
+						</tr>
+
+					</table>
+
+				</div>
+				<div class="f-mt30" align="center">
+					<button type="submit" class="btn-ec6941-108 s-lh25">
+						<i class="iconfont f-mr5">&#xf0156;</i>保存信息
+					</button>
+				</div>
+			</form>
+
+		</div>
+
+		<div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 f-mt20" style="display:none">
+
+			<div class="f-pt20">
+				<table cellpadding="0" cellspacing="0" class="table_user_03">
+					<tr>
+						<th><span class="s-c-040404 f-fs3"> <span
+								class="f-ml30 s-c-666666"><i class="iconfont">&#xf0137;</i></span>
+								<span class="s-c-040404 f-csp" id="user_img_title_01"
+								onClick="user_imgshow(1)">修改头像</span> <span class="s-c-666666">|</span>
+								<span class="s-c-666666 f-csp" id="user_img_title_02"
+								onClick="user_imgshow(2)">修改封面</span>
+						</span></th>
+
+					</tr>
+					<tr id="touxiang">
+						<td align="left">
+							
+							<div style="width:500px;margin: 0 auto;text-align:center">
+								<div>
+									<p id="swfContainer">
+									</p>
+								</div>
+							</div>
+							<!--<div>
+								<span class="f-ib f-tac f-vat f-ml40"> <img
+									src="images/user_img.png" width="180" height="180"> <br>
+									180*180
+								</span> <span class="f-ib f-tac f-vat f-ml20"> <img
+									src="images/user_img.png" width="100" height="100"> <br>
+									100*100
+								</span> <span class="f-ib f-tac f-vat f-ml20"> <img
+									src="images/user_img.png" width="50" height="50"> <br>
+									50*50
+								</span>
+							</div>
+							<div class="f-mt20" align="center">
+								<button type="button" class="btn-ec6941-108 s-lh25">
+									<i class="iconfont f-mr5">&#xf0024;</i>上传头像
+								</button>
+							</div> -->
+
+						</td>
+
+					</tr>
+
+					<tr id="fengmian" style="display: none">
+						<td>
+							<ul id="fengmian_imglist" class="m-list-8 f-cb">
+							{foreach from=$userbg_img_list item=item}
+								<li><a href="user.php?act=change_userbg_img&id={$item.id}"> 
+								<img src="{$item.img_url}" width="230" height="54"></a>
+								 <a href="user.php?act=change_userbg_img&id={$item.id}" class="link-666666 f-mt10">{$item.name}</a>
+								</li>
+							{/foreach}
+							</ul>
+						</td>
+
+					</tr>
+
+
+
+				</table>
+
+			</div>
+
+
+
+		</div>
+
+		<div class=" f-pb40 f-pl15 f-pr15 s-bg-eff1f1 f-mt20">
+
+			<div class="f-pt20">
+				<table cellpadding="0" cellspacing="0" class="table_user_02">
+					<tr>
+						<th colspan="4"><span class="s-c-040404 f-fs3"> <span
+								class="f-ml30 s-c-666666"><i class="iconfont">&#xf0030;</i></span>
+								<span>安全认证信息</span>
+						</span></th>
+
+					</tr>
+					<tr>
+						<td width="100" align="right">用户名：</td>
+						<td width="680" align="left">
+							<div class="f-pl10">{$profile.user_name}</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td width="100" align="right">登录密码：</td>
+						<td width="680" align="left">
+							<div class="f-pl10">
+								<span>上次登录时间 {$smarty.session.formated_last_time}</span> <span
+									class="f-ib f-ml20"><a href="javascript:edit_password();" class=" btn-ec6941-5">修改</a></span>
+
+							</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td width="100" align="right">手机号码：</td>
+						<td width="680" align="left">
+							<div class="f-pl10">
+								<span>{$profile.mobile_phone}</span> 
+								
+								<span class="f-ml20  s-c-ec6941">
+									{if $profile.mobile_phone}
+										<i class="iconfont">&#xf0156;</i>已绑定
+										{else}
+										<i class="iconfont">&#xf0156;</i>
+										<a href="javascript:binding_phone();">
+										去绑定
+										</a>
+									{/if}
+								</span>
+
+							</div>
+						</td>
+
+					</tr>
+
+
+				</table>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
+
+<div  id="edit_password" align=center style="display: none">
+  <form action="user.php" method="post" id="edit_password_form">
+  	<input name="act" type="hidden" value="update_password_verification_code" />
+	<input name="type" type="hidden" value="edit_pass" />
+	<table class="table_user_02"  style="width:400px" >
+		<tr>
+			<td>手机号码</td>
+			<td align="left">
+				{$profile.mobile_phone}
+				<input name="username" type="hidden" class="g-h35" value="{$profile.mobile_phone}">
+				<input type="button" class="btn-ec6941-108 s-lh25" style="display:inline-block;" name="get_code_btn" value="获取验证码" onclick="verification_code(11,'edit_password_form')">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>验证码</td>
+			<td align="left">
+				<input name="checkCode" class="g-h35" onkeyup="checkNum('edit_password_is_check_ok',this.value)">
+				<span class="f-ib f-vam" id="edit_password_is_check_ok"></span>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>新密码</td>
+			<td align="left">
+				<input type="password"  placeholder="密码" name="password" data-rule="密码: required;password;" class="g-h35">
+			</td>	
+		</tr>
+		
+		<tr>
+			<td>确认密码</td>
+			<td align="left">
+				<input type="password"  class="g-h35" placeholder="确认密码" name="confirm_password" data-rule="确认密码: required;match(password);">
+			</td>	
+		</tr>
+		
+	</table>
+  </form>
+</div>
+
+
+
+<div  id="binding_phone" align=center style="display: none">
+  <form action="user.php" method="post" id="edit_binding_phone">
+  	<input name="act" type="hidden" value="binding_phone" />
+	<table class="table_user_02"  style="width:400px" >
+	
+		<!-- 判断是否启用验证码{if $enabled_captcha} -->
+		<tr>
+			<td>图形验证码</td>
+			<td align="left">
+				<input type="text" class="g-h35 g-w130 f-pl5 f-pr5" placeholder="图形验证码" name="captcha" id="input_captcha" />
+				<img src="captcha.php?{$rand}" alt="captcha"  style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" />
+			</td>
+		</tr>
+		<!-- {/if} -->
+	
+		<tr>
+			<td>手机号码</td>
+			<td align="left">
+				<input name="username" class="g-h35">
+				<input type="button" class="btn-ec6941-108 s-lh25" style="display:inline-block;" id="get_code_btn" value="获取验证码" onClick="my_get_code(11,'common_msg')">
+			</td>
+		</tr>
+
+		<tr>
+			<td>验证码</td>
+			<td align="left">
+				<input name="checkCode" class="g-h35" placeholder="短信验证码" >
+				<span class="f-ib f-vam" id="edit_binding_phone_is_check_ok"></span>
+			</td>
+		</tr>
+	</table>
+  </form>
+</div>
+
+
+<script type="text/javascript">
+ 
+$('#act_edit_profile').validator({
+    rules: {
+    	real_name: [/^\s*[\u4e00-\u9fa5]{1,}[\u4e00-\u9fa5.·]{0,15}[\u4e00-\u9fa5]{1,}\s*$/, '请正确输入姓名'],
+    	CardId: function(element){
+			var cardNo = element.value;
+			 if(isCardNo(cardNo)){
+				 $("#profile_birthday").val(getBirthdatByIdNo(cardNo));//生日
+				 if(getSexById(cardNo)==1){
+					 $("#profile_male").attr("checked","checked"); 
+				 }else{
+					 $("#profile_female").attr("checked","checked"); 
+				 } 
+			
+			 }
+    		
+    	}    	
+    	
+    },
+    fields: {
+    	real_name: 'required; real_name',
+    	CardId: 'required; CardId'
+    }
+});
+
+
+	function edit_password(){
+		layer.open({
+		    type: 1,
+		    skin: 'layui-layer-molv', //样式类名
+		    closeBtn: true, //不显示关闭按钮
+		    btn: ['确定', '取消'],
+		    shift: 2,
+		    title:'修改密码',
+		    area: ['520px', '370px'], //宽高
+		    shadeClose: true, //开启遮罩关闭
+		    content: $('#edit_password'),
+		    yes:function(index, layero){
+		    	var parm = $("#edit_password_form").serialize();
+		    	 $.ajax({
+		    		   url: "user.php",
+		    		   data: parm,
+		    		   type: "POST",
+		    		   dataType:'json',
+		    		   success: function(res){
+		    			   if(res.code!=200){
+		    				   alert(res.msg);
+		    			   }
+		    			   else{
+		    				   alert(res.msg);
+		    				   location.reload();
+		    			   }
+		    		   }
+		    	 });		    	
+		    	
+		    },
+		    cancel:function(index, layero){
+		    	
+		    }
+		});
+		
+		
+	}
+	
+	
+	function my_get_code(type,msg_type){
+		
+	 	var arrayObj = {};
+	 	arrayObj.type = type;
+	 	arrayObj.msg_type = msg_type;
+	 	arrayObj.is_captcha="{$enabled_captcha}";
+		
+		//校验手机号码
+		var username = $.trim($("#edit_binding_phone input[name=username]").val());
+		
+		var flag = mobile_phone_validate(username,true);
+		if(flag){
+		
+			arrayObj.username = username;
+			get_check_code(arrayObj)
+		}
+	}
+	
+	
+	function binding_phone(){
+		layer.open({
+		    type: 1,
+		    skin: 'layui-layer-molv', //样式类名
+		    closeBtn: true, //不显示关闭按钮
+		    btn: ['确定', '取消'],
+		    title:'绑定手机号码',
+		    shift: 0,
+		    area: ['520px', '330px'], //宽高
+		    shadeClose: true, //开启遮罩关闭
+		    content: $('#binding_phone'),
+		    yes:function(index, layero){
+		    	var parm = $("#edit_binding_phone").serialize();
+		    	 $.ajax({
+		    		   url: "user.php",
+		    		   data: parm,
+		    		   type: "POST",
+		    		   dataType:'json',
+		    		   success: function(res){
+		    			   if(res.code!=0){
+		    				   alert(res.msg);
+		    			   }
+		    			   else{
+		    				   alert(res.msg);
+		    				   location.reload();
+		    			   }
+		    		   }
+		    	 });		    	
+		    	
+		    },
+		    cancel:function(index, layero){
+		    	
+		    }
+		});
+		
+		
+	}
+	
+	
+	
+	
+</script>
+<script type="text/javascript">
+  swfobject.addDomLoadEvent(function () {
+	//以下两行代码正式环境下请删除
+	if(location.href.indexOf('http://') == -1) 
+	alert('请于WEB服务器环境中查看、测试！\n\n既 http://*/simpleDemo.html\n\n而不是本地路径 file:///*/simpleDemo.html的方式');
+	var swf = new fullAvatarEditor("fullAvatarEditor/fullAvatarEditor.swf", "fullAvatarEditor/expressInstall.swf", "swfContainer", {
+		    id : 'swf',
+			upload_url : 'fullAvatarEditor/upload.php?userid=999&username=looselive',	//上传接口
+			method : 'post',	//传递到上传接口中的查询参数的提交方式。更改该值时，请注意更改上传接口中的查询参数的接收方式
+			src_upload : 0,		//是否上传原图片的选项，有以下值：0-不上传；1-上传；2-显示复选框由用户选择
+			avatar_box_border_width : 0,
+			avatar_sizes : '200*200',
+			avatar_sizes_desc : '200*200像素'
+		}, function (msg) {
+			switch(msg.code)
+			{
+				case 1 : //alert("页面成功加载了组件！");
+							break;
+				case 2 : 
+					//alert("已成功加载图片到编辑面板。");
+					//document.getElementById("upload").style.display = "inline";
+					break;
+				case 3 :
+					if(msg.type == 0)
+					{
+						alert("摄像头已准备就绪且用户已允许使用。");
+					}
+					else if(msg.type == 1)
+					{
+						alert("摄像头已准备就绪但用户未允许使用！");
+					}
+					else
+					{
+						alert("摄像头被占用！");
+					}
+				break;
+				case 5 : 
+					if(msg.type == 0)
+					{
+						if(msg.content.sourceUrl)
+						{
+							alert("原图已成功保存至服务器，url为：\n" +　msg.content.sourceUrl+"\n\n" + "头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n")+"\n\n传递的userid="+msg.content.userid+"&username="+msg.content.username);
+						}
+						else
+						{
+							var avatar_path = msg.content.avatarUrls.join("\n\n");
+							avatar_path=avatar_path.replace("../",' '); 
+							$("#avatar_show").attr({ src: avatar_path, alt: "Test Image" });
+
+							//alert("头像已成功保存至服务器，url为：\n" + msg.content.avatarUrls.join("\n\n")+"\n\n传递的userid="+msg.content.userid+"&username="+msg.content.username);
+						}
+					}
+				break;
+			}
+		}
+	);
+/* 	document.getElementById("upload").onclick=function(){
+		swf.call("upload");
+	}; */
+         });
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+//document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5f036dd99455cb8adc9de73e2f052f72' type='text/javascript'%3E%3C/script%3E"));
+
+
+	 //通过 省份ID查询城市
+	 var region = new Object();
+	 region.changed = function(parentId, type, selName)
+	 {
+	 	  $.ajax({
+	 		   dataType:"json",
+	 		   type: "GET",
+	 		   url: "region.php",
+	 		   data: "type="+type+"&target="+selName+"&parent="+parentId,
+	 		   success: function(data){
+	 			   //判断data.regions是否有值，没有的话，隐藏区域，否则显示区域列表
+	 			   if(type==3){
+	 				   if(data.regions.length>0){
+	 					  $("#"+selName).show();
+	 				   }
+	 				   else{
+	 					  $("#"+selName).hide();
+	 				   }
+	 			   }
+	 			   
+	 			   var region_select ="<option value='0'>请选择</option>";
+	 			   $.each(data.regions,function (k,v)
+	 				{
+	 				  region_select+="<option value='"+v.region_id+"'>"+v.region_name+"</option>"
+	 				});
+	 			   
+	 			   $("#"+selName).html(region_select);
+	 		     	
+	 		   }
+	 		});
+
+	 }
+</script>
+
+
+
+
+

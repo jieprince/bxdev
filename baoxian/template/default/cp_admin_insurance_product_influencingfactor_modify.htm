@@ -1,0 +1,140 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+<div id="content-body">
+
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+              <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			  <label class="separator">&gt;</label>
+			 <a>  影响因素 </a>
+			   
+            <label class="separator">&gt;</label>
+            
+                修改
+					<label class="separator">&gt;</label>
+            <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+            
+      </div>
+
+</div>
+
+<div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_influencingfactor&product_id=$product_id&product_influencingfactor_id=$product_influencingfactor_id">
+
+
+<input type="hidden" name="product_influencingfactor_submit" id="product_influencingfactor_submit" value="true" />
+
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="editable-table">
+    <tbody>
+	<tr>
+        
+
+		<td colspan="12" class="editable-header">基本信息</td>
+		
+    </tr>
+	
+	  <tr>
+        <td class="requiredField" width="60" style="width:60px;">类型：</td>
+        <td class="tdEditArea" style="width:auto">
+		<select id="product_influencingfactor_type" name="product_influencingfactor_type" style="width:auto">
+					
+			<!--{loop $list_type $key $value}-->
+			<option value="$value" $type_arr_selected[$value]>$value</option>
+			<!--{/loop}-->
+			
+		</select>
+	    </td>
+	
+	 <td class="requiredField" style="width:auto;white-space: nowrap;">因素名称1：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="factor_name" value="$product_influencingfactor[factor_name]" type="text" style="width:auto">
+    </td>	
+	
+	 <td class="requiredField" style="width:auto;white-space: nowrap;">因素代码：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="factor_code" value="$product_influencingfactor[factor_code]" type="text"  placeholder="可选" style="width:auto">
+    </td>	
+	
+		 <td class="requiredField" style="width:auto;white-space: nowrap;">价格：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="factor_price" value="$product_influencingfactor[factor_price]" type="text" style="width:auto">
+    </td>	
+	</td>	
+	 <td class="requiredField" style="width:auto;white-space: nowrap;">产品编码：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="additional_code" value="$product_influencingfactor[additional_code]" type="text" style="width:auto">
+    </td>	
+	</td>
+	
+		 <td class="requiredField" style="width:auto;white-space: nowrap;">最小天数：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="period_min" value="$product_influencingfactor[period_min]" type="text" style="width:auto">
+    </td>	
+	</td>	
+	
+		 <td class="requiredField" style="width:auto;white-space: nowrap;">最大天数：</td>
+        <td class="tdEditArea" style="width:auto">
+		<input name="period_max" value="$product_influencingfactor[period_max]" type="text" style="width:auto">
+    </td>	
+		
+   </tr>
+   
+   
+	  
+    </tbody>
+	</table>
+    
+    <table class="buttonArea">
+       <tbody>
+		<tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody>
+	</table>
+    
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div> <!--main-body-->
+
+</div> <!--content-body-->
+
+</div> <!--id="main-content"-->
+ 
+<!--{template footer}-->

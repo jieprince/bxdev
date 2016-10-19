@@ -1,0 +1,166 @@
+body{background:#eeeeee;}
+.font_fm{ font-family: "Microsoft YaHei", Arial}
+.font_bolder{ font-weight:bolder;}
+
+.container-fluid{ padding:0px;}
+.border_brs{border:#CCC solid 1px; border-radius:3px; }
+.bg_fff{background:#fff;}
+.bg_ed462f{background:#ed462f;}
+
+.mar_L10{ margin-left:10px;}
+.mar_T5{margin-top:5px;}
+.mar_T10{ margin-top:10px;}
+.mar_T15{ margin-top:15px;}
+
+.mar_T25{ margin-top:25px;}
+.padd_A10{padding:10px;}
+.padd_A20{padding:20px;}
+.padd_T15{ padding-top:15px;}
+.padd_T5{ padding-top:5px;}
+.padd_T10{ padding-top:10px;}
+.mar_T65{ margin-top:65px;}
+.mar_B40{ margin-bottom:40px;}
+.mar_A18{ margin: 18px 10px;}
+.mar_L45{margin-left: 45px}
+.mar_L130{margin-left: 130px;}
+.mar_T70{margin-top: 70px;}
+.border_s_95{ border: solid 1px #E3E3E3; border-radius: 3px;}
+.color_20{color: #202020;}
+.color_ff00{color: #FF0000}
+
+.bg_fad69f{ background:#fad69f}
+.header {
+    background:#008fc7 ;
+    font-size: 18px;
+    height: 52px;
+    left: 0;
+    line-height: 52px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+.header .back {
+    background: url("../../images/head.png") no-repeat scroll 0 center rgba(0, 0, 0, 0);
+    display: inline-block;
+    float: left;
+    height: 52px;
+    margin: 0;
+    padding: 0;
+    width: 55px;
+}
+.header .headline {
+    color: #fff;
+    display: inline-block;
+    height: 52px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.header .search {
+    background: url("../../images/head.png") no-repeat scroll -45px center rgba(0, 0, 0, 0);
+    display: inline-block;
+    float: right;
+    height: 52px;
+    width: 55px;
+}
+
+.font_28{font-size: 1.75em;}
+.font_22{font-size: 1.2em;}
+.font_18{font-size: 1em;}
+
+.font_30{font-size:2.5em;}
+.font_14{font-size:1.3em;}
+.font_12{font-size:1.1em;}
+.font_10{font-size:0.9em;}
+
+.line_h25{line-height:1.3em;}
+.line_h30{line-height:2em;}
+.line_h35{line-height:3em;}
+.color_fff{ color:#ffffff;}
+.color_ccc{ color:#ccc}
+.color_36{color:#363636;}
+.color_a3{color:#a3a3a3;}
+.color_ea5413{color:#ea5413}
+.color_red{color:red;}
+.carousel-indicators li {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    width: 10px;
+}
+.carousel-indicators .active {
+    background-color:#090;
+	 border: 1px solid #090;
+    height: 12px;
+    margin: 0;
+    width: 12px;
+}
+
+/*漂浮在底部*/
+#bottomNav {
+    z-index:999;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    _position:absolute;
+    _top: expression_r(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight);
+    overflow:visible;
+}
+.bg_img{ background: url('../../images/spring_Spec/bg_01.png') no-repeat center top; margin: 0 auto; padding-top: 30px;}
+.bg_e58f17{ background: #e58f17}
+#bottomNav a{background: #00528a; font-weight: bolder;letter-spacing:2px; border:#00528a solid 1px; height: 40px; display: block; line-height: 32px; padding: 0px; font-family: "微软雅黑", "Arial", "宋体"; font-size: 18px; }
+#bottomNav a:hover{background: #023c63}
+.text-c-0c83c8{color:#0c83c8}
+.text-c-ed462f{color:#ed462f}
+.btn-97c024{
+    background-color: #97c024;
+    border-color: #8ab11d;
+    color: #fff;
+    border-radius: 3px;
+    width: 100%;
+    height: 60px;
+    line-height:55px;
+    display: inline-block;
+    margin-top: 20px;
+    letter-spacing:1px;
+    box-shadow: 0px 2px 2px #a50b1e;
+}
+.btn-97c024 span{ font-size: 22px;font-weight: bolder;}
+.btn-97c024:visited{color: #fff;}
+.btn-97c024:hover{
+    background-color: #8ab11d;
+    border-color: #8ab11d;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-fe735c{
+    background-color: #fe735c;
+    border-color: #d7533d;
+    color: #fff;
+    width: 100%;
+    border-radius: 3px;
+
+    height: 60px;
+    line-height:55px;
+    display: inline-block;
+    margin-top: 20px;
+    letter-spacing:1px;
+    box-shadow: 0px 2px 2px #a50b1e;
+}
+.btn-fe735c span{font-size: 22px;  font-weight: bolder;}
+.btn-fe735c:visited{color: #fff;}
+.btn-fe735c:hover{
+    background-color: #d7533d;
+    border-color: #d7533d;
+    color: #fff;
+    text-decoration: none;
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪个人中心</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+	 
+
+    <div >
+        <div class="panel panel-primary" style="border-color: #ed462f ; border-radius:0px;" >
+            <div class="panel-heading f-fwb text-center" style="background: #ed462f;border-color: #ed462f;border-radius:0px;">
+                订单详情
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777 clearfix" >
+                            <span class="f-fl">订单详情</span>
+                            <span class="f-fr">
+                                <a href="#" class="f-c-red">更多</a>
+                            </span>
+                        </span>
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">订单编号：{$order.order_sn}</p>
+                            <p class="list-group-item-text f-lh25">订单状态：<span class="f-c-red f-fwb">{$order.order_status}</span></p>
+                            <p class="list-group-item-text f-lh25">支付状态：<span class="f-c-red f-fwb">{$order.pay_status}</span></p>
+                            <p class="list-group-item-text f-lh25">
+                            	{if $order.order_amount gt 0}
+                            		在线支付：{$order.pay_online}
+                            		{else}
+                            		支付方式：{$order.pay_name}
+                                {/if}
+                            </p>
+                            <p class="list-group-item-text f-lh25">保险总价：{$order.formated_goods_amount}</p>
+                        </span>
+
+                    </div>
+                    <div class="list-group">
+                        <span class="list-group-item f-bg-eee f-c-777" >
+                            产品
+                        </span>
+                        <!-- {foreach from=$goods_list item=goods name=goods} -->
+                        <span class="list-group-item f-fs10">
+                            <p class="list-group-item-text f-lh25">保险公司：{$goods.insurer_name}</p>
+                            <p class="list-group-item-text f-lh25">产品名称：<a href="#">{$goods.goods_name}×{$goods.goods_number}</a></p>
+                            <p class="list-group-item-text f-lh25">金&#12288;&#12288;额：<span class="f-c-red f-fwb">{$goods.goods_price}</span></p>
+                        </span>
+ 						<!-- {/foreach} -->
+                    </div>
+                </div>
+                <div>
+                    <a href="user.php?act=policy_list&order_id={$order.order_id}" class="btn btn-danger btn-block ">查看投保单</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+</body>
+</html>

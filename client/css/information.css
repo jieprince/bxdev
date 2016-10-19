@@ -1,0 +1,14 @@
+body{ font-size: 13px; color: #666; font-family:"微软雅黑";}
+
+.policy-holder .title{ height: 50px; line-height: 50px; background: #eee; border-bottom: 1px solid #ccc;}
+.policy-holder .title p{ margin-left: 3%; font-size: 14px;}
+.policy-holder .cont td{line-height: 50px; border-bottom: 1px dashed #ccc;}
+.policy-holder .cont td input{ margin-left: 2%;}
+.policy-holder .cont td input.int{ color:#bbb;width: 80%; height: 28px; border: 1px solid #ccc; border-radius: 5px;}
+.policy-holder .cont td select{ margin-left: 2%;width: 80%; height: 28px; border: 1px solid #ccc; border-radius: 5px;}
+.policy-holder .cont td input.start{ color:#bbb;width: 40%; height: 28px; border: 1px solid #ccc; border-radius: 5px;}
+.policy-holder .cont td input.end{ color:#bbb;width: 40%; height: 28px; border: 1px solid #ccc; border-radius: 5px;}
+.true{ margin: 0 auto; padding-bottom: 3%; margin-top: 2%; margin-left: 30%;}
+.true a.insured{ display: block; width: 40%; height: 30px; line-height: 30px; text-align: center; background: #fff; border: 1px solid #ccc; border-radius: 5px; box-shadow: 3px 3px 5px grey;}
+
+

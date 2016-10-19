@@ -1,0 +1,56 @@
+{include file="pageheader.htm"}
+
+<div class="main-div">
+<form action="distributor.php" method="post"> 
+	<input type="hidden" value="{$user_id}" name="user_id">
+	<input type="hidden"  name="act_form"    value="{$act_form}" id="act_form"/>
+		<table width="100%">
+				<tr>
+					<td class="label">支付方式</td>
+					<td>
+						{if $act_form eq 'payment_insert'}
+						<select name="pay_id" onchange="change_pay(this.value);">
+							<option value=''>请选择</option>
+							{foreach from=$payment_list item=item}
+								<option value="{$item.pay_code}">{$item.pay_name}</option>
+							{/foreach}
+						</select>
+							{else}
+								{$pay_name}
+						{/if}
+					</td>
+				</tr>
+				
+				<tbody id="pay_config">
+					
+					{$pay_cfg}
+				
+				</tbody>
+				
+			</tbody>
+		</table>
+	</form>
+	
+	
+<script type="text/javascript">
+	function change_pay(pay_code){
+		var act_form = $("#act_form").val();
+		if(pay_code==''){
+			return;
+		}
+		$.ajax({
+			   type: "get",
+			   url: "distributor.php",
+			   data: "act=get_pay_config&code="+pay_code+"&act_form="+act_form,
+			   success: function(res){
+			       $("#pay_config").html(res);
+			   }
+		});
+		
+	}
+</script>
+	
+</div>
+
+
+{include file="pagefooter.htm"}

@@ -1,0 +1,666 @@
+/* CSS Document */
+
+/* GLOBAL & RESET
+---------------------------------------------------------------------- */
+
+em,i{font-style:normal}
+.clear{clear:both;height:0px;overflow:hidden;}
+.fl{float:left;display:inline}.fr{float:right;display:inline}.f14{font-size:14px}.f12{font-size:12px}.tc{text-align:center}
+.c267{color:#2676b5}a.c267:hover{text-decoration:underline}.red{color:#F00}.red2{color:#bc0225}.c333{color:#333}.orange{color:#ff7302}.green{color:#03BC06}.c459{color:#459BD5}
+*{word-break:break-all;word-wrap:break-word;}
+.common_nav,.common_table2_header,.fuction_table td strong,.price_box,.price_box2,.count_table th,.count_table td,.fangan_box li h2,.pay_ok_msg h3,.pay_nav,.ok_tips_text,.diy_price,.tj_box,.fangan_price{font-family:"微软雅黑",Tahoma,Arial,\5b8b\4f53,sans-serif;}
+/*统一背景设置*/
+.bd_box{border:#ECECEC 1px solid;}
+.blank14{ height:14px; overflow:hidden; clear:both}
+/*header*/
+.header{width:992px;height:93px;background:url(../../images/lifesales/common/header.jpg) no-repeat;margin:0 auto; position:relative; border-bottom:#C1DAEE 2px solid}
+.header_bar{padding:5px 13px 0 23px; text-align:right; height:20px; position:absolute; right:0; top:0; clear:both}
+.header_bar a{ color:#666; }
+
+.shangcheng_logo{ width:107px; height:45px;float:left; margin:18px 0 0 29px;text-indent:-999999em;}
+
+/*header end*/
+.main{width:992px;margin:14px auto 0 auto;}
+.step{ overflow:hidden; margin-bottom:20px;}
+.slider767{float:left;width:767px;}
+.slider210{float:right;width:210px;}
+.slider210 .bd_box{width:208px; overflow:hidden}
+.shengming{ height:17px; padding:15px 0; border:#BFD3EB 1px solid; padding-left:40px; color:#323232; vertical-align:middle}
+.shengming strong{ font-size:14px; /*color:#0C5DAF*/}
+.shengming .i_ico{ vertical-align:middle; display:inline-block}
+.common_nav{ height:34px;background:#E8E7E4; font-size:16px; font-weight:600; line-height:34px; position:relative; border:#FFF 1px solid;}
+.common_nav em{ width:37px; height:34px; display:inline-block; background:url(../../images/lifesales/common/common_nav.gif) no-repeat; vertical-align:middle; _margin-top:2px;_height:32px;}
+.common_nav em.ico1{ background-position:0 0;}.common_nav em.ico2{ background-position:0 -50px;}.common_nav em.ico3{ background-position:0 -100px;}
+.common_nav em.ico4{ background-position:0 -150px;}.common_nav em.ico5{ background-position:0 -200px;}.common_nav em.ico6{ background-position:0 -250px;}
+.common_table{}
+.common_table th,.common_table td{ height:30px; padding-bottom:22px; font-size:14px}
+.common_table th input,.common_table td input{ vertical-align:middle}
+.common_table th{  text-align:right; font-weight:normal; padding-right:10px; font-size:14px}
+.common_input,.d_input,.l_input,.common_area,.magnifier_text{ width:166px; height:27px; border:#BFBFBF 1px solid; background:#fff url(../../images/lifesales/common/common_input_bg.jpg) repeat-x; line-height:27px; padding:0 9px; font-size:12px; color:#656565;}
+.long_select{border:#BFBFBF 1px solid; background:url(../../images/lifesales/common/common_input_bg.jpg) repeat-x; line-height:27px; height:27px; width:400px; vertical-align:middle}
+.common_select,.date_select{border:#BFBFBF 1px solid; background:url(../../images/lifesales/common/common_input_bg.jpg) repeat-x; line-height:27px; height:27px; width:186px; vertical-align:middle}
+.common_select option,.date_select option{ height:27px; vertical-align:middle; line-height:27px;}
+.input_current{ background:#F1F8FE; border-color:#5D9DE5;}
+.date_select{ width:75px;}
+.magnifier_relative{ position:relative; height:29px; display:inline-block; z-index:1}
+.magnifier_text{ position:absolute;left:0; bottom:30px; height:47px; border-color:#0D5EAF; font-size:15px; font-weight:bold; line-height:47px; overflow:hidden; display:none}
+.common_area{ height:83px; width:399px; line-height:22px; padding-right:0;}
+.d_input{ width:90px; text-align:center}
+.l_input{ width:390px;}
+.blank30{ height:30px; overflow:hidden}
+.blank7,.blank17{ height:7px; overflow:hidden; clear:both}
+.blank17{ height:17px;}
+.blank10{ height:10px; overflow:hidden}.blank20 { height:20px;overflow:hidden}
+.under_link{ color:#0E5BB3; text-decoration:underline; }
+.q_ico,.i_ico{ width:16px; height:16px; background:url(../../images/lifesales/common/ico.gif) no-repeat; display:inline-block; vertical-align:middle; margin-right:5px; overflow:hidden}
+.i_ico{ background-position:0 -20px;}
+.relative{ position:relative; z-index:120; height:29px}
+.q_link{ display:inline-block; z-index:99}
+.tips_msg{ width:232px;  position:absolute; right:-232px; top:0; z-index:100}
+.tips_msg_content{padding:0 15px 5px 20px; line-height:20px; color:#666;background:url(../../images/lifesales/common/tips_msg_rep.gif) repeat-y; font-size:12px;}
+.tips_msg_top,.tips_msg_btm{ width:232px; height:14px; overflow:hidden;background:url(../../images/lifesales/common/tips_msg.gif) no-repeat;  }
+
+.tips_msg01{ width:280px; right:-280px;}
+.tips_msg01 .tips_msg_content{background:url(../../images/lifesales/common/tips_msg_rep_02.gif) repeat-y; font-size:12px;}
+.tips_msg01 .tips_msg_top,.tips_msg01 .tips_msg_btm{ width:280px; background:url(../../images/lifesales/common/tips_msg_01.gif) no-repeat;  }
+.tips_msg_btm,.tips_msg01 .tips_msg_btm{ height:5px; background-position:0 -15px;}
+
+.date_ico{ width:14px; height:14px;display:block; position:absolute; background:red; right:7px; top:8px; background:url(../../images/lifesales/common/ico.gif) 0 -40px no-repeat;}
+.zzfw{ height:95px; border:#F7F7F7 1px solid; background:#FDFDFD url(../../images/lifesales/common/zzfw_bg.jpg) 20px 30px no-repeat;padding:15px 0 15px 155px; color:#666}
+.zzfw strong{ font-size:14px}.zzfw p{ line-height:22px; padding-top:5px;}
+.cr_nav{ height:32px; line-height:32px; border-bottom:#EBEBEB 1px solid;border-top:#EBEBEB 1px solid;  font-size:14px; padding:0 14px 0 12px; position:relative; z-index:0}
+.cr_nav .more{ font-size:12px; font-weight:normal; float:right; color:#0C5DAE; position:absolute; right:14px; top:0}
+.common_nav .modify{ font-size:14px; color:#007DFF; margin-left:5px; font-weight:normal; font-family:宋体,Tahoma,Arial;}
+.bot0{ border-top:0;}
+.pad10{ padding:10px;}
+.r_table{ margin-top:9px;}
+.r_table th,.r_table td{ font-weight:normal; padding-bottom:27px;}
+.r_table th{ text-align:right}
+.r_table .common_input{ width:100px;}
+.r_msg{ padding:0px 15px 10px 15px; line-height:20px;}
+.list1{ margin:12px 0}
+.list1 li{ height:26px; line-height:26px; padding-left:10px; }
+.bd_box_red{background:#FEFDF8;border:#FFF5E9 2px solid;}
+.bd_box_red td{ color:#656565}
+.bd_box_red .common_nav{ background:#FDFBE6; border-bottom:#FFF5E9 2px solid; }
+.pad2030{ padding:20px 35px; line-height:20px; color:#666}
+.pad020{ padding:0 20px;}
+.c65{ color:#666666}
+.step_link a{ margin:0 10px;}
+
+.step_link .o_btn,.o_btn_l,.o_btn,.step_link .dis_btn{ width:98px; height:32px; text-align:center; line-height:32px; font-size:14px; color:#fff; font-weight:bold; background: url(../../images/lifesales/common/o_btn.jpg) no-repeat; display:inline-block; border:0;}
+.o_btn,.dis_btn{ width:82px; height:30px; background-position:0 -80px; color:#333;  text-align:center}.step_link  .dis_btn{background-position:0 -120px; color:#fff; cursor:default}
+.o_btn_l{ width:120px; background-position:0 -36px;}
+.result_table td,.result_table th{ padding-bottom:10px; font-size:12px }
+.common_table2{ width:738px;}
+.common_table2{ margin:0 auto;}
+.common_table2 th,.common_table2 td{ height:33px; text-align:left; border-bottom:#DAE8F6 1px solid;text-align:center; font-size:14px;border-left:#DAE8F6 1px solid; }
+.common_table2 th,.common_table2 td{}.common_table2 td p.tl{ text-align:left; padding-left:8px;}
+.common_table2_header{ height:42px; background:#FDFBE6; border:#FFF6E7 1px solid; width:667px; margin:0 auto; line-height:42px; font-weight:bold; font-size:16px; padding-left:11px;}
+.common_table2 th{ font-size:14px; background:#DAE8F6; height:30px; border-left-color:#DAE8F6;}
+.common_table2 th.w_col_0,.common_table2 td.w_col_0{ border-left:none}
+.bd_table{ margin:0 auto;border:#FDF6C0 1px solid; border-top:0; border-left:0}
+.bd_table th,.bd_table td{ height:38px; text-align:left; border:#FDF6C0 1px solid;text-align:center; font-size:14px;}
+.bd_table th,.bd_table td{ border-bottom:0; border-right:0}.bd_table td p.tl{ text-align:left; padding-left:10px;}
+.bd_table_header{ height:42px; background:#FDFBE6; border:#FFF6E7 1px solid; width:667px; margin:0 auto; line-height:42px; font-weight:bold; font-size:16px; padding-left:11px;}
+.bd_table th{ font-size:14px; background:#FDFBE6;}
+.btm_box{ padding:10px 20px; text-align: right; font-size:14px; line-height:28px;}
+.btm_box_error{padding:10px 0;width:680px;}
+.btm_box span.p_info{text-align:left; padding-left:3px; font-size:15px; color:#666}
+.btm_box b{ font-size:16px;font-size:18px; font-family:"微软雅黑",Tahoma, Geneva, sans-serif; font-weight:700}
+.message_table th,.message_table td{ font-weight:normal; padding-bottom:20px;}
+.message_table th{ text-align:right}
+.oktips{ padding:20px 41px;}
+.ok_tips_text{ padding-left:90px; line-height:66px; font-size:18px; background:url(../../images/lifesales/common/oktips.jpg) no-repeat; font-weight:bold}
+.ok_tips_ok{background:url(../../images/lifesales/common/payok.jpg) no-repeat; line-height:77px;}
+.paytips_box{ margin:20px;  display: block;}
+.paytips_text{ padding-left:80px; line-height:26px; background:url(../../images/lifesales/common/tioc.jpg) 10px 10px no-repeat; color:#555; height:50px;}
+.otips_text{ font-size:14px; background:url(../../images/lifesales/common/otips.jpg) 40px 8px no-repeat; padding-left:110px; line-height:22px;height:50px; font-weight:normal }
+.otips_text .under_link{ font-size:12px;}
+.otips_text b.f14{ font-weight:normal}.otips_text a.under_link{ font-size:14px;}
+.paytips_btn{ text-align:center; padding:20px 0;}
+.zffs{ padding:20px 42px; padding-top:0}
+.pay_box{ background:#FDFDFD; border:#F7F7F7 1px solid; padding-bottom:20px; margin-top:10px; width:678px;}
+.pay_box_list{ padding:18px 0 0 25px;}
+.pay_box_list label{ margin-right:37px;}
+.pay_box .tc{ text-align:left; padding-left:138px; }
+.paybank{ padding:10px 65px;}
+.paybank_nav{ font-size:14px}
+.paybank{ position:relative;}
+.bank_list label{ float:left; height:42px; width:162px; margin-right:15px; margin-top:15px; display:inline; }
+.bank_list label img{ float:right;}
+.bank_list label input{ float:left; margin-top:12px;}
+.paybank a.under_link{ position:absolute; right:40px; top:130px;}
+.paybank a.under_link b{ font-weight:normal}
+.payok_text{ padding-left:80px; color:#666666; font-size:14px}
+.dh_link{ width:545px; border-bottom:#CCC 1px dashed; margin:0 auto; padding:30px 0 0 80px; color:#898989}
+.dh_link a{ color:#0B5DB3; margin-right:66px; line-height:40px;}
+.question_box{ padding:20px 0 28px 150px;}
+.question_box_nav{ font-size:14px; color:#555}
+.question_box  .list1 li{ padding-left:0}
+.cp_list{margin-bottom:20px; float:left}
+.cp_list li{ width:200px; float:left; margin:30px 0 0 38px; display:inline}
+.cp_list .cp_info{ line-height:26px;}
+.blink{ color:#0F5CB4}
+.fuction_table{/* background: url(../../images/lifesales/fuction_table_bg.jpg) repeat-y;*/ width:767px;}
+.fuction_table tr{ position:relative}
+.fuction_table td{text-align:center; padding-right:3px; border-bottom:#FFF 3px solid; *position:relative;}
+.fuction_table td.second strong.f16,.fuction_table td.third strong.f16,.fuction_table td.last strong.f16{ line-height:42px; z-index:1;position:relative}
+.fuction_table td.last{ padding-right:0}
+.fuction_table td.hover{background-color:#FFF8E8;}
+.f16{ font-size:16px; }
+.price_box,.price_box2{ height:124px; margin-top:0; vertical-align:middle; line-height:124px; text-align:center; width:200px; font-size:24px;overflow:hidden; color:#EF8300;font-weight:bold}.price_box2{ height:45px; line-height:45px; font-size:21px; position:relative; overflow:visible;  }
+.price_box2 .py_tips{ left:20px; top:-80px; color:#333}
+.bfss{ margin-top:10px; float:left; margin-left:35px; display:inline; height:25px; overflow:hidden;}
+.gpy{height:25px; line-height:25px;}.diy_price{ font-size:21px; font-weight:bold;color:#EF8300; vertical-align:middle; margin-right:5px; height:40px; line-height:40px;  display:block; clear:both; overflow:hidden;}
+.gpy_h{height:45px; line-height:45px;}
+.gpy a,.gpy_h a{ color:#0068AA; text-decoration:underline}
+.auto_price{ line-height:26px; height:90px; padding:17px 0;}
+.diygpy{ display:none}
+.g_btn,.g_btn_h{ width:124px; height:33px; text-align:center; line-height:33px; color:#000; background:
+url(../../images/lifesales/common/g_btn.jpg) no-repeat; display:inline-block; cursor:pointer}
+.g_btn_h{ background-position:0 -40px; height:19px; padding:7px 0; line-height:19px;}.g_btn_h input{ vertical-align:middle; }
+.g_btn_h_dis{ cursor:default; background-position:0 -80px; color:#999;}
+.text_info{ text-align:left; height:112px; border-top:#AAAAAA 1px dashed;padding:10px; margin:30px 3px 0 3px; line-height:18px;}
+.fuction_table_head{ }
+.fuction_table_head td{ height:39px; border:0; font-weight:bold;background:url(../../images/lifesales/common/fuction_table_head.jpg) repeat-x}
+.fuction_table_head td em{ font-weight:normal; color:#ccc; width:1px; }
+.fuction_table_head td div{ display:block; height:39px; background:url(../../images/lifesales/common/fuction_table_head_line.gif) right top no-repeat; line-height:39px;}
+.w110{ width:90px; display:inline-block; text-align:left; padding-left:10px;}.w90{ width:80px; display:inline-block; text-align:left;padding-left:10px;}
+.tr_date td{border-bottom:none; text-align:left; padding:15px 0}
+.fuction_table tr.trhover,.fuction_table tr.trcurrent{}
+.fuction_table tr.tr_date{cursor:pointer}
+.fuction_table tr.trhover td,.fuction_table tr.trcurrent td{ border-bottom:#FFC368 1px solid;border-top:#FFC368 1px solid; padding:14px 0; background: url(../../images/lifesales/common/tr_hover.png) repeat;_background: url(../../images/lifesales/common/tr_hover.jpg) repeat;}
+.fuction_table tr.trhover td.last,.fuction_table tr.trcurrent td.last{ border-right:#FFC368 1px solid;}
+.fuction_table tr.trhover td.first,.fuction_table tr.trcurrent td.first{ border-left:#FFC368 1px solid;}
+.fuction_table tr.tr_detials{background: url(../../images/lifesales/common/tr_hover.png) repeat;_background: url(../../images/lifesales/common/tr_hover.jpg) repeat; position:relative;}
+.fuction_table tr.tr_detials td{border:#FFC368 1px solid; border-top:0; width:756px; +width:765px;}
+.detials_content{ margin:10px; background:#FFF; text-align:left; padding:20px; position:relative; }
+.detials_content h4{ font-size:14px; color:#0d5daf}
+.detials_info{ padding:10px 0; line-height:22px;}.xxjs{ color:#105DAF}
+.detials_close,.py_close{ width:9px; height:9px; position:absolute; right:10px;_right:20px;top:10px; background:url(../../images/lifesales/common/close.gif) no-repeat; overflow:hidden}
+.pal20,.pal20_l{ padding:0 0 0 20px; height:40px; position:relative}
+.pal20 .q_ico,.pal20_l .q_ico{ position:absolute; right:5px; top:-2px; cursor:pointer}
+.pal20_l{ height:20px; padding-top:0}
+.pal20_l .q_ico{ top:0}
+.c65{ color:#656565; padding-left:23px;}
+.h40{ height:40px;}.h40 input{ vertical-align:middle}
+.h20{ height:20px;}
+
+.h44{ height:44px;}
+.count_box{ height:140px; background:#FFFEE2; border:#FFC468 1px solid; margin-top:15px;}
+.count_table th,.count_table td{ font-size:; text-align:center;}
+.count_table th{ font-size:24px; font-weight:normal; height:75px; color:#C55300}
+.count_table td{ font-size:18px; font-family:Arial, Helvetica, sans-serif; height:45px;}
+.jsr_box{ background:#FBFBFB; margin:0 20px; padding:20px 0 0px 90px; position:relative}
+.jsr_box .common_table th,.jsr_box .common_table td{ padding-bottom:13px;}
+.jsrlist{ padding-left:120px; position:relative; z-index:2; }
+.jsrlist li{ float:left;font-size:14px;width:180px;height:24px; line-height:24px;text-align:center; border:#e9e9e9 1px solid; background:#F8F8F8; margin-right:14px; display:inline;}
+.jsrlist li .mdf,.jsrlist li .del{ color:#0D5EAF; text-decoration:underline; font-size:12px; padding-left:20px; background: url(../../images/lifesales/common/ico.gif) 0 -60px no-repeat; margin-left:14px; line-height:16px; cursor:pointer }
+.jsrlist li .del{ background: url(../../images/lifesales/common/ico.gif) 3px -146px no-repeat}
+.pal185{ padding:10px 0 0 195px;}
+.jsrlist li.current{ background: url(../../images/lifesales/common/jsrlist_current.gif) no-repeat; height:39px; line-height:39px; width:178px; border:none}
+.modify_jsr{ border:#ECECEC 1px solid; border-radius:2px; margin-top:-1px;}
+.cbbb{ color:#bbb}
+.wytj_box{ border:#DDDDDD 1px solid; background:#F9F9F9; height:150px;}
+.wytj_box_l{ width:170px; height:120px; float:left; margin:17px 0 0 11px; display:inline; overflow:hidden}
+.wytj_box_r{ width:560px; float:right; margin:17px 10px 0 0; display:inline; overflow:hidden}
+.wytj_box_r h4{ font-size:14px; height:24px;}
+.wytj_box_info{ line-height:18px; height:62px;}
+.pat10{ padding-top:10px;}
+.col0{background:#F9F9F9 url(../../images/lifesales/common/col_rep.jpg) right repeat-y; width:158px;}
+.col1{background:#F9F9F9 url(../../images/lifesales/common/col_rep.jpg) right repeat-y; width:200px;}
+.col2{background:#EEF7FF url(../../images/lifesales/common/col_rep.jpg) right repeat-y; width:200px;}
+.col3{background:#E5F1FF; width:200px;}
+.colcurrent{background:#FFF8E8 url(../../images/lifesales/common/col_rep.jpg) right repeat-y}
+.colcurrent_last{background:#FFF8E8}
+.cptj{ padding:0 10px; line-height:22px;}
+.leavemsg{ padding:10px; padding-bottom:5px;}
+.leavemsg .common_table th,.leavemsg .common_table td{ padding-bottom:10px}
+.inputselect{ width:75px; height:20px; overflow:hidden; position:relative}
+.c0067{ color:#0067b2}
+.detial_box_dis tr.tr_date{ cursor:default}
+.detial_box_dis tr.tr_date td{ color:#BDBDBD}
+.detial_box_dis tr.tr_date td em.q_ico{display:none}
+.detial_box_dis tr.tr_date .pal20_l{ background:url(../../images/lifesales/common/ico.gif) 135px -80px no-repeat;}
+.detial_box_dis tr.trhover td{ background:none;_background:none;}.detial_box_dis tr.trhover td,.detial_box_dis tr.trhover td.first,.detial_box_dis tr.trhover td.last{ border:0; padding:15px 0}
+.nav_tips{ font-size:14px; font-weight:normal; color:red; padding-left:20px; line-height:16px;}.nav_tips .tips_ico{ margin-right:10px; }
+
+.cmp_box{ width:147px; border:#D5DCEE 1px solid; border-top:#FF6600 2px solid; background:#FFF}
+.cmp_box_tt{ height:27px; border-bottom:#D5DCEE 1px solid; line-height:27px; padding-left:12px; position:relative;}
+.cmp_close,.del_cp,.pop_close{ width:14px; height:13px; display:block; position:absolute; right:6px; top:8px; background:url(../../images/lifesales/common/ico.gif) 0 -110px; overflow:hidden}
+.cmp_list li{ height:34px; padding:7px 0 7px 28px;line-height:17px; position:relative;}
+.cmp_list li.odd{ background:#F8F8F8}
+.cff5{ color:#FF5900}
+.del_cp{ width:8px; height:7px; background-position:0 -130px; right:9px; top:9px;}
+.cmp_btn{ width:88px; height:24px; text-align:center;display:block; margin:0 auto ;background: url(../../images/lifesales/common/cmp_btn.jpg) no-repeat; line-height:24px;}
+.cmp_btm{ text-align:center; padding:9px 0;}
+.popbox{ width:767px; position:absolute;background-color:#fff; color:#7F7F7F; padding:20px; z-index:101;}
+.pop_close{width:9px; height:9px; right:7px; top:7px; background-position:0 -150px;}
+.overlay{ position:fixed;_position:absolute; background:transparent url(../../images/lifesales/common/mask.png) repeat top left; top:0px; bottom:0px; left:0px; right:0px; z-index:999; height:100%; width:100% }
+
+/*省市选择控件*/
+.city_select{ width:423px; height:168px; border:#5D9DE5 1px solid; position:absolute; background:#FFF; left:0;top:29px; display:none; z-index:101; font-size:12px; overflow:hidden}
+.city_select_tt{ height:24px; background:#67A1E1; line-height:24px; color:#CCE4FC; width:248px; padding:0 10px;}.city_select_tt b{ color:#FFF}
+.city_list{ margin-top:8px;}
+.city_list li{ float:left; width:67px; text-align:center; height:24px;margin:0; display:inline;}
+.city_list li a{color:#1149AA; cursor:pointer; display:block; height:22px; line-height:22px; border:#FFF 1px solid; width:65px; float:left; overflow:hidden }
+.city_list li a:hover,.city_list li a.hover{background:#E8F4FF;border:#ACCCEF 1px solid}
+.city_select_box{ padding:10px;}
+.city_select_tab{ width:248px;height:20px; position:relative; border-bottom:#5DA9E2 1px solid;}
+.city_select_tab ul{ position:absolute; left:0; top:0; height:21px;width:403px;}
+.city_select_tab ul li{ float:left; width:38px; height:19px; text-align:center; cursor:pointer; color:#005DAA; line-height:19px;border:#fff 1px solid; border-bottom-color:#5DA9E2; border-right:none; margin-right:1px; }
+.city_select_tab ul li.current{ border:#5DA9E2 1px solid; border-bottom-color:#FFF; font-weight:bold; color:#333; margin-right:0}
+.city_select_tab_insured{ width:248px;height:20px; position:relative; border-bottom:#5DA9E2 1px solid;}
+.city_select_tab_insured ul{ position:absolute; left:0; top:0; height:21px;width:403px;}
+.city_select_tab_insured ul li{ float:left; width:38px; height:19px; text-align:center; cursor:pointer; color:#005DAA; line-height:19px;border:#fff 1px solid; border-bottom-color:#5DA9E2; border-right:none; margin-right:1px; }
+.city_select_tab_insured ul li.current{ border:#5DA9E2 1px solid; border-bottom-color:#FFF; font-weight:bold; color:#333; margin-right:0}
+.city_select_area{ width:180px; height:90px; border:#5DA9E2 1px solid; float:left; margin-top:8px; overflow:auto;}
+.city_select_area_ico{ width:39px; height:92px; float:left;background:url(../../images/lifesales/common/city_select_area_ico.gif) center no-repeat;margin-top:8px;}
+.city_select_area li{ height:18px; line-height:18px; display:block; padding:0 5px; cursor:pointer}
+.city_select_area li.current{ background:#0058A3; color:#FFF}
+.city_select_mask{width:100%; height:100%;background:#fff; display:none;_display:block; background:red}
+/*省市选择控件end*/
+
+.error_ico,.tips_ico,.correct_ico{ width:16px; height:16px; display:inline-block; background:url(../../images/lifesales/common/ico.gif) 0 -170px no-repeat; vertical-align:middle; margin-left:20px; overflow:hidden}
+.tips_ico{background-position:0 -200px;}
+.correct_ico{background-position:0 -230px;}
+.tips_text{margin-left:10px; vertical-align:middle}
+.tips_box{ position:relative; display:inline-block; z-index:5}
+.tips_img{ position:absolute; top:-10px; right:-320px; z-index:6}
+
+/*时间控件*/
+.date-picker-wp,.date-picker-wpfixed {display: none;position: absolute;background: #fff;width:220px;border: 1px solid #999; }
+.date-picker-wpfixed{ position:fixed;_position: absolute;}
+.date-picker-wp table {}
+.date-picker-wp td,.date-picker-wpfixed td {background: #fafafa;width: 30px;height: 20px;border: 1px solid #ccc;font-size: 12px;text-align: center; }
+.date-picker-wp td.noborder,.date-picker-wpfixed td.noborder {border: none;background: none;}
+.date-picker-wp td a,.date-picker-wpfixed td a {color: #1c93c4;text-decoration: none;}
+.strong {font-weight: bold; }
+.strong div{ width:90px;}
+.hand {cursor: pointer; color: #3879d9}
+
+.video_link{ color:#0068B4; font-size:12px; font-weight:normal; display:inline-block;margin-left:320px; font-family:宋体,Tahoma,Arial,\5b8b\4f53,sans-serif;background:url(../../images/lifesales/common/ico.gif) 0 -257px no-repeat; padding-left:20px;}
+.huihu_box{  margin:10px; }
+.huihu_tab{ height:29px;background:url(../../images/lifesales/common/line.gif) bottom repeat-x}
+.huihu_tab li{ width:127px; height:27px; float:left; line-height:27px; text-align:center; border:#BBBBBB 1px solid; margin-right:4px; background:#F3F3F3; cursor:pointer;}
+.huihu_tab li.current{ border-bottom-color:#fff; background:url(../../images/lifesales/common/huihu_tab_cur.jpg) repeat-x; color:#0066B0}
+.huihu_box h5{ height:27px; margin-top:15px; font-size:14px; font-weight:normal; color:#333}
+.btn4,.btn4_g,.btn_5,.btn_2{ width:74px; height:23px; display:inline-block; text-align:center; line-height:23px; background:url(../../images/lifesales/common/botton.jpg) 0 -30px no-repeat; color:#FFF}
+.btn4_g{ background-position:0 0; color:#333}
+.btn_5{ width:94px; background-position:0 -60px; color:#333; margin:0 5px;}
+.btn_2{ width:74px; height:28px; line-height:28px; color:#333333; font-size:14px; background-position:0 -90px;}
+.huihu_input{ height:28px;}
+.huihu_text{ width:214px; height:26px; line-height:26px; background:#F9FBF0; border:#EFEFEF 1px solid; border-top-color:#C5C6BE; padding:0 10px; color:#989898; float:left; }
+.huihu_select{padding:0; width:121px; margin-left:2px; margin-top:3px;}
+#qxhh,#qxset{height:23px; display:inline-block; text-align:center; line-height:23px; background:url(../../images/lifesales/common/botton.jpg) 0 -30px no-repeat; background-position:0 0; color:#333; letter-spacing:5px; width:66px; padding-left:8px; vertical-align:middle}
+#qxhh{*margin-top:6px;/*margin-top:6px\0;*/}#qdset{ vertical-align:middle}
+.huihu_content{ height:230px; color:#555; padding:0 10px;}
+.huihu_bar{ padding-top:30px;}
+.lh24{ line-height:24px;}
+input.c666{ color:#666}
+.c006{ color:#0067B2}
+.pal20{ padding-left:20px;}
+.set_time{ height:35px;}.set_time label{ margin-left:10px;}
+.fangan_box{  height:300px;}
+.fangan_box li{ width:320px; height:300px; float:left; margin-right:15px; position:relative}
+.fangan_box li .py_tips{ top:-10px; left:120px;}
+.fangan_box li.fangan1{ background:#F9F9F9 url(../../images/lifesales/common/fa1.jpg) no-repeat}
+.fangan_box li.fangan2{ background:#DEEBF4 url(../../images/lifesales/common/fa2.jpg) no-repeat}
+.fangan_box li.fangan3{ margin-right:0; background:#DCF1D0 url(../../images/lifesales/common/fa3.jpg) no-repeat}
+.fangan_box li h2{ font-size:24px; padding:40px 30px 0 0; text-align:right; height:44px; color:#333; font-weight:500}
+.fangan_price{ height:55px; font-size:20px; color:#EF8300; font-weight:bold; padding-left:160px; line-height:55px;}
+.fangan_box li .gpy{ padding-left:165px; }
+.orange_link{ width:120px; height:34px; background:url(../../images/lifesales/common/orange_link.png) no-repeat; display:inline-block; text-align:center; line-height:34px; font-weight:bold; color:#FFF; margin-left:150px;}
+.fangan_detials{ height:80px; margin-top:16px; padding:15px 35px; line-height:20px; position:relative;}
+.fangan_box li.hover .fangan_detials{ background:url(../../images/lifesales/common/mask.png); color:#FFF}.fangan_box li.hover .selectlink{ display:block}
+.selectlink{ position:absolute; right:45px; bottom:15px; text-decoration:underline; color:#fff; display:none}
+.pay_nav{ font-size:16px;}
+.pay_ok{ height:90px; background:#F6FDF6;}
+.pay_ok_msg{ padding:30px 0 0 100px; background:url(../../images/lifesales/common/payok_ico.gif) 36px 25px no-repeat; height:35px;}
+.pay_ok_msg h3{ font-size:18px; color:#009900; height:35px; line-height:25px;}
+.bd_msg{ font-size:; color:#656565}
+.bd_msg .f14{ color:#CCC; margin:0 20px}
+.pay_tips{padding:30px 40px;}
+.sybz{ display:inline-block; color:#025B9F; margin-left:60px; background:url(../../images/lifesales/common/ico.gif) 0 -310px no-repeat; padding-left:27px; height:20px;}
+/*弹层*/
+#XYTipsWindowBg{background:#000;_background:url(../../images/lifesales/common/mask.png);}
+.XYTipsWindow .boxLoading {position:absolute;display:block;width:90px;height:30px;line-height:30px;margin-left:-45px;margin-top:-15px;left:50%;top:50%;color:#f00;}
+.XYTipsWindow .boxLoading{width:28px;margin-left:-14px;background:url(../../images/lifesales/common/loader.gif) no-repeat;text-indent:-999em;text-align:center;}
+.XYTipsWindow .boxTitle,
+.XYTipsWindow .boxTitle span,
+.XYTipsWindow .boxTitle span.hover,
+.XYTipsWindow .loadinglayer,
+.XYTipsWindow .tipslayer,
+.XYTipsWindow .arrowLeft,
+.XYTipsWindow .colseBtn,
+.XYTipsWindow .boxError em,
+.XYTipsWindow .dialogBtn,
+.XYTipsWindow .dialogBtn.hover{background-image:url(../../images/lifesales/common/popico.png);background-repeat:no-repeat;}
+.XYTipsWindow .boxTitle {position:relative;border:1px solid #C6C6C6;border-bottom:none;line-height:30px;height:30px;background:#F1F7FC;}
+.XYTipsWindow .boxTitle h3 {float:left;color:#666;font-size:14px;padding-left:10px;}
+.XYTipsWindow .boxTitle span,.XYTipsWindow .boxTitle span.hover {position:absolute;background-position:-80px -40px;text-indent:-10em;overflow:hidden;cursor:pointer;width:12px;height:12px;background:url(../../images/lifesales/common/pop_bg.png) -20px 0 no-repeat;right:8px;top:8px}
+.XYTipsWindow .boxTitle span.hover {background-position:-32px 0;}
+.XYTipsWindow .loadinglayer{line-height:40px;background-position:0 -100px; text-align:center; width:98px; height:38px; overflow: hidden}
+.XYTipsWindow .tipslayer{line-height:20px;text-align:left;}
+.XYTipsWindow .arrowLeft{position:absolute;width:8px;height:16px;background-position:-20px -170px;text-indent:-9999em;z-index:20591;overflow:hidden;}
+.XYTipsWindow .colseBtn {position:absolute;top:5px;right:5px;width:8px;height:8px;background-position:-55px -170px;text-indent:-9999em;cursor:pointer;z-index:20591;overflow:hidden;}
+.XYTipsWindow .boxError{position:absolute;left:50%;top:50%;margin-left:-60px;margin-top:-15px;width:120px;height:30px;line-height:30px;color:#f00;}
+.XYTipsWindow .boxError em{float:left;width:30px;height:30px;background-position:-35px -140px;}
+.XYTipsWindow .dialogBtn{margin:9px 5px 0 0;width:74px;height:28px; line-height:28px;background-position:0 -32px;border:none;color:#333; cursor:pointer; border:0; font-size:14px;}
+.XYTipsWindow .dialogBtn.hover{background-position:0 -62px;}
+.XYTipsWindow.shadow {/*box-shadow:2px 2px 5px #C0BBB5;-moz-box-shadow:2px 2px 5px #C0BBB5;-webkit-box-shadow:2px 2px 5px #C0BBB5;*/}
+
+/*自适应调整*/
+.XYTipsWindowBg{background:#000;_background:url(../../images/lifesales/common/mask.png);}
+.boxBd{background:url(../../images/lifesales/common/box_bg.png);_background:#cacaca;}
+.XYTipsWindow .dialogBtn{margin:14px 5px 0 0;}
+.btn_l,.btn_l em{background-image:url(../../images/lifesales/common/popbtn.jpg);background-repeat:no-repeat;}
+.btn_l{margin:14px 15px 0 0; padding:0 15px;height:28px; line-height:28px;border:none;color:#333; cursor:pointer; border:0; font-size:14px; display:inline-block; position:relative; background-repeat:repeat-x;}.btn_l em{ width:5px; height:28px; position:absolute; top:0; display:block;}
+.btn_l em.dialogBtn_l{ left:-1px; background-position:0 -60px;}.btn_l em.dialogBtn_r{ right:-1px; background-position:0 -120px;}
+.btn_l:hover{background-position:0 -30px; background-repeat:repeat-x}.btn_l:hover em.dialogBtn_l{background-position:0 -90px;}
+.btn_l:hover em.dialogBtn_r{ background-position:0 -150px;}
+/*自适应调整end*/
+
+/*messagebox*/
+.message_text{  margin-top:10px; margin-bottom:5px; _height:50px; padding:15px 30px 15px 100px; position:relative; line-height:22px;}.m_text .f16{ font-size:16px;}.m_text .c666{ color:#666}
+.m_tips,.m_warning,.m_correct,.m_error,.m_confirm,.m_time{ width:50px; height:50px; display:block; overflow:hidden; background:url(../../images/lifesales/common/message_ico.gif) no-repeat; position:absolute; top:15px; left:30px;}
+.m_warning{ background-position:0 -50px;}
+.m_correct{background-position:0 -100px;}
+.m_error{ background-position:0 -150px;}
+.m_confirm{background-position:0 -200px;}
+.m_time{background-position:0 -250px;}
+.m_text td{  font-size:14px;color:#565656; height:50px;}
+/*messagebox end*/
+
+.float_box{ overflow:hidden; _background:#fff}
+.float_list dt{  width:32px; height:36px; overflow:hidden; background:url(../../images/lifesales/common/float_list_bg.png) repeat-x; border:#E9ECF3 1px solid; border-bottom:0; margin-top:4px; line-height:36px; font-weight:bold; cursor:pointer}
+.float_list dt span{ height:36px; width:32px; display:inline-block; vertical-align:middle; background:url(../../images/lifesales/common/float_list_bg.png) no-repeat}
+.float_list dt span.ico1{ background-position:0 -40px;}.float_list dt span.ico2{background:url(../../images/lifesales/common/qq.gif) center 10px no-repeat;}.float_list dt span.ico3{ background-position:0 -120px;}.float_list dt span.ico4{ background-position:0 -160px;}.float_list dt a{display:block;height:36px;}
+.float_list dd{ border-top:#B6B6B6 1px solid; width:110px}
+.quick_link{ margin-top:1px;border:#E3E3E3 1px solid; background:#FFF; padding:5px 0}
+.quick_link li{ height:23px; line-height:23px; padding-left:30px; position:relative; margin-top:1px;}
+.quick_link li em{ width:17px; height:23px; position:absolute; top:0; left:6px;background:url(../../images/lifesales/common/float_list_bg.png) no-repeat}
+.quick_link li a:hover{ text-decoration:underline; color:#0C5DAE}
+.quick_link li em.ico1{background-position:0 -200px;}
+.quick_link li em.ico2{background-position:0 -230px;}
+.quick_link li em.ico3{background-position:0 -260px;}
+.quick_link li em.ico4{background-position:0 -290px;}
+.quick_link li em.ico5{background-position:0 -320px;}
+.quick_link li em.ico6{background-position:0 -350px;}
+.slideup a{ height:15px; background:#E3E3E3 url(../../images/lifesales/common/float_list_bg.png) center -390px no-repeat; display:block; margin-top:1px;}
+.slideup{ border-top:#B6B6B6 1px solid}
+
+.py_tips{ width:106px; height:77px; display:block; position:absolute; left:-30px; top:-25px; background:url(../../images/lifesales/common/py_tips.png) no-repeat; font-size:12px; font-weight:normal; font-family:宋体,Tahoma,Arial,\5b8b\4f53,sans-serif; padding:10px 0 0 49px; text-align:left; line-height:20px; display:none ; z-index:1 }
+.py_tips b{ font-size:14px}
+.py_tips .py_close{ right:8px;_right:8px; top:5px; z-index:2}
+.article_tt{ text-align:center; font-size:16px; height:44px; background:#FAFAFA; border-bottom:#DDDDDD 1px solid; line-height:44px;}
+.article_content{ padding:5px 30px; line-height:185%}
+.article_content p{ padding:10px 0}
+.line{ height:1px; background:#DDDDDD; overflow:hidden}
+.tr{ text-align:right}
+.fjxmask{position:absolute; left:0; bottom:0; width:767px; height:255px; background: url(../../images/lifesales/common/omask.png) repeat}
+.tj_box{ min-height:85px; _height:85px; background:url(../../images/lifesales/common/tj_box.jpg) 10px 0 no-repeat; color:#666; line-height:24px; font-size:13px; padding:15px 30px 10px 267px;}
+.ce25{ color:#E25510}
+.tjico{ background: url(../../images/lifesales/common/ico.gif) 0 -348px no-repeat; padding-left:15px;}
+.f18{ font-size:18px;}
+.gpy_bar{ height:33px; line-height:33px; background:#F9F9F9; cursor:pointer; font-size:14px; font-weight:bold; color:#0677DF; padding:0 18px;}
+.gpy_bar em{ color:#0067A9;}
+/*footer*/
+.footer{width:958px;height:120px;border:#ECECEC 1px solid;margin:14px auto 0 auto;background:#FFF;padding:0 15px;text-align:center;color:#989898;}
+.footer a{color:#989898}
+.footer_link{padding:22px 0 17px 0;background:url(../../images/lifesales/common/line_rep2.gif) bottom repeat-x;}
+.copyright{line-height:22px;padding-top:5px;}
+.footer a:hover{color:#2576ae;text-decoration:underline}
+/*footer end*/
+.jsrscroll{overflow:hidden;overflow-y:auto;height:465px;position:relative}
+.loading_box{ height:45px; background:url(../../images/lifesales/common/overlay.png) no-repeat; line-height:45px; text-align:center; color:#000; overflow:hidden; vertical-align:middle; width:435px; margin:0 auto; color:#FFF; position:fixed;_position:absolute; z-index:1000; }
+
+
+/*保费试算tab add by mafei 2012-10-31*/
+.tab_two li{ width:179px; height:33px; float:left; border:#DDDDDD 1px solid; margin-top:5px; margin-right:1px; background:#FDFDFD; text-align:center; font-size:14px; font-weight:bold; line-height:33px; overflow:hidden; cursor:pointer}
+.tab_two li.current{ background:#F7F8FC; border-bottom-color:#F7F8FC}
+.wytj_box{ margin-top:-1px; height:auto; background:#F7F8FC; padding-bottom:20px;}
+.wytj_table{border:#ddd 1px solid; border-right:0;border-bottom:0;}
+.wytj_table th,.wytj_table td{ background:#fff;border-right:#ddd 1px solid;border-bottom:#ddd 1px solid; text-align:center; font-weight:normal}.wytj_table th input{ vertical-align:middle; margin-right:5px; }
+.wytj_table th.w_col_current,.wytj_table td.w_col_current{ background:#DBEEFC}
+.wytj_table th{background:#F0F9FF; height:28px;}
+.wytj_table td{ padding:5px 0}
+.wytj_table td p.tl{ text-align:left; padding-left:6px; line-height:18px;}
+/*保费试算验证*/
+.yanzheng_box{ margin:20px; background:#f5f5f5; font-size:14px; padding:20px 30px;}
+.yanzheng_box p{ line-height:30px; height:30px;}
+.yanzheng_answer{ margin:20px auto; text-align:center; font-size:14px}.yanzheng_answer select{ width:45px; display:inline-block}
+.common_table2_blue,.common_table2_blue th,.common_table2_blue td{ border-color:#DBEDFB}
+.common_table2_blue td span.fr{ padding-right:10px; color:#666}.common_table2_blue td b.f14{ float:left}
+.oldprice,.youhuiprice{ font-size:12px; color:#999; padding-top:5px;}.oldprice em{ text-decoration:line-through}
+.youhuiprice{  font-weight:bold; color:#277706}
+.step_link input{ vertical-align:middle}
+.common_table2_header_blue{ background:#F8FCFF; border-color:#F4FAFE}
+
+
+/*热销产品展示*/
+.hotProductBox{margin-bottom:10px;}
+.hotProductWrap{position:relative;float:left;padding:10px 1px 14px 1px;margin:8px 0 0 11px;display:inline;}
+.hotProductWrap h3{font-size:18px;font-family:"微软雅黑";font-weight:700; letter-spacing:-1px;position:relative;z-index:1;width:150px; }
+.hotProductWrap a{display:block;padding:20px 14px 1px 19px;height:127px;color:#333;width:205px;cursor:pointer;}
+.hotProductWrap a:hover{color:#f63;}
+.hotProductWrap p{width:135px;line-height:1.5em;text-align:justify;text-justify:inter-ideograph; margin:0; color:#999 }
+.hotProduct-bg1{background:url(../../images/lifesales/zxzf/hot-product-bg-1.gif) no-repeat;}
+.hotProduct-bg2{background:url(../../images/lifesales/zxzf/hot-product-bg-2.gif) no-repeat;}
+.hotProduct-bg3{background:url(../../images/lifesales/zxzf/hot-product-bg-3.gif) no-repeat;}
+.hotProduct-bg5{background:url(../../images/lifesales/zxzf/hot-product-bg-5.gif) no-repeat;}
+.renqi-mark{background:url(../../images/lifesales/zxzf/ws_index0417.gif) no-repeat;width:41px; height:43px;position:absolute;display:block;top:10px;left:1px;z-index:0;}
+.tj_box{ padding:25px 20px 15px 155px; min-height:80px; font-size:15px; font-weight:bold; color:#555555; line-height:185% }.ce25{ color:#ec6700}.f20{ font-size:20px;}
+.c888{ color:#888}.f15{ font-size:15px;}.tj_box .f18{ font-size:16px;}.tj_box .c888{ color:#555}
+.cptj{ padding:10px;}
+.tjly_table th,.tjly_table td{ text-align:left; font-weight:bold; color:#555;font-family:"微软雅黑"; height:28px; font-size:12px}
+.tjly_table th{ color:#888; font-size:14px}
+.dh_link{ height:54px; overflow:hidden}
+/*保费试算背景色*/
+.fangan_box li.fangan3{background:#CCDEEE url(../../images/lifesales/common/fa3.jpg) no-repeat}
+.col2{background:#DEEBF4 url(../../images/lifesales/common/col_rep.jpg) right repeat-y;}
+.col3{background:#CCDEEE;}
+.colcurrent{background:#FFF8E8 url(../../images/lifesales/common/col_rep.jpg) right repeat-y}
+.colcurrent_last{background:#FFF8E8}
+.magnifier_text{ background:url(../../images/lifesales/common/magnifier_bg.png)}
+.tab_two{ position:relative; z-index:10;  height:40px;}
+.tab_box{ border:#DDDDDD 1px solid;  background:#F7F8FC; height:auto; margin:-1px 20px 0 20px; position:relative; }
+.text_info_hide{ height:0; padding:0; overflow:hidden; border:0;}
+.zzfw{  background:#FDFDFD url(../../images/lifesales/common/zzfw_bg.jpg) 40px 12px no-repeat;}
+
+.gpy_h{height:25px; line-height:25px;}
+.popbox .fuction_table tr.tr_date{ cursor: default}
+.popbox .price_box2{ height:90px; line-height:90px;}
+
+
+.h3_tt{ height:40px; text-align:center; font-family:"微软雅黑"; font-size:20px;color:#FF6E03;}
+.yq_tips{ text-align:center; color:#808080; padding:8px;}
+.h4_tt{ font-size:16px; font-weight: bold;color:#2676b5; padding:15px 42px 15px 42px;}
+.h4_tt .c267{ font-size:14px; font-weight:normal}
+.h4_tt .c666{ font-weight:normal; color:#999; font-size:14px;}
+.input_radio{ width:14px; height:14px; vertical-align:middle}
+.common_table td .c999{ color:#999}.common_table td .c666{ color:#666}
+.common_table_show th,.common_table_show td{ padding-bottom:5px; line-height:30px;}
+.common_table_show td{ color:#777}
+.common_nav a.under_link{ position:absolute; right:10px; top:4px; font-weight:normal; font-size:14px;color:#0E5BB3; width:60px; height:26px; background:url(../../images/lifesales/common/btn-dvl.gif) no-repeat; overflow:hidden; font-size:0; text-indent:-999999999em; }
+.common_nav a.up_link{background:url(../../images/lifesales/common/btn-pup.gif) no-repeat;}
+.common_nav a.link_btn,.common_nav a.syr_btn,.common_nav a.importbbr_btn{ width:97px; height:26px; display:block; position:absolute; right:10px; top:4px; background:url(../../images/lifesales/common/btn-add-mem.gif) no-repeat;}
+.common_nav a.syr_btn{background:url(../../images/lifesales/common/btn-add-syr.gif) no-repeat;}
+.common_nav a.importbbr_btn{background:url(../../images/lifesales/common/btn-dr-bbr.gif) no-repeat;right:115px}
+.common_table2 tr.f12 td,.bd_table tr.f12 td{ font-size:12px;}
+.common_table2 th.w_col_current,.common_table2 td.w_col_current{ background:#FDFBE6}
+
+/*银行列表*/
+.paybank_nav{ height:20px;}
+.bank_list label{ float:left; height:42px; width:155px; margin-right:22px; margin-top:15px; display:inline;}
+.bank_list label img{ float:left; margin-left:5px; border:#CCCCCC 1px solid; width:123px; height:32px; cursor:pointer}.bank_list label img.hover,.bank_list label img:hover{ border:#FF9900 2px solid;}
+.bank_list label input{ float:left; margin-top:10px; vertical-align:middle; width:14px; height:14px;}
+.bank_list_new label{ float:left; height:30px; width:123px; margin-right:10px; margin-top:15px; display:inline;}
+.bank_list_new label img{ float:left; margin-left:5px; border:#CCCCCC 1px solid; width:93px; height:20px; cursor:pointer}.bank_list_new label img.hover,.bank_list_new label img:hover{ border:#FF9900 2px solid;}
+.bank_list_new label input{ float:left; margin-top:4px; vertical-align:middle; width:14px; height:14px;}
+.morebank{background:#FFFEFA;border:#FFE6BF 1px solid;padding:3px 20px; width:456px; font-size:13px; height:20px; line-height:20px;}
+/*add by mafei 2013-03-07*/
+.btm_tips{ color:#999; font-size:14px; padding:10px 30px 0 13px;}
+.btm_box b.yuanjia{ color:#999; font-size:14px; padding-right:20px; text-decoration:line-through}
+.common_table tr.table_tips th,.common_table tr.table_tips td{ vertical-align:top; line-height:20px; font-size:12px; color:#666}
+
+/*add by mafei 2012-03-11*/
+.d_line th,.d_line td{ line-height:normal; vertical-align:top; line-height:20px; padding-bottom:13px;}
+.qlist{ margin:0 40px; font-size:14px}
+.qlist dt{ font-weight:bold; padding:5px 0}
+.qlist dd{ color:#666; line-height:22px; padding:5px 0 10px 22px;}
+.qlist dt span.red{ font-weight:normal}
+.qlist dd.huifu{ padding-bottom:20px;}
+.c267 a{color:#2676b5}
+
+
+/*add by mafei 2012-03-13*/
+.error_input{background:#FFE7E7;border-color:#FF6500;}
+.common_table td label.error,.common_table td p.error{display:block;color:red;font-size:12px; position:absolute; height:20px; line-height:20px;  top:30px; _top:32px; left:0; width:400px; }
+.common_table td label.c666,.common_table td p.c666{ color:#666}
+.i_rel{ position:relative; _height:30px; }
+
+.wxts{background:#FFFEF9;border:#FFE0AF 1px solid; margin:10px 40px; padding:5px 15px; height:auto; overflow:hidden}
+.wxts b.f14{color:#ED7600; float:left;}
+.wxts p{ float:left; width:570px; line-height:20px;}
+.sm_nav{ font-size:14px; padding:0 0 15px 10px;}
+
+.tbrsm{ margin-top:25px; padding-top:10px; border-top:#ccc 1px dashed}
+
+.w620{ width:620px;}
+.danwei{ text-align:right; color:#F00; padding:0 15px 5px 0; font-size:14px; }
+.danwei620{ padding-right:75px;}
+.table680{border-right:#DAE8F6 1px solid; width:680px;}
+.par40{ padding-right:40px;}
+
+.move_link{ color:#0E5BB3; text-decoration:underline; position:relative; cursor: pointer; height:33px; line-height:33px;  text-align:left; float:left;  }
+.move_tips{ width:400px; position:absolute; left:0; top:0; background:#fff; border:#6495CD 1px solid; line-height:22px; padding:7px;border-radius:5px;color:#666; z-index:100; text-align:left; font-size:12px; color:#333}
+.move_tips_ico{width:30px; height:16px; overflow:hidden; background: url(../../images/lifesales/common/tips_msg.gif) 24px -2px no-repeat; position:absolute; left:-30px; top:5px;display:block; cursor:pointer;}
+.rel_en{ position:relative; line-height:22px; display:block;z-index:130}
+.en_ico{ position:absolute; right:3px;top:5px;+top:1px;_top:1px;color:#0E5BB3; width:15px; height:15px; line-height:15px; display:block; text-indent:-9999999999em;background: url(../../images/lifesales/common/en.gif) no-repeat;-webkit-text-size-adjust：none;font-size:0}
+.rel_en .move_tips{ width:300px; left:18px; text-align:left;top:-10px; padding:5px; text-indent:0; display:none; font-size:14px; }
+.checkbox{ width:14px; height:14px; vertical-align:middle}
+.q_link .move_tips{ width:600px; top:20px; left:-300px; z-index:110px; line-height:18px;}
+.q_link .move_tips .move_tips_ico{ left:325px; top:-5px;background: url(../../images/lifesales/common/up_arrow.gif) no-repeat; width:16px; height:5px; }
+.q_link .c267{cursor:pointer}
+.q_link .c267:hover{ text-decoration:none;}
+
+/*add by mafei 2012-04-08*/
+.gwc_box{ padding:20px 25px;}
+.gwc_img{ height:100px;background: url(../../images/lifesales/common/gwc_img.jpg) top center no-repeat;}
+.gwc_table th{ height:34px; border-top:#B8D0E8 1px solid; background:#DAE8F5; font-size:14px;}
+.gwc_table td{ font-size:14px; color:#333;text-align:center; height:42px;}
+.gwc_table th.tl,.gwc_table td.tl{ text-align:left}
+.gwc_table tr.dd_tt td{ height:auto; background:none; padding-top:20px;}
+.gwc_table tr.dd_list td{background: url(../../images/lifesales/common/dd_list_bg.jpg) 0 10px repeat-x;line-height:53px;padding-top:10px; height:53px;}
+.gwc_table tr.dd_list td.tl b{ font-weight:normal}
+.gwc_table tr.dd_list td.tl,.gwc_table tr.dd_list td.tc{ line-height:20px;}.gwc_table tr.dd_list td.tc{text-align:center}
+.del_btn{ width:58px; height:24px; display:inline-block;background: url(../../images/lifesales/common/del_btn.gif) no-repeat; cursor:pointer; float:left}
+.dd_cp_img{ width:42px; height:31px; background: url(../../images/lifesales/common/dd_cp_img.gif) no-repeat; display:inline-block; padding:3px; margin:0 10px; vertical-align:middle}
+.check_input{ width:14px; height:14px; overflow:hidden; vertical-align:middle}
+.zbf{ font-size:16px;font-size:18px; font-family:"微软雅黑",Tahoma, Geneva, sans-serif; font-weight:700; color:#F00; text-align:right; display:block; padding-right:10px;}
+.plsc{ width:82px; height:22px; display:inline-block;background: url(../../images/lifesales/common/plsc.gif) no-repeat; cursor:pointer; vertical-align:middle; margin-left:15px;}
+.header_bar a.cf96,.cf96{ color:#F96A02; font-weight:bold; margin:0 3px }
+.gwc_ico{ width:23px; height:15px; display:inline-block;background: url(../../images/lifesales/common/gwc_ico.gif) no-repeat; vertical-align:middle}
+.header_bar .gwc_ico{ position:absolute; left:0; top:3px;}
+.gwc_empty_page{ padding:120px 0;}
+.gwc_empty{ width:390px; height:135px; margin:0 auto;background: url(../../images/lifesales/common/gwc_empty.jpg) no-repeat; display:block;}
+.gwc_empty h3{ font-size:24px;font-family:"微软雅黑",Tahoma, Geneva, sans-serif; font-weight:normal; color:#6b6b6b; padding:17px 0 0 145px; line-height:30px; height:90px; }
+
+
+.common_table2 th p{ font-size:12px; display:none}
+/*add by mafei 2012-04-17 旅游目的地弹层设置*/
+.destination_content{overflow:hidden;height:370px;_height:363px;+height:363px; overflow-y:auto; margin-bottom:20px;}
+.fxk{margin:10px 30px;}
+.check_bt{ padding:4px 0;}
+.check_bt input{ width:14px; height:14px; vertical-align:middle; margin-right:5px;}
+.ahand{cursor:pointer;}
+
+/*add by mafei 2013-05-06 标题条和表格风格修改*/
+.common_nav{ background:#198AC5; color:#FFF}
+.common_nav .modify{ color:#FFF;}
+.nav_tips{color:#FFF;}
+.common_table2 th,.common_table2 td{ border-bottom:#FFD1A7 1px solid;border-left:#FFD1A7 1px solid; }
+.common_table2 th{ background:#FF9C43; border-left-color:#FFD1A7; color:#FFF}
+.table680{border-right:#FFD1A7 1px solid; }
+.wytj_table th.w_col_current,.wytj_table td.w_col_current,.common_table2 th.w_col_current,.common_table2 td.w_col_current{background:#FF9C43; color:#fff}
+.common_table2 td.w_col_0 p.tl{ text-align:center; padding-left:0px;}
+.danwei{ color:#FB5E09; }
+body{font-family:"微软雅黑",Tahoma,Arial,\5b8b\4f53,sans-serif}
+.sm_nav{ font-size:14px; padding:15px 0 0 0; height:28px;}
+.tbrsm{ margin-top:20px; padding:0; padding-left:17px; border:none;background: url(../../images/lifesales/common/tbrsm_bg.jpg) no-repeat; height:99px; }
+.tbrsm  .input_radio{ float:left}
+.tbrsm .common_table{ margin:0; float:left; width:740px;}
+.tbrsm .common_table th{ width:28px; padding:0}
+.tbrsm .common_table td{ width:712px; padding-left:0; color:#666; line-height:16px; }
+table.w620 .w_col_0{ width:400px;}
+.move_link{float:none;margin:0 10px;}
+
+/*add by mafei 2013-05-28*/
+.common_table2_nbd th{}
+.common_table2_nbd td{ border-color:#FFF; padding-top:5px; padding-bottom:15px; text-align:center}
+.common_table2_nbd td .i_rel{}
+.common_table2_nbd td .common_input{ width:176px;}
+.common_table2_nbd td .w57{ width:57px;}
+.common_table2_nbd td .w130{ width:130px;}
+.common_table2_nbd td .w150{ width:150px;}
+.common_table2_nbd td label.error,.common_table2_nbd td p.error{display:block;color:red;font-size:12px; position:absolute; height:20px; line-height:20px;  top:30px; _top:32px; left:0; width:400px; text-align:left; padding-left:12px;}
+.common_table2_nbd td label.c666,.common_table2_nbd td p.c666{ color:#666}
+.h4_tt{ font-size:14px; font-weight: bold;color:#2676b5; padding:8px 15px 8px 15px; position:relative}
+.h4_tt a.link_btn{ width:97px; height:26px; display:block; position:absolute; right:12px; top:4px; background:url(../../images/lifesales/common/btn-add-mem.gif) no-repeat;}
+
+/*快速登录start*/
+.dlzc_pop{ width:354px; padding:10px;}
+.dlzc_tab{ border-bottom:#005FA1 2px solid; height:27px;position:relative}
+.dlzc_tab ul{ position:absolute; left:0; top:0}
+.dlzc_tab ul li{width:94px;float:left;height:27px;border-bottom:#005FA3 2px solid;text-align:center;color:#1069A5;cursor:pointer; line-height:27px; font-weight:bold; font-size:14px;}
+.dlzc_tab ul li.current{border-bottom-color:#FF710D; background:#005FA1; color:#FFF}
+.tab_content,.content_height{height:205px;overflow:hidden; display:block; position:relative}
+.dlzc_close{ float:right; margin:5px; color:#2474B1}
+.dlzc_table th,.dlzc_table td{ height:30px; font-weight:normal; vertical-align:middle; padding:3px 0; text-align:left}
+.dlzc_table th{ font-size:14px; text-align:right}
+.dlzc_table tr.dlzc_hauto th,.dlzc_table tr.dlzc_hauto td{ height:auto; padding:2px 0; height:16px;}
+.dlzc_input{ width:178px; height:28px; line-height:28px; border:#9A9A9A 1px solid; padding:0 5px;}
+.dlzc_pop .under_link{ color:#2375B1}.dlzc_close:hover,.dlzc_pop .under_link:hover{ color:#FF6632}
+.dlzc_pop .error_ico,.dlzc_pop .tips_ico,.dlzc_pop .correct_ico{ margin-left:5px; vertical-align:middle}
+.dlzc_pop .tips_text{ color:red}
+.c999{ color:#999}
+.dlzc_pop input{ vertical-align:middle}
+.step_link .o_btn_login{ width:98px; height:32px; text-align:center; line-height:32px; font-size:14px; color:#fff; font-weight:bold; background: url(../../images/lifesales/common/o_btn.jpg) no-repeat; display:inline-block; border:0;}
+.o_btn_login{ width:82px; height:30px; background-position:0 -80px; color:#333;  text-align:center}.step_link  .dis_btn{background-position:0 -120px; color:#fff; cursor:default}
+/*快速登录end*/
+
+.jrdb_btn{ height:19px; width:80px; display:inline-block;background:url(../../images/lifesales/common/jrdb.gif) no-repeat; cursor:pointer}
+.common_nav .jrdb_btn{ position:absolute; right:10px; top:8px;}
+.showpaysuccessinfo{background:url(/mall/images/lifesales/common/loader.gif) 270px no-repeat;text-align:center;padding:20px;}
+
+/*add by mafei 2013-05-29 全能卫士新加样式*/
+.bgf6{ background:#FAFEFA}
+.bflist{ margin:0 20px;font-size:14px;}
+.bflist dt{ font-weight:bold; padding:15px 0 5px 0; overflow:hidden; width:100%;}
+.bflist dd{ color:#666; line-height:22px; padding:5px 0 10px 0px; border-bottom:#CCC 1px dashed ; }
+.bflist dt span.red{ font-weight:normal}
+.bflist dd.huifu{ padding-bottom:20px;}
+.bf_info{ padding:10px 20px; font-size:14px;}
+.bf_info_list li{ height:26px; line-height:26px;background:url(../../images/bf_info_list.gif) left center no-repeat; padding-left:10px; }
+.bf_info .btn_l{ margin:0; font-size:12px;color:#2676b5; font-size:13px; }
+.bf_info .btn_l span{}
+.bf_info .tips_msg{ text-align:left;}
+.info_ico{ position:absolute; right:5px;top:2px;color:#0E5BB3;line-height:15px; display:block; text-indent:-9999999999em;cursor:pointer; width:16px; height:16px; background:url(../../images/ico.gif) no-repeat; display:inline-block; vertical-align:middle;-webkit-text-size-adjust:none; font-size:0 }
+.info_ico .move_tips{ font-size:12px; left:22px; width:230px; top:-5px; line-height:17px; color:#666}
+.gray_3{ color:#333}
+.pal70{ padding-left:70px;}
+/*旅游意外险保障勾选2013-07-01*/
+.bzcheck{ float:left; width:14px; height:14px; margin:2px 0 0 12px;}
+.common_table2 td.w_col_0 p.c666{ color:#999}
+.danwei{ position:relative; width:750px;}
+.danwei620{ width:690px;}
+.danwei span.wx_tips{ position:absolute; left:22px; top:0; color:#0E5BB3; text-align:left}
+.c_select{ width:100px;}
+
+.info_long .move_tips{ font-size:12px; left:22px; width:450px; top:-5px; line-height:17px; color:#666}
+
+.use_btn{ width:47px; height:29px; display:inline-block; background:url(../../images/shiyong.jpg) no-repeat; text-align:center; line-height:32px;color:#FF5200; overflow:hidden; letter-spacing:2px;}
+.common_input_dis{ border-color:#BBB; background:#fff}
+.use_btn_dis{ background:url(../../images/shiyong_dis.jpg) no-repeat; color:#888; cursor:default;}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>全联保险经纪平台，给您全新的赚钱体验!</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="dist/layer.m/need/layer.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<script>
+	var login_type = "{$smarty.session.login_type}";
+	if(login_type=='b'){
+		document.addEventListener('WeixinJSBridgeReady',
+				function onBridgeReady() {WeixinJSBridge.call('showOptionMenu');WeixinJSBridge.call('showToolbar');});
+	}else{
+		document.addEventListener('WeixinJSBridgeReady',
+				function onBridgeReady() {WeixinJSBridge.call('hideOptionMenu');WeixinJSBridge.call('hideToolbar');});
+	} 
+</script>
+<header>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='../mobile_page/images/guoshou_xueping/reg/images_02.png' class="img-responsive"/>
+        <h1>全联保险经纪平台，给您全新的赚钱体验!</h1>
+    </div>
+</header>
+<div class="container-fluid " id="head_top">
+    <div class="s-bg-ed462f g-lh60 g-wA100 f-cb s-c-ffffff">
+        <span class="f-fl"><i class="fa fa-angle-left fa-2x f-vam"></i><span class="f-ml5 f-fs3 f-fwb">全联保险经纪平台，给您全新的赚钱体验!</span></span>
+        <span class="f-fr f-mr10"></span>
+    </div>
+</div>
+<div class="container-fluid" style="background:#1f9e09; ">
+	<div class="container" style="max-width:720px; padding:0px;">
+         <div align="center">
+            <img src="../mobile_page/images/guoshou_xueping/reg/images_02.png" class="img-responsive"> 
+         </div>
+         <div style="background:#fddb1c; margin:5px; padding-left:5px;">
+         	<div>
+            	<img src="../mobile_page/images/guoshou_xueping/reg/images_bg_02.png" class="img-responsive"> 
+            </div>
+            <div style="line-height:22px; color:#171717; padding:10px 0px;">
+            	▼优选保险产品，提供全面保障；<br>
+                ▼在线即时投保，有效电子保单；<br>
+                ▼丰富的推广手段，推广展业，从此无忧。
+            </div>
+            <div class="f-mt10">
+            	<img src="../mobile_page/images/guoshou_xueping/reg/images_bg_03.png" class="img-responsive"> 
+            </div>
+            <div style="line-height:22px; color:#171717; padding:10px 0px ;">
+            	1、注册成为全联保险经纪平台会员，成功购买保单，获得现金奖励。<br>
+                2、推荐伙伴加入，获得推荐奖励。<br>
+                3、通过微信分享产品，获得奖励。
+            </div>
+            <div align="center" class="f-mt10 f-pb10">
+                <img src="../mobile_page/images/guoshou_xueping/reg/reg_liucheng.png" class="img-responsive">
+             </div> 
+              
+         </div>
+                
+         <div class="f-pb10 f-pt10">
+         	<a class="btn btn-ed462f btn-block f-pt10 f-pb10 f-fs5 f-fwb" id="reg_html" href="#" style="color:#fff;">我 要 注 册</a>
+         </div>
+    </div>
+    
+</div>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/stickUp.min.js"></script>
+<script src="dist/layer.m/layer.m.js"></script>
+<script src="dist/js/public.js"></script>
+
+<script type="text/javascript">
+	jQuery(function($) {
+		$(document).ready( function() {
+		  //enabling stickUp on the '.navbar-wrapper' class
+		  $('#head_top').stickUp();
+		});
+	});
+	$().ready(function(){
+		var activity_id='{$activity_id}';
+		var uid  = getUrlParam("uid");
+		$('#reg_html').attr("href",'../mobile_page/reg.html?uid='+uid+'&activity_id='+activity_id);
+        var login_types = "{$smarty.session.login_type}";
+        if(login_types=='b' || !login_types){
+            show_info();
+        }
+    });
+	function show_info(){
+			var html_temp = '<div align=right><img src="../mobile_page/images/bg_jt.png"></div><div style="border-radius: 5px; background: #fff; padding:20px 10px;"><span style="color:#090">点击右上角,选择【发送给朋友】或者【分享到朋友圈】，给他们送代金券啦!</span></div>';
+			layer.open({
+				content: html_temp,
+				fixed:false,
+				style:'width:'+document.documentElement.clientWidth+'px;background: none;top:0;',
+				top:0
+			});
+	}
+	
+	
+	function show_userinfo(){
+	    var html_info = '<div align=left><span>服务工号：000{$insurance_agent_info[user_id]}</span><br><span style="line-height:25px;">联系方式：{$insurance_agent_info[mobile_phone]}</span><span><a href="tel:{$insurance_agent_info[mobile_phone]}"><i class="fa fa-phone-square fa-2x text-c-fff pull-right"></i></a></span></div>';
+        layer.open({
+            content: html_info,
+            title:'您的保险顾问',
+            fixed:true,
+            style:'width:'+document.documentElement.clientWidth+'px;'
+        });
+	}
+ 	
+</script>
+</body>
+</html>

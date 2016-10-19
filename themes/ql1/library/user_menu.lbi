@@ -1,0 +1,87 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    	<div class="f-fl g-w250">
+        	<div class="s-bg-009c84 f-fs7 s-c-ffffff s-lh43 f-pt10 f-pb10">
+            	<span class="f-ib f-ml40">用户中心</span>
+                <span class="f-ib f-ml65"><img src="images/iconfont-wode.png" width="20"></span>
+            </div>
+   
+            <ul class="m-list-7 f-cb">
+                <li>
+                	<a href="user.php?act=cart_list" id="cart_list">
+                    	<i class="iconfont">&#xf00c4;</i>
+                        <span class=" f-vam">等待处理</span>
+                    </a>
+                	 
+                </li>
+               <li>
+                	<a href="user.php?act=order_list" id="order_list">
+                    	<i class="iconfont">&#xf0130;</i>
+                        <span class=" f-vam">订单管理</span>
+                    </a>
+                </li>
+            
+            
+            	<li>
+                	<a href="user.php?act=warranty_list" id="warranty_list">
+                    	<i class="iconfont">&#xf01be;</i>
+                        <span class=" f-vam">保单管理</span>
+                    </a>
+                </li>
+                <li>
+                	<a href="user.php?act=account_detail" id="account_manage">
+                    	<i class="iconfont">&#xf0130;</i>
+                        <span class=" f-vam">账户管理</span>
+                    </a>
+                </li>
+               <!-- {if $smarty.session.rank_code eq 'organization'}-->
+               <li>
+                	<a href="user.php?act=organ_info" id="organ_manage">
+                    	<i class="iconfont">&#xf0130;</i>
+                        <span class=" f-vam">渠道管理</span>
+                    </a>
+                </li>
+               <!-- {/if} -->  
+                <li>
+                	<a href="user.php?act=settlement_search" id="settlement_search">
+                    	<i class="iconfont">&#xf00c3;</i>
+                        <span class=" f-vam">理赔查询</span>
+                    </a>
+                </li>
+                <li>
+                	<a href="user.php?act=profile" id="profile">
+                    	<i class="iconfont">&#xf00b0;</i>
+                        <span class=" f-vam">信息管理</span>
+                    </a>
+                	 
+                </li>
+            </ul>
+            
+             
+        </div> 
+<script type="text/javascript">
+	$().ready(function(){
+		my_click("{$action}")
+	})
+	var action_arr = {"warranty_list":['warranty_list','policy_detail'],
+					  "settlement_search":['settlement_search'],
+					  "cart_list":['cart_list'],
+					  "profile":['profile'],               
+					  "order_list":['order_list','order_detail'],           
+					  "account_manage":['account_detail','account_deposit','account_raply','account_income','clearing_detail','account_log','bank_account','act_account'],           
+					  "organ_manage":['organ_manage','organ_info','salesman','salesman_list','order_manage_list','policy_manage_list','organ_goods_list','control_add','child_organ_list','child_organ_add'],           
+	}			
+	
+	function my_click(action){
+  		$.each(action_arr,function(name,value) {
+ 			if(value.indexOf(action)!=-1){
+
+ 				$("#"+name).addClass("nacitve");
+ 				
+ 			}else{
+ 				$("#"+value).removeAttr("class");
+ 			}
+ 			
+		});  
+	}
+	
+</script>

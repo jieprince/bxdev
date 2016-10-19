@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="">
+<meta name="description" content="">
+ 
+<title>全联微信端</title>
+<link rel="stylesheet" href="../dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../dist/fonts/iconfont_2/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../dist/css/weixin_style.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=QNCaXrYiw1ER4IxZoK3iaGRT"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<!-- 加载城市列表 -->
+<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+<script src="../dist/js/jquery.min.js"></script>
+<script src="../dist/js/bootstrap.min.js"></script>
+<script src="../dist/js/html5shiv.min.js"></script>
+<script src="../dist/js/respond.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<style>
+	*{ box-sizing:inherit}
+	.anchorBL{display:none} 
+</style>
+</head>
+
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-6 col-sm-6 col-xs-8 f-pl0 f-pr0 f-tal">
+            	<span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">联系我们</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 f-pl0 f-pr0 f-tar">
+            	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:5px 8px; background:none">
+                    <i class="iconfont icon-yonghuzhongxin f-fs3 s-c-ffffff"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right" style="min-width:100px; text-align:center">
+                    <li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                  </ul>
+                </div>
+            	 
+            </div>
+        </div>
+    </div>
+</header> 
+ 
+<div class="container-fluid f-pt20 f-pb20"> 
+	<div class="container">
+    	 <div id="l-map" style="height:400px;"></div>
+         
+    </div>
+    <div class="container s-lh25">
+    	<div class="f-mt45 s-bscBD-e3e3d3 f-pb5">
+        	<span class="s-c-008fc7"><i class="iconfont icon-address"></i></span>
+            <span class="s-c-6b6b6b f-fs2">地址:上海市杨浦区政熙路80号</span>
+        </div>
+        <div class="f-mt10 s-bscBD-e3e3d3 f-pb5">
+        	<span class="s-c-008fc7"><i class="iconfont icon-dianhua"></i></span>
+            <span class="s-c-6b6b6b f-fs2">电话:021-65667179</span>
+        </div>
+        <div class="f-mt10 s-bscBD-e3e3d3 f-pb5">
+        	<span class="s-c-008fc7"><i class="iconfont icon-quanqiuzhigong"></i></span>
+            <span class="s-c-6b6b6b f-fs2">传真:021-65667179</span>
+        </div>
+        <div class="f-mt10 s-bscBD-e3e3d3 f-pb5">
+        	<span class="s-c-008fc7"><i class="iconfont icon-youxiang"></i></span>
+            <span class="s-c-6b6b6b f-fs2">邮箱:ql-service@aalib.cn</span>
+        </div>
+        <div class="f-mt10 s-bscBD-e3e3d3 f-pb5">
+        	<span class="s-c-008fc7"><i class="iconfont icon-shouye"></i></span>
+            <span class="s-c-6b6b6b f-fs2">网址:www.aalib.com.cn</span>
+        </div>
+    </div>
+</div>
+<div class="g-h60"></div>
+<footer class="container-fluid navbar-fixed-bottom s-bg-ffffff f-pt10 f-pb10">
+    <div class="container">
+    	<div class="row">
+        	<div class="col-sm-3 col-xs-3 f-pl0 f-pr0" align="center">
+            	 
+                <a href="javascript:history.go(-1);" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-zuojiantou"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">返回</span>
+                </a>
+                 
+            </div>
+            <div class="col-sm-3 col-xs-3 f-pl0 f-pr0" align="center">
+            	 
+                <a href="javascript:history.go(1);" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-youjiantou"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">前进</span>
+                </a>
+                 
+            </div>
+            <div class="col-sm-3 col-xs-3 f-pl0 f-pr0" align="center">
+            	 
+                <a href="./" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-shouye"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">首页</span>
+                </a>
+                 
+            </div>
+            <div class="col-sm-3 col-xs-3 f-pl0 f-pr0" align="center">
+            	 
+                <a href="javascript:location.reload()" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-shuaxin"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">刷新</span>
+                </a>
+                 
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("l-map");   
+	var new_point = new BMap.Point(121.514226, 31.296746);      
+	map.centerAndZoom(new_point,19);
+
+	map.enableScrollWheelZoom(true);
+	
+	var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '地址：上海市杨浦区政熙路80号 <br/>电话：(021)65667179' +
+                  '</div>';
+
+    //创建检索信息窗口对象
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "全联保险经纪有限公司",      //标题
+			width  : 200,             //宽度
+			height : 45,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+	
+	var marker = new BMap.Marker(new_point);  // 创建标注
+	map.addOverlay(marker);              // 将标注添加到地图中
+	map.panTo(new_point);      
+	marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+	});
+	 
+</script> 
+</body>
+</html>

@@ -1,0 +1,19 @@
+/*---头部样式---*/
+#simple_wrapper #header{background:transparent url(/app_images/pingan/v10/header/simple_header_bg.jpg) repeat-x left top; height:86px;}
+#simple_wrapper #header #out_box{width:780px; margin:0 auto; position:relative;}
+#simple_wrapper #header #logo{width:248px; height:22px; background:url(/app_images/pingan/v10/header/simple_logo.gif) no-repeat; position:absolute; top:22px; left:0;}
+#simple_wrapper #header #logo a{width:248px; height:22px; display:block;}
+#simple_wrapper #header #welcome{position:absolute; right:0; top:30px;}
+#simple_wrapper #header #welcome span{color:#ff3300;}
+#simple_wrapper #header #welcome a{color:#ff3300; text-decoration:underline;}
+#simple_wrapper #header #welcome a:hover{color:#666666; text-decoration:none;}
+
+/*---底部部样式---*/
+#simple_wrapper #footer{line-height:17px; background:#f7f7f7;padding:10px 0 0 0; text-align:center;}
+
+/*---框架样式---*/
+#simple_wrapper{margin:0; padding:0; color:#666666;}
+/*#simple_wrapper #contain{background:url(/app_images/pingan/v10/general/simple_main_bg.gif) repeat-x left bottom; padding:8px 0 32px 0;}*/
+#simple_wrapper #contain #main {width:780px; margin:0 auto;}
+#simple_wrapper #primary{width:166px; float:right;}
+#simple_wrapper #work{margin-right:182px;}

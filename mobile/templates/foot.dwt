@@ -1,0 +1,39 @@
+﻿<div class="g-h60"></div>
+<footer class="container-fluid navbar-fixed-bottom s-bg-ffffff f-pt10 f-pb10">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-xs-3" align="center">
+
+                <a href="javascript:history.go(-1);" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-zuojiantou"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">返回</span>
+                </a>
+
+            </div>
+            <div class="col-sm-3 col-xs-3" align="center">
+
+                <a href="javascript:history.go(1);" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-youjiantou"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">前进</span>
+                </a>
+
+            </div>
+            <div class="col-sm-3 col-xs-3" align="center">
+
+                <a href="./index.php" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-shouye"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">首页</span>
+                </a>
+
+            </div>
+            <div class="col-sm-3 col-xs-3" align="center">
+
+                <a href="javascript:location.reload()" class="f-db">
+                    <span class="f-db s-c-a0a0a0"><i class="iconfont icon-shuaxin"></i></span>
+                    <span class="f-db s-c-444444 f-mt5">刷新</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</footer>

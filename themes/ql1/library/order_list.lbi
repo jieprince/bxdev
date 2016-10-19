@@ -1,0 +1,90 @@
+    	
+             
+            <div class="f-pt25 f-pb40 f-pl15 f-pr15">
+        
+            	<div class="f-tac">
+            	  <form action="user.php" id="order_list_form" method="get">
+       				<input type="hidden" name="act" value="order_list" />
+                	<span class="f-ib f-vam">
+                    	<input type="text" name="search" class=" g-w490 g-h35 f-pl10 f-pr10" placeholder="输入客户名称（个人/单位）或订单号查询">
+                    </span>
+                    <span class="f-ib f-vam">
+                    	<button type="submit" class="btn-ec6941-4"><i class="iconfont">&#xf012c;</i> 立即查询</button>
+                    </span>  
+                  </form>
+                </div>
+ 
+                <div class="f-mt20">
+			     <table cellpadding="0" cellspacing="0" class="table_user_01">
+			       {if $order_tatol_amount}
+			       	  <tr>
+			       	  	<td colspan="11" style="background-color: #ffffff"><span style="color: red;float: left; padding-left:10px; font-weight:bold;">  订单总额：{$order_tatol_amount} 元</span></td>
+			       	  </tr>
+			       {/if}
+			          <tr align="center" height="34" >
+			            <th bgcolor="#ffffff" class="fontbloder table_head_bg"  >
+			            	{$lang.order_number}
+			            </th>
+
+						<th>产品名称</th>
+							<th>投保人</th>
+			            <th>{$lang.order_addtime}</th>
+			            <th bgcolor="#ffffff" class="fontbloder table_head_bg">
+			           	 <a style="cursor:pointer;color: #333333;" onclick="orderList()">{$lang.order_money}</a></th>
+					
+			            <th>{$lang.order_status}</th>
+			             <th>支付方式</th>
+						 <th>投保状态</th>
+			             <th>{$lang.handle}</th>
+			          </tr>
+			          <!--{foreach from=$orders item=item}-->
+			          <tr>
+			           	<td>
+			           		<a href="user.php?act=order_detail&order_id={$item.order_id}" >
+			           			{$item.order_sn}
+			           		</a>
+			           	</td>
+						<td>
+						 	<select style="width: 100px;">
+						 	 <!--{foreach from=$item.goods_list item=item1}-->
+						 		<option>{$item1.goods_name}*{$item1.goods_number}</option>
+						     <!--{/foreach}-->
+						 	</select>
+						 
+						</td>
+						<td>
+							{if $item.applicant_username_arr}
+							<select>
+							 	 <!--{foreach from=$item.applicant_username_arr item=item1}-->
+							 		<option>{$item1}</option>
+							     <!--{/foreach}-->
+							 	</select>
+							 	{else}
+							 	{$item.applicant_username_str}
+							{/if}
+						
+						</td>
+			            <td>{$item.order_time}</td>
+			            <td>{$item.formated_goods_amount}</td>
+			            <td>
+			            	{if $item.goods_amount lte 0}
+			            		未完成
+			            		{else}
+			            		{$item.order_status}
+			            	{/if}
+			            </td>
+			            <td>
+			            {if $item.goods_amount gt 0}
+			            	{$item.pay_name}
+			            {/if}
+			            </td>
+						<td>{$item.policy_status}</td>
+			            <td><font class="f6">{$item.handler}</font>
+			            </td>
+			          </tr>
+			            <!--{/foreach}-->
+			          </table>
+                    
+                </div>
+
+            </div>

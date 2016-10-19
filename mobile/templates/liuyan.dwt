@@ -1,0 +1,103 @@
+{include file='header.dwt'}
+
+<form action="com_action.php" method="get"
+	onsubmit="return checkForm(this)" id="liuyan_form">
+	<div class="f-mt20 f-pA10 s-bg-ffffff">
+		<div class="container f-pb10 ">
+
+			<div class="f-mt10">
+				<textarea name="msg_content"
+					class="form-control s-bg-f5f5f5 f-fs1 s-lh20" rows="3"
+					placeholder="内容（详细描述您要咨询的问题）"></textarea>
+			</div>
+			<div class="f-mt15 s-bscB-b5b5b5">
+				<input type="text" class="form-control" name="real_name"
+					placeholder="联系人姓名">
+			</div>
+			<div class="f-mt15 s-bscB-b5b5b5">
+				<input type="text" class="form-control" name="tel"
+					placeholder="手机号码">
+			</div>
+
+		</div>
+	</div>
+	<div class="f-pA10">
+		<div class="container">
+			<div class="f-mt20 f-pb20">
+				<input type="hidden" name="act" value="reservation" />
+				<button type="submit" class="btn btn-008fc7 btn-block btn-lg">确认提交</button>
+			</div>
+
+		</div>
+	</div>
+</form>
+<!-- <div class="f-pA10 s-bg-ffffff">
+	<div class="container f-pb10 ">
+
+		<div class="f-mt10 f-fs3 s-c-444444 f-tac">第三方咨询</div>
+		<div class="row f-mt20">
+			<div class="col-sm-6 col-xs-6 f-tac f-mt2">
+				<span class="f-vam f-ib"> <a
+					class="http://wpa.qq.com/msgrd?V=3&Uin=2416096769&Site=qq&Menu=yes">
+						<i class="iconfont icon-11qq f-fs10 s-c-008fc7"></i>
+				</a>
+				</span> <span class="f-fs2 s-c-444444 f-ml3 f-vam  f-ib"> <a
+					class="http://wpa.qq.com/msgrd?v=3&uin=2416096769&site=qq&menu=yes">
+						<span class="s-c-444444"> 腾讯QQ </span>
+				</a>
+				</span>
+			</div>
+			<div class="col-sm-6 col-xs-6 f-tac">
+				<span class="f-vam f-ib"> <a
+					class="http://wpa.qq.com/msgrd?v=3&uin=2416096769&site=qq&menu=yes">
+						<i class="iconfont icon-weixin f-fs12 s-c-03a912"></i>
+				</a>
+				</span> <span class="f-fs2 s-c-444444 f-ml3 f-vam  f-ib"> <a
+					class="http://wpa.qq.com/msgrd?v=3&uin=2416096769&site=qq&menu=yes">
+						<span class="s-c-444444"> 微信 </span>
+				</a>
+				</span>
+			</div>
+		</div>
+
+	</div>
+</div> -->
+<script type="text/javascript">
+	function checkForm() {
+		var msg_content = $.trim($("#liuyan_form textarea[name=msg_content]")
+				.val());
+		var real_name = $.trim($("#liuyan_form input[name=real_name]").val());
+		var tel = $.trim($("#liuyan_form input[name=tel]").val());
+		
+		
+		if(isNullOrEmpty(msg_content)){
+			alert("请输入要咨询的内容");
+			return false;
+		}
+		if(isNullOrEmpty(real_name)){
+			alert("请输入您的姓名");
+			return false;
+		}
+		if(isNullOrEmpty(tel)){
+			alert("请输入您的电话号码");
+			return false;
+		}
+		
+		return true;
+		
+
+	}
+
+	function isNullOrEmpty(strVal) {
+		if (strVal == '' || strVal == null || strVal == 'undefined') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+
+{include file='foot.dwt'}
+
+</body>
+</html>

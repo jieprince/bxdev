@@ -1,0 +1,43 @@
+        <div id="que_content_list">
+            <div class="g-w1077 f-mc f-cb itemchild">
+                <div class="f-fl g-w490">
+                    <div><a href="article.php?act=article_detail&id={$first_article.article_id}&article_type=en_faq"><img src="{$current_article_cat.articlecat_img}" width="490" height="224"></a></div>
+                    <div class="f-mt10">
+                        <span class="s-c-777777 s-lh20 f-db">
+                            <a href="article.php?act=article_detail&id={$first_article.article_id}&article_type=en_faq" class="link-777777 f-fs2"><i class="iconfont f-fs0-6 f-vam">&#xf018e;</i> {$first_article.title}</a>
+                        </span>
+                        <span class="s-c-777777 s-lh20 f-db g-w490 f-fs1 f-mt5">
+                            {$first_article.content|truncate:90}
+                        </span>
+                    </div>
+                </div>
+                <div class="f-fr g-w520 f-mr20">
+                    <ul class="m-list-2">
+                     {foreach from=$article_list item=item name=name}
+                     	{if $smarty.foreach.name.iteration neq 1}
+                        <li>
+                            <a href="article.php?act=article_detail&id={$item.article_id}&article_type=en_faq"><i class="iconfont f-fs0-6 f-vam">&#xf018e;</i> {$item.title}</a>
+                        </li>
+                        {/if}
+                     {/foreach}   
+                    </ul>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <script type="text/javascript">
+	    	function change_index_faq(cat_id){
+	    		$.ajax({
+	    			   type: "POST",
+	    			   url: "article.php",
+	    			   data: "act=change_index_faq&article_type=en_faq&cat_id="+cat_id,
+	    			   success: function(res){
+	    				   res = $.parseJSON(res);
+	    			       $("#faq_content").html(res.content);	
+	    			   }
+	    			});
+	    		
+	    	}
+        </script>

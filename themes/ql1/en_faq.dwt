@@ -1,0 +1,205 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bg-f2f0f0"> 
+    <div class="g-w1000 f-mc f-pt20">
+        <div class="g-h35 f-tal">
+            <span class="s-c-666666 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-333333">
+                    <a href="#" class="link-777777">首页</a>
+                     
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                     企业问题 
+                </span>
+            </span>
+        </div> 
+        
+        <div class="f-cb">
+        	
+            <div class="f-fl g-w243">
+            	<div class="f-ml3">
+                	<img src="images/changjianwenti.png" width="240" height="130">
+                </div>
+                <div>
+                	<h2 class="s-c-666666 f-fwn s-bg-ffffff f-pt20 f-pb20 f-ml3">
+                    	<span class="f-fs4 f-ml45">企业问题</span>
+                    	<span class="f-fs2">Questions</span>
+                    </h2>
+                    <ul class="m-list-3">
+                     <!--{foreach from=$child_article_cat_list item=item}-->
+                    	<li>
+                        	<a href="category.php?act=article_list&cat_id={$item.cat_id}&article_type=en_faq" {if $condition.cat_id eq $item.cat_id || $article_cat.cat_id eq $item.cat_id}class="p_active"{/if}><!--  class="p_active" -->
+                                <span class="f-ml45">{$item.cat_name}</span>
+                            </a>
+                        </li>
+                      <!-- {/foreach} -->
+                    </ul>
+                    <div class="s-bg-ffffff g-h60 f-ml3"></div>
+                </div>
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/tel.png" width="16"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	电话：{$service_phone}<br>
+                            传真：{$service_phone}<br>
+                            E-MAIL：{$service_email}
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/weizhi.png" width="14"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	网址：www.aalib.com.cn<br>
+                            地址：{$shop_address}
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="f-fr g-w725 s-bg-ffffff">
+            	<div class="f-pA20">
+                	<div class="s-bscB4_e5f3f7 f-pb10">
+                    	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf00b8;</i></span>
+                        <span class="f-fs4 s-c-008fc7 f-vam">
+                        	{if $article_cat.cat_name}
+                        		{$article_cat.cat_name}
+                        		{else}
+                        		全部
+                        	{/if}
+                        </span>
+                    </div>
+                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+                    	 <ul class="m-list-5">
+                    	 {foreach from=$article_list item=item}
+                         	<li>
+                            	<div class="f-cb">
+                                    <div class="f-fl g-w570">
+                                      {if $item.is_merging eq '1'}
+                                      		<a href="article.php?act=show_merging_article&id={$item.id}&cat_id={$article_cat.cat_id}&article_type=en_faq" class="link-777777 f-fs2 g-w570 f-db f-toe"><i class="iconfont f-fs0-6 f-vam f-mr5">&#xf01c4;</i>{$item.title}</a>
+                                      	{else}
+	                                        <a href="article.php?act=article_detail&id={$item.article_id}&article_type=en_faq" class="link-777777 f-fs2 g-w570 f-db f-toe"><i class="iconfont f-fs0-6 f-vam f-mr5">&#xf01c4;</i>{$item.title}</a>
+                                      {/if}
+                                    </div>
+                                    <div class="f-fr g-w80 f-tar f-fs2 s-c-777777">
+                                        {$item.formated_add_time}
+                                    </div>
+                                </div>
+                            </li>
+                          {/foreach}
+                         </ul>
+                         
+		             {if $act eq 'article_list'}
+		  					<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+		    		 {/if}
+                    </div>
+                    
+                    
+                    {if $act eq 'article_detail' || $act eq 'show_merging_article'}
+                    	<div class="">
+                    	{if $act eq 'article_detail'}
+			            	<div class="f-pA20  s-bg-ffffff">
+			                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+			                    	<div>
+			                        	<span class="f-ib s-bg-f7f1e5 s-bsc_f7f1e5 f-pA15 f-fs12 s-c-ec9f04 f-br4 f-vat">问</span>
+			                            <span class="f-ib f-ml20 g-w530 f-pb20 s-bscB_d4e2e6">
+			                            	<span class="f-db f-fs3 s-c-008fc7">{$article.title}</span>
+			                                <span class=" f-db s-c-666666 f-fs1 f-mt10">
+			                                	{$article.formated_add_time}      分类：<a href="category.php?act=article_list&cat_id={$article_cat.cat_id}&article_type=en_faq" class="link-777777">{$article_cat.cat_name}</a>
+			                                	<i class="iconfont f-fs7">&#xf02d4;</i>{$article.click_num}
+			                                </span>
+			                            </span>
+			                        </div>
+			                        <div class="f-mt20">
+			                        	<span class="f-ib s-bsc_f7f1e5 f-pA15 f-fs12 s-c-ec9f04 f-br4 f-vat">答</span>
+			                            <span class="f-ib f-ml20 g-w530 f-pb30 s-c-666666 s-lh25 f-fs1 s-bscB_d4e2e6">
+			                          		{$article.content}
+			                            </span>
+			                        </div>
+
+			                    </div>
+			                </div>
+			                {/if}
+			                
+			                
+			                {if $act eq 'show_merging_article'}
+			                	
+			                <div class="f-pA20  s-bg-ffffff">
+			                    
+                				<span class=" f-db s-c-666666 f-fs1 ">
+                                	&#12288;{$article.formated_add_time}      分类：<a href="category.php?act=article_list&cat_id={$article_cat.cat_id}&article_type=en_faq" class="link-777777">{$article_cat.cat_name}</a>
+                                	<i class="iconfont f-fs7">&#xf02d4;</i>{$merging_display_article_list[0].click_num}
+                                </span>
+			                
+			                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+			                     {foreach from=$merging_display_article_list item=article}
+			                    	<div>
+			                        	<span class="f-ib s-bg-f7f1e5 s-bsc_f7f1e5 f-pA15 f-fs12 s-c-ec9f04 f-br4 f-vat">问</span>
+			                            <span class="f-ib f-ml20 g-w530 f-pb20 s-bscB_d4e2e6">
+			                            	<span class="f-db f-fs3 s-c-008fc7">{$article.title}</span>
+			                            </span>
+			                        </div>
+			                        <div class="f-mt20">
+			                        	<span class="f-ib s-bsc_f7f1e5 f-pA15 f-fs12 s-c-ec9f04 f-br4 f-vat">答</span>
+			                            <span class="f-ib f-ml20 g-w530 f-pb30 s-c-666666 s-lh25 f-fs1 s-bscB_d4e2e6">
+			                          		{$article.content}
+			                            </span>
+			                        </div>
+			                        <br/>
+			                           {/foreach}	
+			                        <div class="f-ml100 f-mt40">
+			                        	<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone">QQ空间</a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina">新浪微博</a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq">腾讯微博</a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren">人人网</a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin">微信</a></div>
+			<script>
+				window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+			</script>
+			                        </div>
+			                    </div>
+			                </div>
+			             
+			                	
+			                {/if}
+			                
+			                
+			                {if $correlation_article}
+			            	<div class="f-pA20 f-mt20 s-bg-ffffff">
+			                	<div class="s-bscB4_e5f3f7 f-pb10 f-cb">
+			                    	<span class="f-db f-fl">
+			                        	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf01a9;</i></span>
+			                        	<span class="f-fs4 s-c-008fc7 f-vam">相关问题</span>
+			                        </span>
+			                        <span class="f-db f-fr f-mt10"><a href="category.php?act=article_list&cat_id={$article_cat.cat_id}&article_type=en_faq" class="link-777777 f-fs2">查看更多问题 ></a></span>
+			                    </div>
+			                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+			                    	 <ul class="m-list-5">
+ 
+				                    	 {foreach from=$correlation_article item=item}
+				                         	<li>
+				                            	<div class="f-cb">
+				                                    <div class="f-fl g-w530">
+				                                        <a href="article.php?act=article_detail&id={$item.article_id}&article_type=en_faq" class="link-777777 f-fs2 g-w530 f-db f-toe"><i class="iconfont f-fs0-6 f-vam f-mr5">&#xf01c4;</i>{$item.title}</a>
+				                                    </div>
+				                                    <div class="f-fr g-w80 f-tar f-fs2 s-c-777777">
+				                                        {$item.formated_add_time}
+				                                    </div>
+				                                </div>
+				                            </li>
+				                          {/foreach}
+ 
+			                         </ul>
+			                    </div>
+			                </div>    
+			                {/if}
+			            </div>
+                    {/if}
+                </div>
+            </div>
+            
+        </div>
+        
+          
+    </div>
+</div>
+<!-- #BeginLibraryItem "/library/en_page_footer.lbi" --><!-- #EndLibraryItem -->

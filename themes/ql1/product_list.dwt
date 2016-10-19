@@ -1,0 +1,166 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 {if $smarty.session.is_iframe neq 1}s-bscT_009c84{/if}">
+	
+    <div class="g-w1077 f-mc f-cb">
+    	 <!-- {if $smarty.session.is_iframe neq 1}-->
+    	<div class="f-fl g-w250">
+            <div class="s-bg-009c84 s-lh50 s-c-ffffff f-tac f-fs3">保险产品分类</div>
+        	<ul class="m-list-3-1 f-cb" >
+        		 <!--{foreach from=$categorie item=cat}-->
+        			 <li {if $cat.id eq $category}class="nacitve"{/if}>
+                            <span class="f-ib f-vam f-ml15"><img src="{$cat.category_img}" width="26"></span>
+                            <span class="f-ib f-vam f-ml15">
+                                <a href="category.php?act=hot_goods_list&cat_id={$cat.id}" class="big">{$cat.name|escape:html}</a>
+                                
+							    <!-- {if $cat.cat_id} -->                                
+                                <span class="f-db f-pb10">
+                                	<!--{foreach from=$cat.cat_id item=item}-->
+                                    <span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id={$item.id}" class="small">{$item.name}</a></span>
+                                    <!--{/foreach}-->
+                                </span>
+                                <!-- {/if} -->
+                            </span>
+
+                     </li>
+        	     <!--{/foreach}-->
+
+            </ul>
+            
+            <div class="f-mt20 g-w250">
+            	<div class="s-bscB_009c84">
+                    <span class="f-fs5 f-fwb s-bg-009c84 f-pl40 f-pr40 f-pt10 f-pb10 f-ib">
+                    	<span class="s-c-ffffff">常见</span><span class="s-c-ffffff">问题</span>
+                    </span>
+                </div>
+                <div>
+                	<ul>
+	                	{foreach from=$is_top_article_list item=item }
+	                    	<li class="f-mt15">
+	                        	<h2 class="s-lh25"><a href="article.php?act=article_detail&id={$item.article_id}&article_type=faq" class="link-777777 f-fs2">{$item.title}</a></h2>
+	                            <section class="f-fs1 s-lh20 s-c-777777 ">
+	                            	{$item.description|truncate:80}
+	                            </section>
+	                        </li>
+	                    {/foreach}
+                    </ul>
+
+                </div>
+            </div>
+        </div> 
+        <!-- {/if} -->
+    	<div class="f-fr g-w800">
+    	 <!-- {if $smarty.session.is_iframe neq 1}-->
+        	<div class="g-h48 s-bscB_d2d2d2 f-tar">
+            	<span class="s-c-666666 f-mt20 f-ib">
+                	<i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                    您的位置：
+                    <span class="s-c-777777">
+                        <a href="#" class="link-009c84">首页</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        <a href="#" class="link-009c84">保险产品</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        
+                        {if $current_category}
+                        	{$current_category.cat_name}
+                        	{else}
+                        	所有产品
+                        {/if}
+                    </span>
+                </span>
+            </div>
+            <!-- {/if} -->
+            <div class="f-mt10">
+            	<table>
+                	<tr>
+                    	<td class="f-fs4 s-bscR_d2d2d2 f-pr20 f-wsn f-pl20">
+                    	{if $current_category}
+                        	{$current_category.cat_name}
+                        	{else}
+                        	所有产品
+                        {/if}
+                    	
+                    	</td>
+                        <td class="s-c-666666 f-fs1 s-lh20 f-pl20 f-pt10 f-pb10">
+                        	{$current_category.cat_desc}
+                        </td>
+                    </tr>
+                </table>
+            	 
+                
+            </div>
+            <div class="f-mt10">
+                <ul class="m-list-4">
+                <!--{foreach from=$goods_list item=goods}-->
+                	    <li>
+	                        <div class="f-pA20 f-cb">
+	                            <div class="f-fl g-w247">
+	                                <a <a {if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if} ><img src="{$goods.goods_thumb}" width="227" height="264"></a>
+	                            </div>
+	                            <div class="f-fr g-w500 f-cb">
+	                                <h2 class="f-fs4 s-c-040404 s-bscB_989898 f-pb5 f-fwn">
+	                                <a <a {if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if}  class="s-c-040404">
+		                                	{$goods.goods_name}
+	                                </a>
+	                                </h2>
+	                                <h4 class="f-fs2 s-c-040404 f-mt20 f-fwn">适合人群：</h4>
+	                                <section class="s-c-777777 s-lh25 f-fs1">
+	                                           {if $goods.insurer_code eq 'SSBQ'}
+				                            		个人、公司
+				                            		{else}
+				                            		{$goods.ins_product_list_select[age_min]}周岁-
+				                            		{$goods.ins_product_list_select[age_max]}周岁
+				                            	{/if}
+	                                </section>
+	                                <h4 class="f-fs2 s-c-040404 f-mt20 f-fwn">产品特色：</h4>
+	                                <section class="s-c-777777 s-lh25 f-fs1 g-w356">
+										{$goods.product_characteristic}
+	                                </section>
+	                                <div class="f-fr" style="z-index:10; margin-top:-38px;">
+	                                    <span class="f-fs2 f-db">
+	                                        <span class="s-c-040404">￥</span>
+	                                        <span class="s-c-ec6941 f-fs12 f-fwb">{$goods.ins_product_list[0].premium} </span>
+	                                        <span class="s-c-040404">元</span>
+	                                    </span>
+	                                    <span class="f-db f-mt10">
+	                                        <a <a {if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if}  class="btn-ec6941 f-tac">详情了解</a>
+	                                    </span>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </li>
+                <!-- {/foreach} -->
+                </ul>
+            </div>
+             <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+        </div>
+    </div>
+    
+     
+</div>
+
+<script type="text/javascript">
+	//add yes 2014-11-19  通过品牌查询
+	function goods_list_by_brand(brand_id){
+		if(brand_id!=0){
+			window.location.href="category.php?act=hot_goods_list&brand_id="+brand_id; 
+		}else{
+			window.location.href="category.php?act=hot_goods_list"
+		}
+	};
+</script>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+

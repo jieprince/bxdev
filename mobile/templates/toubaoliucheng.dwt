@@ -1,0 +1,43 @@
+
+{include file='header.dwt'}
+
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-6 col-sm-6 col-xs-8 f-pl0 f-pr0 f-tal">
+            	<span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">投保流程</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 f-pl0 f-pr0 f-tar">
+            	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:5px 8px; background:none">
+                    <i class="iconfont icon-yonghuzhongxin f-fs3 s-c-ffffff"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right" style="min-width:100px; text-align:center">
+                    <li><a href="user.php">登录</a></li>
+                    <li><a href="../mobile_page/reg.html">注册</a></li>
+                  </ul>
+                </div>
+            	 
+            </div>
+        </div>
+    </div>
+</header> 
+ 
+<div class="container-fluid f-pt20 f-pb20"> 
+	<div class="container" align="center">
+    	 <img src="image/liucheng.png" class="img-responsive">
+         
+    </div>
+    <div class="f-mt20 s-lh25 f-fs2 s-c-444444">
+    	我们提供三种投保方式：<br>
+        1、全联保险经纪官网线上投保平台投保<br>
+        2、通过邮箱进行投保<br>
+        3、通过微信手机端进行投保<br>
+    </div>
+</div>
+{include file='foot.dwt'}
+ 
+</body>
+</html>

@@ -1,0 +1,22 @@
+@charset "utf-8";
+#top{height:70px;background-image:url(top-bg.png);_background-image:url(top-bg-ie6.png);position:absolute;width:100%;left:0;top:0;z-index:999;}
+#topContent{width:1000px;margin:auto;position:relative;}
+#logo{display:inline-block;background-image:url(logo.png);height:59px;width:140px;}
+#content{position:relative;margin-top:60px;}
+#loginBox{position:absolute;width:100%;bottom:60px;left:0;text-align:center;_top:450px;}
+
+#topRightNav{position:absolute;right:0;top:18px;_top:23px;}
+#topRightNav *{vertical-align:middle;}
+
+#shows{height:550px;}
+#shows div{height:550px;background-repeat:no-repeat;background-position:center top;position:absolute;left:0;top:0;width:100%;}
+
+.textbox{display:inline-block;vertical-align:middle;}
+.textbox input{width:240px;border:none 0;padding:10px;background-image:url(textbox.png);background-color:transparent;padding:10px;height:16px;_background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="skins/default/images/textbox.png");_cursor:text;}
+.button{height:33px;display:inline-block;vertical-align:middle;}
+.button a{display:inline-block;height:41px;padding:0 24px 0 25px;color:#FFF !important;background-image:url(button.png);line-height:33px;vertical-align:middle;_background-image:url(button-ie6.png);}
+.button i{display:inline-block;background-image:url(button.png);width:1px;height:41px;background-position:right 0;vertical-align:middle;_background-image:url(button-ie6.png);}
+.button a:hover{text-decoration:none;background-position:left -41px;}
+.button a:hover i{background-position:right -41px;}
+.button a:active{background-position:left -82px;}
+.button a:hover i{background-position:right -82px;}

@@ -1,0 +1,145 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_view_header}-->
+
+		<!--保险计划-->
+		<!--投保人信息-->
+        <div class="x_p_a_c c"><h2>投保人信息</h2></div>
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0; display:block">
+
+                <!--{if $business_type==1}-->
+                <tr>
+                    <td width="150" class="check_td_left">投保人姓名：</td>
+                    <td width="190" class="check_td_right" colspan="3">{$user_info_applicant[fullname]}</td>
+                    
+                </tr>
+                    <tr><td width="150" class="check_td_left">证件类型：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[certificates_type_str]</td>
+                    <td width="150" class="check_td_left">证件号：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[certificates_code]</td>
+                </tr>
+                    <tr><td width="150" class="check_td_left">性别：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[gender_str]</td>
+                    <td width="150" class="check_td_left">出生日期：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[birthday]</td>
+                </tr>
+                    <tr><td width="150" class="check_td_left">手机号：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[mobiletelephone]</td>
+                    <td width="150" class="check_td_left">电子邮箱：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[email]</td>
+                </tr>
+                <tr>
+                <!--{if $user_info_applicant[province] && $user_info_applicant[province]!=""}-->
+                    <td width="150" class="check_td_left">省：</td>
+                    <td width="190" class="check_td_right">$user_info_applicant[province]</td>
+                    <!--{/if}-->
+                    <!--{if $user_info_applicant[city] && $user_info_applicant[city]!=""}-->
+                    <td width="150" class="check_td_left">市区：</td>
+                    <td width="190" class="check_td_right">{$user_info_applicant[city]} {$user_info_applicant[county]}</td>
+                    <!--{/if}-->
+                </tr> 
+                <!--{/if}-->
+                
+        </table>
+
+       
+
+ 
+                    
+        <style>
+            .border_table_05 {}
+            .border_table_05 td {border-bottom: 1px solid #dddddd;}
+            .border_table_05 th { border-bottom: 1px solid #dddddd;border-top: 1px solid #dddddd;}
+            .tac{text-align:center;}
+            </style>
+
+        <div class="x_p_a_c c"><h2>被保险人</h2></div>
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0; display:block">
+                <tr>
+                    
+                    <td width="150" class="check_td_left">被保人姓名：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].fullname}</td>
+                    <td width="150" class="check_td_left">手机号码：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].mobiletelephone}</td>
+                </tr>
+                    <tr><td width="150" class="check_td_left">证件类型：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].certificates_type_str}</td>
+                    <td width="150" class="check_td_left">证件号：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].certificates_code}</td>
+					 
+                </tr>
+
+                    <tr><td width="150" class="check_td_left">性别：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].gender_str}</td>
+                    <td width="150" class="check_td_left">出生日期：</td>
+                    <td width="190" class="check_td_right">{$list_subject_insurant[0].birthday}</td>
+                </tr>
+                 
+            </table>
+        
+         
+        
+        <div class="x_p_a_c c"><h2>身故受益人信息</h2></div>
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0; display:block">
+                <tr>
+                         <td width="150" class="check_td_left">法定</td>
+                         <td width="617" class="check_td_right"></td>
+                </tr>
+
+        </table>
+
+
+        <div class="x_p_a_c c"><h2>保单信息</h2></div>
+        <table cellpadding="0" cellspacing="0" width="700">
+
+                <tbody>
+
+                <tr>
+                    <td width="176" height="45" align="center" class="insure_cen_table_td insure_cen_table_das">保险期限：
+                    </td>
+
+                    <td width="605" class="check_td_right" style="font-weight:bolder">
+
+                        $policy_arr[start_date]&nbsp;&nbsp;至&nbsp;&nbsp;$policy_arr[end_date]
+
+                    </td>
+                </tr>
+
+                </tbody>
+        </table>
+        {if $list_product_duty_price}
+		<div class="x_p_a_c c"><h2 class="l">保障内容</h2></div>
+        <div>
+           <table align="center" class="border_table_05 " width="910"  >
+           <tr><td class="tac fwb">产品名称</td><td class="tac fwb">责任</td><td class="tac fwb">保额(元)</td></tr>
+              <!--{loop $list_product_duty_price $index $value1}-->
+                  
+                   <tr>
+                      <!--{if $value1[product_type]=='main' }-->
+                      
+                      <td width="300" class="tac">$value1[product_name]</td>
+                      <td width="240" class="tac">$value1[duty_name]</td>
+                      <td width="130" class="tac">$value1[amount]</td>
+                      <!--{/if}-->
+                    </tr>
+                    
+              <!--{/loop}-->
+              <!--{loop $list_product_duty_price $index $value1}-->
+                   <tr>
+                   
+                      <!--{if $value1[product_type]=='additional' }-->
+                      
+                       
+                      
+                      <td class="tac">$value1[product_name]</td>
+                      <td class="tac">$value1[duty_name]</td>
+                      <td class="tac">$value1[amount]</td>
+                      <!--{/if}--> 
+                    </tr>
+                    
+              <!--{/loop}-->
+           </table>
+        </div>	
+        {/if} 
+				
+<!--{template cp_product_buy_view_footer}-->
+<!--{template footer_cshop}-->			

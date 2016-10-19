@@ -1,0 +1,61 @@
+
+				
+                    
+					    {if $ins_product_list}
+						    <div class="f-mt20 producttype_list">
+							 选择产品：
+							
+							<!--{foreach from=$ins_product_list key=key item=value}-->
+							
+								{assign var="sid" value=$value[product_id]}
+	                            <span class="plan {$classattr[$sid]} f-ml5">
+								<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+								</span>
+								 
+	                            
+							<!--{/foreach}-->	
+	                        </div>
+                        {/if}
+						
+                                  
+								    <input type="text" id="max" value="1" style="display:none">
+								    <input type="text" id="min" value="" style="display:none">
+									
+								<!--{if $ins_product_selected[product_duty_price_type]=='single'}-->
+										<h4 class="f-fs2 s-c-666666 f-fwn">保险期限：
+											<span class="s-c-777777 f-fs1">
+											{if $ins_product_selected.period==2 && $ins_product_selected.period_uint=='天'}
+												酒店办理登记之日起，2天之内
+                                            {else}
+                                            {$ins_product_selected.period}{$ins_product_selected.period_uint}
+                                            {/if}
+											</span>
+										</h4>
+							   <!--{/if}-->
+                                 
+									
+									<h4 class="f-fs2 s-c-666666 f-fwn">承保年龄：<span class="s-c-777777 f-fs1">{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</span></h4>
+									<h4 class="f-fs2 s-c-666666  f-fwn">最大购买份数：<span class="s-c-777777 f-fs1">每人限{$ins_product_selected.number}份</span></h4>
+                          <!--      
+                               
+                                <h4 class="f-fs2 s-c-666666 f-mt20 f-fwn">适合人群：</h4>
+                                <section class="s-c-777777 s-lh25 f-fs1">
+	                               	{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁
+                                </section> -->
+                                <h4 class="f-fs2 s-c-666666 f-mt20 f-fwn">产品特色：</h4>
+                                <section class="s-c-777777 s-lh25 f-fs1">
+										{$goods.product_characteristic}
+                                </section>
+                               
+                                                            
+                                <div class="f-fr g-fzT-88">
+                                    <span class="f-fs2 f-db">
+                                        <span class="s-c-040404">￥</span>
+                                        <span class="s-c-ec6941 f-fs12 f-fwb" id="productPrem_"><strong>{$ins_product_selected.premium}</strong></span>
+                                    </span>
+                                    <div class="f-mt10" align="right">
+                                        <a href="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" class="btn-ec6941-1 f-tac"><i class="iconfont">&#xf0179;</i> {$lang.insure}</a>
+                                    </div>
+                                </div>
+    
+					

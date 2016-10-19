@@ -1,0 +1,357 @@
+	  {if $policy.all_attachment.required_info }   
+	    <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3>客户被保险人身份证明</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+            	{foreach from=$policy.all_attachment.required_info item=value}
+					<tr>
+                     <td colspan="4">
+                     	<div class="f-pl10">
+                         	{if $value.file_url_list}
+                     			<a>{$value.field_desc}</a>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<br/>
+                     				&#12288;<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				{/foreach}
+                     			{else}
+                     			<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     		{/if}
+                         </div>
+                     </td> 
+                 </tr>
+          		{/foreach}
+                </table>
+            </section>
+        </div>
+		{/if}
+
+		
+	  {if $policy.all_attachment.other_info } 
+	    <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3>保险公司出具保单及保函需要提供资料</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+            	{foreach from=$policy.all_attachment.other_info item=value}
+					<tr>
+                     <td colspan="4">
+                     	<div class="f-pl10">
+                         	{if $value.file_url_list}
+                     			<a>{$value.field_desc}</a>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<br/>
+                     				&#12288;<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				{/foreach}
+                     			{else}
+                     			<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     		{/if}
+                         </div>
+                     </td> 
+                 </tr>
+          		{/foreach}
+                </table>
+            </section>
+        </div>
+		{/if}
+
+<div align="center" class="f-pb20">
+<button type="button" class="btn-ec6941-108 s-lh25" onclick="show_uplaod_file_div();">补充资料</button>
+</div>
+
+
+
+<form action="user.php?act=upload_policy_attachment" method="post" enctype="multipart/form-data" id="replenish_file">
+<input type="hidden" name="policy_id" value="{$policy.policy_id}">
+<input type="hidden" id="applicant_type_temp" value="{$user_info_applicant.applicant_type}">
+        <div id="attachment_div" style="display: none">
+  
+        </div>
+</form>
+
+
+
+<div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40" style="display: none" id="update_file_div">
+	<div>
+		<h3 class="cirle_title-1 f-ib">被保险附件资料上传</h3>
+		<br/>
+		<span  class="s-c-ff0000 f-fs2 f-ml20">(允许的文件格式：jpg,gif,png,jpeg,gif,doc,xls,txt,zip,ppt,tif,pdf,rar,docx,xlsx,pptx，其他格式请压缩后再上传。)</span>
+	</div>
+    <section class="f-fs2 s-c-666666 f-mt20">
+                <!-- 公司客户被保险人身份证明-->
+                <div id="upload_file_list_01">
+                	<h3 class="f-fs3 f-mt20 s-bscB_989898 f-pb10">保险公司核保报价必须提供资料：</h3>
+                    <table cellpadding="0" cellspacing="0" border="0" class="table_buy_01">
+                    <!--{foreach from=$policy.all_attachment_attr.required_upload_file_attr key=key item=value}-->
+                        <tr>
+                            <th width="428" valign="top"><div class="f-pt15"> <!--{if $value.is_required eq 1}--> <span class="s-c-ff0000">{$value.name}</span>  {else} {$value.name} <!--{/if}--></div></th>
+                            <td width="568">
+<!--                             	<div class="f-pl10" data-value="0" data-key="{$key}">
+                                    <div class="f-uploader f-white f-ib f-vam">
+                                        <input type="text" class="f-filename" readonly="readonly"/>
+                                        <input type="button" name="file" class="f-button" value="文件上传..." />
+                                        <input type="file" size="30" name="{$key}[]" />
+                                    </div>
+                                    <div class=" f-ib f-vam f-ml10">
+                                    	<a href="javascript:void(0)" class="btn btn-info" onclick="addinput(this)">增加上传</a>
+                                    </div>
+                                </div> -->
+                                
+                                <div class="f-pl10" data-value="0" data-key="{$key}">
+	                                    <div class="f-uploader f-white f-ib f-vam">
+	                                    	<form id='{$key}_0' action='../user.php?act=upload_file&path_type=1' method='post' enctype='multipart/form-data'>
+		                                        <input type="text" class="f-filename" readonly="readonly"/>
+		                                        <input type="button" name="file" class="f-button" value="文件上传..." />
+		                                        <input type="file" size="30" name="attachment" onchange="upload_file('{$key}_0','{$key}')" />
+	                                    	</form>
+	                                    </div>
+	                                    
+	                                    <div class=" f-ib f-vam f-ml10">
+	                                    	<a href="javascript:void(0)" class="btn btn-info" onclick="addinput(this)">增加上传</a>
+                                    		<span id="progress_{$key}_0"><span id="bar_{$key}_0"></span><span id="percent_{$key}_0">0%</span ></span> 
+											<div id="showimg'+num+'"></div>
+	                                    </div>
+	                              </div> 
+                                
+                                
+                            </td> 
+                             
+                            
+                        </tr>
+                        <!--{/foreach}-->
+                    </table>
+                </div>
+        
+                
+                <!-- 其他资料上传-->
+                <div>
+                	<h3 class="f-fs3 f-mt20 s-bscB_989898 f-pb10">保险公司出具保单及保函需要提供资料：<span class="f-mt10 f-fs2 f-fwn" style="color:red">( 提示：相关文件下载 <a href="baoxian/ziliao/ssbq/询问卷-整合.docx" target="_blank" class="f-ml10">投保问卷下载</a><a href="baoxian/ziliao/ssbq/委托书(模板).doc" target="_blank" class="f-ml10">委托书</a> )</span></h3>
+                    
+                    <table cellpadding="0" cellspacing="0" border="0" class="table_buy_01">
+                    	<!--{foreach from=$policy.all_attachment_attr.other_file_attr key=key item=value}-->
+                        <tr id="upload_file_list_{$key}">
+                            <th width="428"valign="top"><div class="f-pt15"><!--{if $value.is_required eq 1}--> <span class="s-c-ff0000">{$value.name}</span>  {else} {$value.name} <!--{/if}--></div></th>
+                            <td width="568">
+<!--                             	<div class="f-pl10" data-value="0" data-key="{$key}">
+                                    <div class="f-uploader f-white f-ib f-vam" >
+                                        <input type="text" class="f-filename" readonly="readonly"/>
+                                        <input type="button" name="file" class="f-button" value="文件上传..."/>
+                                        <input type="file" size="30" name="{$key}[]"/>
+                                    </div>
+                                    <div class=" f-ib f-vam f-ml10">
+                                    	<a href="javascript:void(0)" class="btn btn-info" onclick="addinput(this)">增加上传</a>
+                                    </div>
+                                </div> -->
+                                
+                                
+                                
+                               	<div class="f-pl10" data-value="0" data-key="{$key}">
+                                    <div class="f-uploader f-white f-ib f-vam">
+                                    	<form id='{$key}_0' action='../user.php?act=upload_file&path_type=1' method='post' enctype='multipart/form-data'>
+	                                        <input type="text" class="f-filename" readonly="readonly"/>
+	                                        <input type="button" name="file" class="f-button" value="文件上传..." />
+	                                        <input type="file" size="30" name="attachment" onchange="upload_file('{$key}_0','{$key}')" />
+                                    	</form>
+                                    </div>
+                                    
+                                    <div class=" f-ib f-vam f-ml10">
+                                    	<a href="javascript:void(0)" class="btn btn-info" onclick="addinput(this)">增加上传</a>
+                                   		<span id="progress_{$key}_0"><span id="bar_{$key}_0"></span><span id="percent_{$key}_0">0%</span ></span> 
+										<div id="showimg'+num+'"></div>
+                                    </div>
+                                </div> 
+                                
+                                
+                            </td> 
+                            
+                        </tr>
+                       <!--{/foreach}-->
+                    </table>
+                </div>
+    </section>
+    <div align="center" class="f-pt20">
+	<button type="button" class="btn-ec6941-108 s-lh25" onclick="replenish_file();"><i class="iconfont f-mr5">󰅖</i>上传</button>
+	
+	
+	</div>
+</div>
+
+
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery.form.js"></script>
+
+<script type="text/javascript">
+function replenish_file()
+{
+	$("#replenish_file").submit();
+}
+
+
+
+
+$(document).ready(function(){
+
+
+	gerenqiye_sel();
+	
+	$('#gerenqiye_sel').bind("change",function(){
+		gerenqiye_sel();
+	});
+	
+	$("input[type=file]").change(function(){
+			$(this).parents(".f-uploader").find(".f-filename").val($(this).val());
+	});
+	$("input[type=file]").each(function(){
+		if($(this).val()==""){
+			$(this).parents(".f-uploader").find(".f-filename").val("No file selected...");
+		}
+	});
+	if($('#applicant_type_temp').val()==1){
+
+            $('#upload_file_list_other_file_02').hide();
+            $('#upload_file_list_other_file_03').hide();
+            $('#upload_file_list_other_file_08').hide();
+            $('#upload_file_list_other_file_09').hide();
+            $('#upload_file_list_other_file_10').show();
+            $('#upload_file_list_other_file_11').show();
+            $('#upload_file_list_other_file_12').show();
+
+        }else{
+
+            $('#upload_file_list_other_file_10').hide();
+            $('#upload_file_list_other_file_11').hide();
+            $('#upload_file_list_other_file_12').hide();
+            $('#upload_file_list_other_file_02').show();
+            $('#upload_file_list_other_file_03').show();
+            $('#upload_file_list_other_file_08').show();
+            $('#upload_file_list_other_file_09').show();
+
+        }
+});
+
+
+function gerenqiye_sel(){
+	var khlx_value = $('#gerenqiye_sel').val();
+	var bxgs_value2 = $('#baoxiangongsi_sel').val();
+	 
+	if(bxgs_value2=='01'){
+		layer.alert('选择平安保险公司客户类型只能是个人');
+		$('#gerenqiye_sel').val('01');
+	}else{
+		if(khlx_value=='01'){
+			$('#upload_file_list_01').hide();
+			$('#upload_file_list_02').show();	
+		}else if(khlx_value=='02'){
+			$('#upload_file_list_02').hide();
+			$('#upload_file_list_01').show();
+		}	
+	}
+	
+}
+
+
+var is_show = 0;
+function show_uplaod_file_div(){
+	if(is_show==0){
+		$("#update_file_div").show();
+		is_show=1;
+	}
+	else{
+		$("#update_file_div").hide();
+		is_show=0;	
+	}
+	
+}
+
+function addinput(ef){
+	var name_temps_value = $(ef).parent().parent().parent().children().last().data("value");	
+	var name_temps_key = $(ef).parent().parent().parent().children().last().data("key");
+	
+	var html_opp = '<div class="f-pl10" data-value="'+(parseInt(name_temps_value)+1)+'" data-key="'+name_temps_key+'">'+
+	   '<form id='+name_temps_key+'_'+(parseInt(name_temps_value)+1)+' action="../user.php?act=upload_file&path_type=1" method="post" enctype="multipart/form-data">'+
+		'<div class="f-uploader f-white f-ib f-vam">'+
+		'<input type="text" class="f-filename" readonly="readonly"/>'+
+		'<input type="button" name="file" class="f-button" value="文件上传..." >'+
+		'<input type="file" size="30" name="attachment" onchange="upload_file(\''+name_temps_key+'_'+(parseInt(name_temps_value)+1)+'\',\''+name_temps_key+'\');" /></div>'+
+		'<div class=" f-ib f-vam f-ml10">'+
+		'<a href="javascript:void(0)" class="btn btn-danger" onclick="deleinput(this)">删除</a>'+
+        '&#12288;<span id="progress_'+name_temps_key+'_'+(parseInt(name_temps_value)+1)+'"><span id="bar_'+name_temps_key+'_'+(parseInt(name_temps_value)+1)+'"></span>'+
+        '<span id="percent_'+name_temps_key+'_'+(parseInt(name_temps_value)+1)+'">0%</span ></span>'+ 
+	'</div></div>';
+	
+	$(ef).parent().parent().parent().append(html_opp);
+	
+	$("input[type=file]").change(function(){
+		$(this).parents(".f-uploader").find(".f-filename").val($(this).val());
+	});
+	$("input[type=file]").each(function(){
+		if($(this).val()==""){
+			$(this).parents(".f-uploader").find(".f-filename").val("No file selected...");
+		}
+	}); 
+}
+
+function deleinput(ef){
+	$(ef).parent().parent().remove();
+}
+</script>
+<script type="text/javascript">
+
+
+	function upload_file(key,name) {
+		var bar = $('#bar_' + key);
+		var percent = $('#percent_' + key);
+		var showimg = $('#showimg_' + key);
+		var progress = $("#progress_" + key);
+		
+		
+		$("#"+key).ajaxSubmit({
+			dataType : 'json',
+			beforeSend : function() {
+				layer.msg('正在上传中...', {
+				    icon: 1,
+				    shade:0.5,
+				    time: 36000 //2秒关闭（如果不配置，默认是3秒）
+				}); 
+				
+				showimg.empty();
+				progress.show();
+				var percentVal = '0%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+				//console.info("上传中...");
+			},
+			uploadProgress : function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+			},
+			success : function(data) {
+				layer.closeAll();
+				if (data.code != 0) { //modify yes123 2014-12-09
+					percent.html(0+'%');
+					alert(data.msg);
+				} else {
+					var temp_value = $("#fileinput_"+key).val();
+					if(!temp_value)
+					{
+						$("#attachment_div").append("<input type='hidden' name='"+name+"[]' value='"+data.file+"' id='fileinput_"+key+"'>");
+					}
+					else{
+						$("#fileinput_"+key).val(data.file);
+					}
+					alert('上传成功！');
+			
+				}
+	
+			},
+			error : function(xhr) {
+				layer.closeAll();
+				btn.html("上传失败");
+				bar.width('0')
+				//files.html(xhr.responseText);
+			}
+		});
+	
+	}
+
+	
+</script>

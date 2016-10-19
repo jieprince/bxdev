@@ -1,0 +1,168 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<link rel="stylesheet" href="js/nice-validator-0.7.3/jquery.validator.css">
+<script type="text/javascript" src="js/nice-validator-0.7.3/jquery.validator.js"></script>
+<script type="text/javascript" src="js/nice-validator-0.7.3/local/zh_CN.js"></script>
+<div class="g-wA100 s-bg-f2f0f0"> 
+    <div class="g-w1000 f-mc f-pt20">
+        <div class="g-h35 f-tal">
+            <span class="s-c-666666 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-333333">
+                    <a href="#" class="link-777777">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                 	咨询预约 
+                </span>
+            </span>
+        </div> 
+        
+        <div class="f-cb">
+        	
+            <div class="f-fl g-w243">
+            	<div class="f-ml3">
+                	<img src="images/zixun.png" width="240" height="130">
+                </div>
+                <div>
+                	<h2 class="s-c-666666 f-fwn s-bg-ffffff f-pt20 f-pb20 f-ml3">
+                    	<span class="f-fs4 f-ml45">咨询预约</span>
+                    	<span class="f-fs2">Consult</span>
+                    </h2>
+                    <ul class="m-list-3">
+                    	<li>
+                        	<a href="#" class="p_active">
+                                <span class="f-ml45">咨询预约</span>
+                            </a>
+                        </li>
+                         
+                    </ul>
+                    <div class="s-bg-ffffff g-h60 f-ml3"></div>
+                </div>
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/tel.png" width="16"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	电话：{$service_phone}<br>
+                            传真：021-65667179<br>
+                            E-MAIL：{$service_email}
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/weizhi.png" width="14"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	网址：www.aalib.com.cn<br>
+                            地址：{$shop_address}
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="f-fr g-w725">
+            	<div class="f-pA20  s-bg-ffffff">
+                	<div class="s-bscB4_e5f3f7 f-pb10">
+                    	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf0132;</i></span>
+                        <span class="f-fs4 s-c-008fc7 f-vam">咨询预约</span>
+                    </div>
+                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+                    	<div>
+                         	<span class="s-c-777777">如果您有什么意见、建议或者服务咨询、预约、投诉等，您都可以填写以下表单反馈</span><br>
+                            <span class="s-c-777777">我们将通过您指定的联络方式联络到您，谢谢您的支持！</span><br>
+                            <span class="s-c-ff0000">（*红色星号为必填项）</span>
+                    	</div>
+                        <div class="f-mt30 f-ml60">
+                         	<form action="category.php" method="post">
+                            	<table cellpadding="0" cellspacing="0" border="0" class="s-c-666666 table_list">
+                                	<tr>
+                                    	<td><span>您的姓名</span></td>
+                                        <td><input type="text" class="g-h35 g-w243 f-ml10" name="real_name" data-rule="姓名:required;"></td>
+                                        <td>
+                                        	<span class="msg-box " style="position:static;" for="real_name"><span class="s-c-ff0000 f-pl10">* </span>(格式：张三)</span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    	<td><span>您的称谓</span></td>
+                                        <td>
+                                        	<span class="f-ml10">
+                                            	<input type="radio" name="sex" value="1">
+                                                <span class="">男</span>
+                                                <input type="radio"  name="sex" value="2" data-rule="checked">
+                                                <span class="">女</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                        	 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    	<td><span>您的电话</span></td>
+                                        <td><input type="text" class="g-h35 g-w243 f-ml10" name="tel"  data-rule="电话:required;mobile;"></td>
+                                        <td>
+                                           <span class="msg-box" style="position:static;" for="tel"><span class="s-c-ff0000 f-pl10">* </span>(格式：13195514885)</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    	<td><span>电子邮箱</span></td>
+                                        <td><input type="text" class="g-h35 g-w243 f-ml10" name="user_email" ></td>
+                                        <td>
+                                        	<span><span class="s-c-ff0000 f-pl10">*</span>(格式：1747017948@qq.com)</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    	<td><span>联系地址</span></td>
+                                        <td colspan="2"><input type="text" class="g-h35 g-w459 f-ml10" name="address"></td>
+                                         
+                                    </tr>
+                                    <tr>
+                                    	<td><span>QQ号码</span></td>
+                                        <td colspan="2"><input type="text" class="g-h35 g-w150 f-ml10" name="qq"></td>
+                                         
+                                    </tr>
+                                    <tr>
+                                    	<td><span>反馈内容</span></td>
+                                        <td colspan="2">
+                                        	<textarea class="g-w459 g-h60 f-ml10" name="msg_content" data-rule="required;"></textarea><span class="s-c-ff0000 f-pl10">*</span>
+                                        </td>
+                                         
+                                    </tr>
+	                                <!-- 判断是否启用验证码{if $enabled_captcha} -->
+	                                    <tr>
+	                                    	<td><span>验证码</span></td>
+	                                        <td colspan="2">
+	                                        	<span>
+	                                            	<input type="text" class="g-h35 g-w150 f-ml10" placeholder="验证码" name="captcha" data-rule="验证码:required;"/>
+	                                            </span>
+	                                            <span class="f-ib f-ml15 f-vam">
+	                                            	<img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" />
+	                                            </span>
+	                                            <span class="msg-box " style="position:static;" for="captcha"></span>
+	                                        </td>
+	                                    </tr>
+                                    <!-- {/if} -->
+                                    <tr><td align="center" colspan="3" height="10"></td></tr>
+                                    <tr>
+                                    	<td align="center" colspan="3">
+                                    		<input type="hidden" name="submit_a" value="1">
+                                    		<input type="hidden" name="act" value="reservation">
+                                        	<button type="submit" class="btn-008fc7">提交信息</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            	  
+            </div>
+            
+        </div>
+        
+          
+    </div>
+</div>
+<!-- #BeginLibraryItem "/library/en_page_footer.lbi" --><!-- #EndLibraryItem -->

@@ -1,0 +1,678 @@
+<h5>
+	<span>我的客户</span>
+</h5>
+<div class="blank"></div>
+
+<div >
+	   <a href="user.php?act=customer_list" {if $condition.type eq 0} class="btn_on02" {else} class="btn_out02" {/if}>个人客户</a>
+	   <a href="user.php?act=customer_list&type=1" {if $condition.type eq 1} class="btn_on02" {else}class="btn_out02" {/if} >机构客户</a>
+</div>
+
+<!-- {if $condition.type eq 0} --> 
+<div style="float: left;">
+	<form action="user.php" id="customer_list_form" method="post">
+		<input type="hidden" name="act" value="customer_list" />
+		<input type="hidden" name="type" value="0" />
+		<table border="0" cellpadding="0" cellspacing="0" class="padd_T10">
+	
+			<tr>
+				<td>&#12288;&#12288;姓名：</td>
+				<td><input type="text" name="fullname" value="{$condition.fullname}" class="padd_TB5 input150" /></td>
+	
+				<td>&#12288;&#12288;性别：</td>
+				<td><select name="gender">
+						<option value="">--请选择--</option>
+						<option {if $condition.gender== 'M' } selected='selected' {/if}value="M">男</option>
+						<option {if $condition.gender== 'F' } selected='selected' {/if} value="F">女</option>
+				</select></td>
+	
+				<td>手机号码：</td>
+				<td><input type="text" name="phone" value="{$condition.mobiletelephone}" class="padd_TB5 input150" /></td>
+	
+			</tr>
+			<tr>
+				<td>证件类型：</td>
+				<td><select name="certificates_type">
+						<option value="">--请选择--</option>
+						<!--{foreach from=$c_type_list key=key item=item}-->
+								<option {if $condition.certificates_type== $key} selected='selected' {/if} value="{$key}">{$item}</option>
+						<!--{/foreach}-->
+				</select></td>
+	
+				<td>证件号码：</td>
+				<td><input type="text" name="certificates_code" value="{$condition.certificates_code}" class="padd_TB5 input150"></td>
+				
+				<td>&#12288;&#12288;邮箱：</td>
+				<td><input type="text" name="email" value="{$condition.email}" class="padd_TB5 input150" /></td>
+				
+				<td>&#12288;&#12288;<input type="submit" value="查询" class="chaxun"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div style="float: right;">
+	<a href="javascript:add_customer();" class="btn_on02">新增个人客户</a>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05" id="select_AllID">
+	<tr align="center" height="34">
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">编号</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">姓名</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">证件类型</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">证件号码</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">生日</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">性别</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">手机</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">邮箱</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">地址</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">操作</td>
+		<!-- 	<td bgcolor="#ffffff" class="fontbloder table_head_bg">邮编</td> -->
+	</tr>
+	<!--{foreach from=$customer_list item=item}-->
+	<tr>
+		<td align="center" bgcolor="#ffffff">{$item.uid}</a></td>
+		<td align="center" bgcolor="#ffffff">{$item.fullname}</a></td>
+		<td align="center" bgcolor="#ffffff">{$item.certificates_type}</td>
+		<td align="center" bgcolor="#ffffff">{$item.certificates_code}</td>
+		<td align="center" bgcolor="#ffffff">{$item.birthday}</td>
+		<td align="center" bgcolor="#ffffff">{if $item.gender=='M' || $item.gender==1} 男{else}女{/if}</td>
+
+		<td align="center" bgcolor="#ffffff">{$item.mobiletelephone}</td>
+		<td align="center" bgcolor="#ffffff">{$item.email}</td>
+		<td align="center" style="width:100px;" bgcolor="#ffffff">{$item.province} {$item.city} {$item.address}</td>
+		<td align="center" bgcolor="#ffffff"><a href="javascript:edit_customer({$item.uid},0);">修改</a>
+			<a href="javascript:del_customer({$item.uid},0);" >删除</a>
+		</td>
+		<!--      <td align="center" bgcolor="#ffffff" class="color_94">{$item.zipcode}</td> -->
+
+	</tr>
+	<!--{/foreach}-->
+
+</table>
+<!-- {else} -->
+<div style="float: left;">
+	<form action="user.php" id="customer_list_form" method="post">
+		<input type="hidden" name="act" value="customer_list" />
+		<input type="hidden" name="type" value="1" />
+		<table border="0" cellpadding="0" cellspacing="0" class="padd_T10">
+	
+			<tr>
+				<td>&#12288;名称：</td>
+				<td><input type="text" name="fullname" value="{$condition.fullname}"  class="padd_TB5 input150" /></td>
+	
+				<td>手机号码：</td>
+				<td><input type="text" name=phone value="{$condition.mobiletelephone}" class="padd_TB5 input150" /></td>
+		
+			</tr>
+			<tr>
+				<td>证件号码：</td>
+				<td><input type="text" name="certificates_code" value="{$condition.certificates_code}" class="padd_TB5 input150"></td>
+				
+				<td>&#12288;&#12288;邮箱：</td>
+				<td><input type="text" name="email" value="{$condition.email}" class="padd_TB5 input150" /></td>
+							
+				<td>&#12288;联系人：</td>
+				<td><input type="text" name="cus_contact" value="{$condition.cus_contact}" class="padd_TB5 input150" /></td>
+				
+				<td>&#12288;&#12288;<input type="submit" value="查询" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div style="float: right;">
+	<a href="javascript:addOrganizationCustomer();" class="btn_on02">新增机构客户</a>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05" id="select_AllID">
+	<tr align="center" height="34">
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">编号</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">名称</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">证件类型</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">证件号码</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">联系人</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">手机</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">邮箱</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg">操作</td>
+		<!-- 	<td bgcolor="#ffffff" class="fontbloder table_head_bg">邮编</td> -->
+	</tr>
+	<!--{foreach from=$customer_list item=item}-->
+	<tr>
+		<td align="center" bgcolor="#ffffff">{$item.uid}</td>
+		<td align="center" bgcolor="#ffffff">{$item.fullname}</td>
+		<td align="center" bgcolor="#ffffff">{$item.certificates_type}</td>
+		<td align="center" bgcolor="#ffffff">{$item.certificates_code}</td>
+		<td align="center" bgcolor="#ffffff">{$item.cus_contact}</td>
+		<td align="center" bgcolor="#ffffff">{$item.mobiletelephone}</td>
+		<td align="center" bgcolor="#ffffff">{$item.email}</td>
+		<td align="center" bgcolor="#ffffff"><a href="javascript:edit_customer({$item.uid},1);">修改</a>
+			<a href="javascript:del_customer({$item.uid},1);" >删除</a>
+		</td>
+		<!--      <td align="center" bgcolor="#ffffff" class="color_94">{$item.zipcode}</td> -->
+
+		</td>
+	</tr>
+	<!--{/foreach}-->
+
+</table>
+ <!--{/if}  -->
+
+
+<div id="add_customer_div" class="padd_A10 fp_add" style="display: none;">
+
+	<div style="float: left;">
+		<form id=cus_form action=user.php method=post>
+			<input type=hidden name=act value=add_customer>
+			<input type=hidden name=type value=0 >
+			<input type=hidden name=cus_id >
+			<table>
+				<tr>
+					<td>&#12288;&#12288;*姓名：</td>
+					<td><input type=text name="fullname"></td>
+				</tr>
+				<tr>
+					<td>*证件类型：</td>
+					<td>
+						<select id="certificates_type" name="certificates_type"></select>
+					</td>
+				</tr>
+				<tr>
+					<td>*证件号码：</td>
+					<td><input type=text name="certificates_code"></td>
+				</tr>
+				<tr>
+					<td>&#12288;&#12288;*生日：</td>
+					<td><input type=text name="birthday">
+						<span style="color: red">格式为:2010-01-02 </span>
+					</td>
+				</tr>
+				<tr>
+					<td>&#12288;&#12288;*性别：</td>
+					<td><input type="radio" value="M" checked="checked" name="gender" />男 <input type="radio" value="F" name="gender" />女</td>
+				</tr>
+				<tr>
+					<td>&#12288;&#12288;*手机：</td>
+					<td><input type=text name="phone"></td>
+				</tr>
+				<tr>
+					<td>&#12288;&nbsp;*email：</td>
+					<td><input type=text name="email"></td>
+				</tr>
+				<tr>
+					<td>&#12288;&#12288;*地区：</td>
+					<td>
+				<select id="province" name="province" onchange="getRegion();"  >
+					<option value="">--请选择--</option>
+					<option value="110000">北京市</option>
+					<option value="120000">天津市</option>
+					<option value="130000">河北省</option>
+					<option value="140000">山西省</option>
+					<option value="150000">内蒙古自治区</option>
+					<option value="210000">辽宁省</option>
+					<option value="220000">吉林省</option>
+					<option value="230000">黑龙江省</option>
+					<option value="310000">上海市</option>
+					<option value="320000">江苏省</option>
+					<option value="330000">浙江省</option>
+					<option value="340000">安徽省</option>
+					<option value="350000">福建省</option>
+					<option value="360000">江西省</option>
+					<option value="370000">山东省</option>
+					<option value="410000">河南省</option>
+					<option value="420000">湖北省</option>
+					<option value="430000">湖南省</option>
+					<option value="440000">广东省</option>
+					<option value="450000">广西壮族自治区</option>
+					<option value="460000">海南省</option>
+					<option value="500000">重庆市</option>
+					<option value="510000">四川省</option>
+					<option value="520000">贵州省</option>
+					<option value="530000">云南省</option>
+					<option value="610000">陕西省</option>
+					<option value="620000">甘肃省</option>
+					<option value="630000">青海省</option>
+					<option value="640000">宁夏回族自治区</option>
+					<option value="650000">新疆维吾尔自治区</option>
+					<option value="830000">深圳市</option>
+				</select>&nbsp;
+					 <select id="city" name="city"></select></td>
+				</tr>
+				<tr>
+					<td>*详细信息：</td>
+					<td><input type="text" name="address" style="width: 230px;"></td>
+				</tr>
+
+				<tr>
+					<td colspan=2 align=center>
+						<input type="submit" class="btn_on02" value="保存">&#12288;
+					</td>
+				</tr>
+			</table>
+			
+			 <input type="hidden" name="img_type1" id="img_type1" value="">
+ 			 <input type="hidden" name="img_type2" id="img_type2" value="">
+		</form>
+
+	</div>
+
+	<div style="float: right;">
+		<div style="padding: 10px; border: 1px dashed #f0863c; border-radius: 3px; margin-top: 20px;">
+			<div style="font-size: 20px; margin: 10px 0px 20px 0px;">证件上传</div>
+			<div style="background-color: #EEEEEE; padding: 10px; border-radius: 3px;">
+				<div class="mar_T10">
+					身份证正面:&#12288; 
+					<input type="button" onclick="upload_img_dialog(1,'身份证正面')" value="上 传" class="upload_btn"> 
+					{if $profile.card_img1} 
+					<input type="button" id="show_img1" onclick="show_img('{$profile.card_img1}','身份证正面')" value="浏 览"
+						class="view_btn"> {else} <span class="view_btn_span" id="show_img1">浏 览</span> {/if}
+
+				</div>
+				<div class="mar_T20">
+					身份证反面:&#12288; 
+					<input type="button" onclick="upload_img_dialog(2,'身份证反面')" value="上 传" class="upload_btn"> {if $profile.card_img2} 
+					<input type="button" id="show_img2" onclick="show_img('{$profile.card_img2}','身份证反面')" value="浏 览"
+						class="view_btn"> {else} <span class="view_btn_span" id="show_img2">浏 览</span> {/if}
+
+
+				</div>
+			</div>
+		</div>
+		<div class="padd_T5 text_center color_ea5413">
+			注：图片上传以后，请点击 <strong>确认修改</strong> !
+		</div>
+	</div>
+
+
+</div>
+<div id="add_organization_customer_div" class="padd_A10 fp_add" style="display: none;">
+
+	<div style="float: left;">
+		<form id=cus_org_form action=user.php method=post>
+			<input type=hidden name=act value=add_customer>
+			<input type=hidden name=type value=1>
+			<input type=hidden name=cus_id >
+			<table>
+				<tr>
+					<td>&#12288;&#12288;*名称：</td>
+					<td><input type=text  name="fullname"></td>
+				</tr>
+				<tr>
+					<td>*证件类型：</td>
+					<td>
+						<select id="certificates_org_type" name="certificates_type"></select>
+					</td>
+				</tr>
+				<tr>
+					<td>*证件号码：</td>
+					<td><input type=text  name="certificates_code"></td> 
+				</tr>
+				<tr>
+					<td>&#12288;*联系人：</td>
+					<td><input type=text  name="cus_contact"></td><td> 
+				</tr>
+				<tr>
+					<td>&#12288;&#12288;*手机：</td>
+					<td><input type=text  name="phone"></td>
+				</tr>
+				<tr>
+					<td>&#12288;&nbsp;*email：</td>
+					<td><input type=text name="email"></td>
+				</tr>
+				<tr>
+					<td colspan=2 align=center>
+						<input type="submit" class="btn_on02" value="保存">&#12288;
+					</td>
+				</tr>
+			</table>
+			
+			 <input type="hidden" name="img_type1" id="img_type3" value="">
+ 			 <input type="hidden" name="img_type2" id="img_type4" value="">
+		</form>
+
+	</div>
+
+	<div style="float: right;">
+		<div style="padding: 10px; border: 1px dashed #f0863c; border-radius: 3px; margin-top: 20px;">
+			<div style="font-size: 20px; margin: 10px 0px 20px 0px;">证件上传</div>
+			<div style="background-color: #EEEEEE; padding: 10px; border-radius: 3px;">
+				<div class="mar_T10">
+					正面:&#12288; 
+					<input type="button" onclick="upload_img_dialog(3,'正面')" value="上 传" class="upload_btn"> 
+					{if $profile.card_img1} 
+					<input type="button" id="show_img3" onclick="show_img('{$profile.card_img1}','身份证正面')" value="浏 览"
+						class="view_btn"> {else} <span class="view_btn_span" id="show_img3">浏 览</span> {/if}
+
+				</div>
+				<div class="mar_T20">
+					反面:&#12288; 
+					<input type="button" onclick="upload_img_dialog(4,'反面')" value="上 传" class="upload_btn"> {if $profile.card_img2} 
+					<input type="button" id="show_img4" onclick="show_img('{$profile.card_img2}','身份证反面')" value="浏 览"
+						class="view_btn"> {else} <span class="view_btn_span" id="show_img4">浏 览</span> {/if}
+
+
+				</div>
+			</div>
+		</div>
+		<div class="padd_T5 text_center color_ea5413">
+			注：图片上传以后，请点击 <strong>确认修改</strong> !
+		</div>
+	</div>
+
+
+</div>
+
+<script type="text/javascript">
+	function add_customer() {
+		$("#add_customer_div").show();
+		var pageii = $.layer({
+			type : 1,
+			title : '新增客户', //不显示默认标题栏
+			border : [ 10, 0.3, '#696969' ], //不显示遮罩
+			area : [ '700px', '450px' ],
+			page : {
+				dom : '#add_customer_div'
+			},
+			success : function(layero) {
+
+				//layer.close(layero);
+			}
+		});
+		// 清空老数据
+		$("#cus_form")[0].reset();
+		$('#img_type1').val();
+		$('#img_type2').val();
+		clear_showimg(1);
+		clear_showimg(2);
+		$("select[name=province]").val();
+		$("select[name=city]").val();
+		
+		getCertificatesType('',0);
+		//getRegion('', 'province');
+	}
+
+	function edit_customer(uid,type) {
+		if(type==0){
+			$("#add_customer_div").show();
+			$("#cus_form input[name=cus_id]").val(uid);
+			var edit_dialog = $("#add_customer_div");
+		}else if(type==1){
+			$("#add_organization_customer_div").show();
+			$("#cus_org_form input[name=cus_id]").val(uid);
+			var edit_dialog = $("#add_organization_customer_div");
+		}
+
+		var pageii = $.layer({
+			type : 1,
+			title : '编辑客户', //不显示默认标题栏
+			border : [ 10, 0.3, '#696969' ], //不显示遮罩
+			area : [ '700px', '450px' ],
+			page : {
+				dom : edit_dialog
+			},
+			success : function(layero) {
+
+				//layer.close(layero);
+			}
+		});
+	
+		getCusById(uid,type);
+	}
+	
+	function del_customer(uid,type) {
+        if (confirm("确认要删除？")) {
+    		$.post("user.php", {
+    			'act' : "del_customer",
+    			'cus_id' : uid,
+    			'type':type
+    		}, function(r) {
+    			 alert(r.msg);
+    			 window.location.reload();
+    		}, "json");
+        }
+	}
+	
+	
+	function getRegion(p_code, select_region) {
+		p_code = $("#province").val();
+		//获取地区
+		$.post("user.php", {
+			'act' : "get_region",
+			'p_code' : p_code
+		}, function(r) {
+			if(r.code==1){ 
+				set_region('city',r.region);
+			}
+
+		}, "json");
+	}
+	
+	function getCusById(uid,type) {
+	
+		$.post("user.php", {
+			'act' : "getCusById",
+			'cus_id':uid,
+			'type':type
+		}, function(r) {
+			var cus_info = r.cus_info;
+			if(type==1){
+				$("#cus_org_form input[name=fullname]").val(cus_info.fullname);				
+				$("#cus_org_form input[name=certificates_code]").val(cus_info.certificates_code);			
+				$("#cus_org_form input[name=phone]").val(cus_info.mobiletelephone);
+				$("#cus_org_form input[name=email]").val(cus_info.email);
+				$("#cus_org_form input[name=cus_contact]").val(cus_info.cus_contact);
+				
+			}else if(type==0){
+				var cus_form = $('#cus_form input');
+				cus_form.each(function(i,n){ 
+					var inputtype =$(this).attr("type");
+					var inputnametemp = $(this).attr("name");
+					if(inputtype=='radio'){
+						$('#cus_form input[name="'+inputnametemp+'"][value="'+cus_info[inputnametemp]+'"]').prop("checked",true);
+					}else if(inputtype=="text"){
+						$(this).val(cus_info[inputnametemp]);
+					}
+					
+				}); 
+			}
+			
+			if(type==0){
+				set_region('city',r.city);
+				//回显省份
+				$("#province option[value="+cus_info.province_code+"]").attr("selected", "selected"); 
+				$("#city option[value="+cus_info.city_code+"]").attr("selected", "selected"); 
+				set_img(cus_info.img1,1);
+				set_img(cus_info.img2,2);
+			}else if(type==1){
+				set_img(cus_info.img1,3);
+				set_img(cus_info.img2,4);
+			}
+			
+			//证件类型
+			getCertificatesType(cus_info.certificates_type,type);
+
+		}, "json");
+	}
+
+	var pageii;
+	function upload_img_dialog(num, title_str) {
+		pageii = $.layer({
+			type : 1,
+			title : title_str, //不显示默认标题栏
+			shade : [ 0.3, '#696969' ], //不显示遮罩
+			area : [ '520px', '320px' ],
+			page : {
+				html : " <div class=\"padd_A10\"><form id='myupload" + num + "' action='user.php?act=upload_img&path_type=2' method='post' enctype='multipart/form-data'>" + 
+						"<input type='hidden' name='img_type' value='"+num+"' class=\"padd_TB5\">" + 
+						'<input class=\"padd_TB5 \" id="fileupload' + num + '" type="file" name="image" onchange="upload_img(\'' + num + '\')" />' +
+						'<div class="progress'+num+'"><span class="bar'+num+'"></span><span class="percent'+num+'">0%</span ></div>' + 
+						'<div id="showimg'+num+'"></div>' + "</form></div>"
+			}
+		});
+
+	}
+
+	function upload_img(num) {
+		var bar = $('.bar' + num);
+		var percent = $('.percent' + num);
+		var showimg = $('#showimg' + num);
+		var progress = $(".progress" + num);
+		var files = $(".files" + num);
+
+		$("#myupload" + num).ajaxSubmit({
+			dataType : 'json',
+			beforeSend : function() {
+				showimg.empty();
+				progress.show();
+				var percentVal = '0%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+				//btn.html("上传中...");
+			},
+			uploadProgress : function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+			},
+			success : function(data) {
+				if (data.code != 0) { //modify yes123 2014-12-09
+					alert(data.msg);
+				} else {
+					//files.html("<b>" + data.name + "(" + data.size + "k)</b> <span class='delimg"+num+"' rel='"+data.pic+"'>删除</span>");
+					var img = data.pic;
+					showimg.html('<img style="width: 480px;height:170px; float:left;margin-left:10px;" src="'+img+'">' + '<a class="btn_on02" style="float:left;margin-left:230px; margin-top:10px;"  href="javascript:set_img(\'' + img + '\',' + num + ')">确定</a>');
+
+				}
+
+			},
+			error : function(xhr) {
+				btn.html("上传失败");
+				bar.width('0')
+				files.html(xhr.responseText);
+			}
+		});
+
+		$(".delimg" + num).live('click', function() {
+			var pic = $("#showimg" + num + " img").attr("src");
+
+			$.post("user.php?act=del_user_img", {
+				imagename : pic
+			}, function(data) {
+				if (data.code == 1) {
+					files.html(data.msg);
+				} else {
+					//删除成功后,清空原来的图片信息
+					showimg.html('');
+					files.html('');
+					percent.html('');
+					bar.width('0')
+					alert(data.msg);
+				}
+			}, 'json');
+		});
+
+	}
+	
+	function set_img(img,num)
+	{
+		if(img){
+			//add yes123 2014-12-09 上传后即可预览
+			$('#show_img'+num).attr("class","view_btn");
+			$('#img_type'+num).val(img);
+			$('#show_img'+num).removeAttr("onclick"); //移除click
+			$('#show_img'+num).attr("onclick","show_img('"+img+"')");
+		    layer.close(pageii);
+		}else{
+			clear_showimg(num);
+		}
+	  }
+	  
+	  
+	  //浏览图片
+	function show_img(img_url,img_name){
+		   
+	   		var pageii = $.layer({
+	   			  	type: 1,
+	       	        title: false, //不显示默认标题栏
+					area:['auto', 'auto'],
+	       	        shade: [0.3, '#696969'], //不显示遮罩
+	   			    page:{html:'<div><img  src="'+img_url+'"></div>'}
+		
+	  		});
+	 }
+	 
+	//清空图片预览样式和事件
+	function clear_showimg(num){
+		$('#show_img'+num).attr("class","view_btn_span");
+		$('#show_img'+num).removeAttr("onclick"); //移除click
+		$('#img_type'+num).val('');
+	}
+	
+	function set_region(select_type,region_data){
+		var region = "<option value=''>--请选择--</option>";
+		$.each(region_data, function(k, v) {
+			if (select_type == 'city') {
+				region += "<option value='"+v.region_code+"'>" + v.region_name + "</option>"
+			} else {
+				region += "<option onclick=getRegion(" + v.region_code + ",'city') value='" + v.region_id + "'>" + v.region_name + "</option>"
+			}
+		});
+
+		$("select[name=" + select_type + "]").html(region);
+	}
+	
+	
+	function getCertificatesType(certificates_type,type){
+		
+		//获取证件类型
+		$.post("user.php", {
+			'act' : "get_certificates_type",
+			'type':type
+		}, function(data) {
+			var c_type ="<option value=''>--请选择--</option>";
+			$.each(data.c_type,function(k,v){ 
+				c_type +="<option value='"+k+"'>"+v+"</option>";
+		    }); 
+			
+			if(type==1){
+				$("#certificates_org_type").html(c_type);
+				if(certificates_type){
+					$("#certificates_org_type option[value="+certificates_type+"]").attr("selected", "selected");
+				}
+			}
+			else if(type==0){
+				$("#certificates_type").html(c_type);
+				if(certificates_type){
+					$("#certificates_type option[value="+certificates_type+"]").attr("selected", "selected");
+				}
+			}
+			
+		}, "json");
+		
+		
+	}
+	
+	function addOrganizationCustomer(){
+		$("#add_organization_customer_div").show();
+		var pageii = $.layer({
+			type : 1,
+			title : '新增客户', //不显示默认标题栏
+			border : [ 10, 0.3, '#696969' ], //不显示遮罩
+			area : [ '700px', '450px' ],
+			page : {
+				dom : '#add_organization_customer_div'
+			},
+			success : function(layero) {
+
+				//layer.close(layero);
+			}
+		});
+		// 清空老数据
+		$("#cus_org_form")[0].reset();
+		clear_showimg(3);
+		clear_showimg(4);
+		$("select[name=province]").val();
+		$("select[name=city]").val();
+		
+		getCertificatesType('',1);
+	}
+</script>
+

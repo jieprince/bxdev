@@ -1,0 +1,944 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<title>{$lang.cp_home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="robots" content="noindex, nofollow"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/transport.js,../js/region.js,common.js,"}
+{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js,jquery-1.8.3.min.js"}
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/users.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script src="../js/profile.js"></script>
+
+<script language="JavaScript">
+region.isAdmin = true;
+<!--
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+</head>
+<body>
+
+<h1>
+{if $action_link}
+<span class="action-span"><a href="distributor.php?act=organization_list">渠道列表</a></span>
+{/if}
+{if $action_link2}
+<span class="action-span"><a href="{$action_link2.href}">{$action_link2.text}</a>&nbsp;&nbsp;</span>
+{/if}
+<span class="action-span1"><a href="index.php?act=main">{$lang.cp_home}</a> </span><span id="search_id" class="action-span1">
+{if $save_type eq 'insert'}
+-添加渠道
+{else}
+{if $distributor_info.d_name}
+	-{$distributor_info.d_name}
+	{else}
+	-{$user.user_name}
+{/if}
+-编辑渠道
+{/if}
+</span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+<div class="tab-div">
+	    <!-- tab bar -->
+	    <div id="tabbar-div">
+	      <p>
+	      {if $action eq 'organization_edit'}
+	        <span class="tab-front" id="baseinfo-tab" onclick="change_tab('baseinfo');">基本信息</span>
+	      {/if}
+	        <span class="tab-back"  id="organinfo-tab" onclick="change_tab('organinfo');">渠道信息</span>
+	        <!-- <span class="tab-back" id="config-tab" onclick="change_tab('config');">子站配置</span> -->
+	        
+	      {if $action neq 'organization_add'}  
+	        <span class="tab-back" id="product-tab" onclick="change_tab('product');">产品配置</span>
+	        <span class="tab-back" id="payment-tab" onclick="change_tab('payment');">支付方式配置</span>
+	      {/if}
+	      </p>
+	    </div>
+
+
+
+<!-- tab body -->
+
+<div id="baseinfo-table" >
+<form method="post" action="users.php" name="theForm" onsubmit="return validate()">
+<table width="100%" >
+  <tr>
+    <td class="label">{$lang.username}:</td>
+    <td>{if $form_action eq "update"}{$user.user_name}<input type="hidden" name="username" value="{$user.user_name}" />{else}<input type="text" name="username" maxlength="60" value="{$user.user_name}" />{$lang.require_field}{/if}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.real_name}</td>
+	<td><input type="text" value="{$user.real_name}" name="real_name"/></td>
+  </tr>
+  
+  <tr>
+    <td class="label">{$lang.mobile_phone}:</td>
+	<td><input type="text" value="{$user.mobile_phone}" name="mobile_phone"/>{$lang.require_field}</td>
+  </tr>
+  
+  {if $action eq "edit"}
+  <tr>
+    <td class="label">充值账户:</td>
+    <td>{$user.formated_user_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=user_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr>
+  <tr>
+    <td class="label">金币账户:</td>
+    <td>{$user.formated_service_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=user_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr>
+<!--   <tr>
+    <td class="label">奖励账户:</td>
+    <td>{$user.formated_award_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=user_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.frozen_money}:</td>
+    <td>{$user.formated_frozen_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=frozen_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr> 
+  <tr>
+    <td class="label"><a href="javascript:showNotice('noticeRankPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.rank_points}:</td>
+    <td>{$user.rank_points} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=rank_points">[ {$lang.view_detail_account} ]</a> <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeRankPoints">{$lang.notice_rank_points}</span></td>
+  </tr>
+  <tr>
+    <td class="label"><a href="javascript:showNotice('noticePayPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}" /></a> {$lang.pay_points}:</td>
+    <td>{$user.pay_points} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=pay_points">[ {$lang.view_detail_account} ]</a> <br />
+        <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticePayPoints">{$lang.notice_pay_points}</span></td>
+  </tr>-->
+  {/if}
+  <tr>
+    <td class="label">{$lang.email}:</td>
+    <td><input type="text" name="email" maxlength="60" size="40" value="{$user.email}" />{$lang.require_field}
+    	 {if $user.is_validated eq 1}
+    	 	<span style="color:green;">邮箱已验证</span>
+    	 	{else}
+    	 	<span style="color:red;">邮箱未验证</span>
+    	 	
+    	 {/if}
+    </td>
+  </tr>
+  {if $action eq "organization_add"}
+  <tr>
+    <td class="label">{$lang.password}:</td>
+    <td><input type="password" name="password" maxlength="20" size="20" />{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.confirm_password}:</td>
+    <td><input type="password" name="confirm_password" maxlength="20" size="20" />{$lang.require_field}</td>
+  </tr>
+  {elseif  $action eq "organization_edit"}
+  <tr>
+    <td class="label">{$lang.newpass}:</td>
+    <td><input type="password" name="password" maxlength="20" size="20" /></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.confirm_password}:</td>
+    <td><input type="password" name="confirm_password" maxlength="20" size="20" /></td>
+  </tr>
+  {/if}
+<!-- 会员等级 -->   <tr>
+    <td class="label">{$lang.user_rank}:</td>
+    <td><select name="user_rank">
+      <option value="0">{$lang.not_special_rank}</option>
+      {html_options options=$special_ranks selected=$user.user_rank}
+    </select></td>
+  </tr> 
+  <tr>
+    <td class="label">{$lang.gender}:</td>
+    <td>{html_radios name="sex" options=$lang.sex checked=$user.sex }</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.birthday}:</td>
+    <td>
+    	<input class="Wdate" width="40px;" type="text"  name="birthday"  value="{$user.birthday}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})"/>
+    </td>
+  </tr>
+  {if $user.parent_id}
+  <tr>
+    <td class="label">{$lang.parent_user}:</td>
+    <td><a href="users.php?act=edit&id={$user.parent_id}">{$user.parent_username}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:remove_parent({$user.user_id})">{$lang.parent_remove}</a></td>
+  </tr>
+  {else}
+   <tr>
+    <td class="label">{$lang.add_parent_user}:</td>
+    <td>
+    	<input style="width: 100px;" id="text_parent_id" placeholder="用户ID" /> <input type="button" onclick="javascript:add_parent({$user.user_id});" value="添加">
+<!-- 	    <a href="users.php?act=edit&id={$user.parent_id}">{$user.parent_username}</a>
+	    <a href="users.php?act=remove_parent&id={$user.user_id}">{$lang.parent_remove}</a> -->
+    </td>
+   </tr>
+  {/if}
+  
+  {if $user.institution_id}
+  <tr>
+    <td class="label">所属渠道:</td>
+    <td><a href="distributor.php?act=organization_edit&user_id={$user.institution_id}">{$user.d_name}</a>
+    	&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:remove_institution({$user.user_id})">{$lang.institution_remove}</a>
+    	<input type="hidden" name="institution_id" value="{$user.institution_id}" />
+    </td>
+  </tr>
+  {else}
+   <tr>
+    <td class="label">{$lang.add_institution_user}:</td>
+    <td>
+    	<!-- <input style="width: 100px;" id="text_institution_id" placeholder="渠道ID" /> -->
+    	<select name="institution_id" id="text_institution_id">
+      		<option></option>
+      		{foreach from=$organ_list item=item key=key}
+      			<option value="{$item.d_uid}" {if $distributor_info.institution_id eq $item.d_uid} selected="selected" {/if}>{$item.d_name}</option>
+      		{/foreach}
+      	</select>
+    	<input type="button" onclick="javascript:add_institution({$user.user_id});" value="添加">
+    </td>
+   </tr>
+  {/if}
+  
+
+  <tr>
+    <td class="label">{$lang.CertificatesType}</td>
+	<td>
+		<select class="s-select-1" name="CertificatesType">
+		{foreach from=$zhengjian_type_list key=key item=item}
+			<option value="{$key}" {if $key eq $user.CertificatesType} selected="selected"{/if}>{$item}</option>
+		{/foreach}
+		</select>
+	</td>
+  </tr>
+  <tr>
+	<td class="label">{$lang.CardId}</td>
+	<td><input name="CardId" type="text" size="25" class="inputBg" value="{$user.CardId}"/></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.Category}</td>
+	<td>
+		<input type="radio" name="Category" value="1" {if $user.Category eq 1}checked{/if}/>{$lang.Category_case[0]}&nbsp;&nbsp;
+        <input type="radio" name="Category" value="2" {if $user.Category eq 2}checked{/if}/>{$lang.Category_case[1]}&nbsp;&nbsp;
+        <input type="radio" name="Category" value="3" {if $user.Category eq 3}checked{/if}/>{$lang.Category_case[2]}&nbsp;&nbsp;
+	</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.CertificateNumber}</td>
+    <td><input name="CertificateNumber" type="text" size="25" class="inputBg" value="{$user.CertificateNumber}"/></td>	
+  </tr>
+  <tr>
+  	<td class="label">资格证有效期:</td>
+  	<td>
+  		   <!-- {if $user.certificate_expiration_date eq '永久有效'}  -->
+	   			<input class="Wdate" width="40px;" type="text" id="certificate_expiration_date" name="certificate_expiration_date" onclick="javascript:clearOtherDate(2);" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})"/>
+	   			<input name="certificate_expiration_date_no" type="checkbox" value="永久有效" id="yjyx" onclick="javascript:clearOtherDate(1);" checked="checked" />永久有效
+				<!-- {else} -->
+				<input class="Wdate" width="40px;" type="text" id="certificate_expiration_date" name="certificate_expiration_date" onclick="javascript:clearOtherDate(2);" value="{$user.certificate_expiration_date}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})"/>
+				<input name="certificate_expiration_date_no" type="checkbox" value="永久有效" id="yjyx" onclick="javascript:clearOtherDate(1);"/>永久有效
+		   <!-- {/if} -->	
+	</td>
+  </tr>
+  
+  <tr>
+  	  <td class="label">地区:</td>
+      <td >
+		<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+		  <option value="0">{$lang.select_please}</option>
+		   {foreach from=$provinces item=province}
+		   	 <option value="{$province.region_id}" {if $province.region_id eq $user.Province } selected="selected"{/if}>{$province.region_name}</option>
+		   {/foreach}
+		</select>
+		<select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+		  <option value="0">{$lang.select_please}</option>
+		  {foreach from=$city_list item=city}
+		   	 <option value="{$city.region_id}" {if $city.region_id eq $user.city } selected="selected"{/if}>{$city.region_name}</option>
+		  {/foreach}
+		</select>
+		<select name="district" id="selDistricts">
+		  <option value="0">{$lang.select_please}</option>
+		  {foreach from=$district_list item=district}
+		   	 <option value="{$district.region_id}" {if $district.region_id eq $user.district }selected="selected" {/if}>{$district.region_name}</option>
+		  {/foreach}
+		</select>
+	 </td>
+  </tr>
+
+  <tr>
+    <td class="label">{$lang.address1}</td>
+	<td>
+	  <input name="address" type="text" size="25" class="inputBg" value="{$user.address}"/>
+	</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.ZoneCode}</td>
+    <td>
+	  <input name="ZoneCode" type="text" size="25" class="inputBg" value="{$user.ZoneCode}"/>
+	</td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$user.user_id}" />    </td>
+  </tr>
+</table>
+
+</form>
+
+</div>
+
+
+<form name="theForm" method="post" enctype="multipart/form-data" id="organ_theForm">
+<div id="organinfo-table" >
+	<input type="hidden" name="act" value="organization_save" />
+	<input type="hidden" name="save_type" value="{$save_type}" />
+	<input type="hidden" name="user_id" value="{$user_id}" />
+	<input type="hidden" name="save_info" value="base" />
+	
+	<table width="100%">
+	  <tr>
+	    <td class="label">上级渠道</td>
+	    <td>
+	      	<select name="institution_id">
+	      		<option></option>
+	      		{foreach from=$organ_list item=item key=key}
+	      			<option value="{$item.d_uid}" {if $distributor_info.institution_id eq $item.d_uid} selected="selected" {/if}>{$item.d_name}</option>
+	      		{/foreach}
+	      	</select>
+	    </td>
+	  </tr>
+		
+	  <tr>
+	    <td class="label">移动电话</td>
+	    <td>
+	      <input type="text" name="mobilePhone" value="{$distributor_info.d_mobilePhone}" size="34" />{$lang.require_field}</td>
+	  </tr>
+	
+	  <tr>
+	    <td class="label">密码</td>
+	    <td><input type="password" name="password" maxlength="20" size="20" /></td>
+	  </tr>
+	
+	  <tr>
+	    <td class="label">渠道名称</td>
+	    <td>
+	      <input type="text" name="d_name" maxlength="20" value="{$distributor_info.d_name}" size="34"/>{$lang.require_field}</td>
+	  </tr>	
+	  
+	  
+	  <tr>
+	    <td class="label">渠道代码</td>
+	    <td>
+	      <input type="text" name="identificationcode" maxlength="20" value="{$distributor_info.d_identificationcode}" size="34"/>{$lang.require_field}</td>
+	  </tr>
+	  
+	  <tr>
+	  	  <td class="label" width="25%" align="right">渠道类型</td>
+	      <td>
+	      <select name="d_type">
+	       <option value="">--请选择--</option>
+	       <option 
+	       {if $distributor_info.d_type eq '保险代理公司'} 
+	        selected='selected'
+	       {/if}
+	       value="保险代理公司">保险代理公司</option>
+	       <option 
+	       {if $distributor_info.d_type eq '保险经纪公司'} 
+	        selected='selected'
+	       {/if}
+	       value="保险经纪公司">保险经纪公司</option>
+	       <option 
+	       {if $distributor_info.d_type eq '保险兼业渠道'} 
+	        selected='selected'
+	       {/if}
+	       value="保险兼业渠道">保险兼业渠道</option>
+	      </select>
+	            公共渠道<input type="radio" name="d_institution_type"  {if $distributor_info.d_institution_type eq 'public'}   checked="checked" {/if} value="public" />
+	            独占渠道<input type="radio" name="d_institution_type"  {if $distributor_info.d_institution_type eq 'private'}   checked="checked" {/if} value="private" />  
+	      </td>
+	  </tr>
+
+	  <tr>
+	    <td class="label">联系人</td>
+	    <td>
+	      <input type="text" name="d_contacts" value="{$distributor_info.d_contacts}" size="34" />{$lang.require_field}</td>
+	  </tr>
+	  
+	  <tr>
+	    <td class="label">Email地址</td>
+	    <td>
+	      <input type="text" name="email" value="{$distributor_info.d_email}" size="34" />{$lang.require_field}</td>
+	  </tr>
+	  
+	  <!-- 省份，城市 -->
+	  <tr>
+	      <td class="label">所在地区</td>
+	      <td colspan="3">
+	        <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities2')">
+	          <option value="0">{$lang.select_please}</option>
+			  {foreach from=$provinces item=pro}
+			      <option value="{$pro.region_id}"{if $distributor_info.province eq $pro.region_id }selected{/if}>{$pro.region_name}</option>
+			  {/foreach}
+	        </select>
+	        <select name="city" id="selCities2" onchange="region.changed(this, 3, 'selDistricts2')">
+	          <option value="0">{$lang.select_please}</option>
+			  {foreach from=$city_list item=city}
+			   	 <option value="{$city.region_id}" {if $city.region_id eq $user.city } selected="selected"{/if}>{$city.region_name}</option>
+			  {/foreach}
+	        </select>
+	        <select name="district" id="selDistricts2">
+	          <option value="0">{$lang.select_please}</option>
+			  {foreach from=$district_list item=district}
+			   	 <option value="{$district.region_id}" {if $district.region_id eq $user.district }selected="selected" {/if}>{$district.region_name}</option>
+			  {/foreach}
+	        </select></td>
+	  </tr>
+	  <tr>
+	  	<td class="label">详细地址</td>
+	  	<td>
+	      <input type="text" name="d_address" value="{$distributor_info.d_address}" size="34" />{$lang.require_field}
+	    </td>
+	  </tr>
+
+	  <tr >
+	  <td class="label"></td>
+	  	<td >
+	  	<input type="button" onclick="save_organ();" value="{$lang.button_submit}" class="button" />
+	  	</td>
+	  </tr>
+	  
+	  
+	</table>
+
+</div>
+<div id="config-table">
+	<table width="100%" id="config-table">
+	  <tr>
+		<td colspan="2" align="left">
+			<img src="{$distributor_info.website_logo}" id="show_website_logo" />
+		</td>
+	  </tr>
+	  <tr>
+	  	<td class="label">是否iframe</td>
+	  	<td>
+	      <input type="checkbox" name="is_iframe" value="1" {if $distributor_info.is_iframe} checked="checked" {/if}  />
+	    </td>
+	  </tr>
+	  
+	  
+	  <tr>
+	    <td class="label">网站名称</td>
+	    <td>
+	      <input type="text" name="website_name" value="{$distributor_info.website_name}"/></td>
+	  </tr>
+	
+	
+	  <tr>
+	    <td class="label">域名</td>
+	    <td>
+	      <input type="text" name="domain_name" value="{$distributor_info.domain_name}"  style="width: 200px;"  />
+	      <span style="color: red">
+	      	例如:taipy.ebaosin.cn &#12288;不能加http,www
+	      </span>
+	      </td>
+	  </tr>
+	
+	  <tr>
+	    <td class="label">logo</td>
+	    <td>
+				<input type="button" id="fileupload"  onclick="upload_img_dialog('上传logo')" value="上传logo"/>
+				  <span style="color: red">
+			      	图片大小:376*80
+			      </span>
+				<input type="hidden" id="website_logo"  name="website_logo" value="{$distributor_info.website_logo}"/>
+				<a href="flashplay.php?act=list"  target="_blank" class="a_button_01">轮播图设定</a>
+	    </td>
+	  </tr>	
+	  
+	  
+	  <tr>
+	    <td class="label">分类</td>
+	    <td>
+	    
+	    	{foreach from=$categorie item=item}
+			       <input name="cat_ids[]" type="checkbox" value="{$item.id}"  
+				       {foreach from=$distributor_info.cat_ids_array item=cat_id}
+				       	 {if $cat_id eq $item.id}
+				       		checked="checked"
+				       	 {/if}
+				       {/foreach}
+			       />
+		       {$item.name}
+	     	{/foreach}
+	    </td>
+	  </tr>
+	
+	  <tr>
+	    <td class="label">微信appId</td>
+	    <td>
+	      <input type="text" name="appId" value="{$distributor_info.appId}" /></td>
+	  </tr>
+	  
+	  <tr>
+	    <td class="label">微信appSecret</td>
+	    <td>
+	      <input type="text" name="appSecret" value="{$distributor_info.appSecret}" style="width: 300px;"/></td>
+	  </tr>
+	  
+	
+	  <tr>
+	  	<td class="label">客服热线电话</td>
+	  	<td>
+	      <input type="text" name="service_phone" value="{$distributor_info.service_phone}" style="width: 200px;"/>
+	    </td>
+	  </tr>
+	  <tr>
+	  	<td class="label">客服邮箱</td>
+	  	<td>
+	      <input type="text" name="service_email" value="{$distributor_info.service_email}" style="width: 200px;"/>
+	    </td>
+	  </tr>
+	  <tr>
+	  	<td class="label">客服QQ</td>
+	  	<td>
+	      <input type="text" name="service_qq" value="{$distributor_info.service_phone}" style="width: 200px;"/>
+	      <span style="color: red">
+	      	如有多个，用英文逗号分割,例:111,222,333
+	      </span>
+	      
+	    </td>
+	  </tr>
+	  <tr >
+	  <td class="label"></td>
+	  	<td >
+	  	<input type="button" onclick="save_organ();" value="{$lang.button_submit}" class="button" />
+	  	</td>
+	  </tr>
+	  
+	</table>
+	
+	
+</div>
+</form>
+
+<div id="product-table">
+	<p style="float: right;">
+		<a class="special" href="distributor.php?act=organ_ipa_rate_config_add&organ_id={$user_id}&d_name={$distributor_info.d_name}&save_type=insert">
+			添加配置
+		</a>
+	</p>
+<!-- 订单列表 -->
+	<div class="list-div" id="listDiv">
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th>编号</th>
+				<th>险种名称</th>
+				<th>合作伙伴代码</th>
+				<th>总费率</th>
+				<th>个人费率</th>
+				<th>推荐费率</th>
+				<th>渠道佣金</th>
+				<th>操作</th>
+			</tr>
+			{foreach from=$config_list item=config key=key}
+			<tr align="center">
+				<td >{$config.id}</td>
+				<td >{$config.attribute_name}</td>
+				<td >{$config.partner_code}</td>
+				<td >{$config.rate_total}</td>
+				<td >{$config.rate_myself}
+					{if $config.myself_enabled eq 1}
+						<span style="color: red">(已启用)</span>
+					{/if}
+				</td>
+				<td >{$config.rate_recommend}
+					 {if $config.recommend_enabled eq 1}
+						<span style="color: red">(已启用)</span>
+					 {/if}
+				</td>
+				<td >{$config.rate_organization}
+					 {if $config.organization_enabled eq 1}
+						<span style="color: red">(已启用)</span>
+					 {/if}
+				</td>
+				<td><a href="distributor.php?act=organ_ipa_rate_config_add&id={$config.id}&save_type=edit&d_name={$distributor_info.d_name}&organ_id={$user_id}" title="{$lang.edit}">
+						<img src="images/icon_edit.gif" border="0" height="16" width="16" />
+					</a>
+					
+					<a href="javascript:remove_config('{$config.institution_id}','{$config.attribute_id}');" title="{$lang.edit}">
+						<img src="images/icon_drop.gif" border="0" height="16" width="16" />
+					</a>
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+	</div>
+	
+	<script language="JavaScript" type="text/javascript">
+
+		    
+	</script>
+
+</div>
+
+
+<div id="payment-table" style="display: none">
+	<p style="float: right;">
+		<a class="special" href="distributor.php?act=payment_add&user_id={$user_id}&save_type=insert">
+			添加支付方式
+		</a>
+	</p>
+<!-- 订单列表 -->
+	<div class="list-div" id="listDiv">
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th>支付付方式名称</th>
+				<th>支付付方式描述</th>
+				<th>操作</th>
+			</tr>
+			{foreach from=$payment_list item=payment key=key}
+			<tr align="center">
+				<td >{$payment.pay_name}</td>
+				<td >{$payment.pay_desc}</td>
+	
+				<td><a href="distributor.php?act=payment_edit&id={$payment.id}&user_id={$user_id}" title="{$lang.edit}">
+						<img src="images/icon_edit.gif" border="0" height="16" width="16" />
+					</a>
+					
+					<a href="javascript:remove_payment('{$payment.id}','{$payment.user_id}');" title="{$lang.drop}">
+						<img src="images/icon_drop.gif" border="0" height="16" width="16" />
+					</a>
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+	</div>
+	
+	<script language="JavaScript" type="text/javascript">
+		function remove_payment(id,user_id){
+	        $.ajax({
+	        	tye:'GET',
+	        	url:'distributor.php?act=remove_payment&id='+id,
+	        	success:function(res){
+	        		if(res==0){
+	        			alert('删除成功！');
+	        			window.location.href="distributor.php?act=organization_edit&user_id="+user_id+"&click=payment";
+	        		}else if(res==1){
+	        			alert('删除失败！');
+	        		}
+	        	}
+	        	
+	        });
+		    	
+			
+		}
+		    
+	</script>
+
+</div>
+
+<div style="display: none;" id="upload_img_div">
+	<form id='myupload' action='distributor?act=upload_img&path_type=4' method='post' enctype='multipart/form-data'>
+		<input class="padd_TB5" id="fileupload" type="file" name="image" onchange="upload_img()" />
+		<div id="showimg" ></div>
+	</form>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function() {
+		window.__Object_toJSONString = Object.prototype.toJSONString;
+		delete Object.prototype.toJSONString;
+
+   });	
+   
+   {if $click}
+   		change_tab("{$click}");
+   		{else}
+   	 change_tab("baseinfo");
+   {/if} 
+   
+   
+   function change_tab(tab_name){
+		  var temp = ['baseinfo','organinfo','config','product','payment'];
+		  $(temp).each(function(index,element){
+			  	if(element==tab_name){
+			  		$("#"+element+"-table").show();
+			  		$("#"+element+"-tab").attr("class", "tab-front");//选中
+			  	}else{
+			  		$("#"+element+"-table").hide();
+			  		$("#"+element+"-tab").attr("class", "tab-back");
+			  	}
+			  
+			  });
+	}
+   
+   
+   function save_organ() {
+		var msg = data_validation();
+		if (msg!='undefined' && msg!='') {
+			alert(msg);
+			return;
+		} else {
+ 			var obj = $('#organ_theForm').serialize();
+			$.ajax({
+				   type: "POST",
+				   url: "distributor.php",
+				   data: obj,
+				   success: function(data){
+					 var obj = $.parseJSON(data);
+				     if(obj.code==0){
+				    	 alert(obj.msg);
+				    	 window.location="distributor.php?act=organization_list";
+				     }else{
+				    	alert(obj.msg); 
+				    }
+				   }
+			}); 
+			
+			
+		}
+	}
+   
+   
+   function data_validation(){
+	   var msg="";
+	    msg+=mobile_phone_validate($("#organ_theForm input[name=mobilePhone]").val(),1); //手机号码
+	    
+	   var save_type =  $("#organ_theForm input[name=save_type]").val();
+	    if(save_type=='insert')
+	    {
+	    	msg+=password_validate($("#organ_theForm input[name=password]").val(),1);//密码
+	    }
+	    
+	    
+	    //校验渠道名称
+	   var d_name =  $.trim($("#organ_theForm input[name=d_name]").val());
+	   if(!d_name){
+		   msg+="请输入渠道名称！"
+	   }
+	   
+	   //企业组织代码
+	   var d_identificationcode =  $.trim($("#organ_theForm input[name=identificationcode]").val());
+	   if(d_identificationcode.length<2){
+		   msg+="\n请输入企业组织代码！"
+	   }
+	   
+	   //渠道类型
+	   var d_type =  $.trim($("#organ_theForm select[name=d_type]").val());
+	   var d_institution_type =  $.trim($('#organ_theForm input[name="d_institution_type"]:checked').val());
+	   if(!d_type){
+		   msg+="\n请选择渠道类型"
+	   }
+	   
+	   if(!d_institution_type){
+		   msg+="\n请完善渠道类型"
+		}
+	   
+	   //联系人
+	   var d_contacts =  $.trim($("#organ_theForm input[name=d_contacts]").val());
+	   if(d_contacts.length<2){
+		   msg+="\n填写联系人"
+	   }
+	   
+	   //邮件地址
+	   msg+=email_validate($("#organ_theForm input[name=email]").val(),1);
+	   
+	   return msg;
+	   
+   } 
+   
+   
+   
+  var img,pageii,showimg;
+  function upload_img()
+  {
+	  showimg = $('#showimg');
+	  var files = $(".files");
+	  
+	   $("#myupload").ajaxSubmit({
+    	    dataType : 'json',
+    	    url:"distributor.php?act=upload_img&path_type=4", //请求url
+    	    beforeSend : function() {
+        	     //btn.html("上传中...");
+    	    },
+    	    uploadProgress : function(event, position, total, percentComplete) {
+        	  	//上传进度
+    	    },
+    	    success : function(data) {
+    	    	upload_success_reback(data);
+    	    },
+    	    error : function(xhr) {
+    	    	upload_success_reback(xhr.responseText);
+    	    }
+	   });
+	  
+  }
+   
+    function upload_success_reback(data){
+    	 data = $.parseJSON(data);
+	     if (data.code!=0) { //modify yes123 2014-12-09
+ 	      	alert(data.msg);
+ 	     } else {
+     	      img = data.pic;
+     	      showimg.show();
+     	      showimg.html('<img  float:left;margin-left:10px;" src="'+img+'">');
+ 	      
+ 	     }
+    }
+  	
+	function upload_img_dialog(title_str){
+	  $("#upload_img_div").show();
+	   pageii = $.layer({
+			type: 1,
+	        btns: 2,                    
+	        btn: ['确定','取消'],
+	        title: title_str, //不显示默认标题栏
+	        shade: [0.3, '#696969'], //不显示遮罩
+	        area: ['420px', '220px'],
+			page:{dom:'#upload_img_div'},
+	        yes: function(){
+	        	set_img();
+	        }, no: function(){
+	        	layer.close(pageii);
+	        }
+		}); 
+	}
+   
+	
+	function set_img(){
+		
+		//关闭窗口
+		layer.close(pageii);
+		//赋值
+		$("#website_logo").val(img);
+		//展示
+		$("#show_website_logo").attr("src",img);
+	}
+	
+	function validate()
+	{
+	    validator = new Validator("theForm");
+	    validator.isEmail("email", invalid_email, true);
+
+	    if (document.forms['theForm'].elements['act'].value == "insert")
+	    {
+	        validator.required("username",  no_username);
+	        validator.required("password", no_password);
+	        validator.required("confirm_password", no_confirm_password);
+	        validator.eqaul("password", "confirm_password", password_not_same);
+
+	        var password_value = document.forms['theForm'].elements['password'].value;
+	        if (password_value.length < 6)
+	        {
+	          validator.addErrorMsg(less_password);
+	        }
+	        if (/ /.test(password_value) == true)
+	        {
+	          validator.addErrorMsg(passwd_balnk);
+	        }
+	    }
+	    else if (document.forms['theForm'].elements['act'].value == "update")
+	    {
+	        var newpass = document.forms['theForm'].elements['password'];
+	        var confirm_password = document.forms['theForm'].elements['confirm_password'];
+	        if(newpass.value.length > 0 || confirm_password.value.length)
+	        {
+	          if(newpass.value.length >= 6 || confirm_password.value.length >= 6)
+	          {
+	            validator.eqaul("password", "confirm_password", password_not_same);
+	          }
+	          else
+	          {
+	            validator.addErrorMsg(password_len_err);
+	          }
+	        }
+	    }
+
+	    return validator.passed();
+	}
+	
+	//证书过期时间和‘永久有效’只能选择其一
+	function clearOtherDate(type){
+		   if(type==1){
+			   $("#certificate_expiration_date").val('');
+		   }else{
+			   $("#yjyx").attr("checked", false);
+		   }
+		   
+	}
+	
+	
+	
+    function remove_config(institution_id,attribute_id){
+	    	var str = '是否同时删除<span style="color: red;font-size: 18px;">"子渠道"</span>配置？'+
+    		'<p>点击<span style="color: red;font-size: 18px;">“是”</span>删除此渠道和此渠道下所有子渠道的配置</p>'+
+    		'<p>点击<span style="color: red;font-size: 18px;">“否”</span>只删除此渠道的配置</p>';
+    	var lay_msg = $.layer({
+    	    shade: [0],
+    	    area: ['350','230'],
+    	    dialog: {
+    	        msg: str,
+    	        btns: 2,                    
+    	        type: 4,
+    	        btn: ['是','否'],
+    	        yes: function(){
+    	    		layer.close(lay_msg);
+    	    		del_config(institution_id,attribute_id,1);
+    	        }, no: function(){
+    	            layer.close(lay_msg);
+    	            del_config(institution_id,attribute_id,0);
+    	        }
+    	    }
+    	}); 
+    	
+    }
+    
+    function del_config(institution_id,attribute_id,remove_all){
+    	var parm = 'institution_id='+institution_id+'&attribute_id='+attribute_id+'&remove_all='+remove_all;
+        $.ajax({
+        	tye:'GET',
+        	url:'distributor.php?act=rate_config_remove',
+        	data:parm,
+        	success:function(data){
+        		var obj = $.parseJSON(data);
+        		if(obj.code==0){
+        			alert(obj.msg);
+        			window.location.href="distributor.php?act=organization_edit&user_id={$user_id}&click=product";
+        		}else if(obj.code==1){
+        			alert(obj.msg);
+        		}
+        	}
+        	
+        });
+    	
+    }
+	
+
+</script>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+
+{/literal}
+
+
+	//校验手机号码
+	function mobile_phone_validate(mobile_phone, tag) {
+		if (/^1[0-9]{10}$/.test(mobile_phone)) {
+			//return true
+		} else {
+			var msg = '手机号码不正确!\n手机号码必填!\n';
+			if (tag) {
+				alert(msg) ;
+			}
+			return msg;
+		}
+	}
+
+</script>
+{include file="pagefooter.htm"}

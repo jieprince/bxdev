@@ -1,0 +1,492 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/jquery.form.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<!-- 订单搜索 -->
+<div class="form-div">
+<form action="javascript:searchPolicy()" name="searchForm">
+  	<input type="hidden" name="act" value="proposal_list">
+ 	<table>
+ 		<tr>
+ 			<td>保单号：</td>
+ 			<td><input type="text" name="policy_no" value="{$filter.policy_no}"></td>
+ 			<td align="right">产品名称：</td>
+ 			<td><input type="text" name="attribute_name" value="{$filter.attribute_name}"></td>
+ 		
+ 			<td>手机号码：</td>
+ 			<td><input type="text" name="mobile_phone" value="{$filter.mobile_phone}"></td>
+			<td>会员姓名：</td>
+ 			<td><input type="text" name="agent_realname" value="{$filter.agent_realname}"></td>
+
+		
+ 			
+ 		</tr>
+ 		<tr>
+		
+			<!-- {if $smarty.session.action_list eq 'all'}-->
+			<td>投保人：</td>
+ 			<td><input type="text" name="applicant_username" value="{$filter.applicant_username}"></td>
+				
+		 	<!-- {else} -->
+	 				<input type="hidden" name="applicant_username">
+	 		<!-- {/if} -->
+			
+ 			<td align="right">开始时间：</td>
+	  		<td>
+	  			<input class="Wdate" type="text"  id="start_time" name="start_time" value="{$filter.start_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+	  		</td>
+	  		
+	  		<td align="right">结束时间：</td>
+	  		<td>
+	  				<input class="Wdate" type="text" id="end_time" name="end_time" value="{$filter.end_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+	  		</td>
+			
+			
+			<td>状态：</td>
+ 			<td>
+				<select name="policy_status">
+ 					<option value="">--请选择--</option>
+ 					<!--{foreach from=$attr_status key=key  item=item}-->
+ 						<option value="{$key}">{$item}</option>
+ 					<!--{/foreach}-->
+				</select>
+ 			
+ 			</td>
+			</tr>
+			<tr>
+					<!-- {if $smarty.session.action_list eq 'all'}-->
+				<td>保险公司：</td>
+	 			<td>
+	 				<select name="insurer_code">
+	 					<option value="">--请选择--</option>
+						<!--{foreach from=$list_insurance_company item=item}-->
+	 		<option value="{$item.insurer_code}">{$item.insurer_name}</option>
+						<!--{/foreach}-->
+					</select>
+	 			</td>
+	 				<!-- {else} -->
+	 						<input type="hidden" name="insurer_code">
+	 				<!-- {/if} -->
+				
+			<!-- {if $smarty.session.action_list eq 'all'}-->
+				<td>平台来源：</td>
+	 			<td>
+	 		
+	 				<select name="platform_id">
+	 					<option value="">--请选择--</option>
+						
+	 					<option value="android">android</option>
+						<option value="iPhone">iPhone</option>
+						<option value="weixin">weixin</option>
+						<option value="pc">pc</option>
+						<option value="sun_web">sun_web</option>
+						
+					</select>
+	 			</td>
+	 			<!-- {else} -->
+	 				<input type="hidden" name="platform_id">
+			<!-- {/if} -->
+			
+	 			 	<td><input type="submit" value="查询" ></td>	
+				<td>
+	  				<button onclick="searchPolicy('{$lang.one_week}');"  class="list_button">{$lang.one_week}</button>
+				</td>
+				
+				<td>
+	  			<button onclick="searchPolicy('{$lang.one_month}');"  class="list_button">{$lang.one_month}</button>
+	  			</td>
+				
+				<td>
+				<button onclick="searchPolicy('{$lang.three_month}');" class="list_button">{$lang.three_month}</button>	
+				</td>
+	 			
+	 		
+			</tr>
+		
+ 	</table>
+ </form>
+</div>
+<script language="JavaScript">
+	function searchPolicy(type) {
+		//2014-09-12 yes123
+		//处理最近时间
+		if(type){
+			var sDate='';
+			var timestamp=Math.round(new Date().getTime()/1000) ;
+			
+			if(type=='{$lang.one_week}'){
+				sDate = timestamp-(86400*7);
+			}
+			if(type=='{$lang.one_month}'){
+				sDate = timestamp-(86400*30);
+			}
+			if(type=='{$lang.three_month}'){
+				sDate = timestamp-(86400*30*3);
+			}
+			
+			$("#start_time").val(getTime(sDate));
+			$("#end_time").val(getTime(timestamp));
+
+		}
+		
+        listTable.filter['policy_no'] = Utils.trim(document.forms['searchForm'].elements['policy_no'].value);
+        listTable.filter['attribute_name'] = Utils.trim(document.forms['searchForm'].elements['attribute_name'].value);
+        listTable.filter['applicant_username'] = Utils.trim(document.forms['searchForm'].elements['applicant_username'].value);
+        listTable.filter['start_time'] = Utils.trim(document.forms['searchForm'].elements['start_time'].value);
+        listTable.filter['end_time'] = Utils.trim(document.forms['searchForm'].elements['end_time'].value);
+      	
+        //add yes123 2015-05-05 按照会员手机查询
+	    listTable.filter['mobile_phone'] = document.forms['searchForm'].elements['mobile_phone'].value;
+		listTable.filter['agent_realname'] = document.forms['searchForm'].elements['agent_realname'].value;
+
+	  
+		listTable.filter['policy_status'] = document.forms['searchForm'].elements['policy_status'].value;
+		
+		listTable.filter['insurer_code'] = document.forms['searchForm'].elements['insurer_code'].value;
+		
+		listTable.filter['platform_id'] = document.forms['searchForm'].elements['platform_id'].value;
+		
+
+        listTable.filter['page'] = 1;
+        listTable.loadList(); 
+	
+	}
+	//unix时间戳格式化
+	function getTime(timestamp) {  
+		 var ts = arguments[0] || 0;  
+	 	 var t,y,m,d,h,i,s;  
+	     t = ts ? new Date(ts*1000) : new Date();  
+	     y = t.getFullYear();  
+	     m = t.getMonth()+1;  
+	     d = t.getDate();  
+		 h = t.getHours();  
+	     i = t.getMinutes();  
+		    // 可根据需要在这里定义时间格式  
+		 return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i);  
+	}  
+</script>
+<!-- 订单列表 -->
+<form method="post" action="policy.php?act=operate" name="listForm" onsubmit="return check()">
+  <div class="list-div" id="listDiv">
+{/if}
+
+ <td>
+  <input type="button" onclick="export_policy_list();" value="导出">
+ </td>
+	 
+	   	<td colspan="10">
+	    <span style="float: right;color: red">总保费:{$s_totalpremium} 元</span>
+	</td>
+	
+       <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+          <tr align="center">
+            
+			<th><input onclick='listTable.selectAll(this, "policy_id")' type="checkbox" />{$lang.order_sn}</th>
+            <th bgcolor="#ffffff">保单号</th>
+            <th bgcolor="#ffffff">产品名称</th>
+            <th bgcolor="#ffffff">份数</th>
+            <th bgcolor="#ffffff">金额</th>
+            <th bgcolor="#ffffff">会员ID</th>
+            <th bgcolor="#ffffff">会员姓名</th>
+            <th bgcolor="#ffffff">手机号码</th>
+            
+           
+			
+			<!-- {if $smarty.session.action_list eq 'aldddl'}-->
+            <th bgcolor="#ffffff">代理人</th>
+			 <th bgcolor="#ffffff">代理人姓名</th>
+			 <!-- {/if} -->
+			
+			<!-- {if $smarty.session.action_list eq 'all'}-->
+			 	<th bgcolor="#ffffff">投保人</th>
+				<th bgcolor="#ffffff">平台来源</th>
+			 <!-- {/if} -->
+			 		<th bgcolor="#ffffff">状态</th>
+			<th bgcolor="#ffffff">操作</th>
+			<th bgcolor="#ffffff">时间</th>
+			<th bgcolor="#ffffff">代码信息</th>
+			<th bgcolor="#ffffff">返回信息</th>
+
+          </tr>
+          <!--{foreach from=$policy_list item=item}-->
+          <tr>
+            <td align="center" bgcolor="#ffffff">
+            	<input type="checkbox" name="policy_id" value="{$item.policy_id}" />
+            		<a href="policy.php?act=info&policy_id={$item.policy_id}" class="f6">{$item.policy_id}</a>
+            </td>
+            <td align="center" bgcolor="#ffffff"><a href="policy.php?act=info&policy_id={$item.policy_id}" class="f6">{$item.policy_no}</a></td>
+            <td align="center" bgcolor="#ffffff">{$item.attribute_name}</td>
+            <td align="center" bgcolor="#ffffff">{$item.apply_num}</td>
+            <td align="center" bgcolor="#ffffff">{$item.total_premium}</td>
+            
+            <td align="center" bgcolor="#ffffff">{$item.user_id}</td> <!-- 会员ID -->
+            <td align="center" bgcolor="#ffffff">{$item.real_name}</td><!-- 会员姓名 -->
+            <td align="center" bgcolor="#ffffff">{$item.mobile_phone}</td><!-- 手机号码 -->
+            
+           
+           
+		   <!-- {if $smarty.session.action_list eq 'alldddd'}-->
+		    <td align="center" bgcolor="#ffffff">
+			<a href="account_log.php?act=list&user_id={$item.agent_uid}" target="_blank">{$item.agent_username}</a></td>
+ 			<td align="center" bgcolor="#ffffff">
+			<a href="account_log.php?act=list&user_id={$item.agent_uid}" target="_blank">{$item.real_name}</a></td>
+			 <!-- {/if} -->
+			
+			
+			<!-- {if $smarty.session.action_list eq 'all'}-->
+			 <td align="center" bgcolor="#ffffff">{$item.applicant_username}</td>
+				<td align="center" bgcolor="#ffffff">{$item.platform_id}</td>
+			 <!-- {/if} -->
+			<td align="center" bgcolor="#ffffff">{$item.policy_status}</td>
+ 
+  
+		    <td align="center" bgcolor="#ffffff">
+		    		<a href="policy.php?act=info&policy_id={$item.policy_id}" target="_blank">查看</a>
+		    		   <!-- {if $item.policy_status eq '已投保'} -->
+		    			|<a href="policy.php?act=getpolicyfile&policy_id={$item.policy_id}" target="_blank">电子保单</a>
+		    		   <!-- {/if} -->
+		    		   
+		    		   <!-- {if $smarty.session.action_list eq 'all' && $item.policy_status eq '已投保'}-->
+			    		|<a href ="policy.php?act=withdraw&policy_id={$item.policy_id}" target="_blank">注销</a>
+			   		   <!-- {/if} -->
+			</td>
+	   		<td align="center" bgcolor="#ffffff">{$item.dateline}</td>
+	 		<td align="center" bgcolor="#ffffff">{$item.ret_code}</td>
+	        <td align="center" bgcolor="#ffffff">{$item.ret_msg}</td>
+          </tr>
+          <!--{/foreach}-->
+          </table>
+
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+  
+</table>
+<input type="button" value="导入" onclick="import_policy_list();">
+
+{if $full_page}
+  </div>
+ 
+</form>		
+
+<div id="import_excel_div" style="display: none;margin-left: auto;margin-right: auto;">
+	<form action="policy.php?act=import_excel" id="import_excel_form" method='post' enctype='multipart/form-data'>
+		<table >
+			<tr>
+				<td></td>
+				<td>
+					<input type="file" name='excelfile' id="excelfile">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input type="button" value="确定" onclick="upload_file();">
+				</td>
+			</tr>
+		</table>
+		
+		
+	</form>
+
+</div>
+
+      <!--#保单列表界面 end-->
+ <script language="JavaScript">
+ listTable.query = "proposal_query";
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+listTable.s_totalpremium = {$s_totalpremium};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+
+    onload = function()
+    {
+        // 开始检查订单
+        startCheckOrder();
+    }
+
+
+    function check()
+    {
+      var snArray = new Array();
+      var eles = document.forms['listForm'].elements;
+      for (var i=0; i<eles.length; i++)
+      {
+        if (eles[i].tagName == 'INPUT' && eles[i].type == 'checkbox' && eles[i].checked && eles[i].value != 'on')
+        {
+          snArray.push(eles[i].value);
+        }
+      }
+      if (snArray.length == 0)
+      {
+        return false;
+      }
+      else
+      {
+        eles['policy_id'].value = snArray.toString();
+        return true;
+      }
+    }
+  
+    listTable.listCallback = function(result, txt) 
+    {
+        if (result.error > 0) 
+        {
+            alert(result.message);
+        }
+        else 
+        {
+            try 
+            {
+                document.getElementById('listDiv').innerHTML = result.content;
+                //bind_order_event();
+                if (typeof result.filter == "object") 
+                {
+                    listTable.filter = result.filter;
+                }
+                listTable.pageCount = result.page_count;
+				 listTable.s_totalpremium = result.s_totalpremium;
+				
+            }
+            catch(e)
+            {
+                alert(e.message);
+            }
+        }
+    }
+    
+	//导出发票列表 2014-10-30 yes123
+	 function export_policy_list(){
+		  var ids='';
+		  $('input[name="policy_id"]:checked').each(function(){
+		    ids+=$(this).val()+',';
+		  }); 
+		  var reg=/,$/gi;
+		  ids=ids.replace(reg,"");
+		  ids = ids.split(",");
+		  if(ids!=""){
+			  window.location.href="policy.php?act=export_policy_list&policy_ids="+ids; 
+		  }else{
+			 showMsg("请选择要导出的保单",0);
+		  }
+	 }	
+	
+	
+	 var upload_dialog;
+		//导出发票列表 2014-10-30 yes123
+	 function import_policy_list(){
+		$("#import_excel_div").show();
+		upload_dialog = $.layer({
+				type: 1,
+		        title: "导入", //不显示默认标题栏
+		        shade: [0.3, '#696969'], //不显示遮罩
+		        area: ['320px', '100px'],
+				page:{dom:'#import_excel_div'}
+		});
+			
+			
+	 }	
+	
+	function showMsg(msg_str,type){
+			var showFn =  $.layer({
+			    shade: [0],
+			    area: ['auto','auto'],
+			    dialog: {
+			        msg: msg_str,
+			        btns: 1,                    
+			        type: type,
+			        btn: ['确定'],
+			        yes: function(){
+			        	if(type){
+				        	location.replace("order.php?act=invoice_list");
+			        	}else{
+			        		layer.close(showFn);
+			        	}
+			        }
+			    }
+			});
+			
+	}
+	
+	function upload_file(){
+		var excelfile = $("#excelfile").val();
+		if(!excelfile){
+			alert("请选择要上传的excel文件");
+			return;
+		}
+		
+		var loadi;
+	   $("#import_excel_form").ajaxSubmit({
+    	    dataType : 'text',
+    	    beforeSend : function() {
+    	 	   loadi = layer.load('文件正在上传中…');
+    	    },
+    	    uploadProgress : function(event, position, total, percentComplete) {
+
+    	    },
+    	    success : function(data) {
+    	        layer.close(loadi);
+    	        layer.close(upload_dialog);
+    	    	data = $.parseJSON(data);
+	       	    if (data.code==0) { //modify yes123 2014-12-09
+	       	    	if(data.warn_str!=''){
+	       	    		//有警告，提示用户。
+	       	    		show_warn_info(data.warn_str);
+	       	    	}else{
+	       	    		alert(data.msg);
+	       	    	    window.location.reload();    
+	       	    	}
+	       	 	
+	       	    } else {
+	       	    	alert("有异常");       	      			
+	       	     }
+    
+    	    },
+    	    error : function(xhr) {
+    	    	layer.close(loadi);
+    	    	alert('上传失败');
+    	    	  
+    	    }
+	   });
+		
+		
+		
+	}
+	
+	
+	function show_warn_info(str)
+	{
+	   pageii = $.layer({
+			type: 1,
+   	        title: '警告', //不显示默认标题栏
+   	        shade: [0.3, '#696969'], //不显示遮罩
+   	     	area: ['400','400'],
+			page:{html:str},
+			close:function(){
+				 window.location.reload();    
+				
+			}
+			
+		}); 
+	}
+	
+	
+</script>   
+{/literal}
+	  
+{include file="pagefooter.htm"}
+{/if}

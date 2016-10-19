@@ -1,0 +1,96 @@
+<script src="js/laydate-master/laydate.js"></script>	
+<script src="themes/inserance_02/js/custorm/picc_ijiankang.js"></script>			
+<div class="xqcont">
+    <div class="dataForm">
+    	 <form action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" method="post" onSubmit="return setPrices(1)">
+        <div class="baseForm" id="baseForm">
+            <div id="list_value">
+            	<div class="f-mt5">
+                    <label class="wid_100 text_right f-ib">适合人群：</label>
+                    <label>出生满28天-50周岁 </label>
+                </div>
+                <div class="f-mt5">
+                    <label class="wid_100 text_right f-ib">保障期限：</label>
+                    <label>{if $ins_product_selected.period==30}30年{else}保至80周岁{/if}</label>
+                </div>
+            	<input type="hidden" id="server_time" value="{$server_time}">
+                <input type="hidden" id="ins_product_selected_period" name="insPeriod" value="{$ins_product_selected.period}">
+                 
+                <div class="f-ml20 f-pl20">
+                	 
+                </div>
+                <input type="hidden" id="min_age" name="min_age" value="{$ins_product_selected.age_min}">
+                <input type="hidden" id="max_age" name="max_age" value="{$ins_product_selected.age_max}">
+                <div class="f-mt10">
+                    <label class="wid_100 text_right f-ib">被保险人生日：</label>
+                    <label class="fitem-value">
+                        <input  type="text" name="assured_birthday"  id="birthdate"  data-data_v="0:0" class="laydate-icon" readonly>
+                    </label>
+                </div>
+                <div class="f-mt10">
+                    <label class="wid_100 text_right f-ib">被保险人性别：</label>
+                 
+                    <label class="fitem-value">
+                    
+                    	<!--{foreach from=$arr_gender_list key=key item=value}-->
+                        	 <a class="btn_sm btn-simple" data-data_v="1:{$value.factor_code}" href="javascript:void(0);" name="filedOption">{$value.factor_name}</a>
+                            
+						<!--{/foreach}-->
+                       
+                    </label>
+                 
+                </div>
+                <div class="f-mt10">
+                    <label class="wid_100 text_right f-ib">保险金额：</label>
+                 
+                    <label class="fitem-value" id="str_baoxian">
+                    
+                        <a class="btn_sm btn-simple" data-data_v="2:5" href="javascript:void(0);" name="filedOption">5万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:10" href="javascript:void(0);" name="filedOption">10万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:15" href="javascript:void(0);" name="filedOption">15万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:20" href="javascript:void(0);" name="filedOption">20万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:25" href="javascript:void(0);" name="filedOption">25万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:30" href="javascript:void(0);" name="filedOption">30万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:35" href="javascript:void(0);" name="filedOption">35万</a>
+                        <a class="btn_sm btn-simple" data-data_v="2:40" href="javascript:void(0);" name="filedOption">40万</a>
+                      
+                    </label>
+                 
+                </div>
+                
+                 
+                 
+                
+                <div class="f-mt10">
+                    <label class="wid_100 text_right f-ib">缴费期间：</label>
+                 
+                    <label class="fitem-value">
+                        <!--{foreach from=$arr_period_list key=key item=value}-->
+                    	<a class="btn_sm btn-simple" data-data_v="4:{$value.factor_code}" href="javascript:void(0);" discription="" name="filedOption">{$value.factor_name}</a>
+					<!--{/foreach}-->   
+                    </label>
+                 
+                </div>
+                 
+            </div> 
+            <div class="buyBar">				
+                    <input type="hidden" name="attribute_id" id="attribute_id" value="{$ins_product_selected.attribute_id}">
+                	<input type="hidden" name="startDate" id="startDate">
+                    <input type="hidden" name="endDate" id="endDate">
+                    <input type="hidden" name="assured_gender" id="gender">
+                    <input type="hidden" name="duty_price_ids" id="duty_price_ids">
+                    <input type="hidden" name="applyNum" id="applyNum">
+                     
+                    <input type="hidden" name="payPeriod" id="payPeriod">
+                    <input type="hidden" name="payPeriodUnit" id="payPeriodUnit">
+                    <input type="hidden" name="price" id="price">
+                	<input type="submit" id="buy_submit" value="{$lang.insure}" class="btn_products_02_01 margin_T0_30">
+            </div> 
+        </div>
+        </form>
+    </div>
+</div>
+					
+					
+					
+					

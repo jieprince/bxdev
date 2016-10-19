@@ -1,0 +1,134 @@
+<h5><span>部门列表</span></h5>
+<div class="blank"></div>
+<a href="javascript:add_department();" class="btn_on02" style="float: right">新增部门</a>
+<table class="table_user_01">
+	<tr align="center">
+		<th bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">编号</th>
+		<th bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">部门名称</th>
+		<th bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">会员数量</th>
+		<th bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">操作</th>
+	</tr>
+	<!--{foreach from=$department_list item=item}-->
+	<tr align="center">
+		<td class="color_94">{$item.department_id}</td>
+		<td class="color_94">{$item.department_name}</td>
+		<td class="color_94">
+			<a href="user.php?act=salesman_list&department_id={$item.department_id}">{$item.user_num}</a>
+		</td>
+		<td class="color_94">
+			<a href="javascript:edit_department('{$item.department_id}','{$item.department_name}');">编辑</a>|
+			<a href="javascript:del_department('{$item.department_id}','{$item.department_name}');">删除</a>
+		</td>
+		
+	</tr>
+	<!--{/foreach}-->
+</table>
+<div id="department_info" style="display: none;font-size: 14px;">
+	<p style="margin-top: 20px;margin-left: 30px;">
+		部门名称：<input type="text" name="department_name" id="organ_department_name">
+	</p>
+</div>
+<script type="text/javascript">
+	function add_department(){
+		$("#organ_department_name").val('');
+		var pageii = $.layer({
+		  	type: 1,
+	        title: '添加部门', //不显示默认标题栏
+	        shade: [0], //不显示遮罩
+	        area: ['300px', '130px'],
+	        btns: 1,
+	        btn: [ '添加'],
+			page : {
+				dom : '#department_info'
+			},
+			yes: function(index){
+				var department_name =$.trim($("#organ_department_name").val());
+				if(!department_name){
+					alert('请输入部门名称');
+					return;
+				}
+				layer.load(3);
+				$.ajax({
+					type:"POST",
+				 	dataType:'text',
+					url:"user.php?act=save_organ_department&save_type=insert",
+					data:"department_name="+department_name,
+					success:function(data){
+						data = $.parseJSON(data);
+						if(data.code==0){
+							alert('添加成功！');
+							location.reload();
+						}
+					}
+					
+				});
+				
+				
+			}
+		});
+		
+	}
+		function edit_department(id,name){
+			$("#organ_department_name").val(name);
+			var pageii = $.layer({
+			  	type: 1,
+		        title: '编辑部门', //不显示默认标题栏
+		        shade: [0], //不显示遮罩
+		        area: ['300px', '130px'],
+		        btns: 1,
+		        btn: [ '更新'],
+				page : {
+					dom : '#department_info'
+				},
+				yes: function(index){
+					var department_name =$.trim($("#organ_department_name").val());
+					if(!department_name){
+						alert('请输入部门名称');
+						return;
+					}
+					layer.load(3);
+					$.ajax({
+						type:"POST",
+					 	dataType:'text',
+						url:"user.php?act=save_organ_department&save_type=update",
+						data:"department_name="+department_name+"&department_id="+id,
+						success:function(data){
+							
+							data = $.parseJSON(data);
+							if(data.code==0){
+								alert('更新成功！');
+								location.reload();
+							}
+			
+						}
+						
+					});
+					
+					
+				}
+			}); 
+		}
+		
+	    function del_department(id,name) {
+	        if (confirm("确认要删除'"+name+"'吗？")) {
+	        	layer.load(3);
+				$.ajax({
+					type:"POST",
+				 	dataType:'text',
+					url:"user.php?act=del_department",
+					data:"department_id="+id,
+					success:function(data){
+						data = $.parseJSON(data);
+						if(data.code==0){
+							alert('删除成功！');
+							location.reload();
+						}
+		
+					}
+					
+				});
+	        }
+	    }
+
+
+</script>

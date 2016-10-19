@@ -1,0 +1,155 @@
+<!--{template cp_product_buy_view_header}-->
+<div class="f-fs4 f-pt20 f-tac">
+	审核资料预览
+</div>
+
+<div class="f-mt20 f-pA10 s-bg-ffffff"> 
+	<div class="container f-pb10">
+    		
+         	<div class="f-mt10 f-fs2 m-list-1">
+            	<span class="f-ml10">被保险人类型：</span> 
+                <span>
+              		{if $user_info_applicant.applicant_type==2}
+                          		单位
+                          		{else}
+                          		个人
+                    {/if}
+                </span>
+            </div>
+            <div class="f-pl10 s-lh25 f-fs2"> 
+            
+            
+            	<div id="list_001">
+                    
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                       {if $user_info_applicant.applicant_type==2}
+                   			单位（公司）：
+                   		{else}
+                   			姓 名：
+                   		{/if}
+                   		{$user_info_applicant[fullname]}
+                    </div>
+                    
+        {if $user_info_applicant.applicant_type==1}            
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                        	证件类型：$attr_certificates_type_ssbq[$user_info_applicant[certificates_type]]
+                    </div>
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                        	证件号码：$user_info_applicant[certificates_code]
+                    </div>	
+                </div>
+         {/if}
+                
+                
+        {if $user_info_applicant.applicant_type==2}        
+                <div class="f-mt15 s-bscB-b5b5b5">
+        	联系人:	$user_info_applicant[cus_contact]
+                </div>
+        {/if}        
+                <div class="f-mt15 s-bscB-b5b5b5">
+        Email:	$user_info_applicant[email]
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    手机号码：$user_info_applicant[mobiletelephone]
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    服务律师事务所：$user_info_applicant[law_office]
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    联系地址：
+                    $user_info_applicant[address]
+                </div>
+                
+            </div>
+            
+    </div>
+</div>
+ 
+<!-- <div class="f-mt20 f-pA10"> 
+	<div class="container f-pb10 s-lh25">
+    	<span class="f-ml10 f-fs3 f-db">
+			资料上传（拍照或图片文件）
+        </span>
+        <span class="f-ml10 f-db s-c-6b6b6b f-fs1">(具体资料请参考投保资料一,红色字体,共6份)</span>
+    </div>
+</div> -->
+<div class="f-mt20 f-pA10 s-bg-ffffff"> 
+	<div class="container f-pb10 f-pt10">
+    	<div class="f-ml10">
+    	{if $all_attachment[required_info] } 
+    		{loop $all_attachment[required_info] $key $value}
+        		{if $value[file_url_list]}
+        			<h3 class="f-fs2 s-c-ff0000 f-mt10">$value[field_desc]</h3>
+        			{loop $value[file_url_list] $key2 $value2}
+        				<section class="f-mt10">
+                     		&#12288;<a href="../$value2[url]" target="_blank">$value2[name]</a>
+                     	</section>
+        			{/loop}
+        			{else}
+        			<section class="f-mt10">
+        			<a href="../$value[value]" target="_blank">$value[field_desc]</a>
+        				</section>
+        		{/if}
+        	
+        	{/loop}
+        {/if}
+<!--         	<h3 class="f-fs2 s-c-ff0000 f-mt10">1.起诉状复印件</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+               
+            </section>
+            <h3 class="f-fs2 s-c-ff0000 f-mt25">2.诉讼保全申请书复印件</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+               
+            </section>
+            <h3 class="f-fs2 s-c-ff0000 f-mt25">3.财产保全标的物明细清单</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+               
+            </section>
+            <h3 class="f-fs2 s-c-ff0000 f-mt25 s-lh25">4.证据清单复印件、提交法院的证据材料复印件</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+               
+            </section>
+            <h3 class="f-fs2 s-c-ff0000 f-mt25">5. 立案通知书复印件（如有）</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+               
+            </section>
+            <h3 class="f-fs2 s-c-ff0000 f-mt25">6. 答辩状复印件（如有）</h3>
+            <section class="f-mt10">
+            	<img src="images/img_001.png" class="img-responsive">
+            </section> -->
+        </div>
+            
+    </div>
+</div>
+<div class="f-pA10"> 
+	<div class="container">
+ 		<div class="f-mt20 f-pb20">
+            <button type="submit" onClick="" class="btn btn-008fc7 btn-block btn-lg">提交申请</button>
+        </div>
+         
+    </div>
+</div>
+</form>
+<!-- <div class="s-lh25 f-pA10">
+	<span class="f-fs3 s-c-ff0000">友情提示：</span><br>
+1、此投保方式仅用于快速核保及报价，后续出具保函所需投保资料二请发送至<a href="#">ql-service@aalib.cn</a>‍邮箱
+2、由于手机上传文件有所限制，最多上传12张图片（1M以内），文件太大可能会出现上传过慢情况，建议至全联保险经纪官网提交投保（<a href="http://www.aalib.com.cn">www.aalib.com.cn</a>）
+</div> -->
+
+
+<div class="s-lh25 f-pA10">
+	<span class="f-fs3 s-c-ff0000">友情提示：</span><br>
+1、此投保方式仅用于快速核保及报价，后续出具保函所需投<a href="../mobile/get_module.php?module_id=toubaoziliao&a_id=191">保资料二</a>
+请发送至<a href="#">ql-service@aalib.cn</a>‍邮箱
+<br/>
+2、由于手机上传文件有所限制，最多上传12张图片（2M以内，JPG格式），文件太大可能会出现上传过慢情况，建议至全联保险经纪官网提交投保（<a href="http://www.aalib.com.cn">www.aalib.com.cn</a>）
+<br/>
+3、如上传过程中有任何疑问，请拨打021-65667179咨询，或者登录全联保险经纪官网（<a href="http://www.aalib.com.cn">www.aalib.com.cn</a>）进行在线咨询，谢谢！
+
+</div>
+<!--{template cp_product_buy_footer}-->

@@ -1,0 +1,145 @@
+                       {if $ins_product_list}
+						    <div class="f-mt20 producttype_list">
+							 选择产品：
+							
+							<!--{foreach from=$ins_product_list key=key item=value}-->
+							
+								{assign var="sid" value=$value[product_id]}
+	                            <span class="plan {$classattr[$sid]} f-ml5">
+								<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+								</span>
+								 
+	                            
+							<!--{/foreach}-->	
+	                        </div>
+                        {/if}
+						
+                                  
+								    <input type="text" id="max" value="1" style="display:none">
+								    <input type="text" id="min" value="" style="display:none">
+									
+								<!--{if $ins_product_selected[product_duty_price_type]=='single'}-->
+										<h4 class="f-fs2 s-c-666666 f-fwn">保险期限：
+											<span class="s-c-777777 f-fs1">
+                                            {if $ins_product_selected.period==2 && $ins_product_selected.period_uint=='天'}
+												酒店办理登记之日起，2天之内
+                                            {else}
+                                            {$ins_product_selected.period}{$ins_product_selected.period_uint}
+                                            {/if}
+											</span>
+										</h4>
+							   <!--{/if}-->
+                                 
+									
+									<h4 class="f-fs2 s-c-666666 f-fwn">承保年龄：<span class="s-c-777777 f-fs1">{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</span></h4>
+									<h4 class="f-fs2 s-c-666666  f-fwn">最大购买份数：<span class="s-c-777777 f-fs1">每人限{$ins_product_selected.number}份</span></h4>
+                          <!--      
+                               
+                                <h4 class="f-fs2 s-c-666666 f-mt20 f-fwn">适合人群：</h4>
+                                <section class="s-c-777777 s-lh25 f-fs1">
+	                               	{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁
+                                </section> -->
+                                <form action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" method="post">
+                                <section class="f-mt15">
+                                	<span>保险期间：</span>
+                                	<span>
+                                    <select class="s-select" id="career"  name="career" onChange="ajax_ins_prem()">
+                                    	<!--{foreach from=$arr_period_list item=item key=key}-->
+                                    	{if $key==0}
+                                        <option value="{$item.factor_code}" selected="selected" >{$item.factor_name}</option>
+                                        {else}
+                                        <option value="{$item.factor_code}">{$item.factor_name}</option>
+                                        {/if}
+                                        <!--{/foreach}-->
+                                    </select>
+                                    </span>
+                                    <span class="f-ml15">保额/保费：</span>
+                                	<span>
+                                    <select class="s-select" id="duty_price_ids" name="duty_price_ids" onChange="setprices()">
+                                    	 
+                                    </select>
+                                    </span>
+                                </section>
+                                
+                                <h4 class="f-fs2 s-c-666666 f-mt20 f-fwn">产品特色：</h4>
+                                <section class="s-c-777777 s-lh25 f-fs1">
+										{$goods.product_characteristic}
+                                </section>
+                               
+                                                            
+                                <div class="f-fr g-fzT-88">
+                                    <span class="f-fs2 f-db">
+                                        <span class="s-c-040404">￥</span>
+                                        <span class="s-c-ec6941 f-fs12 f-fwb" id="productPrem_"><strong>{$ins_product_selected.premium}</strong></span>
+                                    </span>
+                                    <div class="f-mt10" align="right">
+                                    	<input type="hidden" name="insurer_code" id="insurer_code" value="{$insurer_code}">
+                                        <input type="hidden" name="product_id" id="product_id" value="{$ins_product_selected.product_id}">
+                                        <input type="hidden" id="price_temp" name="price" value="" />
+                                        <button type="submit" class="btn-ec6941-1 f-tac"><i class="iconfont">&#xf0179;</i> {$lang.insure}</button> 
+                                    </div>
+                                </div>
+                                </form>
+    
+<script>
+$().ready(function() {
+    ajax_ins_prem();
+});
+
+function ajax_ins_prem(){
+		 
+     var datajson = {'insurer_code':$('#insurer_code').val(),'period_factor_code':$('#career').val(),'product_id':$('#product_id').val()};
+     $.ajax({
+        type : "post",
+        url : "oop/business/getProductData.php",
+        data : datajson,
+        success : function(data){
+			
+           if(data!=null&&data!=""){
+			   data = $.parseJSON(data)[0];
+			    
+			   if(data.duty_price_list.length>0){
+				    var duty_html = '';
+				  	$(data.duty_price_list).each(function(i_d, n_d) {
+                    	if(i_d==0){
+							duty_html += '<option value="'+n_d.product_duty_price_id+'" data-value="'+n_d.amount+'" data-did="'+n_d.premium+'" selected="selected">'+n_d.amount+'/'+n_d.premium+'</option>';	
+						}else{
+							duty_html += '<option value="'+n_d.product_duty_price_id+'" data-value="'+n_d.amount+'" data-did="'+n_d.premium+'" >'+n_d.amount+'/'+n_d.premium+'</option>';	
+						}
+						
+						
+                   	});
+					$('#duty_price_ids').html(duty_html);
+			   }
+			   
+				setprices();	 
+		   }
+            
+           
+        },
+        error : function(data){
+        
+        }
+    });	
+		
+			
+}    
+	
+function setprices(){
+	var price_tempsT = $('#duty_price_ids option:selected').data('did');
+	if(price_tempsT!=""&&price_tempsT!=null){
+		$('#productPrem_ strong').text(price_tempsT+'起');	
+	}else{
+		$('#productPrem_ strong').text('0.00');
+	}
+	
+	 
+	var temp_period_fator_code = $('#career option:selected').data("value");
+	 
+	$('#period_name').val($('#career option:selected').text());
+	$('#period_fator_code').val(temp_period_fator_code);
+	$('#price_temp').val(price_tempsT);
+	 
+}
+    
+</script>				

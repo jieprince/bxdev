@@ -1,0 +1,39 @@
+@charset "utf-8";
+body,td,th,input,textarea{font-family:Tahoma,Verdana,Geneva,sans-serif;font-size:12px;line-height:1.7;}
+body,html{margin:0;overflow-x:hidden;background-color:#FAFAFA;color:#333333;}
+form{margin:0;padding:0;}
+body{margin:0 20px 20px 20px;}
+a:link,a:visited,a:active{color:#286fbf;text-decoration:none;}
+a:hover{color:#286fbf;text-decoration:underline;}
+input,label{vertical-align:middle;}
+
+table{border-left:1px solid #DCDEE0;border-top:1px solid #DCDEE0;margin-top:20px;}
+table th{background-color:#F4F5F6;font-size:14px;border:solid 1px #DCDEE0;border-left:none;border-top:none;}
+table td{border:solid 1px #DCDEE0;border-left:none;border-top:none;}
+table th,table td{padding:10px 15px;}
+table .title{background-color:#F4F5F6;font-weight:bold;}
+table .tips{color:#999999;}
+table .hover td{background-color:#F4F5F6;}
+table .hover .tips{color:#333333;}
+
+table span{display:inline-block;}
+.textbox{border:none;padding:0;width:370px;background-color:#FAFAFA;resize:none;}
+table .hover .textbox{background-color:#F4F5F6;}
+
+.dropdown{cursor:pointer;}
+
+#dropdownMenu{border:1px solid #DCDEE0;display:none;position:absolute;background-color:#FAFAFA;box-shadow:0 0 10px #DCDEE0;}
+#dropdownMenu a{display:block;padding:5px 7px;color:#333333;}
+#dropdownMenu a:hover{background-color:#F4F5F6;text-decoration:none;}
+
+.bigTips{border:2px solid #009900;padding:5px;text-align:center;margin-top:20px;color:#009900;font-weight:bold;display:none;}
+
+.controls{text-align:center;margin-top:20px;}
+.button{display:inline-block;height:35px;line-height:30px;background-image:url(button.png);color:#333333 !important;padding:0 25px;position:relative;}
+.button:hover{text-decoration:none;background-position:0 -35px;}
+.button:active{background-position:0 -70px;}
+.button i{display:block;position:absolute;background-image:url(button.png);background-position:right 0;right:0;top:0;width:10px;height:35px;}
+.button:hover i{background-position:right -35px;}
+.button:active i{background-position:right -70px;}
+
+.windowE{display:none;}

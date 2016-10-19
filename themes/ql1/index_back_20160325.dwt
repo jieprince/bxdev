@@ -1,0 +1,145 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+{insert_scripts files='user_check.js'}
+<script src="dist/js/custom/index.js"></script>
+<div class="g-wA100 f-mt5">
+	<div class="index_focus">
+
+        <a href="javascript:;" class="index_focus_pre" title="上一张">上一张</a>
+        <a href="javascript:;" class="index_focus_next" title="下一张">下一张</a>
+        
+        <div class="bd">
+            <ul>
+            	 {foreach from=$flash_data item=item key=n}
+            	    <li>
+	                    <a href="{$item.img_url}" class="pic">
+	                        <img class="pic" src="{$item.img_file_src}" width="2000" height="340" alt="">
+	                    </a>
+                	</li>
+            	 {/foreach}
+            </ul>
+        </div>
+        <div class="slide_nav" align="center">
+        	 {foreach from=$flash_data item=item key=n name=name}
+        	 	{if $smarty.foreach.name.iteration eq 1}
+	            	<a class="on" href="javascript:;">●</a>
+	            	{else}
+	            	<a href="javascript:;">●</a>
+	            {/if}
+            {/foreach}
+        </div>
+        
+    </div>
+</div>
+<div class="g-wA100 f-mt40">
+	<div class="g-w1077 f-mc f-cb s-bscB_d2d2d2">
+    	 <div class="f-fl">
+         	<i class="iconfont s-c-ec6941 f-fs10">&#xf005f;</i>
+            <span class="s-lh35">
+            	<span class="s-c-666666 f-fs4 f-fwb f-ib s-bscR_d2d2d2 f-pr10 f-mr10">特色推荐</span>
+                 	<span style="color: #3A6EA5">此处我们只推荐性价比最高、最受欢迎的产品</span>
+                <span class="s-c-666666 f-fs2"></span>
+            </span>
+         </div>
+         <div class="f-fr ">
+         	<a href="category.php?act=hot_goods_list" class="link-666666 s-lh35 f-fs2">了解全部保险产品 ></a>
+         </div>
+    </div>
+    <div class="f-mt20">
+    	<div class="g-w1077 f-mc">
+        	<ul class="m-list f-cb">
+        	  <!--{foreach from=$ebao_hot_goods item=goods name=name }-->	
+        	  
+                <li {if $smarty.foreach.name.iteration mod 2 eq 0}  class="f-ml10"  {/if} >
+            
+                    <div class="f-pA20 f-cb">
+                    	<div class="f-fl g-w247">
+                        	<a 
+                        		{if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if}
+                        	><img src="{$goods.goods_img}" width="227" height="264"></a>
+                        </div>
+                        <div class="f-fr g-w240">
+                        	<a 
+                        		{if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if}
+                        	 title="{$goods.goods_name}" >
+                        	<h2 class="f-fs4 s-c-040404 s-bscB_989898 f-pb5 f-fwn" style="text-overflow:clip; overflow:hidden;height: 25px;">
+	                        	{$goods.goods_name}
+                        	</h2>  	
+                        	</a>
+                            <h4 class="f-fs2 s-c-040404 f-mt10 f-fwn">适合人群：</h4>
+                            <section class="s-c-777777 s-lh20 f-fs1">
+                            	<!-- 30天-60周岁，且保险期间届满时年龄不超过70周岁 -->
+                            	{if $goods.insurer_code eq 'SSBQ'}
+                            		个人、公司
+                            		{else}
+                            		{$goods.ins_product_list_select[age_min]}周岁-
+                            		{$goods.ins_product_list_select[age_max]}周岁
+                            	{/if}
+                            	
+                  
+                            </section>
+                            <h4 class="f-fs2 s-c-040404 f-mt10 f-fwn">产品特色：</h4>
+                            <section class="s-c-777777 s-lh20 f-fs1 g-h80">
+                            	{$goods.product_characteristic}
+                            </section>
+                            <div class="f-mt10">
+                            	<div class="f-fs2 f-tal">
+                                	<span class="s-c-040404">￥</span>
+                                    <span class="s-c-ec6941 f-fs12 f-fwb">{$goods.shop_price}</span>
+                                    <span class="s-c-040404">元起</span>
+                                </div>
+                                <div class="f-mt5" align="right">
+                                	<a {if $goods.detail_url}
+                        			href="{$goods.detail_url}"
+                        			{else}
+                        			href="goods.php?id={$goods.goods_id}"
+                        		{/if} class="btn-ec6941">详情了解</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+          <!--{/foreach}--> 
+            </ul>
+        </div>
+    </div>
+    
+    <div class="f-mt20">
+    	<div class="g-w1077 f-mc f-cb s-bscB_009c84">
+        	<div class="s-bg-009c84 f-pl40 f-pr40 f-pt10 f-pb10 f-fl">
+            	<span class="f-fs5 f-fwb"><span class="s-c-ffffff">常见</span><span class="s-c-ffffff">问题</span></span>
+            </div>
+            <ul class="m-list-1 f-fr f-cb" id="que_titleList">
+            	{foreach from=$article_cat_list item=item}
+                 <li><a href="javascript:change_index_faq({$item.cat_id});"><i class="iconfont">&#xf01c4;</i>{$item.cat_name}</a></li>
+                {/foreach}
+            </ul>
+            
+        </div>
+         <div id="faq_content" style="height:320px;" class="f-mt35">
+	         <!-- #BeginLibraryItem "/library/index_faq.lbi" --><!-- #EndLibraryItem -->
+         </div>
+    </div>
+</div>
+<script type="text/javascript">
+	var iq = 0;
+	function showtips(ef) {
+		iq = layer.tips('<div style="text-align:left">'+$(ef).data("title")+'</div>', ef, {
+			tips : 1
+		});
+	}
+	function removetips() {
+		layer.close(iq);
+	}
+
+	
+</script>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

@@ -1,0 +1,186 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+<div id="toolbar">
+
+
+<ul>
+      
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="cp.php?ac=admin_insurance_product_attribute">
+		<img src="template/images/createButton.gif" alt="增加">
+            增加</a>
+    </li>
+     
+ 
+       
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a  onclick="submit_form();">
+		<img src="template/images/deleteButton.gif" alt="删除">
+            删除</a>
+    </li>
+    
+     
+    <li>
+    <!-- start modify yes123 2014-12-16 添加查询条件 -->
+		<form method="get" action="space.php" style="float:left;">
+			<!-- <script type="text/javascript" src="source/script_livesearch.js"></script> -->
+			名称：
+			<input type="text" style="width: 100px;" name="searchkey" value="$condition[searchkey]">
+			保险公司
+			<select name="insurer_id">
+				<option></option>
+				 <!--{loop $list_company $key $value}-->  
+				        <option value="$value[insurer_id]"  {if $value[insurer_id] == $condition[insurer_id] } selected="selected" {/if}>$value[insurer_name]</option>  
+	     		 <!--{/loop}--> 
+			</select>
+			<input name="searchsubmit" value="搜索" class="submit" type="submit">
+			<input name="searchmode" value="1" type="hidden">
+			<input name="do" value="admin_insurance_product_attribute" type="hidden">
+			<input name="view" value="insurance_company" type="hidden">
+			
+			
+			<!-- <input name="searchkey" id="searchkey" value="" size="40" class="t_input" onkeyup="showResult_tmp(this,'mtag_search')" type="text" style="float:left;width:100px;"> -->
+			
+		</form>	
+	<!-- end modify yes123 2014-12-16 添加查询条件 -->		
+    </li>
+    
+  
+</ul>
+
+</div>
+                                <div id="error">
+
+</div>
+                                <div id="navigator">
+
+
+    <div class="content">
+        当前位置：
+        
+             
+                保险公司
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+    function selectAllCheckBox() {
+        checkAllBox(document.forms['productForm']);
+    }
+	
+	 function submit_form() 
+	 {
+	   // alert("dddddddddd");
+		document.getElementById('submitbutton').click();
+       // checkAllBox(document.forms['productForm']);
+    }
+	
+
+</script>
+
+<form name="productForm" method="post" action="cp.php?ac=admin_insurance_product_attribute&op=delete">
+   
+    <input value="保存" id="submitbutton" type="submit" style="display:none;" onclick="return confirm('本操作不可恢复，确认删除？');">
+   	<input type="hidden" name="deletesubmit" id="deletesubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+
+    <div class="list">
+        <div class="listData">
+            <div>
+
+
+<table class="listTable">
+    <tbody><tr class="listTitle">
+        <td width="5%">序号</td>
+        <td width="5%"><label>
+		<input name="checkAll" onclick="selectAllCheckBox()" type="checkbox"></label></td>
+        <td width="15%"><a href="/productAction.do?method=search&amp;order=code">名称</a></td>
+		<td width="8%"><a href="/productAction.do?method=search&amp;order=code">险种代码</a></td>
+        <td width="8%"><a href="/productAction.do?method=search&amp;order=name">类型</a></td>
+        <td width="15%"><a href="/productAction.do?method=search&amp;order=abbrName">保险公司</a></td>
+        <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">险种</a></td>
+		 
+        <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">个人服务费率</a></td>
+	    <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">机构服务费率</a></td>
+	     <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">推荐服务费率</a></td>			
+				 
+		 
+		 <td width="8%">是否对接</td>
+		 <td width="8%">允许售卖</td>
+		 <td width="8%">是否锁定</td>		
+		 <td width="8%">修改</td>
+		
+     </tr>
+    
+      <!--{loop $list $key $value}-->   
+        
+            <tr class="tdContent">
+              
+                <td>$key</td>
+              
+                <td>
+				<input name="ids[]" value="$value[attribute_id]" type="checkbox">
+				</td>
+              
+                <td><a href="$theurl&attribute_id=$value[attribute_id]">$value[attribute_name]</a></td>
+              
+			     <td><a href="$theurl&attribute_id=$value[attribute_id]">$value[attribute_code]</a></td>
+				
+                <td>
+                $value[attribute_type]</td>
+                
+                <td><a href="space.php?do=admin_insurance_company&id=$value[insurer_id]">$value[insurer_name]</a></td>
+                
+                <td>
+                <a href="space.php?do=admin_insurance_type&id=$value[ins_type_id]">$value[ins_type_name]</a>                </td>
+				
+				
+				<td>$value[rate_myself]</td>
+				<td>$value[rate_organization]</td>
+				<td>$value[rate_recommend]</td>
+				
+				<td>
+                <a href="$theurl&id=$value[area_id]">$value[interface_flag]</a>                </td>
+				
+				<td>$value[allow_sell]</td>
+				<td bgcolor="#33FFFF">$value[islock]</td>
+				
+			 <td>
+             <a href="cp.php?ac=admin_insurance_product_attribute&attribute_id=$value[attribute_id]" target="_self"><img src="template/images/updateButton.gif" alt="修改">
+            修改</a>
+			
+			    
+             </td>
+               
+            </tr>
+        
+      <!--{/loop}-->
+</tbody></table>
+</div>
+        </div>
+    </div>
+
+    <div style="border-bottom: 1px solid #A5B5C0;"></div>
+
+    
+    <div class="page">$multi</div>
+    
+</form>
+</div>
+
+ </div>  <!-- content-body -->
+ 
+ </div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

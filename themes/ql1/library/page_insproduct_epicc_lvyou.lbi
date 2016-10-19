@@ -1,0 +1,138 @@
+
+
+				
+				
+                    <div class="xqcont">
+                    	{if $ins_product_list}
+					    <div class="xq_title2">
+						选择产品：
+						<!--{foreach from=$ins_product_list key=key item=value}-->
+						
+						{assign var="sid" value=$value[product_id]}
+                            <span class="plan {$classattr[$sid]}">
+							<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+							</span>
+                            
+						<!--{/foreach}-->
+                        {/if}	
+                        </div>
+						
+                        <div class="dataForm">
+
+						<form name="feeDataForm" method="post" action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" >
+						
+						<input type="hidden" value="230.00" id="prodcutMarkPrice" name="prodcutMarkPrice">
+						<input type="hidden" value="1-5天" id="prodcutPeriod" name="prodcutPeriod">
+						<input type="hidden" value="1" id="factor_code_peroid" name="factor_code_peroid">
+                        <input type="hidden" value="1" id="product_influencingfactor_id" name="product_influencingfactor_id">
+                        
+						<input type="hidden" id="period_minTemp" name="period_min">
+						<input type="hidden" id="period_maxTemp" name="period_max">
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                  
+								    <input type="text" id="max" value="1" style="display:none">
+									<input type="text" id="min" value="" style="display:none">
+                                  
+								  <!--
+								    <li class="app_li"><label>保单生效时间：</label><p><input id="effectivedate" type="text" value="{$ins_product_selected[]}" name="effectiveStartDate" class="date"> 0时起</p></li>
+									<li class="app_li"><label>保单终止时间：</label><p><input id="enddate" type="text" value="" readonly="readonly" name="enddate" class="date"> 24时止</p></li>                   
+									
+									
+                                    <li class="app_li">
+									<label>保险期限：</label>
+									<p><label>{$ins_product_selected.period}个月</label></p>
+									</li>									
+									 -->
+                
+								    <li class="app_li">
+								    	承保年龄：{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁
+										<select id="00000000000000002854_TextAge" name="TextAge_app" style="display:none">
+											<option value="60D-6Y">60天-6周岁</option>
+										</select>
+									</li>
+									
+									<li class="app_li">
+										限购份数：{$ins_product_selected.number}
+									</li>
+									
+										
+									<li class="app_li">
+									<label>保险期限：</label>
+									<select class="prod_txt feestItem" title="保险期限" id="product_factor_price" name="factor_price" onChange="reFeeButtom(this);">
+				                     <!--{foreach from=$ins_product_selected.product_influencingfactor_list key=key item=value}-->            			                       	
+				                     <option data-value="{$value[factor_code]}" data-product_influencingfactor_id="{$value[product_influencingfactor_id]}" value="{$value[factor_price]}" data-period_max="{$value[period_max]}" data-period_min='{$value[period_min]}'>{$value[factor_name]}</option>
+									 <!--{/foreach}-->	
+									 
+									</select>
+									</li>
+								
+									
+                                </ul> 
+                            <div class="buyBar">
+                                 
+								 <input type="submit" id="buy_submit" value="{$lang.insure}" class="btn_products_02_01 margin_T0_50">
+								
+								<!-- 
+                                <input type="button" class="buyBtn" value="立即购买" id="baoxian_an">
+                                <input type="button" value="" class="buyBtn disBuyBtn" disabled="disabled"/> -->
+                               
+                                <input type="text" id="Prop2" value="" style="display:none">
+                                <input type="text" id="SupplierCode" value="2049" style="display:none">
+
+                            </div>
+                        </div> <!--baseForm-->
+						</form>
+						
+                       
+                      </div>
+                    </div>
+					
+					
+<script>
+				//先设置默认值
+				var price = $("select#product_factor_price option:selected").val();		
+				//alert(price);
+				$("#productPrem_ strong").html(price);	
+				$("input#prodcutMarkPrice").val(price);
+				
+				var period = $("select#product_factor_price option:selected").text();		
+				var period_datavalue = $("select#product_factor_price option:selected").data("value");		
+				$("input#prodcutPeriod").val(period);
+				$('input#factor_code_peroid').val(period_datavalue);
+				$('#period_minTemp').val($("select#product_factor_price option:selected").data("period_min"));
+				$('#period_maxTemp').val($("select#product_factor_price option:selected").data("period_max"));
+				$('#product_influencingfactor_id').val($("select#product_factor_price option:selected").data("product_influencingfactor_id"));
+				
+				/*
+				$("select#product_factor_price").change(function(){
+				
+				});
+				*/
+				  	function reFeeButtom(obj){
+						 
+					           // alert("sdfdsfdsf"+obj.value);
+							   
+							    var price = obj.value;
+								
+								var text = obj.text;
+			 var selectIndex = obj.selectedIndex;//获得是第几个被选中了
+			 var selectText = obj.options[selectIndex].text //获得被选中的项目的文本
+			 
+			 var factor_code_peroid = $(obj).find("option:selected").data("value"); //获得被选中的项目的文本
+			  
+			  //alert(factor_code);
+								// alert(selectText);
+								$('#period_minTemp').val($(obj).find("option:selected").data("period_min"));
+								$('#period_maxTemp').val($(obj).find("option:selected").data("period_max"));
+								$('#product_influencingfactor_id').val($(obj).find("option:selected").data("product_influencingfactor_id"));
+                           		$("#productPrem_ strong").html(price);
+                           		$("input#prodcutMarkPrice").val(price);
+								$("input#prodcutPeriod").val(selectText);
+								$("input#factor_code_peroid").val(factor_code_peroid);
+								
+                            }
+			
+							
+</script>
+					

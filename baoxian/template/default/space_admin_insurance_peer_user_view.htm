@@ -1,0 +1,70 @@
+<!--{template header}-->
+
+
+<div id="main-content">
+
+<div id="main-body">
+
+<a href="space.php?do=admin_insurance_user"> 返回类别列表 </a>
+
+<form name="productForm" method="POST" action="/productAction.do?method=view">
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+                
+
+
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="4" class="view-header">基本信息</td>
+    </tr>
+	
+	
+	
+	
+	 <tr>
+	
+	    <td class="view-first-title">本地用户名：</td>
+        <td class="view-first-text">$user_name</td>
+		
+		
+		<td class="view-first-title">本地用户email：</td>
+	    <td class="view-first-text">$user_email</td>
+
+		
+    </tr>
+	
+	
+	
+    <tr>
+	
+	    <td class="view-first-title">对方用户：</td>
+        <td class="view-first-text">$peerid</td>
+		
+		
+		<td class="view-first-title">用户二维码：</td>
+	    <td class="view-first-text">
+			<img src="$pic" alt="二维码">
+		</td>
+
+		
+    </tr>
+	
+
+		</tbody>
+	</table>
+
+
+          
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+
+
+</div> <!--id="main-content"-->
+ 
+ 
+ <!--{template footer}-->

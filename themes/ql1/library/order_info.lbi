@@ -1,0 +1,179 @@
+       <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           <div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00c4;</i></span>
+                                <span>{$lang.order_status}
+                               
+                                </span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+                    <tr>
+                      <td align="right">{$lang.detail_order_sn}：</td>
+                      <td align="left">{$order.order_sn}</td>
+                      <td align="left" colspan="2">
+                      		<!-- {if $order.extension_code eq "group_buy"} -->
+                                <a href="./group_buy.php?act=view&id={$order.extension_id}" class="f6"><strong>{$lang.order_is_group_buy}</strong></a>
+                                <!-- {elseif $order.extension_code eq "exchange_goods"} -->
+                                <a href="./exchange.php?act=view&id={$order.extension_id}" class="f6"><strong>{$lang.order_is_exchange}</strong></a>
+                             <!--{/if}-->  
+                       </td>
+                      
+                    </tr>
+                    
+                         
+            
+                    <tr>
+                      <td align="right"  >{$lang.detail_order_status}：</td>
+                      <td align="left"  >{$order.order_status}&nbsp;&nbsp;&nbsp;&nbsp;{$order.confirm_time}</td>
+                      <td align="right"  >{$lang.detail_pay_status}：</td>
+                      <td align="left"  >{$order.pay_status}
+                      </td>
+                      
+                    </tr>
+                   
+      			</table>
+      			<div >
+      			   	{if $order.order_amount gt 0}
+                    			{$order.pay_online}
+                    {/if}
+      			</div>
+	  	   </div>
+      </div>
+
+         <!-- modified  by yes123 2014-11-21 费用总计修改为订单金额 -->
+        {if $order.insurer_code neq 'SSBQ'}
+        <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           <div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="2">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf0280;</i></span>
+                                <span>{$lang.orders_money}</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+         
+                  <tr>
+                    <td align="center"  >
+                        {*$lang.goods_all_price*}{$lang.total_price}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} -->: {$order.formated_goods_amount}
+                      <!-- {if $order.discount gt 0} 折扣 -->
+                      - {$lang.discount}: {$order.formated_discount}
+                      <!-- {/if} -->
+                      <!-- {if $order.tax gt 0} -->
+                      + {$lang.tax}: {$order.formated_tax}
+                      <!-- {/if} -->
+                      <!-- {if $order.shipping_fee > 0} -->
+                      + {$lang.shipping_fee}: {$order.formated_shipping_fee}
+                      <!-- {/if} -->
+                      <!-- {if $order.insure_fee > 0} -->
+                      + {$lang.insure_fee}: {$order.formated_insure_fee}
+                      <!-- {/if} -->
+                      <!-- {if $order.pay_fee > 0} -->
+                      + {$lang.pay_fee}: {$order.formated_pay_fee}
+                      <!-- {/if} -->
+                      <!-- {if $order.pack_fee > 0} -->
+                      + {$lang.pack_fee}: {$order.formated_pack_fee}
+                      <!-- {/if} -->
+                      <!-- {if $order.card_fee > 0} -->
+                      + {$lang.card_fee}: {$order.formated_card_fee}
+                      <!-- {/if} -->       &nbsp;&nbsp;&nbsp;&nbsp;
+                       
+                      <!-- {if $order.money_paid > 0} -->
+                      - {$lang.order_money_paid}: {$order.formated_money_paid}
+                      <!-- {/if} -->
+                      <!-- {if $order.surplus > 0} -->
+                      - {$lang.use_surplus}: {$order.formated_surplus}  
+                      <!-- {/if} -->
+                      
+                      <!-- {if $order.service_money > 0} -->
+                      - {$lang.use_service_money}: {$order.formated_service_money}  
+                      <!-- {/if} -->
+                      
+                      <!-- {if $order.integral_money > 0} -->
+                      - {$lang.use_integral}: {$order.formated_integral_money}
+                      <!-- {/if} -->
+                      <!-- {if $order.bonus > 0} -->
+                      - {$lang.use_bonus}: {$order.formated_bonus}
+                      <!-- {/if} -->        
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      {$lang.order_amount}: {$order.formated_order_amount}
+                    <!-- {if $order.extension_code eq "group_buy"} --><br />
+                    {$lang.notice_gb_order_amount}<!-- {/if} -->
+                 </td>
+                    
+                    
+                    
+                  <!--{if $order.type neq 'third' } add yes123 2015-04-14 如果是第三方的订单，不需要显示支付方式--> 
+                    <!-- {if $allow_edit_surplus} 如果可以编辑使用余额数 -->
+                        <td align="right" >
+                            <form action="user.php" method="post" name="formFee" id="formFee">{$lang.use_more_surplus}:
+                              <input name="surplus" type="text" size="8" value="0" class="f-pA10"/>{$max_surplus}
+                              
+                              <input type="hidden" name="act" value="act_edit_surplus" />
+                              <input type="hidden" name="order_id" value="{$smarty.get.order_id}" />
+                              <input type="submit" name="Submit" value="{$lang.button_submit}" class="btn-ec6941-4" style="display:inline-block; border:0px;"/>
+                            </form>
+                        </td>
+                    <!--{/if}-->
+                    <!--{/if}-->
+                    
+                
+                  </tr>
+       
+            </table>
+          </div>
+       </div>	
+        {/if}
+        
+
+   	{if $order.type neq 'third' }{/if}
+        <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           <div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="2">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf0032;</i></span>
+                                <span>{$lang.payment}</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+        
+                <tr>
+                  <td  align="left" >
+                  {$lang.select_payment}: {$order.pay_name}。{$lang.order_amount}: <strong>{$order.formated_order_amount}</strong>
+                  </td>
+             <!--{if $payment_list}-->
+                  <td  align="right" >
+                 
+	              <form name="payment" method="post" action="user.php">
+	              {$lang.change_payment}:
+	              <select name="pay_id" class="f-pA5">
+	                <!--{foreach from=$payment_list item=payment}-->
+	                <option value="{$payment.pay_id}">
+	                {$payment.pay_name}({$lang.pay_fee}:{$payment.format_pay_fee})
+	                </option>
+	                <!--{/foreach}-->
+	              </select>
+	              <input type="hidden" name="act" value="act_edit_payment" />
+	              <input type="hidden" name="order_id" value="{$order.order_id}" />
+	              <input type="submit" name="Submit" value="{$lang.button_submit}" class="btn-ec6941-4" style="display:inline-block; border:0px;"/>
+	              </form>
+             
+                  </td>
+             <!--{/if}-->
+                </tr>
+                  
+              </table>
+           </div>
+      </div>
+     
+

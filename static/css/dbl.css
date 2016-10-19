@@ -1,0 +1,18 @@
+body{ font-size: 13px; color: #333; font-family:"微软雅黑";}
+
+.dbl{ background: #fff;}
+.piclist{ padding: 20px;}
+.piclist dl dt{ float:left;}
+.piclist dl dt img{ padding: 5px; border: 1px solid #ccc;}
+.piclist dl dd{ float:left; width: 688px; margin-left: 10px;}
+.piclist dl dd h2{ font-weight: bold; font-size: 16px; margin-top: 30px;}
+.piclist dl dd p{ margin-top: 15px; line-height: 40px; font-size: 13px;}
+
+.form{ padding: 20px;}
+.form h2 a{ color:#F60; text-decoration: underline;}
+.form .itemForm{ margin-top: 10px; float: left;}
+.form .itemForm th{ width: 250px; border: 1px solid #999; height: 30px; line-height: 30px; font-weight: bold; text-align: center;}
+.form .itemForm td{border: 1px solid #999; height: 30px; line-height: 30px;}
+
+.img{ height: 600px;}
+.img ul li{ width: 526px; margin: 0 auto;}

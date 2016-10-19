@@ -1,0 +1,75 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ 
+<div class="g-wA100 s-bscT_009c84">
+	
+    <div class="g-w1077 f-mc f-cb">
+    	<div class="f-fl g-w250">
+            <div class="s-bg-009c84 s-lh50 s-c-ffffff f-tac f-fs3">保险产品分类</div>
+        	<ul class="m-list-3-1 f-cb">
+        		 <!--{foreach from=$categorie item=cat}-->
+        			 <li {if $cat.id eq $category}class="nacitve"{/if}>
+                            <span class="f-ib f-vam f-ml15"><img src="{$cat.category_img}" width="26"></span>
+                            <span class="f-ib f-vam f-ml15">
+                                <a href="category.php?act=hot_goods_list&cat_id={$cat.id}" class="big">{$cat.name|escape:html}</a>
+                                
+							    <!-- {if $cat.cat_id} -->                                
+                                <span class="f-db f-pb10">
+                                	<!--{foreach from=$cat.cat_id item=item}-->
+                                    <span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id={$item.id}" class="small">{$item.name}</a></span>
+                                    <!--{/foreach}-->
+                                </span>
+                                <!-- {/if} -->
+                            </span>
+
+                     </li>
+        	     <!--{/foreach}-->
+
+            </ul>
+            
+            <div class="f-mt20 g-w250">
+            	<div class="s-bscB_009c84">
+                    <span class="f-fs5 f-fwb s-bg-009c84 f-pl40 f-pr40 f-pt10 f-pb10 f-ib">
+                    	<span class="s-c-ffffff">常见</span><span class="s-c-ffffff">问题</span>
+                    </span>
+                </div>
+                <div>
+                	<ul>
+	                	{foreach from=$is_top_article_list item=item }
+	                    	<li class="f-mt15">
+	                        	<h2 class="s-lh25"><a href="article.php?act=article_detail&id={$item.article_id}&article_type=faq" class="link-777777 f-fs2">{$item.title}</a></h2>
+	                            <section class="f-fs1 s-lh20 s-c-777777 ">
+	                            	{$item.content|truncate:80}
+	                            </section>
+	                        </li>
+	                    {/foreach}
+                    </ul>
+
+                </div>
+            </div>
+        </div> 
+    	<div class="f-fr g-w800">
+        	<div class="g-h48 s-bscB_d2d2d2 f-tar">
+            	<span class="s-c-666666 f-mt20 f-ib">
+                	<i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                    您的位置：
+                    <span class="s-c-777777">
+                        <a href="#" class="link-009c84">首页</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        理赔服务 
+                    </span>
+                </span>
+            </div>
+             
+            <div class="f-mt10">
+                 <h2 class="f-fs4 s-c-666666 f-tac f-mt20">{$article.title}</h2>
+                 <div class="s-c-777777 f-fs2 s-lh25 f-mt20">
+                 	{$article.content}
+                 </div>
+            </div>
+             
+        </div>
+    </div>
+    
+     
+</div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

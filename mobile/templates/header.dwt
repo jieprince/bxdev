@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>全联诉讼财产保全微平台</title>
+    <link rel="stylesheet" type="text/css" href="../dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../dist/fonts/iconfont_2/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/weixin_style.css">
+
+    <script src="../dist/js/jquery.min.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
+    <script src="../dist/js/html5shiv.min.js"></script>
+    <script src="../dist/js/respond.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+
+
+
+{if $module_title}
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div style="display: none;">
+		<img src="images/sm_logo.png" width="300" height="300">
+	</div>
+	
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-6 col-sm-6 col-xs-7 f-pl0 f-pr0 f-tal">
+            	<span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">{$module_title}</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-5 f-pl0 f-pr0 f-tar" align="right">
+            	{if $smarty.session.user_id}
+                <a href="user.php" class="btn btn-default btn-sm">用户中心</a>
+                {else}
+            	<a href="../mobile_page/login_reg.html" class="btn btn-default btn-sm">登录/注册</a>
+                {/if}
+            	  
+            </div>
+        </div>
+    </div>
+</header>
+{/if}

@@ -1,0 +1,68 @@
+<!-- {if $smarty.session.is_iframe neq 1}-->
+<footer class="g-wA100 s-bg-f2f2f2 f-pt40 f-pb40 f-mt80">
+	<div class="g-w1077 f-mc f-cb">
+    	<div align="center">
+            
+                <ul class="footernav-list f-cb">
+                  <!-- {if $navigator_list.bottom} -->
+					   		<!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+					   			<li>
+							        <a href="{$nav.url}"  {if $nav.opennew eq 1} target="_blank" {/if}>{$nav.name}</a><!-- {if !$smarty.foreach.nav_bottom_list.last} --><span class="s-c-666666 f-ml5 f-mr5">|</span><!-- {/if} -->
+				        		</li>
+				      <!-- {/foreach} -->
+				  <!-- {/if} -->
+                </ul>
+                
+                
+                <div class="f-mt10 f-tac s-c-666666" >
+        			<span class="s-lh25 f-fs2">
+                    AALIANCE INSURANCE BROKERS CO,LTD  © 2015 All rights reserved. 
+                    <br>
+                    {$icp_number}
+                             <script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256835151'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256835151' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+                    <br>
+                    <i class="iconfont">&#xf00a2;</i>
+                    {$service_phone}
+                     
+                    <i class="iconfont">&#xf0138;</i>
+                    {$service_email}
+                    </span>
+        		</div>
+                <div class="f-mt15">
+                	<a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01af;</i></a>
+                    <a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01c7;</i></a>
+                    <a href="#" class="link-bcbbbb"><i class="iconfont">&#xf01b0;</i></a>
+                </div>
+                
+            
+        </div>
+        <div class="g-zfR-30">
+            <img src="../images/weixin_img.png">
+        </div>
+    </div>
+    
+</footer>
+<div id="share">
+     <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=3193389429&Site=QQ客服&Menu=yes>
+        <i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>①</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2017415521&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>②</span>
+    </a>
+    <a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2733867915&Site=QQ客服&Menu=yes>
+    	<i class="iconfont f-fs9">&#xf01c7;</i>
+        <span>③</span>
+    </a>
+    <a id="totop" title=""><i class="iconfont">&#xf02aa;</i></a>
+</div>	
+
+
+
+<!-- {/if} -->
+</body>
+</html>

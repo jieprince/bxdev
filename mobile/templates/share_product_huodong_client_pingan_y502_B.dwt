@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>中国平安团体意外保险</title>
+    <link rel="stylesheet" href="../mobile_page/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../mobile_page/dist/fonts/font-awesome/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="../mobile_page/dist/css/style_spring_active_mobile.css">
+    <style>
+    	img{display:block}
+    </style>
+</head>
+ <body style="background:none">
+<div class="container-fluid">
+ 
+    
+    <div class="max_wid">
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_01.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_02.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_03.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_04.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_05.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_06.jpg" class="img-responsive">
+        </div>
+         
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_07.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_08.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_09.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_10.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_11.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_12.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_13.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_14.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_15.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_16.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_17.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_18.jpg" class="img-responsive">
+        </div>
+        <div align="center" class="">
+            <div class=" row" style="margin: 0px;">  
+                <div class="col-sm-6 col-xs-6"><a class=" btn-c30d23" href="javascript:void(0)" onClick="push_f()" style=" background:#e8481d; color:#fff">推荐注册</a></div>
+                <div class="col-sm-6 col-xs-6"><a class=" btn-fd9e02" style=" background:#e8481d; color:#fff" href="javascript:void(0)" onClick="show_info()">我要分享</a></div>
+            </div>
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_20.jpg" class="img-responsive">
+        </div>
+        <div align="center" >
+            <img src="../mobile_page/images/pingan_y502/app/y502_21.png" class="img-responsive">
+        </div>
+        
+    <div>
+
+</div>
+<script src="../mobile_page/dist/js/jquery.min.js"></script>
+<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+<script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+<script src="../mobile_page/dist/js/respond.min.js"></script>
+<script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+<script>
+	function push_f(){
+		 
+		var sessionuid = $('#sessionuid').val();
+		 
+        var temps = '{$user_id}';
+		if(temps!="" && temps!=0){
+			//window.location.href='../mobile_page/share_active.html?uid='+temp_uid.split(',')[0];
+			window.location.href='../mobile/pingan_activity_y502.php?act=share_active&uid='+temps+"&active_id=0";
+		}else{
+			window.location.href='user.php';
+		}
+	}
+	function show_info(){
+		 
+		//var is_cheackT = $('#is_cheack').val();
+        var temps = '{$user_id}';
+		if(temps!="" && temps!=0){
+			window.location.href='../mobile/pingan_activity_y502.php?act=share_C&uid='+temps+"&active_id=0";
+		 }else{
+			window.location.href='user.php';
+		}
+	}
+	
+</script>
+</body>
+</html>

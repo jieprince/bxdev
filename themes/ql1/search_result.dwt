@@ -1,0 +1,112 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bg-f2f0f0"> 
+    <div class="g-w1000 f-mc f-pt20">
+        <div class="g-h35 f-tal">
+            <span class="s-c-666666 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-333333">
+                    <a href="#" class="link-777777">首页</a>
+                     
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+					<a href="#" class="link-777777">搜索</a> 
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                     {$search_title}
+                </span>
+            </span>
+        </div> 
+        
+        <div class="f-cb">
+        	
+            <div class="f-fl g-w243">
+            	<div class="f-ml3">
+                	<img src="images/zxzx.png" width="240" height="130">
+                </div>
+                <div>
+<!--                 	<h2 class="s-c-666666 f-fwn s-bg-ffffff f-pt20 f-pb20 f-ml3">
+                    	<span class="f-fs4 f-ml45">资讯中心</span>
+                    	<span class="f-fs2">News</span>
+                    </h2> -->
+<!--                     <ul class="m-list-3">
+                    	{foreach from=$child_article_cat_list item=item} class="p_active"
+	                    	<li>
+	                        	<a href="category.php?act=article_list&cat_id={$item.cat_id}&article_type=information"
+	                        	{if $condition.cat_id eq $item.cat_id || $article_cat.cat_id eq $item.cat_id}class="p_active"{/if}>
+	                                <span class="f-ml45">{$item.cat_name}</span>
+	                            </a>
+	                        </li>
+                        {/foreach}
+                    </ul> -->
+                    <div class="s-bg-ffffff g-h60 f-ml3"></div>
+                </div>
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/tel.png" width="16"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	电话：{$service_phone}<br>
+                            传真：{$service_phone}<br>
+                            E-MAIL：{$service_email}
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="f-ml3 f-mt20">
+                	<div class="s-bsc_ffffff f-pA10">
+                    	<span class="f-ib f-vat f-mt5"><img src="images/weizhi.png" width="14"></span>
+                        <span class="f-ib s-c-666666 s-lh25 f-ml5 g-w172">
+                        	网址：www.aalib.com.cn<br>
+                            地址：{$shop_address}
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="f-fr g-w725 s-bg-ffffff">
+            	<div class="f-pA20">
+                	<div class="s-bscB4_e5f3f7 f-pb10">
+                    	<span class="f-ib s-c-008fc7 f-vam"><i class="iconfont f-fs6">&#xf0051;</i></span>
+                        <span class="f-fs4 s-c-008fc7 f-vam">
+                        	{if $article_cat.cat_name}
+                        		{$article_cat.cat_name}
+                        		{else}
+                        		全部
+                        	{/if}
+                        </span>
+                    </div>
+                    <div class="f-pA5 s-lh25 f-mt15 f-fs2">
+                    	 <ul class="m-list-5">
+                    	 	{foreach from=$article_list item=item}
+                         	<li>
+                            	<div class="f-cb ">
+                            	
+                            		<div class="f-fl g-w570">
+                                        <a href="article.php?act=product_article&id={$item.article_id}" class="link-777777 f-fs2 g-w570 f-db f-toe"><i class="iconfont f-fs0-6 f-vam f-mr5">&#xf01c4;</i>{$item.title}</a>
+                                    </div>
+                                    <div class="f-fr g-w80 f-tar f-fs2 s-c-777777">
+                                        {$item.formated_add_time}
+                                    </div>
+                                </div>
+                            </li>
+                            	{foreachelse}
+                            	没有数据
+                            {/foreach}
+                         </ul>
+                         
+			             {if $act eq 'article_list'}
+			  					<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+			    		 {/if}
+			    		 
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+          
+    </div>
+</div>
+
+<!-- #BeginLibraryItem "/library/en_page_footer.lbi" --><!-- #EndLibraryItem -->

@@ -1,0 +1,302 @@
+<!--{template cp_product_buy_header}-->	
+                
+				<script src="js/mobile/huaan_xuepingxian.js"></script>
+                <!-- 以下是私有的变量-->
+                <input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+                <input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+                <input id="period_code" name="period_code" value="$period_code" type="hidden"> 
+                <input id="applyNum" name="applyNum" value="1" type="hidden">
+                <!--applicat_sex_type 判断性别是否是数字  1是数字(0,1)  2是字母 (M,F) -->
+                <input id="applicat_sex_type" value="1" type="hidden"> 
+                <input id="xuepingxian" value="y" type="hidden"> 
+            <div class="container">
+                 <div class="panel panel-default">
+                        <ul class="list-group" >
+                          <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                        </ul>
+                 </div>
+                  
+                 <div class="panel panel-default">
+                        
+                        <ul class="list-group" >
+                          <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">年龄范围</span>
+                                <span class="f-fs2 pull-right s-c-aaaaaa">{$product[age_min]}(含) 至  {$product[age_max]}{if $product.age_max==30}(含){/if}岁</span>
+                          </li>
+                          <a class="list-group-item" href="javascript:void(0)" id="text_select_applyNum_P" onClick="showSelect_applyNum('text_select_applyNum','text_select_applyNum_P')" data-value='[{"applynum_id":1,"applynum_name":"1份"},{"applynum_id":2,"applynum_name":"2份"}]' ><span class="s-c-aaaaaa">购买份数</span><span class="pull-right"><span id="text_select_applyNum" data-applynum_id="1" data-applynum_name="1份">1份</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a> 
+                           
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">金额</span>
+                                <span class="f-fs2 pull-right">￥<span id="test_price_Temp">{$prodcutMarkPrice}</span>元</span>
+                          </li> 
+                           
+                           
+                          <li class="list-group-item" >
+                          		<span class="s-c-aaaaaa">保险起期</span>
+                                <span class="pull-right">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" id="startDate" name="startDate" type="text" readonly >
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                          </li>
+                       
+                      	  <li class="list-group-item">
+                          		<span class="s-c-aaaaaa">保险止期</span>
+                                <span class="pull-right ">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" name="endDate" id="endDate" readonly>
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>      
+                          </li>
+                           
+                        </ul>
+                </div>
+                
+                <div class="panel panel-default">
+                        <div class="panel-body ">
+                          投保问询
+                      	</div>
+                        <ul class="list-group" >
+                          <li class="list-group-item text-left" ><span class="f-fs2 s-c-ed462f">1、您是否存在以下任何一种情况：</span></li>
+                          <li class="list-group-item" >
+                                
+                                <span class="f-fs2 s-c-aaaaaa">
+                                	（1）身体残障：A.曾否患听力、视力、语言、咀嚼障碍，智力障碍；B.曾否患有脊柱、胸廓畸形，四肢、手、足、指残缺。<br /> 
+                                    （2）病史询问：是否曾患有或接受治疗过下列疾病？恶性肿瘤、心肌梗塞、恶性淋巴瘤、白血病、脑出血、脑梗塞、肾功能衰竭、高血压（在未服抗压药的情况下，血压的收缩压≥140mmHg或舒张压≥90mmHg）、糖尿病、肝炎、肝炎病毒感染、肾炎、冠心病。<br /> 
+                                    （3）诊疗经历:是否接受下列任一项手术或治疗？器官移植、肾透析、冠状动脉搭桥手术、冠状动脉支架植入术。<br /> 
+                                    （4）病毒性肝炎患者、大小三阳及乙肝病毒携带者。 <br />
+                                    （5）体育、舞蹈武术类学生或所在学校为体育、舞蹈、武术学校。<br /> 
+                                    （6）存在身体残缺、畸形或功能障碍？包括但不限于听力障碍、视力障碍、言语障碍、脊柱残缺、胸廓畸形、四肢残缺、手、足、指残缺。 <br />
+                                    （7）心血管疾病（各类心脏病、脑血管瘤及畸形、脑炎、脑膜炎等）。 <br />
+                                    （8）出现过以下一种或几种情况：发育迟缓、惊厥、抽搐、脑瘫、先天性疾病、遗传性疾病、小儿麻痹、儿童多动症、脊髓灰质炎、麻疹、流行性脑脊髓膜炎、流行性乙脑炎、白喉、破伤风、百日咳等疾病。
+                                </span>
+                          </li> 
+                           
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">问询选择</span>
+                                <div class="pull-right s-c-aaaaaa">
+                                    <div id="radio_zixun">
+                                    	<input type="radio" name="radio_zixun" value="1">
+                                        是&nbsp;&nbsp;
+										<input type="radio" name="radio_zixun" value="2">
+                                        否
+									</div>
+                                </div>
+                          </li>
+                          
+                           
+                        </ul>
+                </div>
+                 
+                 <div class="panel panel-default">
+                     
+                       
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                          投保人信息
+                          <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                          </span>
+                      </div>
+                      <ul class="list-group">
+                           <input type="hidden" name="applicant_type" value="1" id="applicant_type">
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_applicant_type_P" onClick="showSelect_applicant_type('text_select_applicant_type','text_select_applicant_type_P')" data-value='[{"applicant_type_id":1,"applicant_type_name":"个人"}]' ><span class="s-c-aaaaaa">投保人类型</span><span class="pull-right"><span id="text_select_applicant_type" data-applicant_type_id="1" data-applicant_type_name="个人">个人</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                           	<li class="list-group-item" style="padding:0px; margin:0px; border:0px;">
+                               <ul class="f-pA0 f-mA0" id="applicant_geren">
+                                   <!-- 个人-->
+                                   <li class="list-group-item">
+                                       <span class="s-c-aaaaaa">姓名</span>
+                                       <span class="f-fs2 pull-right">
+                                           <input type="text" name="applicant_fullname" placeholder="名字长度至少2的汉字" id="applicant_fullname" class="input_b text-right g-w150">
+                                           <i class=" f-ml10 fa fa-user s-c-aaaaaa"></i>
+                                       </span>
+                                   </li>  
+                                 
+                                   <input type="hidden" name="applicant_certificates_type" id="applicant_certificates_type">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_applicant_certificates_type_P" onClick="showSelect_certificates_type('text_applicant_certificates_type','text_applicant_certificates_type_P',1)" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_certificates_type_huaan_xueping $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"applicant_certificates_type_id":"{$index}","applicant_certificates_type_name":"{$value1}"}{/loop}]'>
+                                   		<span class="s-c-aaaaaa">证件类型</span>
+                                        <span class="pull-right">
+                                            <span id="text_applicant_certificates_type"></span>
+                                            <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                        </span>
+                                   </a>
+                                   <li class="list-group-item" >
+                                       <span class="s-c-aaaaaa">证件号码</span>
+                                       <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_certificates_code"  id="applicant_certificates_code" class="input_b text-right g-w150">
+                                            <i class=" f-ml10 fa fa-credit-card s-c-aaaaaa"></i>
+                                       </span>
+                                   </li> 
+                                   <input type="hidden" name="applicant_sex" value="0" id="applicant_sex">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_select_toubaoren_sex_P"  data-value='[{"sex_id":0,"sex_name":"男"},{"sex_id":1,"sex_name":"女"}]'>
+                                       <span class="s-c-aaaaaa">性别</span>
+                                       <span class="pull-right">
+                                            <span id="text_select_toubaoren_sex"></span>
+                                            <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                       </span>
+                                   </a>
+                                   <li class="list-group-item" >
+                                       <span class="s-c-aaaaaa">年龄计算公式</span>
+                                        
+                                   </li>  
+                                   <li class="list-group-item text-right" style="border-top:0px; padding-top:0px;" >
+                                       
+                                       <span class="f-fs2 s-c-ed462f">
+                                            年龄 = "投保日期" - "生日日期"
+                                       </span>
+                                   </li>  
+                                   <li class="list-group-item" >
+                                       <span class="s-c-aaaaaa">出生日期</span>
+                                       <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_birthday" id="applicant_birthday" class="input_b text-right" readonly>
+                                       </span>
+                                   </li>  
+                                   
+                                   <!--公用-->
+                                   <li class="list-group-item" >
+                                        <span class="s-c-aaaaaa">手机</span>
+                                        <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_mobilephone" id="applicant_mobilephone" class="input_b text-right g-w150">
+                                        </span>
+                                   </li> 
+                                   <li class="list-group-item" >
+                                        <span class="s-c-aaaaaa">Email</span>
+                                        <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_email" id="applicant_email"  class="input_b text-right g-w150">
+                                        </span>
+                                   </li> 
+                                   
+                                   <input type="hidden" name="relationshipWithInsured" id="relationshipWithInsured">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_select_relationshipWithInsured_P" onClick="showSelect_relationshipWithInsured('text_select_relationshipWithInsured','text_select_relationshipWithInsured_P')" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_relationship_with_insured_huaan_xueping $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"relationshipWithInsured_id":"{$index}","relationshipWithInsured_name":"{$value1}"}{/loop}]' >
+                                       <span class="s-c-aaaaaa">与被保险人关系</span>
+                                       <span class="pull-right">
+                                           <span id="text_select_relationshipWithInsured"></span>
+                                           <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                       </span>
+                                   </a>
+                                   
+                               </ul>
+                               <ul class="f-pA0 f-mA0" id="applicant_jigou" style="display:none" >
+                               </ul>
+                           </li>  
+                        </ul> 
+                         
+                      
+                </div>
+                 
+                 <div class="panel panel-default" >
+                      <!-- 被保险人信息 -->
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                            被保险人信息
+                            <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                            </span>
+                      </div>
+                      <ul class="list-group" id="beibaoxianren_list">
+                            
+                            
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">姓名</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_fullname]" id="assured_fullname" placeholder="名字长度至少2的汉字" class="input_b text-right">
+                                    <i class=" f-ml10 fa fa-user s-c-aaaaaa"></i>
+                               </span>
+                           </li> 
+                           
+                           <input type="hidden" name="assured[0][assured_certificates_type]" value="01" id="assured_certificates_type"> 
+                            
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_assured_certificates_type_P" onClick="showSelect_certificates_type('text_select_assured_certificates_type','text_select_assured_certificates_type_P',2)" data-value='[<!--{eval $indexQs=1;}-->{loop $attr_certificates_type_huaan_xueping_insurant $index $value1}{if $indexQs!=1},{/if}<!--{eval $indexQs++;}-->{"assured_certificates_type_id":"{$index}","assured_certificates_type_name":"{$value1}"}{/loop}]'>
+                                <span class="s-c-aaaaaa">证件类型</span>
+                                <span class="pull-right">
+                                    <span id="text_select_assured_certificates_type"></span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                           </a>
+                           <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">证件号码</span>
+                                <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_certificates_code]" id="assured_certificates_code" class="input_b text-right">
+                                    <i class=" f-ml10 fa fa-credit-card s-c-aaaaaa"></i>
+                                </span>
+                           </li> 
+                           <input type="hidden" name="assured[0][assured_sex]" id="assured_sex">
+                            
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_assured_sex_P" data-value='[{"sex_id":0,"sex_name":"男"},{"sex_id":1,"sex_name":"女"}]'>
+                               <span class="s-c-aaaaaa">性别</span>
+                               <span class="pull-right">
+                                    <span id="text_select_assured_sex"></span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                               </span>
+                           </a>
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">年龄范围</span>
+                               <span class="f-fs2 pull-right">
+                                    {$product[age_min]}(含)至{$product[age_max]}{if $product.age_max==30}(含){/if}周岁
+                               </span>
+                           </li> 
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">年龄计算公式</span>
+                                
+                           </li>  
+                           <li class="list-group-item text-right" style="border-top:0px; padding-top:0px;" >
+                               
+                               <span class="f-fs2 s-c-ed462f">
+                                    年龄 = "保险起期" - "生日日期"
+                               </span>
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">出生日期</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_birthday]" id="assured_birthday" class="input_b text-right" readonly>
+                               </span>
+                           </li> 
+                           
+                      </ul> 
+                      <ul class="list-group" >
+                      		<li class="list-group-item">
+                               <span class="s-c-aaaaaa">城市</span>
+                               <span class="f-fs2 pull-right">
+                                    北京市
+                                    <input type="hidden" name="assured[0][assured_school]" id="assured_school" class="input_b text-right" />
+                               </span>
+                            </li>
+                            <a class="list-group-item" href="javascript:void(0)" id="text_select_county_P" onClick="showSelect_base('text_select_county','text_select_county_P','county')" data-value='[{"county_id":110101,"county_name":"东城区"},{"county_id":110102,"county_name":"西城区"},{"county_id":110103,"county_name":"崇文区"},{"county_id":110104,"county_name":"宣武区"},{"county_id":110105,"county_name":"朝阳区"},{"county_id":110106,"county_name":"丰台区"},{"county_id":110107,"county_name":"石景山区"},{"county_id":110108,"county_name":"海淀区"},{"county_id":110109,"county_name":"门头沟区"},{"county_id":110111,"county_name":"房山区"},{"county_id":110112,"county_name":"通州区"},{"county_id":110113,"county_name":"顺义区"},{"county_id":110114,"county_name":"昌平区"},{"county_id":110115,"county_name":"大兴区"},{"county_id":110116,"county_name":"怀柔区"},{"county_id":110117,"county_name":"平谷区"},{"county_id":110228,"county_name":"密云县"},{"county_id":110229,"county_name":"延庆县"}]' >
+                            	<span class="s-c-aaaaaa">地区选择</span>
+                                <span class="pull-right">
+                                	<span id="text_select_county"></span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                            </a>
+                            <li class="list-group-item">
+                               <span class="s-c-aaaaaa">学校名称</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" id="school_name" class="input_b text-right" />
+                               </span>
+                            </li> 
+                      </ul>
+                     
+                </div>
+                
+                
+                <div class="panel panel-default">
+                      <!-- 受益人信息 -->
+                      <div class="panel-body f-csp">
+                            受益人信息 
+                      </div>
+                      <ul class="list-group">
+                             
+                           <input type="hidden" name="beneficiary" id="beneficiary" value="1">
+                           <li class="list-group-item">
+                                <span class="s-c-aaaaaa">受益人</span>
+                                <span class="pull-right">
+                                    <span id="text_select_beneficiary" data-beneficiary_id="1" data-beneficiary_name="法定">法定</span>
+                                </span>
+                           </li> 
+                            
+                      </ul> 
+                     
+                </div>
+                
+<!--{template cp_product_buy_footer}-->

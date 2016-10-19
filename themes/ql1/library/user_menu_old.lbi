@@ -1,0 +1,46 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="userMenu">
+<div class="user_titlebg">用户中心</div>
+<!-- 个人用户 -->
+<a href="user.php" {if $action eq 'default'}class="curs"{/if}>{$lang.label_welcome}</a>
+<a href="user.php?act=user_center_affiche" {if $action eq 'user_center_affiche'}class="curs"{/if}>平台公告</a>
+<!-- {if $smarty.session.user_type neq 'organization'}-->
+	<a href="user.php?act=profile"{if $action eq 'profile'}class="curs"{/if}>{$lang.label_profile}</a>
+	<a href="user.php?act=affiliate&click=1"{if $action eq 'affiliate'}class="curs"{/if}>{$lang.label_affiliate}</a>
+	<a href="user.php?act=cart_list"{if $action eq 'cart_list'|| $action eq 'cart_list'}class="curs"{/if}>购&nbsp;&nbsp;物&nbsp;&nbsp;车</a>
+	<a href="user.php?act=order_list"{if $action eq 'order_list'|| $action eq 'order_detail'}class="curs"{/if}>{$lang.label_order}</a>
+	<a href="user.php?act=warranty_list"{if $action eq 'warranty_list'|| $action eq 'warranty_detail'}class="curs"{/if}>{$lang.label_warranty}</a>
+	<a href="user.php?act=customer_list"{if $action eq 'customer_list'}class="curs"{/if}>{$lang.label_my_customer}</a>
+    <a href="user.php?act=invoice_list"{if $action eq 'invoice_list'}class="curs"{/if}>{$lang.label_invoice}</a>
+
+	<a href="user.php?act=collection_list"{if $action eq 'collection_list'}class="curs"{/if}>{$lang.label_collection}</a>
+
+	<a href="user.php?act=account_detail"{if $action eq 'account_detail'}class="curs"{/if}>{$lang.label_user_surplus}</a>
+	<a href="user.php?act=bonus"{if $action eq 'bonus'}class="curs"{/if}> {$lang.label_bonus}</a>	
+    
+<!-- 渠道用户 -->
+<!-- {else}-->
+	<a href="user.php?act=organ_info"{if $action eq 'organ_info'}class="curs"{/if}>渠道信息</a>
+	<a href="user.php?act=affiliate&click=1"{if $action eq 'affiliate'}class="curs"{/if}>{$lang.label_affiliate}</a>
+	<a href="user.php?act=salesman_list"{if $action eq 'salesman_list'}class="curs"{/if}>会员管理</a>
+	<a href="user.php?act=child_organ_list"{if $action eq 'child_organ_list' || $action eq 'child_organ_info'  || $action eq 'child_organ_add' }class="curs"{/if}>子&nbsp;&nbsp;渠&nbsp;&nbsp;道</a>
+	<a href="user.php?act=affiliate&click=1"{if $action eq 'affiliate'}class="curs"{/if}>{$lang.label_affiliate}</a>
+	<a href="user.php?act=cart_list"{if $action eq 'cart_list'|| $action eq 'cart_list'}class="curs"{/if}>购&nbsp;&nbsp;物&nbsp;&nbsp;车</a>
+	<a href="user.php?act=order_list"{if $action eq 'order_list'|| $action eq 'order_detail'}class="curs"{/if}>{$lang.label_order}</a>
+	<a href="user.php?act=warranty_list"{if $action eq 'warranty_list'|| $action eq 'warranty_detail'}class="curs"{/if}>{$lang.label_warranty}</a>
+	<a href="user.php?act=customer_list"{if $action eq 'customer_list'}class="curs"{/if}>{$lang.label_my_customer}</a>
+	<!-- add yes123 2015-03-09  -->
+	<a href="user.php?act=order_manage_list"{if $action eq 'order_manage_list'}class="curs"{/if}>会员订单</a>
+	<a href="user.php?act=policy_manage_list"{if $action eq 'policy_manage_list'}class="curs"{/if}>会员保单</a>
+	<a href="user.php?act=account_detail"{if $action eq 'account_detail'}class="curs"{/if}>{$lang.label_user_surplus}</a>
+	<a href="user.php?act=bonus"{if $action eq 'bonus'}class="curs"{/if}><!-- <img src="../images/u9.gif"> --> {$lang.label_bonus}</a>	
+<!-- {/if} -->
+	<a href="user.php?act=just_print" {if $action eq 'just_print'}class="curs"{/if}>我已购买</a>
+	<a href="user.php?act=bank_account"{if $action eq 'bank_account'}class="curs"{/if}>银行账户</a>
+	<a href="user.php?act=edit_pass" {if $action eq 'edit_pass'}class="curs"{/if}>密码修改</a>
+	<a href="user.php?act=option_help" {if $action eq 'option_help'}class="curs"{/if}>帮助中心</a>
+	<a href="user.php?act=logout" style="background:none; height:40px; margin-top:10px; padding-left:3px;"><span class="btn_products_02_02">安全退出</span></a>
+</div>
+<div class="mar_T20">
+	<a href="user.php?act=affiliate&click=1" target="_top" title="推荐有礼,豪礼送不停"><img src="images/affili_06.png"></a>
+</div>

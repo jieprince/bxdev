@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>{$goods_info.goods_name}{$shop_name}</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="dist/layer.m/need/layer.css">
+<link rel="stylesheet" href="dist/css/style.css">
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/jquery.cookie.js"></script>
+<script src="dist/layer.m/layer.m.js"></script>
+<script src="dist/js/jquery.json.min.js"></script>
+<script src="dist/js/json2.js"></script>
+<script src="dist/js/public.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+</head>
+
+<body>
+
+{if !$platformId}
+<script src="dist/js/stickUp.min.js"></script>
+<script>
+jQuery(function($) {
+	$(document).ready( function() {
+	  //enabling stickUp on the '.navbar-wrapper' class
+	  $('#head_top').stickUp();
+	});
+});
+</script>
+<header> 
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src="../{$goods.goods_thumb}" width="300" height="300">
+        <h1>{$goods_info.attribute_name}</h1>
+    </div>
+</header>
+<div class="container-fluid " id="head_top">
+    <div class="s-bg-ed462f g-lh60 g-wA100 f-cb s-c-ffffff">
+        <span class="f-fl">
+        	<a class="back" href="javascript:history.go(-1);"><i class="fa fa-angle-left fa-2x f-vam s-c-ffffff"></i></a>
+            <span class="f-ml5 f-fs3 f-fwb">产品详情</span>
+        </span>
+        <span class="f-fr f-mr10 g-lh30 f-mt15">
+        	 
+            <div class="dropdown">
+                  <a href="javascript:void(0)"  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <i class="fa fa-align-justify f-vam fa-2x s-c-ffffff"></i>
+                  </a>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="index.php" class="text-center"><i class="fa fa-home"></i> 微店首页</a></li>
+                    <li><a href="goods_list.php?act=hot_goods_list" class="text-center"><i class="fa fa-th-large"></i> 热销产品</a></li>
+                    <li class="divider" ></li>
+                    {if $smarty.session.user_id}
+                    <li><a href="user.php?act=user_center" class="text-center"><i class="fa fa-user"></i> 用户中心</a></li>
+                    <li><a href="user.php?act=order_list" class="text-center"><i class="fa fa-list"></i> 订单中心</a></li>
+                    {else}
+                    <li><a href="user.php?act=login" class="text-center"><i class="fa fa-user-md"></i> 会员登录</a></li>
+                    <li><a href="../mobile_page/reg.html" class="text-center"><i class="fa fa-user-plus"></i> 会员注册</a></li>
+                    {/if}
+                  </ul>
+			</div>
+        </span>
+    </div>
+</div>
+{/if}
+<div class="container-fluid f-mt10">
+	<form action="../baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}"  id="save_form" method="post"> 
+	<div class="container">
+     
+    	 <!--包含内容开始-->
+          
+<!--平安保险-->
+         <!--{if $insurer_code == "PAC" || $insurer_code == "PAC01" || $insurer_code == "PAC02" || $insurer_code == "PAC03"}-->
+                <!--{if $attribute_type == "product" || $attribute_type == "plan"}-->
+                    {include file='/library/page_insproduct_pingan_plan.lbi'}
+                <!--{elseif $attribute_type == "mproduct"}-->
+                    {include file='/library/page_insproduct_pingan_m.lbi'}
+                <!--{elseif $attribute_type == "lvyou"}-->
+                    {include file='/library/page_insproduct_pingan_lvyou.lbi'}
+                <!--{elseif $attribute_type == "lvyouhuodong"}-->
+                    {include file='/library/page_insproduct_pingan_lvyou.lbi'}
+                <!--{elseif strstr($attribute_type , "huodong")}-->
+                    {include file='/library/page_insproduct_pingan_lvyou.lbi'}
+                <!--{elseif $attribute_type == "jingwailvyou"}-->
+                    {include file='/library/page_insproduct_pingan_jingwailvyou.lbi'}
+                <!--{elseif $attribute_type == "Y502"}-->
+                    <!--Y502 do some thing-->
+                <!--{/if}-->
+<!--太平洋保险-->
+         <!--{elseif $insurer_code == "TBC01" || $insurer_code == "CPIC_TJ_PROPERTY"}-->
+                <!--{if $attribute_type == "hangyiwai"}-->
+                	{include file='/library/page_insproduct_taipingyang_hangyiwai.lbi'}                
+                <!--{else}-->
+                    {include file='/library/page_insproduct_taipingyang_product.lbi'}                                
+                <!--{/if}-->
+<!--太平洋公路货运险-->
+          <!--{elseif $insurer_code == "CPIC_CARGO"}-->
+          	{include file='/library/page_insproduct_taipingyang_product.lbi'}    
+<!--华泰保险-->
+         <!--{elseif $insurer_code == "HTS"}-->
+         	{include file='/library/page_insproduct_huatai_yiwai.lbi'}
+<!--华安保险-->         
+         <!--{elseif $insurer_code == "SINO"}-->
+                <!--{if $attribute_type == "project"}-->
+                    {include file='/library/page_insproduct_huaan_project.lbi'}
+                <!--{elseif $attribute_type == "xuepingxian"}-->
+                	{include file='/library/page_insproduct_huaan_xiepingxian.lbi'} 
+                <!--{/if}-->
+<!--新华保险-->          
+         <!--{elseif $insurer_code == "NCI"}-->	
+         		<!--{if $attribute_type == "shaoer"}-->
+                	{include file='/library/page_insproduct_xinhua_shaoer.lbi'} 
+                <!--{/if}--> 
+<!--中国人寿-->
+		 <!--{elseif $insurer_code == "CHINALIFE"}-->
+                <!--{if $attribute_type=='product'}-->
+                {include file='/library/page_insproduct_chinalife_product.lbi'}
+                <!--{/if}-->
+<!--阳光车险-->
+         <!--{elseif $insurer_code == "sinosig"}-->
+         
+<!--人保财险-->         
+         <!--{elseif $insurer_code == "EPICC"}-->
+         
+<!--人保人寿-->
+         <!--{elseif $insurer_code == "picclife"}-->	
+         		<!--{if $attribute_type == "BWSJ"}-->
+					
+                <!--{else}-->
+                	{include file='/library/page_insproduct_picclife_product.lbi'}    
+                <!--{/if}-->
+         
+         <!--{/if}-->
+         <!--包含内容结束-->  
+         <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-body f-csp" data-value="goods.php?act=view_img&id={$goods_id}" onClick="redirect(this)">产品简介<span class="pull-right" style="height:20px; width:20px; display:block"><img src="dist/images/drop_down_card_btn_close.png" class="img-responsive" ></span></div>
+               
+        </div>
+        {if $ins_product_selected.product_duty_list}
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div onclick="show_hide(this)" class="panel-body f-csp">保障范围<span style="height:20px; width:20px; display:block" class="pull-right"><img class="img-responsive" src="dist/images/drop_down_card_btn_close.png"></span></div>
+              <ul style="display: none;" class="list-group s-c-aaaaaa">
+                	<!--{foreach from=$ins_product_selected.product_duty_list key=key item=item}-->
+                    <li class="list-group-item">
+                    	<span class="f-db">保险责任：{$item.duty_name}</span>
+                        <span class="f-db">保险金额：{$item.amount}</span>
+                        <span class="f-db">{$item.duty_note}</span>
+                    </li>
+                    <!--{/foreach}-->
+              </ul>
+              
+        </div> 
+        {/if}
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-body f-csp" data-value="goods.php?act=cover_note&id={$goods_id}" onClick="redirect(this)">投保须知<span class="pull-right" style="height:20px; width:20px; display:block"><img src="dist/images/drop_down_card_btn_close.png" class="img-responsive" ></span></div>
+               
+        </div>
+        
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-body f-csp" data-value="goods.php?act=insurance_clauses&id={$goods_id}" onClick="redirect(this)">保险条款<span class="pull-right" style="height:20px; width:20px; display:block"><img src="dist/images/drop_down_card_btn_close.png" class="img-responsive" ></span></div>
+               
+        </div>
+        
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-body f-csp" data-value="goods.php?act=claims_guide&id={$goods_id}" onClick="redirect(this)">理赔指南<span class="pull-right" style="height:20px; width:20px; display:block"><img src="dist/images/drop_down_card_btn_close.png" class="img-responsive" ></span></div>
+               
+        </div>
+         <!-- app start-->
+             <input type="hidden" id="userid_app" name="uid" value="{$uid}" />
+             <input type="hidden" id="platformId" name="platformId" value="{$platformId}" />
+             <!-- app end-->
+             
+             <!--以下是系统给定的参数-->
+             <input type="hidden" id="attribute_id" name="attribute_id" value="{$attribute_id}" />
+             <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+             <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" />
+         <div class="f-pb10">
+         	{if $platformId}
+                {if $uid!=""}
+                	<button type="submit" class="btn btn-ed462f btn-block f-pt10 f-pb10" id="submit_btn">立即投保</button>
+                {else}
+                	{if $platformId==103}
+                		<a class="btn btn-ed462f btn-block f-pt10 f-pb10" href="javascript:jsNaviLogin.onNaviLogin()">立即登录</a>
+                    {elseif $platformId==123}
+                    	<a class="btn btn-ed462f btn-block f-pt10 f-pb10" href="objc://login">立即登录</a>
+                    {/if}
+                {/if}
+            {else}
+            	<button type="submit" class="btn btn-ed462f btn-block f-pt10 f-pb10" id="submit_btn">立即投保</button>
+            {/if}
+         </div>
+    </div>
+    </form>
+</div>
+</body>
+</html>

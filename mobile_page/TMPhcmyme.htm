@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>专题详情页</title>
+<link rel="stylesheet" title="对于&quot;在浏览器中预览&quot;为禁用: ../themes/inserance_02/css/ebaoins.css" type="text/css" />
+<style type="text/css">
+
+
+/* CSS Document */
+html,body,div,ul,li,img{margin:0 auto;padding:0; border:none;}
+html{margin:0 auto;} 
+body{font-family:"Microsoft YaHei",Arial;font-size:12px;color:#525151;line-height:21px;background:#f5f5f5;}
+ul,li,p,input,img,button{list-style:none; margin:0px;padding:0px;border:0px; outline:none; border:none;}
+a{text-decoration:none;color:#464646;}
+a:hover{color:#ea5413;text-decoration:none;}
+.clear:after{content:".";clear:both;display:block;height:0;visibility:hidden;}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-weight:100;}
+/*下拉列表css*/
+/* Root Menu Hover Persistence */ 
+ 
+ul#navmenu {float:left; margin-top:18px;  height:30px; display:inline-block;}
+ 
+ul#navmenu li {position:relative;*z-index:30;line-height:30px; width:158px; display:block; margin:0px; padding:0px; }
+ul#navmenu li a, #navmenu li a:visited {display:block;text-align:center;text-decoration:none;height:30px;color:#000;background:#fff;line-height:30px;font-size:14px; margin:0px;padding:0px;}
+ul#navmenu li a{border:1px solid #ddd;width:158px;}
+ul#navmenu li ul {display: none; list-style:none; }
+ul#navmenu li:hover ul {display:block;position:absolute; z-index:3;  border:1px solid #ddd; border-top:none; margin-top:-3px;background:#fff; padding-bottom:10px;*margin-left:-79px;}
+ul#navmenu li:hover ul li a {display:block;background:#fff;color:#000;border:1px solid #fff;width:156px;}
+ul#navmenu li:hover ul li a:hover {background:#f5f5f5;color:#6c6c6c;} 
+ul#navmenu li ul li.sel_on a{background:#f5f5f5;color:#6c6c6c;}
+/*公用css*/
+.float_L{float:left;}
+.float_R{float:right;}
+.text_center{text-align:center}
+.text_left{text-align:left}
+.text_right{text-align:right}
+.wid_300{width:300px;}
+.wid_200{width:200px;}
+.wid_198{width:198px;}
+.wid_150{width:680px;}
+.wid_248{width:248px;}
+.wid_98{width:98px;}
+.padd_A5{ padding:5px;}
+.margin_L10{ margin-left:10px;}
+.line_20{line-height:20px;}
+.line_25{line-height:25px;}
+
+.height_25{height:25px;}
+.inputcheck{border:#ccc solid 1px; width:80px; padding:2px 0px;}
+
+.xq_title2{ padding-bottom:20px; }
+.plan{margin-left:10px; border:#CCC dashed 1px; padding:10px; background:#e3e3e3; border-radius:3px; line-height:20px; display:inline-block}
+.plan a{font-size:16px;}
+.current{ border-bottom:#f60 solid 3px;}
+.current a{color:#f60; font-size:16px;}
+.font_bold{font-weight:bolder}
+.margin_T0_50{ margin-top:-50px;}
+.border_table_05 td{border-bottom:1px dashed #aaa; padding:10px; }
+.border_table_05 th{border-bottom:1px dashed #aaa; padding:10px;}
+
+.position_hot{z-index:5;margin-top:-214px;margin-top:-208px\9;*margin-top:6px;  margin-left:5px ;*margin-left:-284px ; padding: 2px 5px; background: #ea5413;  border-radius: 3px;color: #fff;    position:absolute;display:block;}
+/*首页*/
+#container{width:100%;}
+#container .header{width:100%;background:#fff;}
+#container .header_02{width:1180px;height:112px;margin:0 auto;}
+#container .header_02 .logo{width:380px;float:left; height:112px;}
+#container .logo a{display:block; width:380px; margin-top:16px;}
+#container .header_01{width:780px;float:right;}
+#container .info{height:50px;padding-top:6px;text-align:right;}
+#container .info ul li{display:inline;padding:0 12px;background:url(../themes/inserance_02/images/a1.png) no-repeat right center;}
+#container .info ul li a{padding:0 5px; color:#464646; }
+#container .info ul li a:hover{color:#ea5413; text-decoration:none;}
+#container .info ul li span{font-size:18px;color:#ea5413;}
+.container .path{margin:20px 0;text-align:left;color:#585858;}
+.container .path ul span{color:#000;font-weight:700;}
+
+/*导航*/
+.nav{width:550px;height:40px;float:right;font-size:15px; text-align: center;}
+.title-list{position:relative;top:6px;}
+.title-list li{width:110px;line-height:40px;float:left;display:inline-block;color:#585858;}
+.title-list li.on{color:#ff6600;font-weight:bold;}
+.title-list p{position:absolute;top:30px;left:0px;width:110px;height:7px;border-bottom:3px solid #ff6600;overflow:hidden;text-align:center;}
+/*.title-list b{display:inline-block;width:0;height:0;margin-top:-6px;border-style:dashed dashed solid dashed;border-width:9px;border-color:#fff #fff #ff6600 #fff;overflow:hidden;zoom:1;font-size:0;}*/
+
+/*广告*/
+.ad{width:100%;height:470px;background:#ea5413;}
+.ad_01{width:1180px;height:470px;margin:0 auto;position:relative;top:585px;z-index:2; right:50px;}
+.ad_02{width:450px;position:absolute;top:-550px;right:0;}
+
+/*滚动信息*/
+.ad_03{margin-bottom:10px;background:#fff;font-size:14px;color:#939191;padding:20px 30px;}
+.ad_03 ul li{line-height:28px;text-align:left;}
+.ad_03 ul li span{font-size:18px;color:#ea5413;}
+.con_02{width:380px;height:60px;overflow:hidden;margin-top:6px;}
+.list{width:100%;}
+.list li{width:100%;height:30px;line-height:29px;float:left;}
+.list li a{color:#939191;display:block;}
+.list li a:hover{text-decoration:underline;}
+
+
+/*轮播焦点图*/
+.wrap {position:relative;z-index:0;height:470px; width:1180px;}
+.banner-show {position:absolute;top:0;left:0;z-index:0;width:100%;min-width:1180px;height:470px;overflow:hidden;}
+.banner-show .cell {position:absolute;top:0;left:0;width:100%;overflow:hidden;background-repeat:repeat-x;background-position:center top;}
+.banner-show .cell .con {position:relative;height:470px;background-repeat:no-repeat;background-position:center top;}
+.banner-control {position:absolute;top:0;left:50%;width:1100px;margin-left:-510px;}
+.banner-control a {position:absolute;top:200px;width:60px;height:60px;line-height:10;overflow:hidden;background:url(../themes/inserance_02/images/icon_control.png) no-repeat;}
+.banner-control a.left {left:-85px;background-position:0 0;}
+.banner-control a.left:hover {background-position:0 -60px;}
+.banner-control a.right {right:0px;background-position:-60px 0;}
+.banner-control a.right:hover {background-position:-60px -60px;}
+
+/*登录注册*/
+.login_reg{background:#fff;padding:30px 40px;}
+.login_reg ul{width:370px;}
+.ul_login{width:370px; height:112px;}
+.login_reg ul h2{font-size:24px;font-weight:100;margin-bottom:20px;text-align:left;}
+.login_reg ul p{color:#939191;text-align:left;}
+.login_reg_01{float:left;}
+.input_01{width:255px;height:42px;margin:6px 0;display:block;border:1px solid #c9c9c9;background:url(../themes/inserance_02/images/a5.png) no-repeat 0 center;text-indent:2em;font-size:16px;color:#666;font-family:"Microsoft YaHei"; line-height:42px;}
+.input_02{width:255px;height:42px;margin:6px 0;display:block;border:1px solid #c9c9c9;background:url(../themes/inserance_02/images/a4.png) no-repeat 0 center;text-indent:2em;font-size:16px;color:#666; line-height:42px;}
+.btn{width:100px;height:100px;float:right;border:1px solid #c9c9c9;font-size:18px;font-family:"Microsoft YaHei";margin-top:5px;background:#fff;cursor:pointer;}
+.btn:hover{background:#d4d3d3;}
+
+/*首页热卖产品*/
+.pagebody{width:1180px;}
+.hotproduct{text-align:left;position:relative;z-index:999;}
+.hotproduct h2{font-size:24px;color:#585858;padding:20px 0;}
+.hotproduct h2 span{font-size:18px;color:#aeadad;text-indent:30px;display:inline-block;background:url(../themes/inserance_02/images/a6.png) no-repeat 10px center;}
+.hotproduct_01{width:1200px;overflow:hidden; background:none;}
+.hotproduct_01 ul{width:286px;float:left;margin-right:12px;margin-bottom:20px;}
+.hotproduct_01 ul li{color:#a8a8a8;}
+.hotproduct_01 ul h3{font-size:14px;color:#585858;margin-top:10px;}
+
+/*首页平台公告*/
+.pagebody_gonggao{width:1180px;margin:10px auto;padding-top:10px;padding-bottom:40px;text-align:left;}
+.gonggao_01{width:770px;float:left;}
+.gonggao_01 ul{margin-right:20px;}
+.gonggao_01 ul li{width:360px;line-height:30px;font-size:14px;display:block;background:url(../themes/inserance_02/images/a7.png) no-repeat 0 center;text-indent:1.5em;overflow:hidden;/*超出部分隐藏*/white-space:nowrap;/*文本溢出用"..."表示*/text-overflow:ellipsis;/*适用IE*/-o-text-overflow:ellipsis;/*适用opera*/-moz-binding: url('../themes/inserance_02/css/ellipsis.xml#ellipsis');/*适用火狐(firefox通过XUL实现效果)*/}
+.container_03{width:100%; height:auto; background:#eaeaea;}
+.gonggao_01 ul li span{font-size:20px;color:#ea5413;}
+.gonggao_01 h2{font-size:24px;color:#585858;padding:20px 0;}
+.gonggao_01 h2 span{font-size:18px;color:#aeadad;text-indent:30px;display:inline-block;background:url(../themes/inserance_02/images/a6.png) no-repeat 10px center;}
+.gonggao_01 ul{float:left;height:214px;}
+.gonggao_02{width:362px;position:relative;float:left;}
+.gonggao_02 a img{position:absolute;z-index:3;}
+.gonggao_02 a p{width:360px;height:30px;line-height:30px;color:#fff;font-size:14px;top:170px;left:1px;text-indent:1em;position:absolute;z-index:5;background:#000;opacity:0.6;filter:alpha(opacity=0.6);font-family:"Microsoft YaHei";display:block;overflow:hidden;/*超出部分隐藏*/white-space:nowrap;/*文本溢出用"..."表示*/text-overflow:ellipsis;/*适用IE*/-o-text-overflow:ellipsis;/*适用opera*/-moz-binding: url('../themes/inserance_02/css/ellipsis.xml#ellipsis');/*适用火狐(firefox通过XUL实现效果)*/}
+
+.question{width:410px;float:right; height:277px;}
+.question li{width:410px;line-height:30px;font-size:14px;display:block;overflow:hidden;/*超出部分隐藏*/white-space:nowrap;/*文本溢出用"..."表示*/text-overflow:ellipsis;/*适用IE*/-o-text-overflow:ellipsis;/*适用opera*/-moz-binding: url('../themes/inserance_02/css/ellipsis.xml#ellipsis');/*适用火狐(firefox通过XUL实现效果)*/}
+.question li span{color:#ea5413;}
+.question h2{font-size:24px;color:#585858;padding:20px 0;}
+.question h2 span{font-size:18px;color:#aeadad;text-indent:30px;display:inline-block;background:url(../themes/inserance_02/images/a6.png) no-repeat 10px center;}
+
+/*首页保险代理人*/
+.pagebody_baoxian{width:1180px;margin:10px auto;padding-top:10px;text-align:left;}
+.pagebody_baoxian h2{font-size:24px;color:#585858;padding:20px 0;}
+.pagebody_baoxian h2 span{font-size:18px;color:#aeadad;text-indent:30px;display:inline-block;background:url(../themes/inserance_02/images/a6.png) no-repeat 10px center;}
+.baoxian_01{width:1300px;overflow:hidden;position:relative;}
+.baoxian_01 ul{width:173px;float:left;margin-right:78px;margin-bottom:20px;padding:10px 0;}
+.baoxian_01 ul li{width:173px;color:#a8a8a8;}
+.baoxian_01 ul h3{font-size:14px;color:#585858;margin-top:10px;}
+.baoxian_01 ul h3 span{color:#ea5413;font-size:18px;margin-right:5px;}
+
+/*遮罩效果*/
+.ebaoins_mark{width:173px;height:173px;margin-bottom:10px;overflow:hidden;float:left;position:relative;}
+.ebaoins_mark img{width:173px;height:173px;position:absolute;left:0;top:0;z-index:10;background:url(../themes/inserance_02/images/loading.gif) no-repeat center center;}
+.ebaoins_mark .mark{background:url(../themes/inserance_02/images/mark_01.png) no-repeat center center;opacity:1.0;display:none;width:173px;height:173px;position:absolute;left:0;top:0;z-index:15;text-indent:-3000px;overflow:hidden;filter:alpha(opacity=1.0);}
+
+.ebaoins_mark_02{width:286px;height:215px;margin-bottom:10px;overflow:hidden;float:left;position:relative;}
+.ebaoins_mark_02 img{width:286px;height:215px;position:absolute;left:0;top:0;z-index:10;background:url(../themes/inserance_02/images/loading.gif) no-repeat center center;}
+.ebaoins_mark_02 .mark_02{background:url(../themes/inserance_02/images/mark_02.png) no-repeat center center #ea5413;opacity:0.7;display:none;width:286px;height:215px;position:absolute;left:0;top:0;z-index:15;text-indent:-3000px;overflow:hidden;filter:alpha(opacity=0.7);}
+
+
+/*首页合作伙伴*/
+.pagebody_partner{width:1180px;margin:10px auto;padding-bottom:40px;text-align:left;}
+.pagebody_partner h2{font-size:24px;color:#585858;padding:20px 0;}
+.pagebody_partner h2 span{font-size:18px;color:#aeadad;text-indent:30px;display:inline-block;background:url(../themes/inserance_02/images/a6.png) no-repeat 10px center;}
+.partner_01{width:100%;overflow:hidden;}
+.partner_01 a{width:225px;display:block; text-align:center ;height:40px;float:left;margin:4px;background:#fff;font-size:14px;line-height:40px;}
+.partner_01 a:hover{background:#ea5413;display:block;color:#fff;}
+.partner_02{background:#fff; width:1180px; height:160px;}
+.partner_02 a{width:185px;display:block; text-align:center ;height:40px;float:left;margin:4px;background:#fff;font-size:14px;line-height:40px;}
+.partner_02 a:hover{display:block;color:#ea5413;}
+
+/*热销产品*/
+.hotproducts{margin-bottom:15px;}
+.hotproducts_title{overflow:hidden;}
+.hotproducts_title h2{font-size:20px;color:#000;text-align:left;padding:25px 0 15px 0;}
+.hotproducts_title h2 span{color:#636464;font-size:16px;margin-left:10px;}
+.title_left{float:left;}
+.title_right{float:right;color:#323436;padding-top:20px;}
+.title_right span{color:#ea5413;font-size:16px;padding:0 5px;}
+.hotproducts_banner{width:1180px;height:66px;background:#ea5413;}
+.banner_left{float:left;line-height:66px;}
+.banner_left ul{float:left;}
+.banner_left ul h2 a{font-size:24px;color:#464646;padding:0;margin:0 25px; display:inline-block;}
+.banner_left ul h2 a:hover{font-size:24px;color:#464646;padding:0;margin:0 25px;}
+.banner_left ul li{display:inline;font-size:14px;padding:0 5px;}
+.banner_left ul li a{color:#fff;padding:3px; padding:3px 20px 3px 10px;border-radius:3px;}
+.banner_left ul li a:hover{background:#b83805;border-radius:3px;}
+.banner_left ul li a.time_down{background:url(../themes/inserance_02/images/down.png) no-repeat  center right 8px #b83805;}
+.banner_left ul li a.time_up{background:url(../themes/inserance_02/images/up.png) no-repeat  center right 8px #b83805;}
+.banner_right{float:right;line-height:66px;margin-right:20px;}
+.banner_right ul li{display:inline;font-size:14px;padding:0 5px;}
+.banner_right ul li a{color:#fff; border:#fff solid 1px; padding:3px; border-radius:3px;}
+.banner_right ul li a:hover{color:#fff; background:#b83805;}
+.category_on a{color:#fff; background:#b83805;}
+
+/*产品列表页*/
+.hotproducts path{}
+.hotproducts_list{padding-bottom:30px;}
+.hotproducts_list_01{border:1px solid #ccc;background:#fff;margin-bottom:15px;padding:40px 30px; overflow:hidden; width:1120px;}
+.hotproducts_list_left{width:286px;float:left;}
+.hotproducts_list_left h2{margin:20px 0 10px 0;text-align:left;}
+.hotproducts_list_left ul{margin:20px 0;text-align:left;}
+.hotproducts_list_left li{line-height:25px;text-align:left;}
+.hotproducts_list_left p{text-align:left;color:#585858;}
+.hotproducts_list_right{width:800px;float:right;text-align:left;}
+.hotproducts_list_right ul{padding-bottom:10px;}
+.hotproducts_list_right_01{position:relative;overflow:hidden;}
+.hotproducts_list_right_01_a{width:470px;float:left;}
+.hotproducts_list_right_01_b{width:345px;text-align:right;position:absolute;bottom:0;right:0;}
+.hotproducts_list_right_01 ul h1{font-size:30px;color:#ea5413;margin-top:10px;}
+.hotproducts_list_right_01 ul h2{font-size:24px;color:#585858; padding-bottom:5px;}
+.hotproducts_list_right_01 ul p{color:#a8a8a8;font-size:14px;}
+.hotproducts_list_right_01 ul li{color:#a8a8a8;font-size:14px;line-height:25px;}
+.hotproducts_list_right_02{margin:30px 0;}
+.yhj{width:80px;height:23px;display:inline-block;line-height:23px;text-indent:1.2em;font-size:12px;color:#fff;background:url(../themes/inserance_02/images/a9.png) no-repeat;}
+.rmb{font-size:16px;}
+.btn_products{width:135px;height:35px;background:#cfcfcf;border:0;color:#fff;font-size:14px;border-radius:3px;cursor:pointer; display:inline-block; text-align:center; line-height:35px; float:right; margin-right:20px;}
+.btn_products:hover{color:#FFF;background:#666;transition:background-color .3s linear;-webkit-transition: background-color .3s linear;-moz-transition: background-color .3s linear;-o-transition:background-color .3s linear;-ms-transition:background-color .3s linear;}
+.btn_products_02{width:135px;height:35px;background:#ea5413;border:0;color:#fff;font-size:14px;border-radius:3px;cursor:pointer;}
+.btn_products_02:hover{background:#b83b05;transition:background-color .3s linear;-webkit-transition: background-color .3s linear;-moz-transition: background-color .3s linear;-o-transition:background-color .3s linear;-ms-transition:background-color .3s linear;}
+
+.btn_products_02_01{ float:right; text-align:center; line-height:35px; width:135px;height:35px;background:#ea5413;border:0;color:#fff;font-size:14px;border-radius:3px;cursor:pointer; display:block;}
+.btn_products_02_01:hover{background:#b83b05;transition:background-color .3s linear;-webkit-transition: background-color .3s linear;-moz-transition: background-color .3s linear;-o-transition:background-color .3s linear;-ms-transition:background-color .3s linear;display:block; color:#FFF}
+/*平台介绍*/
+.introduce{padding-bottom:30px;}
+.introduce_01{margin:30px 0; overflow:hidden;}
+.introduce_01_left{width:690px;float:left;}
+.introduce_01_right{width:480px;float:right;text-align:left;padding-top:150px;}
+.introduce_01_right h2{font-size:36px;color:#ea5413;line-height:45px;}
+.introduce_01_right h3{font-size:20px; color:#010101; margin-top:10px}
+.introduce_01_right p{font-size:14px;color:#585858;line-height:25px; margin-top:10px;}
+.introduce_02{width:1180px;height:400px;padding:20px 0;margin-top:40px;}
+.introduce_02_left{width:560px;float:left;text-align:right;padding-top:150px;padding-left:40px;}
+.introduce_02_left h2{font-size:36px;color:#ea5413;line-height:45px;}
+.introduce_02_left h3{font-size:20px; color:#010101; margin-top:10px}
+.introduce_02_left p{font-size:14px;color:#585858;line-height:25px; text-align:left;}
+.introduce_02_right{width:580px;float:right;}
+.introduce_03{margin:30px 0;}
+.introduce_03_left{width:670px;float:left;}
+.introduce_03_right{width:510px;float:right;text-align:left;padding-top:150px;}
+.introduce_03_right h2{font-size:36px;color:#ea5413;line-height:45px;}
+.introduce_03_right h3{font-size:20px; color:#010101; margin-top:10px}
+.introduce_03_right p{font-size:14px;color:#585858;line-height:25px;}
+.introduce_04{width:1180px;height:600px;padding:20px 0;margin:40px;}
+.introduce_04_left{width:480px;float:left;text-align:right;padding-top:150px;padding-left:40px;}
+.introduce_04_left h2{font-size:36px;color:#010101;line-height:45px;padding-bottom:20px;}
+.introduce_04_left li{font-size:14px;color:#585858;line-height:25px;}
+.introduce_04_right{width:645px;float:right;padding-top:20px;}
+/*关于我们   平台资讯列表*/
+
+.about_banner{width:1180px; height:150px;}
+.about_content{width:1140px; overflow:hidden; background-color:#FFF; padding:10px 20px; margin-bottom:20px;}
+.about_content_left{width:185px; overflow:hidden; background:url(../themes/inserance_02/images/about_content-left.jpg); float:left;}
+.about_content_left h1{width:165px; height:50px; background:url(../themes/inserance_02/images/about-icon.jpg) no-repeat center center; margin-bottom:10px;}
+.about_content_left ul{height:auto;}
+.about_content_left ul li{width:165px; float:left;}
+.about_content_left ul li a{width:145px; height:32px;color:#575757; font-size:14px; display:block; text-align:left; line-height:33px; background:url(../themes/inserance_02/images/sanjiao.png) no-repeat right center; padding-left:20px; border-bottom:1px solid #ccc; font-weight:bold;}
+.about_content_left ul li a:hover{background:url(../themes/inserance_02/images/grey%20icon02.jpg) no-repeat center center; color:#fff;  border-bottom:1px solid #fff;height:32px;}
+.about_content_left ul li a.on{background:url(../themes/inserance_02/images/grey%20icon02.jpg) no-repeat center center; color:#fff;  border-bottom:1px solid #fff;height:32px;}
+.about_content_right{float:right; width:935px; overflow:hidden; padding-left:15px;}
+.about_content_right h2{border-bottom:1px solid #999; font-size:12px; text-align:left; color:#999; width:935px; padding:5px 0 5px 15px;}
+.about_content_right h2 a{color:#ea5413;}
+.about_content_right h2 a:hover{text-decoration:underline;}
+.about_content_right dl{width:600px; overflow:hidden; margin-left:36px; text-align:left; line-height:28px; font-size:12px;}
+.about_content_right dt{width:330px; float:left;  padding-left:10px; background:url(../themes/inserance_02/images/dot.png) no-repeat left center; border-bottom:1px dashed #ddd;}
+.about_content_right dt a{color:#999;}
+.about_content_right dt a:hover{color:#ff8e4a; text-decoration:underline;}
+.about_content_right dd{width:140px; float:right; color:#3e3e3e;}
+/*关于我们  平台资讯 content */
+.content-box{padding:20px; margin:0 auto; overflow:hidden;}
+.content-box h3{font-size:18px; color:#3e3e3e; font-weight:bold; margin-bottom:5px;}
+.content-box .line{border-bottom:1px dashed #ccc; height:28px; line-height:28px; width:700px; margin:0 auto;}
+.content-box .content-smallbox{margin-top:30px;}
+.content-box .content-smallbox .content-artile{padding:0;color:#999; margin:0; width:100%;}
+.content-box .content-smallbox .content-artile dt{background:none; float:left; padding:0; margin:0; width:150px;}
+.content-box .content-smallbox .content-artile dd{width:718px; float:right; margin:0;}
+.content-box .content-smallbox .content-artile dd p{text-indent:2em;}
+/*关于我们 常见问题 content */
+.question-content{width:100%; overflow:hidden;}
+.question-content .question-list{padding: 0 20px 20px 20px; margin:0; width:856px;}
+.question-content .question-list dt{font-size:14px; font-weight:bold; clear:both; background:none; padding:0; background:#fef7ef; width:100%;}
+.question-content .question-list dd{font-size:12px; width:100%; color:#b2b2b2; line-height:20px;}
+
+
+/*专题*/hotproducts_title
+.special_article h2{font-size:24px;color:#585858;padding:10px;}
+.special_article img{margin:20px 0;}
+.special_article li{margin:10px 0;}
+.special_article p{text-align:left;font-size:14px;text-indent:2em;}
+.btn_special{width:222px;height:30px;padding-bottom:4px;background:#cfcfcf;border:0;font-size:14px;color:#fff;border-radius:3px;cursor:pointer;font-family:"Microsoft YaHei";}
+.btn_special:hover{background:#ea5413;transition:background-color .3s linear;-webkit-transition: background-color .3s linear;-moz-transition: background-color .3s linear;-o-transition:background-color .3s linear;-ms-transition:background-color .3s linear;}
+.special_list{margin:20px 0;text-align:left;color:#585858;}
+.special_list span{color:#000;font-weight:700;}
+.special_list_right{float:right;color:#323436;}
+.special_list_right span{color:#ea5413;font-size:16px;padding:0 5px;}
+
+/*产品保单列表详情*/
+.product_bx_desc table {width:800px; border-top:#CCC solid 1px; border-left:#ccc solid 1px; display:inline-block; margin:0px; padding:0px; }
+.product_bx_desc table td{border-bottom:#CCC solid 1px; border-right:#ccc solid 1px}
+.product_bx_desc table td a{color:#115fad;}
+.product_bx_desc table td a:hover{color:#115fad; cursor:help}
+/*选项卡*/
+#tab{width:800px;position:relative;margin-top:20px;float:left;}
+.tabList{border:1px solid #ccc;height:46px;}
+#tab .tabList ul li{width:112px;float:left;cursor:pointer;height:45px;line-height:45px;font-size:14px;text-align:center;background:url(../themes/inserance_02/images/a11.png) no-repeat 111px center;}
+#tab .tabCon{ clear:both; float:left; margin-top:-5px; width:798px; border:#CCC solid 1px; border-top:0px; }
+#tab .tabCon div{padding:10px;opacity:0;filter:alpha(opacity=0);text-align:left;line-height:25px;}
+#tab .tabList li.cur{width:112px;height:52px;background:url(../themes/inserance_02/images/a10.png);color:#fff;}
+#tab .tabCon div.cur{opacity:1;filter:alpha(opacity=100);}
+
+
+/*翻页*/
+.page{overflow: hidden;float: right;margin:20px 0;}
+.page li{float: left;margin-left: 5px;height: 36px;line-height: 36px;}
+.page li a{display: inline-block;width: 36px;height: 36px;text-align: center;overflow: hidden;background-color: #fff;}
+.page li.on a,.page li a:hover,.page li a.on{color: #fff;background-color: #999;}
+.page li.page-count{display: none;}
+
+.pagebar{overflow: hidden;float: right;margin:20px 0; }
+.pagebar a{float: left;margin-left: 5px;height: 36px;line-height: 36px;display: inline-block;width: 36px;height: 36px;text-align: center;overflow: hidden;background-color: #fff;}
+.pagebar .f6{float: left;margin-left: 5px; padding:0px 5px; height: 36px;line-height: 36px;display: inline-block;height: 36px;text-align: center;overflow: hidden;background-color: #fff;} 
+.pagebar .c{ margin-left:5px;float: left;display: inline-block;width: 36px;height: 36px; line-height:36px;color:#fff;text-align: center;overflow: hidden;background-color: #ea5413;}
+.pagebar a:hover{  display: inline-block;width: 36px;height: 36px;color:#fff;text-align: center;overflow: hidden;background-color: #999;}
+
+
+/*页尾*/
+.foot02{ width: 100%; height:100px; background: #333; padding-top: 20px;}
+.footer_1180{width:1180px; margin:0 auto}
+.footer_left{ float:left; width:660px;}
+.footer_right{ float:right; width:340px;}
+.foot02 .footer1 ul{ width: 1204px; margin:0 auto;}
+.foot02 .footer1 ul li{ float:left;}
+.foot02 .footer1 .insur02{color:#b7b7b7;}
+.foot02 .footer1 .insur02 li a{color:#acacac;}
+.foot02 .footer1 .insur02 li a:hover{text-decoration:underline; color:#666}
+.foot02 .footer2{ width: 1200px; margin: 0 auto; margin-top: 10px;}
+.foot02 .footer2 .text{color:#acacac; text-align: left; margin-top: 5px;}
+
+.q_code{ display:inline-block;}
+ 
+.q_codelist{display:inline-block;vertical-align:top; line-height:25px; color:#fff; font-size:14px; margin-left:20px;}
+.q_title{ font-size:18px; font-weight:bolder; line-height:35px;}
+/*页尾*/
+
+
+</style>
+<script src="../themes/inserance_02/js/jquery.min.js"></script>
+<script src="../themes/inserance_02/js/mark.js"></script>
+<script src="../themes/inserance_02/js/roll.js"></script>
+<script src="../themes/inserance_02/js/lanrenzhijia.js"></script>
+<script type="text/javascript" src="../themes/inserance_02/js/tab.js"></script>
+<style type="text/css">
+
+a{color:#666;}
+a:hover{color:#f00;}
+
+</style>
+</head>
+
+<body>
+<div id="container">
+	<div class="header"><!--头部开始-->
+   	  <div class="header_02">
+        	<div class="logo"><a href="../index.php"><img src="../themes/inserance_02/images/logo.png" width="376" height="80" /></a> 	</div>
+            <div style="float:right;"><img style="padding:40px;"src="../themes/inserance_02/images/reline-tel.png" width="316" height="41" /></div>
+      </div>
+    </div>
+</div><!--头部结束-->
+<div style="margin:0 auto; width:100%;">
+  <div style="background:#59d2ff; width:100%; height:458px;">
+      <div style="margin:0 auto; width:1183px; height:458px"><img src="../themes/inserance_02/images/c1.png" width="1183" height="458" /></div>
+  </div>
+  <div style="background:#f49bc1; width:100%; height:470px;">
+      <div style="margin:0 auto; width:1227px; height:471px"><img src="../themes/inserance_02/images/c2.png" width="1227" height="471" /></div>
+  </div>
+  <div style="background:#f4c19b; width:100%; height:479px;">
+    <div style="margin:0 auto; width:1183px; height:479px; background:url(../themes/inserance_02/images/c3.png) no-repeat center center; position:relative;">
+          <div style="font-size:36px; color:#555659; padding:88px 68px 50px 600px;"><img src="../themes/inserance_02/images/chengzhanglushang .png" width="519" height="62" />
+        </div>
+          <div style="width:630px; height:120px; text-indent:2em; margin:0 68px 50px 500px;  line-height:24px; font-size:14px;">自从孩子呱呱落地的那刻开始，便注定了是父母一生的牵绊，家庭的重心，希望的寄托！
+    每一个父母都期望孩子能平安快乐地成长，但当意外突如其来时，孩子最容易受到伤害。少儿免疫力水平较低，极易生病，如今环境恶化、日益堪忧的食品安全问题更让父母为自家宝贝的健康状况担忧不已，补充一份医疗保险成为许多家长的第一选择。<a style="color:#f56634;"href="../category.php?act=hot_goods_list&cat_id=18">查看保险方案>></a></div>
+          <div style="width:138px; height:40px; background:#dd4814; line-height:40px; text-align:center; position:absolute; bottom:82px; right:68px;"><a style="color:#fff; font-size:14px; text-decoration:none;" href="../goods.php?id=40">查看详情</a></div>	
+      </div>
+  </div>
+  <div style="background:#f0f1f8; width:100%; height:480px;">
+      <div style="margin:0 auto; width:1183px; height:480px"><img src="../themes/inserance_02/images/c4.png" width="1183" height="480" /></div>
+  </div>
+  <div style="background:#5c025b; width:100%; height:480px;">
+      <div style="margin:0 auto; width:1183px; height:480px"><img src="../themes/inserance_02/images/c5.png" width="1183" height="480" /></div>
+  </div>
+  <div style="width:margin:0 auto; width:1184px;  background:url(../themes/inserance_02/images/zhunti-bg.png) no-repeat top center ; position:relative; bottom:79px;"> 
+  	<div style="width:1070px; height:13px; background:url(../themes/inserance_02/images/zhuanti-chanpin-table-boderT.png) no-repeat left center;"></div>
+    <div style="width:1070px; height:auto; margin:0 auto;">
+          <div style="width:14px; height:1224px; background:url(../themes/inserance_02/images/zhuanti-chanpin-table-boderL.png) repeat-y left top; float:left;"></div>
+          <div style="width:1042px; height:1224px; background:#eee; float:left;">
+                <ul style="width:1040px; height:40px; padding:80px 0 20px 0; font-weight:bold; color:#ff6d46; margin:0; background:url(../themes/inserance_02/images/table-bg.png) no-repeat center bottom;">
+                    <li style="float:left; width:300px; text-align:center; list-style:none; font-size:30px; font-family:黑体">险种</li>
+                    <li style="float:left; width:180px; text-align:center; list-style:none; font-size:30px; font-family:黑体">保费</li>
+                    <li style="float:left; width:270px; text-align:center; list-style:none; font-size:30px; font-family:黑体">保障范围</li>
+                    <li style="float:left; width:164px; text-align:center; list-style:none; font-size:30px; font-family:黑体">保额</li>
+                </ul>
+                <div style="width:1040px; height:210px; position:relative; border-bottom:1px solid #ff9046;">
+                	<div style="width:172px; height:94px; background:#e5e5e5; float:left; padding:58px 60px; line-height:50px; text-align:center;"><a style="font-size:35px;  width:172px; height:94px; background:#e5e5e5;"href="../goods.php?id=39">平安少儿保险卡A卡</a></div>
+                	<div style="width:180px; height:210px; float:left; line-height:210px; text-align:center; font-size:35px; color:#f00;">365元</div>
+                	<div style="width:250px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;">
+                    	<div style="text-align:center;">意外和疾病住院</div>
+                    	<div style="text-align:center;">意外住院和门急诊</div>
+                    	<div style="text-align:center;">意外住院津贴</div>
+                    	<div style="text-align:center;">疾病身故</div>
+                    	<div style="text-align:center;">意外伤害身故和残疾</div>
+                    </div>
+                	<div style="width:164px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;" >
+                    	<div style="text-align:left; width:162px; text-align:center;">8万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">8000元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">100元/天</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    </div>
+                    <div style="width:50px; height:28px; border-radius:3px; line-height:28px; background:url(../themes/inserance_02/images/sanjiao-bg.png) no-repeat 45px center #ff9046; padding-left:10px; position:absolute; right:42px; bottom:40px; color:#fff;"><a style="color:#fff;" href="../goods.php?id=39">详情</a>
+                    </div>
+                </div>
+                <div style="width:1040px; height:210px; position:relative; border-bottom:1px solid #ff9046;">
+                	<div style="width:172px; height:94px; background:#f5f5f5; float:left; padding:58px 60px; line-height:50px; text-align:center;"><a style="font-size:35px; "href="../goods.php?id=40">平安少儿保险卡B卡</a></div>
+                	<div style="width:180px; height:210px; float:left; line-height:210px; text-align:center; font-size:35px; color:#f00;">180元</div>
+                	<div style="width:250px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;">
+                    	<div style="text-align:center;">意外和疾病住院</div>
+                    	<div style="text-align:center;">意外住院和门急诊</div>
+                    	<div style="text-align:center;">意外住院津贴</div>
+                    	<div style="text-align:center;">疾病身故</div>
+                    	<div style="text-align:center;">意外伤害身故和残疾</div>
+                    </div>
+                	<div style="width:164px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;" >
+                    	<div style="text-align:left; width:162px; text-align:center;">10万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">8000元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">100元/天</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    </div>
+                    <div style="width:50px; height:28px; border-radius:3px; line-height:28px; background:url(../themes/inserance_02/images/sanjiao-bg.png) no-repeat 45px center #ff9046; padding-left:10px; position:absolute; right:42px; bottom:40px;"><a style="color:#fff;" href="../goods.php?id=40">详情</a>
+                    </div>
+                </div>
+                <div style="width:1040px; height:210px; position:relative; border-bottom:1px solid #ff9046;">
+                	<div style="width:172px; height:94px; background:#e5e5e5; float:left; padding:58px 60px; line-height:50px; text-align:center;"><a style="font-size:35px; "href="../goods.php?id=33">平安少儿保险卡C卡</a></div>
+                	<div style="width:180px; height:210px; float:left; line-height:210px; text-align:center; font-size:35px; color:#f00;">100元</div>
+                	<div style="width:250px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;">
+                    	<div style="text-align:center;">意外住院和门急诊</div>
+                    	<div style="text-align:center;">意外住院津贴</div>
+                    	<div style="text-align:center;">疾病身故</div>
+                    	<div style="text-align:center;">意外伤害身故和残疾</div>
+                    </div>
+                	<div style="width:164px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;" >
+                    	<div style="text-align:left; width:162px; text-align:center;">1.6万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">100元/天</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">5万元</div>
+                    </div>
+                    <div style="width:50px; height:28px; border-radius:3px; line-height:28px; background:url(../themes/inserance_02/images/sanjiao-bg.png) no-repeat 45px center #ff9046; padding-left:10px; position:absolute; right:42px; bottom:40px; color:#fff;"><a style="color:#fff;" href="../goods.php?id=33">详情</a>
+                    </div>
+                </div>
+                <div style="width:1040px; height:210px; position:relative; border-bottom:1px solid #ff9046;">
+                	<div style="width:172px; height:94px; background:#f5f5f5; float:left; font-size:35px;  padding:58px 60px; line-height:50px; text-align:center;"><a style="font-size:35px;  "href="../goods.php?id=50">平安相伴少儿卡</a></div>
+                	<div style="width:180px; height:210px; float:left; line-height:210px; text-align:center; font-size:35px; color:#f00;">50元</div>
+                	<div style="width:250px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;">
+                    	<div style="text-align:center;">意外伤害保险金</div>
+                    	<div style="text-align:center;">疾病身故保险金</div>
+                    	<div style="text-align:center;">意外伤害医疗保险金</div>
+                    	<div style="text-align:center;">意外住院津贴</div>
+                    </div>
+                	<div style="width:164px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;" >
+                    	<div style="text-align:left; width:162px; text-align:center;">2.5万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">2.5万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">8000元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">50元/天</div>
+                    </div>
+                    <div style="width:50px; height:28px; border-radius:3px; line-height:28px; background:url(../themes/inserance_02/images/sanjiao-bg.png) no-repeat 45px center #ff9046; padding-left:10px; position:absolute; right:42px; bottom:40px; color:#fff;"><a style="color:#fff;" href="../goods.php?id=50">详情</a>
+                    </div>
+                </div>
+                <div style="width:1040px; height:224px; position:relative; border-bottom:1px solid #ff9046;">
+                	<div style="width:172px; height:94px; background:#e5e5e5; float:left; padding:64px 60px; line-height:50px; text-align:center;"><a style="font-size:35px; "href="../goods.php?id=33">平安少儿综合保险</a></div>
+                	<div style="width:180px; height:210px; float:left;  text-align:center;; color:#f00;">
+                    <div style="width:180px; height:210px; float:left; line-height:210px; text-align:center; font-size:25px; color:#f00;">100元(计划一)</div>
+                    </div>
+                	<div style="width:250px; height:190px; float:left; padding:10px; line-height:35px; font-size:16px;">
+                    	<div style="text-align:center;">意外伤害保险金</div>
+                    	<div style="text-align:center;">疾病身故保险金</div>
+                    	<div style="text-align:center;">意外伤害医疗保险金（免赔50元，按90%给付）</div>
+                    	<div style="text-align:center;">意外住院津贴（日额30元，最多给付180天）</div>
+                    </div>
+                	<div style="width:164px; height:200px; float:left; padding:10px; line-height:35px; font-size:16px;" >
+                    	<div style="text-align:left; width:162px; text-align:center;">6万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center;">1万元</div>
+                    	<div style="text-align:left; width:162px; text-align:center; line-height:60PX;">2000元</div>
+                    	<div style="text-align:left; width:162px; text-align:center; line-height:60PX;">5400元</div>
+                    </div>
+                    <div style="width:50px; height:28px; border-radius:3px; line-height:28px; background:url(../themes/inserance_02/images/sanjiao-bg.png) no-repeat 45px center #ff9046; padding-left:10px; position:absolute; right:42px; bottom:40px; color:#fff;"><a style="color:#fff;" href="../goods.php?id=53&ins_product_id=49">详情</a>
+                    </div>
+                </div>
+           </div>
+          <div style="width:14px; height:1224px; background:url(../themes/inserance_02/images/zhuanti-chanpin-table-boderR.png) repeat-y top right; float:left;"></div>
+    </div>
+    <div style="clear:both;"></div> 
+    <div style="width:1070px; height:13px; background:url(../themes/inserance_02/images/zhuanti-chanpin-table-boderB.png) no-repeat top center; margin:0 auto;"></div>
+    <div style="width:234px; height:76px; background:#dd4814; text-align:center; line-height:76px; font-size:36px; color:#fff; margin-top:74px;"><a style="font-size:36px; color:#fff;" href="../category.php?act=hot_goods_list">了解更多</a></div>
+  </div>
+ <div class="clear"></div>
+ <div class="foot02">
+	 
+    	<div class="footer_1180">
+            <div class="footer_left">
+                <div class="footer1">
+                    <ul class="insur02">
+                        <li><a href="article.php?act=index_article_by_id&amp;id=43">法律安全</a>&nbsp;|&nbsp;</li>
+                        <li><a href="article.php?act=index_article_by_id&amp;id=44">隐私政策</a>&nbsp;|&nbsp;</li>
+                        <li><a href="article.php?act=index_article_by_id&amp;id=45">法律声明</a>&nbsp;|&nbsp;</li>
+                        <li><a href="category.php?act=about">关于我们</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="footer2">
+                    <p class="text">经营保险代理业务许可证：201974000000800&nbsp;&nbsp;&nbsp;中天信合保险代理（北京）有限公司：110104011479456&nbsp;&nbsp;&nbsp;</p>
+                    <p class="text">ICP备案号：京ICP备12031115号 &nbsp; &nbsp; Copyright@2014 全联保险经纪网版权所有</p>
+                </div>
+            </div>
+            
+            <div class="footer_right">
+                <span class="q_code"><img src="images/gongzhonghao.jpg" height="90" width="90"></span>
+                <span class="q_codelist">
+                    <span class="q_title">关注我们</span><br>
+                    <span>客服邮箱：service@ebaoins.cn</span><br>
+                    <span>客服热线：4006-900-618</span><br>
+                </span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    <div>
+    
+</div>
+<style>
+ 
+/* jump */
+#ebt_jump{position:fixed;bottom:100px;right:10px;width:40px;z-index:1000;}
+*html #ebt_jump{position:absolute;top:expression(documentElement.scrollTop + "px");margin:300px 0 0 0;}
+#ebt_jump li{height:50px;overflow:hidden;}
+#ebt_top1,#ebt_top,#ebt_share,#ebt_reply,#ebt_sina,#ebt_ceping,#ebt_weixin,#ebt_qq,#ebt_qq_01,#ebt_qq_02,#ebt_qq_03,#ebt_qq_04{display:block;width:40px;height:42px;overflow:hidden;cursor:pointer;}
+#ebt_top{background:url(../themes/inserance_02/images/top.png) no-repeat;}
+#ebt_top1{background:url(../themes/inserance_02/images/top.png) no-repeat;}
+#ebt_share{background:url(../themes/inserance_02/images/share.png) no-repeat;}
+#ebt_reply{background:url(../themes/inserance_02/images/reply.png) no-repeat;}
+#ebt_sina{background:url(../themes/inserance_02/images/sina.png) no-repeat;}
+#ebt_weixin{background:url(../themes/inserance_02/images/weixin.png) no-repeat;}
+#ebt_top:hover{background:url(../themes/inserance_02/images/toped.png) no-repeat;}
+#ebt_share:hover{background:url(../themes/inserance_02/images/shared.png) no-repeat;}
+#ebt_reply:hover{background:url(../themes/inserance_02/images/replyed.png) no-repeat;}
+#ebt_sina:hover{background:url(../themes/inserance_02/images/sinad.png) no-repeat;}
+#ebt_weixin:hover{background:url(../themes/inserance_02/images/weixind.png) no-repeat;}
+#ebt_ceping{background:url(../themes/inserance_02/images/ceping.png) no-repeat;}
+#ebt_ceping:hover{background:url(../themes/inserance_02/images/cepinged.png) no-repeat;}
+#ebt_qq{background:url(../themes/inserance_02/images/qq.png) no-repeat;}
+#ebt_qq:hover{background:url(../themes/inserance_02/images/qqed.png) no-repeat;}
+#ebt_qq_01{background:url(../themes/inserance_02/images/qq01.png) no-repeat;}
+#ebt_qq_01:hover{background:url(../themes/inserance_02/images/qqed01.png) no-repeat;}
+#ebt_qq_02{background:url(../themes/inserance_02/images/qq02.png) no-repeat;}
+#ebt_qq_02:hover{background:url(../themes/inserance_02/images/qqed02.png) no-repeat;}
+#ebt_qq_03{background:url(../themes/inserance_02/images/qq03.png) no-repeat;}
+#ebt_qq_03:hover{background:url(../themes/inserance_02/images/qqed03.png) no-repeat;}
+#ebt_qq_04{background:url(../themes/inserance_02/images/qq04.png) no-repeat;}
+#ebt_qq_04:hover{background:url(../themes/inserance_02/images/qqed04.png) no-repeat;}
+#ebt_EWM{position:absolute;left:-150px;display:none;}
+#ebt_EWM img{width:150px;height:150px;}
+</style>
+ 
+ 
+<ul id="ebt_jump">
+	<li style="display: list-item;"><a id="ebt_top" href="#ebt_top"></a></li>
+    <li><a id="ebt_qq_01" href="http://wpa.qq.com/msgrd?uin=3188972503&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+    <li><a id="ebt_qq_02" href="http://wpa.qq.com/msgrd?uin=2491125478&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+    <li><a id="ebt_qq_03" href="http://wpa.qq.com/msgrd?uin=873922146&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+    <li><a id="ebt_qq_04" href="http://wpa.qq.com/msgrd?uin=1419082122&amp;Site=www.ebaoins.cn&amp;Menu=yes" target="_blank"></a></li>
+	 
+	<li>
+		<a id="ebt_weixin" href="javascript:void(0)" onmouseover="showEWM()" onmouseout="hideEWM()">
+			<div id="ebt_EWM"><img src="../themes/inserance_02/images/weixin_code.png"></div>
+		</a>
+	</li>
+	 
+    <li><a id="ebt_top1" href="#ebt_top"></a></li>
+</ul>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > 300) {
+			$('#ebt_jump li:eq(0)').fadeIn(800);
+		} else {
+			$('#ebt_jump li:eq(0)').fadeOut(800);
+		}
+	});
+	
+	$("#ebt_top").click(function() {
+		$('body,html').animate({
+			scrollTop: 0
+		},
+		1000);
+		return false;
+	});
+	$("#ebt_top1").click(function() {
+		$('body,html').animate({
+			scrollTop: 0
+		},
+		1000);
+		return false;
+	});
+	
+});
+function showEWM(){
+	document.getElementById("ebt_EWM").style.display = 'block';
+}
+function hideEWM(){
+	document.getElementById("ebt_EWM").style.display = 'none';
+}
+</script>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb099f026faffdeb4cf3297bf7e6d0877' type='text/javascript'%3E%3C/script%3E"));
+</script><script src=" http://hm.baidu.com/h.js?b099f026faffdeb4cf3297bf7e6d0877" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=b099f026faffdeb4cf3297bf7e6d0877" target="_blank"><img src="http://eiv.baidu.com/hmt/icon/21.gif" height="20" width="20" border="0"></a>
+
+</div>
+ 
+</div>
+</body>
+</html>

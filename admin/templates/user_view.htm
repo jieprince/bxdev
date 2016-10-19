@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div style="width: 100%;height: 40px;background:#F4FAFB;font-size: 20px;line-height:40px;overflow:hidden; border:1px solid #80BDCB ">
+	&nbsp;&nbsp;管理中心-会员信息
+</div><br/>
+	<div class="main-div">
+		<form method="post" action="users.php" id="checkFrom">
+			<table style="width: 700px;" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="label">{$lang.username}:</td>
+					<td>{$user.user_name}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.real_name}</td>
+					<td>{$user.real_name}</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.label_user_mobilephone}</td>
+					<td>{$user.mobile_phone}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.email}:</td>
+					<td>{$user.email}</td>
+				</tr>
+
+
+				<tr>
+					<td class="label">{$lang.gender}:</td>
+					<td>{$user.sex}</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.birthday}:</td>
+					<td>{$user.birthday}</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.CertificatesType}</td>
+					<td>{if $user.CertificatesType eq 1} {$lang.Type[0]} {/if} {if $user.CertificatesType eq 2} {$lang.Type[1]} {/if} {if $user.CertificatesType eq 3} {$lang.Type[2]}
+						{/if}
+						<!--add yes123 2014-12-01 证件类型只剩下身份证了 -->
+						身份证
+						</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.CardId}</td>
+					<td>{$user.CardId}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.Category}</td>
+					<td>{if $user.Category eq 1}{$lang.Category_case[0]}{/if} {if $user.Category eq 2}{$lang.Category_case[1]}{/if}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.CertificateNumber}</td>
+					<td>{$user.CertificateNumber}</td>
+				</tr>
+				
+				<!--start modify yes123 2014-12-17  地区和地址分开显示-->
+				<tr>
+					<td class="label">{$lang.label_area}</td>
+					<td>
+						{$user.Province} &nbsp;{$user.city} &nbsp;
+					</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.address1}</td>
+					<td>{$user.address}</td>
+				</tr>
+			</table>
+
+		</form>
+	</div>
+	
+<script type="text/javascript">
+
+$('#disqualification').on('click', function(){
+    $.layer({
+        type: 1,
+        title: "请输入原因", //不显示默认标题栏
+        shade: [0], //不显示遮罩
+        area: ['240px', '160px'],
+        page: {html: '<div><textarea id=msg rows="5" cols="30">	</textarea></div><div > <input style="float: left;" onclick=checkUserInfo(); type=button value=确定> </div>'}
+    });
+});
+function checkUserInfo(str){
+	if(str=='{$lang.qualified}'){
+			$("#is_check").val("qualified");
+			  $("#checkFrom").submit();
+		}else{
+			$("#is_check").val("disqualification");
+			var str = $.trim($("#msg").val())
+			  if(str){
+				  $("#check_desc").val(str);
+				  $("#checkFrom").submit();
+			  }else{
+				  alert('请输入审核不通过的原因！');
+			  }
+			
+		} 
+
+} 
+</script>
+	
+		{include file="pagefooter.htm"}
+
+</body>
+</html>

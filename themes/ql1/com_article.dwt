@@ -1,0 +1,133 @@
+<!-- #BeginLibraryItem "/library/en_page_header.lbi" --><!-- #EndLibraryItem -->
+<script src="dist/js/plugin/layer/layer.js" type="text/javascript"></script>
+<link rel="stylesheet" href="js/nice-validator-0.7.3/jquery.validator.css">
+<script type="text/javascript" src="js/nice-validator-0.7.3/jquery.validator.js"></script>
+<script type="text/javascript" src="js/nice-validator-0.7.3/local/zh_CN.js"></script>
+{insert_scripts files='user_check.js'}
+<div class="g-w1000 f-mc f-mt40 f-pb30">
+    <h3 class="f-fs5 f-tac">综合服务平台</h3>
+ 	<div align="center" class="f-mt40">
+        <a data-value="baoxian/cp.php?ac=product_buy&product_id=170&gid=122" href="javascript:void(0)" onclick="login_alert(this)"  class="btn-008fc7-1 f-mA20">
+            诉讼保全投保入口
+        </a>
+
+        <a href="./admin" class="btn-008fc7-1 f-mA20">
+            全联后台管理登录
+        </a>
+
+    </div>
+</div>
+<div class="login_form"  id="login_form_page" style="display: none; width: auto; height: auto;">
+    <form action="user.php" method="post" id="login_form" >
+        <div class="f-pT50L100" style="padding-top:30px;">
+
+            <div>
+                <div>
+                    <span class="s-c-c9c8c8"><i class="iconfont f-fs6">&#xf012d;</i></span>
+                    <span class="f-ml10">
+                        <input type="text" class="g-h35 g-w250 f-pl5 f-pr5" placeholder="手机号" name="username" id="username">
+                    </span>
+                </div>
+                <div class="f-pt20">
+                    <span class="s-c-c9c8c8"><i class="iconfont f-fs6">&#xf00c9;</i></span>
+                    <span class="f-ml10">
+                        <input type="password" class="g-h35 g-w250 f-pl5 f-pr5" placeholder="密码" name="password" id="password" data-rule="密码: required;password;">
+                    </span>
+                </div>
+
+                <!-- {if $enabled_captcha} -->
+                <div class="f-pt20">
+                    <span class="f-ml30 f-pl5">
+                        <input type="text" size="5" name="captcha"  id="captcha" class="g-h35 g-w130 f-pl5 f-pr5" placeholder="验证码"/>
+                        <span class="f-ib f-ml10 f-vam">
+                            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: top; cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+                        </span>
+                    </span>
+                </div>
+                <!--{/if}-->
+
+
+                <div class="f-pt20">
+
+                    <span class="f-ml30 f-pl5 f-vam">
+                         <input type="checkbox" name="remember" id="remember">
+                    </span>
+                    <span class="f-fs2 s-c-666666 f-ml5">记住登录状态</span>
+                    <span class="f-ml30 f-fs2">
+                        <a href="user.php?act=get_password" class="link-666666">忘记密码?</a>
+                    </span>
+                </div>
+                <div class="f-pt25 f-ml30 f-pl5">
+                    <input type="hidden" name="act" value="act_login" />
+                    <input type="hidden" name="back_act" value="{$back_act}" />
+                    <input type="button" class="btn-ec6941-2" value="立即登录" onclick="login_user()">
+                </div>
+                <div class="f-mt20 f-ml30 f-pl5">
+                    <span class="s-c-666666  f-fs1">还没有全联账号吗？赶快 <a href="user.php?act=register" class="link-ec6941">[点击注册]</a> 加入我们吧！</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $('#login_form').validator({
+        rules: {
+            username: [/^1[3458]\d{9}$/, '请检查手机号格式']
+
+        },
+        fields: {
+            username: 'required; username'
+        }
+    });
+    var session_iduser = "{$smarty.session.user_id}";
+    var this_datas = '';
+    function login_alert(ef){
+        this_datas = ef;
+        if(session_iduser==null || session_iduser==""  || session_iduser==0) {
+            layer.open({
+                title:'用户登录',
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['540px', 'auto'], //宽高
+                content: $('#login_form_page')
+            });
+        }else{
+            document.location.href = $(ef).data("value");
+        }
+
+    }
+
+    function login_user(){
+
+        var datajson = {
+            "is_ajax": 1,
+            'username': $('#username').val(),
+            "password": $('#password').val(),
+            "captcha": $('#captcha').val(),
+            "remember": $('#remember').prop("checked"),
+            "act":"act_login"
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "user.php",
+            dataType: "json",
+            async: false,
+            data: datajson,
+            success: function (data) {
+                if (data.code==1) {
+                        document.location.href = $(this_datas).data("value");
+                } else {
+                    layer.alert(data.msg);
+                }
+
+            },
+            error: function () {
+                // alert(1);
+            }
+        });
+
+
+    }
+</script>
+<!-- #BeginLibraryItem "/library/en_page_footer.lbi" --><!-- #EndLibraryItem -->

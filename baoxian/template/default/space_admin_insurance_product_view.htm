@@ -1,0 +1,432 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<div id="main-body">
+
+<a href="space.php?do=admin_insurance_product"> 返回类别列表 </a>
+
+
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+                
+
+       <a href="cp.php?ac=admin_insurance_product&product_id=$product[product_id]" target="_self"><img src="template/images/updateButton.gif" alt=" 修改">
+            修改</a>
+			
+<table class="view-table">
+    <tbody>
+	<tr>
+        <td colspan="4" class="view-header">产品属性信息</td>
+    </tr>
+	
+	 <tr>
+	  <td class="view-first-title">产品属性名</td>
+        <td class="view-first-text">
+		<a href="space.php?do=admin_insurance_product_attribute&attribute_id=$product[attribute_id]">$product_attribute[attribute_name]</a></td>
+	 </tr>
+    
+	<tr>
+        <td class="view-first-title">保险公司</td>
+        <td class="view-first-text">$product_attribute[insurer_name]</td>
+        <td class="view-first-title">险种大类</td>
+        <td class="view-top-right-text">
+      	 $product_attribute[type]
+        </td>
+    </tr>
+    <tr>
+        <td class="view-title">险种类别</td>
+        <td class="view-text">$product_attribute[ins_type_name]</td>
+         
+		 <td class="view-title">接口属性</td>
+        <td class="view-right-text">$product_attribute[interface_flag]</td>
+    </tr>
+	
+	
+	
+	 <tr>
+        <td class="view-title">个人服务费率</td>
+        <td class="view-text">$product_attribute[rate_myself]
+		<span>%</span>
+		</td>
+		
+		 <td class="view-title">机构服务费率</td>
+        <td class="view-text">$product_attribute[rate_organization]
+		<span>%</span>
+		</td>
+		
+	
+    </tr>
+	
+	<tr>
+        <td class="view-title">推荐服务费率</td>
+        <td class="view-text">$product_attribute[rate_recommend]
+		<span>%</span>
+		</td>
+    </tr>
+	
+	<tr>
+        <td class="view-title">合作伙伴代码</td>
+        <td class="view-text">$product_attribute[partner_code]
+		</td>
+    </tr>
+	
+	
+	<tr>
+        <td class="view-title">生效延迟期</td>
+        <td class="view-text">$product_attribute[start_day]
+		</td>
+    </tr>
+	
+</tbody>
+</table>
+
+
+<table class="view-table">
+    <tbody>
+
+	<tr>
+        <td colspan="4" class="view-header">产品基本信息</td>
+    </tr>
+	
+    <tr>
+        <td class="view-title">产品编码</td>
+        <td class="view-text">$product[product_code]</td>
+        <td class="view-title">产品名称</td>
+        <td class="view-right-text">$product[product_name]</td>
+    </tr>
+	
+	<tr>
+        <td class="view-title">计划编码</td>
+        <td class="view-text">$product[plan_code]</td>
+        <td class="view-title">计划名称</td>
+        <td class="view-right-text">$product[plan_name]</td>
+    </tr>
+	
+	<tr>
+        <td class="view-title">产品类型</td>
+        <td class="view-text">$product[product_type]</td>
+
+    	<td class="view-title">产品责任价格类型</td>
+        <td class="view-text">$product[product_duty_price_type]</td>
+
+    </tr>
+
+	
+    <tr>
+        <td class="view-title">上级类别</td>
+        <td class="view-right-text" colspan="3"></td>
+    </tr>
+	
+
+</tbody>
+</table>
+
+
+<!--{if 1}-->
+<table class="view-table">
+    <tbody>
+	<tr>
+        <td colspan="4" class="view-header">产品附加信息</td>
+    </tr>
+	
+	 <tr>
+	  	<td class="view-first-title">总保费</td>
+        <td class="view-first-text">$product_additional[premium]</td>
+	
+	    <td class="view-first-title">总保额</td>
+        <td class="view-first-text">$product_additional[sum_insured]</td>
+
+	 </tr>
+    
+	<tr>
+        <td class="view-first-title">最小承保年龄</td>
+        <td class="view-first-text">$product_additional[age_min]</td>
+        <td class="view-first-title">最大承保年龄</td>
+        <td class="view-top-right-text">$product_additional[age_max]</td>
+    </tr>
+    <tr>
+		<td class="view-title">投保份数限制</td>
+        <td class="view-right-text">$product_additional[number]</td>
+        
+        <td class="view-title">保险期限</td>
+        <td class="view-text">$product_additional[period] $str_period_uint</td>
+         
+
+    </tr>
+	<tr>
+		<td class="view-title">保险费率</td>
+        <td class="view-right-text">$product_additional[rate] </td>
+	</tr>
+	
+</tbody>
+</table>
+<!--{/if}-->
+
+
+       <a href="cp.php?ac=admin_insurance_product_influencingfactor&product_id=$product_id" target="_self"><img src="template/images/updateButton.gif" alt="保障范围">
+            增加影响因素</a>
+	
+<!--{if $list_product_influencingfactor}-->
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_influencingfactor&product_id=$product_id">
+
+
+<input type="hidden" name="productduty_order_submit" id="productduty_order_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="9" class="view-header">保费影响因素</td>
+    </tr>
+    <tr class="listTitle">
+        <td class="list-first-title" width="5%">显示顺序</td>
+        <td class="list-title" width="25%">类型</td>
+        <td class="list-title" width="10%">因素名称</td>
+		 <td class="list-title" width="10%">因素代码</td>
+		<td class="list-title" width="10%">保费</td>
+		<td class="list-title" width="5%">产品编码</td>
+		<td class="list-title" width="5%">最小天数(类型为period时有效)</td>
+		<td class="list-title" width="10%">最大天数(类型为period时有效)</td>
+		 <td class="list-title" width="10%">修改</td>
+		  <td class="list-title" width="10%">删除</td>
+    </tr>
+    
+	<!--{loop $list_product_influencingfactor $key $valued}-->
+    
+    <tr class="tdContent">
+	
+		<td class="list-content">	
+			<input name="view_order_ids[{$valued[product_influencingfactor_id]}]" id="view_order" value="$valued[view_order]" type="text" style="width:auto">		
+			</td>
+			
+	    <td class="list-content">$valued[product_influencingfactor_type]</td>
+        <td class="list-first-content">
+		<input name="factor_name_ids[{$valued[product_influencingfactor_id]}]" id="factor_name" value="$valued[factor_name]" type="text" style="width:auto">		
+	    </td>
+		
+		  <td class="list-content">
+		  <input name="factor_code_ids[{$valued[product_influencingfactor_id]}]" id="factor_code" value="$valued[factor_code]" type="text" style="width:auto">		
+		  </td>
+		   
+	<td class="list-content">
+	<input name="factor_price_ids[{$valued[product_influencingfactor_id]}]" id="factor_price" value="$valued[factor_price]" type="text" style="width:auto">		
+	</td>
+	<td class="list-content">
+	<input name="factor_code_ids[{$valued[product_influencingfactor_id]}]" id="additional_code" value="$valued[additional_code]" type="text" style="width:auto">		
+	</td>
+	<td class="list-content">
+	<input name="factor_period_min_ids[{$valued[product_influencingfactor_id]}]" id="period_min" value="$valued[period_min]" type="text" style="width:auto">		
+	</td>
+	<td class="list-content">
+	<input name="factor_period_max_ids[{$valued[product_influencingfactor_id]}]" id="period_max" value="$valued[period_max]" type="text" style="width:auto">		
+	</td>
+      
+      
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_product_influencingfactor&product_influencingfactor_id=$valued[product_influencingfactor_id]">修改</a>
+	  </td>
+	  
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_product_influencingfactor&product_influencingfactor_id=$valued[product_influencingfactor_id]&op=delete" onclick="return confirm('本操作不可恢复，确认？');">删除</a>
+	  </td>
+	  
+    </tr>
+    
+    
+    <!--{/loop}-->
+     
+    
+	<tr>
+		    <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+              
+            </td>
+	</tr>   
+		
+</tbody>
+</table>
+</form>
+
+<!--{/if}-->
+
+       <a href="cp.php?ac=admin_insurance_product_duty&product_id=$product_id" target="_self"><img src="template/images/updateButton.gif" alt="保障范围">
+            增加责任</a>
+			
+<!--{if $product_duty_list}-->
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_duty&product_id=$product_id">
+
+
+<input type="hidden" name="productduty_order_submit" id="productduty_order_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="8" class="view-header">保险责任</td>
+    </tr>
+	
+	
+	<!--{if $product[product_duty_price_type]=='single'}-->
+		<tr class="listTitle">
+			
+			<td class="list-first-title" >显示顺序</td>
+			<td class="list-title" width="5%">责任id</td>
+			<td class="list-title" width="25%">保险责任</td>
+			<td class="list-title" width="25%">责任代码</td>
+			<td class="list-title" width="10%">保障金额</td>
+			<td class="list-title" width="40%">保障范围</td>
+			 <td class="list-title" width="10%">修改</td>
+			 <td class="list-title" width="10%">删除</td>
+		</tr>
+		
+		<!--{loop $product_duty_list $key $valued}-->
+		
+		<tr class="tdContent">
+			
+			<input name="duty_ids[{$valued[product_duty_id]}]" id="duty_id" value="$valued[duty_id]" type="hidden">		
+		
+			<td class="list-title">	
+			<input name="view_order_ids[{$valued[product_duty_id]}]" id="view_order" value="$valued[view_order]" type="text">		
+			</td>
+			<td class="list-content">$valued[duty_id]</td>
+			
+			<td class="list-content">
+			
+			<input name="duty_name_ids[{$valued[product_duty_id]}]" id="duty_name" value="$valued[duty_name]" type="text">
+			</td>
+			
+				<td class="list-content">
+			
+			<input name="duty_code_ids[{$valued[product_duty_id]}]" id="duty_code" value="$valued[duty_code]" type="text">
+			</td>
+			
+			
+			<td class="list-content">
+			<input name="amount_ids[{$valued[product_duty_id]}]" id="amount" value="$valued[amount]" type="text">
+			</td>
+			
+			<td class="list-content">
+			
+			<input name="duty_note_ids[{$valued[product_duty_id]}]" id="duty_note" value="$valued[duty_note]" type="text">
+			</td>
+		  
+		  <td class="list-content">
+		  		
+		  <a href="cp.php?ac=admin_insurance_product_duty&product_duty_id=$valued[product_duty_id]">修改</a>
+	
+		  
+		  </td>
+		  
+		  <td class="list-content">
+		  <a href="cp.php?ac=admin_insurance_product_duty&product_duty_id=$valued[product_duty_id]&op=delete" onclick="return confirm('本操作不可恢复，确认？');">删除</a>
+		  </td>
+		  
+		</tr>
+		
+		
+		<!--{/loop}-->
+	
+    <!--{elseif $product[product_duty_price_type]=='multiple'}-->
+
+		  
+		  	<tr class="listTitle">
+
+			<td class="list-first-title" >显示顺序</td>
+			<td class="list-title" width="25%">责任id</td>
+			<td class="list-title" width="10%">责任名称</td>
+			<td class="list-title" width="25%">责任代码</td>
+			<td class="list-title" width="40%">设置保费</td>
+			<td class="list-title" width="10%">修改</td>
+			<td class="list-title" width="10%">删除</td>
+		</tr>
+		
+		<!--{loop $product_duty_list $key $valued}-->
+		
+		<tr class="tdContent">
+			<td class="list-title">	
+			<input name="view_order" id="view_order" value="$valued[view_order]" type="text">		
+			</td>
+		  
+			<td class="list-first-content">$valued[duty_id]</td>
+			<td class="list-first-content">$valued[duty_name]</td>
+			<td class="list-first-content">$valued[duty_code]</td>
+			<td class="list-content"> <a href="space.php?do=admin_insurance_product_duty_price&product_duty_id=$valued[product_duty_id]">查看</a></td>
+		
+		  
+		  <td class="list-content">
+		  
+		  	  <a href="cp.php?ac=admin_insurance_product_duty_price&product_duty_id=$valued[product_duty_id]">增加保费</a>
+		  
+		  </td>
+		  
+		  	  <td class="list-content">
+		  <a href="cp.php?ac=admin_insurance_product_duty&product_duty_id=$valued[product_duty_id]">修改</a>
+		  </td>
+		  
+		  <td class="list-content">
+		  <a href="cp.php?ac=admin_insurance_product_duty&product_duty_id=$valued[product_duty_id]&op=delete">删除</a>
+		  </td>
+		  
+		</tr>
+		
+		
+
+		
+		<!--{/loop}-->
+
+
+	  <!--{/if}-->
+  
+  		<tr>
+		    <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+              
+            </td>
+		</tr>   
+    
+</tbody>
+</table>
+</form>
+<!--{/if}-->
+
+
+ <table class="view-table">
+                    <tbody><tr>
+                        <td colspan="4" class="view-header">元数据信息</td>
+                    </tr>
+                    <tr>
+                        <td class="view-first-title">状态标志</td>
+                        <td class="view-first-text">
+                            正常
+                            
+                            
+                        </td>
+                        <td class="view-first-title">操作人</td>
+                        <td class="view-top-right-text">超级用户</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">创建时间</td>
+                        <td class="view-text">2014-01-22</td>
+                        <td class="view-title">更新时间</td>
+                        <td class="view-top-right-text">2014-03-24</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">显示序号</td>
+                        <td class="view-text">1</td>
+                        <td class="view-title">备注信息</td>
+                        <td class="view-right-text"></td>
+                    </tr>
+                </tbody></table>
+			
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

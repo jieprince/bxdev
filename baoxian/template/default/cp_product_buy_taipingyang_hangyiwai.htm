@@ -1,0 +1,706 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->	
+<link href="template/default/taipingyang/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>	
+<script src="js/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></script>	
+			
+<input id="career" name="career" value="1" type="hidden">
+<input id="posion_price" name="posion_price" value="$prodcutMarkPrice" type="hidden">
+<input id="additional_ids" name="duty_price_ids" value="$duty_price_ids" type="hidden">
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name"  value="taipingyang_hangkong" type="hidden">
+						
+<div class="x_p_a_c c"><h2 class="l">购买信息</h2></div>
+<div class="c_p_a_d">
+    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+        <thead>
+        </thead>
+        <tbody>
+            <tr class="">
+                <th width="30%">年龄范围</th>
+                <td width="70%"><span> $product[age_min] </span> 至 <span> $product[age_max]</span>岁</td>
+            </tr>
+            <tr class="">
+                <th >购买份数</th>
+                <td>
+                    <div class="c_m_r_a">
+                        <select title="购买份数" name="applyNum" id="applyNum" backval="" class="i_e">
+                            <option value="1" selected>1</option>
+                            <option value="2" >2</option>
+                          
+                        </select>
+                        <span class="c_m_c">份</span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="">
+                <th >金额</th>
+                <td>
+                <span id="span_totalpremium" class="c_a_a">
+                $product[premium]                                            </span>
+                <span>元（</span><span id="cardPriceSpan">$product[premium]</span><span>元/份）&nbsp;</span>
+                <input value="" maxlength="50" name="startDate" id="startDate" title="航班起飞时间" class="i_f pa_ui_element_normal" type="text" readonly="readonly" style="display:none">
+                <input value="" maxlength="50" name="endDate" id="endDate" title="购保险起期" class="i_f pa_ui_element_normal" type="text" readonly="readonly" style="display:none">
+                </td>
+            </tr>
+			
+			<!--
+            <tr class="">
+                <th >
+                    <span class="a_x">*</span>保险起期</th>
+                <td>
+				
+				 航班起飞时间 
+                      
+											
+                    
+                    <span id="clientNameSpan" style="display:none;"></span>
+					
+                </td>
+            </tr>
+            <tr class="">
+                <th >
+                    <span class="a_x">*</span>保险止期</th>
+                <td>
+				
+				  起期+2天
+				   
+                    
+                    <span id="clientNameSpan" style="display:none;"></span>
+					
+					
+                </td>
+            </tr>
+            -->
+			
+			
+        </tbody>
+    </table>
+</div>
+
+<div class="pro_more">
+    <div class="pro_more_div">
+        <span onclick="change_pro2more(1)" class="pre_more_on">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="1" id="assured_input_type_manual" title="手工输入" type="radio" checked="checked" >
+            <label for="man" class="ch" >单个录入</label>
+        </span><span onclick="change_pro2more(2)" class="pre_more_out" style="display:none;">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="2" id="assured_input_type_xls" title="xls批量导入" type="radio" >
+            <label for="man" class="ch">批量导入</label>
+        </span>
+        <span class="pro_more_font" style="display:none;">如果被保险人是多人，可以在此选择【批量导入】方式录入人员信息!</span>
+    </div>
+</div>
+<div style="border:#CCC solid 1px;">
+    <div id="table_input_type_manual">
+        <!--投保人开始-->
+        <div class="x_p_a_c c"><h2 class="l">投保人信息</h2></div>
+        <input type="radio" value="1" name="applicant_type" checked="checked"  style="display:none"/>
+                 
+        <div class="c_p_a_d">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+                <tbody>
+                   
+				   <!--
+				    <tr class="">
+                        <th width="30%"><span class="a_x">*</span>投保人类型</th>
+                        <td width="70%">
+                            <span id="clientSexInput">
+                                <input class="pa_ui_element_normal" name="applicant_type" value="1" id="applicant_type_single" title="个人" type="radio" checked="checked" >
+                                <label for="man" class="ch">个人</label>&nbsp;&nbsp;&nbsp;
+
+
+                                <input class="pa_ui_element_normal" name="applicant_type" value="2" id="applicant_type_group" title="机构" type="radio">
+                                <label for="woman" class="ch">机构</label>
+
+
+                            </span>
+                            <span id="clientSexSpan" style="display:none;"></span>
+                        </td>
+                    </tr>
+					
+					-->
+					
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="c_p_a_d"  id="applicant_info_single">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+            <tbody>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="applicant_fullname" id="applicant_fullname" title="投保人姓名" class="i_f pa_ui_element_normal" type="text">
+                        <span id="clientNameSpan" style="display:none;"></span>
+                  </td>
+
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>证件类型</th>
+                    <td>
+                        <select title="身份证类别" name="applicant_certificates_type" id="applicant_certificates_type" class="i_e">
+                            <option value="1" selected>身份证</option>
+                            <option value="2" >护照</option>
+                            <option value="3" >军官证</option>
+                            <option value="4" >驾照</option>
+                            <option value="5" >其他</option>
+
+                        </select>
+                        <span id="clientNameSpan" style="display:none;"></span>
+                  </td>
+
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>证件号码</th>
+                    <td>
+                        <input value="" maxlength="18" name="applicant_certificates_code" id="applicant_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal" type="text">
+                        <span id="clientNameSpan" style="display:none;"></span>
+                  </td>
+
+                </tr>
+
+                <tr class="">
+                    <th>
+                     注意：投保人年龄
+                    </th>
+                    <td>
+                     须大于18周岁
+                    </td>
+
+                </tr>
+
+                <tr class="">
+                    <th>
+                        <span class="a_x">*</span>
+                        生日                                            </th>
+                    <td>
+                        <input value="" maxlength="20" name="applicant_birthday" id="applicant_birthday" title="投保人生日" class="i_f pa_ui_element_normal" type="text">
+                        <span id="clientNameSpan" style="color:red">格式为： 2010-01-02</span>
+                  </td>
+
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>性别</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="applicant_sex" value="1" id="applicant_sex_man" title="投保人性别-男" type="radio" checked="checked" >
+                            <label for="man" class="ch">男</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="applicant_sex" value="2" id="applicant_sex_woman" title="投保人性别-女" type="radio"><label for="woman" class="ch">女</label>
+                        </span>
+                        <span id="clientSexSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+
+               <tr class="">
+                        <th> <span class="a_x">*</span>手机</th>
+                        <td>
+                            <span id="clientSexInput">
+                                <input name="applicant_mobilephone" id="applicant_mobilephone" value="" maxlength="11" title="投保人手机" class="i_f pa_ui_element_normal" type="text">
+                            </span>
+                        </td>
+                </tr>
+
+
+                <tr class="">
+                    <th> <span class="a_x">*</span>email</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input name="applicant_email" type="text" class="i_f pa_ui_element_normal" id="applicant_email" title="投保人email" value="" maxlength="50">
+                        </span>
+                    </td>
+
+                </tr>
+                <!--
+                <tr class="" width="30%">
+                    <th>地址信息</th>
+                    <td colspan="2">
+                        <select id="applicant_province_code" name="applicant_province_code" onchange="change_applicant_province()"  >
+                            <option value="110000">北京市</option>
+                            <option value="120000">天津市</option>
+                            <option value="130000">河北省</option>
+                            <option value="140000">山西省</option>
+                            <option value="150000">内蒙古自治区</option>
+                            <option value="210000">辽宁省</option>
+                            <option value="220000">吉林省</option>
+                            <option value="230000">黑龙江省</option>
+                            <option value="310000">上海市</option>
+                            <option value="320000">江苏省</option>
+                            <option value="330000">浙江省</option>
+                            <option value="340000">安徽省</option>
+                            <option value="350000">福建省</option>
+                            <option value="360000">江西省</option>
+                            <option value="370000">山东省</option>
+                            <option value="410000">河南省</option>
+                            <option value="420000">湖北省</option>
+                            <option value="430000">湖南省</option>
+                            <option value="440000">广东省</option>
+                            <option value="450000">广西壮族自治区</option>
+                            <option value="460000">海南省</option>
+                            <option value="500000">重庆市</option>
+                            <option value="510000">四川省</option>
+                            <option value="520000">贵州省</option>
+                            <option value="530000">云南省</option>
+                            <option value="610000">陕西省</option>
+                            <option value="620000">甘肃省</option>
+                            <option value="630000">青海省</option>
+                            <option value="640000">宁夏回族自治区</option>
+                            <option value="650000">新疆维吾尔自治区</option>
+                            <option value="830000">深圳市</option>
+                        </select>&nbsp;
+                        <input type="hidden" name="applicant_province" id="applicant_province" value="" />
+                        <select id="applicant_city_code" name="applicant_city_code">
+                            <option value="110100">北京市</option>
+                        </select>
+                        <input type="hidden" name="applicant_city" id="applicant_city" value="" />
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x"></span>住址</th>
+                    <td>
+                        <span id="clientAddressInput">
+                            <input name="applicant_address" id="applicant_address" value="" maxlength="150" title="投保人住址" class="i_f pa_ui_element_normal" type="text">
+                        </span>
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x"></span>邮编</th>
+                    <td>
+                        <span id="clientAddressInput">
+                            <input name="applicant_zipcode" id="applicant_zipcode" value="" maxlength="6" title="投保人邮编" class="i_f pa_ui_element_normal" type="text">
+                        </span>
+                    </td>
+                </tr>
+                -->
+            </tbody>
+        </table>
+        </div>
+        <!--个人投保人结束-->
+        <!--机构-->
+        <div class="c_p_a_d"  id="applicant_info_group" style="display:none;">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+                <tbody>
+                  <tr class="">
+                        <th width="30%"><span class="a_x">*</span>机构名称</th>
+                        <td width="70%">
+                            <input value="" maxlength="50" name="applicant_group_name" id="applicant_group_name" title="投保人姓名" class="i_f pa_ui_element_normal" type="text">
+                            <span id="clientNameSpan" style="display:none;"></span>
+                      </td>
+
+                    </tr>
+                    <tr class="">
+                        <th ><span class="a_x">*</span>机构证件类型</th>
+                        <td >
+                            <select title="机构证件类型" name="applicant_group_certificates_type" id="applicant_group_certificates_type" class="i_e">
+                               <option value="6" >组织机构代码</option>
+                            </select>
+                            <span id="clientNameSpan" style="display:none;"></span>
+                      </td>
+
+                    </tr>
+                    <tr class="">
+                        <th><span class="a_x">*</span>证件号码</th>
+                        <td>
+                            <input value="" maxlength="50" name="applicant_group_certificates_code" id="applicant_group_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal" type="text">
+                            <span id="clientNameSpan" style="display:none;"></span>
+                      </td>
+                    </tr>
+                   <tr class="">
+                        <th> <span class="a_x">*</span>手机</th>
+                        <td>
+                            <span id="clientSexInput">
+                                <input name="applicant_group_mobilephone" id="applicant_group_mobilephone" value="" maxlength="11" title="投保人手机" class="i_f pa_ui_element_normal" type="text">
+                            </span>
+                        </td>
+                   </tr>
+
+                  <tr class="">
+                        <th> <span class="a_x">*</span>邮箱</th>
+                        <td>
+                            <span id="clientSexInput">
+                                <input name="applicant_group_email" id="applicant_group_email" value="" maxlength="50" title="投保人邮箱" class="i_f pa_ui_element_normal" type="text">
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!--机构投保人结束-->
+
+        <!--被保险人开始-->
+        <div class="x_p_a_c c"><h2 class="l">被保险人信息</h2></div>
+
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+            <tbody>
+               <tr class="">
+                    <th width="30%"><span class="a_x">*</span>与投保人关系</th>
+                    <td width="70%">
+                        <select readonly="readonly" title="与投保人关系" name="relationshipWithInsured" id="relationshipWithInsured" class="i_e">
+                            <option value="">请选择</option>
+                            <option value="1" >本人</option>
+                            <option value="2" >配偶</option>
+                            <option value="3" >子女</option>
+                            <option value="4">父母</option>
+                            <option value="5" >女儿</option>
+                            <option value="6" >其他</option>
+                            <option value="7" >儿子</option>
+                        </select>
+                        <span id="clientNameSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+
+        <!--start 手工输入开始-->
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%" id="div_assured" style="display: none;">
+            <thead>
+            </thead>
+            <tbody>
+                <tr class="" id="tr_assured_fullname">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="assured[0][assured_fullname]" id="assured_fullname" title="姓名" class="i_f pa_ui_element_normal" type="text">
+                        <span id="clientNameSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+
+                <tr class="" id="tr_assured_certificates_type">
+                    <th><span class="a_x">*</span>证件类型</th>
+                    <td>
+                        <select title="被保险人身份证类别" name="assured[0][assured_certificates_type]" id="assured_certificates_type" class="i_e">
+                            <option value="1" selected>身份证</option>
+                            <option value="2" >护照</option>
+                            <option value="3" >军官证</option>
+                            <option value="4" >驾照</option>
+                            <option value="5" >其他</option>
+                            <option value="6" >组织机构代码</option>
+                        </select>
+                        <span id="clientNameSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+                <tr class="" id="tr_assured_certificates_code">
+                    <th><span class="a_x">*</span>证件号码</th>
+                    <td>
+                        <input value="" maxlength="50" name="assured[0][assured_certificates_code]" id="assured_certificates_code" title="被保险人证件号码" class="i_f pa_ui_element_normal" type="text">
+                        <span id="clientNameSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+                <tr class="" id="tr_assured_sex">
+                    <th><span class="a_x">*</span>性别</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="assured[0][assured_sex]" value="1" id="assured_sex_man" title="被保险人性别-男" type="radio" checked="checked" >
+                            <label for="man" class="ch">男</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="assured[0][assured_sex]" value="2" id="assured_sex_woman" title="被保险人性别-女" type="radio">
+                            <label for="woman" class="ch">女</label>
+                        </span>
+                        <span id="clientSexSpan" style="display:none;"></span>
+                    </td>
+
+                </tr>
+
+
+                  <tr class="">
+                    <th>
+                        投保年龄范围
+                    </th>
+                    <td >
+                       <span > 	$product[age_min]</span> 至
+                        <span > $product[age_max]</span>岁
+                    </td>
+
+                </tr>
+
+
+
+
+                <tr class="" id="tr_assured_birthday">
+                    <th>
+                        <span class="a_x">*</span>
+                        生日
+                    </th>
+                    <td>
+                        <input value="" maxlength="20" name="assured[0][assured_birthday]" id="assured_birthday" title="被保险人生日" class="i_f pa_ui_element_normal" type="text">
+
+                        <span id="clientNameSpan" style="color:red">格式为： 2010-01-02</span>
+                    </td>
+
+                </tr>
+
+               <tr class="">
+                        <th> <span class="a_x">*</span>手机</th>
+                        <td>
+                            <span id="clientSexInput">
+                           <input name="assured[0][assured_mobilephone]" id="assured_mobilephone" value="" maxlength="11" title="被保险人手机" class="i_f pa_ui_element_normal" type="text">
+
+                            </span>
+
+                        </td>
+                </tr>
+
+
+                <tr class="">
+                        <th> <span class="a_x">*</span>email:</th>
+                        <td>
+                            <span id="clientSexInput">
+                                <input name="assured[0][assured_email]" type="text" class="i_f pa_ui_element_normal" id="assured_email" title="被保险人email" value="" maxlength="50">
+
+                            </span>
+
+                        </td>
+
+                  </tr>
+
+<!--
+                <tr class="">
+                    <th>地址信息</th>
+                    <td width="550px" colspan="2">
+                        <select id="insured_province_code"  name="assured[0][insured_province_code]" onchange="change_insured_province()">
+                            <option value="110000">北京市</option>
+                            <option value="120000">天津市</option>
+                            <option value="130000">河北省</option>
+                            <option value="140000">山西省</option>
+                            <option value="150000">内蒙古自治区</option>
+                            <option value="210000">辽宁省</option>
+                            <option value="220000">吉林省</option>
+                            <option value="230000">黑龙江省</option>
+                            <option value="310000">上海市</option>
+                            <option value="320000">江苏省</option>
+                            <option value="330000">浙江省</option>
+                            <option value="340000">安徽省</option>
+                            <option value="350000">福建省</option>
+                            <option value="360000">江西省</option>
+                            <option value="370000">山东省</option>
+                            <option value="410000">河南省</option>
+                            <option value="420000">湖北省</option>
+                            <option value="430000">湖南省</option>
+                            <option value="440000">广东省</option>
+                            <option value="450000">广西壮族自治区</option>
+                            <option value="460000">海南省</option>
+                            <option value="500000">重庆市</option>
+                            <option value="510000">四川省</option>
+                            <option value="520000">贵州省</option>
+                            <option value="530000">云南省</option>
+                            <option value="610000">陕西省</option>
+                            <option value="620000">甘肃省</option>
+                            <option value="630000">青海省</option>
+                            <option value="640000">宁夏回族自治区</option>
+                            <option value="650000">新疆维吾尔自治区</option>
+                            <option value="830000">深圳市</option>
+                        </select>&nbsp;
+                        <input type="hidden" name="assured[0][insured_province]" id="insured_province" value="" />
+                        <select name="assured[0][insured_city_code]" id="insured_city_code">
+                            <option value="110100">北京市</option>
+                        </select>
+                        <input type="hidden" name="assured[0][insured_city]" id="insured_city" value="" />
+                    </td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x"></span>住址</th>
+                    <td>
+                        <span id="insuredAddressInput">
+                       <input name="assured[0][insured_address]" id="insured_address" value="" maxlength="150" title="投保人住址" class="i_f pa_ui_element_normal" type="text">
+
+                        </span>
+
+                    </td>
+                </tr>
+
+
+                <tr class="">
+                    <th><span class="a_x"></span>邮编</th>
+                    <td>
+                        <span id="insuredzipcodeInput">
+                       <input name="assured[0][insured_zipcode]" id="insured_zipcode" value="" maxlength="6" title="投保人邮编" class="i_f pa_ui_element_normal" type="text">
+
+                        </span>
+
+                    </td>
+                </tr>
+                
+      -->
+            </tbody>
+        </table>
+
+        <!--被保险人结束-->
+
+       <!--div_assured-->
+    </div>
+    <div id="more_upload_list" style="display:none;">
+        <div class="x_p_a_c c"><h2 class="l">批量录入</h2></div>
+        <div class="f-pA10" style="margin-left: 120px">
+            <div >
+                <p><span class="pro_more_font">人员清单导入模板(Excel版本)&nbsp;</span></span><a href="ziliao/taipingyang/taipingyang_yiwai.xls" class="btn_down" target="_blank">点击下载模板</a></p>
+                <p>(3000 >= EXCEL人员数 >= 1)</p>
+            </div>
+            <div class="upload-contentarea ">
+                <span class="pro_more_font">下载并填写完成后,在此上传!&nbsp;</span>
+                <a href="javascript:void(0)" class="upload-img tac"><label for="inputExcel">上传文件</label></a>
+                <input type="file" class="" name="inputExcel" id="inputExcel" accept="xls,xlsx" onchange="if(this.value=='') alert('请选择xls文件'); else importXLs('inputExcel',$product[product_id],1,3000);"/>
+                <input type="hidden" id="excel_check" value="0" />
+                <input type="hidden" id="excel_content" name="data_user_info" value="" />
+            </div>
+            <div id="progress">
+                <div class="bar" style="width: 0%;"></div>
+            </div>
+            <div id="excel_wrong" class="warn_strong"></div>
+        </div>
+        <div id="ps_list"></div>
+    </div>
+    <div class="x_p_a_c c"><h2 class="l">受益人</h2></div>
+    <div class="c_p_a_d">
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+            <tbody>
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>受益人</th>
+                <td width="70%">
+                    <select title="受益人" name="beneficiary" id="beneficiary" backval="" class="i_e">
+                        <option value="1" selected="1">法定</option>
+                    </select>
+                </td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<input type="hidden" name="product_code" id="product_code" value="{$product[product_code]}"/>
+
+<div class="x_p_a_c c">
+<h2 class="l">航班信息信息</h2>
+<div class=""></div>
+</div>
+
+
+<div class="c_p_a_d"  id="applicant_info_single">
+<table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="45%">
+	<tbody>
+	 
+		
+	   
+								
+		   <tr class="">
+			<th width="30%"><span class="a_x">*</span>航班号</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="flightNo" id="flightNo" title="订票日期" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		<tr class="">
+			<th width="30%"><span class="a_x">*</span>乘机时间</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="takeoffDate"  readonly="readonly" id="takeoffDate" title="出发时间期" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		   <tr class="">
+			<th width="30%"><span class="a_x">*</span>出发地</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="flightFrom" id="flightFrom" title="订票日期" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		<!--
+		
+		   <tr class="">
+			<th width="30%">目标地</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="flightTo" id="flightTo" title="订票日期" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+			
+		   <tr class="">
+			<th width="30%">到达时间</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="landDate" id="landDate" title="到达时间" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		<tr class="">
+			<th width="30%">订票日期</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="orderDate" id="orderDate" title="订票日期" class="i_f pa_ui_element_normal" type="text">
+			  <span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		 <tr class="">
+			<th width="30%">电子票号</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="eTicketNo" id="eTicketNo" title="电子票号" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		
+		 <tr class="">
+			<th width="30%">PNR码</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="pnrCode" id="pnrCode" title="PNR码" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		 <tr class="">
+			<th width="30%">机票金额</th>
+			<td width="30%">
+				<input value="" maxlength="50" name="ticketAmount" id="ticketAmount" title="机票金额" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		 <tr class="">
+			<th width="30%">签约旅行社</th>
+			<td width="30%">
+				<input value="春秋" maxlength="50" name="travelAgency" id="travelAgency" title="机票金额" class="i_f pa_ui_element_normal" type="text">
+				<span id="clientNameSpan" style="display:none;"></span>
+		  </td>
+			<td width="1"><div id="m1">
+			<div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+		</tr>
+		
+		-->
+		
+	</tbody>
+</table>
+</div>
+
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->

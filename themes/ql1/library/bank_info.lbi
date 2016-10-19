@@ -1,0 +1,221 @@
+<div id="bank_info_div" style="display: none">
+<form method="post" action="user.php" name="form1" id="add_bank_form">
+	<input type="hidden" name="act" value="add_account">
+	<table class="table_user_02">
+		<tr>
+			<td align="right" class="padd_R10">姓名:</td>
+			<td><input type="text" name="bank_name" class="f-pA10 n-invalid"/></td>
+		</tr>
+		<tr>
+			<td align="right" class="padd_R10">{$lang.open_bank}:</td>
+			<td >
+					 <select name="b_account" class="s-select-1">
+							<option>中国工商银行</option>
+							<option>中国农行银行</option>
+							<option>中国建设银行</option>
+							<option>中国银行</option>
+							<option>交通银行</option>
+							<option>招商银行</option>
+							<option>中国中信银行</option>
+							<option>中国民生银行</option>
+							<option>中国光大银行</option>
+							<option>上海浦东发展银行</option>
+							<option>兴业银行</option>
+							<option>平安银行</option>
+							<option>华夏银行</option>
+							<option>广发银行</option>
+							<option>恒丰银行</option>
+							<option>支付宝</option>
+					</select> 其他：<input type="text" name="rests" class="f-pA10 g-w210 n-invalid" />
+			
+		</td>
+		</tr>
+		<tr>
+			<td align="right" class="padd_R10">{$lang.account_number}:</td>
+			<td><input type="text" name="bank_code" id="account" onblur="check_bank_code(this.value)"
+				class="f-pA10 g-w210 n-invalid" /></td>
+		</tr>
+	</table>
+</form>
+</div>
+
+<div id="edit_bank_info_div" style="display: none">
+<form method="post" action="user.php" name="form1" id="edit_bank_form">
+	<input type="hidden" name="act" value="act_edit_bank">
+	<input type="hidden" name="b_account" value="">
+	<input type="hidden" name="bid" value="">
+	<table class="table_user_02">
+		<tr>
+			<td align="right" class="padd_R10">姓名:</td>
+			<td><input type="text" name="bank_name" class="f-pA10 n-invalid"/></td>
+		</tr>
+		<tr>
+			<td align="right" class="padd_R10">{$lang.open_bank}:</td>
+			<td id="edit_b_account_td">
+			
+			</td>
+		</tr>
+
+		<tr>
+			<td align="right" class="padd_R10">{$lang.account_number}:</td>
+			<td><input type="text" name="bank_code" id="account" onblur="check_bank_code(this.value)"
+				class="f-pA10 g-w210 n-invalid" /></td>
+		</tr>
+	</table>
+</form>
+</div>
+
+
+
+<script type="text/javascript">
+	function add_bank_account(){
+		layer.open({
+		    type: 1,
+		    skin: 'layui-layer-molv', //样式类名
+		    closeBtn: 1, //不显示关闭按钮
+		    shift: 0, 
+		    btn:['确定','取消'],
+		    title:'添加银行卡',
+		    area: ['520px', '300px'], //宽高
+		    shadeClose: true, //开启遮罩关闭
+		    content: $("#bank_info_div"),
+		    yes: function(index, layero){ //或者使用btn1
+		    	
+		    	if(!check_info($("#add_bank_form").serializeArray())){
+		    		
+		    		return;
+		    	}
+		    	
+		        var parm  = $("#add_bank_form").serialize();
+				$.ajax({
+					   type: "post",
+					   url: "user.php",
+					   data: parm,
+					   success: function(msg){
+					      alert(msg);
+					      location=location;
+					   }
+				});
+		    	
+		    },cancel: function(index){ //或者使用btn2
+		        //按钮【按钮二】的回调
+		    }
+		});
+		
+	}
+
+	function del_bank(bid){
+		
+       if (confirm("确认要删除？")) {
+	   		$.ajax({
+				   type: "get",
+				   url: "user.php",
+				   data: "act=del_bank&bid="+bid,
+				   success: function(msg){
+				      alert(msg);
+				      location=location;
+				   }
+			});
+        }
+
+		
+	}
+	
+	function edit_bank(bid){
+		layer.open({
+		    type: 1,
+		    skin: 'layui-layer-molv', //样式类名
+		    closeBtn: 1, //不显示关闭按钮
+		    shift: 0, 
+		    btn:['确定','取消'],
+		    title:'添加银行卡',
+		    area: ['520px', '300px'], //宽高
+		    shadeClose: true, //开启遮罩关闭
+		    content: $("#edit_bank_info_div"),
+		    yes: function(index, layero){ //或者使用btn1
+		    	
+		    	if(!check_info($("#edit_bank_form").serializeArray())){
+		    		
+		    		return;
+		    	}
+		    
+		        var parm  = $("#edit_bank_form").serialize();
+				$.ajax({
+					   type: "post",
+					   url: "user.php",
+					   data: parm,
+					   success: function(msg){
+					      alert(msg);
+					      location=location;
+					   }
+				});
+		    	
+		    },cancel: function(index){ //或者使用btn2
+		        //按钮【按钮二】的回调
+		    }
+		});
+		
+	  	$("#edit_bank_form input[name=bid]").val(bid);
+		$.ajax({
+			   type: "get",
+			   url: "user.php",
+			   dataType:"json",
+			   data: "act=edit_bank&bid="+bid,
+			   success: function(bank){
+			    	//console.info(bank);
+			    	$("#edit_bank_form input[name=bank_name]").val(bank.bank_name);
+			    	$("#edit_b_account_td").html(bank.b_account);
+			    	$("#edit_bank_form input[name=bank_code]").val(bank.bank_code);
+			    	$("#edit_bank_form input[name=b_account]").val(bank.b_account);
+			    	
+			   }
+		});
+		
+		
+		
+	}
+	
+	
+	function check_info(data){
+		var flag = true;
+		//姓名
+		$.each(data,function(n,value){ //
+			//校验姓名
+    		if(value['name']=='bank_name'){
+    			var bank_name = $.trim(value['value']);
+    			if(bank_name.length<2){
+    				alert('请正确填写姓名');
+    				flag =  false;
+    			}
+    		}
+			
+			//
+    		if(value['name']=='bank_code'){
+    			var bank_code = $.trim(value['value']);
+    			if(!check_bank_code(bank_code)){
+    				flag = false;
+    			}
+				
+    		}	
+
+        });
+	
+		return flag;
+		
+	}
+	
+	function check_bank_code(account)
+	{
+		
+		var reg = /^\d{16,19}$|^\d{6}[- ]\d{10,13}$|^\d{4}[- ]\d{4}[- ]\d{4}[- ]\d{4,7}$/;   // 以19位数字开头，以19位数字结尾
+		if( !reg.test(account) )
+		{
+		   alert("账号：格式错误，应该是16-19位数字！");
+		   return false;
+		}
+		else{
+			return true;
+		}
+  	}
+	
+</script>

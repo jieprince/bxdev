@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>保单列表 - {$shop_name}</title>
+	<link rel='stylesheet' type='text/css' href='css/order-list.css' />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script><script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/goto.js"></script>
+	<script type="text/javascript">
+	var _hmt=_hmt||[];(function(){var e=document.createElement("script");
+	var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+	document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+	</script>
+	
+		
+	    <!-- 手机弹窗 -->
+    <script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+    <link href="layer-mobile/need/layer.css" rel="stylesheet" type="text/css" />
+    
+    <!-- 时间选择器 -->
+    <script src="laydate/laydate.js" type="text/javascript"></script>
+    <link href="laydate/need/laydate.css" rel="stylesheet" type="text/css" />
+</head>
+<body> 
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a>
+		<span class="headline">保单列表</span>
+		<a class="search" href="javascript:search();"></a>
+	</div>
+	<section>
+		<div class="search_listdiv" id="policy_list_dialog" style="display: none;">
+					<form action="user.php" method="post" id="policy_list_form">
+						<input type="hidden" name="act" value="policy_list" />
+						<table class="search_listinfo" cellpadding="0" cellspacing="0" border="0">
+							<tr><td>保单号：</td><td><input name="policy_no" value="{$condition.policy_no}" type="text"></td></tr>
+							
+							<tr>
+								<td>产品名：</td>
+	       						<td><input type="text" name="attribute_name" value="{$condition.attribute_name}" class="padd_TB5 input150"/></td>
+							</tr>
+							
+							<tr>
+								<td>投保人：</td>
+								<td><input type="text" name="applicant_username" value="{$condition.applicant_username}" ></td>
+							</tr>
+							
+							<tr>
+								<td>保单状态：</td>
+								<td>
+									<select name="policy_status" class="padd_TB5">
+					 					<option value="">--请选择--</option>
+					 					<option value="insured"
+					 						{if $condition.policy_status eq 'insured'} 
+												selected='selected'
+											{/if}
+					 					>已投保</option>
+					 					<option value="canceled"
+					 						{if $condition.policy_status eq 'canceled'} 
+												selected='selected'
+											{/if}
+					 					>已注销</option>
+									</select>
+								</td>
+							</tr>
+							
+						<!-- <tr>
+								<td>被保险人：</td>
+								<td align="left"><input type="text" name="assured_fullname" value="{$condition.assured_fullname}" class="padd_TB5 input150"/></td>
+							</tr> 
+							
+							<tr>
+								<td>被保险人号码：</td>
+		   						<td>
+                    				<input type="text" name="assured_certificates_code" value="{$condition.assured_certificates_code}" class="padd_TB5 input150"/>
+               	 				</td>
+							</tr>
+	       				    -->
+							<!--del yes123 2015-01-05 订单列表暂时取消投保人查询 <tr><td>投保人:</td><td><input name="applicant_username" value="" type="text"></td></tr> -->
+							<tr>
+								<td>开始时间：</td>
+						       	<td>
+						       		<input  type="text"  name="s_add_time" value="{$condition.s_add_time}" readonly="readonly" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})"/>
+						       	</td>
+							</tr>
+							
+							<tr>
+								<td>结束时间：</td>
+								<td>
+									<input  type="text"  name="e_add_time" value="{$condition.e_add_time}" readonly="readonly" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})"/>
+								</td>
+							</tr>
+							<tr>	
+								<td colspan="2" align=center>
+									<input type="submit" class="search_submit" value="提交">
+									<input type="button" class="search_reset" onclick="close_dialog();" value="关闭">
+								</td>
+							<tr>
+							
+						</table>
+					</form>
+            </div>
+	
+<div class="pending-order" >
+	<!--保单列表begin-->
+	<ul class="list">
+    {foreach from=$policy_list item=policy name=orderit}
+		<li>
+			<!--订单基本信息begin-->
+			<div class="info">
+				<a class="touch" href="user.php?act=policy_detail&policy_id={$policy.policy_id}">
+					<p class="id">保&nbsp;&nbsp;单&nbsp;&nbsp;号：{$policy.policy_no}</p>
+					<p>产品名称：{$policy.attribute_name}</p>
+					<p>投&nbsp;&nbsp;保&nbsp;&nbsp;人：{$policy.applicant_username}</p>
+				<!-- 	<p>被保险人：{$policy.assured_fullname}</p> -->
+					<p>投保时间：{$policy.dateline}</p>
+					<p>总&nbsp;&nbsp;费&nbsp;&nbsp;用：<strong>{$policy.total_premium}</strong></p>
+					<p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：<strong>{$policy.policy_status_str}</strong></p>
+                    <span class="more"><span class="inner"></span></span>
+				</a>
+<!-- 				<p>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：
+					{if $policy.policy_status eq 'insured'}
+							<a href="../baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=getpolicyfile" target="_blank">下载保单</a>
+							<a href ="javascript:withdraw_policy({$item.policy_id});">注销保单</a>
+							{else}
+							<a href="user.php?act=policy_detail&policy_id={$policy.policy_id}" target="_blank">查看</a>
+					{/if}
+				</p> -->
+				
+			</div>
+		</li>
+    {foreachelse}
+    <li>暂时您没有保单</li>
+    {/foreach}
+
+	</ul>
+	<!--订单列表end-->
+{if $pagebar}
+	{$pagebar}
+{/if}
+</div>
+</section>
+<script type="text/javascript">
+	var i_search;
+	function payEben(orderid){	
+		window.wst.payEben(orderid);
+	}
+	function search(){
+		i_search = layer.open({
+		    content: $('#policy_list_dialog').html(),
+		    shadeClose: true
+		});
+	}
+	function close_dialog(){
+		layer.close(i_search);
+	}
+</script>
+{include file='foot.dwt'}
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+</script>
+</body>
+</html>

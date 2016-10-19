@@ -1,0 +1,105 @@
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div class="g-w1200 f-mc">
+    <div class="f-mt30">
+        <div class="f-cb s-lh50"><span class="f-fl f-mr15"><img src="images/new_img/icon6.png" /></span><strong class="f-fs6 s-c-040404 f-fwn">全联特色</strong><a href="javascript:;" class="f-fr t-link-009c84">更多产品></a></div>
+        <div class="t-mt15 g-w1200 f-cb">
+            <div class="g-w1200" >
+              <!--{foreach from=$ebao_hot_goods item=goods name=name }-->
+                <div class="t-m-list-1 {if $smarty.foreach.name.iteration eq 1}  f-mr20  {/if} ">
+                    <div class="f-fl g-w205"><a href="javascript:;"><img src="{$goods.goods_img}" /></a></div>
+                    <div class="t-m-list-tt f-fl g-w333">
+                        <div class="t-m-list-t-s">
+                            <strong class="f-fwn f-fs4 s-c-040404 f-db f-mb10">{$goods.goods_name}</strong>
+                            <div class="f-fs2 s-c-666666 s-lh25">{$goods.product_characteristic}</div>
+                            <!-- <p class="f-fs2 s-c-666666 s-lh25">提供公共交通意外身故双倍给付、行李证件、航班延误等多项保障。</p> -->
+                            <div class="s-c-eb6100 f-fs1 t-list-jg">¥ <span class="f-fs7">{$goods.shop_price}</span>元起</div>
+                        </div>
+                        <div class="t-m-list-t-h t-f-mr0">
+                            <strong class="f-fwn f-fs4 s-c-040404 f-db f-mb10">平安行境外保障计划</strong>
+               <!--              <p class="f-fs2 s-c-666666 s-lh25"><span class="f-mr5">·</span>意外伤害身故、残疾、烧烫伤100万</p>
+                            <p class="f-fs2 s-c-666666 s-lh25"><span class="f-mr5">·</span>交通意外身故双倍给付</p>
+                            <p class="f-fs2 s-c-666666 s-lh25"><span class="f-mr5">·</span>急性病身故和全残20万</p>
+                            <p class="f-fs2 s-c-666666 s-lh25"><span class="f-mr5">·</span>医疗补偿50万</p> -->
+                            
+                            <div class="f-fs2 s-c-666666 s-lh25">{$goods.description|truncate:100}</div>
+                            <a href="goods.php?id={$goods.goods_id}" class="t-link-ffffff f-br4 t-f-pd1 f-fs2 t-list-jg s-bg-eb6100">了解详情</a>
+                        </div>
+                    </div>
+                </div>
+               <!--{/foreach}-->
+            </div>
+        </div>
+        <!--健康险-->
+        
+        
+        <!--{foreach from=$cat_rec[1] item=cat}-->      
+        <div class="f-mt35 g-w1200">
+            <div class="s-bg-ffffff t-bdr-e5e5e5 f-cb f-mb20 g-h240">
+                <div class="f-fl">
+                    <div class="g-w205 f-pr">
+                        <a href="javascript:;"><img src="{$cat.background_img}" /></a>
+                        <div class="t-m-list-p">
+                            <strong class="s-c-ffffff f-fwn f-fs6">{$cat.cat_name}</strong>
+                            <div class="f-fs3 f-mt45 f-tac s-lh26 g-w165">
+                            <!--{foreach from=$cat.children_cat item=item}-->  
+                                <a class="f-db t-link-333333" href="category.php?act=hot_goods_list&cat_id={$item.id}">{$item.name}</a>
+                             <!--{/foreach}-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              <!--{foreach from=$cat.goods_list item=goods name=name}-->  
+			                <div class="{if $smarty.foreach.name.iteration neq 3} t-bdr-r-e5e5e5 {/if} f-pr g-h240 f-fl">
+			                    <div class="t-m-list-tt {if $smarty.foreach.name.iteration eq 1}  g-w333 {else} g-w254  {/if} " >
+			                        <div class="t-m-list-t-s">
+			                            <strong class="f-fwn f-fs4 s-c-040404 f-db f-mb10">
+			                            	{$goods.goods_name} 
+			                            </strong>
+			                            <p class="f-fs2 s-c-666666 s-lh25">
+			                            	{$goods.goods_brief|truncate:50}
+			                            </p>
+			                            <div class="s-c-eb6100 f-fs1 t-list-jg">¥ <span class="f-fs7">{$goods.goods_price}</span>元起</div>
+			                        </div>
+			                        <div class="t-m-list-t-h f-fs2 s-c-666666 s-lh25">
+			                            <strong class="f-fwn f-fs4 s-c-040404 f-db f-mb10">{$goods.goods_name}</strong>
+			                            <p class="">
+			                            {$goods.product_characteristic}
+			                            </p>
+			                            <a href="goods.php?id={$goods.goods_id}" class="t-link-ffffff f-br4 t-f-pd1 f-fs2 t-list-jg s-bg-eb6100">了解详情</a>
+			                        </div>
+			                    </div>
+			                </div>
+			<!--{/foreach}-->
+            </div>
+        </div>
+           <!--{/foreach}-->
+    </div>
+    <!--合作伙伴-->
+    <div class="f-mt10">
+        <div class="f-cb s-lh50"><span class="f-fl f-mr15"><img src="images/new_img/icon7.png" /></span><strong class="f-fs6 s-c-040404 f-fwn">合作伙伴</strong><a href="javascript:;" class="f-fr t-link-009c84">更多产品></a></div>
+        <div class="v_show f-mt10">
+            <div class="v_content">
+                <div  class="v_content_list">
+                    <ul>
+                     {foreach from=$img_partners item=item}
+	                 		<li>
+	                            <dl class="t-hzhb f-cb">
+		                             {foreach from=$item item=link}
+		                                <dd><a href="{$link.url}" target="_blank"><img src="{$link.logo}" /></a></dd>
+		                             {/foreach}
+	                            </dl>
+	                        </li>
+                        {/foreach}
+      
+                    </ul>
+                </div>
+            </div>
+            <div class="change_btn">
+                <span class="prev" >上一页</span>
+                <span class="next">下一页</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #BeginLibraryItem "/library/page_footer_index.lbi" --><!-- #EndLibraryItem -->

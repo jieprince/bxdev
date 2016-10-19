@@ -1,0 +1,49 @@
+<!-- $Id: exchange_goods_info.htm 15544 2009-01-09 01:54:28Z zblikai $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,selectzone.js,validator.js"}
+<!-- start goods form -->
+<div class="tab-div">
+<form  action="give_product_cfg.php" method="post" name="theForm" onsubmit="return validate();">
+  <table width="90%" id="general-table">
+		<tr>
+			<td>用户名</td>
+			<td>
+				<input type="text" name="user_name" value="{$give_product.user_name}">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>产品</td>
+			<td>
+				<select name="goods_id">
+					  <!-- {foreach from=$goods_list item=goods} -->
+					  	<option value="{$goods.goods_id}"
+					  		{if $give_product.goods_id eq $goods.goods_id}
+					  			selected = "selected"
+					  		{/if}
+					  	>{$goods.goods_name}</option>
+					  <!--{/foreach} -->
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>赠送总数</td>
+			<td>
+				<input type="text" name="give_count" value="{$give_product.give_count}">
+			</td>
+		</tr>
+  </table>
+
+  <div class="button-div">
+    <input type="hidden" name="id" value="{$give_product.id}" />
+    <input type="hidden" name="act" value={$form_action} />
+    <input type="submit" value="{$lang.button_submit}" class="button"  />
+    <input type="reset" value="{$lang.button_reset}" class="button" />
+  </div>
+</form>
+</div>
+<!-- end goods form -->
+<script language="JavaScript">
+</script>
+{include file="pagefooter.htm"}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,user-scalable=no">
+<title>测试建工险详情投保确认支付跳转</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/css/style.css">
+
+<script type="text/javascript">
+	function naviSubmitOrder(insName, proName, amount, policyID, insID) {
+		javascript: jsNaviSubmitOrder.onNaviSubmitOrder(insName, proName,
+				amount, policyID, insID);
+	}
+
+	function naviLogin(msg) {
+		javascript: jsNaviLogin.onNaviLogin();
+	}
+</script>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<div class="container mar_T25">
+			<p>
+				<button
+					onClick="naviSubmitOrder('insName','proName','100','111','222')">投保确认</button>
+			</p>
+			<p>
+				<button onClick="naviLogin()">登录</button>
+			</p>
+		</div>
+
+
+
+
+	</div>
+
+	<script src="dist/js/jquery.min.js"></script>
+	<script src="dist/js/bootstrap.min.js"></script>
+	<script src="dist/js/html5shiv.min.js"></script>
+	<script src="dist/js/respond.min.js"></script>
+
+
+</body>
+</html>

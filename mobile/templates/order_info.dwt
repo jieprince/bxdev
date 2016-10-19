@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>订单详细 - {$shop_name}</title>
+	<link rel='stylesheet' type='text/css' href='css/order-detial.css' />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<link href="css/head_foot.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script><script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+	
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	    <link rel="stylesheet" href="../dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/fonts/iconfont_2/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/weixin_style.css">
+	
+	<script type="text/javascript">
+	var _hmt=_hmt||[];(function(){var e=document.createElement("script");
+	var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+	document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+	</script>
+</head>
+<body> 
+	<div class="header">
+		<a class="back" href="javascript:history.back();"></a>
+		<span class="headline">订单详情</span>
+	</div>
+	<section>
+<div class="pending-detial">
+		<h2>订单详情
+        <!--<span style="float:right;"><a href="goods_list.php?act=hot_goods_list" class="link_a">更多</a></span>-->
+        </h2>
+		<!--商品列表begin-->
+<!-- 		<div class="order-info">
+			<h3>产品</h3>
+			<ul>
+				{foreach from=$goods_list item=goods name=goods}
+                <li class="{if $smarty.foreach.goods.first}first {/if}clearfix">
+              {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'} 商品
+                <a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="./../{$goods.goods_thumb}"></a>
+                {if $goods.parent_id > 0}
+                <span style="color:#FF0000">（{$lang.accessories}）</span>
+                {elseif $goods.is_gift}
+                <span style="color:#FF0000">（{$lang.largess}）</span>
+                {/if}
+              {elseif $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'}
+                <a href="javascript:void(0)" onclick="setSuitShow({$goods.goods_id})" class="f6">{$goods.goods_name}<span style="color:#FF0000;">（礼包）</span></a>
+                <div id="suit_{$goods.goods_id}" style="display:none">
+                    {foreach from=$goods.package_goods_list item=package_goods_list}
+                      <a href="goods.php?id={$package_goods_list.goods_id}" target="_blank" class="f6">{$package_goods_list.goods_name}</a><br />
+                    {/foreach}
+                </div>
+              {/if}
+               	<li class="first clearfix">
+					<p class="title">保险公司：</p>
+					<p class="sum">{$goods.insurer_name}</p>
+				</li>
+              	<li class="first clearfix">
+					<p class="title">产品名称：</p>
+					<p class="sum"><a href="goods.php?id={$goods.goods_id}">{$goods.goods_name}</a> <span>×{$goods.goods_number}</span></p>
+				</li>
+				<li class="first clearfix">
+					<p class="title">金额：</p>
+					<p class="sum">{$goods.goods_price}</p>
+				</li>
+          {/foreach}
+			</ul>
+		</div> -->
+		<!--商品列表end-->
+		<!--订单信息begin-->
+        
+		<div class="order-info" style="margin-top:20px;">
+			<ul>
+				<li class="first clearfix">
+					<p class="title">订单编号：</p>
+					<p class="sum">{$order.order_sn}</p>
+				</li>
+				
+				{if $order.goods_amount gt 0}	
+               <li class="last clearfix">
+					<p class="title">订单总额：{$order.goods_amoun}</p>
+					<p class="sum">{$order.formated_goods_amount}</p>
+			 	</li> 
+			 	{/if}
+              <!-- {if $order.discount gt 0} 折扣 -->
+              <font class="red">-</font> 折扣: {$order.formated_discount}<br>
+              <!-- {/if} -->
+              <!-- {if $order.tax gt 0} -->
+              <font class="red">+</font> 发票税额: {$order.formated_tax}<br>
+              <!-- {/if} -->
+              <!-- {if $order.shipping_fee > 0} -->
+              <font class="red">+</font> 配送费用: {$order.formated_shipping_fee}<br>
+              <!-- {/if} -->
+              <!-- {if $order.insure_fee > 0} -->
+              <font class="red">+</font> 保价费用: {$order.formated_insure_fee}<br>
+              <!-- {/if} -->
+              <!-- {if $order.pay_fee > 0} -->
+              <font class="red">+</font> 支付手续费: {$order.formated_pay_fee}<br>
+              <!-- {/if} -->
+              <!-- {if $order.pack_fee > 0} -->
+              <font class="red">+</font> 包装费用: {$order.formated_pack_fee}<br>
+              <!-- {/if} -->
+              <!-- {if $order.card_fee > 0} -->
+              <font class="red">+</font> 贺卡费用: {$order.formated_card_fee}<br>
+              <!-- {/if} -->   
+              <!-- {if $order.money_paid > 0} -->
+               <li class="clearfix">
+					<p class="title">已付款金额：</p>
+					<p class="sum"><strong>{$order.formated_money_paid}</strong></p>
+				</li>
+              <!-- {/if} 
+              <!-- {if $order.surplus > 0}  -->  
+   <!--            	<li class="clearfix">
+					<p class="title">使用余额：</p>
+					<p class="sum"><strong>{$order.formated_surplus}</strong></p>
+				</li> -->
+<!--               	<li class="clearfix">
+					<p class="title">应付金额：</p>
+					<p class="sum"><strong>{$order.formated_order_amount}</strong></p>
+				</li> -->
+              <!-- {/if} -->
+              <!-- {if $order.integral_money > 0} -->
+              <font class="red">-</font> 使用积分: {$order.formated_integral_money}<br>
+              <!-- {/if} -->
+              <!-- {if $order.bonus > 0} -->
+              <font class="red">-</font> 使用代金券: {$order.formated_bonus}<br>
+              <!-- {/if} -->
+              
+ 				<li class="clearfix">
+					<p class="title">订单状态：</p>
+					<p class="sum"><strong>{$order.order_status}{$order.confirm_time-bak}</strong></p>
+				</li>
+				<li class="clearfix">
+					<p class="title">支付状态：</p>
+					<p class="sum"><strong>{$order.pay_status}{$order.pay_time-bak}</strong></p>
+				</li> 
+                {if $order.pay_online}
+<!-- 				<li class="clearfix">
+					<p class="title">在线支付：</p>
+                    {$order.pay_online}
+				</li> -->
+				{else}
+	<!-- 				<li class="clearfix">
+						<p class="title">支付方式：</p>
+						<p class="sum">{$order.pay_name}</p>
+					</li> -->
+                {/if}
+                <!-- add yes123 2015-02-04微信端更换支付方式 -->
+				{if $order.pay_name != '微信支付' && $order.pay_status == '未付款' && $order.order_status neq '已退保'}
+<!-- 				<li class="clearfix">
+					<p class="title">更换支付方式：</p>
+					<p class="sum">
+						<select name="pay_id">
+							<option value="{$pay_id}">微信支付</option>
+						</select>
+						<input type="button" style="padding: 2px 3px;color:white; border-radius:2px;display: inline-block;background-color: #F7762E" value="确定"  onclick="edit_payment({$pay_id});">
+					</p>
+				</li> -->
+				{/if}
+			</ul>
+		</div>
+		<!--订单信息end-->
+
+		
+		
+
+	
+		<div class="user-info">
+		
+			
+			{if $policy_info}
+				<h3>投保信息</h3>
+				<ul>
+					 <!-- {if $policy_info.policy_status eq 'insured'} -->  
+					<li>
+						<p class="title">保单号：</p>
+						<p class="user">{$policy_info.policy_no}</p>
+					</li>
+				 <!-- {/if} -->
+					<li>
+						<p class="title">保单状态：</p>
+						<p class="user">{$policy_info.policy_status_str}</p>
+					</li>
+					<li class="add">
+						<p class="title">状&#12288;&#12288;态：</p>
+						<p class="user">{$policy_info.policy_status_str}</p>
+					</li>
+					<li class="add">
+						<p class="title">业务类型：</p>
+						<p class="user"> 
+								{if $user_info_applicant.applicant_type==2}
+                            		单位
+                            		{else}
+                            		个人
+                            	{/if}</p>
+					</li>
+					<li class="add">
+						<p class="title">投保时间：</p>
+						<p class="user">{$policy_info.dateline_str}</p>
+					</li>
+				</ul>
+				
+				<h3>被保险人信息</h3>
+				<ul>
+					 {if $user_info_applicant.applicant_type==2}
+					 	<li>
+							<p class="title">单位（公司）名称：</p>
+							<p class="user">{$user_info_applicant.fullname}</p>
+						</li>
+					 	<li>
+							<p class="title">联系人姓名：</p>
+							<p class="user">{$user_info_applicant.cus_contact}</p>
+						</li>
+					 {/if} 
+					 
+					                    <!-- 投保人为单位（个人） -->
+                  {if $user_info_applicant.applicant_type eq 1}
+                  		<li>
+							<p class="title">姓名：</p>
+							<p class="user">{$user_info_applicant.fullname}</p>
+						</li>
+					 	<li>
+							<p class="title">{$policy_info.attr_certificates_type_ssbq[$user_info_applicant.certificates_type]}：</p>
+							<p class="user">{$user_info_applicant.certificates_code}</p>
+						</li>
+                 {/if}
+					 
+					<li>
+						<p class="title">手机号码：</p>
+						<p class="user">{$user_info_applicant.mobiletelephone}</p>
+					</li>
+					<li>
+						<p class="title">email：</p>
+						<p class="user">{$user_info_applicant.email}</p>
+					</li>
+					<li class="add">
+						<p class="title">律师事务所：</p>
+						<p class="user">{$user_info_applicant.law_office}</p>
+					</li>
+					<li class="add">
+						<p class="title">联系地址：</p>
+						<p class="user">{$user_info_applicant.address}</p>
+					</li>
+				</ul>
+				
+				
+				{else}
+				
+				
+				<!--{foreach from=$warranty item=item}-->
+				<h3>保单列表</h3>
+				<ul>
+					<li>
+						<p class="title">保险产品：</p>
+						<p class="user">{$item.attribute_name}</p>
+					</li>
+					<li>
+						<p class="title">保单号：</p>
+						<p class="user">{$item.policy_no}</p>
+					</li>
+					<li class="add">
+						<p class="title">状态：</p>
+						<p class="user">{$item.policy_status_str}</p>
+					</li>
+				</ul>
+				<!--{/foreach}--> 
+				
+				
+			{/if}
+			
+			
+			 {if $policy_info.all_attachment.required_info || $policy_info.all_attachment.other_info} 
+			 <h3>附件列表</h3>
+			 <ul>
+				{foreach from=$policy_info.all_attachment.required_info item=value}
+                         	{if $value.file_url_list}
+                     			<li class="add">
+                     				<p class="title">{$value.field_desc}</p>
+                     			</li>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<li>
+                     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     				&nbsp;&nbsp;
+                     				<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				</li>
+                     				{/foreach}
+                     			{else}
+                     			<li class="add">
+                     				<p class="title">
+                     					<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     				</p>
+                     			</li>
+                     		{/if}
+          		{/foreach}
+          		<li></li>
+          	</ul>
+          	
+          	<ul>
+				{foreach from=$policy_info.all_attachment.other_info item=value}
+                         	{if $value.file_url_list}
+                     			<li class="add">
+                     				<p class="title">{$value.field_desc}</p>
+                     			</li>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<li>
+                     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     				&nbsp;&nbsp;
+                     				<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				</li>
+                     				{/foreach}
+                     			{else}
+                     			<li class="add">
+                     				<p class="title">
+                     					<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     				</p>
+                     			</li>
+                     		{/if}
+          		{/foreach}
+          		<li></li>
+          	</ul>
+	        {/if}
+			
+
+			     
+			
+			<div style="display: none" id="update_file_div">
+				<form action="user.php?act=upload_policy_attachment" method="post"  id="replenish_file">
+				<input type="hidden" name="policy_id" value="{$policy_info.policy_id}">
+				<input type="hidden" name="order_id" value="{$order.order_id}">
+				<input type="hidden" id="applicant_type_temp" value="{$user_info_applicant.applicant_type}">
+			     <div id="file_url_input" style="display: none"></div>
+			
+				<ul>
+					 <!--{foreach from=$policy_info.all_attachment_attr.required_upload_file_attr key=key item=value}-->
+						<li style="margin-top: 10px;">
+							<p class="title" style="font-size: 14px;"><strong>{$value.name}</strong></p>
+					 	</li>
+					 	<li>
+					 			<a class="btn btn-c2e2ee btn-block" href="javascript:void(0)" onClick="chooseImage_html('{$key}')" >图片上传(<span id="{$key}_num">0</span>)</a>
+					 	</li>
+					<!--{/foreach}-->
+					<li></li>
+					
+		
+					
+				</ul>
+				<a class="btn btn-default btn-sm" href="javascript:other_ziliao();" style="margin-top: 30px;margin-bottom: 10px;" >其他资料上传</a>
+				
+				
+				<ul style="display: none" id="other_ziliao_ul">
+					 <!--{foreach from=$policy_info.all_attachment_attr.other_file_attr key=key item=value}-->
+						<li style="margin-top: 10px;">
+							<p class="title" style="font-size: 14px;"><strong>{$value.name}</strong></p>
+					 	</li>
+					 	<li>
+					 			<a class="btn btn-c2e2ee btn-block" href="javascript:void(0)" onClick="chooseImage_html('{$key}')" >图片上传(<span id="{$key}_num">0</span>)</a>
+					 	</li>
+					<!--{/foreach}-->
+					<li></li>
+					
+				</ul>
+				
+				<input type="submit" value="保存并提交"  class="link_B">
+				
+			</form>
+				<br/>
+			</div>
+		
+		</div>
+
+
+	<br>
+ 
+  <div>
+  		
+  		<a href="javascript:show_uplaod_file_div();" id="btn_quit"  class="link_B">补充资料</a>
+  </div>
+ 
+</section>
+<script type="text/javascript">
+wx.config({
+	debug: false,
+	appId: '{$signPackage.appId}',
+	timestamp: '{$signPackage.timestamp}',
+	nonceStr: '{$signPackage.nonceStr}',
+	signature: '{$signPackage.signature}',
+	jsApiList: [
+	  'chooseImage',
+	  'previewImage',
+	  'uploadImage',
+	  'downloadImage'
+	]
+	});
+	
+	var success_num = 0;
+	var fail_num = 0;
+	
+	function chooseImage_html(dom_id){
+	  
+	  wx.ready(function () {
+			wx.chooseImage({
+				success: function (res) {
+					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					upload_images(localIds,dom_id);
+				}
+			});
+	  });
+	  
+	}
+	
+	function upload_images(localIds,dom_id){
+		 
+		var  serverIds_Temp = [];
+		 
+		for(var qi=0 ; qi<localIds.length; qi++){
+			
+		   wx.ready(function () {
+				wx.uploadImage({
+					localId:localIds[qi].toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
+					isShowProgressTips: 1, // 默认为1，显示进度提示
+					success: function (res1){
+						var serverId = res1.serverId; // 返回图片的服务器端ID
+						serverIds_Temp.push(serverId); 
+						down_images(serverId,dom_id);
+						 
+					}
+				});
+			});  
+		}
+		
+
+	}
+	
+	
+	function down_images(serverId,dom_id){
+		$.ajax({
+			 url: "../mobile/wxAaction.php?act=downimg&media_id="+serverId,
+			 type: "POST",
+			 dataType: "json",
+			 async:false,
+			 success: function(data){
+				 if(data.code==0){
+					var file_url_input = '<input type="hidden" name="'+dom_id+'[]" value="'+data.url+'">'
+					$("#file_url_input").append(file_url_input); 
+					success_num = success_num+1;
+					var old_num = $("#"+dom_id+"_num").text();
+					old_num = parseInt(old_num);
+					
+					$("#"+dom_id+"_num").text(old_num+1);
+				 }
+				 else{
+					 fail_num= 1+fail_num;
+				 }
+			 },
+			 error:function(data){
+			 }
+		});
+	}
+	
+	var is_show = 0;
+	function show_uplaod_file_div(){
+		
+		if(is_show==0){
+			$("#update_file_div").show();
+			is_show=1;
+		}
+		else{
+			$("#update_file_div").hide();
+			is_show=0;	
+		}
+		
+	}
+	
+	var is_other_show = 0;
+	function other_ziliao(){
+		
+		if(is_other_show==0){
+			$("#other_ziliao_ul").show();
+			is_other_show=1;
+		}
+		else{
+			$("#other_ziliao_ul").hide();
+			is_other_show=0;	
+		}
+		
+	}
+</script>
+<script type="text/javascript">
+		var global_loading=document.getElementById("global_loading");
+		global_loading.parentNode.removeChild(global_loading);
+</script>
+{include file='foot.dwt'}
+</body>
+</html>

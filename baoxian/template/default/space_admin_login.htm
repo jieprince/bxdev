@@ -1,0 +1,53 @@
+<!--{template header}-->
+
+
+<div id="main-content">
+                            <div id="main-body">
+
+
+
+<div class="login-top"></div>
+<form name="loginForm" method="POST" action="do.php?ac=$_SCONFIG[login_action]&$url_plus&ref">
+
+<div>
+<input name="org.apache.struts.taglib.html.TOKEN" value="731ed463624dc62edeaec827b7e94271" type="hidden"></div>
+    <table class="loginTable">
+        <tbody><tr>
+            <td class="loginTitle" colspan="2"><span class="dialogIcon"><img src="./template/images/login.png"></span>请登录</td>
+        </tr>
+        <tr>
+            <td class="userField" align="right" nowrap="nowrap" width="20%">用户名：</td>
+            <td class="userField" align="left" width="80%">
+                <input name="name" size="30" value="" style="width: 280px; height: 22px; border: 1px solid #E1E1E1;" type="text">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="passwordField" align="right" nowrap="nowrap">密　码：</td>
+            <td class="passwordField" align="left">
+                <input name="password" size="30" value="" style="width: 280px; height: 22px; border: 1px solid #E1E1E1;" type="password">
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="login-button-area" colspan="2">
+                <input value="登录" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>
+</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["loginForm"].elements["name"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div>
+                        </div>
+
+ <!--{template footer}-->

@@ -1,0 +1,1067 @@
+<script src="js/common.js"></script>
+{if $insurer_code=='SSBQ'} 
+ 	{include file='library/policy_info_ssbq.lbi'} 
+ 	{include file='library/attachment_list.lbi'} 
+{else}
+       <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           <div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf01fe;</i></span>
+                                <span>投保信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+                  <!--{if $insurer_code=='picclife' && ($policy.attribute_type=='ijiankang' || $policy.attribute_type=='BWSJ')}--> 
+                  <tr >
+                    <td  >保额</td>
+                    <td  >{$policy.apply_num}万</td>
+                    <td  >保障期间</td>
+                    <td  >{if $policy.insPeriod==30}{$policy.insPeriod}年{else}至{$policy.insPeriod}周岁{/if}</td>
+                  </tr>
+                  <tr >
+                    <td  >缴费类型</td>
+                    <td  >{if $policy.payPeriod==1}一次性付清{else}年缴{/if}</td>
+                    <td  >缴费期间</td>
+                    <td  >{if $policy.payPeriod==1}一次性付清{else}{$policy.payPeriod}年{/if}</td>
+                  </tr>
+                  <!--{/if}-->  
+                  <tr >
+                    <!--{if $insurer_code=='picclife' && $policy.attribute_type=='ijiankang'}--> 
+                    <td  >投保份数</td>
+                    <td  >1</td>
+                    <!--{else}--> 
+                    <td  >投保份数</td>
+                    <td  >{$policy.apply_num}</td>
+                    <!--{/if}--> 
+                    <td  >总金额</td>
+                    <td  >{$policy.total_premium_str}</td>
+                    
+                  </tr>
+                  
+                  <tr >
+                    <td  >{$policy.show_relationship_with_insured_str}</td>
+                    <td  >{$policy.relationship_with_insured_str}</td>
+                    <td  >受益人</td>
+                    <td  >{$policy.beneficiary_str}</td>
+                  </tr>
+                  <!--{if $attribute_type_y502 =='Y502' }-->
+                 <!--{foreach from=$list_subject key=sk item=subject}--> 
+                 <!--{if $sk==0}-->
+                 <!--{foreach from=$subject[list_subject_product] key=k  item=product}--> 
+                     <!--{if $k==0}-->
+                         <tr >
+                            <td  >年龄范围</td>
+                            <td  >{$product.age_min}岁--{$product.age_max}岁</td>
+                            <td  >保险期限</td>
+                            <td  >{$y502_period}个月</td>
+                          </tr>	
+                       <!--{/if}-->
+                   <!--{/foreach}-->
+                   <!--{/if}--> 
+                  <!--{/foreach}-->
+                 <!--{/if}--> 
+                  <tr >
+                    <td  >保险起期</td>
+                    <td  >{$policy.start_date}</td>
+                    <td  >保险止期</td>
+                    <td  >{$policy.end_date}</td>
+                  </tr>   
+                  
+                  
+                <!-- {if $policy.policy_status eq 'insured'} -->         
+                <tr >
+                    <td  >保单号</td>
+                    <td >
+                    
+                    
+                    <a href="baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=getpolicyfile" target="_blank">{$policy.policy_no}</a>
+                    
+                    
+                    </td>
+                    
+                    <td  >电子保单</td>
+                    <td >
+                 
+                    <a href="baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=getpolicyfile" target="_blank">下载</a>
+                    
+                    </td>
+        
+                  </tr>
+                  <!--{/if}-->
+                  
+                  
+                 <!--{ if $product_info['product_code'] eq "01097"||$product_info['product_code'] eq "01098"||$product_info['product_code'] eq "01225"||$product_info['product_code'] eq "01099"}-->
+                    <tr >
+                   
+                
+                    <td  >投保确认书</td>
+                    <td bgcolor="#3399CC" >
+                       <a href="baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=gettoubaoqurenpolicyfile" target="_blank">下载</a>
+                	</td>
+                   </tr>
+                   <!--{/if}-->
+                   
+                  
+                   <tr >
+                   
+                    <td  >保单状态</td>
+                    <td bgcolor="#f567ff" >{$policy.policy_status_str}</td>
+                    
+            
+                    
+                    <td  >订单号</td>
+                    <td >
+                     <a href="user.php?act=order_detail&order_id={$policy.order_id}" target="_blank">{$policy.order_sn}</a></td>
+            
+                   </tr>
+                   
+                   
+        
+                   
+                
+                  <tr >
+                    <td  >返回码</td>
+                    <td  >{$policy.ret_code}</td>
+                    <td  >返回信息</td>
+                    <td  >{$policy.ret_msg}</td>
+                  </tr>
+                  <!--{if $insurer_code=='CPIC_CARGO'}-->
+                  <tr >
+                    <td  >错误码</td>
+                    <td  >{$policy.errorCode}</td>
+                    <td  >错误信息</td>
+                    <td  >{$policy.errorMsg}</td>
+                  </tr>
+                 <!--{/if}-->
+                  
+                  <tr >
+                    <td  >业务类型</td>
+                    <td  >{$policy.business_type_str}</td>
+                    <td  >会员</td>
+                    <td  >{$policy.agent_username}</td>
+                  </tr>
+                  <tr >
+                    <td  >投保时间</td>
+                    <td  >{$policy.dateline_str}</td>
+                    <td  >操作</td>
+                    <td>
+                    
+                    <!-- {if $policy.policy_status eq 'insured' && !($insurer_code=='CPIC_CARGO' && ($policy.ret_code=='7' || $policy.ret_code=='15'))} -->
+                    
+	                    	<a href ="javascript:withdraw_policy({$policy.policy_id});">注销</a>
+	              
+                     <!--{/if}-->
+                     <!--{if $insurer_code=='CPIC_CARGO' && ($policy.ret_code=='7' || $policy.ret_code=='15')}-->
+                     <a href ="javascript:query_policy({$policy.policy_id});">手动查询</a>
+                     <!--{/if}-->
+                     
+                    </td>
+                  </tr> 
+               </table>
+           </div>
+       </div>
+       <!--{if $insurer_code!="CPIC_CARGO"}-->
+              <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           		<div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00cc;</i></span>
+                                <span>投保人信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+               <!--{if $insurer_code=='NCI'}--> 
+                   
+                          <tr >
+                  
+                            <td  >投保人</td>
+                            <td  >{$user_info_applicant.fullname}</td>
+                            
+                            <td  >国籍</td>
+                            <td  >{$user_info_applicant.nation_code}</td>
+                            
+                          </tr>
+                          
+                          <tr >
+                  
+                            <td  >证件类型</td>
+                            <td  >{$user_info_applicant.certificates_type_str}</td>
+                            
+                            <td  >证件号码</td>
+                            <td  >{$user_info_applicant.certificates_code}</td>
+                            
+                          </tr>
+                          
+                          <tr >
+                  
+                            <td  >证件有效期</td>
+                            <td  >{$user_info_applicant[cardValidDate]}-{if $user_info_applicant.cardExpDate}{$user_info_applicant[cardExpDate]}{else}长期{/if}</td>
+                            
+                            <td  >邮政编码</td>
+                            <td  >{$user_info_applicant.zipcode}</td>
+                            
+                          </tr>
+                          
+                          <tr >
+                  
+                            
+                            <td  >性别</td>
+                            <td  >{$user_info_applicant.gender_str}</td>
+                            <td  >出生日期</td>
+                            <td  >{$user_info_applicant.birthday}</td>
+                            
+                          </tr>
+                          
+                       <tr >
+                  
+                          <td  >移动电话</td>
+                          <td  >{$user_info_applicant.mobiletelephone}</td>
+                          
+                          <td  >电子邮箱</td>
+                          <td  >{$user_info_applicant.email}</td>
+                          
+                        </tr>
+                        <tr >
+                  
+                          <td  >服务机构</td>
+             
+                          <td  >{$policy[serviceOrgCode]}</td>
+             
+                          
+                          <td  >职业</td>
+                          <td  >{$user_info_applicant[business_type]}--{$user_info_applicant[occupationClassCode]}</td>
+                          
+                        </tr>
+                        <tr >
+                  
+                          <td  >省市区</td>
+                          <td  >{$user_info_applicant[province_code]}{$user_info_applicant[city_code]}{$user_info_applicant[county_code]}</td>
+                          
+                          <td  >通讯地址</td>
+                          <td  >{$user_info_applicant[address]}</td>
+                          
+                        </tr>
+                        
+                    
+                <!--{else}-->
+                    
+                    <!--{if $policy.business_type eq 1 }-->
+                          <tr >
+                  
+                            <td  >投保人</td>
+                            <td  >{$user_info_applicant.fullname}</td>
+                            
+                            <td  >性别</td>
+                            <td  >{$user_info_applicant.gender_str}</td>
+                            
+                          </tr>
+                          
+                          <tr >
+                  
+                            <td  >证件类型</td>
+                            <td  >{$user_info_applicant.certificates_type_str}</td>
+                            
+                            <td  >证件号码</td>
+                            <td  >{$user_info_applicant.certificates_code}</td>
+                            
+                          </tr>
+                         
+                       <!--{else}-->
+                         
+                          <tr >
+                  
+                            <td  >团体投保人</td>
+                            <td  >{$user_info_applicant.group_name}</td>
+                            
+                            <td  >属性</td>
+                            <td  >{$user_info_applicant.company_attribute_str}</td>
+                            
+                          </tr>
+                          
+                          <tr >
+                  
+                            <td  >证件类型</td>
+                            <td  >组织机构代码证</td>
+                            
+                            <td  >证件号码</td>
+                            <td  >{$user_info_applicant.group_certificates_code}</td>
+                            
+                          </tr>
+                       <!--{/if}-->
+                       <tr >
+                  
+                          <td  >手机号码</td>
+                          <td  >{$user_info_applicant.mobiletelephone}</td>
+                          
+                          <td  >email</td>
+                          <td  >{$user_info_applicant.email}</td>
+                          
+                        </tr>
+                       <tr >
+                        <td  >{$policy.show_relationship_with_insured_str}</td>
+                        <td  >{$policy.relationship_with_insured_str}</td>
+                        <td  >受益人</td>
+                        <td  >{$policy.beneficiary_str}</td>
+                      </tr>
+                   
+                <!--{/if}--> 
+                </table>
+               </div>
+             </div>
+        <!--{/if}--> 
+        
+        <!--{if $insurer_code=="PAC04" && $policy.attribute_type!='zhanghuzijin'}-->
+        <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+            <div class="f-pt20">
+            <table cellpadding="0" cellspacing="0" class="table_user_02">
+                <tr>
+                    <th colspan="4">
+                        <span class="s-c-040404 f-fs3">
+                            <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf012b;</i></span>
+                            <span>房屋信息</span>
+                        </span>
+                    </th>
+                    
+                </tr>
+                 <tr >
+                    <td  >房屋类型</td>
+                    <td   align="left">{$user_info_applicant.house_type}</td>
+                    <td  >房屋地址</td>
+                    <td   align="left">{$user_info_applicant.province}-{$user_info_applicant.city}-{$user_info_applicant.county}</td>
+                  </tr>
+                  <tr >
+                    <td  >详细地址</td>
+                    <td   colspan="3" align="left">{$user_info_applicant.address}</td>
+                     
+                  </tr>
+            </table>
+           </div>
+        </div>
+        <!--{/if}--> 
+		<!--{foreach from=$list_subject key=key item=subject}-->  
+			
+	
+		  
+      <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+            <div class="f-pt20">
+            <table cellpadding="0" cellspacing="0" class="table_user_02">
+                <tr>
+                    <th colspan="4">
+                        <span class="s-c-040404 f-fs3">
+                            <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf0025;</i></span>
+                            <span>产品信息</span>
+                        </span>
+                    </th>
+                    
+                </tr>
+           <!--{if $attribute_type_y502 !='Y502' }-->
+             <tr >
+                <td  >产品名称</td>
+                <!--
+                <td  >金额</td>
+                -->
+                <td  >最小投保年龄</td>
+                <td  >最大投保年龄</td>
+                <td  >投保期限</td>
+                <!-- <td  >投保份数</td>-->
+                
+              </tr>
+              
+            <!--{foreach from=$subject[list_subject_product] item=product}-->
+              <tr >
+                <td  >
+                <a href="goods.php?ins_product_id={$product.product_id}" target="_blank">
+                    {$product.attribute_name}->
+                    {$product.product_name}
+                </a>
+                </td>
+                 <!--          
+                <td  >{$product.premium}</td>
+                 -->
+                
+                <td   >{$product.age_min}</td>
+                <td   >{$product.age_max}</td>
+                 <td   >{$product.period}</td>
+                 <!--   <td   >{$product.number}</td> -->
+                
+              </tr>
+            <!--{/foreach}-->
+            <!--{else}--> 
+              <tr >
+                <td  >类型</td>
+                
+                <td  >产品名称</td>
+                <td  >责任</td>
+                <td  >保额/保险(元)</td>
+                 
+              </tr>
+              <!--{foreach from=$subject.list_product_duty_price item=value1}-->
+                                        
+                     <tr>
+                        <!--{if $value1[product_type]=='main' }-->
+                        <td width="80"   >主险</td>
+                        <td width="300"   >{$value1[product_name]}</td>
+                        <td width="240"   >{$value1[duty_name]}</td>
+                        <td width="130"   >{$value1[amount]}/{$value1[price]}</td>
+                        <!--{/if}-->
+                      </tr>
+                      
+                <!--{/foreach}-->
+               <!--{foreach from=$subject.list_product_duty_price item=value1}-->
+                     <tr>
+                     
+                        <!--{if $value1[product_type]=='additional' }-->
+                        
+                        <td   >附加险</td>
+                        
+                        <td   >{$value1[product_name]}</td>
+                        <td   >{$value1[duty_name]}</td>
+                        <td   >{$value1[amount]}/{$value1[price]}</td>
+                        <!--{/if}--> 
+                      </tr>
+                      
+                <!--{/foreach}-->
+               
+            <!--{/if}-->  
+                
+              </table>
+             </div>
+         </div>
+	       <!--{if $insurer_code!="CPIC_CARGO"}-->
+               <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+            <div class="f-pt20">
+            
+               <!--{if $insurer_code=='NCI'}--> 
+                  <!--{foreach from=$subject[list_subject_insurant] item=item}-->
+                   <table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00d4;</i></span>
+                                <span>被保险人信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+                    <tr >
+                        <td  >与投保人关系：</td>
+                        <td  >{$policy.relationship_with_insured_str}</td>
+                        <td  >被保险人姓名：</td>
+                        <td  >{$item.fullname}</td>
+                    </tr>
+        
+                    <tr >
+                        <td  >证件类型：</td>
+                        <td  >{$item.certificates_type_str}</td>
+                        <td  >证件号：</td>
+                        <td  >{$item.certificates_code}</td>
+        
+                    </tr>
+                    <tr >
+                        <td  >证件有效期：</td>
+                        <td  >{$item.cardValidDate}-{if $item.cardExpDate}{$item.cardExpDate}{else}长期{/if}</td>
+                        <td  >移动电话：</td>
+                        <td   colspan="3">{$item.mobiletelephone}</td>
+                    </tr>
+        
+                    <tr >
+                        <td  >性别：</td>
+                        <td  >{$item.gender_str}</td>
+                        <td  >出生日期：</td>
+                        <td  >{$item.birthday}</td>
+                    </tr>
+                    <tr >
+                     
+                        <td  >国籍：</td>
+         
+                        <td  >{$item.nation_code}</td>
+         
+                        <td  >职业：</td>
+                        <td  >{$item.business_type}--{$item.occupationClassCode}</td>
+                        
+                    </tr>
+                    <tr >
+                     
+                        <td  >省市区：</td>
+                        <td  >{$item.province_code}{$item.city_code}{$item.county_code}</td>
+                        <td  >通讯地址：</td>
+                        <td  >{$user_info_applicant[address]}</td>
+                        
+                    </tr>
+                    
+                </table>  
+                
+                <!--{/foreach}-->
+                <!--{elseif $insurer_code=="CHINALIFE"}--> 
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="8">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00d4;</i></span>
+                                    <span>被保险人信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+                         <tr >
+                            <td  >姓名</td>
+                            <td  >性别</td>
+                            <td  >生日</td>
+                            <td  >证件类型</td>
+                            <td  >证件号码</td>
+                            <td  >手机</td>
+                            <td  >邮箱</td>
+                            
+                            <td  >省市区</td>
+                            
+                          </tr>
+                          
+                        <!--{foreach from=$subject[list_subject_insurant] item=item}-->
+                          <tr >
+                            <td  >{$item.fullname}</td>
+                            <td  >{$item.gender_str}</td>
+                            <td  >{$item.birthday}</td>
+                            <td  >{$item.certificates_type_str}</td>
+                             <td  >{$item.certificates_code}</td>
+                             <td  >{$item.mobiletelephone}</td>
+                              <td  >{$item.email}</td> 
+                               
+                              <td  >{$item.province}-{$item.city}-{$item.county}</td>
+                               
+                          </tr>
+                        <!--{/foreach}-->
+                          </table> 
+                  <!--{else}--> 
+                   <table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="8">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00d4;</i></span>
+                                <span>被保险人信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+                     <tr >
+                        <td  >姓名</td>
+                        <td  >性别</td>
+                        <td  >生日</td>
+                        <td  >证件类型</td>
+                        <td  >证件号码</td>
+                        <td  >手机</td>
+                        <td  >邮箱</td>
+                         
+                        <!--{if $policy['attribute_type']=="jingwailvyou"}--> 
+                            <td  >目的地</td>
+                        <!--{/if}--> 
+                      </tr>
+                      
+                    <!--{foreach from=$subject[list_subject_insurant] item=item}-->
+                      <tr >
+                        <td  >{$item.fullname}</td>
+                        <td  >{$item.gender_str}</td>
+                        <td  >{$item.birthday}</td>
+                        <td  >{$item.certificates_type_str}</td>
+                         <td  >{$item.certificates_code}</td>
+                         <td  >{$item.mobiletelephone}</td>
+                          <td  >{$item.email}</td> 
+                          <!--{if $policy['attribute_type']=="jingwailvyou"}--> 
+                            <td  >{$policy.destinationCountry}</td>
+                          <!--{/if}--> 
+                      </tr>
+                    <!--{/foreach}-->
+                    
+                        
+                      </table>
+                   
+                  <!--{/if}-->
+               </div>
+            </div> 
+           <!--{/if}--> 
+           
+		<!--{/foreach}-->
+       
+       <!--{if $insurer_code=='SINO' && $product_code=="0916" && $project_info}--> 
+		<div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+            <div class="f-pt20">
+            <table cellpadding="0" cellspacing="0" class="table_user_02">
+                <tr>
+                    <th colspan="6">
+                        <span class="s-c-040404 f-fs3">
+                            <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf01a0;</i></span>
+                            <span>工程信息</span>
+                        </span>
+                    </th>
+                    
+                </tr>
+	   
+                 <tr >
+                    <td  >工程类型</td>
+                    <td   align="left">{$project_info.project_type}</td>
+                    <td  >工程名称</td>
+                    <td   align="left">{$project_info.project_name}</td>
+                    <td  >工程造价</td>
+                    <td   align="left">{$project_info.project_price}</td>
+                  </tr>
+                  
+                 
+                  <tr >
+                    
+                    
+                    <td   >施工起期</td>
+                    <td   align="left">{$project_info.project_start_date}</td>
+                    <td  >施工止期</td>
+                    <td   align="left">{$project_info.project_end_date}</td> 
+                    <td  >施工地址</td>
+                    <td   align="left">{$project_info.province_name}-{$project_info.province_name}-{$project_info.project_location}</td> 
+                  </tr>
+                  <tr >
+                    <td  >工程内容</td>
+                    <td   colspan="3" align="left">{$project_info.project_content}</td>
+                    <td  >邮政编码</td>
+                    <td   align="left">{$project_info.zipcode}</td>
+                    
+                  </tr>
+        
+          </table>
+       	  </div>
+       </div>
+       <!--{/if}--> 
+       
+       <!--{if $insurer_code=='NCI' || ($insurer_code=='picclife' && ($policy.attribute_type=='ijiankang' || $policy.attribute_type=='BWSJ'))}--> 
+           <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+                <div class="f-pt20">
+                
+                
+                {if $policy.beneficiary==1 }
+                <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="2">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00d5;</i></span>
+                                    <span>受益人信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr> 
+                        <tr>
+                            <td  ></td>
+                            <td  >法定继承人的继承顺序：<br />
+                                第一顺序：配偶、子女、父母<br />
+                                第二顺序：兄弟姐妹、祖父母、外祖父母</td>
+                        </tr>
+            
+                </table>
+                {else}
+                
+                <!--{foreach from=$list_beneficiary key=key item=value}-->
+                     
+                    
+                        <table cellpadding="0" cellspacing="0" class="table_user_02">
+                            <tr>
+                                <th colspan="4">
+                                    <span class="s-c-040404 f-fs3">
+                                        <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00d5;</i></span>
+                                        <span>受益人{if $key==0}一{elseif $key==1}二{else}三{/if}</span>
+                                    </span>
+                                </th>
+                            </tr>
+                            <tr >
+                                <td  >与被保险人关系：</td>
+                                <td  >{$value.benefitRelation}</td>
+                                <td  >姓名：</td>
+                                <td  >{$value.name}</td>
+                            </tr>
+                
+                            <tr  >
+                                <td  >证件类型：</td>
+                                <td  >{$value.cardType}</td>
+                                <td  >证件号：</td>
+                                <td  >{$value.cardNo}</td>
+                
+                            </tr>
+                            <!--{if $insurer_code=='NCI'}--> 
+                            <tr >
+                                <td  >证件有效期：</td>
+                                <td  >{$value.cardValidDate}--{if $value.cardExpDate}{$value.cardExpDate}{else}长期{/if}</td>
+                                <td  >国籍：</td>
+                                <td   colspan="3">{$value.nativePlace}</td>
+                            </tr>
+                            <!--{/if}--> 
+                            <tr >
+                                <td  >性别：</td>
+                                <td  >{$value.sex}</td>
+                                <td  >出生日期：</td>
+                                <td  >{$value.birthday}</td>
+                            </tr>
+                            <tr >
+                             
+                                
+                                <td  >受益顺序：</td>
+                                <td  >{$value.benefitSort}</td> 
+                                <td  >受益比例：</td>
+                                <td  >{$value.benefitScale}</td>
+                            </tr>
+                            
+                        </table> 
+                     
+                    <!--{/foreach}-->
+                 
+                {/if}   
+                </div>
+            </div>
+         
+            {if $insurer_code=='NCI' && $policy.payPeriod!=0}
+             <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+                <div class="f-pt20">
+                <table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                <span>续期交费信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+             
+                    <tr>
+                        <td width="150" class="check_td_left">续期交费银行：</td>
+                        <td width="190" class="check_td_right">{$policy.partPayBankCode}</td>
+                        <td width="150" class="check_td_left">续期交费账户姓名：</td>
+                        <td width="190" class="check_td_right">{$policy.partPayAcctName}</td>
+                    </tr>
+                    <tr>
+                        <td width="150" class="check_td_left">续期交费账户卡号：</td>
+                        <td width="190" class="check_td_right" colspan="3">{$policy.partPayAcctNo}</td>
+                        
+                    </tr> 
+                </table>
+            	</div>
+             </div>
+            {/if}
+      <!--{/if}-->
+    
+      <!--{if $insurer_code=='CPIC_CARGO'}-->
+      	<!--{if $policy.attribute_type == 'other_cargo'}-->
+        		<div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+                    <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>人员信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+                      <tr >
+                        <td  >被保险人名称</td>
+                        <td   align="left">{$subject[list_subject_insurant][0].fullname}</td>
+                        <td  >被保险人证件号码</td>
+                        <td   align="left">{$subject[list_subject_insurant][0].certificates_code}</td>
+                      </tr>
+                      <tr >
+                        <td  >邮政编码</td>
+                        <td   align="left">{$subject[list_subject_insurant][0].zipcode}</td>
+                        <td  >被保险人联系地址</td>
+                        <td   align="left">{$subject[list_subject_insurant][0].address}</td>
+                      </tr>
+                      <tr >
+                        <td  >联系人</td>
+                        <td   align="left">{$user_info_applicant[fullname]}</td>
+                        <td  >手机号码</td>
+                        <td   align="left">{$user_info_applicant[mobiletelephone]}</td>
+                    </tr>
+                    <tr >
+                        <td  >Email</td>
+                        <td   align="left" colspan="3">{$user_info_applicant[email]}</td>
+                         
+                    </tr>
+                       
+                </table>
+                </div>
+            </div>
+            <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>车辆运单信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+             
+                          <tr >
+                            <td  >道路运输许可证号码：</td>
+                            <td   align="left">{$policy[RoadLicenseNumber]}</td>
+                            <td  >累计承保车辆：</td>
+                            <td   align="left">1辆</td>
+                            
+                         </tr>
+                         <tr >
+                            
+                            <td  >运输车辆号码：</td>
+                            <td   align="left">{$policy[CarNumber]}</td>
+                            <td  >运输货物名称：</td>
+                            <td   align="left">{$policy[GoodsName]}</td>
+                        </tr>
+                        <tr >
+                            
+                            <td  >行驶证车主：</td>
+                            <td   align="left">{$policy[VehicleOwners]}</td>
+                            <td  >运输车辆核定载质量：</td>
+                            <td   align="left">{$policy[TransportVehiclesApprovedTotal]} KG</td>
+                        </tr>
+                        <tr >
+                            
+                            <td  >车辆车架号/识别代码：</td>
+                            <td   align="left">{$policy[FrameNumber]}</td>
+                            <td  >发动机号码：</td>
+                            <td   align="left">{$policy[EngineNo]}</td>
+                        </tr>
+                        {if $policy.BusinessType=='05'}
+                        <tr >
+                            <td  >运单号：</td>
+                            <td   align="left">{$policy[DeliverorderNo]}</td>
+                            <td  >起运日期：</td>
+                            <td   align="left">{$policy[SailDate]}</td>
+                            
+                        </tr>
+                        <tr >
+                            
+                            <td  >起运地：</td>
+                            <td   align="left">{$policy[StartPlace]}</td>
+                            <td  >目的地：</td>
+                            <td   align="left">{$policy[EndPlace]}</td>
+                        </tr>
+                        {/if}
+
+                   
+                </table>
+                </div>
+            </div> 
+            
+            
+            <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>保险信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+            
+                  <tr >
+                    <td  >业务类型</td>
+                    <td   colspan="3" align="left">{if $policy.BusinessType=='05'}单次业务{else}单车业务{/if}</td>
+                     
+                  </tr>
+                  <tr >
+                    <td  >累计责任限额</td>
+                    <td   align="left">{$policy[SumAmount]}元</td>
+                    <td  >保险费率</td>
+                    <td   align="left">{$policy[Rate]}</td>
+                     
+                  </tr>
+                  <tr >
+                    <td  >保费</td>
+                    <td   align="left">{$policy[Premium]}元</td>
+                    <td  >每次事故赔偿限额</td>
+                    <td   align="left">{$policy[TimeAmount]}</td>
+                     
+                  </tr>
+                   
+                   
+                  <tr >
+                    <td  >免赔条件</td>
+                    <td   colspan="3" align="left">{$policy[EachAccidentFranchise]}</td>
+                     
+                  </tr>
+                  <tr >
+                    <td  >特别约定</td>
+                    <td   colspan="3" align="left">{$policy[Specialterm]}</td>
+                     
+                  </tr>
+                   
+            </table>
+    	 	</div>
+            </div>
+        <!--{else}-->
+        <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>基本信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+        	 
+                  <tr >
+                    <td  >投保人名称</td>
+                    <td   align="left">{$user_info_applicant.group_name}</td>
+                    <td  >险种</td>
+                    <td   align="left">{$policy.classtype}</td>
+                  </tr>
+                  <tr >
+                    
+                    <td  >被保险人名称</td>
+                    <td   colspan="3" align="left">{$subject[list_subject_insurant][0].fullname}</td>
+                  </tr>
+                   
+            </table>
+            </div>
+            </div>
+            <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>货运信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+        	  
+                  <tr >
+                    <td  >标记/发票号码/运单号</td>
+                    <td   align="left">{$policy[mark]}</td>
+                    <td  >起运日期</td>
+                    <td   align="left">{$policy[saildate]}</td>
+                  </tr>
+                  <tr >
+                    <td  >货物名称</td>
+                    <td   align="left">{$policy[item]}</td>
+                    <td  >货物类型</td>
+                    <td   align="left">{$policy[itemcode]}</td>
+                  </tr>
+                  
+                  <tr >
+                    <td  >包装及数量</td>
+                    <td   align="left">{$policy[quantity]}</td>
+                    <td  >货物包装</td>
+                    <td   align="left">{$policy[packcode]}</td>
+                  </tr>
+                  <tr >
+                    <td  >运输方式</td>
+                    <td   align="left">{$policy[kind]}</td>
+                    <td  >运输工具</td>
+                    <td   align="left">{$policy[kindname]}</td>
+                  </tr>
+                  <tr >
+                    <td  >航次/车牌号</td>
+                    <td   align="left">{$policy[voyno]}</td>
+                    <td  >运输路线</td>
+                    <td   align="left">{$policy[startport]}----{$policy[endport]}</td>
+                  </tr>
+                   
+            </table>
+            </div>
+            </div>
+            <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>所选条款</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+        	 
+                  
+                  <tr >
+                    <td  >主要条款</td>
+                    <td   colspan="3" align="left">{$policy[mainitemcode]}</td>
+                     
+                  </tr>
+                  <tr >
+                    <td  >详细内容</td>
+                    <td   colspan="3" align="left">{$policy[itemcontent]}</td>
+                     
+                  </tr>
+                   
+            </table>
+            </div>
+            </div>
+            
+            <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+              <div class="f-pt20">
+                    <table cellpadding="0" cellspacing="0" class="table_user_02">
+                        <tr>
+                            <th colspan="4">
+                                <span class="s-c-040404 f-fs3">
+                                    <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf018b;</i></span>
+                                    <span>保险信息</span>
+                                </span>
+                            </th>
+                            
+                        </tr>
+             
+                      <tr >
+                        <td  >保险金额</td>
+                        <td   align="left">{$policy[amount]}元</td>
+                        <td  >保险费率</td>
+                        <td   align="left">{$policy[rate]}</td>
+                         
+                      </tr>
+                      <tr >
+                        <td  >保费</td>
+                        <td   align="left">{$policy[premium]}元</td>
+                        <td  >签单日期</td>
+                        <td   align="left">{$policy[effectdate]}</td>
+                         
+                      </tr>
+                      
+                      
+                      
+                      <tr >
+                        <td  >发票抬头</td>
+                        <td   colspan="3" align="left">{$user_info_applicant[group_name]}</td>
+                         
+                      </tr>
+                      <tr >
+                        <td  >免赔条件</td>
+                        <td   colspan="3" align="left">{$policy[franchise]}</td>
+                         
+                      </tr>
+                      <tr >
+                        <td  >特别约定</td>
+                        <td   colspan="3" align="left">{$policy[specialize]}</td>
+                         
+                      </tr>
+                       
+                </table>
+                </div>
+            </div>
+        <!--{/if}-->      
+    <!--{/if}--> 
+    
+ 	
+ 	
+{/if}    
+    
+    

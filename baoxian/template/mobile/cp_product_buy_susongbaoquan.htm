@@ -1,0 +1,232 @@
+<!--{template cp_product_buy_header}-->
+<script src="js/mobile/susongbaoquan.js"></script>
+
+<input type="hidden" name="relationshipWithInsured" id="relationshipWithInsured" value="1">
+<input type="hidden" name="beneficiary" value="1">
+<input type="hidden" name="applicant_type" value="1" id="applicant_type">
+
+
+
+<input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+<input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+<input id="period_code" name="period_code" value="" type="hidden">
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name" value="pingan_yiwai" type="hidden">
+<input type="radio" name="assured_input_type" checked="checked" style="display:none" value="1" />
+<input type="hidden" name="applyNum" value="1" />
+<input type="hidden" name="startDate" id="startDate"/>
+<input type="hidden" name="endDate" id="endDate"/>
+
+<input type="hidden" name="applicant_sex"/>
+<input type="hidden" name="applicant_birthday"/>
+<div class="f-fs4 f-pt20 f-tac">
+	审核资料提交
+</div>
+<div class="f-mt20 f-pA10 s-bg-ffffff"> 
+	<div class="container f-pb10">
+    		
+         	<div class="f-mt10 f-fs2 m-list-1">
+            	<span class="f-ml10">被保险人类型</span> 
+                <span><a href="javascript:void(0)" onClick="show_p(1)" class="p_active" id="p_001">个人</a></span>
+                <span><a href="javascript:void(0)" onClick="show_p(2)" id="p_002">公司</a></span>
+            </div>
+            <div> 
+            	<div id="list_001">
+                    
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                        <input type="text" class="form-control" placeholder="姓名" name="applicant_fullname" id="applicant_fullname"  >
+                    </div>
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                        <select class="form-control" name="applicant_certificates_type" id="applicant_certificates_type">
+                            <!--{loop $attr_certificates_type_ssbq $key $value}-->
+	                            <option value="$key" >$value</option>
+	                         <!--{/loop}-->
+                        </select>
+                    </div>
+                    <div class="f-mt15 s-bscB-b5b5b5">
+                        <input type="text" class="form-control" name="applicant_certificates_code" id="applicant_certificates_code"  placeholder="证件号码">
+                    </div>	
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    <input type="text" class="form-control" placeholder="E-mail" name="applicant_email" id="applicant_email" >
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    <input type="text" class="form-control" placeholder="手机号码" name="applicant_mobilephone" id="applicant_mobilephone" >
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    <input type="text" class="form-control" placeholder="服务律师事务所" name="applicant_shiwusuo" id="applicant_shiwusuo" >
+                </div>
+                <div class="f-mt15 s-bscB-b5b5b5">
+                    <input type="text" class="form-control" placeholder="联系地址" name="applicant_address" id="applicant_address" >
+                    
+                </div>
+                
+            </div>
+            
+    </div>
+</div>
+<div style="display:none" id="file_url_input"> <!--图片存储地址-->
+
+</div>
+
+<div class="f-mt20 f-pA10"> 
+	<div class="container f-pb10 s-lh25">
+    	<span class="f-ml10 f-fs3 f-db">
+			资料上传（拍照或图片文件）
+        </span>
+        <span class="f-ml10 f-db s-c-6b6b6b f-fs1">(具体资料请参考投保资料一,红色字体,共6份)</span>
+    </div>
+</div>
+<div class="f-mt20 f-pA10 s-bg-ffffff"> 
+	<div class="container f-pb10 f-pt10">
+    	<div class="f-ml10">
+    	<!--{eval $indexQs=1;}-->
+    	 <!--{loop $required_upload_file_attr $key $value}-->
+        	<h3 class="f-fs2 s-c-ff0000 f-mt10">{$indexQs}. $value[name]</h3>
+            <section class="f-mt10">
+            	<a class="btn btn-c2e2ee btn-block" href="javascript:void(0)" onClick="chooseImage_html('$key')" >图片上传(<span id="{$key}_num">0</span>)</a>
+               
+            </section>
+            <!--{eval $indexQs++;}-->
+         <!--{/loop}-->
+        </div>
+            
+    </div>
+</div>
+<div class="f-pA10"> 
+	<div class="container">
+ 		<div class="f-mt20 f-pb20">
+            <button type="button"  onClick="checkAll()" class="btn btn-008fc7 btn-block btn-lg">提交申请</button>
+           <button type="submit"  id="form_submit_001" style="display: none"></button> 
+        </div>
+         
+    </div>
+</div>
+</form>
+<div class="s-lh25 f-pA10">
+	<span class="f-fs3 s-c-ff0000">友情提示：</span><br>
+<!-- 1、此投保方式仅用于快速核保及报价，后续出具保函所需<a href="../mobile/get_module.php?module_id=toubaoziliao&a_id=191">投保资料二</a>
+请发送至<a href="#">ql-service@aalib.cn</a>‍邮箱
+ -->
+1、此投保方式仅用于快速核保及报价，后续出具保函所需提供的<a href="../mobile/get_module.php?module_id=toubaoziliao&a_id=191">投保资料二</a>可以在诉讼保全微平台“用户中心-我的订单-订单详情-补充资料-其他资料上传”中提交，或者直接把相关资料发送至全联客服邮箱：<a href="#">ql-service@aalib.cn</a>
+
+<br/>
+2、由于手机上传文件有所限制，最多上传12张图片（2M以内，JPG格式），文件太大可能会出现上传过慢情况，建议至全联保险经纪官网提交投保（<a href="http://www.aalib.com.cn">www.aalib.com.cn</a>）
+<br/>
+3、如上传过程中有任何疑问，请拨打021-65667179咨询，或者登录全联保险经纪官网（<a href="http://www.aalib.com.cn">www.aalib.com.cn</a>）进行在线咨询，谢谢！
+</div>
+
+<script>
+	/*
+	* 注意：
+	* 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+	* 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+	* 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+	*
+	* 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+	* 邮箱地址：weixin-open@qq.com
+	* 邮件主题：【微信JS-SDK反馈】具体问题 $product[age_min]
+	* 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+	*/
+	wx.config({
+	debug: false,
+	appId: '$signPackage.appId',
+	timestamp: '$signPackage.timestamp',
+	nonceStr: '$signPackage.nonceStr',
+	signature: '$signPackage.signature',
+	jsApiList: [
+	  'chooseImage',
+	  'previewImage',
+	  'uploadImage',
+	  'downloadImage'
+	]
+	});
+	
+	var success_num = 0;
+	var fail_num = 0;
+	
+	function chooseImage_html(dom_id){
+	  
+	  wx.ready(function () {
+			wx.chooseImage({
+				success: function (res) {
+					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					upload_images(localIds,dom_id);
+				}
+			});
+	  });
+	  
+	}
+	
+	function upload_images(localIds,dom_id){
+		 
+		var  serverIds_Temp = [];
+		 
+		for(var qi=0 ; qi<localIds.length; qi++){
+			
+		   wx.ready(function () {
+				wx.uploadImage({
+					localId:localIds[qi].toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
+					isShowProgressTips: 1, // 默认为1，显示进度提示
+					success: function (res1){
+						var serverId = res1.serverId; // 返回图片的服务器端ID
+						serverIds_Temp.push(serverId); 
+						down_images(serverId,dom_id);
+						 
+					}
+				});
+			});  
+		}
+		
+
+	}
+	
+	
+	function down_images(serverId,dom_id){
+		$.ajax({
+			 url: "../mobile/wxAaction.php?act=downimg&media_id="+serverId,
+			 type: "POST",
+			 dataType: "json",
+			 async:false,
+			 success: function(data){
+				 if(data.code==0){
+					var file_url_input = '<input type="hidden" name="'+dom_id+'[]" value="'+data.url+'">'
+					$("#file_url_input").append(file_url_input); 
+					success_num = success_num+1;
+					var old_num = $("#"+dom_id+"_num").text();
+					old_num = parseInt(old_num);
+					
+					$("#"+dom_id+"_num").text(old_num+1);
+				 }
+				 else{
+					 fail_num= 1+fail_num;
+				 }
+			 },
+			 error:function(data){
+			 }
+		});
+	}
+	
+	function delete_img(ef){
+	  $(ef).parent().remove();
+	  
+	}
+  
+  
+	function show_p(str_num){
+		if(str_num==1){
+			$('#p_001').attr("class","p_active");	
+			$('#p_002').attr("class","");	
+			$('#list_001').html('<div class="f-mt15 s-bscB-b5b5b5"><input type="text" id="applicant_fullname" name="applicant_fullname"  class="form-control" placeholder="姓名"></div><div class="f-mt15 s-bscB-b5b5b5"><select type="text" class="form-control" name="applicant_certificates_type" id="applicant_certificates_type"><option value="0">请选择证件类型</option><option value="01">身份证</option></select></div><div class="f-mt15 s-bscB-b5b5b5"><input type="text" class="form-control" placeholder="证件号码"  name="applicant_certificates_code" id="applicant_certificates_code"></div>');
+		    $('#applicant_type').val(1);
+        }else if(str_num==2){
+			$('#p_002').attr("class","p_active");	
+			$('#p_001').attr("class","");
+			$('#list_001').html('<div class="f-mt15 s-bscB-b5b5b5"><input type="text" id="applicant_fullname" name="applicant_fullname" class="form-control" placeholder="单位/公司名称（以公章为准）"></div><div class="f-mt15 s-bscB-b5b5b5"><input type="text" class="form-control" placeholder="联系人姓名" id="applicant_fullname2" name="applicant_fullname2"></div>');
+            $('#applicant_type').val(2);
+        }
+	}
+</script>
+
+<!--{template cp_product_buy_footer}-->
+

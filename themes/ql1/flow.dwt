@@ -1,0 +1,231 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- {if $step eq "done"} -->
+  		<!-- #BeginLibraryItem "/library/buy_over.lbi" --><!-- #EndLibraryItem -->
+<!-- {else} -->
+<div class="g-wA100 s-bscT_009c84">
+	<form action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
+        <input type="hidden" value="{$gid}" name="goods_id"/>
+		<input type="hidden" name="cart_insure_id" value="{$cart_insure_id}" />
+		<input type="hidden" name="price_total" value="{$total_premium_mutil}"/>
+    <div class="g-w1077 f-mc">
+    <!-- {if $smarty.session.is_iframe neq 1}-->
+    	<div class="g-h48 f-tar">
+            <span class="s-c-666666 f-mt20 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-777777">
+                    <a href="#" class="link-009c84">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    支付保费
+                </span>
+            </span>
+        </div>  
+          <!-- {/if} -->
+        <div class="f-mt30" align="center">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td><img src="images/buy_img_01.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02_1.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02_1.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_03.png" width="185" height="25"></td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="20"></td>
+                </tr>
+                <tr>
+                	<td align="right"><span class="cirle_title_sum">1</span></td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">填写投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum">2</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">确认投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum">3</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">支付保费</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">4</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="s-c-989898 f-fs3 s-lh25 f-pl10">完成投保</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title-2">投保产品详细信息</h3>
+            <!--{foreach from=$list_bx_policy item=policyinfo } -->
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_02">
+                	 
+                	<tr>
+                    	<th width="150">保险项目：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$policyinfo.attribute_name}
+                            </div>
+                        </td>
+                        <th width="150">生效日期：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$policyinfo.start_date}
+                            </div>
+                        </td>
+                    </tr>
+                     
+                    <tr>
+                    	<th>保 费：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$policyinfo.total_premium}
+                            </div>
+                        </td>
+                        <th>投保份数：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$policyinfo.apply_num} 份
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	 <th>保障期间：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	{$policyinfo.start_date} 至 {$policyinfo.end_date}
+                            </div>
+                        </td>
+                    	<th>受益人：</th>
+                        <td>
+                        	<div class="f-pl10">
+                            	法定
+                            </div>
+                        </td>
+                    	 
+                    </tr>
+                </table>
+            </section>
+            <!-- {/foreach} --> 
+        </div>
+        
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title">支付方式</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_03">
+                	 
+                	<tr>
+                    	<th width="150" align="center">选项</th>
+                        <th width="200" align="center">支付方式</th>
+                        <th width="548" align="left">描述</th>
+                        <th width="98" align="center">
+                        	手续费(元)
+                        </th>
+                    </tr>
+                    <!-- {foreach from=$payment_list item=payment} -->
+                    <!-- {if $payment.pay_name=='余额支付'}-->
+                        <!-- {if $allow_use_surplus} 是否使用余额 --> 
+                        <tr>
+                            <td width="150" align="center">
+                            <input type="radio" name="payment" id="payment_{$payment.pay_code}" value="{$payment.pay_id}"  isCod="{$payment.is_cod}"   onclick="selectPayment(this)" /></td>
+                            <td width="200" align="center">{$payment.pay_name}</td>
+                            <td width="548" align="left">
+                                {$payment.pay_desc}
+                            </td>
+                            <td  width="98" align="center">
+                                {$payment.format_pay_fee}
+                            </td>
+                        </tr>
+                        <!-- {/if} 是否使用余额 --> 
+                    <!-- {else}--> 
+                        <tr>
+                            <td width="150" align="center">
+                            <input type="radio" name="payment" value="{$payment.pay_id}" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}"   onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}/></td>
+                            <td width="200" align="center">{$payment.pay_name}</td>
+                            <td width="548" align="left">
+                                {$payment.pay_desc}
+                            </td>
+                            <td  width="98" align="center">
+                                {$payment.format_pay_fee}
+                            </td>
+                        </tr>
+                    <!-- {/if}--> 
+                    <!-- {/foreach} 循环支付方式 -->
+                     
+                </table>
+            </section>
+             
+        </div>
+       <!-- {if $allow_use_surplus} 是否使用余额 --> 
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title">其他信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_03">
+                	 
+                	<tr>
+                    	<td width="100" align="right">使用余额：</td>
+                        <td width="250" align="left">
+                        	<input name="surplus" type="text" class="f-input" id="ECS_SURPLUS" size="10" value="{$order.surplus|default:0}" onblur="changeSurplus(this.value)"  />
+		              	{$lang.your_surplus}&nbsp;{$your_surplus|default:0} 
+                        </td>
+                        <td width="548" align="left">
+                        	<span id="ECS_SURPLUS_NOTICE" style="color: red"></span>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </section>
+             
+        </div>
+        <!-- {/if} -->
+        <div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+           <!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem -->
+         
+        </div>
+    	
+         
+        
+        <div class="f-mt40 f-pb40" align="center">
+        	<span class="f-ib">
+        		<input type="hidden" name="step" value="done" />
+				<input type="hidden" name="uid" value="{$uid}" />
+                <button class="btn-ec6941-3" type="submit">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">提交订单</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf016c;</i></span>
+                    </span>
+                </button> 
+            </span>
+              
+        </div>
+        
+    </div>
+    
+    </form> 
+</div>
+<script>
+$(function() {
+	window.__Object_toJSONString = Object.prototype.toJSONString;
+	delete Object.prototype.toJSONString;
+}); 
+
+function checkOrderForm(form){
+	var payment_id=$("input:radio[name='payment']:checked").val();
+	if(!payment_id){
+		alert('请选择支付方式');
+		return false;
+	}
+	return true;
+}
+
+</script>  		
+<!-- {/if} -->
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

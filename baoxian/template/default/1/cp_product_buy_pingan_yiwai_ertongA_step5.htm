@@ -1,0 +1,476 @@
+<div id="main">
+			<!--kefu-->
+			<div id="kefu">
+				<div id="kefurexian" style="right: 1px; top: 60px;">
+	               <a href="#" title="在线客服" otype="button" otitle="在线客服" class="flat_zxke" onclick="window.open('http://b.qq.com/webc.htm?new=0&amp;sid=800023223&amp;eid=2188z8p8p8p8K8P8K8K8P&amp;o=shop.pingan.com&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');return false;"></a>
+	         	</div>
+			</div>
+			<!--navigation-->
+			<div class="m_a" id="nav_main">
+				<div class="ps_ll"></div>
+				<div class="ps_rr"></div>
+				<ul id="step_4" class="c nav_step">
+					<li><span class="left_stepfirst"><span class="right_stepfirst"><span class="bg_num">1</span><span class="text">报价</span></span></span></li>
+					<li class=""><span class="left_step"><span class="right_step"><span class="bg_num">2</span><span class="text">填写保单信息</span></span></span></li>
+					<li><span class="left_step"><span class="right_step"><span class="bg_num">3</span><span class="text">投保确认</span></span></span></li>
+					<li class="last_step focus"><span class="right_steplast"><span class="left_steplast"><span class="bg_num">4</span><span class="text">支付</span></span></span></li>
+				</ul>
+				<ul id="step_3" class="c nav_step dspn">
+					<li><span class="left_stepfirst"><span class="right_stepfirst"><span class="bg_num">1</span><span class="text">续保登陆</span></span></span></li>
+					<li><span class="left_step"><span class="right_step"><span class="bg_num">2</span><span class="text">续保确认</span></span></span></li>
+					<li class="last_step focus"><span class="right_steplast"><span class="left_steplast"><span class="bg_num">3</span><span class="text">支付</span></span></span></li>
+				</ul>
+			</div>
+
+			<!--content_box-->
+			<div class="content_box m_a">
+				<!--content-->
+				<div class="content">
+					<div id="orderInfo">
+						<p class="font14">
+							<span test="{$not empty flowAttrs.paymentRequestDTO.throughPayApplyPolicyNos}" style="display:none;">
+								您的订单已成功提交，请在<span style="color:red;">今天23:59</span>之前完成网上支付，如果逾期支付，投保单{$flowAttrs.paymentRequestDTO.throughPayApplyPolicyNos }保险起期将顺延一天。
+							</span>
+							<span test="{$not empty flowAttrs.paymentRequestDTO.delayPayNewBeginDate}" style="display:none;">
+								现在支付投保单，由于已逾期，保险起期将顺延到{$flowAttrs.paymentRequestDTO.delayPayNewBeginDate}。保障内容及保费均不变，为了您的保单及时生效，请在<span style="color:red;">今天23:59</span>之前完成支付。
+							</span>
+							<span>您的订单已成功提交，请尽快付款。</span>
+						</p>
+					</div>
+					<div class="ml20" id="showContent" style="display:none;"><p class="font14">您的订单已成功提交，距离<span style="color:#FF0000">{$overDueCode}</span>保单生效日期仅剩<span style="color:#FF0000">{$minConf}</span>分钟了，为保障您的权益让保单及时生效，请在<span style="color:#FF0000">今天23:59</span>前完成网上支付。</p></div>
+					<div class="bg_ta">
+						<table class="table_a" id="tblPolicy" cellpadding="0" cellspacing="0" width="100%">
+							<tbody><tr>
+								<td class="ml10"><strong>产品名称</strong></td>
+								<td class="tac" width="25%"><strong>订单创建时间</strong></td>
+								<td class="tac" width="30%"><strong>订单金额</strong></td>
+							</tr>
+						</tbody>
+						<tbody><tr class="P0111A3">
+							<td class="tal ml10">
+								<span style="float:left">少儿综合保险</span><!--产品名称-->
+								<div class="por_qipao" style="display:inline; float:right;">
+									<a otype="button" otitle="详细订单" title="详细订单" class="ec7823 btnDingDan btn">详细订单</a>
+									<div class="container" style="display:none;">
+										<div class="policyItemWrap">
+											<p class="close_gb"><a class="c_4c8f04 btnClosePao btn" otype="button" otitle="关闭" title="关闭">关闭</a></p>
+											<p class="policyItem">投保单号：GP0100A003858469 <span class="vsb">保费</span>保费：<span class="actualPremium">95.00</span> 元</p>
+										</div>
+										<span class="qipao_btm" style="top:10px;"><span class="qipao_top"></span></span>
+									</div>
+								</div>
+						   </td>
+						   <td class="tac">2014-05-19</td><!--订单创建时间-->
+						   <td class="tac ec7823"><strong><span class="actualPremiumTotal">95.00</span> 元<!--订单总额--></strong></td>
+					   </tr>
+					
+						<tr class="bbn">
+							<td></td>
+							<td></td>
+							<td class="tar"><p class="mr50"><strong>总计：<span class="ec7823" id="payPremiumTotal"></span>95.00 元</strong></p></td>
+						</tr>  
+					</tbody></table>
+					</div>
+					<script type="text/template" id="policyTemplate" style="display:none;">
+						<tr class="{$productCode}">
+							<td class="tal ml10">
+								<span style="float:left">{$productName}</span><!--产品名称-->
+								<div class="por_qipao" style="display:inline; float:right;">
+									<a otype="button" otitle="详细订单" title="详细订单" class="ec7823 btnDingDan btn">详细订单</a>
+									<div class="container" style="display:none;" >
+										<div class="policyItemWrap">
+											<p class="close_gb"><a class="c_4c8f04 btnClosePao btn" otype="button" otitle="关闭" title="关闭">关闭</a></p>
+											<p class="policyItem">投保单号：{$applyPolicyNo} <span class="vsb">保费</span>保费：<span class="actualPremium">{$actualPremium}</span> 元</p>
+										</div>
+										<span class="qipao_btm" style="top:10px;"><span class="qipao_top"></span></span>
+									</div>
+								</div>
+						   </td>
+						   <td class="tac">{$orderCreateDate}</td><!--订单创建时间-->
+						   <td class="tac ec7823"><strong><span class="actualPremiumTotal">{$actualPremium}</span> 元<!--订单总额--></strong></td>
+					   </tr>
+					</script>
+					<script type="text/template" id="policyTemplateTotal" style="display:none;">
+						<tr class="bbn">
+							<td></td>
+							<td></td>
+							<td class="tar"><p class="mr50"><strong>总计：<span class="ec7823" id="payPremiumTotal"></span>{$payPremium} 元</strong></p></td>
+						</tr>  
+					</script>
+					<div class="ml20 mt4" id="newcar_zhifua_Msg" style="display:none;"></div>
+					<!--OFFER-->				
+				</div>
+				
+				<div id="emt_zhifua_Msg" class="ml20 mt4" style="display:none;"></div>
+				
+				<div id="pageWrap"><div id="payCreditInner">
+	<script type="text/template" id="creditCardInfoTemplate" style="display:none;">
+		<!-- 访问银行的参数,只提交从shop接口返回的参数 -->
+		<form name="creditCardInfoForm" method="post" action="./submitCreditCardPay.do" id="creditCardInfoForm">
+			<input type="hidden" name="paySeqNo" id="paySeqNo" value="{$paySeqNo}" />
+			<input type="hidden" name="bill99BusinessType" id="bill99BusinessType" value="PUR" /><!-- 非车没有分期，普通信用卡PUR,分期信用卡INP -->
+			<input type="hidden" name="extRate" id="extRate" value="{$extRate}" />
+			<input type="hidden" name="termInMonths" id="termInMonths" value="0" /><!-- 非车没有分期， -->
+			
+			<table border="0" cellspacing="1" cellpadding="0" class="c_t_a c_t_a_pt0" width="100%">
+				<tr>
+					<th class="tar">您选择：</th>
+					<td colspan="2">
+						<p><img src="{$imgCdnUrl}/payment/images/bank/{$creditCardId}.jpg" alt="" id="bank_logo" title=""  class="vam img_b"/><strong class="vam m_b">信用卡</strong></p>
+						<input type="hidden" name="creditCardId" class="input_a" id="creditCardId" value="{$creditCardId}" />
+					</td>
+				</tr>
+
+<% if( creditCardId=='0002'||creditCardId=='1002' ){ %>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<div id="c_p_e_second1" style="margin:0px;">
+							<div class="c_p_d_second3">如果您的信用卡设置了密码，则必须输入安全码（卡背面签名条上的末三位数字）进行支付；如果您的卡没有安全码，请联系发卡行取消密码再进行支付。</div>
+						</div>
+					</td>
+				</tr>
+<% } %>
+
+<% if( showCardNo=='true' ){ %>
+				<tr valign="top">
+					<th class="tar" width="24%">卡号</th>
+					<td width="39%">
+						<div class="por">
+							<input type="text" name="creditCardNo" class="input_a" id="cardNo" maxLength="23" otype="button" otitle="卡号" otitle="卡号"/>
+							<div class="xyk_con" style="display:none;">
+								<div class="xyk_a"><div class="xyk_zm"></div></div><s><i></i></s>
+							</div>
+						</div>
+					</td>
+					<td width="37%"><div id="cardNo_tips"></div></td>
+				</tr>
+<% } %>
+
+<% if( showExpireDate=='true' ){ %>
+				<tr>
+					<th class="tar">信用卡有效期</th>
+					<td id="month_td"><div class="" id="card_valid">
+						<select name="creditCardValidMonth" id="month" style="width:60px" otype="button" otitle="有效期月" title="有效期月">
+							<option value="" selected>请选择</option>
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>月&nbsp;
+						<select name="creditCardValidYear" id="year" style="width:60px" otype="button" otitle="有效期年" title="有效期年">
+							<option value="" selected>请选择</option>
+							<option value="14">2014</option>
+							<option value="15">2015</option>
+							<option value="16">2016</option>
+							<option value="17">2017</option>
+							<option value="18">2018</option>
+							<option value="19">2019</option>
+							<option value="20">2020</option>
+							<option value="21">2021</option>
+							<option value="22">2022</option>
+							<option value="23">2023</option>
+							<option value="24">2024</option>
+						</select>年</div>
+					</td>
+					<td><div id="month_tips"></div></td>
+				</tr>
+<% } %>
+
+<% if( showCVV2=='true' ){ %>
+				<tr>
+					<th class="tar">签名处后三位数字</th>
+					<td>
+						<div class="por">
+							<input type="text" name="cVV" id="cvv2"  class="input_a" maxLength="3" otype="button" otitle="安全码" title="安全码"/>
+							<div class="xyk_con01" style="display:none;">
+								<div class="xyk_a"><div class="xyk_bm"></div></div><s><i></i></s>
+							</div>
+						</div>
+					</td>
+					<td><div id="cvv2_tips"></div></td>
+				</tr>
+<% } %>
+
+<% if( showCardHolderName=='true' ){ %>
+				<tr>
+					<th class="tar" width="24%">持卡人姓名</th>
+					<td width="37%">
+						<input type="text" name="creditCardUserName" id="userName" value="{$name}" class="input_a" maxLength="23" otype="button" otitle="持卡人姓名" title="持卡人姓名"/>
+					</td>
+					<td width="39%">
+						<div id="username_tip01"></div>
+						<div id="username_qipao" class="box_qipao" style="display:none;">
+							<div class="box_container">
+								<p>请填写您的真实姓名。</p>
+							</div>
+						<span class="box_qipao_btm"><span class="box_qipao_top"></span></span>
+						</div>
+					</td>
+				</tr>
+<% } %>
+
+<% if( showCardHolderId=='true'&&cardTypeNames ){ %>
+				<tr>
+					<th class="tar">办卡证件类型</th>
+					<td id="cardType_td">
+						<!-- 上海农商行和江苏银行只支持身份证 -->
+						<select name="certType" id="cardType" class="" style="width:170px" otype="button" otitle="证件类型" title="证件类型">
+							<option value="0" selected>身份证</option>
+						</select>
+					</td>
+					<td>
+						<div id="cardType_tips"></div>
+						<div id="cardType_qipao" class="box_qipao" style="display:none;">
+							<div class="box_container"><p>请填写您申请信用卡时，提交给银行的相关证件类型，如身份证、护照、军官证等。</p></div>
+							<span class="box_qipao_btm"><span class="box_qipao_top"></span></span>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<th class="tar">办卡证件号码</th>
+					<td><input type="text" name="certId" id="cardHolderId" value="{$certificateNumber}" class="input_a" maxLength="30" otype="button" otitle="证件号码" title="证件号码"/></td>
+					<td>
+						<div class="tipCard"></div>
+						<div id="username_tip02" class="pt4"></div>
+						<div id="cardHolderId_qipao" class="box_qipao" style="display:none;">
+							<div class="box_container">
+								<p>请填写您申请信用卡时，提交给银行的相关证件号码，如身份证号，护照证号，军官证号等。</p>
+							</div>
+							<span class="box_qipao_btm"><span class="box_qipao_top"></span></span>
+						</div>
+					</td>
+				</tr>
+<% } %>
+
+<% if( showMobilePhone=='true' ){ %>
+				<tr>
+					<th class="tar">手机号码</th>
+					<td>
+						<input type="text" name="creditMobilePhone" id="mobilePhoneNum" value="{$mobile}" class="input_a" maxLength="11" otype="button" otitle="手机号码" title="手机号码"/>
+					</td>
+					<td>
+						<div id="username_tip03" class="pt4"></div>
+						<div id="mobilePhoneNum_qipao" class="box_qipao" style="display:none;">
+							<div class="box_container"><p>请填写您申请信用卡时，提交给银行的手机号码。</p></div>
+							<span class="box_qipao_btm"><span class="box_qipao_top"></span></span>
+						</div>
+					</td>
+				</tr>
+<% } %>
+				<tr>
+					<th class="tar">验证码</th>
+					<td>
+						<input name="randCode" id="verifyCode" class="input_a" type="text" style="width:55px;"  maxLength="4" otype="button" otitle="验证码" title="验证码"/>
+						<img id="validateCodeImg" src="{$paUrl}/ebusiness/payment/rand-code-imgage.do" class="yanzhengma" />
+						<a class="a_f30 cur" id="btn_changeCode" otitle="换一张">换一张</a>
+					</td>
+					<td><div id="m5"></div></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<div class="mt18 c">
+							<a title="" id="zhifu_btn" class="zhifu_btn l" otype="button" otitle="信用卡-支付" title="信用卡-支付"><b class="btn_right" >支付</b></a>
+							<div class="ml82 pt10">
+								<a id="other_pay" title="" class="a_f30 btn" href="#nav/0/{$flowId}" otype="button" otitle="选择其他方式付款" title="选择其他方式付款">选择其他方式付款</a>
+							</div>
+						</div>
+						
+					</td>
+				</tr>
+			</table>
+		</form>
+	</script>
+	
+	
+	
+	<div id="emt_zhifua_Msg" class="ml20 mt4" style="display:none;"></div>
+	<!--content_a-->
+	<div class="content_a">
+		<div class="bgright">
+			<div class="bor_a">
+				<div class="bgtop c">
+					<div class="con_b c">
+						<!--con_left-->
+						<div class="con_left" id="creditCardInfoWrap">
+		<!-- 访问银行的参数,只提交从shop接口返回的参数 -->
+		<form name="creditCardInfoForm" method="post" action="./submitCreditCardPay.do" id="creditCardInfoForm">
+			<input name="paySeqNo" id="paySeqNo" value="201400012143347" type="hidden">
+			<input name="bill99BusinessType" id="bill99BusinessType" value="PUR" type="hidden"><!-- 非车没有分期，普通信用卡PUR,分期信用卡INP -->
+			<input name="extRate" id="extRate" value="" type="hidden">
+			<input name="termInMonths" id="termInMonths" value="0" type="hidden"><!-- 非车没有分期， -->
+			
+			<table class="c_t_a c_t_a_pt0" cellpadding="0" cellspacing="1" border="0" width="100%">
+				<tbody><tr>
+					<th class="tar">您选择：</th>
+					<td colspan="2">
+						<p><img src="https://script.pingancdn.com/app_series/shop/shop/payment/images/bank/0002.jpg" alt="" id="bank_logo" title="" class="vam img_b"><strong class="vam m_b">信用卡</strong></p>
+						<input name="creditCardId" class="input_a" id="creditCardId" value="0002" type="hidden">
+					</td>
+				</tr>
+
+
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<div id="c_p_e_second1" style="margin:0px;">
+							<div class="c_p_d_second3">如果您的信用卡设置了密码，则必须输入安全码（卡背面签名条上的末三位数字）进行支付；如果您的卡没有安全码，请联系发卡行取消密码再进行支付。</div>
+						</div>
+					</td>
+				</tr>
+
+
+
+				<tr valign="top">
+					<th class="tar" width="24%">卡号</th>
+					<td width="39%">
+						<div class="por">
+							<input name="creditCardNo" class="input_a pa_ui_element_normal" id="cardNo" maxlength="23" otype="button" otitle="卡号" type="text">
+							<div class="xyk_con" style="display:none;">
+								<div class="xyk_a"><div class="xyk_zm"></div></div><s><i></i></s>
+							</div>
+						</div>
+					</td>
+					<td width="37%"><div id="cardNo_tips"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+				</tr>
+
+
+
+				<tr>
+					<th class="tar">信用卡有效期</th>
+					<td id="month_td"><div class="" id="card_valid">
+						<select class="pa_ui_dropselect_dropped" name="creditCardValidMonth" id="month" style="width: 60px; display: none;" otype="button" otitle="有效期月" title="有效期月">
+							<option value="" selected="">请选择</option>
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select><div style="width: 60px;" class="pa_ui_dropselect"><div class="pa_ui_dropselect_inner paui-clearfix"><span style="width: 42px;" class="pa_ui_dropselect_input_Container"><input style="width: 42px;" otitle="有效期月" class="pa_ui_dropselect_input" type="text"></span><span otitle="有效期月" class="pa_ui_dropselect_button"><b></b></span></div></div><div style="display: none; width: 58px;" class="pa_ui_dropselect_popup pa_ui_dropselect_custom"><div class="pa_ui_dropselect_box"><ul class="c"><li t="请选择" v="" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="请选择" class="pa_ui_dropselect_item_link">请选择</a></li><li t="1" v="01" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="1" class="pa_ui_dropselect_item_link">1</a></li><li t="2" v="02" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2" class="pa_ui_dropselect_item_link">2</a></li><li t="3" v="03" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="3" class="pa_ui_dropselect_item_link">3</a></li><li t="4" v="04" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="4" class="pa_ui_dropselect_item_link">4</a></li><li t="5" v="05" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="5" class="pa_ui_dropselect_item_link">5</a></li><li t="6" v="06" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="6" class="pa_ui_dropselect_item_link">6</a></li><li t="7" v="07" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="7" class="pa_ui_dropselect_item_link">7</a></li><li t="8" v="08" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="8" class="pa_ui_dropselect_item_link">8</a></li><li t="9" v="09" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="9" class="pa_ui_dropselect_item_link">9</a></li><li t="10" v="10" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="10" class="pa_ui_dropselect_item_link">10</a></li><li t="11" v="11" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="11" class="pa_ui_dropselect_item_link">11</a></li><li t="12" v="12" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="12" class="pa_ui_dropselect_item_link">12</a></li></ul></div></div>月&nbsp;
+						<select class="pa_ui_dropselect_dropped" name="creditCardValidYear" id="year" style="width: 60px; display: none;" otype="button" otitle="有效期年" title="有效期年">
+							<option value="" selected="">请选择</option>
+							<option value="14">2014</option>
+							<option value="15">2015</option>
+							<option value="16">2016</option>
+							<option value="17">2017</option>
+							<option value="18">2018</option>
+							<option value="19">2019</option>
+							<option value="20">2020</option>
+							<option value="21">2021</option>
+							<option value="22">2022</option>
+							<option value="23">2023</option>
+							<option value="24">2024</option>
+						</select><div style="width: 60px;" class="pa_ui_dropselect"><div class="pa_ui_dropselect_inner paui-clearfix"><span style="width: 42px;" class="pa_ui_dropselect_input_Container"><input style="width: 42px;" otitle="有效期年" class="pa_ui_dropselect_input" type="text"></span><span otitle="有效期年" class="pa_ui_dropselect_button"><b></b></span></div></div><div style="display: none; width: 58px;" class="pa_ui_dropselect_popup pa_ui_dropselect_custom"><div class="pa_ui_dropselect_box"><ul class="c"><li t="请选择" v="" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="请选择" class="pa_ui_dropselect_item_link">请选择</a></li><li t="2014" v="14" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2014" class="pa_ui_dropselect_item_link">2014</a></li><li t="2015" v="15" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2015" class="pa_ui_dropselect_item_link">2015</a></li><li t="2016" v="16" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2016" class="pa_ui_dropselect_item_link">2016</a></li><li t="2017" v="17" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2017" class="pa_ui_dropselect_item_link">2017</a></li><li t="2018" v="18" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2018" class="pa_ui_dropselect_item_link">2018</a></li><li t="2019" v="19" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2019" class="pa_ui_dropselect_item_link">2019</a></li><li t="2020" v="20" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2020" class="pa_ui_dropselect_item_link">2020</a></li><li t="2021" v="21" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2021" class="pa_ui_dropselect_item_link">2021</a></li><li t="2022" v="22" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2022" class="pa_ui_dropselect_item_link">2022</a></li><li t="2023" v="23" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2023" class="pa_ui_dropselect_item_link">2023</a></li><li t="2024" v="24" class=" pa_ui_dropselect_item"><a href="javascript:void(0);" title="2024" class="pa_ui_dropselect_item_link">2024</a></li></ul></div></div>年</div>
+					</td>
+					<td><div id="month_tips"></div></td>
+				</tr>
+
+
+
+				<tr>
+					<th class="tar">签名处后三位数字</th>
+					<td>
+						<div class="por">
+							<input name="cVV" id="cvv2" class="input_a pa_ui_element_normal" maxlength="3" otype="button" otitle="安全码" title="安全码" type="text">
+							<div class="xyk_con01" style="display:none;">
+								<div class="xyk_a"><div class="xyk_bm"></div></div><s><i></i></s>
+							</div>
+						</div>
+					</td>
+					<td><div id="cvv2_tips"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+				</tr>
+
+
+
+
+
+
+
+				<tr>
+					<th class="tar">验证码</th>
+					<td>
+						<input name="randCode" id="verifyCode" class="input_a pa_ui_element_normal" style="width:55px;" maxlength="4" otype="button" otitle="验证码" title="验证码" type="text">
+						<img id="validateCodeImg" src="https://www.pingan.com/ebusiness/payment/rand-code-imgage.do" class="yanzhengma">
+						<a class="a_f30 cur" id="btn_changeCode" otitle="换一张">换一张</a>
+					</td>
+					<td><div id="m5"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<div class="mt18 c">
+							<a title="" id="zhifu_btn" class="zhifu_btn l" otype="button" otitle="信用卡-支付"><b class="btn_right">支付</b></a>
+							<div class="ml82 pt10">
+								<a id="other_pay" title="" class="a_f30 btn" href="#nav/0/F0KOK72Gr2q9U8BZ" otype="button" otitle="选择其他方式付款">选择其他方式付款</a>
+							</div>
+						</div>
+						
+					</td>
+				</tr>
+			</tbody></table>
+		</form>
+	</div>
+						<div class="con_right" style="padding-top:15px;">
+							<div class="icon_03"><p class="mt4"><strong>五重体系</strong></p><p><strong>全面保障您的用卡安全</strong></p></div>
+							<div class="mt4">
+								<p><span class="ec7823">①</span>平安金融集团的雄厚实力和诚信品牌</p>
+								<p class="m_a"><span class="ec7823">②</span>合作银行授信，保证消费安全快捷</p>
+								<p class="m_a"><span class="ec7823">③</span>严格遵循信用卡支付安全国际标准</p>
+								<p class="m_a"><span class="ec7823">④</span>采用高技术安全的专线连接加密方式</p>
+								<p class="m_a"><span class="ec7823">⑤</span>完备的风险控制及运营监控体系</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div>
+
+				<!--content_b-->
+				<div class="content_b">
+					<div class="wenxintishi">
+						<p><strong>温馨提示：</strong></p>
+						<ul class="l_a">
+							<li>请使用本人信用卡或已由持卡人授权的信用卡进行支付。</li>
+							<li>支付前请确保您的信用卡信用余额足够支付本次保费。</li>
+							<li>如有疑问，请咨询在线客服或拨打服务热线：40088-95512转2。</li>
+						</ul>
+					</div>
+					<div class="mt4">
+						<p><strong>支付遇到问题：</strong></p>
+						<ul class="l_a">
+							<li>通过信用卡无卡支付是否需要开通网上银行?<p>答：选择网上银行付款需要开通网上银行，选择信用卡无卡付款不需要开通网上银行。</p></li>
+							<li>为什么银行卡已经扣款，但没有显示?<p>答：有可能因为网络原因导致，将在第二个工作日进行补单处理。</p></li>
+							<li>如果支付失败，如何继续支付保费？ 
+							<p>答：如果您因为账户余额不足等情况未能支付成功，您可以稍后通过平安网站的“网站会员专区”找回您的投保记录，继续支付。如果您还没有注册，您只要使用您购买保险时使用的email注册成为我们的网站会员，登陆找到您的购买记录即可支付。</p></li>
+							<li>
+								我是企业用户，可以企业网银进行支付吗？
+								<p>答：支持的银行包括：工商银行，招商银行，农业银行，建设银行，中国银行。方法如下：</p>
+								<p>1、请选择第三方，选择支付宝，登陆支付宝界面后，在储蓄卡栏下，选择合适的企业网上银行。</p>
+								<p>2、或者选择第三方，选择财付通，登陆财付通界面后，在网上银行支付栏下，选择合适的企业网上银行。</p>
+								<p>3、或者选择第三方，选择快钱，登陆快钱界面后，在企业网银栏下，选择合适的企业网上银行。</p>
+							</li>
+						</ul>
+					</div>
+				</div><!--content_b end-->
+
+			</div> <!--content_box m_a-->
+		</div>

@@ -1,0 +1,247 @@
+<!-- 
+发票列表
+by yes123
+2014-11-24
+ -->
+<h5><span>我的发票</span></h5>
+       <div class="blank"></div>
+<form action="user.php" method="get">
+	<input type="hidden" name="act" value="invoice_list" />
+	<table border="0" cellpadding="0"  cellspacing="0" width="100%" class="padd_T10">
+		<tr>
+			<td >发票抬头：</td>
+			<td><input type="text" name="fp_title" class="padd_TB5 input150" value="{$condition.fp_title}" /></td>
+			<td>{$lang.order_number}：</td>
+			<td><input type="text" name="order_sn" value="{$condition.order_sn}" class="padd_TB5 input150"/></td>
+			<td>{$lang.start_date}：</td>
+			<td><input class="Wdate" type="text" name="start_time" class="padd_TB5 input150" value="{$condition.start_time}"
+				onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" /></td>
+			<td>{$lang.end_date}：</td>
+			<td><input class="Wdate" type="text" name="end_time" class="padd_TB5 input150" value="{$condition.end_time}"
+				onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" /></td>
+			<td><input type="submit" value="查询" class="chaxun"/></td>
+		</tr>
+	</table>
+</form>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"  class="border_table_05 padd_T10">
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc" width="150">保险公司</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">投保人</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">发票抬头</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">收件人</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">联系电话</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">手机号码</td>
+<!-- 		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">邮寄地址</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">邮政编码</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">附言</td> -->
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">申请时间</td> 
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">状态</td>
+		<!-- add yes123 2014-12-07 添加显示订单总数和总金额 -->
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">保单数</td> 
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">总金额</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">操作</td>
+	</tr>
+	<!--{foreach from=$invoice_list item=item}-->
+	<tr align="center">
+		<td class="color_94">{$item.insurer_name}</td>
+		<td class="color_94">{$item.applicant_username}</td>
+		<td class="color_94">{$item.fp_title}</td>
+		<td class="color_94">{$item.username}</td>
+		<td class="color_94">{$item.phone}</td>
+		<td class="color_94">{$item.tel}</td>
+		<td class="color_94">{$item.receipt_add_time}</td>
+<!-- 		<td>{$item.address}</td>
+		<td>{$item.zonecode}</td>
+		<td>{$item.postscript}</td> -->
+		<td class="color_94">
+			<!--{if $item.receipt_assigned eq 0}-->
+				未受理
+				<!-- {else}-->
+				已受理
+			<!-- {/if} -->
+		</td>
+		<!-- add yes123 2014-12-07 添加显示订单总数和总金额 -->
+		<td class="color_94"><a href="user.php?act=warranty_list&invoice_id={$item.id}">{$item.order_count}</a></td>
+		<td class="color_94">{$item.invoice_total}</td>
+		
+		<td>
+		<!--{if $item.receipt_assigned eq 0}-->
+			<a href="javascript:fp({$item.id});">修改</a>
+			<!-- {else} -->
+			<a href="javascript:show_fp({$item.id});">查看详情</a>
+		<!-- {/if} -->
+			</td>
+	</tr>
+	<!--{/foreach}-->
+	<tr>
+		<td colspan="11"><a href="user.php?act=warranty_list" class="btn_on02" >申请发票</a>
+	</tr>
+</table>
+
+
+
+ <script type="text/javascript">
+           		function fp(id){
+           			var pageii = $.layer({
+           			  	type: 1,
+	           	        title: '修改发票', //不显示默认标题栏
+	           	        shade: [0], //不显示遮罩
+	           	        area: ['400px', 'auto'],
+           			    page:{html:"<form id=fp_form_01 action=user.php method=post>"+
+           			    	"<input type=hidden name=invoice_id value="+id+">"+
+           			    	"<input type=hidden name=act value=save_fp><table cellpadding=\"0\" cellspacing=\"0\" class=\"fp_table\">"+
+           			 		"<tr><td>发票抬头：</td><td><input type=text name=fp_title ></td></tr> "+
+           			     	"<tr><td>&#12288;收件人：</td><td><input type=text name=username ></td></tr>"+
+           			     	"<tr><td>联系电话：</td><td><input type=text name=phone ></td></tr>"+
+           			     	"<tr><td>手机号码：</td><td><input type=text name=tel ></td></tr>"+
+           			     	"<tr><td>邮寄地址：</td><td><input type=text name=address style='width: 275px;'></td></tr>"+
+           			     	//2014-10-11 添加邮政编码字段bug#148
+           			     	"<tr><td>邮政编码：</td><td><input type=text name=zonecode style='width: 275px;'></td></tr>"+
+           			    	"<tr><td valign='top'>&#12288;保单ID：</td><td></tr>"+
+           			     	"<tr><td></td><td><textarea rows=3 cols=30 name=policy_ids  readonly=readonly ></textarea></td></tr>"+
+           			     	"<tr><td valign='top'>&#12288;&#12288;附言：</td><td></tr>"+
+           			     	"<tr><td></td><td><textarea rows=3 cols=30 name=postscript   ></textarea></td></tr>"+
+           			     	"<tr><td align=center colspan=2><input type=button onclick=save(); value=\"提交\" class=\"btn_on02\"></td></tr>"+
+           			     	"</table></form>"
+           			    }
+           			});
+           			
+           			findReceiptById(id,'fp_form_01');
+           			
+           		}
+           		
+           		//add yes123 2014-12-07 显示发票详情
+           		function show_fp(id){
+           			$("#invoice_show").show();
+           			var pageii = $.layer({
+           			  	type: 1,
+	           	        title: '发票详情', //不显示默认标题栏
+	           	        shade: [0], //不显示遮罩
+	           	        area: ['690px', '515px'],
+	           	        btns: 1,
+	           	        btn: [ '关闭'],
+	        			page : {
+	        				dom : '#invoice_show'
+	        			},
+	        			yes: function(index){layer.close(index);}
+           			});
+
+           			findReceiptById(id,'fp_form_02');
+           		}
+           		
+           		
+           		
+             	//add yes123 2014-12-07 抽取获取详情并赋值的ajax
+           		function findReceiptById(id,form_id)
+           		{
+           			$.post("user.php", { "act": "findReceiptById", "receipt_id": id },
+         				   function(data){
+	           					if(data){
+	           						var obj_dom = $("#"+form_id+" td");
+	           						obj_dom.children("input[name='fp_title']").val(data.fp_title);
+	           						obj_dom.children("input[name='username']").val(data.username);
+	           						obj_dom.children("input[name='phone']").val(data.phone);
+	           						obj_dom.children("input[name='tel']").val(data.tel);
+	           						obj_dom.children("input[name='address']").val(data.address); 
+	           						obj_dom.children("input[name='zonecode']").val(data.zonecode); 
+	          						obj_dom.children("textarea[name='policy_ids']").val(data.policy_id); 
+	         						obj_dom.children("textarea[name='postscript']").val(data.postscript);
+	         						
+	         						obj_dom.children("input[name='express_company']").val(data.express_company);
+	         						obj_dom.children("input[name='mail_sn']").val(data.mail_sn);
+	         						obj_dom.children("input[name='mail_time']").val(data.mail_time);
+	         						
+	         						obj_dom.children("input[name='send_those']").val(data.send_those);
+	         						obj_dom.children("input[name='mail_time']").val(data.mail_time);
+	         						obj_dom.children("input[name='assigned_time']").val(data.assigned_time);
+	         						obj_dom.children("input[name='send_those_email']").val(data.send_those_email);
+	         						obj_dom.children("input[name='send_those_phone']").val(data.send_those_phone);
+	           					}
+         			}, "json"); 
+           		}
+           		
+           		function save(){
+           			$("#fp_form_01").submit();
+           		}
+
+				
+				function showMsg(msg_str,type){
+						var showFn =  $.layer({
+						    shade: [0],
+						    area: ['auto','auto'],
+						    dialog: {
+						        msg: msg_str,
+						        btns: 1,                    
+						        type: type,
+						        btn: ['确定'],
+						        yes: function(){
+						        	layer.close(showFn);
+						        }
+						    }
+						});
+						
+				}
+</script>
+
+<div style="display: none;" id="invoice_show">
+	<table id="fp_form_02" cellpadding="0" cellspacing="0">
+	<tr><td colspan="4"><span style="font-size: 20px;">发票信息</span></td></tr>
+		<tr>
+			<td>发票抬头：</td>
+			<td><input type=text name=fp_title readonly ></td>
+			<td>&#12288;收件人：</td>
+			<td><input type=text name=username readonly></td>
+			
+		</tr>
+		<tr>
+			<td>联系电话：</td>
+			<td><input type=text name=phone readonly></td>
+			<td>手机号码：</td>
+			<td><input type=text name=tel readonly></td>
+		</tr>
+		<tr>
+			<td>邮寄地址：</td>
+			<td><input type=text name=address readonlystyle='width: 275px;'></td>
+			<td>邮政编码：</td>
+			<td><input type=text name=zonecode readonly style='width: 100px;'></td>
+		</tr>
+
+		<tr>
+			<td valign="top">&#12288;订单号：</td>
+			<td><textarea cols=30 name=order_sn  readonly="readonly" ></textarea></td>
+			<td valign="top">&#12288;&#12288;附言：</td>
+			<td><textarea cols=30 name=postscript  readonly="readonly"></textarea></td>
+		</tr>
+		<tr><td colspan="4"><span style="font-size: 20px;">受理信息</span></td></tr>
+		
+		<tr>
+			<td>&#12288;受理人：</td>
+			<td><input type=text name=send_those readonly></td>
+			
+			<td>受理日期：</td>
+			<td><input type=text name=assigned_time readonly></td>
+			
+		</tr>
+		<tr>
+			<td>快递公司：</td>
+			<td><input name="express_company" readonly></td>
+			<td >快递单号：</td>
+			<td><input name="mail_sn" readonly></td>
+		</tr>
+		<tr>
+			<td>邮寄时间：</td>
+			<td ><input name="mail_time" readonly></td>
+			<td>联系电话：</td>
+			<td><input name="send_those_phone" readonly></td>
+		</tr>
+		
+		<tr>
+			<td>邮件地址：</td>
+			<td><input name="send_those_email" readonly></td>
+		</tr>
+
+	</table>
+
+</div>

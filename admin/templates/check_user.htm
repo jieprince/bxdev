@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div style="width: 100%;height: 40px;background:#F4FAFB;font-size: 20px;line-height:40px;overflow:hidden; border:1px solid #80BDCB ">
+	<!-- 普通用户  {if $user.rank_code neq 'organization'} -->
+	&nbsp;&nbsp;管理中心-会员管理-会员审核
+	<!-- {else} -->
+	&nbsp;&nbsp;管理中心-会员管理-渠道审核
+	<!-- {/if} -->
+</div><br/>
+	<div class="main-div">
+		<form method="post" action="users.php" id="checkFrom">
+			<!-- 普通用户  {if $user.rank_code neq 'organization'} -->
+			<table style="width: 700px;" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="label">{$lang.username}:</td>
+					<td>{$user.user_name}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.real_name}</td>
+					<td>{$user.real_name}</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.label_user_mobilephone}</td>
+					<td>{$user.mobile_phone}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.email}:</td>
+					<td>{$user.email}</td>
+				</tr>
+
+
+				<tr>
+					<td class="label">{$lang.gender}:</td>
+					<td>{$user.sex}</td>
+				</tr>
+
+				<tr>
+					<td class="label">审核状态:</td>
+					<td>
+							<!-- {if $user.check_status eq 'saved'} -->
+						 			已保存
+						 		<!-- {elseif $user.check_status eq 'pending' } -->
+						 		<span style="color: #19A347">待审核</span>
+						 		<!-- {elseif $user.check_status eq 'checked' } -->
+						 		<span style="color: green;">已审核</span>
+						 		<!-- {elseif $user.check_status eq 'no_pass' } -->
+						 		<span style="color: red">未通过</span>
+						 	<!-- {/if} -->
+					
+					</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.birthday}:</td>
+					<td>{$user.birthday}</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.CertificatesType}</td>
+					<td>{if $user.CertificatesType eq 1} {$lang.Type[0]} {/if} {if $user.CertificatesType eq 2} {$lang.Type[1]} {/if} {if $user.CertificatesType eq 3} {$lang.Type[2]}
+						{/if}
+						<!--add yes123 2014-12-01 证件类型只剩下身份证了 -->
+						身份证
+						</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.CardId}</td>
+					<td>{$user.CardId}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.Category}</td>
+					<td>{if $user.Category eq 1}{$lang.Category_case[0]}{/if} {if $user.Category eq 2}{$lang.Category_case[1]}{/if}</td>
+				</tr>
+				<tr>
+					<td class="label">{$lang.CertificateNumber}</td>
+					<td>{$user.CertificateNumber}</td>
+				</tr>
+				<!-- add yes123 2015-03-25 证书有效期 -->
+				<tr>
+					<td class="label">{$lang.certificate_expiration_date}</td>
+					<td>{$user.certificate_expiration_date}</td>
+				</tr>
+				<!--start modify yes123 2014-12-17  地区和地址分开显示-->
+				<tr>
+					<td class="label">{$lang.label_area}</td>
+					<td>
+						{$user.Province} &nbsp;{$user.city} &nbsp;{$user.district}
+					</td>
+				</tr>
+
+				<tr>
+					<td class="label">{$lang.address1}</td>
+					<td>{$user.address}</td>
+				</tr>
+						<!--end modify yes123 2014-12-17  地区和地址分开显示-->
+				<tr>
+					<td colspan="2" align="center">
+					<input type="button" value="{$lang.qualified}" onclick="checkUserInfo(this.value);" />
+					<input id="disqualification" type="button" value="{$lang.disqualification}"/>
+					<input type="hidden" name="act" value="check" /> 
+					<input type="hidden" id="check_status" name="check_status" /> 
+					<input type="hidden" id="check_desc" name="check_desc" value="" /> 
+					<input type="hidden" name="email" value="{$user.email}" /> 
+					<input type="hidden" name="is_institution" value="{$user.is_institution}" /> 
+					<input type="hidden" name="user_name" value="{$user.user_name}" /> <input type="hidden" name="id" value="{$user.user_id}" /></td>
+				</tr>
+			</table>
+			<!-- {else} -->
+				<table>
+					<tr>
+					    <td class="label">移动电话</td>
+					    <td>{$user.d_mobilePhone}
+					      <input type="hidden" name="mobilePhone" value="{$user.d_mobilePhone}" size="34" /></td>
+				  	</tr>
+				  <tr>
+				    <td class="label">渠道名称</td>
+				    <td>{$user.d_name}
+				      <input type="hidden" name="d_name" maxlength="20" value="{$user.d_name}" size="34"/></td>
+				  </tr>	
+				  <tr>
+				    <td class="label">企业组织代码</td>
+				    <td>{$user.d_identificationcode}
+				      <input type="hidden" name="identificationcode" maxlength="20" value="{$user.d_identificationcode}" size="34"/></td>
+				  </tr>
+				  <tr>
+				  	<td class="label" width="25%" align="right">渠道类型</td>
+				      <td>{$user.d_type}
+				      <input type="hidden" name="d_type" value="$user.d_type" />
+				      </td>
+				  </tr>
+<!-- 				  <tr>
+				    <td class="label">从业资格证书</td>
+				    <td>{$user.d_qualificationNumber}
+				      <input type="hidden" name="qualificationNumber" value="{$user.d_qualificationNumber}" size="34" /></td>
+				  </tr> -->
+				  <tr>
+				    <td class="label">联系人</td>
+				    <td>{$user.d_contacts}
+				      <input type="hidden" name="d_contacts" value="{$user.d_contacts}" size="34" /></td>
+				  </tr>
+				  
+				  <tr>
+				    <td class="label">Email地址</td>
+				    <td>{$user.d_email}
+				      <input type="hidden" name="email" value="{$user.d_email}" size="34" /></td>
+				  </tr>
+				  <!-- 省份，城市 -->
+				  <tr>
+				      <td class="label">所在地区</td>
+				      <td colspan="3">
+				      	{$d_zone}
+				   	  </td>
+				  </tr>
+				  <tr>
+				  	<td class="label">详细地址</td>
+				  	<td>
+				  		{$user.d_address}
+				    </td>
+				  </tr>
+				<tr>
+					<td class="label"></td>
+					<td>
+						<input type="button" value="{$lang.qualified}" onclick="checkUserInfo(this.value);" />
+						<input id="disqualification" type="button" value="{$lang.disqualification}"/>
+						<input type="hidden" name="act" value="check" /> 
+						<input type="hidden" id="check_desc" name="check_desc" value="" /> 
+						<input type="hidden" id="check_status" name="check_status" /> 
+						<input type="hidden" name="email" value="{$user.email}" /> 
+						<input type="hidden" name="is_institution" value="{$user.is_institution}" /> 
+						<input type="hidden" name="user_name" value="{$user.user_name}" /> 
+						<input type="hidden" name="id" value="{$user.user_id}" />
+					</td>
+				</tr>
+				</table>
+			<!-- {/if} -->
+		</form>
+	</div>
+	
+<script type="text/javascript">
+
+$('#disqualification').on('click', function(){
+    $.layer({
+        type: 1,
+        title: "请输入原因", //不显示默认标题栏
+        shade: [0], //不显示遮罩
+        area: ['240px', '160px'],
+        page: {html: '<div><textarea id=msg rows="5" cols="30"></textarea></div><div > <input style="float: left;" onclick=checkUserInfo(); type=button value=确定> </div>'}
+    });
+});
+function checkUserInfo(str){
+
+	if(str=='{$lang.qualified}'){
+			$("#check_status").val("checked");
+			$("#checkFrom").submit();
+	}else{
+		$("#check_status").val("no_pass");
+		var str = $.trim($("#msg").val())
+	    if(str){
+		  $("#check_desc").val(str);
+		  $("#checkFrom").submit();
+	    }else{
+		  alert('请输入审核不通过的原因！');
+	    }
+			
+	} 
+
+} 
+</script>
+	
+		{include file="pagefooter.htm"}
+
+</body>
+</html>

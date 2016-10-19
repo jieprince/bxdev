@@ -1,0 +1,582 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->
+<input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+<input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+<input id="period_code" name="period_code" value="$period_code" type="hidden">
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name" value="pingan_lvyoujingwai" type="hidden">
+<div class="x_p_a_c c"><h2 class="l">购买信息</h2></div>
+<div class="c_p_a_d">
+    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+        <!--<tr class="">
+            <th width="30%">保费</th>
+            <td width="70%">
+                $prodcutMarkPrice/份
+            </td>
+        </tr>-->
+        <tr class="">
+            <th width="30%">保险期限</th>
+            <td>
+                $prodcutPeriod
+            </td>
+        </tr>
+        <tr class="">
+            <th width="30%">年龄范围</th>
+            <td><span> $product[age_min]</span> 至 <span> $product[age_max]</span>岁</td>
+        </tr>
+        <tr class="">
+            <th width="30%">购买份数</th>
+            <td>
+                <div class="c_m_r_a">
+                    <select title="购买份数" name="applyNum" id="applyNum" backval="" class="i_e">
+                        <option value="1" selected>1</option>
+                        
+                    </select>
+                        
+                    <span class="c_m_c">份</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="">
+            <th width="30%">
+                <span class="a_x">*</span>保险起期</th>
+
+            <td>
+                <input value="" maxlength="50" name="startDate" id="startDate" title="购保险起期" class="i_f pa_ui_element_normal" type="text" readonly="readonly">
+                <span id="startDate_warn" style="float left;" class="warn_strong">请输入名称</span>
+            </td>
+
+        </tr>
+            
+
+        <tr class="">
+            <th width="30%">
+                <span class="a_x">*</span>保险止期</th>
+
+            <td>
+                <input value="" maxlength="50" name="endDate" id="endDate" title="保险止期" class="i_f pa_ui_element_normal" type="text" readonly="readonly">
+                <span id="endDate_warn" style="float left;" class="warn_strong">保险止期</span>
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+
+<div class="pro_more">
+    <div class="pro_more_div">
+        <span onclick="change_pro2more(1)" class="pre_more_on">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="1" id="assured_input_type_manual" title="手工输入" type="radio" checked="checked" >
+            <label for="man" class="ch" >单个录入</label>
+        </span><span onclick="change_pro2more(2)" class="pre_more_out">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="2" id="assured_input_type_xls" title="xls批量导入" type="radio" >
+            <label for="man" class="ch">批量导入</label>
+        </span>
+        <span class="pro_more_font">如果被保险人是多人，可以在此选择【批量导入】方式录入人员信息!</span>
+    </div>
+</div>
+
+<!--切换开始-->
+<div style="border:#CCC solid 1px;">							
+    <div id="table_input_type_manual">
+        <div class="x_p_a_c c"><h2 class="l">投保人信息</h2></div>
+        <div class="c_p_a_d">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+                <tbody>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>投保人类型</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="applicant_type" value="1" id="applicant_type_single" title="个人" type="radio" checked="checked" >
+                            <label for="man" class="ch">个人</label>&nbsp;&nbsp;&nbsp;
+                           <!-- <input class="pa_ui_element_normal" name="applicant_type" value="2" id="applicant_type_group" title="机构" type="radio">
+                            <label for="woman" class="ch">机构</label>-->
+
+                        </span>
+                        <span id="clientSexSpan" style="display:none;"></span>
+                    </td>
+                    <td><div id="m2"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--个人投保人开始-->
+        <div class="c_p_a_d" id="applicant_info_single">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+                <tbody>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="applicant_fullname" id="applicant_fullname" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('applicant_fullname_warn');" onblur="javascript:check_applicant_name();">
+                        <span id="applicant_fullname_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+				<tr class="">
+                    <th width="30%">英文名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="applicant_fullname_english" id="applicant_fullname_english" placeholder="英文名与护照一致" title="英姓名" class="i_f pa_ui_element_normal" type="text" >
+                        <span id="applicant_fullname_english_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>证件类型</th>
+                    <td width="30%">
+
+
+                        <select title="身份证类别" name="applicant_certificates_type" id="applicant_certificates_type" class="i_e">
+                            <option value="01" selected>身份证</option>
+                            <option value="02" >护照</option>
+                            <option value="03" >军人证</option>
+                            <option value="05" >驾驶证</option>
+                            <option value="06" >港澳回乡证或台胞证</option>
+                            <option value="99" >其他</option>
+                        </select>
+
+                        <span id="applicant_certificates_type_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+
+
+
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>证件号码</th>
+                    <td width="30%">
+                        <input value="" maxlength="50" name="applicant_certificates_code" id="applicant_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onblur="check_applicant_card()">
+
+                        <span id="applicant_certificates_code_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+
+
+                <tr class="">
+
+                    <th width="30%">
+                        <span class="a_x">*</span>
+                        生日
+                    </th>
+
+                    <td width="60%">
+                        <input value="" maxlength="50" name="applicant_birthday" id="applicant_birthday" title="投保人生日" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('applicant_birthday_warn');" onblur="javascript:check_applicant_birthday();">
+
+                        <span id="applicant_birthday_warn" style="color:red;display:inline-block" class="warn_strong">格式为： 2010-01-02</span>
+                    </td>
+
+                    <td>
+                        <div id="m1">
+                            <div style="display: none;" class="pa_ui_valid_tip">
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+
+
+                <tr class="">
+                    <th><span class="a_x">*</span>称谓</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="applicant_sex" value="M" id="applicant_sex_man" title="投保人称谓-先生" type="radio" checked="checked" >
+
+                            <label for="man" class="ch">先生</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="applicant_sex" value="F" id="applicant_sex_woman" title="投保人称谓-女士" type="radio"><label for="woman" class="ch">女士</label>
+                        </span>
+                        <span id="applicant_sex_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+
+                    <td><div id="m2"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>手机</th>
+                    <td>
+                        <input name="applicant_mobilephone" id="applicant_mobilephone" value="" maxlength="11" title="投保人手机" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('applicant_mobilephone_warn');" onblur="javascript:check_applicant_mobilephone();">
+                        <span id="applicant_mobilephone_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m3"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="">
+                    <th><span class="a_x">*</span>E-mail</th>
+                    <td>
+                        <div class="applicant_icsEmailBox">
+
+
+                            <input name="applicant_email" id="applicant_email" value="" title="投保人email" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('applicant_email_warn');" onblur="javascript:check_applicant_email();">
+
+                            <span id="applicant_email_warn" style="float left;" class="warn_strong">请输入名称</span>
+                        </div>
+                    </td>
+                    <td class="m5TipTd"><div class="m5TipTd-box" id="m5"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--个人投保人结束-->
+
+        <!--投保人是机构-->
+        <div class="c_p_a_d"  id="applicant_info_group" style="display:none;">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+                <tbody>
+
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>机构名称</th>
+                    <td width="30%">
+                        <input value="" maxlength="50" name="applicant_group_name" id="applicant_group_name" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onblur="checkgroupname()">
+                        <span id="applicant_groupname_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                    <td width="1"><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr>
+                    <th width="30%"><span class="a_x">*</span>机构证件类型</th>
+                    <td width="50%">
+                        <select title="机构证件类型" name="applicant_group_certificates_type" id="applicant_group_certificates_type" class="i_e">
+                            <option value="01" >组织机构代码</option>
+
+                        </select>
+                        <span id="applicant_group_certificates_type_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>证件号码</th>
+                    <td width="30%" id="clientSexInputs1">
+                        <input value="" maxlength="50" name="applicant_group_certificates_code" id="applicant_group_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal" type="text" onblur="check_applicant_card(6)">
+                        <span id="applicant_group_certificates_code_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+
+
+                <tr class="">
+                    <th> <span class="a_x">*</span>手机</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input name="applicant_group_mobilephone" id="applicant_group_mobilephone" value="" maxlength="11" title="投保人手机" class="i_f pa_ui_element_normal" type="text" onblur="check_applicant_mobilephone('applicant_group_mobilephone')">
+
+                        </span>
+                        <span id="applicant_group_mobilephone_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+
+                <tr class="">
+                    <th> <span class="a_x">*</span>邮箱</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input name="applicant_group_email" id="applicant_group_email" value="" maxlength="50" title="投保人邮箱" class="i_f pa_ui_element_normal" type="text" onblur="check_applicant_email('applicant_group_email')">
+
+                        </span>
+                        <span id="applicant_group_email_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!--机构投保人结束-->
+
+        <div class="x_p_a_c c"><h2 class="l">与被保险人关系</h2></div>
+        <div class="c_p_a_d">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+                <tbody>
+
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>与被保人关系</th>
+                    <td width="70%">
+
+                        <select title="与被保人关系" name="relationshipWithInsured" id="relationshipWithInsured" class="i_e">
+                            <option value="1" selected>本人</option>
+                            <option value="2" >配偶</option>
+                            <option value="3" >父子</option>
+                            <option value="4">父女</option>
+                            <option value="5" >受益人</option>
+                            <option value="6" >被保人</option>
+                            <option value="7" >投保人</option>
+                            <option value="A" >母子</option>
+                            <option value="B" >母女 </option>
+                            <option value="C" >兄弟 </option>
+                            <option value="D" > 姐弟 </option>
+                            <option value="G" >祖孙</option>
+                            <option value="H" >雇佣</option>
+                            <option value="I" >子女</option>
+                            <option value="9" >其他</option>
+                            <option value="8" >转换不详</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--被保险人的信息开始-->
+        <div class="c_p_a_d" id="div_assured" style="display:none;">
+            <div class="x_p_a_c c"><h2 class="l">被保险人信息</h2></div>
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%">
+
+                <tbody>
+                <tr class="" id="tr_assured_fullname">
+                    <th width="30%"><span class="a_x">*</span>姓名</th>
+                    <td width="30%">
+                        <input value="" maxlength="50" name="assured[0][assured_fullname]" id="assured_fullname" title="购买人姓名" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('assured_fullname_warn');" onblur="javascript:check_assured_name();">
+                        <span id="assured_fullname_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+				<tr class="">
+                    <th width="30%">英文名</th>
+                    <td width="70%">
+                        <input value="" maxlength="50" name="assured[0][assured_fullname_english]" id="assured_englishname" placeholder="英文名与护照一致" title="英文名" class="i_f pa_ui_element_normal" type="text" >
+                        <span id="assured_englishname_warn" style="float left;" class="warn_strong"></span>
+                    </td>
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="" id="tr_assured_certificates_type">
+                    <th width="30%"><span class="a_x">*</span>证件类型</th>
+                    <td width="30%">
+
+
+                        <select title="投保人身份证类别" name="assured[0][assured_certificates_type]" id="assured_certificates_type" class="i_e">
+                            <option value="01" selected>身份证</option>
+                            <option value="02" >护照</option>
+                            <option value="03" >军人证</option>
+                            <option value="05" >驾驶证</option>
+                            <option value="06" >港澳回乡证或台胞证</option>
+                            <option value="99" >其他</option>
+                        </select>
+
+                        <span id="assured_certificates_type_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td>
+                        <div id="m1">
+                            <div style="display: none;" class="pa_ui_valid_tip">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="" id="tr_assured_certificates_code">
+                    <th width="30%"><span class="a_x">*</span>证件号码</th>
+                    <td width="30%">
+                        <input value="" maxlength="50" name="assured[0][assured_certificates_code]" id="assured_certificates_code" title="被保险人姓名" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('assured_certificates_code_warn');" onblur="javascript:check_assured_card();">
+
+                        <span id="assured_certificates_code_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+
+                    <td><div id="m1"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="">
+                    <th width="30%">
+                        投保年龄范围
+                    </th>
+                    <td  width="60%">
+                        <span > 	$product[age_min]</span> 至
+                        <span > $product[age_max]</span>岁
+                    </td>
+
+                </tr>
+                <tr class="" id="tr_assured_birthday">
+                    <th width="30%">
+                        <span class="a_x">*</span>
+                        生日
+                    </th>
+
+                    <td width="60%">
+                        <input value="" maxlength="50" name="assured[0][assured_birthday]" id="assured_birthday" title="被保险人生日" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('assured_birthday_warn');" onblur="javascript:check_assured_birthday('$product[age_min]y','$product[age_max]y');">
+
+                        <input id="assured_age" name="assured_age" value="" type="hidden">
+
+                        <span id="assured_birthday_warn" style="color:red;display:inline-block" class="warn_strong">格式为： 2010-01-02</span>
+                    </td>
+
+                    <td>
+                        <div id="m1">
+                            <div style="display: none;" class="pa_ui_valid_tip">
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+
+
+                <tr class="" id="tr_assured_sex">
+                    <th><span class="a_x">*</span>称谓</th>
+                    <td>
+                        <span id="clientSexInput">
+                            <input class="pa_ui_element_normal" name="assured[0][assured_sex]" value="M" id="assured_sex_man" title="购买人称谓-先生" type="radio" checked="checked" >
+                            <label for="man" class="ch">先生</label>&nbsp;&nbsp;&nbsp;
+                            <input class="pa_ui_element_normal" name="assured[0][assured_sex]" value="F" id="assured_sex_woman" title="购买人称谓-女士" type="radio"><label for="woman" class="ch">女士</label>
+                        </span>
+                        <span id="assured_sex_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m2"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+                <tr class="" id="tr_assured_mobilePhone">
+                    <th><span class="a_x">*</span>手机</th>
+                    <td>
+                        <input name="assured[0][assured_mobilephone]" id="assured_mobilephone" value="" maxlength="11" title="购买人手机" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('assured_mobilephone_warn');" onblur="javascript:check_assured_mobile_phone();">
+                        <span id="assured_mobilephone_warn" style="float left;" class="warn_strong">请输入名称</span>
+                    </td>
+                    <td><div id="m3"><div style="display: none;" class="pa_ui_valid_tip"></div></div></td>
+                </tr>
+
+
+                <tr class="" id="tr_assured_email">
+                    <th><span class="a_x">*</span>E-mail</th>
+                    <td>
+                        <div class="assured_icsEmailBox">
+
+                            <input name="assured[0][assured_email]" id="assured_email" value="" title="购买人email" class="i_f pa_ui_element_normal" type="text" onfocus="javascript:showwarn('assured_email_warn');" onblur="javascript:check_assured_email();">
+                            <span id="assured_email_warn" style="float left;" class="warn_strong">请输入名称</span>
+                        </div>
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <!--被保险人结束-->
+        </div> <!--div_assured-->
+        <div class="x_p_a_c c"><h2>其它信息</h2></div>
+        <div class="c_p_a_d">
+            <table class="c_t_a c_m_a"  cellpadding="0" cellspacing="0" width="90%">
+
+                <tbody>
+
+
+                <tr>
+                    <th align="right"  width="30%">
+                        <span class="a_x">*</span>出行目的地
+                    </th>
+
+                    <td align="left" >
+                        <select id="destinationCountry" name="destinationCountry" style="padding: 2px 0px;">
+                            <!--{loop $pingan_jingwailvyou_country $key $value}-->
+                            <option value="{$key}" data-value="{$value}" >{$key}</option>
+                            <!--{/loop}-->
+                        </select>
+                        &nbsp;&nbsp;<span id="country_tyle"></span>
+                        <input type="text" id="select_other_cou" class="i_f pa_ui_element_normal padd_TB3" style="display: none;width: 300px;">
+                    </td>
+                </tr>
+                <!--<tr>
+                    <th align="right" width="30%">
+                        出行目的
+                    </th>
+
+                    <td align="left">
+                        <input id="outgoingPurpose" type="text" name="outgoingPurpose" >
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th align="right" width="">
+                        <span class="a_x"></span>境外留学学校(工作单位)
+                    </th>
+
+                    <td align="left">
+                        <input id="schoolOrCompany" type="text" name="schoolOrCompany" >
+                    </td>
+                </tr>-->
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <!--批量投保-->
+    <div id="more_upload_list" style="display:none;">
+        <div class="x_p_a_c c"><h2 class="l">批量录入</h2></div>
+        <div class="f-pA10" style="margin-left: 120px">
+            <div style="">
+                <p><span class="pro_more_font">人员清单导入模板(Excel版本)&nbsp;</span><a href="ziliao/pingan/lvyou_jingwai/jingwai_lvyou.xls" class="btn_down" target="_blank">点击下载模板</a></p>
+
+            </div>
+            <div class="upload-contentarea">
+                <span class="pro_more_font">下载并填写完成后,在此上传!&nbsp;</span>
+                <a href="javascript:void(0)" class="upload-img tac"><label for="inputExcel">上传文件</label></a>
+                <input type="file" class=""  name="inputExcel" id="inputExcel" accept="xls,xlsx" onchange="if(this.value=='') alert('请选择xls文件'); else importXLs('inputExcel',$product[product_id],1,3000);"/>
+                <input type="hidden" id="excel_check" value="0" />
+                <input type="hidden" id="excel_content" name="data_user_info" value="" />
+            </div>
+            <div id="progress">
+                <div class="bar" style="width: 0%;"></div>
+            </div>
+            <div id="excel_wrong" class="warn_strong"></div>
+        </div>
+        <div id="ps_list"></div>
+    </div>
+
+    <div class="c_p_a_d">
+        <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" >
+            <tbody>
+            <tr class="">
+                <th width="30%">
+                    <span class="a_x">*</span>受益人
+                </th>
+                <td width="70%">
+
+                    <select title="受益人" name="beneficiary" id="beneficiary" backval="" class="i_e">
+                        <option value="1" selected="1">法定</option>
+                    </select>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!--切换结束-->
+
+<script type="text/javascript">
+    $().ready(function() {
+
+          
+        var country_tyle_val = $('#destinationCountry option:selected').data('value');
+        var is_thisval = $('#destinationCountry').val();
+        if(is_thisval=='其他'){
+            $('#country_tyle').hide();
+            $('#select_other_cou').show();
+            var tag_name = $('#destinationCountry').attr('name');
+            $('#destinationCountry').attr('name','');
+            $('#select_other_cou').attr('name',tag_name);
+        }else{
+
+            $('#select_other_cou').hide();
+            $('#country_tyle').show();
+            $('#country_tyle').html(country_tyle_val);
+        }
+
+        $('#destinationCountry').change(function(){	
+            var country_tyle_val = $('#destinationCountry option:selected').data('value');
+            var this_val = $(this).val();
+            if(this_val=='其他'){
+                $('#select_other_cou').show();
+                $('#country_tyle').hide();
+                var tag_name = $('#destinationCountry').attr('name');
+                $('#destinationCountry').attr('name','');
+                $('#select_other_cou').attr('name',tag_name);
+            }else{
+                var tag_name = $('#select_other_cou').attr('name');
+                if(tag_name && tag_name!=""){
+                    $('#select_other_cou').attr('name','');
+                    $('#destinationCountry').attr('name',tag_name);
+                }
+
+                $('#select_other_cou').hide();
+                $('#country_tyle').show();
+                $('#country_tyle').html(country_tyle_val);
+            }
+        });
+
+    });
+</script>								
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->								

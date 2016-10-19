@@ -1,0 +1,786 @@
+<!--{template header}-->
+
+
+<div class="buy_pro_main">
+		<div class="page_location">
+            <a href="/zaixiangoumai/index.shtml" title="在线购买" otitle="在线购买-面包屑" otype="button">在线购买</a><span class="location_next">&gt;</span><a href="/zaixiangoumai/baoxian/jiankangbaoxian.shtml" title="健康保险" otitle="健康保险-面包屑" otype="button">健康保险</a><span class="location_next">&gt;</span><span class="f_c_999">$value[product_name]</span>
+        </div>
+        <div class="product-intro c">
+            <div class="pro_big_img pr20 fl"><img src="http://img2.pingan.com/app_images/4008000000/v10/product/big/shaoerankange.jpg" alt="$value[product_name]" height="328" width="400"></div>
+            <div class="pro_big_img_info fl pt10 pb10">            	
+                <h1 class="f_c_333 ">$value[product_name]</span></h1>                
+                
+                <div class="summary c">
+                	<div class="c">
+                        <ul>
+                            <li><span class="f_c_999 les4">直通价：</span><span class="f30 f_999 vam mr5"><span class="f_c_f63 ">¥$product_additional[premium]</span></span>起</li>
+                            
+                          	<li class="summary_other c">
+                                <span class="f_c_999 fl">点击分享：</span>
+                                <div class="jiathis_style fl mt10"><a title="分享到新浪微博" class="jiathis_button_tsina tsina" otitle="分享到新浪微博" otype="button"><span class="jiathis_txt jtico jtico_tsina"></span></a><a title="分享到腾讯微博" class="jiathis_button_tqq tqq" otitle="分享到腾讯微博" otype="button"><span class="jiathis_txt jtico jtico_tqq"></span></a></div>
+                                <div class="fl clo_ico"><span class="f_c_999  f14 mr10">|</span><span class="collection_ico vam mr5"></span><a href="javascript:;" title="" otitle="加入收藏" otype="button" onclick="AddFavorite(window.location,document.title)">加入收藏</a></div>                                
+                            </li>  
+                        </ul>
+                        <div class="fl c w215">
+                        	<a class="btn_submit" href="cp.php?ac=product_buy&product_id=$value[product_id]" target="_blank" title="立即投保" otitle="立即投保-上" otype="entry" onclick="hrefChangeByMediaSource(this);">立即投保</a>
+                            <p class="mt10 f14"><a href="http://www.4008000000.com/fuwuzhongxin/baoxian/baoxiankajihuo.shtml" target="_blank" otype="button" otitle="我要激活" title="我要激活" class="ano_2e84ca" onclick="hrefChangeByMediaSource(this);">我要激活</a></p>
+                        </div>
+                    </div>
+                	
+                    <div class="pb15"><a title="已有8条评论" id="show_comment_a" href="#product-detail" class="ano_2e84ca show_comment" otype="button" otitle="评论数值">已有8条评论</a></div>
+                </div>
+                <div>
+                	<dl class="pro_feature">
+                    	<dt>产品简介：</dt>
+                        <dd>
+						$product_attribute[description]
+						</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <!--详情 begin-->
+        <div class="pro_det_box">
+        	<div class="tab_nav_box mt20" id="product-detail">
+                <div style="height: 38.4px;" class="float-nav-wrap"><ul style="height: 38.4px; width: 1000px;" class="tab_a c" id="tab_nav">
+                    <li class="cut_prev cut"><span><a href="javascript:;" otitle="产品详情" otype="button">产品详情</a></span></li>  
+                    <li class=""><span><a href="javascript:;" otitle="投保须知" otype="button">投保须知</a></span></li>    
+					<li class=""><span><a href="javascript:;" otitle="常见问题" otype="button">常见问题</a></span></li>					
+                    <li class="last comment_li"><span><a href="javascript:;" otitle="用户评论" otype="button">用户评论</a></span></li>
+                    <a class="btn_submit fr mr60 mt5 poa" style="display: none;" id="fixeNavSubmit" href="http://www.pingan.com/pa18shopahhs/property/index.jsp?product=Sics&amp;cardTypeId=11395&amp;branchId=202" target="_blank" title="立即投保" otitle="立即投保-下" otype="entry" onclick="hrefChangeByMediaSource(this);">立即投保</a>
+                </ul></div>	
+                
+            </div>        	
+            <div style="display: block;" class="pro_det_con pro_det_con1 mt10">
+            	<div class="pro_det_con1_tips">
+                	<p><span class="mr30"><strong>被保险人</strong>：<!--{$product_additional[age_min]}--> 岁-<!--{$product_additional[age_max]}--> 周岁的儿童和青少年</span>
+                    <span class="mr30"><strong>保险期限</strong>：$product_additional[period]个月</span></p>
+                    <p><span class="mr30"><strong>保单形式</strong>：电子保单</span><span class="mr30"><strong>保险责任</strong>：请阅读<a href="http://www.4008000000.com/zaixiangoumai/tiaokuan/ankangkatiaokuan.shtml" target="_blank" title="《$value[product_name]适用条款》" otitle="《$value[product_name]适用条款》" otype="button" class="ano_2e84ca">《$value[product_name]适用条款》</a></span></p>
+                </div>                
+                <div class="bx_item">
+                	<p class="mt2">&nbsp;</p>
+                    <table class="bx_item_table" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+						<tr>
+                            <th width="26%">保障项目</th>
+                            <th width="14%">保险金额</th>
+                            <th>保障范围</th>
+                        </tr>
+						
+					<!--{loop $product_duty_list $key $valued}-->
+                        <tr>
+                            <td valign="middle">
+							<span class="bx_item_ico fl">
+							<img src="http://img2.pingan.com/app_images/4008000000/v10/pro_item_ico/pro_item_ico1.gif" alt="$valued[item]" height="27" width="25"></span>
+							
+							<strong class="fl bx_item_text">
+							$valued[duty_name]
+							</strong>
+							</td>
+							
+                          <td class="tac">$valued[amount]</td>
+                           
+						   <td>
+						    $valued[duty_note]
+						   </td>
+                        </tr>
+                       
+					  <!--{/loop}-->
+					   
+					   
+					   			
+                        <tr>
+                            <td colspan="3" class="pl20" valign="middle"><div class="bx_item_tips"><a otype="button" otitle="自助保险卡激活" href="http://www.4008000000.com/fuwuzhongxin/baoxian/baoxiankajihuo.shtml" target="_blank" class="a1_j r m_g" title="自助保险卡激活" xml="lang">自助保险卡激活</a>保险责任请参考<a href="http://www.4008000000.com/zaixiangoumai/tiaokuan/ankangkatiaokuan.shtml" target="_blank" title="《$value[product_name]适用条款》" otitle="《$value[product_name]适用条款》" otype="botton" class="ano_2e84ca">《$value[product_name]适用条款》</a>，并敬请特别留意条款中的“<span class="f_c_f63">责任免除</span>”部分。<br>
+                                </div>                                </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="b_c_f7fbf1 pl20" valign="middle">
+                            <div class="por">
+                            	<div class="half_round_ico1"></div>
+                                <div class="half_round_ico2"></div>
+                            </div>
+                            <div class="bx_item_tips2">
+                            	<h4 class="f12 fl fwb">特别提醒：</h4>
+                                <dl class="pro_feature fl">
+                                	<dd>每一被保险人投保$valproduct_name]以1份为限，多投无效。 </dd>
+                                	<dd>被保险人为出生30天-18周岁，身体健康，能正常生活和学习的儿童、青少年。  </dd>
+                                	<dd>本保险卡需要激活保险才能生效，<a class="ano_2e84ca" title="激活入口-特别提醒" otype="button" otitle="激活入口" target="_blank" href="http://www.4008000000.com/fuwuzhongxin/baoxian/baoxiankajihuo.shtml">激活入口</a>，卡激活后的第6天保险开始生效。 </dd>
+                                	<dd>本自助保险卡不接受挂失、撤保、退保、退货和加保  </dd>
+                                </dl>
+                            </div>                            </td>
+                        </tr>
+                    </tbody></table>
+
+              </div>
+            </div>
+            
+            <!--投保须知-->
+            <div style="display: block;" class="pro_det_con pro_det_con2">
+            	<h2 class="pro_tit_temp f_c_f63 fwb b_l5s_f63">投保须知</h2>
+                <div class="pro_det_box2">
+                	<h3 class="fwb f14 mb15 pl10">网上投保方便快捷，只需三步流程，帮您买到你想要的保险。</h3>
+                    <div class="pb20">
+                    	<ul class="c notice_c_temp notice_c1">
+                            <li class="num_bg first_num">1</li>
+                            <li class="w160 item_temp">填写投保信息</li>
+                            <li class="num_bg usual_num">2</li>
+                            <li class="w160 item_temp">确认信息和金额 </li>
+                            <li class="num_bg usual_num">3</li>
+                            <li class="w160 item_temp">在线支付</li>
+                            <li class="last_bg"></li>
+                        </ul>
+                    </div>
+                    <dl class="notice_c1_tips b_t1d_b5b5b5">
+                    	<dt></dt>
+                        <dd><span class="num_bg mr10 f_simsun">1</span>每一被保险人投保$value[product_name]以1份为限，多投无效。</dd>
+                        <dd><span class="num_bg mr10 f_simsun">2</span>被保险人为出生30天-18周岁，身体健康，能正常生活和学习的儿童、青少年。</dd>
+                        <dd><span class="num_bg mr10 f_simsun">3</span>本保险卡需要激活保险才能生效，<a class="ano_2e84ca" title="激活入口" otype="button" otitle="激活入口" target="_blank" href="http://www.4008000000.com/fuwuzhongxin/baoxian/baoxiankajihuo.shtml">激活入口</a>，卡激活后的第6天保险开始生效</dd>
+                        <dd><span class="num_bg mr10 f_simsun">4</span>本自助保险卡不接受挂失、撤保、退保、退货和加保。</dd>
+                        <dd><span class="num_bg mr10 f_simsun">5</span>保险责任请参考<a class="ano_2e84ca" otype="button" title="《$value[product_name]适用条款》" otitle="《$value[product_name]适用条款》-投保须知-上" target="_blank" href="http://www.4008000000.com/zaixiangoumai/tiaokuan/ankangkatiaokuan.shtml">《$value[product_name]适用条款》</a>，为确保您的合法权益，请您亲自投保，并敬请特别留意条款中的“<span class="f_c_f63">责任免除</span>”部分</dd>
+                        <dd><span class="num_bg mr10 f_simsun">6</span>理赔流程：如发生保险事故，请及时拨打24小时理赔报案电话：95511。被保险人或受益人需提供电子保险单号、出行宝关怀卡等相关证明和资料，保险公司将尽快按照<a class="ano_2e84ca" otype="button" otitle="《$value[product_name]适用条款》-投保须知-下" title="《$value[product_name]适用条款》" target="_blank" href="http://www.4008000000.com/zaixiangoumai/tiaokuan/ankangkatiaokuan.shtml">《$value[product_name]适用条款》</a>履行给付责任。</dd>
+                    </dl>
+                	
+                </div>
+            </div>
+            <!--投保须知-->
+            
+            <!--保险案例-->
+            
+            <!--保险案例-->
+            
+            <!--理赔服务-->
+            
+            <!--理赔服务-->
+            
+            <!--常见问题-->
+            <div style="display: block;" class="pro_det_con pro_det_con2">
+            	<h2 class="pro_tit_temp f_c_f63 fwb b_l5s_f63">常见问题</h2>
+                <div class="pro_det_box2 ptb0 c"> 
+                	<dl class="qa_list b_b1d_b5b5b5">
+                    	<dt class="qa_ico q_ico mb5">1、什么是自助保险卡？</dt>
+                        <dd class="qa_ico a_ico">自助保险卡（又称保险卡/自助卡），购买成功后只需凭借账号密码激活即可生效。提供丰富的卡种，涵盖综合意外、出行安全、健康等保障，是您居家旅行、馈赠亲友、员工福利的最佳选择。 网上购买专享：优惠价格，支持一次购买多张，3分钟购买成功！</dd>
+                    </dl>
+                    <dl class="qa_list b_b1d_b5b5b5">
+                    	<dt class="qa_ico q_ico mb5">2、自助保险卡如何适用？</dt>
+                        <dd class="qa_ico a_ico">购买自助保险卡后，通过您注册账号的电子邮箱获得账号及密码，通过<a xml="lang" title="自助保险卡激活" class="ano_2e84ca" target="_blank" href="http://www.4008000000.com/fuwuzhongxin/baoxian/baoxiankajihuo.shtml" otitle="自助保险卡激活" otype="button">自助保险卡激活</a>进行激活，激活成功后立即生成电子保单。您也可以在有需要的时候，使用账号及密码，通过登陆网站首页：www.pingan.com 进行自助保险卡激活。</dd>
+                    </dl>
+                    <dl class="qa_list">
+                    	<dt class="qa_ico q_ico mb5">3、自助保险卡如何理赔？</dt>
+                        <dd class="qa_ico a_ico">    ①. 记住您的电子保单号码或保险卡账号<br>
+
+							②. 万一出险，无论您身处何地，立即拨打中国保险公司的报案电话95511<br>
+
+							③. 保存好与保险事故相关的证明和票据：<br>
+
+							交通、意外事故证明（公安交管部门出具）<br>
+
+							诊断证明、收费收据（医院或医疗机构出具）<br>
+
+							法医鉴定证明<br>
+
+							其他任何重要依据证明<br>
+ </dd>
+                    </dl>
+                    
+                </div>
+            </div>
+            <!--常见问题-->
+            
+            <!--用户评论-->
+            <div style="display: block;" class="pro_det_con pro_det_con2 cx_appraise">
+            	<h2 class="pro_tit_temp f_c_f63 fwb b_l5s_f63">用户评论</h2>
+				<!--评论内容begin-->
+				<div class="pro_det_box3 c"> 
+    <div id="total_socelb_c_f7fbf1" class="total_socel b_c_f7fbf1 f_c_333 fwb"><span id="pl_total_size">8</span>位客户评价后的综合得分:<span class="f30 f_c_f63 vam ml10" id="comment_num">4.3</span></div>
+    <ul class="list_appraise"><li class="c"><div class="user_name fl"><strong>李**评价：</strong></div><div class="user_concomment fl">孩子刚出生，感觉自己要父爱泛滥了，买个保险做礼物了</div><div class="tag"><span class="start"><b></b><b></b><b></b><b></b><i></i></span><strong class="mr5 vam">4.0 分</strong><span class="date vam">2014-03-25 01:19</span></div></li><li class="c"><div class="user_name fl"><strong>陈*评价：</strong></div><div class="user_concomment fl">自助卡方便又实用，保障全面馈赠最佳！</div><div class="tag"><span class="start"><b></b><b></b><b></b><b></b><b></b></span><strong class="mr5 vam">5.0 分</strong><span class="date vam">2014-03-06 15:39</span></div></li><li class="c"><div class="user_name fl"><strong>梁**评价：</strong></div><div class="user_concomment fl">就是有点贵。</div><div class="tag"><span class="start"><b></b><b></b><b></b><b></b><i></i></span><strong class="mr5 vam">4.2 分</strong><span class="date vam">2013-11-13 18:03</span></div></li></ul>  
+    <div class="page_box mt30 pr20">
+        <div id="page_boxmt30pr20" class="page"><li><a id="page_to_fir_btn" href="javascript:void(0);" onclick="to_page(1)">首页</a></li><li><a id="page_to_pre_btn" href="javascript:void(0);" onclick="to_pre_page()">上一页</a></li><li><a class="page_cut" href="javascript:void(0);">1</a></li><li><a href="javascript:void(0);" onclick="to_page(2)">2</a></li><li><a href="javascript:void(0);" onclick="to_page(3)">3</a></li><li><a id="page_to_nxt_btn" href="javascript:void(0);" onclick="to_next_page()">下一页</a></li><li><a id="page_to_lst_btn" href="javascript:void(0);" onclick="to_page(3)">尾页</a></li></div>
+    </div>                 
+</div>
+
+<script>
+
+//var EBUSINESS_HOME = 'http://pa18-emall-dmzstg1.pa18.com/';
+var COMMNT_PL_CODE;
+var COMMNT_CALL_BK;
+function loadPL(plCode, callback){
+  COMMNT_PL_CODE = plCode;
+  COMMNT_CALL_BK = callback;
+  reload_comment_page('1');
+  config(plCode);
+}
+function reload_comment_page(idx){
+  load_comment(COMMNT_PL_CODE, idx);
+  load_comment_average(COMMNT_PL_CODE);
+}
+function load_comment(code,page){
+   //var url = '/ebusiness/payment/user/showOtherCommont.ajax?prePageSize=3&toPageNumber='+page+'&productCode=' + code;
+   var url = '/member/do/commont/other/3/'+ page + '/' + code;
+   $.ajax({
+	   type: "GET",
+	   dataType: "json",
+	   url: url,
+	   success: function(data){
+		render_pl_ui(page,code,data);
+	   }
+   });
+}
+function load_comment_average(code){
+   var url = '/member/do/commont/other/average/' + code;
+   $.ajax({
+	   type: "GET",
+	   dataType: "json",
+	   url: url,
+	   success: function(data){
+		if(data && data.resultCode == "Y"){
+			$("#comment_num").html(data.average);
+		}
+	   }
+   });
+}
+function render_pl_ui(page,code,comment){
+ $('.list_appraise').html('');
+ if (comment&&comment.data&&comment.data.datas&&comment.data.datas.length&&comment.data.datas.length!=0){
+    
+     $('#pl_total_size').html(comment.data.fullSize);
+     if(COMMNT_CALL_BK){COMMNT_CALL_BK(comment.data.fullSize)}
+     if (!$('#page_boxmt30pr20').html() || $('#page_boxmt30pr20').html() == ''){
+     	page_generator(comment.data.fullSize, '#page_boxmt30pr20', reload_comment_page);
+     }
+     var _cdatas=comment.data.datas;
+     for(var i=0; i<_cdatas.length; i++){
+        var data = _cdatas[i];
+        data.aName=data.userName&&data.userName!=''?data.userName:data.licenceNo;
+                
+        if (!data.commontContent || data.commontContent == ''){
+           data.commontContent = '此用户没有填写评论!';
+        }
+        
+        var total = toNum(data.commendLevel) + toNum(data.courseComentLevel) + toNum(data.priceComentLevel) + toNum(data.serviceAttitudeLevel);
+        var star = Math.floor(total/5);
+        var clvl = getCommentLvl(star);
+	var star2 = fixed(total/5);
+	var html = '';
+	
+	data.aName=data.aName.substr(0,4);
+	if (data.aName.indexOf('*') == -1){
+	   data.aName = data.aName.substr(0,3) + '*';
+	}
+	
+	data.commontDateStr=get_p_date(data.commontDateStr);
+	data.responseDate=get_p_date(data.responseDate);
+	
+	var stardiv = '<div class="tag">'+
+	                    '<span class="start">'+clvl+'</span>'+
+	                    '<strong class="mr5 vam">'+star2+' 分</strong>'+
+	                    '<span class="date vam">'+data.commontDateStr+'</span>'+
+	              '</div>';
+	              
+	var commentdiv = '<div class="user_name fl"><strong>'+data.aName+'评价：</strong></div>'+
+                         '<div class="user_concomment fl">'+data.commontContent+'</div>';
+        if (data.commontContent.length >= 150){
+           commentdiv = ' <div class="user_name fl"><strong>'+data.aName+'评价：</strong></div>'+
+	                ' <div class="user_concomment fl cont_ellipsis">'+data.commontContent.substr(0,150)+'......<a '+
+	                ' href="javascript:;" title="显示全部" otitle="显示全部" '+
+	                ' otype="button" class="show_more ano_2e84ca ml5">显示全部</a>'+
+	                ' </div>'+
+	                ' <div class="user_concomment cont_det fl dsn">'+data.commontContent+'<a href="javascript:;" title="返回列表" '+
+	                ' otitle="返回列表" otype="button" class="show_more ano_2e84ca ml5">返回列表</a></div>';
+        }
+        
+        var responsediv = '';
+        if (data.responseContent&& data.responseContent!=''){
+            if (data.responseContent.length>= 130){
+	            responsediv = '<div class="PA_concomment c">'+
+	                '<span class="pa_box_arrow"></span>'+
+	                '<span class="PA_user_name fl f_c_666"><strong>回复：</strong></span>'+
+	                '<span class="fl f_c_999 PA_concomment_c cont_ellipsis">'+data.responseContent.substr(0,130)+'...<a '+
+	                'href="javascript:;" title="显示全部" otitle="显示全部" otype="button" class="show_more ano_2e84ca ml5">显示全部</a></span>'+
+	                '<span class="fl f_c_999 PA_concomment_c cont_det dsn">'+data.responseContent+'<a '+
+	                ' href="javascript:;" title="返回列表" otitle="返回列表" otype="button" class="show_more ano_2e84ca ml5">返回列表</a></span>'+
+	                '<span class="fr f_c_999 PA_date">'+data.responseDate+'</span>'+
+	            '</div>';
+            }else {
+                   responsediv = '<div class="PA_concomment c">'+
+	                '<span class="pa_box_arrow"></span>'+
+	                '<span class="PA_user_name fl f_c_666"><strong>回复：</strong></span>'+
+	                '<span class="fl f_c_999 PA_concomment_c cont_ellipsis">'+data.responseContent+
+	                '</span>'+
+	                '<span class="fr f_c_999 PA_date">'+data.responseDate+'</span></div>';
+            
+            }
+        }
+        
+        var resulthtml = '';
+        if (data.commontContent.length >= 150 || ( data.responseContent&& data.responseContent!='') ){
+        	resulthtml = '<div class="c">' + commentdiv + stardiv  + '</div>';
+        }else {
+        	resulthtml = commentdiv + stardiv;
+        }
+        if (data.responseContent&& data.responseContent!=''){
+                resulthtml = resulthtml + responsediv ;
+        }
+        resulthtml = '<li class="c">' + resulthtml  + '</li>';
+        $('.list_appraise').append(resulthtml);
+     }
+     bindEvent();
+}else {
+ if (page==1){
+   //$('#total_socelb_c_f7fbf1').hide();
+   var nonhtml = '<br><li class="c">' + '暂无用户评论！</li>' ;
+   $('.list_appraise').append(nonhtml);
+ }
+}
+
+}
+
+function get_p_date(str){
+   if (!str){
+   	return '';
+   }
+   if (str.length==19){
+       return str.substr(0, 16);
+   }
+   return str;
+}
+
+function getCommentLvl(courseComentLevel){
+  if(courseComentLevel){
+    var html = '';
+    for(var i=1; i<=parseInt(courseComentLevel);i++){
+        html += '<b></b>';
+    }
+    for(var m=5-parseInt(courseComentLevel); m>0; m--){
+        html += '<i></i>';
+    }
+    return html;
+  }else return '';
+}
+function fixed(num){
+  return num.toFixed(1);
+}
+function toNum(num){
+  var res_num = 0;
+  if (!num || num == ''){
+     res_num = 0;
+  }
+  else if(/^\d+$/.test(num)){
+  	res_num = parseInt(num);
+  }
+  return res_num;
+}
+</script>
+
+
+<script>
+  var C_PAGE_SIZE = 3; //每页显示
+  var C_PAGE_INDX = 1; //当前页码
+  var C_PAGE_CONT = 1; //总页数
+  var C_PAGR_SHOW = 5; //中间显示几个
+  var C_TOTL_COUT = 0; //总记录数
+  
+  var C_START_IDX = 1;
+  var C_END_IDX   = 5;
+  var C_call_back;
+  var C_render_oid;
+  function page_generator(fullList, renderId, callback){
+     if (!fullList || fullList<=C_PAGE_SIZE 
+      || !renderId || renderId == '' || !$(renderId) ){return;}
+     
+     C_PAGE_INDX = 1;
+     C_START_IDX = 1;
+     C_TOTL_COUT = fullList;
+     C_call_back = callback;
+     C_render_oid= renderId;
+     C_PAGE_CONT = C_TOTL_COUT%C_PAGE_SIZE == 0 ? C_TOTL_COUT/C_PAGE_SIZE : Math.floor(C_TOTL_COUT/C_PAGE_SIZE) + 1;
+     if (C_PAGE_CONT > C_PAGR_SHOW){ C_END_IDX=C_PAGR_SHOW; }else{ C_END_IDX=C_PAGE_CONT; }
+     
+     page_init_method(C_PAGE_INDX);
+  }
+  
+  function to_pre_page(){
+     if(C_PAGE_INDX == 1)
+     {
+    	 return;
+     }
+
+     C_PAGE_INDX = C_PAGE_INDX - 1;
+     if (C_call_back){
+       C_call_back(C_PAGE_INDX);
+     }
+     if (C_PAGE_INDX >C_START_IDX && C_PAGE_INDX <= C_END_IDX){
+  	page_init_method(C_PAGE_INDX);      
+     }else{
+        if (C_PAGE_CONT<=C_PAGR_SHOW){
+           page_init_method(C_PAGE_INDX); 
+           return;
+        }
+        C_END_IDX = C_PAGE_INDX;
+        C_START_IDX = C_PAGE_INDX - C_PAGR_SHOW + 1;
+        if (C_START_IDX <= 0){ C_START_IDX = 1 ; if(C_END_IDX<C_PAGR_SHOW&&C_PAGR_SHOW<C_PAGE_CONT){C_END_IDX=C_PAGR_SHOW} };
+        page_init_method(C_PAGE_INDX);  
+     }
+  }
+  
+  function to_next_page(){
+     if(C_PAGE_INDX == C_PAGE_CONT)
+     
+     {
+    	 return;
+    }
+
+     C_PAGE_INDX = C_PAGE_INDX + 1;
+     if (C_call_back){
+       C_call_back(C_PAGE_INDX);
+     }
+     if (C_PAGE_INDX >=C_START_IDX && C_PAGE_INDX < C_END_IDX){
+  	page_init_method(C_PAGE_INDX);      
+     }else {
+        if (C_PAGE_CONT<=C_PAGR_SHOW){
+           page_init_method(C_PAGE_INDX); 
+           return;
+        }
+        C_START_IDX = C_PAGE_INDX;
+        C_END_IDX = C_PAGE_INDX + C_PAGR_SHOW - 1;
+        if (C_END_IDX > C_PAGE_CONT){ C_END_IDX = C_PAGE_CONT; C_START_IDX=C_END_IDX-C_PAGR_SHOW+1 };
+        page_init_method(C_PAGE_INDX);  
+     }
+  }
+  
+  function to_page(i){
+     if (i==1){
+        C_START_IDX = 1;
+        if (C_PAGE_CONT > C_PAGR_SHOW){ C_END_IDX=C_PAGR_SHOW; }else{ C_END_IDX=C_PAGE_CONT; }
+     }else if (i==C_PAGE_CONT){
+        C_END_IDX = C_PAGE_CONT;
+        C_START_IDX = C_END_IDX - C_PAGR_SHOW + 1;
+        if (C_START_IDX <=0){C_START_IDX = 1}
+     }
+     C_PAGE_INDX = i;
+
+     if (C_call_back){
+       C_call_back(C_PAGE_INDX);
+     }
+     if (C_PAGE_INDX >C_START_IDX && C_PAGE_INDX <C_END_IDX){
+  	page_init_method(C_PAGE_INDX);      
+     }else {
+        if (C_PAGE_CONT<=C_PAGR_SHOW){
+           page_init_method(C_PAGE_INDX); 
+           return;
+        }
+     
+        if (C_PAGE_INDX == C_START_IDX ){
+                C_END_IDX = C_PAGE_INDX;
+	        C_START_IDX = C_PAGE_INDX - C_PAGR_SHOW + 1;
+	        if (C_START_IDX <= 0){ C_START_IDX = 1 ; if(C_END_IDX<C_PAGR_SHOW&&C_PAGR_SHOW<C_PAGE_CONT){C_END_IDX=C_PAGR_SHOW} };
+	        page_init_method(C_PAGE_INDX);  
+        }else if (C_PAGE_INDX == C_END_IDX){
+                C_START_IDX = C_PAGE_INDX;
+	        C_END_IDX = C_PAGE_INDX + C_PAGR_SHOW - 1;
+	        if (C_END_IDX > C_PAGE_CONT){ C_END_IDX = C_PAGE_CONT; C_START_IDX=C_END_IDX-C_PAGR_SHOW+1 };
+	        page_init_method(C_PAGE_INDX);  
+        }
+     
+     }
+  }
+  
+  function page_init_method(page_show){
+     $(C_render_oid).html('');
+     var page_html = '<li><a id="page_to_fir_btn" href="javascript:void(0);" onclick="to_page(1)">首页</a></li>';
+         page_html+= '<li><a id="page_to_pre_btn" href="javascript:void(0);" onclick="to_pre_page()">上一页</a></li>';
+         
+     for(var i=C_START_IDX; i<=C_END_IDX; i++){
+        var itm = '<li><a href="javascript:void(0);" onclick="to_page('+i+')">'+i+'</a></li>';
+        if (i== page_show){
+            itm = '<li><a class="page_cut" href="javascript:void(0);">'+i+'</a></li>';
+        }
+        if (i==C_START_IDX && C_START_IDX != 1){
+           //page_html += '<li class="fwb">...</li>';
+        }
+        page_html += itm;
+        if (i==C_END_IDX && C_END_IDX != C_PAGE_CONT){
+           //page_html += '<li class="fwb">...</li>';
+        }
+     }
+     
+     page_html += '<li><a id="page_to_nxt_btn" href="javascript:void(0);" onclick="to_next_page()">下一页</a></li>';
+     page_html += '<li><a id="page_to_lst_btn" href="javascript:void(0);" onclick="to_page('+C_PAGE_CONT+')">尾页</a></li>';
+
+     $(C_render_oid).html(page_html);     
+  }
+</script>
+    <script type="text/javascript">
+		function bindEvent(){
+			$(".list_appraise .show_more").click(function(){
+				$(this).parents(".cont_ellipsis").hide().siblings(".cont_det").show();
+			});
+			$(".list_appraise .show_more").click(function(){
+				$(this).parents(".cont_det").hide().siblings(".cont_ellipsis").show();
+			});
+			
+			$("#material").hover(
+			function (){
+				$(this).find(".pr_floating").show();
+			},
+			function (){
+				$(this).find(".pr_floating").hide();
+			});
+		}
+    </script>
+				<!--评论内容end-->
+            </div>
+            <!--用户评论-->
+            
+            <!--看过此保险的用户还看了-->
+            
+            <!--看过此保险的用户还看了-->
+            
+            <!--猜你喜欢-->
+            <div class="pro_det_con2">
+    <h2 class="pro_tit_temp f_c_79be39 fwb b_l5s_79be39">猜你想要</h2>
+    <div class="pro_det_box2 hot_product_list_cnt c">
+            <ul id="cnxhbottom">
+
+            <li><a otype="menu" otitle="duanqiyiwaixian-cnxy" title="短期综合意外险" target="_blank" href="/zaixiangoumai/baoxian/duanqiyiwaixian.shtml" class="hot_product_link"><img alt="短期综合意外险" src="http://img2.pingan.com/app_images/4008000000/v10/index/link/pro09.jpg" class="hot_product_pic" height="125" width="180"><div class="hot_product_name_wrap"><h3 class="hot_product_name">短期综合意外险</h3><p class="hot_product_text">短期工作综合保障</p></div><p class="hot_product_price"><span class="hot_product_price_rmb">¥</span>6.00</p></a></li><li><a otype="menu" otitle="jingwailiuxuebaoxian-cnxy" title="境外留学保险-前程无忧E款" target="_blank" href="/zaixiangoumai/baoxian/jingwailiuxuebaoxian.shtml" class="hot_product_link"><img alt="境外留学保险-前程无忧E款" src="http://img2.pingan.com/app_images/4008000000/v10/index/link/pro19.jpg" class="hot_product_pic" height="125" width="180"><div class="hot_product_name_wrap"><h3 class="hot_product_name">境外留学保险-前程无忧E款</h3><p class="hot_product_text">全球保障，家长放心</p></div><p class="hot_product_price"><span class="hot_product_price_rmb">¥</span>160.00</p></a></li><li><a otype="menu" otitle="jingwailvyoubaoxianyz-cnxy" title="境外旅游保险-亚洲（除日本）" target="_blank" href="/zaixiangoumai/baoxian/jingwailvyoubaoxianyz.shtml" class="hot_product_link"><img alt="境外旅游保险-亚洲（除日本）" src="http://img2.pingan.com/app_images/4008000000/v10/index/link/pro11.jpg" class="hot_product_pic" height="125" width="180"><div class="hot_product_name_wrap"><h3 class="hot_product_name">境外旅游保险-亚洲（除日本）</h3><p class="hot_product_text"></p></div><p class="hot_product_price"><span class="hot_product_price_rmb">¥</span>60.00</p></a></li><li><a otype="menu" otitle="yinianqizongheyiwaixian-cnxy" title="一年期综合意外" target="_blank" href="/zaixiangoumai/baoxian/yinianqizongheyiwaixian.shtml" class="hot_product_link"><img alt="一年期综合意外" src="http://img2.pingan.com/app_images/4008000000/v10/index/link/pro03.jpg" class="hot_product_pic" height="125" width="180"><div class="hot_product_name_wrap"><h3 class="hot_product_name">一年期综合意外</h3><p class="hot_product_text">给您全方位保障与呵护</p></div><p class="hot_product_price"><span class="hot_product_price_rmb">¥</span>259.70</p></a></li></ul>
+    </div>
+</div>
+<div style="display:none;" id="currentPrdCode">11395</div>
+
+<script type="text/javascript">
+
+//统计某个用户访问产品购买流程页面访问次数,时间范围：[1天=1、3天=3、1周=7、1月=30、3月=90、半年=180]
+//a: ~~req.param('a') || 7,
+//统计某个用户在产品所有流程(购买+资讯)页面访问次数,取值范围：[1天=1、3天=3、1周=7、1月=30、3月=90、半年=180]
+//b: ~~req.param('b') || 7,
+//统计某个用户在产品购买流程上停留时间,取值范围：[1天=1、3天=3、1周=7、1月=30、3月=90、半年=180]
+//c: ~~req.param('c') || 7,
+//统计某产品的关联产品购买比例,时间范围:[半年内=180, 1年内=365]
+//d: ~~req.param('d') || 180,
+//统计某产品被购买的总次数, 时间范围：[1月内=30，三个月内=90]
+//e: ~~req.param('e') || 30
+//a,b,c 非会员7，会员90; d365;e90;
+//f车主客户对该产品的偏好度所对应的时间尺度7,1,3,30,60,90,180,365 默认7
+//g当前城市可推荐产品 默认7
+//h年龄范围可推荐产品 默认7
+var def_prodcut_define0 = [];
+/* 猜你喜欢的产品定义 */
+var hot_product_define = [];
+var http_router = 'http://www.pingan.com';
+/* 热门商品 
+(function() {
+	config();
+})();
+*/
+
+/*读取配置*/
+function config(code){
+  $("#currentPrdCode").text(code);
+  $.ajax({
+	   type: "GET",
+	   dataType: "XML",
+	   url: '/index_inc/config.xml',
+	   error: function(msg){fetch();},
+	   success: function(data){
+	      $(data).find('FAVOURITES').find('ITEM').each(function(i){   
+	            var o = new Object();
+	            o.name=$(this).attr("pname");
+	            o.code=$(this).attr("code");
+	            o.img=$(this).attr("img");
+	            o.href=$(this).attr("href");
+	            o.price=$(this).attr("price");
+		    o.desc=$(this).attr("desc");
+	            hot_product_define.push(o);
+	       });   
+	       $(data).find('DEF-FAVORITS').find('ITEM').each(function(i){   
+		            var o = new Object();
+		            o.name=$(this).attr("pname");
+		            o.code=$(this).attr("code");
+		            o.img=$(this).attr("img");
+		            o.href=$(this).attr("href");
+		            o.price=$(this).attr("price");
+		    	    o.desc=$(this).attr("desc");
+		            def_prodcut_define0.push(o);
+	       });
+	       $(data).find('ENV').find('PA18').each(function(ii){   
+	       	   var pa18URL = $(this).text();
+	           if(pa18URL!=null&&pa18URL!=''&&pa18URL!='null'){
+	              http_router=pa18URL;
+	           }
+	       });
+	       fetch();
+	   }
+});
+}
+/*查询猜你喜欢*/
+function fetch(){
+	var vid   = get_view_id();
+	var uid   = get_user_id();
+	var pcode = get_last_view_code();
+	
+	fetch_favourite(pcode,uid,vid);
+}
+/*根据参数猜你喜欢*/
+function fetch_favourite(pcode,uid,vid){
+
+	//接口异常，临时方案
+	//set_favourite(null);
+	//return;
+	//
+
+	var a = '90';
+	var b = '90';
+	var c = '90';
+	var d = '365';
+	var e = '90';
+	var f = '90';
+	var g = '90';
+	var h = '90';
+	if (isEmpty(uid)){
+	    a='7';b='7';c='7';e='7';f='7';g='7';h='7';
+	}else{
+	    vid='';
+	}
+	
+	var rag = a+','+b+','+c+','+d+','+e+','+f+','+g+','+h;
+	var req_uri = http_router + '/rsupport/pad/product?uid='+uid+'&vid='+vid+'&ranges='+rag+'&callback=?';
+	$.getJSON(req_uri, function(data) {  
+		    if(data && data.code != null){
+		        if (data.code=="0"||data.code==0){ set_favourite(data.result); }else{set_favourite(null);}
+		    }else{set_favourite(null);}
+  		 }
+	);
+}
+
+var _oo_ii = 0;
+var already_code = '';
+/*根据后台jsonp的返回结果显示界面*/
+function set_favourite(favourites){
+	already_code += $("#currentPrdCode").text() + ';';
+	if (favourites && favourites!=null && favourites.length && favourites.length != 0 ){
+	  var k = favourites.length;
+	  for (var i=0; i<k;i++){
+	       if (_oo_ii>=4){
+	       	   return;
+	       }
+	       var item = favourites[i];
+	       var code = item.product_code;
+	       var name = get_attr(code, 'name');
+	       if (!get_attr(code,'href')){
+	       	   continue;
+	       }
+	       if (isEmpty(name)){
+	       	   name = item.product_name;
+	       }
+	       var times  = !item.total_buy_times || isEmpty(item.total_buy_times) ? '0' : item.total_buy_times;
+	       var imgFlg = 'img';
+	       if (code && name && already_code.indexOf(code+';') == -1 && !isService(code)){
+	           _oo_ii ++;
+	           already_code += code + ';';
+	           append_for_more(code);
+	    	   pin_item_html(code,name,times,get_attr(code,imgFlg),get_attr(code,'href'),get_attr(code,'price'),get_attr(code,'desc'));
+	       }
+	  }
+	}
+	if (_oo_ii <4){
+	    if (def_prodcut_define0){
+	     var liii = 4-_oo_ii;
+	     var lidx = 1;
+	     for (var i=0; i<def_prodcut_define0.length; i++){
+	     	   if (lidx > liii ){
+	     	   	return;
+	     	   }
+	           var itm = def_prodcut_define0[i];
+	           if (already_code.indexOf(itm.code+';') == -1 && !isService(itm.code)){
+	              lidx ++;
+	              already_code += itm.code + ';';
+	              pin_item_html(itm.code, itm.name, '', itm.img, itm.href, itm.price, itm.desc);
+	           }
+	     }
+	   }	
+	}
+}
+function append_for_more(code){
+   if( code=='PAY010' ){already_code += 'P0141A12;'}
+   else if( code=='P0141A12' ){already_code += 'PAY010;'}
+   else if( code=='PAY001' ){already_code += 'PAY111;'}
+   else if( code=='PAY111' ){already_code += 'PAY001;'}
+   else if( code=='NA12' ){already_code += 'A12;'}
+   else if( code=='A12' ){already_code += 'NA12;'}
+   else if( code=='PAY009' ){already_code += 'PAY007;'}
+   else if( code=='PAY007' ){already_code += 'PAY009;'}
+}
+/*判断是否为服务*/
+function isService(code){
+	return code.indexOf("SV_") == 0;
+}
+/*根据猜你喜欢的结果，显示产品列表*/
+function pin_item_html(code,name,times,img,url,price,desc){
+	var name2 = name;
+	if (name && name != null && name != ''){
+		if (name.length>7){name2 = name.substr(0,7);}
+	}
+	if (!desc||desc=='undefined'){desc='';}
+	
+		var otitle = url.replace(/(.*\/){0,}([^.]+).*/ig,"$2");	
+		var html = '<li><a otype="menu" otitle="'+otitle+'-cnxy" title="'+name+'" target="_blank" href="'+url+'" class="hot_product_link"><img width="180" height="125" alt="'+name+'" src="'+img+'" class="hot_product_pic"><div class="hot_product_name_wrap"><h3 class="hot_product_name">'+name+'</h3><p class="hot_product_text">'+desc+'</p></div><p class="hot_product_price"><span class="hot_product_price_rmb">¥</span>'+price+'</p></a></li>';
+			
+	$('#cnxhbottom').append($(html));
+}
+function getUID(){
+    var arr = document.cookie.match(new RegExp("(^| )PA18RUM_USER_IDENTIFIER=([^;]*)(;|$)"));
+    if(arr!=null && arr!=""){
+        var arrs  = decodeURI(arr[2]);
+        var arres = arrs.split("|");
+        return arres[5];
+    }
+    return '';
+}
+function get_last_u_id(){
+  var arr = document.cookie.match(new RegExp("(^| )PA18RUM_USER_IDENTIFIER_LONG=([^;]*)(;|$)"));
+    if(arr!=null && arr!=""){
+        var arrs = decodeURI(arr[2]);
+        var arres = arrs.split("|");
+        return arres[0];
+    }
+    return '';
+}
+function get_attr(code, attr){
+  if(isEmpty(code) || isEmpty(attr)){
+     return '';
+  }
+  var config=hot_product_define;//转换为json对象
+  if (!config){
+	 return '';
+  }
+  var rlt = '';
+  for (var i=0; i<config.length; i++){
+	 var item = config[i];
+	 if (item.code && item.code.indexOf(code+'#') != -1 ){
+		 rlt = item[attr];break;
+	 }
+  }
+  if (!rlt){rlt='';}
+  return rlt;
+}
+/*返回访客Id, 访客Id由webtrends生成;*/
+function get_view_id(){var v_id=_cookie('WEBTRENDS_ID');if (isEmpty(v_id)){v_id=_cookie('webtrends_id');}return isEmpty(v_id) ? '' : v_id;}
+/*返回用户Id,根据cookie获取*/
+function get_user_id(){var uid=getUID(); if(isEmpty(uid)){uid=get_last_u_id();} return uid; }
+/*返回访客上次点击的产品code*/
+function get_last_view_code(){ return _cookie('PA_CHEXIAN_HOME_FAVOURITES'); }
+/*界面初始化*/
+function _cookie(name) { var arrStr = document.cookie.split(";"); for ( var i = 0; i < arrStr.length; i++) { 
+	var temp = arrStr[i].split("=");if (_trim(temp[0]) == _trim(name)) return unescape(temp[1]);} }
+function _trim(str){ return str.replace(/\s/g,"");}
+function isEmpty(str){ return !str || str == null || str == 'null' || str == ''; }
+</script>
+            <!--猜你喜欢-->
+            
+        </div>
+        
+        <!--详情 end-->
+        
+    </div>
+    
+<!--{template footer}-->

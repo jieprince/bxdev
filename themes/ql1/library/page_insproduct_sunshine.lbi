@@ -1,0 +1,66 @@
+				                   <div class="xqcont">
+                    
+					    {if $ins_product_list}
+					    <div class="xq_title2">
+						选择产品：
+						
+						<!--{foreach from=$ins_product_list key=key item=value}-->
+						
+						{assign var="sid" value=$value[product_id]}
+                            <span class="plan {$classattr[$sid]}">
+							<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+							</span>
+                            
+						<!--{/foreach}-->	
+                        </div>
+						{/if}
+                        <div class="dataForm">
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                  
+				 <input type="text" id="max" value="1" style="display:none"><input type="text" id="min" value="" style="display:none">
+				
+                                    <li class="app_li">
+										保险期限：{$ins_product_selected.period}个月
+									</li>
+                                 
+								    <li class="app_li">承保年龄：{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁
+								     <select id="00000000000000002854_TextAge" name="TextAge_app" style="display:none">
+								     	<option value="60D-6Y">60天-6周岁</option>
+								     </select></li>									
+									<li class="app_li">
+										最大购买份数：
+                                         <!--{if 999 == $ins_product_selected.number }-->
+											无限制
+											{else}
+											  每人限{$ins_product_selected.number}份
+										 <!--{/if}-->
+									</li>
+                                       
+									
+								<!--{if $ins_product_selected[product_duty_price_type]=='single'}-->
+									<li class="app_li">
+									<label>&nbsp;</label>
+									<p><label>&nbsp;</label> 
+									</p>
+									</li>
+							        <!--{/if}-->
+								
+									
+                                </ul> 
+                            <div class="buyBar">
+                                 				
+				<a href="car_insurance.php?&act=go_insure_sunshine&goods_id={$goods.goods_id}"class="btn_products_02_01 margin_T0_50">{$lang.insure}</a>			
+                                <input type="submit" id="buy_submit" style="display:none">
+                                <input type="text" id="Prop2" value="" style="display:none">
+                                <input type="text" id="SupplierCode" value="2049" style="display:none">
+                                <input type="hidden" value="230.00" id="prodcutMarkPrice" name="prodcutMarkPrice">
+                            </div>
+                        </div>
+                     
+                      </div>
+                    </div>
+					
+					
+					
+					

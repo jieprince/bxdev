@@ -1,0 +1,213 @@
+{include file="pageheader.htm"} 
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="layer/layer.min.js"></script>
+{insert_scripts files="validator.js,../js/transport.js}
+<div class="main-div">
+<form name="theForm" method="post" action="policy.php" onsubmit="return validate();" id="withdraw_form">
+<input type="hidden" name="policy_id" value="{$policy.policy_id}" />
+<input type="hidden" name="act" value="act_operation_policy" />
+<table width="100%">
+  <tr>
+    <td class="label">操作类型</td>
+    <td>
+    	<select name="type" id="operation_type" onchange="change_operation_type(this.value);">
+    		<option value=''>请选择</option>
+	    	{foreach from=$policy_status_list item=item key=key}
+	    		<option value='{$key}'>{$item}</option>
+	    	{/foreach}
+    	</select>
+		<span style="color: red">{$policy.operation_type}</span>
+    </td>
+  </tr>	
+  
+  <tr>
+    <td class="label">保单ID</td>
+    <td>
+		{$policy.policy_id}
+    </td>
+  </tr>
+  	
+  <tr>
+    <td class="label">当前保单状态</td>
+    <td>
+		{$policy.policy_status_str}
+    </td>
+  </tr>	
+  <tr>
+    <td class="label">保费</td>
+    <td>
+		{$policy.total_premium}
+    </td>
+  </tr>	
+  
+  <tr>
+    <td class="label">保险起止期</td>
+    <td>
+		{$policy.start_date}
+			-
+		{$policy.end_date}
+    </td>
+  </tr>	
+  
+  <tbody id="withdraw_policy" style="display: none">
+	 <tr>
+	    <td class="label">退还金额</td>
+	    <td>
+	    	<input type="radio" name="withdraw_money_type" value="1" checked="checked" onchange="change_withdraw_money_type(this.value);">全额退款
+	    	<input type="radio" name="withdraw_money_type" value="2" onchange="change_withdraw_money_type(this.value);">部分退款
+	    	
+	    	<span id="input_withdraw_money" style="display: none">
+				<input type="text" name="withdraw_money" value="0" size="8" >
+				<br><span style="color:red">金额退还到用户余额账户中，如果用户已经在线下退款，并且已经收到退还的保费，此处则选择部分退款，输入0</span>
+			</span>
+			<script type="text/javascript">
+				function change_withdraw_money_type(withdraw_money_type){
+					if(withdraw_money_type==1){
+						$("#input_withdraw_money").hide();
+					}else{
+						$("#input_withdraw_money").show();
+						
+					}
+					
+				}
+			</script>
+	    </td>
+	  </tr>	
+	  
+	  <tr>
+	    <td class="label">退还推广费(服务费)</td>
+	    <td>
+			{$policy.money_myself}  （推荐费和渠道费如果有的话，自动从对方账户扣除）
+	    </td>
+	  </tr>	
+</tbody>
+
+<tbody id="insured_policy" style="display: none">
+	  <tr>
+	    <td class="label">保单号</td>
+	    <td>
+			<input type="text" name="policy_no" width="200px;">
+	    </td>
+	  </tr>	
+</tbody>
+
+  <tr >
+  <td class="label">操作备注</td>
+  	<td >
+  		<textarea name="action_note" cols="80" rows="3"></textarea>
+  	</td>
+  </tr>
+
+
+  <tr >
+  <td class="label"></td>
+  	<td >
+  	<input type="submit" value="{$lang.button_submit}" class="button" />
+  	</td>
+  </tr>
+  
+  <tr>
+  	<td colspan="2">
+  		说明：
+  		<p>1、当操作类型为【投保】时，属于线下投保，此操作只是修改保单状态为“已投保”，补充保单号</p>
+  		<p>2、当操作类型为【注销】时，需要满足的条件为保单状态为“已投保”，并且保单<span style="color: red">“未生效”（未到起保日期）</span>。各类服务费自动扣除，当选择部分退款，输入0时，不会把保费退还给用户</p>
+  		<p>3、当操作类型为【退保】时，需要满足的条件为保单状态为“已投保”，并且保单<span style="color: red">“已生效”（已过起保日期）</span>。各类服务费自动扣除，当选择部分退款，输入0时，不会把保费退还给用户</p>
+  		<p>4、当操作类型为【取消投保单】时，需要满足的条件为保单状态为“待出单”，会把保费全额返回到用户账户，服务费等自动扣除。一般因为某些原因，无法在线上成功投保时用到此操作</p>
+  	</td>
+  
+  </tr>
+  
+  
+  
+</table>
+</form>
+</div>
+
+
+<script type="text/javascript">
+	/**
+	 * 检查表单输入的数据
+	 */
+	function validate()
+	{
+		//获取操作类型
+		var operation_type = $('#operation_type').val();
+		if(operation_type==''){
+			
+			alert("请选择操作类型");
+			
+			return false;
+		}
+		
+		
+		if(operation_type=='insured'){
+			//检查是否输入保单号
+			var policy_no= $.trim($("#withdraw_form input[name=policy_no]").val());
+			if(policy_no.length<6){
+				
+				alert("请输入保单号");
+				return false;
+			}
+			
+		}
+		
+			
+		
+		
+		var withdraw_money_type = $('#withdraw_form input[name="withdraw_money_type"]:checked ').val();
+		if(withdraw_money_type==2 || withdraw_money_type=="2"){
+			var total_premium = "{$policy.total_premium}";
+			var withdraw_money = $('#withdraw_form input[name="withdraw_money"]').val();
+	
+			
+			if(!ismoney(withdraw_money)){
+				
+				return false;
+			}
+			
+			total_premium = parseFloat(total_premium);
+			withdraw_money = parseFloat(withdraw_money);
+			
+			if(withdraw_money>total_premium){
+				
+				alert("退款金额不能大于保费金额！");
+				return false;
+			}
+			
+		}else{
+			
+			
+		}
+		
+		return true;
+	}
+
+	
+	function change_operation_type(type){
+		
+		if(type=='insured'){
+			
+			$("#insured_policy").show();
+			$("#withdraw_policy").hide();
+			
+		}else if(type=='canceled' || type=='surrender'){
+			$("#insured_policy").hide();
+			$("#withdraw_policy").show();
+		}
+		else{
+			$("#insured_policy").hide();
+			$("#withdraw_policy").hide();
+			
+		}
+		
+	}
+</script>
+<script language="JavaScript">
+
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+</body>

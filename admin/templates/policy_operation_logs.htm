@@ -1,0 +1,137 @@
+<!-- $Id: admin_logs.htm 15477 2008-12-22 03:44:50Z sunxiaodong $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
+
+<div class="form-div">
+<form name="theForm" method="POST" action="policy.php">
+	<input type="hidden" name="act" value="policy_operation_log">
+	
+	<!-- modify  yes123 2014-12-09 查询条件重新排版  start -->
+	<table>
+	    <tr>
+	      <td align="right">ip地址:</td>
+	      <td><input name="ip" type="text" value="{$filter.ip}"></td>
+	      
+	      <td>&#12288;操作者:</td>
+	      <td><input type="text" name="user_name" value="{$filter.user_name}"></td>
+	      
+	      <td>操作记录:</td>
+	      <td><input name="action_note" type="text" value="{$filter.action_note}"></td>
+	      			<td> 保单ID :</td>
+	    	<td><input  type="text" id="policy_id" name="policy_id" value="{$filter.policy_id}"/>
+	      
+	    </tr>
+	    <tr>
+	    	<td>&#12288;&#12288;开始时间:</td>
+	    	<td><input class="Wdate" type="text"  id="start_time" name="start_time" value="{$filter.start_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    	
+	    	<td> 结束时间 :</td>
+	    	<td><input class="Wdate" type="text" id="end_time" name="end_time" value="{$filter.end_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    	
+	    	<td>日志类型:</td>
+	    	<td>	<select name="operation_type">
+			  			<option value="">--请选择--</option>
+			  			<option {if $filter.operation_type eq 'insured'} selected='selected' {/if} value="insured">投保</option>
+			  			<option {if $filter.operation_type eq 'canceled'} selected='selected' {/if} value="canceled">注销保单</option>
+			  			<option {if $filter.operation_type eq 'surrender'} selected='selected' {/if} value="surrender">退保</option>
+			  			<option {if $filter.operation_type eq 'cancel_policy'} selected='selected' {/if} value="cancel_policy">取消保单</option>
+			  	   </select>
+			</td>
+			
+
+			<td> 保单号 :</td>
+	    	<td><input  type="text" id="policy_no" name="policy_no" value="{$filter.policy_no}"/>
+	    	</td>
+	    	
+			
+			<td> <input type="submit" value="查询" class="button" /></td>
+	    </tr>
+	</table>
+	
+	<!-- modify  yes123 2014-12-09 查询条件重新排版  end-->
+</form>
+ 
+   
+</div>
+
+<!-- start admin_logs list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th><input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox">
+    <a href="javascript:listTable.sort('log_id'); ">编号</a>{$sort_log_id}</th>
+    <th><a href="javascript:listTable.sort('user_id'); ">操作的管理员</a></th>
+    <th><a href="javascript:listTable.sort('log_time'); ">操作时间</a>{$sort_log_time}</th>
+    <th><a href="javascript:listTable.sort('ip_address'); ">IP地址</a>{$sort_ip_address}</th>
+    <th>备注内容</th>
+    <th>类型</th> 
+    <th>保单ID</th> 
+    <th>保单号</th> 
+  </tr>
+  {foreach from=$log_list item=list}
+  <tr>
+    <td width="5%"><span><input name="checkboxes[]" type="checkbox" value="{$list.log_id}" />{$list.log_id}</span></td>
+    <td width="10%" class="first-cell"><span>{$list.user_name|escape:html}</span></td>
+    <td width="10%" align="center"><span>{$list.log_time}</span></td>
+    <td width="10%" align="left"><span>{$list.ip_address}</span></td>
+    <td width="45%" align="left"><span>{$list.action_note}</span></td>
+    <td width="15%" align="center"><!--  add yes123 2014-12-09 添加日志类型-->
+       	{if $list.operation_type eq 'insured'}
+    		<span style="color: #FFCC00;"><strong>
+    			手工投保，录入保单号
+    		</strong></span>
+    	{/if}
+    	
+    	{if $list.operation_type eq 'surrender'}
+    		<span>退保</span>
+    	{/if}
+    	
+       	{if $list.operation_type eq 'canceled'}
+    		<span style="color: red;">注销</span>
+    	{/if}
+       	{if $list.operation_type eq 'cancel_policy'}
+    		<span style="color: red;">取消投保单</span>
+    	{/if}
+    </td>
+    <td width="10%" align="left">
+    	<a href="policy.php?act=info&policy_id={$list.policy_id}">{$list.policy_id}</a>
+   </td>
+    <td align="left">
+    	<a href="policy.php?act=info&policy_id={$list.policy_id}">{$list.policy_no}</a>
+   </td>
+    
+    
+  </tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="10">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+  onload = function()
+  {
+    // &#65533;&#65533;&#700;&#65533;&#65533;鹜&#65533;&#65533;
+    startCheckOrder();
+  }
+  {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

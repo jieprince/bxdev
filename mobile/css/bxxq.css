@@ -1,0 +1,60 @@
+body{ font-size: 13px; color: #333; font-family:"微软雅黑";}
+
+.bxxq_all{ width: 100%; background: #fff; margin-top: 8px;}
+.xq_head{ }
+.xq_title{ height: 60px; background: #fff;}
+.xq_title img.xqlogo{ float: left; margin-right: 20px; padding:10px;}
+.xq_title h2{ float: left;  color: #3F8EDC; font-weight: bold; margin-top: 6px;}
+.xq_title h2 span{ margin-top: 10px;  color:#777; display: block;}
+.xq_title .share{ float: right;height: 32px;line-height: 32px;margin-top:8px; margin-right: 10px; background: #fafafa; border:1px solid #ccc;}
+.xq_title .share a.xqshare{ float: left; margin: 5px 10px;text-align: center;font-size: 16px;font-weight: bold; color: #4387CB; line-height: 24px;}
+.xq_title .share div.ewm{border-left: 1px solid #fff;height: 30px;width: 29px;float: left;background:url(../images/erweima1.png) no-repeat 6px 3px;padding: 3px 6px 0px 6px;}
+.feature{color: #777;background: #F8F8F8 url(../images/tese.png) no-repeat 10px center;}
+.feature p.info{margin-left: 47px;background: #F5F5F5;padding: 10px 10px 10px 20px;}
+.features{border-top: 1px solid #FFF;color: #777;background: #F8F8F8 url(../images/duihao.png) no-repeat 10px center;}
+.features p.info{margin-left: 47px;background: #F5F5F5;padding: 10px 10px 10px 20px;}
+.features p.info span{ padding: 1px 10px; border-right: 1px solid #999;}
+
+.xqarea{ }
+.xqcont{ /*padding: 0 20px 20px 20px; box-shadow: 0 0 10px #777;*/}
+.xq_title2{font-weight: bold; border-bottom: 1px solid #F8F8F8; margin-bottom:10px ;}
+.xq_title2 span.plan{color: #000;display: inline-block;line-height:25px;border-bottom: 3px solid #FFF;cursor: pointer; margin:0px 5px;}
+.xq_title2 span.plan.current{ color: #3F8EDE;border-bottom: 2px groove #3F8EDE;}
+
+.baseForm{display: inline-block;width: 970px;min-height: 125px;_height: 105px;padding: 10px;background:#fafafa;}
+.baseForm ul.personalInfo{min-height: 105px;_height: 105px;width: 520px;float: left;padding: 10px 10px 0px 10px;}
+.baseForm ul.personalInfo li.app_li{float: left;width: 250px;color: #777777;height: 40px;line-height: 40px;}
+.baseForm ul.personalInfo li.app_li label{float: left;display: inline-block;width: 100px;}
+.baseForm ul.personalInfo li.app_li p{display: block;float: left;height: 40px;line-height: 40px;width: 150px;position: relative;}
+.baseForm ul.personalInfo li p input.date {font-weight: bold;width: 100px;border: 0px;background: url(../images/sprite-product.png) right -630px;height: 24px;line-height: 24px;cursor: pointer;color: #777777;}
+
+.baseForm .buyBar {text-align: center;min-width: 150px;min-height: 105px;_height: 105px;float: right;}
+.baseForm .buyBar p.price {line-height: 30px;color: #B62F2B;text-align: center;font-weight: bold;margin: 10px 0px;}
+.baseForm .buyBar p.price strong {font-size: 30px;}
+.baseForm .buyBar .buyBtn {border: none;height: 38px;line-height: 38px;width: 132px;color: #fff;font-family: \5FAE\8F6F\96C5\9ED1;font-size: 18px;font-weight: bold;cursor: pointer;background: #FFAD37;border-bottom: 3px solid #DF8A3E;}
+
+.itemForm {height: auto;}
+.itemForm table {height: auto;width: 750px;}
+.itemForm th {color: #0D519C;line-height: 30px;padding-left: 10px;text-align: left;}
+.itemForm tr {}
+.itemForm td.hem {background: #fcfcfc;width: 210px;}
+.itemForm td.hemtoo {width: 123px;}
+.itemForm td {color: #777777;padding-left: 10px;padding-right: 10px;word-break: break-all;height: 37px; vertical-align:middle;border: 1px solid #f4f4f4;}
+.itemForm td span.regular {text-align: right;color: #777777;width: 123px;overflow: hidden;}
+.itemForm td strong {color: #115FAD;cursor: help;padding-left: 8px;}
+
+
+.relatedInfo {margin-top: 10px;background: #fff;padding: 0px 20px 20px 20px;position: relative;}
+.relatedInfo .relatedInfoleft {width: 490px; float: left;}
+.relatedInfo .title {height: 40px;border-bottom: 4px solid #F8F8F8;}
+.relatedInfo .title h3 {float: left;heght: 40px;line-height: 40px;border-bottom: 4px solid #4488cc;color: #4488cc;padding: 0px 20px;font-weight: bold;font-size: 18px; background: none; border-top: none;}
+.relatedInfo .summary {padding: 20px 0px;}
+.relatedInfo .summary p {line-height: 25px;}
+
+.relatedInfo .relatedInforight {width: 240px;border: 1px solid #eee;background: #f8f8f8;margin-top: 20px;top: 0px;right: 20px;position: absolute;}
+.relatedInfo .relatedInforight .titlepdf {font-size: 18px;color: #A69060;padding: 20px 20px;}
+.relatedInfo .relatedInforight .titlepdf img {float: left;display: block;padding-right: 8px;}
+.relatedInfo .relatedInforight .titlepdf h3 {line-height: 24px;}
+.relatedInfo .relatedInforight li {padding: 5px 10px;display: inline-block;}
+.relatedInfo .relatedInforight li img {float: left;padding-top: 4px;}
+.relatedInfo .relatedInforight li a {float: left;font-size: 13px;color: #B9B973;display: block;width: 188px;margin-left: 10px;}

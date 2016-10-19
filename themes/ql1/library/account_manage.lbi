@@ -1,0 +1,126 @@
+<div class="f-fr g-w800 s-bg-eff1f1">
+             <!-- {if $action neq 'profile' && $action neq 'edit_pass' && $action neq 'bank_account'} --> 
+            
+            	<div class="f-cb s-lh40">
+
+                    <span class="f-mr15"><a href="user.php?act=account_detail" {if $action eq 'account_detail' || ($action eq 'account_log' && $process_type eq 0) || ($action eq 'account_log' && $process_type eq 1)} class="link-title_on" {else} class="link-title" {/if}>账户明细</a></span>
+
+                     <span class="f-mr15"><a href="user.php?act=account_income" {if $action eq 'account_income'} class="link-title_on" {else} class="link-title" {/if}>推广费明细</a></span>
+                     
+                     {if $user_info.rank_code eq 'common'}
+	                     <span class="f-mr15"><a href="user.php?act=clearing_detail" {if $action eq 'clearing_detail'} class="link-title_on" {else} class="link-title" {/if}>结算明细</a></span>
+                     {/if}
+                    <span class="f-ml30 f-mr30 f-fs5">|</span>
+                    <span class="f-mr15"><a href="user.php?act=account_deposit"  {if $action eq 'account_deposit'} class="link-title_on" {else} class="link-title" {/if}>充值</a></span>
+                    <span class="f-mr15"><a href="user.php?act=account_raply" {if $action eq 'account_raply'} class="link-title_on" {else} class="link-title" {/if}>提现</a></span>
+                 </div>
+             <!-- {/if} -->
+             
+             
+                <!-- {if $action eq 'profile'}  个人基本信息--> 
+                 		{include file='library/profile.lbi'} 
+                <!-- {/if} -->
+                
+                 
+                <!-- {if $action eq 'account_detail'}  账户明细--> 
+                 		{include file='library/account_detail.lbi'} 
+                <!-- {/if} -->
+                
+                <!-- {if $action eq 'account_income'}  收益明细--> 
+                 		{include file='library/account_income.lbi'} 
+                <!-- {/if} -->
+                <!-- {if $action eq 'clearing_detail'}  计算明细--> 
+                 		{include file='library/clearing_detail.lbi'} 
+                <!-- {/if} -->
+                
+                
+                <!-- {if $action eq 'account_deposit'}  充值--> 
+                 		{include file='library/account_deposit.lbi'} 
+                <!-- {/if} -->
+                <!-- {if $action eq 'account_raply'}  提现--> 
+                 		{include file='library/account_raply.lbi'} 
+                <!-- {/if} -->
+                
+                <!-- {if $action eq 'account_log' && $condition.process_type eq 0}  充值记录--> 
+                 		{include file='library/account_log.lbi'} 
+                <!-- {/if} -->
+                
+                <!-- {if $action eq 'account_log' && $condition.process_type eq 1}  提现记录--> 
+                 		{include file='library/account_log.lbi'} 
+                <!-- {/if} -->
+                
+                <!-- {if $action eq 'bank_account'} 银行卡--> 
+                 		{include file='library/bank_account.lbi'} 
+                <!-- {/if} -->
+                
+                <!-- {if $action eq 'edit_pass'} 修改密码--> 
+                 		{include file='library/edit_pass.lbi'} 
+                <!-- {/if} -->
+                
+                	
+                	
+               	<!-- {if $action eq "act_account"} -->
+				 		{include file='library/act_account.lbi'} 
+				 <!-- {/if} -->	
+                		
+            </div>
+     
+
+<script type="text/javascript">
+
+	function zjsj(type){
+		$("#time_quantum").val(type);
+		var sDate='';
+		var timestamp=Math.round(new Date().getTime()/1000) ;
+		
+		switch(type)
+		{
+			case '{$lang.one_week}':
+				sDate = timestamp-(86400*7);
+			  	break;
+			case '{$lang.one_month}':
+				sDate = timestamp-(86400*30);
+				break;
+			case '{$lang.three_month}':
+				sDate = timestamp-(86400*30*3);
+			  	break;
+			case '{$lang.six_month}':
+				sDate = timestamp-(86400*30*6);
+			  	break;
+			default:
+				
+			  
+		}
+		
+		if(type=='all'){
+			$("#start_time").val('');
+			$("#end_time").val('');
+		}else{
+			$("#start_time").val(getTime(sDate));
+			$("#end_time").val(getTime(timestamp));
+		}
+		
+	 	$("#search_form").submit();
+		
+		
+	}
+    //unix时间戳格式化
+    function getTime(timestamp) {  
+    	 var ts = arguments[0] || 0;  
+     	 var t,y,m,d,h,i,s;  
+         t = ts ? new Date(ts*1000) : new Date();  
+         y = t.getFullYear();  
+         m = t.getMonth()+1;  
+         d = t.getDate();  
+    	 h = t.getHours();  
+         i = t.getMinutes();  
+    	    // 可根据需要在这里定义时间格式  
+    	// return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i);  
+    	 return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d);  
+    } 
+</script>
+<script>
+	jQuery(".topNav").slide({ type:"menu",  titCell:"dd", targetCell:"ul", delayTime:0,defaultPlay:false,returnDefault:true  });	
+</script> 
+</body>
+</html>

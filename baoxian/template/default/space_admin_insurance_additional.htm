@@ -1,0 +1,151 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+<div id="content-body">
+                                <div id="toolbar">
+
+
+
+
+
+
+<ul>
+    
+
+    
+
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="/insuranceSortAction.do?method=prepare&amp;action=create"><img src="template/images/createButton.gif" alt="增加">
+            增加</a>
+    </li>
+    
+
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="javascript:submitUpdateAction(document.forms[0], '/insuranceSortAction.do?method=listUpdate')" target="_self"><img src="template/images/updateButton.gif" alt="修改">
+            修改</a>
+    </li>
+    
+
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="javascript:submitDeleteAction(document.forms[0], '/insuranceSortAction.do?method=delete')"><img src="template/images/deleteButton.gif" alt="删除">
+            删除</a>
+    </li>
+    
+   
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="/insuranceSortAction.do?method=prepare&amp;action=search"><img src="template/images/searchButton.gif" alt="查询">
+            查询</a>
+    </li>
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="javascript:submitUpdateAction(document.forms[0], '/insuranceSortSaveInsuranceRateAction.do?method=prepare&amp;action=saveInsuranceRate')" target="_self"><img src="template/images/applyButton.gif" alt="设置费率">
+            设置费率</a>
+    </li>
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="javascript:submitUpdateAction(document.forms[0], '/insuranceSortSaveInsuranceSchemaAction.do?method=prepare&amp;action=saveInsuranceSchema')" target="_self"><img src="template/images/checkButton.gif" alt="设置保费">
+            设置保费</a>
+    </li>
+    
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a href="javascript:submitUpdateAction(document.forms[0], '/insuranceSortSaveInsuranceHandlingRateAction.do?method=prepare&amp;action=saveInsuranceHandlingRate')" target="_self"><img src="template/images/photoButton.gif" alt="手续费率">
+            手续费率</a>
+    </li>
+    
+
+    
+</ul>
+
+</div>
+                                <div id="error">
+
+
+</div>
+                                <div id="navigator">
+    <div class="content">
+        当前位置：
+        
+            
+            
+                
+            
+            
+                附加险
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+
+
+<script type="text/javascript">
+    function selectAllCheckBox() {
+        checkAllBox(document.forms['insuranceSortForm']);
+    }
+</script>
+
+<form name="insuranceSortForm" method="post" action="/insuranceSortAction.do?method=list">
+    <input name="moduleId" value="" type="hidden">
+
+    <div class="list">
+        <div class="listData">
+            <div>
+
+
+<table class="listTable">
+    <tbody><tr class="listTitle">
+        <td width="5%">序号</td>
+        <td width="5%"><label><input name="checkAll" onclick="selectAllCheckBox()" type="checkbox"></label></td>
+        <td width="10%"><a href="/insuranceSortAction.do?method=search&amp;order=code">险别编码</a></td>
+        <td width="30%"><a href="/insuranceSortAction.do?method=search&amp;order=name">险别名称</a></td>
+        <td width="10%"><a href="/insuranceSortAction.do?method=search&amp;order=abbrName">险别简称</a></td>
+        <td width="15%"><a href="/insuranceSortAction.do?method=search&amp;order=parent">险别上级</a></td>
+        <td width="10%"><a href="/insuranceSortAction.do?method=search&amp;order=insuranceKind">保险产品信息</a></td>
+        <td width="15%"><a href="/insuranceSortAction.do?method=search&amp;order=levelNum">险别层级</a></td>
+    </tr>
+    
+          <!--{loop $list $key $value}-->
+        
+            <tr class="tdContent">
+                <td>$key</td>
+                <td><input name="selectedItems" value="$value[id]" onclick="setSelection(this)" type="checkbox"></td>
+                <td><a href="$theurl&id=$value[id]" target="_blank">$value[code]</a></td>
+                <td>
+                <a href="$theurl&id=$value[id]" target="_blank">$value[name]</a>
+                </td>
+                <td>$value[abbr_name]</td>
+                <td>
+                    
+                </td>
+                <td>平安团意险</td>
+                <td>$value[level_num]</td>
+            </tr>
+           <!--{/loop}-->
+   
+    
+</tbody></table>
+</div>
+        </div>
+    </div>
+
+    <div style="border-bottom: 1px solid #A5B5C0;"></div>
+
+    
+    <div class="page">
+    $multi
+    </div>
+</form>
+</div>
+                            </div>
+
+</div> <!--id="main-content -->                            
+
+<!--{template footer}-->

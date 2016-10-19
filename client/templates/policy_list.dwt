@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪个人中心</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+	 
+    <div class="">
+        <div class="panel panel-primary" style="border-color: #ed462f;border-radius:0px;" >
+            <div class="panel-heading f-fwb text-center" style="background: #ed462f;border-color: #ed462f;border-radius:0px;">
+                保单列表
+            </div>
+            <div class="panel-body">
+                <div>
+                {foreach from=$policy_list item=policy name=orderit}
+                    <div class="list-group">
+                        <a href="user.php?act=policy_detail&policy_id={$policy.policy_id}" class="list-group-item f-fs10">
+                            <i class="fa fa-angle-right f-fr"></i>
+                            <p class="list-group-item-text f-lh25">&#12288;保单号：{$policy.policy_no}</p>
+                            <p class="list-group-item-text f-lh25">产品名称：{$policy.attribute_name}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;投保人：{$policy.applicant_username}</p>
+                            <p class="list-group-item-text f-lh25">被保险人：{$policy.assured_fullname}</p>
+                            <p class="list-group-item-text f-lh25">投保时间：{$policy.dateline}</p>
+                            <p class="list-group-item-text f-lh25">&#12288;总费用：<span class="f-c-red f-fwb">{$policy.total_premium}</span></p>
+                            <p class="list-group-item-text f-lh25">&#12288;&#12288;状态：<span class="f-c-red f-fwb">{$policy.policy_status_str}</span></p>
+                        </a>
+
+                    </div>
+			    {foreachelse}
+			   		 暂时您没有保单
+			    {/foreach}
+<!--                     <div class="list-group">
+                        <a href="policyinfo.html" class="list-group-item f-fs10">
+                            <i class="fa fa-angle-right f-fr"></i>
+                            <p class="list-group-item-text f-lh25">&#12288;保单号：201422222</p>
+                            <p class="list-group-item-text f-lh25">产品名称：平安行境外保障计划(测试中)</p>
+                            <p class="list-group-item-text f-lh25">&#12288;投保人：201422222</p>
+                            <p class="list-group-item-text f-lh25">被保险人：12</p>
+                            <p class="list-group-item-text f-lh25">投保时间：2015-05-10</p>
+                            <p class="list-group-item-text f-lh25">&#12288;总费用：<span class="f-c-red f-fwb">12</span></p>
+                            <p class="list-group-item-text f-lh25">&#12288;&#12288;状态：<span class="f-c-red f-fwb">已支付</span></p>
+                        </a>
+
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+</body>
+</html>

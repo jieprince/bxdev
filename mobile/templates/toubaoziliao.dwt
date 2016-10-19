@@ -1,0 +1,74 @@
+{include file='header.dwt'}
+
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-6 col-sm-6 col-xs-8 f-pl0 f-pr0 f-tal">
+            	<span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">投保资料</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 f-pl0 f-pr0 f-tar">
+            	<div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:5px 8px; background:none">
+                    <i class="iconfont icon-yonghuzhongxin f-fs3 s-c-ffffff"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right" style="min-width:100px; text-align:center">
+                    <li><a href="user.php">登录</a></li>
+                    <li><a href="../mobile_page/reg.html">注册</a></li>
+                  </ul>
+                </div>
+            	 
+            </div>
+            
+        </div>
+    </div>
+</header> 
+ 
+<div class="container-fluid f-pt20 f-pb20"> 
+	<div class="container">
+    	<h3 class="f-fs3 f-tac s-bscB-b5b5b5 s-c-030303 f-pb15">投保资料</h3> 
+        
+        <section class="s-lh25 f-mt15 f-fs2 s-c-6b6b6b">
+            <h3 class="f-mt15" style="color: #fb2900"><span class="f-ib f-vam"><i class="iconfont icon-xiangyou2"></i></span> <span class="f-fs2 s-lh20 f-vam" >一、保险公司核保报价必须提供资料</span></h3>
+            <div class="s-lh25 s-c-666666 f-ml5 f-mt5 f-fs1" style="color: #fb2900">
+            ● 起诉状复印件
+            <br>
+            ● 诉讼保全申请书复印件
+            <br>
+            ● 财产保全标的物明细清单
+            <br>
+            ● 证据清单复印件、提交法院的证据材料复印件
+            <br>
+            ● 立案通知书复印件（如有）
+            <br>
+            ● 1.答辩状复印件（如有）
+            </div>
+            <h3 class="f-mt10" style="color: #fb2900"><span class="f-ib f-vam"><i class="iconfont icon-xiangyou2"></i></span> <span class="f-fs2 s-lh20 f-vam" >二、保险公司出具保单及保函需要提供资料：</span></h3>
+            <div class="s-lh25 s-c-666666 f-ml5 f-mt5 f-fs1">● 投保问卷、委托书（全联官网下载）<br>
+            ● 企业法人营业执照、企业税务登记证、组织机构代码证（盖公章）<br>
+            ● 法定代表人/负责人/执行合伙人/个人独资企业经营者身份证复印件<br>
+            ● 证被保险人主要财产的权属证明文件<br>
+            ● 证明原被告法律关系存在的证据<br>
+            ● 证明被告违约或侵权事实的证据<br>
+            ● 证明诉讼请求金额的计算依据<br>
+            ● 近年财务报表（近一年）<br>
+            ● 公司章程复印件（盖公章）<br>
+            ● 身份证复印件、户口簿复印件、结婚证复印件（仅针对个人投保人）<br>
+            ● 工作证明复印件、工资证明复印件（仅针对个人投保人）<br>
+            ● 住所的房产证明复印件（仅针对个人投保人）<br>
+            ● 保费缴款凭证扫描件
+
+			</div>
+            <div class="f-fs2 f-mt30">
+            	<span class="f-fs3"  style="color: #fb2900">友情建议：</span>考虑到提高各方的效率，尽快出具保函，建议客户可以尽量一次提供以上所有资料。
+            </div> 
+
+        </section>
+         
+    </div>
+</div>
+{include file='foot.dwt'}
+ 
+</body>
+</html>

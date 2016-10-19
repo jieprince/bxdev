@@ -1,0 +1,224 @@
+
+<form method="post" action="" id="listForm">
+	  {if $policy.all_attachment.required_info } 
+	  
+        	<h3  >公司客户被保险人身份证明</h3>
+            	<table width="60%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+            	{foreach from=$policy.all_attachment.required_info item=value}
+					<tr>
+                     <td bgcolor="#ffffff" class="fontbloder" align="left">
+                     		<input type="checkbox" name="attachment_id" value="{$value.id}">
+                         	{if $value.file_url_list}
+                     			<a>{$value.field_desc}</a>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<br/>
+                     				&#12288;
+                     				<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				{/foreach}
+                     			{else}
+                     			<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     		{/if}
+                     </td> 
+                 </tr>
+          		{/foreach}
+                </table>
+       
+		{/if}
+
+	<script type="text/javascript">
+		var is_select = false;
+		function selectAll(){
+			if(!is_select){
+				is_select = true;
+				 $("#listForm :checkbox").attr("checked", true);  
+			}
+			else{
+				is_select = false;
+				$("#listForm :checkbox").attr("checked", false);  
+				
+			}
+				
+		}
+		
+		
+		function download(){
+			  var ids='';
+			  $('input[name="attachment_id"]:checked').each(function(){
+			    ids+=$(this).val()+',';
+			  }); 
+			  var reg=/,$/gi;
+			  ids=ids.replace(reg,"");
+			  ids = ids.split(",");
+			  
+			  if(ids!=""){
+				  window.location.href="policy.php?act=dowload_policy_attachment&attachment_ids="+ids; 
+			  }else{
+				 alert("请选择要下载的文件",0);
+			  }
+			
+		}
+	</script>
+		
+	  {if $policy.all_attachment.other_info } 
+        	<h3  >保险公司出具保单及保函需要提供资料</h3>
+            	<table width="60%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+            	{foreach from=$policy.all_attachment.other_info item=value}
+					<tr>
+                     <td bgcolor="#ffffff" class="fontbloder" align="left">
+                     	<input type="checkbox" name="attachment_id" value="{$value.id}">
+                         	{if $value.file_url_list}
+                     			<a>{$value.field_desc}</a>
+                     				{foreach from=$value.file_url_list key=key item=item}
+                     				<br/>
+                     				&#12288;<a href="../{$item.url}" target="_blank">{$item.name}</a>
+                     				{/foreach}
+                     			{else}
+                     			<a href="../{$value.value}" target="_blank">{$value.field_desc}</a>
+                     		{/if}                    	
+                     </td> 
+                 </tr>
+          		{/foreach}
+                </table>
+		{/if}
+		
+			<a href='javascript:selectAll("policy_id")' class="special">全选</a>
+            &#12288;
+            <a href='javascript:download("policy_id")' class="special">下载</a>
+		
+<!-- <button type="button" class="btn-ec6941-108 s-lh25" onclick="show_uplaod_file_div();">补充资料</button>
+ -->
+</form>
+
+
+<form action="user.php?act=upload_policy_attachment" method="post" enctype="multipart/form-data">
+<input type="hidden" name="policy_id" value="{$policy.policy_id}">
+<div class="f-mt30 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40" style="display: none" id="update_file_div">
+	<h3 class="cirle_title-1">被保险附件资料上传</h3>
+    <section class="f-fs2 s-c-666666 f-mt20">
+    	<table  class="table_buy_01">
+        	<tr>
+            	
+            	<th width="150">客户类型：</th>
+                <td width="348">
+                	<div class="f-pl10">
+                    	<select class="s-select-1" name="gerenqiye_sel" id="gerenqiye_sel" >
+                      <option value="01" selected>个人</option>
+                      <option value="02" >企业</option> 
+                  </select>
+                    </div>
+                </td>  
+                <th width="150"></th>
+                <td width="348"></td>
+                
+            </tr>
+            <tr>
+            	<td colspan="4">
+                	<div class="f-pA10 s-lh25 f-fs2 s-c-ec6941">
+                    	说明：<br />
+                        1.以下红色文字部分是报价必须上传的资料<br />
+                        2.除了红色文字部分之外的是承保必须上传的资料
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+        <!-- 个人客户被保险人身份证明-->
+        <div id="upload_file_list_01">
+        	<h3 class="f-fs3 f-mt20 s-bscB_989898 f-pb10">个人客户被保险人身份证明</h3>
+            <table  class="table_buy_01">
+            <!--{foreach from=$policy.all_attachment_attr.company_info_attr key=key item=value}-->
+                <tr>
+                    <th width="498"> <!--{if $value.is_required eq 1}--> <span class="s-c-ff0000">{$value.name}</span>  {else} {$value.name} <!--{/if}--></th>
+                    <td width="498">
+                    	<div class="f-pl10">
+                            <div class="f-uploader f-white">
+                                <input type="text" class="f-filename" readonly="readonly"/>
+                                <input type="button" name="file" class="f-button" value="文件上传..."/>
+                                <input type="file" size="30" name="{$key}" />
+                            </div>
+                        </div>
+                    </td> 
+                </tr>
+                <!--{/foreach}-->
+            </table>
+        </div>
+
+  
+        
+        <!-- 保险公司出具保单及保函需要提供资料-->
+        <div>
+        	<h3 class="f-fs3 f-mt20 s-bscB_989898 f-pb10">保险公司出具保单及保函需要提供资料</h3>
+            <table cellpadding="0" cellspacing="0" border="0" class="table_buy_01">
+            	<!--{foreach from=$policy.all_attachment_attr.other_file_attr key=key item=value}-->
+                <tr id="upload_file_list_10">
+                    <th width="498"><!--{if $value.is_required eq 1}--> <span class="s-c-ff0000">{$value.name}</span>  {else} {$value.name} <!--{/if}--></th>
+                    <td width="498">
+                    	<div class="f-pl10">
+                            <div class="f-uploader f-white">
+                                <input type="text" class="f-filename" readonly="readonly"/>
+                                <input type="button" name="file" class="f-button" value="文件上传..."/>
+                                <input type="file" size="30" name="{$key}"/>
+                            </div>
+                        </div>
+                    </td> 
+                </tr>
+               <!--{/foreach}-->
+            </table>
+        </div>
+    </section>
+	<button type="submit" class="btn-ec6941-108 s-lh25"><i class="iconfont f-mr5">󰅖</i>上传</button>
+</div>
+</form>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	gerenqiye_sel();
+	
+	$('#gerenqiye_sel').bind("change",function(){
+		gerenqiye_sel();
+	});
+	
+	$("input[type=file]").change(function(){
+			$(this).parents(".f-uploader").find(".f-filename").val($(this).val());
+	});
+	$("input[type=file]").each(function(){
+		if($(this).val()==""){
+			$(this).parents(".f-uploader").find(".f-filename").val("No file selected...");
+		}
+	}); 
+});
+
+
+function gerenqiye_sel(){
+	var khlx_value = $('#gerenqiye_sel').val();
+	var bxgs_value2 = $('#baoxiangongsi_sel').val();
+	 
+	if(bxgs_value2=='01'){
+		layer.alert('选择平安保险公司客户类型只能是个人');
+		$('#gerenqiye_sel').val('01');
+	}else{
+		if(khlx_value=='01'){
+			$('#upload_file_list_01').hide();
+			$('#upload_file_list_02').show();	
+		}else if(khlx_value=='02'){
+			$('#upload_file_list_02').hide();
+			$('#upload_file_list_01').show();
+		}	
+	}
+	
+}
+
+
+var is_show = 0;
+function show_uplaod_file_div(){
+	if(is_show==0){
+		$("#update_file_div").show();
+		is_show=1;
+	}
+	else{
+		$("#update_file_div").hide();
+		is_show=0;	
+	}
+	
+}
+</script>

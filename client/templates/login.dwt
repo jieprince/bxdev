@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪登录页面</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+
+</head>
+<body>
+<div class="container-fluid">
+<!-- 	<div class="" align="center">
+    	<img src="images/logo.png" class="img-responsive">
+    </div> -->
+    <div class="" align="center">
+    	<img src="images/banner.jpg" class="img-responsive">
+    </div>
+	<div class="f-mT20">
+        <form action="user.php?act=do_login" method="post" id="frm_login">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                    <input type="tel" class="form-control" id="exampleInputTel2" name="username" placeholder="账号">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                    <input type="password"  name="pwd" class="form-control" id="exampleInputPassword2" placeholder="密码">
+                </div>
+            </div>
+<!--             <div class="f-pL10 f-pB10">
+            	<input type="checkbox"> <span class="f-fs12 f-c-36">记住密码</span>
+            </div> -->
+            <div class="f-pR10  text-right">
+            	<a class="btn-link" href="user.php?act=reset_password">忘记密码</a>
+               <!--  <a class="btn btn-success f-fr f-wp45" href="#">用户注册</a> -->
+            </div>
+            <div class="f-mT20">
+            	<button type="submit" class="btn btn-info btn-block">登录</button>
+            </div>
+            
+            <div class="f-cb"></div>
+        </form>
+    </div>
+</div>
+{if $login_faild eq 1}
+<script type='text/javascript'>
+	alert('用户名或密码错误！');
+</script>
+{/if}
+
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<!-- <div class="form-div">
+<form action="javascript:searchUser()" name="searchForm" id="organ_ipa_rate_list_form">
+  <input type="hidden" value="organ_ipa_rate_config_list_query" name="act">
+   <input type="hidden" value="{$filter.institution_id}" name="institution_id">
+    <table>
+	<tbody>
+	<tr>
+	    <td>险种名称</td><td><input type="text" name="attribute_name" /> </td>
+ 		<td><input type="submit" value="{$lang.button_search}" /></td>
+	</tr>	
+		  </tbody>
+	  </table>
+  </form>
+</div> -->
+
+<!-- 订单列表 -->
+	<div class="list-div" id="listDiv">
+		{/if}
+
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th>编号</th>
+				<th>规则名称</th>
+				<th>月提现次数</th>
+				<th>提现最小金额</th>
+				<th>提现最大金额</th>
+				<th>个人所得税</th>
+				<th>手续费</th>
+				<th>财务电话</th>
+				<th>是否允许提现</th>
+				<th>操作</th>
+			<tr>
+			{foreach from=$config_list item=config key=key}
+			<tr align="center">
+				<td >{$config.id}</td>
+				<td >{$config.money_type}</td>
+				<td >{$config.month_withdraw_num}</td>
+				<td >{$config.min_withdraw_money}</td>
+				<td >{$config.max_withdraw_money}</td>
+				<td >{$config.income_tax}</td>
+				<td >{$config.withdraw_poundage}</td>
+				<td >{$config.mobile_phone}</td>
+				<td >{$config.is_permit_withdraw}</td>
+				<td>
+					<a href="user_account.php?act=withdraw_rule_cfg_add&id={$config.id}" title="{$lang.edit}">
+						<img src="images/icon_edit.gif" border="0" height="16" width="16" />
+					</a>
+					
+					<a href="javascript:remove_config('{$config.id}');" title="{$lang.edit}">
+						<img src="images/icon_drop.gif" border="0" height="16" width="16" />
+					</a>
+			   </td>
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+	</div>
+<script language="JavaScript">
+listTable.query = "organ_ipa_rate_config_list_query";
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索
+     */
+    function searchUser()
+    {
+    	listTable.filter['attribute_name'] = Utils.trim(document.forms['searchForm'].elements['attribute_name'].value);
+        listTable.filter['page'] = 1;
+        listTable.loadList();
+    }
+	
+    function remove_config(id){
+    	var lay_msg = $.layer({
+    	    shade: [0],
+    	    area: ['auto','auto'],
+    	    dialog: {
+    	        msg: '您确定要删除吗？',
+    	        btns: 2,                    
+    	        type: 4,
+    	        btn: ['确定','取消'],
+    	        yes: function(){
+    	            $.ajax({
+    	            	tye:'GET',
+    	            	url:'user_account.php?act=withdraw_rule_cfg_remove&id='+id,
+    	            	success:function(data){
+    	            		var obj = $.parseJSON(data);
+    	            		if(obj.code==0){
+    	            			alert(obj.msg);
+    	            			window.location.href="user_account.php?act=withdraw_rule_cfg_list";
+    	            		}else if(obj.code==0){
+    	            			alert(obj.msg);
+    	            		}
+    	            	}
+    	            	
+    	            });
+    	        	
+    	        	
+    	        }, no: function(){
+    	            layer.close(lay_msg);
+    	        }
+    	    }
+    	});
+    	
+    }
+		
+</script>
+{/literal} {include file="pagefooter.htm"} 

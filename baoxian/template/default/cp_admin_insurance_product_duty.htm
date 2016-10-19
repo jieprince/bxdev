@@ -1,0 +1,133 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+   <div id="toolbar">
+
+</div>
+   <div id="error">
+</div>
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+              <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			  <label class="separator">&gt;</label>
+			 <a>  责任 </a>
+			   
+            <label class="separator">&gt;</label>
+            
+                新建
+           	<label class="separator">&gt;</label>
+            <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a> 
+      </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_duty&product_id=$product_id&product_duty_id=$product_duty[product_duty_id]">
+
+
+<input type="hidden" name="product_duty_submit" id="product_duty_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+<table class="editable-table">
+    <tbody>
+	
+	<tr>
+      
+	<td class="tdEditArea">保险责任：</td>  
+	<td class="tdEditArea">责任代码：</td>
+	<td class="tdEditArea">保险金额：</td>
+    <td class="tdEditArea">保障范围描述：</td>
+   		
+    </tr>
+	
+	<!--{loop $list_count $key $value}-->
+    <tr>
+        
+        <td class="tdEditArea">
+		
+		 	<input name="productduty[$key][duty_name]" id="duty_name_$key" value="" class="ref" type="text">
+		 	<span>（*）</span>
+		 
+		 <!--
+            <input type="hidden" name="insurer_id" id="insurer_id" value="product[insurer_id]"/>
+		    <input type="hidden" name="duty_id" id="duty_id" value="product_duty[duty_id]"/>
+		-->	
+			
+			<ul id="duty_name_list" style="display:none;">
+			
+			</ul>
+			
+			            
+        </td>
+		
+	
+		
+        <td class="tdEditArea">
+           
+            <input name="productduty[$key][duty_code]" id="duty_code_$key" value="" type="text">
+            
+	    </td>
+		
+	
+		
+	
+        <td class="tdEditArea">
+           
+            <input name="productduty[$key][amount]" id="duty_amount_$key" value="" type="text">
+         
+	    </td>
+	
+     
+        <td class="tdEditArea">
+				
+		<textarea name="productduty[$key][duty_note]" id="duty_note_$key" rows="2" class=""></textarea>
+		
+		</td>
+
+		
+	   </tr>
+	
+	  <!--{/loop}-->   
+	  
+    </tbody>
+	</table>
+    
+    <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>
+    
+</form>
+
+</div>
+                            </div>
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

@@ -1,0 +1,125 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+   <div id="toolbar">
+
+</div>
+   <div id="error">
+</div>
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+             <a href="space.php?do=admin_insurance_duty">保险责任</a>
+			 <!--{if !$blog[attribute_id]}-->
+            <label class="separator">&gt;</label>     
+                新建
+			 <!--{else}-->
+			  <label class="separator">&gt;</label> 
+			  修改
+			   <label class="separator">&gt;</label> 
+			   <a href="space.php?do=admin_insurance_duty&duty_id=$blog[duty_id]">$blog[duty_name]</a>
+			 <!--{/if}--> 	
+            
+      </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_duty&duty_id=$blog[duty_id]">
+
+
+<input type="hidden" name="blogsubmit" id="blogsubmit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+<input name="duty_id" value="$duty_id" type="hidden">
+
+   
+<table class="editable-table">
+    <tbody>
+	
+	<tr>
+        <td colspan="4" class="editable-header">基本信息</td>
+    </tr>
+   
+    <tr>
+        <td class="requiredField" width="80">保险公司：</td>
+        <td class="tdEditArea">
+		
+		
+		<select id="insurer_id" name="insurer_id">
+			<option value="0">&nbsp;</option>
+			
+			<!--{loop $list_company $key $value}-->
+			<option value="$value[insurer_id]" $company_arr_selected[$value[insurer_id]]>$value[insurer_name]</option>
+			<!--{/loop}-->
+		</select>        </td>
+    </tr>
+	
+	
+    <tr>
+        <td class="requiredField">责任代码：</td>
+        <td class="tdEditArea">
+		<input name="duty_code" value="$blog[duty_code]" type="text">		        </td>
+		
+		 <td class="requiredField">责任名称：</td>
+        <td class="tdEditArea">
+		<input name="duty_name" value="$blog[duty_name]" type="text">		        </td>
+		
+		
+		<td>
+             <a href="cp.php?ac=admin_insurance_duty&duty_id=$value[duty_id]" target="_self"><img src="template/images/updateButton.gif" alt="修改">
+            修改</a>
+         </td>
+    </tr>
+	
+</tbody></table>
+
+    
+    <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody>
+	</table>
+    
+</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div>
+                            </div>
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

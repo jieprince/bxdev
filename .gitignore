@@ -1,0 +1,15 @@
+/phpMyAdmin/
+/temp/
+/images/
+/DATA_DIR/
+/ecshop/
+/.settings/
+/.project
+/nbproject/
+/data/config.php
+/data/flashdata
+/baoxian/nbproject/private/
+/baoxian/config.php
+/baoxian/data/
+/baoxian/log/
+/baoxian/data/tpl_cache

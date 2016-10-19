@@ -1,0 +1,242 @@
+<!-- $Id: user_account_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js"}
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<div class="main-div" style="padding-bottom: 20px;">
+  <form action="user_account.php" method="post" name="theForm" onsubmit="return validate()">
+ <div style="float: left;margin-left: 30px;margin-top: 20px;">
+    <table width="100%">
+      <tr>
+        <td class="label">{$lang.user_id}：</td>
+        <td>
+          <input type="text" name="user_id" value="{$user_name}" size="20"
+          {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.surplus_amount}：</td>
+        <td>
+          <input type="text" name="amount" value="{$user_surplus.amount}" size="20"
+          {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.pay_mothed}：</td>
+        <td>
+          <select name="payment" {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3}disabled="true" {/if}>
+          <option value="">{$lang.please_select}</option>
+          {html_options options=$payment_list selected=$user_surplus.payment}
+          </select>
+        </td>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.process_type}：</td>
+        <td>
+          <input type="radio" name="process_type" value="0"
+          {if $user_surplus.process_type eq 0} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"}disabled="true" {/if} />{$lang.surplus_type_0}
+          <input type="radio" name="process_type" value="1"
+          {if $user_surplus.process_type eq 1} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3|| $action eq "edit"}disabled="true" {/if} />{$lang.surplus_type_1}
+          {if $action eq "edit" && ($user_surplus.process_type eq 2 || $user_surplus.process_type eq 3)}
+          <input type="radio" name="process_type" value="2"
+          {if $user_surplus.process_type eq 2|| $action eq "edit"} checked="true"{/if}{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} disabled="true"{/if} />{$lang.surplus_type_2}
+          <input type="radio" name="process_type" value="3"
+          {if $user_surplus.process_type eq 3|| $action eq "edit"} checked="true"{/if}{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} disabled="true"{/if} />{$lang.surplus_type_3}
+          {/if}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.surplus_notic}：</td>
+        <td>
+          <textarea name="admin_note" cols="55" rows="3"{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} readonly="true" {/if}>{$user_surplus.admin_note}</textarea>
+        </td>
+      </tr>
+      
+      {if $user_surplus.paid_time}
+      <tr>
+        <td class="label">管理员操作日期：</td>
+        <td>
+        	{$user_surplus.paid_time}
+        </td>
+      </tr>
+      {/if}
+      <tr>
+        <td class="label">{$lang.surplus_desc}：</td>
+        <td>
+          <textarea name="user_note" cols="55" rows="3"{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} readonly="true" {/if}>{$user_surplus.user_note}</textarea>
+        </td>
+      </tr>
+   	<tr>
+        <td class="label">{$lang.status}：</td>
+        <td>
+          <input type="radio" name="is_paid" value="0"
+          {if $user_surplus.is_paid eq 0} checked="true"{/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.unconfirm}
+          <input type="radio" name="is_paid" value="1"
+          {if $user_surplus.is_paid eq 1} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.confirm}
+          <input type="radio" name="is_paid" value="2"
+          {if $user_surplus.is_paid eq 2} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.cancel}
+        </td>
+      </tr> 
+      
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+          <input type="hidden" name="id" value="{$user_surplus.id}" />
+          <input type="hidden" name="act" value="{$form_act}" />
+          {if $user_surplus.process_type eq 0 || $user_surplus.process_type eq 1}
+          <input type="submit" value="{$lang.button_submit}" class="button" />
+          <input type="reset" value="{$lang.button_reset}" class="button" />
+          {/if}
+        </td>
+      </tr>
+    </table>
+    </div>
+    {if $action eq 'edit'}
+    <div style="float: left;margin-left: 100px;margin-top: 20px;padding: 20px; background: #fff">
+    <table>
+			 <tr>
+				    <td colspan="2"><strong>{$lang.surplus_info}：</strong><hr /></td>
+				  </tr>
+				  <tr>
+				    <th align="right" width="100px"><!-- 充值提现申请换行  edit yes123 2014-10-05 -->
+				       <strong>{$lang.user_id}</strong> 
+				    </th> 
+				    	<td>{$user_name} </td>
+				  </tr>
+				  <!-- 银行名称 -->
+				  {if $bankinfo.b_account}
+				  <tr>
+				  	<th align="right"> <strong>{$lang.account}</strong></th>
+				  	<td>{$bankinfo.b_account}</td>
+				  </tr>
+				  {/if}
+				  
+				  
+				  <!-- 开户分行支行 -->
+				  {if $bankinfo.sub_branch}
+				  <tr>
+				  	<th align="right">  <strong>{$lang.sub_branch}</strong></th>
+				  	<td>{$bankinfo.sub_branch}</td>
+				  </tr>
+				   {/if}
+				   
+				   
+				    <!-- 真名 -->
+				  {if $real_name}
+				  <tr>
+				  	<th align="right">  <strong>{$lang.real_name}</strong></th>
+				  	<td>{$real_name}</td>
+				  </tr>
+				  {/if}
+				  <!--账户余额-->
+				  
+				  {if $user_money}
+				  <tr>
+				  	<th align="right"> <strong>账户余额</strong></th>
+				  	<td>{$user_money}</td>
+				  </tr>
+				  {/if}
+				    <!-- 帐号 -->
+				  {if $bankinfo.bank_code}
+				  <tr>
+				  	<th align="right"> <strong>{$lang.account_num}</strong></th>
+				  	<td>{$bankinfo.bank_code}</td>
+				  </tr>
+				  {/if}
+				  
+				      <!-- 金额-->
+				  <tr>
+				  	<th align="right"> <strong>{$lang.surplus_amount}</strong></th>
+				  	<td>{$surplus.amount} </td>
+				  </tr>
+				
+				      <!-- 申请日期-->
+				  <tr>
+				  	<th align="right"> <strong>{$lang.add_date}</strong></th>
+				  	<td>{$surplus.add_time}</td>
+				  </tr>
+				
+				      <!-- 类型-->
+				  <tr>
+				  	<th align="right"> <strong>{$lang.process_type}</strong></th>
+				  	<td>{$process_type}</td>
+				  </tr>
+				
+				      <!-- 支付方式-->
+				  <tr>
+				  	<th align="right"> <strong>{$lang.pay_mothed}</strong></th>
+				  	<td>{$surplus.payment}</td>
+				  	{if $surplus.pay_document}
+					  	<td>
+					  		<input type="button" value="查看汇款凭证" onclick="show_img('../{$surplus.pay_document}','汇款凭证');">
+					  	</td>
+				 	{/if}
+				  </tr>
+			</table>
+		</div>
+		 {/if}
+  </form>
+    <div style="clear: both"></div>
+</div>
+<div style="clear: both"></div>
+
+<script type="text/javascript">
+	//浏览图片
+	function show_img(img_url,img_name){
+		   
+	 		var pageii = $.layer({
+	 			  	type: 1,
+	 			 	maxmin:true,
+	 			    border: [0],
+	     	        title: img_name, //不显示默认标题栏
+					area:['400px', '400px'],
+					offset : ['120px', ''],
+	     	        shade: [0.3, '#696969'], //不显示遮罩
+	     		    success: function(index){
+	     		    	layer.full(layer.index , {area : ['400px','400px'],offset : ['120px',''],border : [6]});
+	     		    },
+	 			    page:{html:'<div><img src="'+img_url+'"></div>'}
+		
+			});
+	}
+</script>
+
+<script language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+
+    validator.required("user_id",   user_id_empty);
+    validator.required("amount",    deposit_amount_empty);
+    validator.isNumber("amount",    deposit_amount_error, true);
+
+    var deposit_amount = document['theForm'].elements['amount'].value;
+    if (deposit_amount.length > 0)
+    {
+        if (deposit_amount == 0 || deposit_amount < 0)
+        {
+            alert(deposit_amount_error);
+            return false;
+        }
+    }
+
+    return validator.passed();
+}
+
+//-->
+{/literal}
+</script>
+{include file="pagefooter.htm"}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪个人中心</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+	 
+    <div>
+        <div class="panel panel-primary" style="border-color: #ed462f; border-radius:0px;" >
+            <div class="panel-heading f-fwb text-center" style="background: #ed462f;border-color: #ed462f;border-radius:0px;">
+                修改密码
+            </div>
+            <div class="panel-body">
+                <form role="form" id="formPassword" method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" name="old_password" class="form-control" id="exampleInputPassword2" placeholder="原密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" name="new_password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
+                        </div>
+                    </div>
+                   	<div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" name="comfirm_password" class="form-control" id="exampleInputPassword2" placeholder="确认密码">
+                        </div>
+                    </div>
+                    <button type="button" onclick="checkNewPassword();" class="btn btn-info btn-block">修改</button>
+
+                    <div class="f-cb"></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+   	function checkNewPassword(){
+   		var new_password = $("#formPassword input[name=new_password]").val();
+   		var comfirm_password = $("#formPassword input[name=comfirm_password]").val();
+   		var old_password =  $.trim($("#formPassword input[name=old_password]").val());
+   		
+   		if(old_password.length<1){
+   			alert('请输入旧密码！');
+   			return;
+   		}
+   		
+   		if (/^.*?[\d]+.*$/.test(new_password) && /^.*?[A-Za-z].*$/.test(new_password) && /^.{6,16}$/.test(new_password)) {
+   	        if(new_password==comfirm_password){
+   	        	//$('#formPassword input[type="submit"]').trigger("click");
+   	        	$.post('user.php?act=act_edit_password',{
+   	        		'old_password':old_password,
+   	        		'new_password':new_password,
+   	        		'is_client':1,
+   	        		'is_weixin':1
+   	        	},function(data){
+   	        		console.info(data);
+   	        		if(data.code==1){
+   	        			alert(data.msg);
+   	        		}else{
+   	        			alert("更改密码成功！");
+   	        			window.location="user.php";
+   	        		}
+   	        		
+   	        	},'json')
+   	        	
+   	        }else{
+   	        	alert('新密码和确认密码不一致！');
+   	        }
+   	        
+   		}else{
+   			alert('密码长度必须大于6位！\n必须由数字与字母组成！');
+   			return;
+   		}
+   		
+   	}
+</script>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+
+</body>
+</html>

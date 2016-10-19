@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$shop_name}</title>
+<script src="js/jquery.min.js"></script>
+<script src="js/mark.js"></script>
+<script src="js/roll.js"></script>
+<script src="js/lanrenzhijia.js"></script>
+<link href="css/ebaoins.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="container">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><!--头部开始-->
+<!--头部结束-->
+    <div class="wrap"><!--广告焦点图开始-->
+		<div class="banner-show" id="js_ban_content">
+			<div class="cell" style="background:url(images/ad1.jpg) no-repeat center 0;">
+				<div class="con"></div>
+			</div>
+			<div class="cell" style="background:url(images/ad2.jpg) no-repeat center 0;display:none;">
+				<div class="con"></div>
+			</div>
+			<div class="cell" style="background:url(images/ad3.jpg) no-repeat center 0;display:none;">
+				<div class="con"></div>
+			</div>
+		</div>
+		<div class="banner-control" id="js_ban_button_box">
+			<a href="javascript:;" class="left"></a>
+			<a href="javascript:;" class="right"></a>
+		</div>
+		<div class="ad_01"><!--登录注册开始-->
+        	<div class="ad_02">
+        		<div class="ad_03"><!--新增信息开始-->
+                	<ul>
+            			<li>注册用户<span>{$user_count}</span>人</li>
+            		</ul>
+                    
+                    <div class="con_02" id="list_con">
+						<ul class="list" id="news_list">
+						   <!--{foreach from=$show_info item=info}-->
+						  	 	<li><a href="">{$info}</a></li>
+						   <!--{/foreach}--> 		
+						</ul>
+					</div>
+					<script language="javascript">scrollTitle(3000,50);</script>
+                    
+                </div><!--新增信息结束-->
+           	  	<div class="login_reg"><!--登录注册开始-->
+                	<ul>
+            			<h2>登录{$shop_name}</h2>
+                        <div class="ul_login">
+                            <div class="login_reg_01">
+                            <form name="formLogin" action="user.php" method="post">
+                                <input type="hidden" name="act" value="act_login" />	
+                                <input class="input_01" type="text" name="username"/>
+                                <input class="input_02" type="password" name="password"/>
+                            </div>
+                            <input class="btn" type="submit" value="登录平台" />
+						</div>
+                        <p>还不是{$shop_name}用户？<a href="">立即注册！</a><span></p>
+            		</ul>
+                </div><!--登录注册结束-->
+            </div>
+        </div><!--登录注册结束-->
+	</div><!--广告焦点图结束-->
+    <div class="pagebody"><!--中部产品开始-->
+    	<div class="hotproduct">
+        	<h2>热卖产品<span>HOT PRODUCT</span></h2>
+            <div class="hotproduct_01">
+            	<ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">平安少儿保险卡</a></h3>
+                    <li>限时优惠  RMB30元</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">丢不了儿童智能手表</a></h3>
+                    <li>简要描述简要描述简要描述简要描述简要描述</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">旅游意外险</a></h3>
+                    <li>限时优惠  RMB30元</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">意外险热销卡</a></h3>
+                    <li>简要描述简要描述简要描述简要描述简要描述</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">汽车保险产品</a></h3>
+                    <li>限时优惠  RMB30元</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">吉祥如意健康险</a></h3>
+                    <li>简要描述简要描述简要描述简要描述简要描述</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">女性保险</a></h3>
+                    <li>限时优惠  RMB30元</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark_02">
+						<img src='images/tu1.jpg'>
+						<a href="" class="mark_02"></a>
+					</div>
+                	<h3><a href="">少儿险</a></h3>
+                    <li>简要描述简要描述简要描述简要描述简要描述</li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div><!--中部产品结束-->
+    <div class="container_03">
+        <div class="pagebody_gonggao">
+        	<div class="gonggao_01">
+				<h2>平台公告<span>NEWS</span></h2>
+				<ul class="gonggao_02">
+					<a href="">
+                    	<img src="images/tu2.jpg" width="362" height="214" />
+						<p>巴卡斯楼房科萨科夫</p>
+                    </a>
+				</ul>
+                <ul style="float:right;">
+                	<li><a href=""><span>{$shop_name}通过保监会保险互联网业务备案</span></a></li>
+                    <li><a href="">北京保监局发布新车险测评 安诚财险投诉率最高。山东分公司对方告诉对方广东省非广东分公司的分公司的风格</a></li>
+                    <li><a href="">“丢不了”打响儿童智能可穿戴设备第一枪</a></li>
+                    <li><a href="">{$shop_name}与新华保险展开全面合作</a></li>
+                    <li><a href="">美国华裔女子被警察殴打辱骂 获赔15万美元</a></li>
+                    <li><a href="">老人账户资金诈骗损失险 实为资金账户安全责任险</a></li>
+                    <li><a href="">车险巨亏承保门槛提高 一年出险三次或被拒保</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="question">
+            	<h2>常见问题<span>QUESTION</span></h2>
+                <!--{foreach from=$cjwt item=article name=loop}-->	
+                	
+                		 {if $smarty.foreach.loop.first}
+                		 	<li><!-- "article.php?id= $article.article_id" -->
+                		 		<a href="category.php?act=faq"><span>{$article.title}<span></a></li>
+                			{else}
+                			<li><a href="category.php?act=faq">{$article.title}</a></li>
+                		 {/if}
+                
+                <!--{/foreach}--> 
+            </div>
+            <div class="clear"></div>
+        </div>
+        </div>
+        <div class="pagebody_baoxian"><!--保险代理人开始-->
+        	<h2>保险代理人<span>SALESMAN</span></h2>
+            <div class="baoxian_01">
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+                <ul>
+                	<div class="ebaoins_mark">
+						<img src='images/a8.png'>
+						<a href="" class="mark"></a>
+					</div>
+                	<h3><a href=""><span>王小娜</span>资深保险专员</a></h3>
+                    <li>从业经验7年，代理人保财险、平安财险、太平洋财险</li>
+                </ul>
+            </div>
+        </div><!--保险代理人结束-->
+        <div class="pagebody_partner"><!--合作伙伴开始-->
+        	<h2>合作伙伴<span>PARTNER</span></h2>
+            <div class="partner_01">
+            	<a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+                <a href=""><ul>新华保险</ul></a>
+            </div>
+        </div><!--合作伙伴结束-->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
+</body>
+</html>
+<script src="js/lunbo.js"></script>

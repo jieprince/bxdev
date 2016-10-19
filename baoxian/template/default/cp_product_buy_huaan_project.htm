@@ -1,0 +1,410 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->	
+<script src="../js/jquery.min.js"></script>
+<script src="../static/js/ajaxfileupload.js"></script>
+<script src="../static/js/jquery.json.min.js"></script>
+<script src="../static/js/json2.js"></script>
+<link href="../layer/skin/layer.css" type="text/css" rel="stylesheet"/>
+<link href="../layer/skin/layer.ext.css" type="text/css" rel="stylesheet"/>
+<script src="../layer/layer.min.js"></script>
+<script src="../layer/extend/layer.ext.js"></script>
+<input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+<input id="time_temp_pr" name="time_temp_pr" value="{$period_limit}" type="hidden">
+<input id="applyNum" name="applyNum" value="1" type="hidden">
+<input id="duty_price_ids" name="duty_price_ids" value="{$duty_price_ids}" type="hidden">
+<input id="cost_limit" name="cost_limit" value="{$cost_limit}" type="hidden">
+
+<div class="x_p_a_c c"><h2 class="l">产品责任及限额</h2></div>
+<div class="c_p_a_d" style="padding:10px;">
+     <table align="center" class="border_table_05_buy" cellpadding="0" cellspacing="0" width="950" >
+     <tr><td class="tac fwb">产品名称</td><td class="tac fwb">责任</td><td class="tac fwb">(累计,每次,每人)(万元)/保费(元)</td><td class="tac fwb">限额说明</td></tr>
+        <!--{loop $list_product_duty_price $index $value1}-->
+             <tr>
+                <td class="tac">$value1[product_name]</td>
+                <td class="tac">$value1[duty_name]</td>
+                <td class="tac" id="xiane_price" data-amount="{$value1[amount]}">$value1[amount]/$value1[price]起</td>
+                <td id="beizhu_huaan"></td>
+              </tr>
+        <!--{/loop}-->
+             
+     </table>
+</div>
+<div class="x_p_a_c c"><h2 class="l">购买信息</h2></div>
+<div class="c_p_a_d">
+  <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0"  style="margin-top:10px;margin-bottom:10px;">
+      <tbody>
+          <tr class="">
+          	  <th width="80" height="40" align="right" class="pad_R10">保费</th>
+              <td width="380" class="">
+                  <input type="text" id="q_prodcutMarkPrice" class="i_f pa_ui_element_normal pad_TB3" value="" onblur="set_prodcutMarkPrice(this.value)" placeholder="保费{$prodcutMarkPrice}起"/>元
+                  <span id="q_prodcutMarkPrice_warn" style="float left;" class="warn_strong"></span>
+              </td>
+              <th width="80" height="40" align="right" class="pad_R10">购买份数</th>
+              <td width="380" class="">
+                  1份
+              </td> 
+              
+          </tr>
+          <tr>
+          	  <th width="80" align="right" class="pad_R10">工程造价范围</th>
+
+              <td width="380">
+              	$cost_name
+              </td>
+              <th align="right" width="80" class="pad_R10">工程工期范围</th>
+
+              <td width="380">
+              	$period_name
+              </td>
+          </tr>
+          <tr class="">
+          	  
+               
+              <th width="80" align="right" class="pad_R10">
+              <span class="a_x">*</span>保险起期</th>
+
+              <td width="380">
+<input value="" maxlength="50" name="startDate" id="startDate" title="购保险起期" class="i_f pa_ui_element_normal pad_TB3" type="text" readonly="readonly">
+<span id="startDate_warn" style="float left;" class="warn_strong">请输入名称</span>
+              </td>
+              <th align="right" width="80" class="pad_R10">
+              <span class="a_x">*</span>保险止期</th>
+              <td width="380">
+<input value="" maxlength="50" name="endDate" id="endDate" title="保险止期" class="i_f pa_ui_element_normal pad_TB3" type="text" readonly="readonly">
+<span id="endDate_warn" style="float left;" class="warn_strong">保险止期</span>
+              </td>
+          </tr>
+   
+  </tbody>
+  </table>
+</div>
+
+<div class="x_p_a_c c">
+<h2 class="l">投保人信息</h2>
+<div class=""></div>
+</div>
+
+<div class="c_p_a_d">
+<table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;margin-bottom:10px;">
+ 
+<tbody>
+<tr >
+	<th width="80" height="40" align="right" class="pad_R10">投保人类型</th>
+	<td colspan="3" id="applicant_type_single" align="left">
+    	<input class="pa_ui_element_normal" name="applicant_type" value="1"  title="个人" type="radio" checked="checked" ><label  class="ch app_type_radio"  style="cursor:pointer">个人</label>&nbsp;&nbsp;&nbsp;
+      <input class="pa_ui_element_normal" name="applicant_type" value="2" title="机构" type="radio">
+      <label class="ch app_type_radio" style="cursor:pointer">机构</label>
+    </td>
+</tr>
+<tr >
+	<td colspan="4" height="10"></td>
+</tr>
+<tr class="" id="app_list_1">
+    <th width="80" height="40" align="right" class="pad_R10" ><span class="a_x">*</span>姓名</th><td width="380"><input value="" maxlength="50" name="applicant_fullname" id="applicant_fullname" title="投保人姓名" class="i_f pa_ui_element_normal pad_TB3" type="text" onfocus="javascript:showwarn('applicant_fullname_warn');" onblur="javascript:check_applicant_name();"><span id="applicant_fullname_warn" style="float left;" class="warn_strong"></span></td><th width="80" align="right" class="pad_R10"><span class="a_x">*</span>性别</th><td width="380"><span id="clientSexInput"><input class="pa_ui_element_normal pad_TB3" name="applicant_sex" value="0" id="applicant_sex_man" title="投保人称谓-先生" type="radio" checked="checked" ><label for="man" class="ch">先生</label>&nbsp;&nbsp;&nbsp;<input class="pa_ui_element_normal pad_TB3" name="applicant_sex" value="1" id="applicant_sex_woman" title="投保人称谓-女士" type="radio"><label for="woman" class="ch">女士</label></span><span id="applicant_sex_warn" style="float left;" class="warn_strong"></span></td> 
+</tr>
+ 
+<tr>
+<th align="right" height="40" class="pad_R10" width="80"><span class="a_x">*</span>证件类型</th>
+<td width="380">
+<select title="身份证类别" name="applicant_certificates_type" id="applicant_certificates_type" class="i_e pad_TB3" style="width:150px;">
+    <!--{loop $attr_applicant_type_huaan $index $value1}-->
+    <option value="{$index}">{$value1}</option>
+    <!--{/loop}-->
+</select>
+
+<span id="applicant_certificates_type_warn" style="float left;" class="warn_strong"></span>
+</td>
+<th align="right" width="80" class="pad_R10"><span class="a_x">*</span>证件号码</th>
+<td width="380">
+<input value="" maxlength="50" name="applicant_certificates_code" id="applicant_certificates_code" title="投保人姓名" class="i_f pa_ui_element_normal pad_TB3" type="text" onblur="check_applicant_card();">
+
+<span id="applicant_certificates_code_warn" style="float left;" class=""></span>
+</td> 
+
+</tr>
+ 
+ 
+<tr class="">
+    <th align="right" height="40" class="pad_R10"><span class="a_x">*</span>手机</th>
+    <td>
+    <input name="applicant_mobilephone" id="applicant_mobilephone" value="" maxlength="11" title="投保人手机" class="i_f pa_ui_element_normal pad_TB3" type="text" onfocus="javascript:showwarn('applicant_mobilephone_warn');" onblur="javascript:check_applicant_mobilephone();">
+    <span id="applicant_mobilephone_warn" style="float left;" class="warn_strong">请输入名称</span>
+    </td>
+	<th align="right" width="80" class="pad_R10"><span class="a_x">*</span>E-mail</th>
+    <td width="380">
+    <div class="applicant_icsEmailBox" >                                               
+    <input name="applicant_email" id="applicant_email" value="" title="投保人email" class="i_f pa_ui_element_normal pad_TB3" type="text" onfocus="javascript:showwarn('applicant_email_warn');" onblur="javascript:check_applicant_email();">
+    <span id="applicant_email_warn" style="float left;" class="warn_strong"></span>
+   </div>
+    </td> 
+</tr>
+<tr class="">
+    <th align="right" height="40" class="pad_R10"><span class="a_x">*</span>国籍</th>
+    <td colspan="3">
+        <select name="nation_code">
+            <!--{loop $attr_nationality_huaan $index $value}-->
+            <option value="{$index}">{$value}</option>
+            <!--{/loop}-->
+        </select>
+    </td>
+</tr>
+ 
+</tbody>
+</table>
+</div>
+ 							
+<div class="x_p_a_c c">
+    <h2 class="l">工程关系方</h2>
+    
+</div>
+<!--<div class="c_p_a_d">
+<table  cellpadding="0" cellspacing="0" border="0" >
+ 
+	<tr class="">
+ 
+         <th><span class="a_x">*</span>与被保险人关系</th>
+         <td width="20"></td>
+         <td>
+                            
+             
+        </td>
+        <td width="20"></td>
+        <th ><span class="a_x">*</span>受益人</th>
+        <td width="20"></td>
+         <td>
+                            
+        <select title="受益人" name="beneficiary" id="beneficiary" backval="" class="i_e pad_TB3">
+        <option value="1">法定</option>
+        </select> </td>
+    </tr>
+  
+</table>	
+</div>-->
+
+<div class="c_p_a_d" style="padding:10px;">
+     <table align="center" class="border_table_05_buy" cellpadding="0" cellspacing="0" width="950" id="list_assured_list" >
+     <tr><th class="tac fwb">工程关系方</th><th class="tac fwb">名称</th><th class="tac fwb">证件类型</th><th class="tac fwb">证件号码</th><th class="tac fwb">手机号</th><th class="tac fwb">是否被保险人</th><th class="tac fwb"></th></tr>
+       	<tr class="list_info">
+             	<td class="tac fwb" width="110"  data-title="assured_type">
+                	<select>
+                    	<!--{loop $attr_assured_type_huaan $index $value1}-->
+                        <option value="{$index}" >{$value1}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+                <td class="tac" width="140" data-title="fullname">
+                	<input type="text"  style="width:130px" />
+                </td>
+                
+                <td class="tac" width="110" data-title="certificates_type">
+                	<select >
+                    	<!--{loop $attr_applicant_type_huaan $index $values}-->
+                        <option value="{$index}" >{$values}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+                <td class="tac" width="150" data-title="certificates_code">
+                	<input type="text" name="ass_certificates_code" style="width:140px" />
+                </td>
+                <td class="tac" width="140" data-title="assured_mobilephone">
+                	<input type="text"  style="width:130px" />
+                </td>
+                <td class="tac" width="90" data-title="be_assured">
+                	<select class="be_ased">
+                    	<!--{loop $attr_be_assured $index $value1}-->
+                        <option value="{$index}" >{$value1}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+                
+                <td class="tac" width="30" height="45">&nbsp;
+                	
+                </td>
+                
+     	</tr>
+     </table>
+     <div align="center">
+     	<a class="" href="javascript:void(0)" onclick="add_assured_info()" style="display:inline-block; background:#090; border-radius:3px; width:90px; height:25px; line-height:25px; color:#fff;">增加关系方</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="" href="javascript:void(0)" onclick="checked_assuredAllPan()" style="display:inline-block; background:#F00; border-radius:3px; width:90px; height:25px; line-height:25px; color:#fff;">信息验证</a>
+        </div>
+     <input type="hidden" name="assured_info" id="assured_info" value="" />
+</div>		
+<table id="assured_info_demo" style="display:none;">
+	<tr class="list_info">
+             	<td class="tac fwb" width="110"  data-title="assured_type">
+                	<select >
+                    	<!--{loop $attr_assured_type_huaan $index $value1}-->
+                        <option value="{$index}" >{$value1}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+                <td class="tac" width="140" data-title="fullname">
+                	<input type="text"  style="width:130px" />
+                </td>
+                
+                <td class="tac" width="110" data-title="certificates_type">
+                	<select >
+                    	<!--{loop $attr_applicant_type_huaan $index $values}-->
+                        <option value="{$index}" >{$values}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+
+                <td class="tac" width="150" data-title="certificates_code">
+                	<input type="text"  style="width:140px" />
+                </td>
+                <td class="tac" width="140" data-title="assured_mobilephone">
+                	<input type="text"  style="width:130px" />
+                </td>
+                <td class="tac" width="90" data-title="be_assured">
+                	<select >
+                    	<!--{loop $attr_be_assured $index $value1}-->
+                        <option value="{$index}" >{$value1}</option>
+                        <!--{/loop}-->
+                    </select>
+                </td>
+                
+                <td class="tac" width="30">
+                	<a href="javascript:void(0)" onclick="deletecelpan(this)" class="btn_link002" style="margin:10px 0px" >删</a>
+                </td>
+     	</tr>
+</table>	
+ <!--<td class="tac" width="50" title="gender">
+                	<select name="ass_gender" >
+                    	<option value="M" >男</option>
+                        <option value="F" >女</option>
+                    </select>
+                </td>
+                <td class="tac" width="100" title="business_type">
+                	<input type="text" name="ass_business_type" style="width:90px"/>
+                </td>
+                
+                <td class="tac" width="110" title="assured_mobilephone">
+                	<input type="text" name="ass_assured_mobilephone" style="width:100px;" />
+                </td>
+                <td class="tac" width="70" title="assured_email">
+                	<input type="text" name="ass_assured_email" style="width:70px;" />
+                </td>
+                -->
+
+<div class="x_p_a_c c">
+    <h2 class="l">工程信息</h2>
+    
+</div>
+	
+<div class="c_p_a_d" >
+     <table align="center"  cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;margin-bottom:10px;" >
+         <tr class="">
+            <th width="80" align="right" class="pad_R10"><span class="a_x">*</span>工程名称</th>
+            <td width="380">
+                <input type="text" class="i_f pa_ui_element_normal pad_TB3"  id="project_name" name="project_name" onblur="check_applicant_null('project_name');"/>
+                <span id="project_name_warn" class="warn_strong" style="float left;"></span>
+            </td>
+            
+            <th width="80" align="right" class="pad_R10"><span class="a_x">*</span>工程类型</th>
+            <td width="380">
+                <select title="工程类型" name="project_type" id="project_type" backval="" class="i_e pad_TB3" style="width:150px;">
+                    <!--{loop $attr_project_type_huaan $index $value1}-->
+                    <option value="{$value1}" >{$value1}</option>
+                    <!--{/loop}-->
+                </select>
+            </td>
+            
+    	 </tr> 
+         <tr>
+         	<th   height="40" align="right" class="pad_R10"><span class="a_x">*</span>工程造价</th>
+            <td>
+             	<input type="text" class="i_f pa_ui_element_normal pad_TB3"  id="project_price" name="project_price" onblur="check_applicant_null('project_price');"/> 元
+                <span id="project_price_warn" class="warn_strong" style="float left;"></span>
+            </td> 
+            <th  height="40" align="right" class="pad_R10"><span class="a_x">*</span>邮政编码</th>
+            <td >
+             	<input type="text" class="i_f pa_ui_element_normal pad_TB3"  id="project_zipcode" name="project_zipcode" onblur="check_applicant_null('project_zipcode');"/>
+                <span id="project_zipcode_warn" class="warn_strong" style="float left;"></span>
+            </td> 
+         </tr>
+         <tr class="">
+         	
+            <th height="40" align="right" class="pad_R10"><span class="a_x">*</span>施工起期</th>
+            <td >
+            	<input value="" maxlength="50" name="project_start_date" id="project_start_date" title="保险止期" class="i_f pa_ui_element_normal pad_TB3" type="text" readonly="readonly">
+            </td>
+              
+            <th  height="40" align="right" class="pad_R10"><span class="a_x">*</span>施工止期</th>
+            <td >
+                <input value="" maxlength="50" name="project_end_date" id="project_end_date" title="保险止期" class="i_f pa_ui_element_normal pad_TB3" type="text" readonly="readonly">
+            </td>
+            
+    	 </tr>    
+         <tr class="">
+            <th width="80"  align="right" class="pad_R10"><span class="a_x">*</span>施工内容</th>
+            <td  colspan="5" >
+                <select name="project_content" id="project_content" class="i_e pad_TB3" >
+                    <option value="商场装修">商场装修</option>
+                    <option value="商铺装修">商铺装修</option>
+                    <option value="室内装修">室内装修</option>
+                </select>
+
+                <span id="project_content_warn" class="warn_strong" style="float left;"></span>
+            </td>
+             
+    	 </tr>    
+         <tr class="">
+            <th width="80" height="40" align="right" class="pad_R10"><span class="a_x">*</span>施工地址</th>
+            <td  colspan="5">
+            	<select name="province_name" id="province_name" class="i_e pad_TB3" onchange="provice_city_Ajax('city')">
+                	 
+                </select>&nbsp;
+                <select name="city_name" id="city_name"  class="i_e pad_TB3">
+                	 
+                </select>&nbsp;
+            	<input type="text" class="i_f pa_ui_element_normal pad_TB3"  id="project_location" name="project_location" onblur="check_applicant_null('project_location');" style="width:403px;"/>
+                <span id="project_location_warn" class="warn_strong" style="float left;"></span>
+            </td>
+             
+    	 </tr>    
+         <!--<tr>
+         	<th width="80"></th>
+         	<td colspan="5">
+            	<span style="color:red; font-weight:bolder;">提示：</span>此产品仅承保北京地区工程项目，北京以外地区的过程项目，请勿购买！
+            </td>
+         </tr>-->
+     </table>
+</div>	
+
+<!--受益人-->
+<div class="x_p_a_c c"><h2>受益人</h2></div>
+<div class="c_p_a_d">
+    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="100%">
+
+        <tr class="">
+            <th width="11%" class="pad_R10">
+                <span class="a_x">*</span>受益人</th>
+            <td width="89%">
+				
+                <select title="受益人"  id="beneficiary" backval="" class="i_e pad_TB3">
+                    <option value="1" selected="1">法定</option>
+                    <option value="2">指定</option>
+                </select>
+                &nbsp;&nbsp;
+                <span id="beneficiary_span" style="display:none">
+                    <input type="text" value="" name="beneficiary" id="beneficiary_text" class="i_f pa_ui_element_normal pad_TB3 hasDatepicker" value="法定" onblur="str_length_br('beneficiary_text',100)" />
+                    <span id="beneficiary_text_warn" class="right_strong"></span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>		 
+<script type="text/javascript">
+	
+	
+	$().ready(function() {
+ 
+		var duty_beizhu = $('#xiane_price').data('amount').split(',');
+		var duty_beizhu_html = '&nbsp;&nbsp;每次事故赔偿限额：'+duty_beizhu[1]+'万元<br>&nbsp;&nbsp;每次事故每人赔偿限额：'+duty_beizhu[2]+'万元<br>&nbsp;&nbsp;累计赔偿限额：'+duty_beizhu[0]+'万元';
+	 	$('#beizhu_huaan').html(duty_beizhu_html);
+
+	});
+</script>								
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->								

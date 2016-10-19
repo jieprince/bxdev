@@ -1,0 +1,136 @@
+{include file="pageheader.htm"}
+<style>
+.border_table_05{ background:#fff;}
+.border_table_05 td{border-bottom:#dddddd solid 1px;line-height: 28px;}
+.border_table_05 th{border-bottom:#dddddd solid 1px;line-height: 35px;}
+.fontbloder{font-weight:bolder}
+</style>
+
+<div class="form-div">
+<h3>
+	<span>保单信息</span>
+</h3>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+	class="border_table_05">
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder">保单号：</td>
+		<td bgcolor="#ffffff" class="color_94" align="left">{$policy.policy_no}</td>
+		<td bgcolor="#ffffff" class="fontbloder">总保费：</td>
+		<td bgcolor="#ffffff" class="color_94" align="left">{$policy.total_premium}</td>
+		
+		<td bgcolor="#ffffff" class="fontbloder">保险起期：</td>
+		<td bgcolor="#ffffff" class="color_94" align="left">{$policy.start_date}</td>
+	</tr>
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder" >保单状态：</td>
+		<td bgcolor="#ffffff" class="color_94" align="left">
+			<!-- {if $policy.policy_status eq 'saved'} -->
+					已保存
+			<!-- {/if} -->
+			<!-- {if $policy.policy_status eq 'insured'} -->
+					<span style="color: red">已投保</span>
+			<!-- {/if} -->
+		</td>
+		<!-- {if $policy.policy_status eq 'insured'} -->
+			<td bgcolor="#ffffff" class="fontbloder">下载保单：</td>
+			<td bgcolor="#ffffff" align="left"><a href="http://epolicy.sinosig.com/digitalBill_download/">去下载</a></td>
+		<!-- {/if} -->
+	</tr>
+</table>
+<h3><span>被保险人信息：</span></h3>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+	class="border_table_05">
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder">姓名：</td>
+		<td bgcolor="#ffffff" align="left">{$policy.user_info_applicant.fullname}</td>
+
+		<td bgcolor="#ffffff" class="fontbloder">手机：</td>
+		<td bgcolor="#ffffff" align="left">{$policy.user_info_applicant.mobiletelephone}</td>
+	</tr>
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder">证件类型：</td>
+		<td bgcolor="#ffffff" align="left">身份证</td>
+
+		<td bgcolor="#ffffff" class="fontbloder">证件号码：</td>
+		<td bgcolor="#ffffff" align="left">{$policy.user_info_applicant.certificates_code}</td>
+	</tr>
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder">性别：</td>
+		<td bgcolor="#ffffff" align="left">{$policy.user_info_applicant.gender}</td>
+
+		<td bgcolor="#ffffff" class="fontbloder">电子邮箱：</td>
+		<td bgcolor="#ffffff" align="left">{$policy.user_info_applicant.email}</td>
+	</tr>
+</table>
+
+<h3><span>车辆信息：</span></h3>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05">
+		<tr align="center">
+			<td class="fontbloder">车牌号码</td>
+			<td align="left">{$car.carID}</td>
+			<td class="fontbloder">投保城市</td>
+			<td align="left">{$car.cityName}</td>
+		</tr>
+		<tr align="center">
+			<td class="fontbloder">车辆登记日期</td>
+			<td align="left">{$car.firstRegisterDate}</td>
+			<td class="fontbloder">车架号</td>
+			<td align="left">{$car.VIN}</td>
+		</tr>
+		<tr align="center">
+			<td class="fontbloder">发动机号</td>
+			<td align="left">{$car.engineId}</td>
+			<td class="fontbloder">厂牌型号</td>
+			<td align="left">{$car.carType}</td>
+		</tr>
+</table>
+
+<h3>
+	<span>投保险种及费用</span>
+</h3>
+ 
+<!-- {if $policy.attribute_type eq 'compulsory'} 交强险-->
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05">
+		<tr align="center">
+			<td class="fontbloder">保险责任</td>
+			<td class="fontbloder">保险金额/赔偿限额（元）</td>
+			<td class="fontbloder">保费小计（元）</td>
+		</tr>
+		<tr>
+			<td align="center">交强险</td>
+			<td align="center">122000.00</td>
+			<td align="center">950.00</td>
+		</tr>
+		<tr>
+			<td align="center">车船费</td>
+			<td align="center">代缴</td>
+			<td align="center">540.00</td>
+		</tr>
+	</table>
+		
+	<!-- {else} 商业险 -->
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="border_table_05">
+		<tr align="center">
+			<td class="fontbloder">选择险种</td>
+			<td class="fontbloder">保额（元）</td>
+			<td class="fontbloder">保费（元）</td>
+		</tr>
+	   <!--{foreach from=$policy_car_sun_commercial  item=item}--> 
+	   		<tr>
+	   			<td align="center">{$item.insureName}</td>
+	   			<td align="center">{$item.insureAmount}</td>
+	   			<td align="center">{$item.insurePremium}</td>
+	   		</tr>
+	   
+	   <!--{/foreach}-->
+	</table>
+	
+	
+	
+	
+<!-- {/if} -->
+</div>
+
+
+

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="description" content="全联保险经纪网春节大礼包" />
+    <title>全联保险经纪网春节大礼包</title>
+
+    <link rel="stylesheet" href="../mobile_page/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../mobile_page/dist/fonts/font-awesome/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="../mobile_page/dist/css/style_spring_active_mobile.css">
+	<script type="text/javascript" src="js/checkedweixin.js"></script>
+    
+</head>
+<body>
+<style>
+	.layermcont{padding:0px 10px 30px 10px;}
+	.layermchild h3 {
+		border-bottom: 1px solid #ebebeb;
+		border-radius: 5px 5px 0 0;
+		font-size: 16px;
+		font-weight: 400;
+		height: 30px;
+		line-height: 15px;
+		padding: 0 45px 0 10px;
+	}
+	</style>
+<header align="center" class="banner_bg padd_T30" >
+	<div id='wx_pic' style='margin:0 auto;display:none;'>
+    	<img src='../mobile_page/images/spring_Spec/mobile_img/pic_300_b.png' />
+    	<h1>全联保险经纪网春节大礼包!</h1>
+    </div>
+    <img src="../mobile_page/images/spring_Spec/mobile_img/banner.png" class="img-responsive" style="margin:0 auto">
+</header>
+<div class="container-fluid">
+
+    <div class="max_wid">
+
+        <div  class="bg_img">
+            <div align="left" >
+                <img src="../mobile_page/images/spring_Spec/mobile_img/title_01.png" class="img-responsive">
+            </div>
+            <div align="center">
+                <img src="../mobile_page/images/spring_Spec/mobile_img/images_01.png" class="img-responsive">
+            </div>
+             <input type="hidden" id="sessionuid" value="{$smarty.session.user_id}">
+             <input type="hidden" id="is_cheack" value="{$smarty.session.is_cheack}">
+
+        </div>
+
+        <div class="mar_T40" align="center">
+            <img src="../mobile_page/images/spring_Spec/mobile_img/title_02.png" class="img-responsive">
+        </div>
+        <div class="mar_T40 bg_fd9e02 clearfix">
+            <div class="images02_bg">
+                <div class="padd_T20 " ><img src="../mobile_page/images/spring_Spec/mobile_img/title_02_1.png" class="img-responsive"></div>
+                
+                <div class="text_c_191919 line_h30 font_12 padd_A10 mar_T10">
+                    1、通过参与活动分享，让您的客户和亲友在春节出行期间，享受平安保险的高额度意外保险保障；<br>
+                    2、分享产品的同时，展示您自己，让您的朋友，朋友的朋友，在有保险需求时，很快找到您；<br>
+                    3、通过参与分享，长期锁定客户关系，凡全联保险经纪网的产品，均可以通过分享的方式推荐给客户，客户投保，您马上获益。
+                </div>
+                <div class="padd_A10"><a class="btn-feda83 text-center" style="margin-top: 0px;" href="javascript:void(0)" onClick="show_info()">分享给亲友</a></div>
+                <div>
+                        <div class="text-center">已有{$buy_detail.policy_count}人领取了~</div>
+                        <div id="photoList" class="mar_T10" align=center >
+                          {foreach from=$buy_detail.policy_list item=policy name=orderit}
+                            <p class="text-center" style="margin:0px;padding:0px;">{$policy.text}</p>
+                          {/foreach}
+                        </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="mar_T40" align="center">
+            <img src="../mobile_page/images/spring_Spec/mobile_img/title_02_2.png" class="img-responsive">
+        </div>
+        <div class="mar_T40 bg_fd9e02 clearfix">
+            <div class="images03_bg">
+                <div class="padd_T20 " ><img src="../mobile_page/images/spring_Spec/mobile_img/title_04_1.png" class="img-responsive"></div>
+                 
+                <div class="text_c_191919 line_h30 font_12 padd_A10 mar_T10">
+                    1、如果您的身边也有保险业务员，可以推荐伙伴一起参与活动，您推荐的伙伴注册并经过审核成为全联保险经纪网的正式会员，立即得到10元现金代金券，同时您也因为推荐得到10元现金代金券；
+<br>
+                    2、您推荐的伙伴一经加入，推荐关系在全联保险经纪网自动锁定，未来，只要您的伙伴在全联保险经纪网出单，您将因此逐单得到推荐费。<br>
+                    
+                </div>
+                <div class="padd_A10">
+                	<a class=" btn-feda83 text-center" style="margin-top: 0px;" href="javascript:void(0)" onClick="push_f()">马上邀请新伙伴</a>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        
+        <div class="mar_T40" align="center">
+            <img src="../mobile_page/images/spring_Spec/mobile_img/title_03.png" class="img-responsive">
+        </div>
+        <div class="mar_T40 bg_feda83 clearfix">
+            <div class="">
+                <div class="padd_T20 " ><img src="../mobile_page/images/spring_Spec/mobile_img/title_03_1.png" class="img-responsive"></div>
+                <div class="text_c_c30d23 font_14 line_h35 padd_LR10 font_bolder text-center">平安短期境内旅游保险</div>
+                <div class="text_c_191919 line_h30 font_12 padd_TB20LR10 border_Ts_c30d23">
+                    1、10万元意外身故、残疾保险金<br>
+                    2、1万元意外伤害医疗保障<br>
+                    3、享受意外住院津贴（每天10元，最多90天）<br>
+                    4、交通工具双倍给付<br>
+                    5、航班延误赔付（每4小时赔付200元 ）<br>
+                    6、航空托运行李物品延误（8小时以上一次性赔付200元）
+                </div>
+                <div class="text_c_c30d23 font_14 line_h35 padd_LR10 font_bolder text-center">平安行境外旅游保险</div>
+                <div class="text_c_010101 line_h30 font_12 padd_TB20LR10 border_Ts_c30d23">
+                    1、10万元意外伤害身故、残疾、烧烫伤<br>
+                    2、1万元医疗补偿<br>
+                    3、30万元紧急医疗运送和运返
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mar_T40 bg_fec1c3 clearfix">
+            <div class="images07_bg">
+                <div class="padd_T20" ><img src="../mobile_page/images/spring_Spec/mobile_img/title_07_1.png" class="img-responsive"></div>
+                <div class="text_c_010101 line_h30 font_12 padd_TB40LR10">
+                    1、	本活动保险产品由中国平安财产保险股份有限公司提供<br>
+                    2、	活动期间，每个手机号和身份证号，限购一款产品，限购1份<br>
+                    3、	支付“1块钱”，不是噱头，目的是让用户完整体验网上投保流程<br>
+                    4、 产品一经认购，不可退保<br>
+                    <div class="text-center mar_T10">本次活动解释权归全联保险经纪网所有</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../mobile_page/dist/js/jquery.min.js"></script>
+<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+<script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+<script src="../mobile_page/dist/js/respond.min.js"></script>
+<script src="js/jquery.json.js" type="text/javascript"></script>
+<script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/MSClass.js"></script>
+<script>
+	var i_search;
+	$().ready(function(e) {
+
+        document.addEventListener('WeixinJSBridgeReady',
+		function onBridgeReady() {WeixinJSBridge.call('hideOptionMenu');WeixinJSBridge.call('hideToolbar');});
+		new Marquee("photoList",0,1,"100%",20,50,0,0,0);
+    });
+	
+	function show_info(){
+		var data = is_login();
+		var temp_uid = data.uid;
+		//var is_cheackT = $('#is_cheack').val();
+		if(temp_uid){
+		    if(!data.is_cheack){
+		    	alert('非正式会员！无法分享,请完善个人资料,提交审核');
+		    	window.location.href='user.php?act=profile';
+		    	return;
+		    }
+			
+			var jn_activity_id = '{$jn_activity_id}';
+			var jw_activity_id = '{$jw_activity_id}';
+			if(jw_activity_id==0 && jn_activity_id==0){
+				alert("不是活动期间！");
+				return;
+			}
+			
+			var jn_total_remainder = '{$jn_total_remainder}';
+			var jw_total_remainder = '{$jw_total_remainder}';
+
+			if(jn_total_remainder<=0 && jw_total_remainder<=0){
+				alert("抱歉，产品已售完！");
+				return;
+			}
+			
+			
+			var flag = get_give_count(temp_uid);
+			if(!flag){
+		 		i_search = layer.open({
+				    content: $('#share_dialog').html(),
+				    shadeClose: true
+				}); 
+				return;
+			}
+			/*var html_temp = '<div align=right><img src="../mobile_page/images/bg_jt.png"></div><div style="border-radius: 5px; background: #fff; padding:20px 10px;"><span style="color:#090">点击右上角,选择分享【朋友】或者【朋友圈】，给他们送代金券啦!</span></div>';
+			layer.open({
+				content: html_temp,
+				fixed:false,
+				style:'width:'+document.documentElement.clientWidth+'px;background: none;',
+				top:0
+			});*/
+	
+			document.location.href = 'spring_activity.php?act=getc&uid='+temp_uid;
+		}else{
+			alert("请先登录 ");
+			window.location.href='user.php';
+		}
+	}
+	//推荐给好友
+	function push_f(){
+		var data = is_login();
+		var temp_uid = data.uid;
+		if(temp_uid){
+			//window.location.href='../mobile_page/share_active.html?uid='+temp_uid.split(',')[0];
+			window.location.href='../mobile/spring_activity.php?act=share_active&uid='+temp_uid.split(',')[0];
+		}else{
+			window.location.href='user.php';
+		}
+	}
+	function selectProduct(){
+		var data = is_login();
+		var temp_uid = data.uid;
+		if(temp_uid){
+/* 			{$url_huodong_jingwailvyou}
+			{$url_huodong_jingneilvyou} */
+			//var html_pr = '<div align=center><a href="..{$url_huodong_jingwailvyou}" class="btn-c30d23">平安境外旅游产品</a></div><div align=center><a href="..{$url_huodong_jingneilvyou}" class="btn-c30d23">平安境内旅游产品</a></div>';
+			var html_pr = '<div align=center><a href="javascript:go_insure({$jw_gid},{$jw_activity_id},1);" class="btn-c30d23"><i class="fa fa-plane left-20"></i>平安行境外旅游保险<i class="fa fa-angle-right right-20"></i></a></div>'+
+						  '<div align=center><a href="javascript:go_insure({$jn_gid},{$jn_activity_id},2);" class="btn-c30d23"><i class="fa fa-train left-20"></i><span>平安境内旅游保险</span><i class="fa fa-angle-right right-20"></i></a></div>';
+			layer.open({
+				content: html_pr,
+				title:'选择产品',
+				fixed:true,
+				style:'width:'+document.documentElement.clientWidth+'px;'
+			});
+		}else{
+			window.location.href='user.php';
+		}
+	}
+	
+	
+
+	//判断是否有赠送值
+	function get_give_count(uid){
+		var flag=true;
+		var jn_gid = '{$jn_gid}';
+		var jw_gid = '{$jw_gid}';
+		var jn_activity_id = '{$jn_activity_id}';
+		var jw_activity_id = '{$jw_activity_id}';
+		
+		if(!jn_activity_id){
+			alert("不是活动期间！");
+			return;
+		}
+		
+	    $.ajax({
+		    type : "post",
+		    url : "spring_activity.php?act=get_give_count",
+		    data : "uid=" + uid+"&jn_gid="+jn_gid+"&jw_gid="+jw_gid+"&jn_activity_id="+jn_activity_id+"&jw_activity_id="+jw_activity_id,
+		    async : false,
+		    dataType:'json',
+		    success : function(data){
+		    	if(data.code==0){
+					var jn_surplus_num = data.jn_surplus_num;
+					var jw_surplus_num = data.jw_surplus_num;
+					var msg = "";
+					if(jn_surplus_num<=0){
+						msg = '境内产品已分享数额已满，如需更多分享数量，可以推荐代理人';
+					}
+					if(jw_surplus_num<=0){
+						if(msg){
+							flag=false;
+						}else{
+							msg = '境外产品已分享数额已满，如需更多分享数量，可以推荐代理人';
+						}
+						
+					}
+					if(jn_surplus_num<=0 && jw_surplus_num<=0){
+						flag=false;
+						
+					}
+				}
+		    	
+		    }
+	    });
+		
+		return flag;
+		
+	}
+	
+	//领取某个产品的时候做判断
+	function go_insure(gid,activity_id,url_type){
+		if(activity_id==0){
+			alert('不是活动期间');
+			return;
+		}
+		
+		var uid = '{$user_id}';
+		var url_huodong_jingwailvyou = "{$url_huodong_jingwailvyou}";
+		var url_huodong_jingneilvyou = "{$url_huodong_jingneilvyou}";
+		if(url_type==1){
+			url=url_huodong_jingwailvyou;
+		}else if(url_type==2){
+			url=url_huodong_jingneilvyou;
+		}
+		
+	    $.post('spring_activity.php?act=go_insure',{
+	    		'uid':uid,
+	    		'url':url,
+	    		'gid':gid
+	    	
+	    },function(data){
+				if(data.code==0){
+					window.location.href="../"+data.url;
+				}else if(data.code==10){
+					alert(data.msg);
+				}else if(ata.code==11){
+					alert(data.msg);
+				}
+	    },'json');
+	    
+	}
+	
+	
+	//去推荐
+	function goto_affiliate(){
+		window.location="user.php?act=affiliate";
+	}
+	
+	//关闭
+	function close_dialog(){
+		layer.close(i_search);
+	}
+	
+	function is_login(){
+		var data="";
+	    $.ajax({
+		    type : "post",
+		    url : "spring_activity.php?act=is_login",
+		    async : false,
+		    dataType:'json',
+		    success : function(r){
+		    	data = r;
+		    }
+	    });
+	    return data;
+	}
+</script>
+
+<div id="share_dialog" style="display: none;"  >
+		<div style="text-align: center; width:100%; font-size:12px;">
+			产品分享数额已满，如需更多分享数量，可以推荐代理人
+		</div>
+		<div style="text-align: center; width:100%; margin-top:20px;">
+		
+			<a  class="account_on" href="javascript:goto_affiliate();">推 荐</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			<a  class="account_out"  href="javascript:close_dialog();">关 闭</a>
+		</div>
+		
+</div>
+</body>
+</html>

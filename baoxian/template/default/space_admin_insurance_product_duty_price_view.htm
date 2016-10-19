@@ -1,0 +1,184 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<div id="main-body">
+
+
+<div id="content-body">
+
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+            
+              <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			 			          
+              <label class="separator">&gt;</label>
+            <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+			 <label class="separator">&gt;</label>
+			   责任价格
+			  <label class="separator">&gt;</label> 
+		<a href="space.php?do=admin_insurance_product&product_id=$product_duty[product_id]"> $product_duty[duty_name] </a>
+            
+      </div>
+
+</div>
+
+
+<div>
+<a href="cp.php?ac=admin_insurance_product_duty_price&product_duty_id=$product_duty[product_duty_id]">
+		<img src="template/images/createButton.gif" alt="增加">增加保费
+         </a>
+		 
+		   <a  onclick="submit_form();">
+		<img src="template/images/deleteButton.gif" alt="删除">
+            删除</a>
+			
+</div>
+			
+<form name="insuranceKindForm" method="POST" id="insuranceKindForm" action="cp.php?ac=admin_insurance_product_duty_price&product_duty_id=$product_duty_id">
+
+
+<input type="hidden" name="product_duty_price_order_submit" id="product_duty_price_order_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+                
+
+<!--{if $list_product_duty_price}-->
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="9" class="view-header">保费影响因素</td>
+    </tr>
+    <tr class="listTitle">
+        
+		 <td width="5%"><label><input name="checkAll" onclick="selectAllCheckBox()" type="checkbox"></label></td>
+		 <td class="list-first-title" width="5%">顺序</td> 
+        <td class="list-title" width="10%">保险期限</td>
+		 <td class="list-title" width="20%">职业类别</td>
+		 <td class="list-title" width="10%">投保年龄</td>
+		 <td class="list-title" width="10%">保额</td>
+		 <td class="list-title" width="10%">限额</td>
+		 <td class="list-title" width="10%">保费</td>
+		  
+		   <td class="list-title" width="10%">修改</td>
+		  <td class="list-title" width="10%">删除</td>
+    </tr>
+    
+	<!--{loop $list_product_duty_price $key $valued}-->
+    
+    <tr class="tdContent">
+	     <td>
+				<input name="ids[]" value="$valued[product_duty_price_id]" type="checkbox">
+		</td>
+		
+                
+	 	 <td class="list-first-content">
+		 
+		<input name="view_order_ids[{$valued[product_duty_price_id]}]" id="view_order" value="$valued[view_order]" type="text">		
+		
+		 </td>
+		   
+		
+				
+		   
+		<td class="list-first-content">$list_product_influencingfactor[$valued[product_period_id]][factor_name]</td>
+	    <td class="list-first-content">$list_product_influencingfactor[$valued[product_career_id]][factor_name]</td>
+       
+        <td class="list-first-content">$list_product_influencingfactor[$valued[product_age_id]][factor_name]</td>
+ 
+       <td class="list-first-content">
+	   <input name="amount_ids[{$valued[product_duty_price_id]}]" id="amount" value="$valued[amount]" type="text">	
+	   
+	   </td>
+        <td class="list-first-content">
+		 <input name="limitAmount_ids[{$valued[product_duty_price_id]}]" id="limitAmount" value="$valued[limitAmount]" type="text">	
+	    </td>
+		<td class="list-first-content">
+		 <input name="premium_ids[{$valued[product_duty_price_id]}]" id="premium" value="$valued[premium]" type="text">	
+	    </td>
+ 
+      
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_product_duty_price&product_duty_price_id=$valued[product_duty_price_id]">修改</a>
+	  </td>
+	  
+	  <td class="list-content">
+	  <a href="cp.php?ac=admin_insurance_product_duty_price&product_duty_price_id=$valued[product_duty_price_id]&op=delete" onclick="return confirm('本操作不可恢复，确认删除？');">删除</a>
+	  </td>
+	  
+    </tr>
+    
+    
+    <!--{/loop}-->
+     
+    	<tr>
+		    <td class="buttons">
+               
+			   <input value="保存" id="submitbutton" type="submit" onclick="return confirm('本操作不可恢复，确认？');">
+              
+            </td>
+	</tr>   
+	
+</tbody></table>
+<!--{/if}-->
+</form>
+
+<script type="text/javascript">
+    function selectAllCheckBox() {
+        checkAllBox(document.forms['insuranceKindForm']);
+    }
+	
+	 function submit_form() 
+	 {
+	   // alert("dddddddddd");
+		document.getElementById('submitbutton').click();
+       // checkAllBox(document.forms['productForm']);
+    }
+	
+</script>
+
+ <table class="view-table">
+                    <tbody><tr>
+                        <td colspan="4" class="view-header">元数据信息</td>
+                    </tr>
+                    <tr>
+                        <td class="view-first-title">状态标志</td>
+                        <td class="view-first-text">
+                            正常
+                            
+                            
+                        </td>
+                        <td class="view-first-title">操作人</td>
+                        <td class="view-top-right-text">超级用户</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">创建时间</td>
+                        <td class="view-text">2014-01-22</td>
+                        <td class="view-title">更新时间</td>
+                        <td class="view-top-right-text">2014-03-24</td>
+                    </tr>
+                    <tr>
+                        <td class="view-title">显示序号</td>
+                        <td class="view-text">1</td>
+                        <td class="view-title">备注信息</td>
+                        <td class="view-right-text"></td>
+                    </tr>
+                </tbody></table>
+			
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

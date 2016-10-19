@@ -1,0 +1,175 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<div class="form-div">
+<form action="javascript:searchUser()" name="searchForm" id="user_list_by_organid_form">
+  <input type="hidden" value="user_list_by_organid_query" name="act">
+   <input type="hidden" value="{$filter.id}" name="id">
+  <input type="hidden" name="sort_by" value="{$filter.sort}" />
+  <input type="hidden" name="sort_order" value="{$filter.order}" />
+    <table>
+	<tbody>
+	<tr>
+		<td align="right">用户名</td>
+		<td><input type="text" name="user_name" /> </td>
+	    <td align="right">姓名</td><td><input type="text" name="real_name" /> </td>
+	     <td align="right">是否禁用</td><td>
+	    	<select name="is_disable">
+	    		<option></option>
+	    		<option value='2'>否</option>
+	    		<option value='1'>是</option>
+	    	</select>
+	     </td>
+	      <td><input type="submit" value="{$lang.button_search}" /></td>
+	</tr>	
+		  </tbody>
+	  </table>
+  </form>
+</div>
+
+<!-- 订单列表 -->
+<form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()">
+	<div class="list-div" id="listDiv">
+		{/if}
+
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th>编号</th>
+				<th>用户名</th>
+				<th>姓名</th>
+				<th>所属渠道</th>
+				<th><a href="javascript:sort('gong_xian');">渠道服务费</a></th>
+				<th> <a href="javascript:sort('policy_num');">保单数</a></th>
+				<th><a href="javascript:sort('total_premium');">总保费</a></th>
+				<th><a href="javascript:sort('check_status');">审核状态</a></th>
+                <th><a href="javascript:sort('is_disable');">是否禁用</a></th>
+				<th><a href="javascript:sort('reg_time');">注册时间</a></th>
+			<tr>
+			{foreach from=$user_list item=user key=key}
+			<tr align="center">
+				<td >{$user.user_id}</td>
+				
+				<td >{$user.user_name}</td>
+				<td >{$user.real_name}</td>
+				<td >{$user.d_name}</td>
+				<td >{$user.service_money}</td>
+				<td >
+					<a href="">{$user.policy_num}</a>
+				</td>
+				<td >{$user.total_premium}</td>
+				<td >			
+					{$user.check_status}
+				</td>
+				<td >
+					{if $user.is_disable eq 1}
+					<a href="javascript:disable_enabled_salesman({$user.user_id},2);">	<span style="color: red">已禁用</span></a>
+					{else}<a href="javascript:disable_enabled_salesman({$user.user_id},1);"><span style="color: #37AF60">未禁用</span></a>{/if}
+				</td>
+				<td >{$user.reg_time}</td>
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<!-- <input type="button" onclick="batch_invoice_assigned();" value="受理">  -->
+		<!-- <input type="button" onclick="invoice_export_list();" value="导出"> -->
+	</div>
+</form>
+<!-- 发票受理窗口 -->
+{include file="invoice_assigned.htm"}
+
+<script language="JavaScript">
+listTable.query = "user_list_by_organid_query";
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索订单
+     */
+    function searchUser()
+    {
+    	listTable.filter['user_name'] = Utils.trim(document.forms['searchForm'].elements['user_name'].value);
+        listTable.filter['real_name'] = Utils.trim(document.forms['searchForm'].elements['real_name'].value);
+		//listTable.filter['check_status'] = Utils.trim(document.forms['searchForm'].elements['check_status'].value);
+        listTable.filter['is_disable'] = document.forms['searchForm'].elements['is_disable'].value;
+        listTable.filter['sort_order'] = document.forms['searchForm'].elements['sort_order'].value;
+        listTable.filter['sort_by'] = document.forms['searchForm'].elements['sort_by'].value;
+        listTable.filter['page'] = 1;
+        listTable.query = "user_list_by_organid_query";
+        listTable.loadList();
+    }
+	
+    
+    function sort(sort_by){
+    	$("#user_list_by_organid_form input[name=sort_by]").val(sort_by);
+    	var order = $("#user_list_by_organid_form input[name=sort_order]").val();
+    	
+    	if(order=='DESC')
+    	{
+    		$("#user_list_by_organid_form input[name=sort_order]").val("ASC");
+    	}
+    	else
+   		{
+    		$("#user_list_by_organid_form input[name=sort_order]").val("DESC");
+   		}
+    	
+    	$("#user_list_by_organid_form").submit();
+    	
+    }
+
+
+	function disable_enabled_salesman(user_id,status)
+	{
+		var msg ="";
+		if(status==1)
+		{
+			msg="禁用后，此渠道和此此渠道下的会员将无法登录，确定禁用吗？"
+		}else{
+			status=0;
+			msg="启用后，此渠道和此渠道下的会员将恢复正常，确定启用吗？"
+		}
+		
+		var pageii = $.layer({
+		    shade: [0],
+		    area: ['auto','auto'],
+		    dialog: {
+		        msg: msg,
+		        btns: 2,                    
+		        type: 4,
+		        btn: ['确定','取消'],
+		        yes: function(){
+		    		$.get("users.php?act=disable_enabled_salesman", { "salesman_id": user_id, "is_disable": status},
+		  				  function(data){
+		  						data = jQuery.parseJSON(data);
+		  						if(data.code==0)
+		  						{
+		  							layer.close(pageii);
+		  							alert(data.msg);
+		  							$("#user_list_by_organid_form").submit();
+		  							
+		  						}
+		  			 	  });
+		        }, no: function(){
+		        	layer.close(pageii);
+		        }
+		    }
+		});
+		
+	}
+		
+</script>
+{/literal} {include file="pagefooter.htm"} 

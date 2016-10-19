@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>全联诉讼财产保全微投保</title>
+<link rel="stylesheet" href="../dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../dist/fonts/iconfont_2/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../dist/css/weixin_style.css">
+<script src="../dist/js/jquery.min.js"></script>
+<script src="../dist/js/bootstrap.min.js"></script>
+<script src="../dist/js/html5shiv.min.js"></script>
+<script src="../dist/js/respond.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!-- E 可根据自己喜好引入样式风格文件 -->
+<script src="../mobile/layer-mobile/layer.m.js"></script>
+<script src="js/mobile/icheck-1.x/icheck.min.js"></script>
+<script src="../mobile/dist/js/public.js"></script>
+<script src="js/script_common_check.js"></script>
+<script src="js/mobile/checked_function_base.js?1"></script>
+
+
+</head>
+
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div style="display: none;">
+		<img src="../mobile/images/sm_logo.png" width="300" height="300">
+	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-8 f-pl0 f-pr0 f-tal">
+                <span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">审核资料提交</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 f-pl0 f-pr0 f-tar">
+
+            </div>
+        </div>
+    </div>
+</header>
+<form id="form_001" name="orderForm" method="POST" onkeydown="if(event.keyCode==13)return false;"  action="cp.php?ac=product_buy&product_id=$product[product_id]">
+                <input type="hidden" name="buysubmit" id="buysubmit" value="true" />                                    
+                <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                <input type="hidden" name="step" id="step" value="1" />
+                <input type="hidden" id="insurer_code" value="$product['insurer_code']" />
+                <input type="hidden" id="attribute_type" value="$attribute_type" />
+                <input type="hidden" name="start_day" id="start_day" value="$product[start_day]" />
+                <input type="hidden" name="server_time" id="server_time" value="$product[server_time]" />		   
+                <input name="product_id" id="product_id" value="$product[product_id]" type="hidden">		       
+                <input type="hidden" name="businessType" id="businessType" value="$businessType" />	
+                <input type="hidden" name="bat_post_policy" id="bat_post_policy" value="$bat_post_policy" />
+                <input id="totalModalPremium_single" name="totalModalPremium_single" value="$totalModalPremium_single" type="hidden">		
+                <input id="totalModalPremium" name="totalModalPremium" value="$prodcutMarkPrice" type="hidden">                                        
+                <input id="period" name="period" value="" type="hidden">
+                <input id="period_uint" name="period_uint" value="" type="hidden">
+                <input id="age_min" name="age_min" value="$product[age_min]" type="hidden">        
+                <input id="age_max" name="age_max" value="$product[age_max]" type="hidden">
+                <input id="product_code" name="product_code" value="$product[product_code]" type="hidden">		
+                <input name="gid" value="0" type="hidden">	
+                <input id="applyMum_sums" value="{$product[number]}" type="hidden">
+                
+                <!-- app start-->
+                     <input type="hidden" id="userid_app" name="uid" value="" />
+                     <input type="hidden" id="platformId" name="platformId" value="" />
+                 <!-- app end-->

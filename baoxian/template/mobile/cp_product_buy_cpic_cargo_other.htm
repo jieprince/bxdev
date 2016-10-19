@@ -1,0 +1,356 @@
+<!--{template cp_product_buy_header}-->	
+                
+				<script src="js/mobile/taipingyang_cpic_cargo_other.js"></script>
+                
+                <!-- 以下是私有的变量-->
+                <input id="cp_name" value="taipingyang" type="hidden">
+                <input name="applicant_type" value="2" id="applicant_type_single" type="hidden">
+                <input type="hidden" name="currencycode" value="01" />
+                <input type="hidden" name="fcurrencycode" value="01" />
+                <input type="hidden" name="applyNum" value="1"/>
+                <input type="hidden" name="classtype" value="11042700"/>
+                <input type="hidden" id="product_sum_insured" value="{$product.sum_insured}" />
+                {if $product.sum_insured!=0}
+                <input type="hidden" name="BusinessType" value="01" />
+                {else}
+                <input type="hidden" name="BusinessType" value="05" />
+                {/if}
+               
+            <div class="container">
+                 <div class="panel panel-default">
+                        <ul class="list-group" >
+                          <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                        </ul>
+                 </div>
+                  
+                 <div class="panel panel-default">
+                        
+                        <ul class="list-group" >
+                          <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">业务类型</span>
+                                <span class="f-fs2 pull-right">
+                                	   {if $product.sum_insured!=0}单车业务{else}单次业务{/if}
+                                </span>
+                          </li>
+                          <li class="list-group-item" >
+                          		<span class="s-c-aaaaaa">保险起期</span>
+                                <span class="pull-right">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" id="startDate" name="startDate" type="text" readonly >
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                          </li>
+                       
+                      	  <li class="list-group-item">
+                          		<span class="s-c-aaaaaa">保险止期</span>
+                                <span class="pull-right ">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" name="endDate" id="endDate" readonly>
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>      
+                          </li> 
+                           
+                          <li class="list-group-item">
+                                <span class="s-c-aaaaaa">金额</span>
+                                <span class="f-fs2 pull-right">￥<span id="test_price_Temp">{$prodcutMarkPrice}</span>元</span>
+                          </li> 
+                           
+                        </ul>
+                </div>
+                 
+                 
+                 <div class="panel panel-default">
+                     
+                       
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                          人员信息
+                          <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                          </span>
+                      </div>
+                      <ul class="list-group">
+                      	   <li class="list-group-item">
+                               <span class="s-c-aaaaaa">被保险人名称</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="assured_fullname" placeholder="最少2个汉字" id="assured_fullname" class="input_b text-right g-w100">
+                                   <i class=" f-ml10 fa fa-user s-c-aaaaaa"></i>
+                                </span> 
+                           </li>    
+                           
+                           
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">被保险人身份证号码(组织机构代码)</span>
+                                
+                           </li>    
+                           <li class="list-group-item" style="border-top:0px;">
+                               
+                               <span class="f-fs2 f-db text-right">
+                                   <input type="text" name="assured_certificate" placeholder="输入证件号码" id="assured_certificate" class="input_b text-right g-wA80"> <i class=" f-ml10 fa fa-credit-card s-c-aaaaaa"></i>
+                               </span>
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">邮政编码</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="assured_zipcode" placeholder="请输入邮政编码" id="assured_zipcode" class="input_b text-right g-w150">
+                                   
+                                </span> 
+                           </li>    
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">被保险人联系地址</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="assured_address" placeholder="200字符之内" id="assured_address" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>   
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">联系人</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="applicant_fullname" placeholder="最少2个汉字" id="applicant_fullname" class="input_b text-right g-w150">
+                                   
+                                </span> 
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">手机号码</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="applicant_mobiletelephone" placeholder="只能为数字" id="applicant_mobiletelephone" class="input_b text-right g-w150">
+                                   
+                                </span> 
+                           </li>    
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">Email</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="applicant_email" id="applicant_email" placeholder="例：123@163.com" class="input_b text-right g-w150">
+                                   
+                                </span> 
+                           </li>    
+                           
+                      </ul> 
+                         
+                      
+                </div>
+                 <div class="panel panel-default">
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                          车辆运单信息
+                          <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                          </span>
+                      </div>
+                       
+                      <ul class="list-group">
+                             
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">道路运输许可证号码</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="RoadLicenseNumber" id="roadLicenseNumber" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>    
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">累计承保车辆</span>
+                               
+                                <span class="f-fs2 pull-right s-c-aaaaaa">1</span> 
+                           </li>  
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">运输车辆号码</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="CarNumber" id="carNumber" placeholder="50字符之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>    
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">运输货物名称</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="GoodsName" id="goodsName" placeholder="13汉字之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">行驶证车主</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="VehicleOwners" id="vehicleOwners" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">车辆核定载质量</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="TransportVehiclesApprovedTotal" id="transportVehiclesApprovedTotal" class="input_b text-right g-w100"><span class="s-c-aaaaaa"> KG</span>
+                                   
+                                </span> 
+                           </li>  
+                            
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">运输车辆车架号/识别代码</span>
+                                
+                           </li>    
+                           <li class="list-group-item" style="border-top:0px;">
+                               
+                               <span class="f-fs2 f-db text-right">
+                                  <input type="text" name="FrameNumber" id="frameNumber" placeholder="100字符之内" class="input_b text-right g-wA80">
+                                   
+                               </span>
+                           </li>
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">发动机号码</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="EngineNo" id="engineNo" placeholder="100字符之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>
+                           {if $product.sum_insured==0}
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">运单号</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="DeliverorderNo" id="deliverorderNo" placeholder="100字符之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">起运日期</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="SailDate" id="sailDate" class="input_b text-right g-w100" readonly="readonly">
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span> 
+                           </li>
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">起 运 地</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="StartPlace" id="startPlace" placeholder="50字符之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">目 的 地</span>
+                               
+                                <span class="f-fs2 pull-right">
+                                	<input type="text" name="EndPlace" id="endPlace" placeholder="50字符之内" class="input_b text-right g-w100">
+                                   
+                                </span> 
+                           </li>
+                           {/if}
+                            
+                      </ul> 
+                     
+                </div>
+                 <div class="panel panel-default" id="beibaoxianren_list">
+                      <!-- 被保险人信息 -->
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                            保险信息(以人民币"元"为单位)
+                            <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                            </span>
+                      </div>
+                      <ul class="list-group">
+                            
+                           {if $product.sum_insured!=0} 
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">累计责任限额</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="SumAmount" id="amount" placeholder="只能是数字" class="input_b text-right g-w100" {if $product.sum_insured!=0} value="{$product.sum_insured}" readonly="readonly" {/if}>
+                                    元
+                               </span>
+                           </li> 
+                           {else}
+                           <input type="hidden" name="SumAmount" id="amount">
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_amount_P" onClick="showSelect_amount('text_select_amount','text_select_amount_P')" data-value='[{"amount_id":50000,"amount_name":"50000元"},{"amount_id":100000,"amount_name":"100000元"},{"amount_id":150000,"amount_name":"150000元"},{"amount_id":200000,"amount_name":"200000元"}]' >
+                              <span class="s-c-aaaaaa">累计责任限额</span>
+                              <span class="pull-right">
+                                <span id="text_select_amount"></span>
+                                <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                              </span>
+                          </a> 
+                         
+                        {/if}
+                           
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">费率</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="Rate" id="rate" readonly="readonly" value="{$product['rate']}" class="input_b text-right">
+                                   
+                               </span>
+                           </li> 
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">保费</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="Premium" id="premium" readonly="readonly" {if $product.premium !=0} value="{$product.premium}" {/if} class="input_b text-right">
+                                    元
+                               </span>
+                           </li> 
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">每次事故赔偿限额</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="TimeAmount" id="timeAmount" placeholder="只能是数字" class="input_b text-right g-w100" readonly="readonly"  {if $product.sum_insured!=0} value="{$product.sum_insured}" {/if}>
+                                    元
+                               </span>
+                           </li> 
+                           
+                              
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">免赔条件</span>
+                           </li>
+                           <li class="list-group-item" style="border-top:0px; padding-top:0px;" >
+                               
+                               <span class="f-fs2 s-c-aaaaaa">
+                                    {if $product.sum_insured==50000}
+                                    	<input type="hidden" name="EachAccidentFranchise" id="eachAccidentFranchise" value="人民币3000元或损失的10%，以高者为准" class="input_b text-right">
+                                        人民币3000元或损失的10%，以高者为准
+                                    {elseif $product.sum_insured==100000}
+                                        <input type="hidden" name="EachAccidentFranchise" id="eachAccidentFranchise" value="人民币3000元或损失的10%，以高者为准" class="input_b text-right">
+                                        人民币3000元或损失的10%，以高者为准
+                                    {elseif $product.sum_insured==150000}
+                                        <input type="hidden" name="EachAccidentFranchise" id="eachAccidentFranchise" value="人民币4000元或损失的15%，以高者为准" class="input_b text-right">
+                                        人民币4000元或损失的15%，以高者为准
+                                    {elseif $product.sum_insured==200000}
+                                        <input type="hidden" name="EachAccidentFranchise" id="eachAccidentFranchise" value="人民币4000元或损失的15%，以高者为准" class="input_b text-right">
+                                        人民币4000元或损失的15%，以高者为准
+                                    {elseif $product.sum_insured==0}
+                                        <input type="hidden" name="EachAccidentFranchise" id="eachAccidentFranchise" value="人民币3000元或损失的10%，以高者为准" class="input_b text-right">
+                                        <span id="eachAccidentFranchise_text">人民币3000元或损失的10%，以高者为准</span>
+                                    {/if}
+                                     
+                               </span>
+                           </li>  
+                            
+                           
+                      </ul> 
+                     
+                </div>
+                 
+                
+                <div class="panel panel-default">
+                      <!-- 受益人信息 -->
+                      <div class="panel-body f-csp">
+                            受益人信息 
+                      </div>
+                      <ul class="list-group">
+                             
+                           <input type="hidden" name="beneficiary" id="beneficiary" value="1">
+                           <li class="list-group-item">
+                                <span class="s-c-aaaaaa">受益人</span>
+                                <span class="pull-right">
+                                    <span id="text_select_beneficiary" data-beneficiary_id="1" data-beneficiary_name="法定">法定</span>
+                                </span>
+                           </li> 
+                            
+                      </ul> 
+                     
+                </div>
+<!--{template cp_product_buy_footer}-->

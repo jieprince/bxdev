@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>子站首页</title>
+<link rel="stylesheet" href="../mobile_page/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../mobile_page/dist/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../mobile_page/dist/css/style_childweb.css">
+<script src="../mobile_page/dist/js/jquery.min.js"></script>
+<script src="../mobile_page/dist/js/bootstrap.min.js"></script>
+<script src="../mobile_page/dist/js/html5shiv.min.js"></script>
+<script src="../mobile_page/dist/js/respond.min.js"></script>
+<script src="laydate/laydate.js"></script>
+<script src="../mobile_page/dist/js/public.js"></script> 
+</head>
+
+<body>
+
+<div class="container-fluid s-bg-f5f5f5">
+	 <div class="">
+            <nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                              </button>
+                              <a class="navbar-brand" href="#"><img src="images/log.png"></a>
+                        </div>
+                    
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                              <ul class="nav navbar-nav">
+                                    <li><a href="index.html">首页</a></li>
+                                    <li><a href="product.html">产品</a></li>
+                                    <li ><a href="#">询价</a></li> 
+                                    <li  class="active"><a href="order_list.html">订单</a></li>
+                                    <li><a href="order_list.html">保单</a></li> 
+                              </ul>
+                           
+                              <ul class="nav navbar-nav navbar-right">
+                                
+                                    <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">我的 <span class="caret"></span></a>
+                                          <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">我的收藏</a></li>
+                                                <li><a href="#">我的推荐</a></li>
+                                                <li><a href="#">我的消息</a></li>
+                                                <li><a href="#">结算管理</a></li>
+                                                <li><a href="#">账户信息</a></li>
+                                                <li class="divider"></li>
+                                                <li class="text-center"><a href="#">退出</a></li>
+                                          </ul>
+                                    </li>
+                                
+                                    <li><a href="#">公告</a></li>
+                              </ul>
+                        </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+            </nav>
+     </div>
+     
+     <div class="g-wA100 f-mt20 ">
+     	<div class="f-ml10 f-mr10">
+     	  <ol class="breadcrumb  s-bg-ffffff">
+              <li><a href="#">首页</a></li>
+               
+              <li class="active">订单列表</li>
+          </ol>
+        </div>
+     </div>
+      
+     <div class="g-wA100 f-mt20">
+     	  <div class="f-ml25 f-mr25 ">
+          	   
+          	  <div class="row  f-mt20 f-pb40"> 
+              		<div class="col-md-3 col-sm-4 col-xs-12 f-pA0 ">
+                    	<div class="s-bg-ffffff">
+                        	<div class="list-group">
+                            	  <li class="list-group-item active">
+                                   	订单列表
+                                  </li>
+                                  <a href="#" class="list-group-item">
+                                   	全部订单 <span class="badge">14</span>
+                                  </a>
+                                  <a href="#" class="list-group-item active1">待支付 <span class="badge">14</span></a>
+                                  <a href="#" class="list-group-item">已支付 <span class="badge">14</span></a>
+                                  <a href="#" class="list-group-item">退保订单 <span class="badge">14</span></a>
+                                   
+                            </div> 
+                            
+                        </div>
+                        
+                       	<div class="f-pA15 s-bg-ffffff  f-mt15">
+                        	<a href="#" class="f-ib link_666">
+                            	<span class="f-db f-fs5">新手指导</span>
+                                <span class="f-db f-mt5">30秒带您了解E保险网</span>
+                            </a>
+                            <i class="pull-right fa fa-book fa-4x f-vam s-c-ebebeb"></i>
+                        </div>
+                        
+                        <div class="f-pA15 s-bg-ffffff f-mt15 f-mb20">
+                        	<a href="#" class="f-ib link_666">
+                            	<span class="f-db f-fs5"> 常见问题</span>
+                                <span class="f-db f-mt5">有我在，遇到问题全不愁</span>
+                            </a>
+                            <i class="pull-right fa fa-question-circle fa-4x f-vam s-c-ebebeb"></i>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-9 col-sm-8 col-xs-12 f-pA0 f-pb15 ">
+                        <div class="s-bg-ffffff  f-ml15">
+                        	<div class=" s-bsc4_e6e6e6  s-c-333333 f-pl10 f-pr10 f-pt10">
+                            	<div class="table-responsive">
+                            	 <table cellpadding="0" cellspacing="0" border="0" class="table f-mb5">
+                                 	<tr>
+                                    	 <td class="nosolid">起保日期 </td>
+                                         <td class="nosolid">投保日期 </td>
+                                         <td class="nosolid">子账户 </td>
+                                         <td class="nosolid">投保人/被保险人 </td>
+                                         <td rowspan="2" class="nosolid text-right">
+                                         	<a href="#" class="btn btn-danger">查 询</a>
+                                         </td>
+                                    </tr>
+                                    <tr>
+                                    	 
+                                        <td class="nosolid">
+                                         <input placeholder="起保起期" class="laydate-icon" onclick="laydate()" style="width:110px">
+                                         至
+                                         <input placeholder="起保止期" class="laydate-icon" onclick="laydate()" style="width:110px">
+                                         </td>
+                                        <td class="nosolid">
+                                         <input placeholder="投保起期" class="laydate-icon" onclick="laydate()" style="width:110px">
+                                         至
+                                         <input placeholder="投保止期" class="laydate-icon" onclick="laydate()" style="width:110px">
+                                        </td>
+                                        <td class="nosolid">
+                                 		<input placeholder="子账户" class="laydate-icon" style="width:110px; background:none;">
+                                        </td>
+                                        <td class="nosolid">
+                                 		<input placeholder="投保人/被保险人" class="laydate-icon" style="width:140px; background:none;">
+                                        </td>
+                                    </tr>
+                                 
+                                 </table>
+                             	</div>
+                            </div>
+                            <div class="table-responsive">
+                            	 <table class="table">
+                                 		<thead>
+                                        	<tr>
+                                              <th colspan="2" >保障信息</th>
+                                              <th>保障期限 ( 北京时间 )</th>
+                                              <th>保费 （元）</th>
+                                              <th>状态</th>
+                                              <th>操作</th> 
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tr><td colspan="6" height="10"></td></tr> 
+                                        <tr>
+                                        	<td colspan="3" class="s-bdcB_eeeeee nosolid">
+                                            	<span class="badge_2">1</span>
+                                                投保单号：<a href="#">15061525130574</a>
+                                                投保日期：2015-06-15 16:08:00
+                                            </td>
+                                            <td colspan="3" class="s-bdcB_eeeeee nosolid text-right">
+                                            	<a target="_blank" href="order_info.html">保单详情</a>&nbsp;
+                                                <a href="javascript:;">下载保单</a>&nbsp;
+                                                <a href="javascript:;">添加备注</a>&nbsp;
+                                                <a target="_blank" href="#">在线报案</a>&nbsp;
+                                            </td>
+                                        </tr>
+                                  		<tr>
+                                          <td class="nosolid solidB">
+                                          		<a href="#">慧择网-平安 旅行意外保险D款</a>
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		投保人：刘辉<br>
+                                                被保险人：刘辉
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		2015-06-16 零时起至 <br>
+                                                2015-06-16 二十四时止
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		0.80
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		已出单
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		 
+                                          </td>
+                                        </tr>
+                                        
+                                        <tr><td colspan="6" height="10"></td></tr> 
+                                        <tr>
+                                        	<td colspan="6" class="s-bdcB_eeeeee nosolid">
+                                            	<span class="badge_2">2</span>
+                                                投保单号：<a href="#">15061525130574</a>
+                                                投保日期：2015-06-15 16:08:00
+                                            </td>
+                                        </tr>
+                                  		<tr>
+                                          <td class="nosolid solidB">
+                                          		<a href="#">慧择网-平安 旅行意外保险D款</a>
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		投保人：刘辉<br>
+                                                被保险人：刘辉
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		2015-06-16 零时起至 <br>
+                                                2015-06-16 二十四时止
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		0.80
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		已出单
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		<a target="_blank" href="#">保单详情</a><br>
+                                                <a href="javascript:;">下载保单</a><br>
+                                                <a href="javascript:;">添加备注</a><br>
+                                                <a target="_blank" href="#">在线报案</a><br> 
+                                          </td>
+                                        </tr>
+                                        
+                                        
+                                        <tr><td colspan="6" height="10"></td></tr> 
+                                        <tr>
+                                        	<td colspan="6" class="s-bdcB_eeeeee nosolid">
+                                            	<span class="badge_2">3</span>
+                                                投保单号：<a href="#">15061525130574</a>
+                                                投保日期：2015-06-15 16:08:00
+                                            </td>
+                                        </tr>
+                                  		<tr>
+                                          <td class="nosolid solidB">
+                                          		<a href="#">慧择网-平安 旅行意外保险D款</a>
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		投保人：刘辉<br>
+                                                被保险人：刘辉
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		2015-06-16 零时起至 <br>
+                                                2015-06-16 二十四时止
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		0.80
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		已出单
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		<a target="_blank" href="#">保单详情</a><br>
+                                                <a href="javascript:;">下载保单</a><br>
+                                                <a href="javascript:;">添加备注</a><br>
+                                                <a target="_blank" href="#">在线报案</a><br> 
+                                          </td>
+                                        </tr>
+                                        
+                                        <tr><td colspan="6" height="10"></td></tr> 
+                                        <tr>
+                                        	<td colspan="6" class="s-bdcB_eeeeee nosolid">
+                                            	<span class="badge_2">4</span>
+                                                投保单号：<a href="#">15061525130574</a>
+                                                投保日期：2015-06-15 16:08:00
+                                            </td>
+                                        </tr>
+                                  		<tr>
+                                          <td class="nosolid solidB">
+                                          		<a href="#">慧择网-平安 旅行意外保险D款</a>
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		投保人：刘辉<br>
+                                                被保险人：刘辉
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		2015-06-16 零时起至 <br>
+                                                2015-06-16 二十四时止
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		0.80
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		已出单
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		<a target="_blank" href="#">保单详情</a><br>
+                                                <a href="javascript:;">下载保单</a><br>
+                                                <a href="javascript:;">添加备注</a><br>
+                                                <a target="_blank" href="#">在线报案</a><br> 
+                                          </td>
+                                        </tr>
+                                        
+                                        <tr><td colspan="6" height="10"></td></tr> 
+                                        <tr>
+                                        	<td colspan="6" class="s-bdcB_eeeeee nosolid">
+                                            	<span class="badge_2">5</span>
+                                                投保单号：<a href="#">15061525130574</a>
+                                                投保日期：2015-06-15 16:08:00
+                                            </td>
+                                        </tr>
+                                  		<tr>
+                                          <td class="nosolid solidB">
+                                          		<a href="#">慧择网-平安 旅行意外保险D款</a>
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		投保人：刘辉<br>
+                                                被保险人：刘辉
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		2015-06-16 零时起至 <br>
+                                                2015-06-16 二十四时止
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		0.80
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		已出单
+                                          </td>
+                                          <td class="nosolid solidB">
+                                          		<a target="_blank" href="#">保单详情</a><br>
+                                                <a href="javascript:;">下载保单</a><br>
+                                                <a href="javascript:;">添加备注</a><br>
+                                                <a target="_blank" href="#">在线报案</a><br> 
+                                          </td>
+                                        </tr>
+                                         
+                                 </table>
+                            </div>
+                            
+                            <div class="f-pt30" align="center">
+                            	<nav>
+                                  <ul class="pagination">
+                                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                     
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                      <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+              </div>
+          </div>
+     </div>
+     
+     
+</div>
+
+<!--footer-->
+<div class="container-fluid text-center f-pt40 f-pb40">
+	Copyright©2015 中天信合保险代理（北京）有限公司 版权所有 京ICP备12031115号-1
+</div>
+<script>
+	$().ready(function() {
+         
+		$('li.dropdown').mouseover(function(){$(this).addClass('open');}).mouseout(function(){ $(this).removeClass('open');}); 
+	 	 
+    });
+	
+	 
+</script>
+</body>
+</html>

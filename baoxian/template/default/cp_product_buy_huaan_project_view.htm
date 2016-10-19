@@ -1,0 +1,188 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_view_header}-->
+<div class="x_p_a_c c"><h2 class="l">产品责任及限额</h2></div>
+<div class="c_p_a_d" style="padding:10px;">
+     <table align="center" class="border_table_05_buy" cellpadding="0" cellspacing="0" width="950" >
+     <tr><td class="tac fwb">产品名称</td><td class="tac fwb">责任</td><td class="tac fwb">(累计,每次,每人)(万元)/保费(元)</td><td class="tac fwb">限额说明</td></tr>
+        <!--{loop $list_product_duty_price $index $value1}-->
+            
+             <tr>
+                <td class="tac">$value1[product_name]</td>
+                <td class="tac">$value1[duty_name]</td>
+                <td class="tac" id="xiane_price" data-amount="{$value1[amount]}">$value1[amount]/$value1[price]起</td>
+                <td id="beizhu_huaan"></td>
+              </tr>
+              
+        <!--{/loop}-->
+             
+     </table>
+</div>		
+<div class="x_p_a_c c"><h2>投保人信息</h2></div>
+<!--保险计划-->
+<!--投保人信息-->
+ <table  cellpadding="0" cellspacing="1" style="padding:15px 0">
+    <tr>
+        <!--{if $business_type==1}-->
+        <td width="150" class="check_td_left">投保人姓名：</td>
+        <td width="190" class="check_td_right">{$user_info_applicant[fullname]}</td>
+        <td width="150" class="check_td_left">性别：</td>
+        <td width="190" class="check_td_right">$attr_applicant_gender_huaan[$user_info_applicant[gender]]</td>
+        <td width="150" class="check_td_left">手机号：</td>
+        <td width="190" class="check_td_right">$user_info_applicant[mobiletelephone]</td> 
+        <!--{else}-->
+        <td width="150" class="check_td_left">机构名称：</td>
+        <td width="190" class="check_td_right" >{$user_info_applicant[group_name]}</td>
+        <td width="150" class="check_td_left">手机号：</td>
+        <td width="190" class="check_td_right">$user_info_applicant[mobiletelephone]</td>
+        <td width="150" class="check_td_left">固定电话：</td>
+        <td width="190" class="check_td_right">$user_info_applicant[telephone]</td>
+        <!--{/if}-->
+        
+    </tr>
+    
+        <tr><td width="150" class="check_td_left">证件类型：</td>
+        <!--{if $business_type==1}-->
+        <td width="190" class="check_td_right">$user_info_applicant[certificates_type_str]</td>
+        <!--{else}-->
+        <td width="190" class="check_td_right">$user_info_applicant[group_certificates_type_str]</td>
+        <!--{/if}-->
+        <td width="150" class="check_td_left">证件号：</td>
+        <!--{if $business_type==1}-->
+        <td width="190" class="check_td_right">$user_info_applicant[certificates_code]</td>
+
+        <!--{else}-->
+        <td width="190" class="check_td_right">$user_info_applicant[group_certificates_code]</td>
+        <!--{/if}-->
+        <td width="150" class="check_td_left">电子邮箱：</td>
+        <td width="190" class="check_td_right">$user_info_applicant[email]</td>
+
+        </tr>
+        <tr><td align="right">国籍：</td><td colspan="5" class="check_td_right">$user_info_applicant[nation_code]</td></tr>
+    
+    </table>
+					
+					
+					<div class="x_p_a_c c">
+                  			<h2>工程关系方</h2>
+                  		</div>
+                  		
+<table width="950" cellspacing="0" cellpadding="0" align="center" id="list_assured_list" class="border_table_05_buy">
+	<tr><th class="tac fwb">工程关系方</th><th class="tac fwb">名称</th><th class="tac fwb">证件类型</th><th class="tac fwb">证件号码</th><th class="tac fwb">手机号</th><th class="tac fwb">是否被保险人</th><th class="tac fwb"></th></tr>
+    <!--{loop $list_subject_insurant $value}-->
+       	<tr class="list_info">
+             	<td width="110" class="tac ">
+                	 {$attr_assured_type_huaan[$value[insurant_type]]}
+                </td>
+                <td width="140" class="tac">
+                	 {$value[fullname]}
+                </td>
+               
+                 
+                <td width="110" class="tac">
+                	 {$attr_applicant_type_huaan[$value[certificates_type]]} 
+                </td>
+                <td width="150" class="tac">
+                	 {$value[certificates_code]} 
+                </td>
+                <td width="140">
+                	{$value[mobiletelephone]} 
+                </td>
+                <td width="90" class="tac">
+                     {$attr_be_assured[$value[insurant_flag]]} 
+                </td>
+                
+                <td width="30" height="45" class="tac">&nbsp;
+                	
+                </td>
+                
+     	</tr>
+        <!--{/loop}-->
+     </table>
+					
+<div class="x_p_a_c c"><h2>工程信息</h2></div>
+<table  cellpadding="0" cellspacing="1" style="padding:15px 0">
+      <tr class="">
+            <td width="150" class="check_td_left">工程名称：</td>
+            <td width="190" class="check_td_right">
+                {$policy_arr[project_name]}
+            </td>
+            
+            <td width="150" class="check_td_left">工程类型：</td>
+            <td width="190" class="check_td_right">
+                 {$policy_arr[project_type]}
+            </td>
+            <td width="150" class="check_td_left">工程造价：</td>
+            <td width="190" class="check_td_right">
+             	 {$policy_arr[project_price]}
+            </td> 
+    	 </tr> 
+         <tr class="">
+            <td width="150" class="check_td_left">施工起期：</td>
+            <td width="190" class="check_td_right">
+            	 {$policy_arr[project_start_date]}
+            </td>
+              
+            <td width="150" class="check_td_left">施工止期：</td>
+            <td width="190" class="check_td_right">
+                {$policy_arr[project_end_date]}
+            </td>
+            <td width="150" class="check_td_left">邮政编码：</td>
+            <td width="190" class="check_td_right">
+             	 {$policy_arr[zipcode]}
+            </td> 
+    	 </tr>    
+         <tr class="">
+            <td width="150" class="check_td_left">施工内容：</td>
+            <td class="check_td_right" colspan="5">
+            	  {$policy_arr[project_content]}
+            </td>
+             
+    	 </tr>    
+         <tr class="">
+            <td width="150" class="check_td_left">施工地址：</td>
+            <td class="check_td_right" colspan="5">
+            	 {$policy_arr[province_name]}-{$policy_arr[city_name]}-{$policy_arr[project_location]}
+            </td>
+             
+    	 </tr>    
+</table>					
+<div class="x_p_a_c c"><h2>受益人信息</h2></div>
+<table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+        <tr>
+                 <td width="150" class="check_td_left">{$policy_arr.beneficiary}</td>
+                 <td width="617" class="check_td_right"></td>
+        </tr>
+
+</table>
+
+<div class="x_p_a_c c"><h2>保单信息</h2></div>
+<table cellpadding="0" cellspacing="0" width="700">
+
+<tbody>
+
+<tr>
+<td width="176" height="45" align="center" class="insure_cen_table_td insure_cen_table_das">保险期限：
+</td>
+
+<td width="605" class="check_td_right" style="font-weight:bolder">
+
+$policy_arr[start_date]&nbsp;&nbsp;至&nbsp;&nbsp;$policy_arr[end_date]
+
+</td>
+</tr>
+
+</tbody>
+</table>
+<script type="text/javascript">
+	
+	
+	$().ready(function() {
+ 
+		var duty_beizhu = $('#xiane_price').data('amount').split(',');
+		var duty_beizhu_html = '&nbsp;&nbsp;每次事故赔偿限额：'+duty_beizhu[1]+'万元<br>&nbsp;&nbsp;每次事故每人赔偿限额：'+duty_beizhu[2]+'万元<br>&nbsp;&nbsp;累计赔偿限额：'+duty_beizhu[0]+'万元';
+	 	$('#beizhu_huaan').html(duty_beizhu_html);
+
+	});
+</script>		
+<!--{template cp_product_buy_view_footer}-->
+<!--{template footer_cshop}-->	

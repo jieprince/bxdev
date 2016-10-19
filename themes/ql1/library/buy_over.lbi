@@ -1,0 +1,290 @@
+{if $insurer_code eq 'SSBQ'}
+<script>
+    $().ready(function() {
+        layer.alert("资料上传完成，将尽快进行核保审核！有任何疑问，可以拨打全联客服热线：021-65667179!<br>如还需上传资料,请至 用户中心-我的订单-订单详情中进行上传！");
+    });
+</script>
+<div class="g-wA100 s-bscT_009c84">
+	 
+    <div class="g-w1077 f-mc">
+    	{if $total.amount_formated!='0.00' && $total.amount_formated!='0'}
+		<div class="g-h48 f-tar">
+            <span class="s-c-666666 f-mt20 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-777777">
+                    <a href="/" class="link-009c84">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    完成投保
+                </span>
+            </span>
+        </div>
+        
+        <div class="f-mt30" align="center">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td><img src="images/buy_img_01.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_03.png" width="185" height="25"></td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="20"></td>
+                </tr>
+                <tr>
+                	<td align="right"><span class="cirle_title_sum">1</span></td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">确认基本投保资料</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">2</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25">确认保费并提供承保资料</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">3</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-989898 f-fs3 s-lh25">支付保费并提供支付凭证</span>
+                            <span class="f-fr"><span class="cirle_title_sum_1">4</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-fl s-c-989898 f-fs3 s-lh25">收到保单及保函扫描件</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+		{/if}
+        <div class="f-mt40 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title-2">订单信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_03">
+                	 
+                	<tr>
+                    	<th width="150">订单号：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$order.order_sn}
+                            </div>
+                        </td>
+                        <th width="150">订单状态：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                                成功
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    
+                    {if $total.amount_formated!='0.00' && $total.amount_formated!='0'}
+
+                        {if $surplus_scarce_msg}  
+                         <tr>
+                            <th>提示信息：</th>
+                            <td colspan="3">
+                                <div class="f-pl10" style="color: red">
+                                    {$surplus_scarce_msg}
+                                </div>
+                            </td>
+                           
+                        </tr>
+                         {/if}
+                    {else}
+                    <tr>
+                    	 
+                        <td colspan="4">
+                        	<div class="f-pl10 f-fs2 s-c-ec6941 s-lh25">
+                            	资料上传完成，将尽快进行核保审核！<br>
+                                查看或者补充资料，请到用户中心-->订单管理-->选中和此订单号一致的订单 查看详情~
+                                <br>
+                                有任何疑问，可以拨打全联客服热线：021-65667179!
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    {/if} 
+                </table>
+            
+        
+               
+        
+        	</section>
+            <!-- {if $pay_online}-->
+            <div class="f-mt20" align="center">
+                {$pay_online}
+            </div>
+            <!-- {/if} --> 
+        </div>
+        
+       <!-- {if $smarty.session.is_iframe neq 1}-->
+        <div class="f-mt40 f-pb40" align="center">
+        	<span class="f-ib">
+                <a href="/" class=" btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">返回首页</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf012b;</i></span>
+                    </span>
+                </a> 
+            </span>
+             
+            <span class="f-ib f-ml15">
+                <a href="user.php" class="btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">用户中心</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf010b;</i></span>
+                    </span>
+                </a> 
+            </span>
+        </div>
+       <!-- {/if} --> 
+    </div>
+    
+</div>
+
+{else}
+
+<div class="g-wA100 s-bscT_009c84">
+	 
+    <div class="g-w1077 f-mc">
+    	{if $total.amount_formated!='0.00' && $total.amount_formated!='0'}
+    	<!-- {if $smarty.session.is_iframe neq 1}-->
+		<div class="g-h48 f-tar">
+            <span class="s-c-666666 f-mt20 f-ib">
+                <i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                您的位置：
+                <span class="s-c-777777">
+                    <a href="/" class="link-009c84">首页</a>
+                    <i class="iconfont f-fs2">&#xf02af;</i>
+                    完成投保
+                </span>
+            </span>
+        </div>
+        <!-- {/if} -->
+        <div class="f-mt30" align="center">
+        	<table cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td><img src="images/buy_img_01.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02_1.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02_1.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_02_1.png" width="209" height="25"></td>
+                    <td><img src="images/buy_img_03.png" width="185" height="25"></td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="20"></td>
+                </tr>
+                <tr>
+                	<td align="right"><span class="cirle_title_sum">1</span></td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">填写投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum">2</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">确认投保信息</span>
+                            <span class="f-fr"><span class="cirle_title_sum">3</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="f-db f-cb">
+                        	<span class="f-fl s-c-ec6941 f-fs3 s-lh25 f-pl10">支付保费</span>
+                            <span class="f-fr"><span class="cirle_title_sum">4</span></span>
+                        </span>
+                    </td>
+                    <td>
+                    	<span class="s-c-ec6941 f-fs3 s-lh25 f-pl10">完成投保</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+		{/if}
+        <div class="f-mt40 s-bscT_009c84 s-bg-eff1f1 f-pt30 f-pl40 f-pr40 f-pb40">
+        	<h3 class=" cirle_title-2">订单信息</h3>
+            <section class="f-fs2 s-c-666666 f-mt20">
+            	<table cellpadding="0" cellspacing="0" border="0" class="table_buy_03">
+                	 
+                	<tr>
+                    	<th width="150">订单号：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                            	{$order.order_sn}
+                            </div>
+                        </td>
+                        <th width="150">订单状态：</th>
+                        <td width="348">
+                        	<div class="f-pl10">
+                                成功
+                            </div>
+                        </td>
+                    </tr>
+                    {if $total.amount_formated!='0.00' && $total.amount_formated!='0'}
+                        <tr>
+                            <th>支付方式：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    {$order.pay_name}
+                                </div>
+                            </td>
+                            <th>付款金额：</th>
+                            <td>
+                                <div class="f-pl10">
+                                    ￥<span class="f-fs6 s-c-ec6941 f-fsi f-fwb">{$total.amount_formated}</span> 元
+                                </div>
+                            </td>
+                        </tr>
+                        {if $surplus_scarce_msg}  
+                         <tr>
+                            <th>提示信息：</th>
+                            <td colspan="3">
+                                <div class="f-pl10" style="color: red">
+                                    {$surplus_scarce_msg}
+                                </div>
+                            </td>
+                           
+                        </tr>
+                         {/if}
+                    {/if} 
+                </table>
+            
+        
+               
+        
+        	</section>
+            <!-- {if $pay_online}-->
+            <div class="f-mt20" align="center">
+                {$pay_online}
+            </div>
+            <!-- {/if} --> 
+        </div>
+       <!-- {if $smarty.session.is_iframe neq 1}--> 
+        <div class="f-mt40 f-pb40" align="center">
+        	<span class="f-ib">
+                <a href="/" class=" btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">返回首页</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf012b;</i></span>
+                    </span>
+                </a> 
+            </span>
+             
+            <span class="f-ib f-ml15">
+                <a href="user.php" class="btn-c1c0c0">
+                    <span class="f-cb f-db">
+                        <span class="f-fl f-ml30 f-fwb">用户中心</span>
+                        <span class="f-fr f-mr10"><i class="iconfont f-fs8">&#xf010b;</i></span>
+                    </span>
+                </a> 
+            </span>
+              
+        </div>
+          <!-- {/if} --> 
+    </div>
+    
+</div>
+
+{/if}

@@ -1,0 +1,213 @@
+<script src="../js/profile.js"></script>
+
+<form id="edit_organ_form" action="user.php" method="post">
+   <input type="hidden" name="act" id="check_status" value="edit_organ">
+   <input type="hidden" name="check_status" id="check_status">
+   <input type="hidden" name="save_type" value="{$save_type}">
+   <input type="hidden" name="d_uid" value="{$distributor_info.user_id}">
+    <div class="f-pA20">
+        <table class="table_user_02">
+
+              <tr>
+              <td align="right">{$lang.user_name}：</td>
+              <td >
+                <input class="f-pA10 g-w210 n-invalid" type="text" name="name"  value="{$distributor_info.d_name}" />
+                </td>
+             </tr>
+
+             <tr>
+              <td align="right">密码：</td>
+              <td >
+                <input type="text" name="password" class="f-pA10 g-w210 n-invalid"/>
+                <input type="hidden" name="add_child_organ" value="1">
+              </td>
+             </tr>
+
+
+             <tr>
+             <td align="right">{$lang.type2}：</td>
+              <td>
+              <select name="type" class="s-select-1">
+               <option value="">--请选择--</option>
+               <option
+               {if $distributor_info.d_type eq '保险代理公司'}
+                selected='selected'
+               {/if}
+               value="保险代理公司">保险代理公司</option>
+               <option
+               {if $distributor_info.d_type eq '保险经纪公司'}
+                selected='selected'
+               {/if}
+               value="保险经纪公司">保险经纪公司</option>
+               <option
+               {if $distributor_info.d_type eq '保险兼业渠道'}
+                selected='selected'
+               {/if}
+               value="保险兼业渠道">保险兼业渠道</option>
+              </select>
+              </td>
+
+              </tr>
+
+             <!-- 联系人 -->
+             <tr>
+              <td align="right">{$lang.contacts}：</td>
+              <td>
+                <input class="f-pA10 g-w210 n-invalid" type="text" name="contacts"  value="{$distributor_info.d_contacts}"  /></td>
+             </tr>
+
+
+             <!-- 移动电话 -->
+             <tr>
+              <td align="right">{$lang.mobilePhone}：</td>
+              <td>
+              <input class="f-pA10 g-w210 n-invalid" type="text" name="mobilePhone"  value="{$distributor_info.d_mobilePhone}" data-rule="required; mobile"/></td>
+             </tr>
+
+             <tr>
+              <td align="right">{$lang.email}：</td>
+              <td>	<input class="f-pA10 g-w210 n-invalid" type="email" name="email" value="{$distributor_info.d_email}" data-rule="邮箱:email;"/></td>
+             </tr>
+
+
+             <!-- 所在地 -->
+              <tr>
+               <td align="right"> {$lang.label_area}</td>
+               <td >
+                   <select class="s-select-1" name="province" id="selProvinces" onchange="region.changed(this.value, 2, 'selCities')" >
+                     <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+                     <!-- {foreach from=$province_list item=province} -->
+                     <option value="{$province.region_id}" {if $distributor_info.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+                     <!-- {/foreach} -->
+                   </select>
+                   <select class="s-select-1" name="city" id="selCities" onchange="region.changed(this.value, 3, 'selDistricts')" >
+                     <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+                     <!-- {foreach from=$city_list item=city} -->
+                     <option value="{$city.region_id}" {if $distributor_info.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+                     <!-- {/foreach} -->
+                   </select>
+                   <select class="s-select-1" name="district" id="selDistricts" {if !$district_list} style="display:none"{/if} >
+                     <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+                     <!-- {foreach from=$district_list item=district} -->
+                     <option value="{$district.region_id}" {if $distributor_info.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+                     <!-- {/foreach} -->
+                    </select>
+               <span style="color: #FF0000"> *</span>
+              </td>
+               </tr>
+
+         <tr>
+            <td align="right">详细地址：</td>
+            <td><input class="f-pA10 g-w356 n-invalid" type="text" name="address"  value="{$distributor_info.d_address}" size="34" /></td>
+         </tr>
+
+         <tr>
+          <td colspan="2" align="center">
+          <br>
+          <input type="submit" class="btn-ec6941-108 s-lh25"   style="border:none;margin-left:0px;" value="保存"/>
+          <br>
+          </td>
+         </tr>
+
+
+        </table>
+    </div>
+   </form>
+   
+   {insert_scripts files="./js/region.js"}
+   {literal}
+   
+
+   <script language="JavaScript">
+	   region.isAdmin = false;
+
+	   function email_validate(val){
+	      if(!/^[a-z0-9_]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i.test(val)){
+	        alert('邮件格式不支持！支持格式：xxxx@xxx.xxx');
+	      }
+	   }
+   
+	   function edit_submit(check_status) {
+		   if(check_status!='checked'){
+			   var msg = data_validation();
+			   if (msg!="undefined" && msg!="") {
+				console.info('msg='+msg);
+				alert(msg);
+				return;
+			   }
+		   }
+		  
+			var obj = 'act=edit_organ&is_weixin=1&'+$('#edit_organ_form').serialize();
+			$.ajax({
+				   type: "POST",
+				   url: "user.php",
+				   data: obj,
+				   success: function(data){
+					 var obj = $.parseJSON(data);
+				     if(obj.code==0){
+				    	 alert(obj.msg);
+				    	 window.location=obj.go_url;
+				     }else{
+				    	alert(obj.msg); 
+				    }
+				   }
+			});
+				
+		}
+	   
+	   function data_validation(){
+		   var email = $("#organ_info_email").val();
+		   var mobile_phone = $("#organ_info_phone").val();
+			
+		   var msg="";
+		   msg+=email_validate(email,1);
+		   msg+=phone_validate(mobile_phone,1);
+		   return msg;
+	   } 
+	   
+	   
+	   //提交审核
+	   function submit_check(check_status){
+		    $("#check_status").val('pending');
+		    edit_submit(check_status); 
+	   }
+	   
+	   
+		 //通过 省份ID查询城市
+	 	 var region = new Object();
+		 region.changed = function(parentId, type, selName)
+		 {
+		 	  $.ajax({
+		 		   dataType:"json",
+		 		   type: "GET",
+		 		   url: "region.php",
+		 		   data: "type="+type+"&target="+selName+"&parent="+parentId,
+		 		   success: function(data){
+		 			   //判断data.regions是否有值，没有的话，隐藏区域，否则显示区域列表
+		 			   if(type==3){
+		 				   if(data.regions.length>0){
+		 					  $("#"+selName).show();
+		 				   }
+		 				   else{
+		 					  $("#"+selName).hide();
+		 				   }
+		 			   }
+		 			   
+		 			   var region_select ="<option value='0'>请选择</option>";
+		 			   $.each(data.regions,function (k,v)
+		 				{
+		 				  region_select+="<option value='"+v.region_id+"'>"+v.region_name+"</option>"
+		 				});
+		 			   
+		 			   $("#"+selName).html(region_select);
+		 		     	
+		 		   }
+		 		});
+
+		 }	
+	   
+   
+   </script>
+   {/literal}
+
+   

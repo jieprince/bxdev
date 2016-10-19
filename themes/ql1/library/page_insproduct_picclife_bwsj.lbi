@@ -1,0 +1,118 @@
+<script src="js/laydate-master/laydate.js"></script>	
+<script src="themes/inserance_02/js/custorm/picc_bwsj.js"></script>			
+<div class="xqcont">
+    <div class="dataForm">
+    	 <form action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" method="post" onSubmit="return setPrices(1)">
+        <div class="baseForm" id="baseForm">
+            <!--基本信息开始-->
+            			 
+                        <div class="panel" style="margin: 0 0 8px 0;" >
+                            <div class="panel-header">
+                                <div class="panel-title">适合人群：18-60周岁 </div>
+                            </div>
+                            <div class="panel-header">
+                                <div class="panel-title">保障期限：30年</div>
+                            </div>
+                            <div class="panel-body" style="margin-top:10px;">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                 
+                                  <tr>
+                                  	   
+                                      <td>交费期间&nbsp;</td>
+                                      <td>
+                                          &nbsp;<select id="period" name="payPeriod" style="width:200px;" onChange="getInsurData()">
+                                              
+                                              <!--{foreach from=$arr_period_list item=item key=key}-->
+                                              	{if $key==0}
+                                                <option value="{$item.factor_code}" selected="selected" >{$item.factor_name}</option>
+                                                {else}
+                                                <option value="{$item.factor_code}">{$item.factor_name}</option>
+                                                {/if}
+                                              <!--{/foreach}-->
+                                           </select>&nbsp;
+                                      </td>
+                                      
+                                      <td>年龄范围&nbsp;</td>
+                                      <td>
+                                          &nbsp;<select id="arr_age" name="insured_age_range" style="width:200px;" onChange="getInsurData()">
+                                              
+                                              <!--{foreach from=$arr_age_list item=item key=key}-->
+                                              	{if $key==0}
+                                                <option value="{$item.factor_code}" selected="selected" >{$item.factor_name}</option>
+                                                {else}
+                                                <option value="{$item.factor_code}">{$item.factor_name}</option>
+                                                {/if}
+                                              <!--{/foreach}-->
+                                           </select>&nbsp;
+                                      </td>
+                                      
+                                </tr>
+                            </table>
+                           </div>
+                        </div>
+                  <!--基本信息结束-->
+                  <!--主险开始-->
+                         <div class="panel"  style="margin: 0 0 8px 0;">
+                              <div class="panel-header">
+                                <div class="panel-title font_bold">主险</div>
+                            </div>
+                               <div class="panel-body">
+                             <table cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td><span id="main_product_name"></span></td>
+                                    <td>&nbsp;保额/保费(元)：<select id="main_ins_premium" onChange="setaddtional_list()">
+                                                    		<option data-value="80.00" value="88">5万/80.00</option>
+                                                            <option data-value="160.00" value="96">10万/160.00</option>
+                                                            <option data-value="260.00" value="96">20万/260.00</option>
+                                                   </select>
+                                    </td>
+                                    <td><!--&nbsp;保费：<input type='text' id='child_YA01' value='' />   -->     
+                                    </td>
+                                </tr>
+                            </table>
+                               </div>
+                         </div>
+                   <!--主险结束-->
+                   <!--附加险开始-->
+                         <div class="panel" style="margin: 0 0 8px 0;" >
+                             <div class="panel-header">
+                                <div class="panel-title font_bold">附加险(可选)</div>
+                            </div>
+                             <div class="panel-body" >
+                              <table cellpadding="0" cellspacing="0" class="border_table_05" id="addtional_list">
+                                 
+                              </table>
+                             </div>
+                         </div>
+                    <!--附加险结束-->
+                     
+            <div class="buyBar">
+ 
+                    <input type="hidden" name="attribute_id" id="attribute_id" value="{$ins_product_selected.attribute_id}">
+                	<input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                    <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" />  
+                    <input type="hidden" name="duty_price_ids" id="duty_price_ids">
+                    <input type="hidden" name="insPeriod" value="30"> 
+                    <input type="hidden" name="applyNum" id="applyNum_temp">
+                    <input type="hidden" name="price" id="price">
+                	<input type="submit" id="buy_submit" value="{$lang.insure}" class="btn_products_02_01 margin_T0_30">
+            </div> 
+        </div>
+        </form>
+        
+        <div class="panel" >
+                             <div class="panel-header">
+                                <div class="panel-title font_bold" style="line-height:40px;">您获得的保障</div>
+                            </div>
+                             <div class="panel-body" >
+                              <table cellpadding="0" cellspacing="0" class="border_table_03" id="baozhang_list">
+                                 	
+                              </table>
+                             </div>
+                         </div>
+    </div>
+</div>
+					
+					
+					
+					

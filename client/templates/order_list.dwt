@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全联保险经纪个人中心</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="dist/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="dist/css/style.css">
+</head>
+<body>
+<div class="container-fluid">
+	 
+    <div class="">
+        <div class="panel panel-primary" style="border-color: #ed462f;border-radius:0px;" >
+            <div class="panel-heading f-fwb text-center" style="background: #ed462f;border-color: #ed462f;border-radius:0px;">
+                订单列表
+            </div>
+            <div class="panel-body">
+                <div>
+                {foreach from=$orders item=order_data name=orderit}
+                    <div class="list-group">
+                        <a href="user.php?act=order_detail&order_id={$order_data.order_id}" class="list-group-item f-fs10">
+                            <i class="fa fa-angle-right f-fr"></i>
+                            <p class="list-group-item-text f-lh25">&#12288;订单号：{$order_data.order_sn}</p>
+                            <p class="list-group-item-text f-lh25">产品名称：
+	                              <!--{foreach from=$order_data.goods_list item=item1}-->
+								 		{$item1.goods_name}
+								  <!--{/foreach}-->
+                            </p>
+                            <p class="list-group-item-text f-lh25">订单金额：<span class="f-c-red f-fwb">{$order_data.total_fee}</span></p>
+                            <p class="list-group-item-text f-lh25">下单时间：{$order_data.order_time}</p>
+                            <p class="list-group-item-text f-lh25">支付方式：{$order_data.pay_name}</p>
+                            <p class="list-group-item-text f-lh25">状&#12288;&#12288;态：<span class="f-c-red f-fwb">{$order_data.order_status}</span></p>
+                        </a>
+
+                    </div>
+              	{foreachelse}
+			   		暂时您没有订单
+			    {/foreach}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/public.js"></script>
+</body>
+</html>

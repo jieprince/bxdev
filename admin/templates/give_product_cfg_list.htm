@@ -1,0 +1,88 @@
+<!-- $Id: exchange_goods_list.htm 15544 2009-01-09 01:54:28Z zblikai $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div class="form-div">
+  <form action="javascript:searchArticle()" name="searchForm">
+  	<table>
+  		<tr>
+  			<td>用户名:</td>
+  			<td>
+  				<input type="text" name="user_name" />
+  			</td>
+  			<td>产品名称:</td>
+  			<td>
+  				<input name="goods_name">
+  			</td>
+  			<td>
+  				<input type="submit" value="查询" />
+  			</td>
+  		</tr>  	
+  	</table>
+
+  </form>
+</div>
+
+<!-- start cat list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='3' id='list-table'>
+  <tr>
+    <th><input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox">
+      	用户ID</th>
+    <th>用户名</th>
+    <th>姓名</th>
+    <th>产品名称</th>
+    <th>赠送总量</th>
+    <th>订单数量</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$give_list item=give}
+  <tr>
+    <td><span><input name="checkboxes[]" type="checkbox" value="{$list.goods_id}"/>
+    					{$give.user_id}</span></td>
+    <td align="center">{$give.user_name}</td>
+    <td align="center">{$give.real_name}</td>
+    <td align="center">{$give.goods_name}</td>
+    <td align="center">{$give.give_count}</td>
+    <td align="center">{$give.order_num}</td>
+    <td align="center"><a href="give_product_cfg.php?act=edit&id={$give.id}">编辑</a></td>
+   </tr>
+  {/foreach}
+  <tr>
+    <td colspan="2"><input type="submit" class="button" id="btnSubmit" value="删除" disabled="true" /></td>
+    <td align="right" nowrap="true" colspan="8">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end cat list -->
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+
+ /* 搜索文章 */
+ function searchArticle()
+ {
+     listTable.filter['user_name'] = Utils.trim(document.forms['searchForm'].elements['user_name'].value);
+     listTable.filter['goods_name'] = Utils.trim(document.forms['searchForm'].elements['goods_name'].value);
+    listTable.filter.page = 1;
+    listTable.loadList();
+ }
+ {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

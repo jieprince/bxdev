@@ -1,0 +1,65 @@
+<h5><span>平台公告>><a href="user.php?act=user_center_affiche">公告列表</a>
+</span>
+<span id="current_title"></span>
+</h5>
+<div class="blank"></div>
+<div style="width: 890px;" id="article_list">
+	<div class="padd_A10">
+		<ul class="note_list">
+			<!--{foreach from=$article_list item=item}-->
+
+			<li style="border-bottom: #CCC dashed 1px;">
+				<div class="float_L" style="width: 770px;">
+					<span class="font13 color_ea5413"><img src="../images/dot.png"></span> <a
+						href="javascript:get_article_by_id({$item.article_id});"
+						title="{$item.title}" id="notetitle_00{$item.article_id}">{$item.title}</a> <span id="noteid_00{$item.article_id}"
+						style="display: none;">{$item.content}</span>
+
+				</div>
+				<div class="float_R font13">【{$item.add_time}】</div>
+				<div class="clear"></div>
+
+			</li>
+			<!-- {foreachelse}  -->
+				<li>
+					没有公告
+				</li>
+			<!--{/foreach}-->
+
+
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+<div class="padd_A10" id="article_show" style="display: none;">
+
+</div>
+
+
+
+
+<script type="text/javascript">
+$().ready(function(){
+    var id = getUrlParam('id');
+	if(id&&!isNaN(id)){
+		get_article_by_id(id);
+	} 
+});
+
+	//url中数据的提取
+function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r!=null) return unescape(r[2]); return null;	
+}
+
+	function get_article_by_id(article_id){
+			$("#article_list").hide();
+			$("#article_show").show();
+			$("#article_show").html($('#noteid_00'+article_id).html());
+			$("#current_title").html(">>"+$('#notetitle_00'+article_id).html());
+		
+	}
+</script>

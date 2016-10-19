@@ -1,0 +1,228 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+
+<div class="form-div">
+<form action="javascript:searchUser()" name="searchForm" id="organization_list_form">
+  <input type="hidden" value="organization_list" name="act">
+  <input type="hidden" name="sort" value="{$filter.sort}" />
+  <input type="hidden" name="order" value="{$filter.order}" />
+    <table>
+	<tbody>
+	<tr>
+		<td>{$lang.label_user_name}</td><td><input type="text" name="user_name" /> </td>
+	    <td>渠道名称</td><td><input type="text" name="d_name" /> </td>
+	    
+<!-- 	    <td>审核状态</td>
+	    <td>
+	    	<select name="is_check">
+	    		<option value=''>所有</option>
+	    		<option value='1'>已审核</option>
+	    		<option value='2'>未审核</option>
+	    	</select>
+	     </td> -->
+	</tr>	
+	<tr>
+	    <td>{$lang.label_user_email}</td><td><input type="text" name="email" /> </td>
+	    <td>是否禁用</td><td>
+	    	<select name="is_disable">
+	    		<option></option>
+	    		<option value='2'>否</option>
+	    		<option value='1'>是</option>
+	    	</select>
+	    
+	     </td>
+	    	    <!-- add yes123 2015-01-06 添加最后更新时间查询 -->
+<!-- 	    <td>{$lang.last_time}</td>
+	    <td>
+	    	<select name="last_time">
+	    		<option></option>
+	    		<option value='DESC'>倒序</option>
+	    		<option value='ASC'>正序</option>
+	    	</select>
+	     </td> -->
+	     
+	<!--    	<td>{$lang.apply_check}<input type="checkbox" name="apply_check" value='1'>
+	   	</td> -->
+	    <td><input type="submit" value="{$lang.button_search}" /></td>
+	</tr>	  
+		  </tbody>
+	  </table>
+  </form>
+</div>
+
+<!-- 订单列表 -->
+<form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()">
+	<div class="list-div" id="listDiv">
+		{/if}
+
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th>ID</th>
+				<th>编码</th>
+				<th>名称</th>
+				<th>简称</th>
+				<th>上级</th>
+				<th>所在地区</th>
+				<th>操作</th>
+			<tr>
+			{foreach from=$data_list item=item key=key}
+			<tr align="center">
+				<td >{$item.insurer_id}</td>
+				<td >{$item.insurer_code}</td>
+				<td >{$item.insurer_name}</td>
+				<td >{$item.insurer_abbrname}</td>
+				<td >{$user.d_identificationcode}</td>
+				<!-- <td >{$user.d_email}</td> -->
+				<td ><a href="distributor.php?act=organization_list&parent_institution_id={$user.institution_id}">{$user.parent_d_name}</a></td>
+				<td >
+					<a href="distributor.php?act=user_list_by_organid&id={$user.user_id}">{$user.user_num}</a>
+				</td>
+				<td >
+					<a href="distributor.php?act=organization_list&parent_institution_id={$user.user_id}">{$user.child_organ_num}</a>
+				</td>
+				<td >{$user.policy_num}</td>
+				<td >{$user.total_premium}</td>
+				<td >{$user.ogran_money_total}</td>
+				<!-- <td >{if $user.is_cheack eq 0}<span style="color: red">未审核</span>{else}<span style="color: #37AF60">已审核</span>{/if}</td> -->
+				<td >{if $user.is_disable eq 1}
+					<a href="javascript:disable_enabled_salesman({$user.user_id},2);">	<span style="color: red">已禁用</span></a>
+					{else}<a href="javascript:disable_enabled_salesman({$user.user_id},1);"><span style="color: #37AF60">未禁用</span></a>{/if}</td>
+				<td >{$user.reg_time}</td>
+				<td><a href="distributor.php?act=organization_edit&user_id={$user.user_id}" title="{$lang.edit}">
+						编辑
+					</a>
+					<!-- <a href="distributor.php?act=organ_ipa_rate_config_list&institution_id={$user.user_id}&d_name={$user.d_name}">|产品配置</a> -->
+					<!-- <a href="users.php?act=check&id={$user.user_id}&is_institution={$user.is_institution}"  title="{$lang.check}">审批</a> -->
+					
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<!-- <input type="button" onclick="batch_invoice_assigned();" value="受理">  -->
+		<!-- <input type="button" onclick="invoice_export_list();" value="导出"> -->
+	</div>
+</form>
+<!-- 发票受理窗口 -->
+{include file="invoice_assigned.htm"}
+
+<script language="JavaScript">
+listTable.query = "organization_list_query";
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索订单
+     */
+    function searchUser()
+    {
+    	listTable.filter['user_name'] = Utils.trim(document.forms['searchForm'].elements['user_name'].value);
+    	listTable.filter['d_name'] = Utils.trim(document.forms['searchForm'].elements['d_name'].value);
+    	 /*listTable.filter['is_check'] = Utils.trim(document.forms['searchForm'].elements['is_check'].value);
+		listTable.filter['check_status'] =$('input[name=check_status]:checked').val(); */
+        listTable.filter['email'] = document.forms['searchForm'].elements['email'].value;
+        listTable.filter['is_disable'] = document.forms['searchForm'].elements['is_disable'].value;
+        listTable.filter['order'] = document.forms['searchForm'].elements['order'].value;
+        listTable.filter['sort'] = document.forms['searchForm'].elements['sort'].value;
+        listTable.filter['page'] = 1;
+        listTable.query = "organization_list_query";
+        listTable.loadList();
+    }
+	
+    
+    function sort(sort){
+		
+    	$("#organization_list_form input[name=sort]").val(sort);
+    	var order = $("#organization_list_form input[name=order]").val();
+    	
+    	if(order=='DESC')
+    	{
+    		$("#organization_list_form input[name=order]").val("ASC");
+    	}
+    	else
+   		{
+    		$("#organization_list_form input[name=order]").val("DESC");
+   		}
+    	
+    	$("#organization_list_form").submit();
+    	
+    }
+    
+    function check()
+    {
+      var snArray = new Array();
+      var eles = document.forms['listForm'].elements;
+      for (var i=0; i<eles.length; i++)
+      {
+        if (eles[i].tagName == 'INPUT' && eles[i].type == 'checkbox' && eles[i].checked && eles[i].value != 'on')
+        {
+          snArray.push(eles[i].value);
+        }
+      }
+      if (snArray.length == 0)
+      {
+        return false;
+      }
+      else
+      {
+        eles['order_id'].value = snArray.toString();
+        return true;
+      }
+    }
+
+	function disable_enabled_salesman(user_id,status)
+	{
+		var msg ="";
+		if(status==1)
+		{
+			msg="禁用后，此渠道和此此渠道下的会员将无法登录，确定禁用吗？"
+		}else{
+			status=0;
+			msg="启用后，此渠道和此渠道下的会员将恢复正常，确定启用吗？"
+		}
+		
+		var pageii = $.layer({
+		    shade: [0],
+		    area: ['auto','auto'],
+		    dialog: {
+		        msg: msg,
+		        btns: 2,                    
+		        type: 4,
+		        btn: ['确定','取消'],
+		        yes: function(){
+		    		$.get("distributor.php?act=disable_enabled_salesman", { "salesman_id": user_id, "is_disable": status},
+		  				  function(data){
+		  						data = jQuery.parseJSON(data);
+		  						if(data.code==0)
+		  						{
+		  							layer.close(pageii);
+		  							alert(data.msg);
+		  							$("#organization_list_form").submit();
+		  							
+		  						}
+		  			 	  });
+		        }, no: function(){
+		        	layer.close(pageii);
+		        }
+		    }
+		});
+		
+	}
+		
+</script>
+{/literal} {include file="pagefooter.htm"} 

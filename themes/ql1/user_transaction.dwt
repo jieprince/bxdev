@@ -1,0 +1,109 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<link rel="stylesheet" href="js/nice-validator-0.7.3/jquery.validator.css">
+<script type="text/javascript" src="js/nice-validator-0.7.3/jquery.validator.js"></script>
+<script type="text/javascript" src="js/nice-validator-0.7.3/local/zh_CN.js"></script>
+<script src="static/My97DatePicker/WdatePicker.js"></script>
+<script src="js/public.js"></script>
+{insert_scripts files='user_check.js'}
+
+ 
+<div class="g-wA100 {if $smarty.session.is_iframe neq 1}s-bscT_009c84{/if}">
+ <!-- {if $smarty.session.is_iframe neq 1}-->		
+		<div class="g-w1077 f-mc s-bg-user f-mt25" style="background:url(images/user_banner_img_01.png) no-repeat center">
+		<div class="f-cb f-pA45">
+	    	<div class="f-fl g-w720">
+	        	<span class="f-ib" >
+	        	</span>
+	            <span class="f-ml20 s-c-ffffff f-ib">
+	            	<span class="f-fs4 f-db f-fwb">我的名称</span>
+	                <span class="f-fs2 f-db f-mt15">上次登录时间：{$smarty.session.formated_last_time}  </span>
+	            </span>
+	        </div>
+	    </div>
+	</div>   
+	
+	
+		 <div class="g-w1077 f-mc f-cb f-mt25">
+		 <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem -->
+		 <div class="f-fr g-w800 s-bg-eff1f1">
+ <!-- {/if} -->
+	 
+	<!-- 我的保单 -->
+	<!-- {if $action eq 'warranty_list'} -->
+		<!-- #BeginLibraryItem "/library/policy_list.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	
+	<!-- 保单详情 -->
+	<!-- {if $action eq 'policy_detail'} -->
+		<!-- #BeginLibraryItem "/library/policy_info.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	
+	<!-- 理赔查询 -->
+	<!-- {if $action eq 'settlement_search'} -->
+		<!-- #BeginLibraryItem "/library/settlement_search.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	
+	
+	<!-- 等待处理 -->
+	<!-- {if $action eq 'cart_list'} -->
+		<!-- #BeginLibraryItem "/library/cart_list.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	
+	<!-- 我的订单 -->
+	<!-- {if $action eq 'order_list'} -->
+		<!-- #BeginLibraryItem "/library/order_list.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	<!-- 订单详情 -->
+   <!--{if $action eq order_detail} -->
+    <!-- #BeginLibraryItem "/library/order_info.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/policy_list.lbi" --><!-- #EndLibraryItem -->
+      <!--{/if} -->
+	
+	</div> 
+	 
+	<!-- 个人资料 -->
+	<!-- {if $action eq 'profile'} -->
+		<!-- #BeginLibraryItem "/library/profile.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+
+	<!-- {if $action eq 'organ_manage' || $action eq 'organ_info' || $action eq 'department_list' || $action eq 'salesman_list' || $action eq 'child_organ_list' || $action eq 'child_organ_add' || $action eq 'order_manage_list'|| $action eq 'policy_manage_list' ||$action eq 'organ_goods_list'||$action eq 'control_add' || $action eq 'salesman_detail' ||$action eq 'child_organ_info'} -->
+		<!-- #BeginLibraryItem "/library/organ_manage.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+	
+	<!-- 账户交易明细-->
+	<!-- {if $action eq 'account_detail' || $action eq 'account_deposit' || $action eq 'account_raply' || $action eq 'account_income' || $action eq 'clearing_detail' || $action eq 'account_log' || $action eq 'bank_account' || $action eq 'edit_pass' ||$action eq 'act_account'} -->
+		<!-- #BeginLibraryItem "/library/account_manage.lbi" --><!-- #EndLibraryItem -->
+	<!-- {/if} -->
+	
+    </div> 
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+<script>
+	function user_imgshow(str_num){
+		if(str_num==1){
+			$('#fengmian').hide();
+			$('#touxiang').show();
+			$('#user_img_title_01').removeClass("s-c-666666").addClass("s-c-040404");
+			$('#user_img_title_02').removeClass("s-c-040404").addClass("s-c-666666");
+		}else if(str_num==2){
+			$('#touxiang').hide();
+			$('#fengmian').show();
+			$('#user_img_title_02').removeClass("s-c-666666").addClass("s-c-040404");
+			$('#user_img_title_01').removeClass("s-c-040404").addClass("s-c-666666");
+		}	
+	}
+</script>
+
+</div>

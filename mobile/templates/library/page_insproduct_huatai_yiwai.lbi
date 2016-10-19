@@ -1,0 +1,43 @@
+<script src="dist/js/custom/huatai_yiwai.js"></script>
+<input type="hidden" id="ins_product_selected_id" value="{$ins_product_selected.product_id}">
+<input type="hidden" id="goods_id_temp" value="{$goods.goods_id}">
+<input type="hidden" id="prodcutMarkPrice" name="prodcutMarkPrice">
+<input type="hidden" id="prodcutPeriod" name="prodcutPeriod">
+<input type="hidden" id="factor_code_peroid" name="factor_code_peroid">
+<div class="panel panel-default">
+	<ul class="list-group" >
+          <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">{$goods_info.attribute_name}</span></li>
+                                  
+          <input type="hidden" name="" value="">
+          
+          <a class="list-group-item" href="javascript:void(0)" id="project_cost_select_P" onClick="showSelect_product_list('project_cost_select','project_cost_select_P')" data-value='[{foreach from=$ins_product_list key=key item=value name=test}{if $smarty.foreach.test.index!=0},{/if}{"product_id":"{$value.product_id}","product_name":"{$value.product_name}"}{/foreach}]'><span class="s-c-aaaaaa">选择产品</span><span class="pull-right"><span id="project_cost_select" data-product_id="{$ins_product_selected.product_id}">{$ins_product_selected.product_name}</span><i class="fa fa-angle-right f-ml10 s-c-aaaaaa f-fs6"></i></span></a>
+          <li class="list-group-item">
+          	<span class="s-c-aaaaaa">
+          		{$goods.product_characteristic}
+            </span>
+          </li>
+          <a class="list-group-item" href="javascript:void(0)" id="factor_cost_select_P" onClick="showSelect_factor_list('factor_cost_select','factor_cost_select_P')" data-value='[{foreach from=$ins_product_selected.product_influencingfactor_list key=key item=value name=test}{if $smarty.foreach.test.index!=0},{/if}{"factor_id":"{$value[factor_code]}","factor_name":"{$value.factor_name}","factor_price":"{$value.factor_price}"}{/foreach}]'><span class="s-c-aaaaaa">保险期限</span><span class="pull-right"><span id="factor_cost_select"></span><i class="fa fa-angle-right f-ml10 s-c-aaaaaa f-fs6"></i></span></a>
+          <li class="list-group-item">
+                <div class="f-cb">
+                    <span class="s-c-aaaaaa f-fl g-wA50">
+                        承保年龄：{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁<br>
+                        最大购买份数：每人限{$ins_product_selected.number}份</span>
+                    <span class="s-c-aaaaaa f-fr g-wA50 text-right f-mt5">
+                    <!-- {if $smarty.session.check_status eq 'checked'}-->
+                        <!-- {if $goods.rate_myself >0}-->
+                            <span class="btn-2 btn-info-2">服务费率：{$goods.rate_myself}%</span>
+                        <!--{/if}--> 
+                    <!--{/if}-->  
+                    </span>
+                </div>
+          </li>
+          <li class="list-group-item text-center">
+                <span class="s-c-ed462f f-fwb  f-fs5">
+                    <i class="fa fa-jpy"></i>
+                    <span class=" f-ml5">
+                        <span id="productPrem_price">{$ins_product_selected.premium}</span>元
+                    </span>
+                </span>
+          </li>
+	</ul>
+</div>

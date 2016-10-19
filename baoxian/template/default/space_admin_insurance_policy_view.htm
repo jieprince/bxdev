@@ -1,0 +1,102 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<div id="main-body">
+
+<a href="space.php?do=admin_insurance_order"> 返回类别列表 </a>
+
+<form name="productForm" method="POST" action="/productAction.do?method=view">
+    <div id="view">
+        <div id="viewData">
+            <div id="viewContent">
+                
+
+
+<table class="view-table">
+    <tbody><tr>
+        <td colspan="4" class="view-header">基本信息</td>
+    </tr>
+	
+    <tr>
+        <td class="view-first-title">订单号</td>
+        <td class="view-first-text">$value[order_num]</td>
+        <td class="view-first-title">产品名称</td>
+        <td class="view-top-right-text">$value[product_name]</td>
+		
+    </tr>
+	
+	 <tr>
+ 
+        <td class="view-first-title">投保份数</td>
+        <td class="view-top-right-text">$value[apply_num]</td>
+		
+		        <td class="view-first-title">总费用</td>
+        <td class="view-first-text">$value[total_premium]</td>
+		
+    </tr>
+	
+	<tr>
+
+        <td class="view-first-title">投保人</td>
+        <td class="view-top-right-text">$value[applicant_username]</td>
+		
+    </tr>
+	
+
+	<tr>
+        <td class="view-first-title">于被保险人关系</td>
+        <td class="view-first-text">$value[relationship_with_insured]</td>
+   
+        <td class="view-first-title">收益关系</td>
+        <td class="view-top-right-text">$value[beneficiary]</td>
+		
+    </tr>	
+	
+	
+	<tr>
+        <td class="view-first-title">保险起期</td>
+        <td class="view-first-text">$value[start_date]</td>
+        <td class="view-first-title">保险止期</td>
+        <td class="view-top-right-text">$value[end_date]</td>
+		
+    </tr>	
+	
+	 <tr>
+        <td class="view-first-title">保单号</td>
+        <td class="view-first-text">$value[policy_no]</td>
+        <td class="view-first-title">保单状态</td>
+        <td class="view-top-right-text">$value[policy_status]</td>
+		
+    </tr>	
+	
+	<tr>
+        <td class="view-first-title">业务类型</td>
+        <td class="view-first-text">$value[business_type]</td>
+        <td class="view-first-title">保单状态</td>
+        <td class="view-top-right-text">$value[policy_status]</td>
+		
+    </tr>	
+	
+	<tr>
+        <td class="view-first-title">代理人</td>
+        <td class="view-first-text">$value[agent_username]</td>
+        <td class="view-first-title">时间</td>
+        <td class="view-top-right-text">$value[dateline]</td>
+		
+    </tr>	
+
+</tbody></table>
+
+
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

@@ -1,0 +1,6 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if $user_info}
+{$lang.hello}，<a href="user.php" >{$smarty.session.user_name}  </a>|
+{else}
+ <a href="user.php">[登录]</a>|
+{/if}

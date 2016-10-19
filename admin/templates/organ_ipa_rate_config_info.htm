@@ -1,0 +1,225 @@
+{include file="pageheader.htm"} 
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="layer/layer.min.js"></script>
+{insert_scripts files="validator.js,../js/transport.js}
+<div class="main-div">
+<form name="theForm" method="post" enctype="multipart/form-data" action="distributor.php?act=organ_ipa_rate_config_save" onsubmit="return validate();" id="organ_ipa_rate_config_form">
+<input type="hidden" name="save_type" value="{$save_type}" />
+<input type="hidden" name="organ_id" value="{$organ_id}" />
+<input type="hidden" name="id" value="{$id}" />
+<table width="100%">
+  <tr>
+  <tr>
+    <td class="label">险种名称</td>
+    <td>
+     <input type="hidden" name="attribute_id"  value="{$organ_ipa_rate_config.attribute_id}" />
+      <input type="text" name="attribute_name"  {if $save_type eq 'edit'}  disabled="disabled" {/if} value="{$organ_ipa_rate_config.attribute_name}"  />
+     <!-- {if $save_type eq 'insert'} -->
+      	<input type="button" onclick="query_attribute();"  value="查询"/>
+      <!-- {/if} -->
+      <span style="color: red" id="rate_show"></span>
+      </td>
+  </tr>	
+  
+ <tr>
+    <td class="label">订单服务费</td>
+    <td>
+     <input type="text" name="rate_myself"  value="{$organ_ipa_rate_config.rate_myself}" />%
+     <input type="checkbox" name="myself_enabled" value="1" {if $organ_ipa_rate_config.myself_enabled eq 1} checked="checked" {/if}  />启用
+    </td>
+
+  </tr>	
+  
+  <tr>
+      <td class="label">推荐服务费</td>
+    <td>
+     <input type="text" name="rate_recommend"  value="{$organ_ipa_rate_config.rate_recommend}" />%
+	 <input type="checkbox" name="recommend_enabled" value="1" {if $organ_ipa_rate_config.recommend_enabled eq 1} checked="checked" {/if}/>启用
+    </td>
+  </tr>
+  
+  <tr>
+  	<td class="label">渠道服务费率</td>
+    <td>
+     <input type="text" name="rate_organization"  value="{$organ_ipa_rate_config.rate_organization}" />%
+     <input type="checkbox" name="organization_enabled"  value="1" {if $organ_ipa_rate_config.organization_enabled eq 1} checked="checked" {/if} />启用
+    </td>
+  </tr>
+  
+    <tr>
+  	<td class="label">合作伙伴代码</td>
+    <td>
+     <input type="text" name="partner_code"  value="{$organ_ipa_rate_config.partner_code}" style="width: 250px;" />
+    </td>
+  </tr>
+  
+   <tr>
+    <td class="label">更新到子渠道</td>
+    <td>
+     <input type="checkbox" name="update_to_child_organ" value="1"/>
+    </td>
+  </tr>
+  
+
+  <tr >
+  <td class="label"></td>
+  	<td >
+  	<!-- <input type="button" onclick="save_organ();" value="{$lang.button_submit}" class="button" /> -->
+  	<input type="submit" value="{$lang.button_submit}" class="button" />
+  	</td>
+  </tr>
+  
+</table>
+</form>
+</div>
+
+
+<script type="text/javascript">
+	/**
+	 * 检查表单输入的数据
+	 */
+	function validate()
+	{
+	    validator = new Validator("theForm");
+	    validator.required('attribute_id', "请先查询选择险种！");
+	    validator.isNumber('rate_myself', "订单服务费格式不正确", true);
+	    validator.isNumber('rate_recommend', "推荐服务费格式不正确", true);
+	    validator.isNumber('rate_organization', "渠道服务费格式不正确", true);
+		
+	    
+	  	var rate_myself =   Number($("#organ_ipa_rate_config_form input[name=rate_myself]").val());
+	  	var rate_recommend =   Number($("#organ_ipa_rate_config_form input[name=rate_recommend]").val());
+	  	var rate_organization =   Number($("#organ_ipa_rate_config_form input[name=rate_organization]").val());
+	    
+	  	 if((rate_organization+rate_recommend+rate_myself)>rate_total){
+    		 alert("总服务费率为:"+rate_total+",渠道服务费率+个人服务费率+推荐服务费率  不能超过总服务费率"); 
+    		 return false;
+    	 }
+	  	
+	    return validator.passed();
+	}
+
+   
+   var rate_total='{$rate_total}';
+   
+   function query_attribute()
+   {
+	   var attribute_name =  $("#organ_ipa_rate_config_form input[name=attribute_name]").val();
+	   $.layer({
+		    type: 2,
+		    shade: [0],
+		    btns:1,
+		    btn:['确认'],
+		    fix: false,
+		    title: '选择险种',
+		    maxmin: true,
+		    iframe: {src : 'distributor.php?act=get_attribute_by_name&attribute_name='+attribute_name},
+		    area: ['1000px' , '600px'],
+		    yes: function(index){
+		    	var getvalue = layer.getChildFrame('#attribute_id_name', index).val();
+		    	if(getvalue){
+		    		var data = getvalue = getvalue.split("~");
+		    		$("#organ_ipa_rate_config_form input[name=attribute_id]").val(data[0]);
+		    		$("#organ_ipa_rate_config_form input[name=attribute_name]").val(data[1]);
+		    		//通过险种ID查询服务费率展示，以便设置。
+		    		$.ajax({
+					   type: "GET",
+					   url: "distributor.php",
+					   data: "act=get_attribute_by_id&attribute_id="+data[0],
+					   success: function(data){
+						 var obj = $.parseJSON(data);
+					     if(obj.code==0){
+					    	 obj=obj.data;
+					    	 rate_total =Number(obj.rate_total);
+					    	 var rate_myself =Number(obj.rate_myself);
+					    	 var rate_recommend =Number(obj.rate_recommend);
+					    	 var rate_organization =Number(obj.rate_organization);
+					    	 var rate_html="总费率:"+rate_total+",  个人服务费率:"+rate_myself+",  推荐服务费率:"+rate_recommend+", 默认渠道费率:"+rate_organization;
+					    	// var usable_rate = rate_total-rate_myself-rate_recommend;
+					    	//$("#usable_rate").html("最大可设置"+usable_rate);
+					    	$("#organ_ipa_rate_config_form input[name=rate_myself]").val(rate_myself);
+					    	$("#organ_ipa_rate_config_form input[name=rate_recommend]").val(rate_recommend);
+					    	$("#organ_ipa_rate_config_form input[name=rate_organization]").val(rate_organization);
+					    	
+					    	
+					     }else{
+					    	alert(obj.msg); 
+					    }
+					   }
+				 });
+		    		
+		    		layer.close(index);
+		    	}else{
+		    		alert('请选择险种');
+		    	}
+		    		
+		    	
+		    }
+		}); 
+   }
+   
+   function save_organ(){
+	  var attribute_id = $("#organ_ipa_rate_config_form input[name=attribute_id]").val();
+	  var attribute_name =   $("#organ_ipa_rate_config_form input[name=attribute_name]").val();
+	  var rate_myself =   $("#organ_ipa_rate_config_form input[name=rate_myself]").val();
+	  var rate_recommend =   $("#organ_ipa_rate_config_form input[name=rate_recommend]").val();
+	  var rate_organization =   $("#organ_ipa_rate_config_form input[name=rate_organization]").val();
+		
+	  
+	  alert("总费率为:"+rate_total);
+	 return;
+	 //获取此险种的各种费率
+	 $.ajax({
+		   type: "GET",
+		   url: "distributor.php",
+		   data: "act=get_attribute_by_id&attribute_id="+attribute_id,
+		   success: function(data){
+			 var obj = $.parseJSON(data);
+		     if(obj.code==0){
+		    	 obj=obj.data;
+		    	 var rate_total =Number(obj.rate_total);
+		    	 var rate_myself =Number(obj.rate_myself);
+		    	 var rate_recommend =Number(obj.rate_recommend);
+		    	 rate_organization =Number(rate_organization); //自定义的渠道
+		  
+		    	 if((rate_organization+rate_recommend+rate_myself)>rate_total){
+		    		 alert("渠道服务费率+个人服务费率+推荐服务费率  不能超过总服务费率"); 
+		    	 }else{
+		    		var param = $("#organ_ipa_rate_config_form").serialize();
+		    		 //保存
+		 			$.ajax({
+						   type: "POST",
+						   url: "distributor.php?act=organ_ipa_rate_config_save",
+						   data: param,
+						   success: function(data){
+							 var obj = $.parseJSON(data);
+						     if(obj.code==0){
+						    	 alert(obj.msg);
+						    	 window.location="distributor.php?act=organ_ipa_rate_config_list&d_name={$d_name}&institution_id="+obj.organ_id;
+						     }else{
+						    	alert(obj.msg); 
+						    }
+						   }
+					});
+		    		 
+		    		 
+		    	 }
+		    		 
+		    	 //window.location="users.php?
+		     }else{
+		    	alert(obj.msg); 
+		    }
+		   }
+	 });
+	  
+   }
+		
+</script>
+<script language="JavaScript">
+
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+</body>

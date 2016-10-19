@@ -1,0 +1,222 @@
+{if $full_page} {include file="pageheader.htm"} {insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<style type="text/css">  
+.tb{width:800px;font-size:12px;background:#6887D9}  
+.tb thead th{height:25px;background:#217AC4;color:white}  
+.tb tbody td{height:22px;background:white;padding-left:3px;}  
+.autocut {  
+    width:500px;  
+    overflow:hidden;  
+    white-space:nowrap;  
+    text-overflow:ellipsis;  
+    -o-text-overflow:ellipsis;  
+    -icab-text-overflow: ellipsis;  
+    -khtml-text-overflow: ellipsis;  
+    -moz-text-overflow: ellipsis;  
+    -webkit-text-overflow: ellipsis;  
+}  
+  
+</style>  
+
+
+<div class="form-div">
+<form action="javascript:searchLog()" name="searchForm" id="log_list_form">
+  <input type="hidden" name="sort" value="{$filter.sort}" />
+  <input type="hidden" name="order" value="{$filter.order}" />
+		<table>
+			<tr>
+				<th>&#12288;手机号:</th>
+				<th><input name="mobile_phone" type="text" ></th>
+
+				<td>&#12288;&#12288;内容:</td>
+				<td><input type="text" name="content" style="width: 100px;"></td>
+				
+				<!-- {if $smarty.session.admin_name eq 'admin'}-->
+				<td>&#12288;发送类型:</td>
+				<td>
+					<select name="send_type">
+						<option></option>
+						{foreach from=$send_type_list item=item key=key}
+							<option value="{$item}">{$item}</option>
+						{/foreach}
+					</select>
+				</td>
+				<!-- {/if} -->
+				
+			</tr>
+			<tr>
+				<td>开始日期:</td>
+				<td><input class="Wdate" type="text" name="start_time"  onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" /></td>
+
+				<td>截止日期:</td>
+				<td><input class="Wdate" type="text" name="end_time"  onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})" /></td>
+				
+				<td>&#12288;发送结果:</td>
+				<td>
+					<select name="send_result">
+						<option></option>
+							<option value="success">发送成功</option>
+							<option value="fail">发送失败</option>
+					</select>
+				</td>
+				
+				<td><input type="submit" value="查询"></td>
+			</tr>
+		</table>
+		{if $smarty.session.admin_name eq 'admin'}
+		<input type="button" onclick="remove_log()" value="删除">
+		{/if}
+  </form>
+</div>
+
+<!-- 订单列表 -->
+<form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()" >
+	<div class="list-div" id="listDiv">
+		{/if}
+		<table cellpadding="3" cellspacing="1">
+			<tr>
+				<th ><a href="javascript:listTable.sort('id'); ">编号</a></th>
+				<th ><a href="javascript:listTable.sort('mobile_phone'); ">手机号码</a></th>
+				<th>发送内容</th>
+				<th><a href="javascript:listTable.sort('send_time'); ">发送时间</a></th>
+				<th> <a href="javascript:listTable.sort('send_type'); ">类型</a></th>
+				{if $smarty.session.admin_name eq 'admin'}
+				<th> <a href="javascript:listTable.sort('admin_id'); ">管理员</a></th>
+				{/if}
+				<th><a href="javascript:listTable.sort('send_result'); ">发送结果</a></th>
+			</tr>
+			{foreach from=$log_list item=log name=name}
+			<tr>
+				<td align="center">{$log.id}</td>
+				<td align="center">{$log.mobile_phone}</td>
+				<td align="left" width="500px;">
+					<div class="autocut">
+						<a href="javascript:show_content('content_{$smarty.foreach.name.iteration}');">
+							<span id="content_{$smarty.foreach.name.iteration}">{$log.send_content}</span>
+						</a>
+					</div>
+				</td>
+				<td align="center">{$log.send_time}</td>
+				<td align="center">{$log.send_type}</td>
+				{if $smarty.session.admin_name eq 'admin'}
+					<td align="center">{$log.admin_name}</td>
+				{/if}
+				<td align="center">
+					{if $log.send_result eq 0}
+						<span style="color: green;">发送成功</span>
+						{else}
+						<span style="color: red;">发送失败</span>
+					{/if}
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+
+		<!-- 分页 -->
+		<table id="page-table" cellspacing="0">
+			<tr>
+				<td align="right" nowrap="true">{include file="page.htm"}</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<!-- <input type="button" onclick="batch_invoice_assigned();" value="受理">  -->
+		<!-- <input type="button" onclick="invoice_export_list();" value="导出"> -->
+	</div>
+</form>
+
+<div id="send_content_show" style="display: none;">
+		测试的，插好
+</div>
+
+<!-- 发票受理窗口 -->
+{include file="invoice_assigned.htm"}
+
+<script language="JavaScript">
+$(function() {
+	window.__Object_toJSONString = Object.prototype.toJSONString;
+	delete Object.prototype.toJSONString;
+});
+
+
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+    /**
+     * 搜索订单
+     */
+    function searchLog()
+    {
+    	listTable.filter['mobile_phone'] = Utils.trim(document.forms['searchForm'].elements['mobile_phone'].value);
+        listTable.filter['content'] = document.forms['searchForm'].elements['content'].value;
+        listTable.filter['send_type'] = document.forms['searchForm'].elements['send_type'].value;
+        listTable.filter['send_result'] = document.forms['searchForm'].elements['send_result'].value;
+        listTable.filter['start_time'] = document.forms['searchForm'].elements['start_time'].value;
+        listTable.filter['end_time'] = document.forms['searchForm'].elements['end_time'].value;
+        listTable.filter['page'] = 1;
+        listTable.loadList();
+    }
+    
+	
+    function show_content(content_id){
+	    var str = $("#"+content_id).html();
+	    var pagei = $.layer({
+	    	   type: 1,   //0-4的选择,
+	    	    title: false,
+	    	    border: [0],
+	    	    closeBtn: [0],
+	    	    shadeClose: true,
+	    	    area: ['460px', '280px'],
+	    	    page: {
+	    	        html: '<\div style="width:460px; height:280px; background-color:#81BA25; color:#fff;"><\div style="padding:20px;">'+str+'<\/div><\/div>' //此处放了防止html被解析，用了\转义，实际使用时可去掉
+	    	    }
+	    	});
+    	
+    }
+    
+    var layer_obj;
+    function remove_log(){
+    	layer_obj = $.layer({
+    	    shade: [0],
+    	    area: ['auto','auto'],
+    	    dialog: {
+    	        msg: '确定要移除查询条件中的日志吗？',
+    	        btns: 2,                    
+    	        type: 4,
+    	        btn: ['确定','取消'],
+    	        yes: function(){
+    	        	var parm = $("#log_list_form").serialize();
+    	        	$.ajax({
+    	        		   type: "POST",
+    	        		   url: "sms.php?act=remove_log",
+    	        		   data: parm,
+    	        		   success: function(res){
+    	        			  res = $.parseJSON(res);
+    	        		      if(res.code==0){
+    	        		    	  alert('删除成功！');
+    	        		    	  location.reload();
+    	        		      }else{
+    	        		    	  alert('删除失败！');
+    	        		      }
+    	        		      
+    	        		   }
+
+    	        		});
+    	        	
+    	        }, no: function(){
+    	            
+    	        }
+    	    }
+    	});
+    	
+    }
+		
+</script>
+{/literal} {include file="pagefooter.htm"} 

@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>投保单</title>
+<link rel="stylesheet" href="../mobile/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../mobile/dist/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../mobile/dist/layer.m/need/layer.css">
+<link href="../mobile/dist/date/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+<link href="../mobile/dist/date/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+<link href="../mobile/dist/date/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../mobile/dist/css/style.css">
+<link href="js/mobile/icheck-1.x/skins/square/red.css" rel="stylesheet">
+
+<script src="../mobile/dist/js/jquery.min.js"></script>
+<script src="../mobile/dist/js/jquery.cookie.js"></script>
+<script src="../mobile/dist/js/bootstrap.min.js"></script>
+<script src="../mobile/dist/js/html5shiv.min.js"></script>
+<script src="../mobile/dist/js/respond.min.js"></script>
+<script src="../mobile/dist/date/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+<script src="../mobile/dist/date/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+<script src="../mobile/dist/date/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+<script src="../mobile/dist/date/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+<!-- S 可根据自己喜好引入样式风格文件 -->
+<script src="../mobile/dist/date/js/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+<!-- E 可根据自己喜好引入样式风格文件 -->
+<script src="../mobile/dist/layer.m/layer.m.js"></script>
+<script src="js/mobile/icheck-1.x/icheck.min.js"></script>
+<script src="../mobile/dist/js/public.js"></script>
+<script src="js/script_common_check.js"></script>
+<script src="js/client_reg.js" type="text/javascript"></script>
+<script src="js/mobile/checked_function_base.js?1"></script>
+<script src="js/mobile/pingan_lvyou.js"></script>
+
+</head>
+
+<body>
+<script>
+var app_userid = $.cookie("app_userid");
+var app_platformId = $.cookie("app_platformId");
+ 
+if(app_userid=="" && app_platformId=="" ){
+ 	var otherJScipt = document.createElement("script"); 
+	otherJScipt = document.createElement("script"); 
+	otherJScipt.setAttribute("type", "text/javascript"); 
+	otherJScipt.setAttribute("src", "../mobile/dist/js/stickUp.min.js"); 
+	document.getElementsByTagName("head")[0].appendChild(otherJScipt);
+	//document.getElementsByTagName("head")[0].writeln("<script language='javascript' src='../mobile/dist/js/stickUp.min.js' ><\/script>"); 
+	
+	if (navigator.userAgent.indexOf("IE") >= 0) { 
+		//IE下的事件 
+		otherJScipt.onreadystatechange = function () { 
+			//IE下的判断，判断是否加载完成 
+				if (otherJScipt && (otherJScipt.readyState == "loaded" || otherJScipt.readyState == "complete")) { 
+					otherJScipt.onreadystatechange = null; 
+					jQuery(function($) {
+						$(document).ready( function(){
+						  $('#head_top').stickUp();
+						});
+					});
+				} 
+		}; 
+	} 
+	else { 
+		otherJScipt.onload = function () { 
+			otherJScipt.onload = null; 
+			jQuery(function($) {
+				$(document).ready( function(){
+				  $('#head_top').stickUp();
+				});
+			});
+		}; 
+	} 
+	
+}
+</script>
+
+<div class="container-fluid " id="head_top" >
+    <div class="s-bg-ed462f g-lh60 g-wA100 f-cb s-c-ffffff">
+        <span class="f-fl">
+            <a class="back" href="javascript:history.go(-1);"><i class="fa fa-angle-left fa-2x f-vam s-c-ffffff"></i></a>
+            <span class="f-ml5 f-fs3 f-fwb">投保单</span>
+        </span>
+        <span class="f-fr f-mr10">
+             
+        </span>
+    </div>
+</div>
+ 
+<div id="login_phone_checked">
+    <div class="c_p_a_d">
+    	<ul class="list-group" >
+        	<li class="list-group-item text-center" ><span class="f-fs4 s-c-ed462f">手机验证</span></li>
+            <li class="list-group-item" >
+               <span class="s-c-000000">手机号码</span>
+               <span class="f-fs2 pull-right">
+                   <input type="text" name="applicant_mobilephone_temps" placeholder="请填写手机号码" id="applicant_mobilephone_temps" class="input_b text-right g-w150" onblur="check_applicant_mobilephone('applicant_mobilephone_temps','pc')">
+                    
+               </span>
+            </li>
+            <li class="list-group-item">
+            	<input type="button" value="获取验证码" class="btn_01_b btn btn-info " id="btn" onClick="verification_code();"/>
+            	<span id="applicant_mobilephone_temps_warn" class="right_strong" style="color:red"></span>  
+            </li>
+            <li class="list-group-item" ></li>
+            
+            <li class="list-group-item" >
+               
+               <span >
+               		<input type="text" class="input_b text-left g-w150" placeholder="请输入验证码" size="10"  name="checkCode" id="checkCode"/> 
+               </span>
+               <span id="div" ></span> 
+               
+            </li>
+            <li class="list-group-item" ><input type="button" class="btn btn-info btn-block"  onclick="client_reg();" value="确定" /></li>
+            
+        </ul>
+         
+    </div>
+</div>
+
+<div id="step_one_show" style="display: none;">
+ 
+    <div class="container-fluid f-mt10">
+        <form id="orderForm" name="orderForm" method="POST"  action="cp.php?ac=product_buy&product_id=$product[product_id]&uid=$uid">
+                <input type="hidden" name="buysubmit" id="buysubmit" value="true" />                                    
+                <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+                <input type="hidden" name="step" id="step" value="1" />
+                <input type="hidden" id="insurer_code" value="$product['insurer_code']" />
+                <input type="hidden" id="attribute_type" value="$attribute_type" />
+                <input type="hidden" name="start_day" id="start_day" value="$product[start_day]" />
+                <input type="hidden" name="server_time" id="server_time" value="$product[server_time]" />		   
+                <input name="product_id" id="product_id" value="$product[product_id]" type="hidden">		       
+                <input type="hidden" name="businessType" id="businessType" value="$businessType" />	
+                <input type="hidden" name="bat_post_policy" id="bat_post_policy" value="$bat_post_policy" />
+                <input id="totalModalPremium_single" name="totalModalPremium_single" value="$totalModalPremium_single" type="hidden">		
+                <input id="totalModalPremium" name="totalModalPremium" value="$prodcutMarkPrice" type="hidden">                                        
+                <input id="period" name="period" value="$period_day" type="hidden">
+                <input id="period_uint" name="period_uint" value="$period_uint" type="hidden">
+                <input id="age_min" name="age_min" value="$product[age_min]" type="hidden">        
+                <input id="age_max" name="age_max" value="$product[age_max]" type="hidden">
+                <input id="product_code" name="product_code" value="$product[product_code]" type="hidden">		
+                <input name="gid" value="$gid" type="hidden">	
+                <input id="applyMum_sums" value="{$product[number]}" type="hidden">
+                
+                <!-- app start-->
+                     <input type="hidden" id="userid_app" name="uid" value="{$uid}" />
+                     <input type="hidden" id="platformId" name="platformId" value="" />
+                 <!-- app end-->
+				<input id="is_check_phone" value="0" type="hidden">
+				<input id="activity_id" value="$activity_id" type="hidden">
+
+                <!-- 以下是私有的变量-->
+                <input id="premium" name="premium" value="$prodcutMarkPrice" type="hidden">
+                <input id="posion_price" value="$prodcutMarkPrice" type="hidden">
+                <input id="period_code" name="period_code" value="$period_code" type="hidden"> 
+                <input id="applyNum" name="applyNum" value="1" type="hidden">
+                <!--applicat_sex_type 判断性别是否是数字  1是数字(0,1)  2是字母 (M,F) -->
+                <input id="applicat_sex_type" value="2" type="hidden"> 
+               
+            <div class="container">
+                 <div class="panel panel-default">
+                        <ul class="list-group" >
+                          <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">$product[attribute_name]</span></li>
+                        </ul>
+                 </div>
+                  
+                 <div class="panel panel-default">
+                        
+                        <ul class="list-group" >
+                          <li class="list-group-item text-center" ><span class="f-fs2 s-c-ed462f">$product[product_name]</span></li>
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">保险期限</span>
+                                <span class="f-fs2 pull-right s-c-aaaaaa">$prodcutPeriod</span>
+                          </li>
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">年龄范围</span>
+                                <span class="f-fs2 pull-right s-c-aaaaaa">$product[age_min] 至  $product[age_max]岁</span>
+                          </li>
+                          <a class="list-group-item" href="javascript:void(0)" id="text_select_applyNum_P" onClick="showSelect_applyNum('text_select_applyNum','text_select_applyNum_P')" data-value='[{"applynum_id":1,"applynum_name":"1份"}]' ><span class="s-c-aaaaaa">购买份数</span><span class="pull-right"><span id="text_select_applyNum" data-applynum_id="1" data-applynum_name="1份">1份</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a> 
+                           
+                          <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">金额</span>
+                                <span class="f-fs2 pull-right">￥<span id="test_price_Temp">{$prodcutMarkPrice}</span>元</span>
+                          </li> 
+                           
+                           
+                          <li class="list-group-item" >
+                          		<span class="s-c-aaaaaa">保险起期</span>
+                                <span class="pull-right">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" id="startDate" name="startDate" type="text" readonly >
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                          </li>
+                       
+                      	  <li class="list-group-item">
+                          		<span class="s-c-aaaaaa">保险止期</span>
+                                <span class="pull-right ">
+                                	<span >
+                                    	<input class="input_b text-right s-c-ed462f g-w150" name="endDate" id="endDate" readonly>
+                                    </span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>      
+                          </li>
+                           
+                        </ul>
+                </div>
+                 
+                 
+                 <div class="panel panel-default">
+                     
+                       
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                          投保人信息
+                          <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                          </span>
+                      </div>
+                      <ul class="list-group">
+                           <input type="hidden" name="applicant_type" value="1" id="applicant_type">
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_applicant_type_P" onClick="showSelect_applicant_type('text_select_applicant_type','text_select_applicant_type_P')" data-value='[{"applicant_type_id":1,"applicant_type_name":"个人"}]' ><span class="s-c-aaaaaa">投保人类型</span><span class="pull-right"><span id="text_select_applicant_type" data-applicant_type_id="1" data-applicant_type_name="个人">个人</span><i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i></span></a>
+                           	<li class="list-group-item" style="padding:0px; margin:0px; border:0px;">
+                               <ul class="f-pA0 f-mA0" id="applicant_geren">
+                                   <!-- 个人-->
+                                   <li class="list-group-item">
+                                       <span class="s-c-aaaaaa">姓名</span>
+                                       <span class="f-fs2 pull-right">
+                                           <input type="text" name="applicant_fullname" placeholder="名字长度至少2的汉字" id="applicant_fullname" class="input_b text-right g-w150">
+                                           <i class=" f-ml10 fa fa-user s-c-aaaaaa"></i>
+                                       </span>
+                                   </li>  
+                                 
+                                   <input type="hidden" name="applicant_certificates_type" id="applicant_certificates_type">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_applicant_certificates_type_P" onClick="showSelect_certificates_type('text_applicant_certificates_type','text_applicant_certificates_type_P',1)" data-value='[{"applicant_certificates_type_id":"01","applicant_certificates_type_name":"身份证"},{"applicant_certificates_type_id":"02","applicant_certificates_type_name":"护照"},{"applicant_certificates_type_id":"03","applicant_certificates_type_name":"军人证"}
+,{"applicant_certificates_type_id":"05","applicant_certificates_type_name":"驾驶证"}
+,{"applicant_certificates_type_id":"06","applicant_certificates_type_name":"港澳回乡证或台胞证"}
+,{"applicant_certificates_type_id":"99","applicant_certificates_type_name":"其他"}]'>
+                                   		<span class="s-c-aaaaaa">证件类型</span>
+                                        <span class="pull-right">
+                                            <span id="text_applicant_certificates_type"></span>
+                                            <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                        </span>
+                                   </a>
+                                   <li class="list-group-item" >
+                                       <span class="s-c-aaaaaa">证件号码</span>
+                                       <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_certificates_code"  id="applicant_certificates_code" class="input_b text-right g-w150">
+                                            <i class=" f-ml10 fa fa-credit-card s-c-aaaaaa"></i>
+                                       </span>
+                                   </li> 
+                                   <input type="hidden" name="applicant_sex" value="0" id="applicant_sex">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_select_toubaoren_sex_P"  data-value='[{"sex_id":"M","sex_name":"男"},{"sex_id":"F","sex_name":"女"}]'>
+                                       <span class="s-c-aaaaaa">性别</span>
+                                       <span class="pull-right">
+                                            <span id="text_select_toubaoren_sex"></span>
+                                            <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                       </span>
+                                   </a>
+                                   <li class="list-group-item" >
+                                       <span class="s-c-aaaaaa">出生日期</span>
+                                       <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_birthday" id="applicant_birthday" class="input_b text-right" readonly>
+                                       </span>
+                                   </li>  
+                                   
+                                   <!--公用-->
+                                   <li class="list-group-item" >
+                                        <span class="s-c-aaaaaa">手机</span>
+                                        <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_mobilephone" id="applicant_mobilephone" class="input_b text-right g-w150">
+                                        </span>
+                                   </li> 
+                                   <li class="list-group-item" >
+                                        <span class="s-c-aaaaaa">Email</span>
+                                        <span class="f-fs2 pull-right">
+                                            <input type="text" name="applicant_email" id="applicant_email"  class="input_b text-right g-w150">
+                                        </span>
+                                   </li> 
+                                   
+                                   <input type="hidden" name="relationshipWithInsured" id="relationshipWithInsured">
+                                   <a class="list-group-item" href="javascript:void(0)" id="text_select_relationshipWithInsured_P" onClick="showSelect_relationshipWithInsured('text_select_relationshipWithInsured','text_select_relationshipWithInsured_P')" data-value='[{"relationshipWithInsured_id":"1","relationshipWithInsured_name":"本人"},
+{"relationshipWithInsured_id":"2","relationshipWithInsured_name":"配偶"},
+{"relationshipWithInsured_id":"3","relationshipWithInsured_name":"父子"},
+{"relationshipWithInsured_id":"4","relationshipWithInsured_name":"父女"},
+{"relationshipWithInsured_id":"5","relationshipWithInsured_name":"受益人"},
+{"relationshipWithInsured_id":"6","relationshipWithInsured_name":"被保人"},
+{"relationshipWithInsured_id":"7","relationshipWithInsured_name":"投保人"},
+{"relationshipWithInsured_id":"A","relationshipWithInsured_name":"母子"},
+{"relationshipWithInsured_id":"B","relationshipWithInsured_name":"母女"},
+{"relationshipWithInsured_id":"C","relationshipWithInsured_name":"兄弟"},
+{"relationshipWithInsured_id":"D","relationshipWithInsured_name":"姐弟"},
+{"relationshipWithInsured_id":"G","relationshipWithInsured_name":"祖孙"},
+{"relationshipWithInsured_id":"H","relationshipWithInsured_name":"雇佣"},
+{"relationshipWithInsured_id":"I","relationshipWithInsured_name":"子女"},
+{"relationshipWithInsured_id":"9","relationshipWithInsured_name":"其他"},
+{"relationshipWithInsured_id":"8","relationshipWithInsured_name":"转换不详"}]' >
+                                       <span class="s-c-aaaaaa">与被保险人关系</span>
+                                       <span class="pull-right">
+                                           <span id="text_select_relationshipWithInsured"></span>
+                                           <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                       </span>
+                                   </a>
+                                   
+                               </ul>
+                               <ul class="f-pA0 f-mA0" id="applicant_jigou" style="display:none" >
+                               </ul>
+                           </li>  
+                        </ul> 
+                         
+                      
+                </div>
+                 
+                 <div class="panel panel-default" id="beibaoxianren_list">
+                      <!-- 被保险人信息 -->
+                      <div class="panel-body f-csp" onClick="show_hide(this,true)">
+                            被保险人信息
+                            <span class="pull-right" style="height:20px; width:20px; display:block">
+                                <img src="../mobile/dist/images/drop_down_card_btn_open.png" class="img-responsive" >
+                            </span>
+                      </div>
+                      <ul class="list-group">
+                            
+                            
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">姓名</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_fullname]" id="assured_fullname" placeholder="名字长度至少2的汉字" class="input_b text-right">
+                                    <i class=" f-ml10 fa fa-user s-c-aaaaaa"></i>
+                               </span>
+                           </li> 
+                           
+                           <input type="hidden" name="assured[0][assured_certificates_type]" value="01" id="assured_certificates_type"> 
+                            
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_assured_certificates_type_P" onClick="showSelect_certificates_type('text_select_assured_certificates_type','text_select_assured_certificates_type_P',2)" data-value='[{"assured_certificates_type_id":"01","assured_certificates_type_name":"身份证"},{"assured_certificates_type_id":"02","assured_certificates_type_name":"护照"},{"assured_certificates_type_id":"03","assured_certificates_type_name":"军人证"}
+,{"assured_certificates_type_id":"05","assured_certificates_type_name":"驾驶证"}
+,{"assured_certificates_type_id":"06","assured_certificates_type_name":"港澳回乡证或台胞证"}
+,{"assured_certificates_type_id":"99","assured_certificates_type_name":"其他"}]'>
+                                <span class="s-c-aaaaaa">证件类型</span>
+                                <span class="pull-right">
+                                    <span id="text_select_assured_certificates_type"></span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                                </span>
+                           </a>
+                           <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">证件号码</span>
+                                <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_certificates_code]" id="assured_certificates_code" class="input_b text-right">
+                                    <i class=" f-ml10 fa fa-credit-card s-c-aaaaaa"></i>
+                                </span>
+                           </li> 
+                           <input type="hidden" name="assured[0][assured_sex]" id="assured_sex">
+                            
+                           <a class="list-group-item" href="javascript:void(0)" id="text_select_assured_sex_P" data-value='[{"sex_id":"M","sex_name":"男"},{"sex_id":"F","sex_name":"女"}]'>
+                               <span class="s-c-aaaaaa">性别</span>
+                               <span class="pull-right">
+                                    <span id="text_select_assured_sex"></span>
+                                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10"></i>
+                               </span>
+                           </a>
+                           <li class="list-group-item" >
+                               <span class="s-c-aaaaaa">年龄范围</span>
+                               <span class="f-fs2 pull-right">
+                                    {$product[age_min]}至{$product[age_max]}周岁
+                               </span>
+                           </li> 
+                           <li class="list-group-item">
+                               <span class="s-c-aaaaaa">出生日期</span>
+                               <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_birthday]" id="assured_birthday" class="input_b text-right" readonly>
+                               </span>
+                           </li> 
+                           
+                           <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">手机</span>
+                                <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_mobilephone]" id="assured_mobilephone" class="input_b text-right g-w150">
+                                </span>
+                           </li> 
+                           <li class="list-group-item" >
+                                <span class="s-c-aaaaaa">Email</span>
+                                <span class="f-fs2 pull-right">
+                                    <input type="text" name="assured[0][assured_email]" id="assured_email"  class="input_b text-right g-w150">
+                                </span>
+                           </li> 
+                           
+                      </ul> 
+                     
+                </div>
+                
+                
+                <div class="panel panel-default">
+                      <!-- 受益人信息 -->
+                      <div class="panel-body f-csp">
+                            受益人信息 
+                      </div>
+                      <ul class="list-group">
+                             
+                           <input type="hidden" name="beneficiary" id="beneficiary" value="1">
+                           <li class="list-group-item">
+                                <span class="s-c-aaaaaa">受益人</span>
+                                <span class="pull-right">
+                                    <span id="text_select_beneficiary" data-beneficiary_id="1" data-beneficiary_name="法定">法定</span>
+                                </span>
+                           </li> 
+                            
+                      </ul> 
+                     
+                </div>	
+ 
+								
+<!--{template cp_product_buy_footer}-->						

@@ -1,0 +1,143 @@
+<h5><span>{$lang.edit_pass}</span></h5>
+ <div class="blank"></div>
+ <form name="formPassword" id="formPassword" action="user.php" method="post" >
+     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="padd_T20"  >
+     	<tr>
+     		<td align="center" colspan="2">
+     			<span style="color: red;font-size: 14px;">
+     				{$edit_pass_msg}
+     			</span>
+     		</td>
+     	</tr>
+     	
+     	
+     	
+        <tr>
+          <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.mobile_phone}：</td>
+          <td c>
+          	<input name="username" type="text" id="username" onblur="phone(this.value)" class="inputBg wid_185 padd_TB5" />
+          </td>
+        </tr>
+        <tr>
+          <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10"></td>	
+          <td width="76%" align="left" bgcolor="#FFFFFF">
+          		<input type="button" value="免费获取验证码" id="btn" onClick="verification_code2(2)" />
+          </td>
+        </tr>
+                <tr>
+          <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">验证码：</td>
+          <td width="76%" align="left" bgcolor="#FFFFFF">
+          	<input type="text" name="checkCode" class="inputBg wid_185 padd_TB5" onkeyup="checkNum(this.value)" />
+          </td>
+        </tr>
+        
+        <tr>
+          <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.new_password}：</td>
+          <td align="left" bgcolor="#FFFFFF"><input name="new_password" type="password" size="25"  class="inputBg" />
+          </td>
+        </tr>
+        <tr>
+          <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.confirm_password}：</td>
+          <td align="left" bgcolor="#FFFFFF"><input name="comfirm_password" type="password" size="25"  class="inputBg" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-left:270px;" bgcolor="#FFFFFF">
+    		<input name="act" type="hidden" value="update_password_verification_code" />
+    		<input name="type" type="hidden" value="edit_pass" />
+            <input name="submit" type="button" class="btn_on02" style="border:none;" onclick="checkNewPassword();" value="{$lang.confirm_edit}" />
+          </td>
+        </tr>
+      </table>
+        <input type="submit" style="display: none;" />
+    </form>
+    <!-- add yes123 2015-01-21 校验密码 -->
+    <script type="text/javascript">
+    	function checkNewPassword(){
+    		var new_password = $("#formPassword input[name=new_password]").val();
+    		var comfirm_password = $("#formPassword input[name=comfirm_password]").val();
+    
+    		if (/^.*?[\d]+.*$/.test(new_password) && /^.*?[A-Za-z].*$/.test(new_password) && /^.{6,16}$/.test(new_password)) {
+    	        if(new_password==comfirm_password){
+    	        	$('#formPassword input[type="submit"]').trigger("click");
+    	        	//$('#formPassword').submit();
+    	        	//alert('提交..');
+    	        }else{
+    	        	alert('新密码和确认密码不一致！');
+    	        }
+    	        
+    		}else{
+    			alert('密码长度必须大于6位！\n必须由数字与字母组成！new_password:'+new_password);
+    			return;
+    		}
+    		
+    	}
+    </script>
+    
+<script type="text/javascript">
+    var phoneCode = null;
+    function phone(value){
+		if(!(/^1[1-9][0-9]\d{8}$/.test(value))){
+		   phoneCode = false;
+		   alert('请检查手机号码！');
+		}else{
+		   phoneCode = true;
+		}
+	}
+	var code = '';
+	function verification_code2(type){  //加参数是表示注册,还是重置密码的短信,1注册时的短信 2表示重置时的短信
+	   if(phoneCode){
+			$.post('user.php',{
+			  'act':'phone_code',
+			  'type':type,
+			  'username':$.trim($("[name=username]").val())
+			},
+			function(datas){
+				var obj = JSON.parse(datas);
+				code = obj.num;
+				//alert(code);
+				if(obj.data == 0){
+				   var step = 119;
+				   $('#btn').val('重新发送120');
+				   var flag = setInterval(function(){
+						$("#btn").attr("disabled", true);//设置disabled属性
+						$('#btn').val('重新发送'+step);
+						step -= 1;
+						if(step <= 0){
+							$("#btn").removeAttr("disabled"); //移除disabled属性
+							$('#btn').val('免费获取验证码');
+							code = '';
+							clearInterval(flag);//清除setInterval
+						}
+				   },1000);
+				}else if(obj.code ==3){
+				   alert(obj.msg);
+				}else{
+				   alert("发送失败!");
+				}
+			},'text');
+	   }else{
+		   alert("请输入手机号码！");
+	   } 
+	}
+    function checkNum(value){	
+       //add yes123 2014-11-30 md5加密后再和服务器返回过来的比较
+       value = $.md5(value);
+	 	if(code != '' && value != ''){
+	      if(code == value){
+			 document.getElementById("div").innerHTML='<img src="./images/yes.gif"/>';
+			 //del yes123 2014-11-30 这个没必要了,不能这样验证
+			 //$("#checkCode").val(1);
+		     $("#tr").hide();
+		   }else{
+			 //del yes123 2014-11-30 这个没必要了,不能这样验证
+		     //$("#checkCode").val(0);
+	         document.getElementById("div").innerHTML='<img src="./images/no.gif"/>';
+	      }	    
+	   }
+	}
+    function checkEmail(value){
+	    if(!/^[a-z0-9_]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i.test(value)){
+		    alert('请检查您的邮箱！');
+		}   
+	}	
+</script>

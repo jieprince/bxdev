@@ -1,0 +1,93 @@
+
+				
+                    
+					    {if $ins_product_list}
+						    <div class="f-mt20 producttype_list">
+							 选择产品：
+							
+							<!--{foreach from=$ins_product_list key=key item=value}-->
+							
+								{assign var="sid" value=$value[product_id]}
+	                            <span class="plan {$classattr[$sid]} f-ml5">
+								<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+								</span>
+								 
+	                            
+							<!--{/foreach}-->	
+	                        </div>
+                        {/if}
+						<form action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" method="post">
+                                   
+									<h4 class="f-fs2 s-c-666666 f-fwn">承保年龄：<span class="s-c-777777 f-fs1">{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</span></h4>
+									<h4 class="f-fs2 s-c-666666  f-fwn">最大购买份数：<span class="s-c-777777 f-fs1">每人限{$ins_product_selected.number}份</span></h4>
+                         
+                                <section class="f-mt15">
+                                	<span>保险期限：</span>
+                                	<span>
+                                    <select class="s-select" id="product_factor_price" name="factor_price" onChange="reFeeButtom(this);">
+                                    	<!--{foreach from=$ins_product_selected.product_influencingfactor_list key=key item=value}-->            			                       	
+                                         <option data-value="{$value[factor_code]}" value="{$value[factor_price]}">{$value[factor_name]}</option>
+                                         <!--{/foreach}-->	
+                                    </select>
+                                    </span>
+                                     
+                                </section>
+                                <h4 class="f-fs2 s-c-666666 f-mt20 f-fwn">产品特色：</h4>
+                                <section class="s-c-777777 s-lh25 f-fs1" style="width:620px">
+										{$goods.product_characteristic}
+                                </section>
+                                
+                                                            
+                                <div class="f-fr g-fzT-88">
+                                    <span class="f-fs2 f-db">
+                                        <span class="s-c-040404">￥</span>
+                                        <span class="s-c-ec6941 f-fs12 f-fwb" id="productPrem_"><strong>{$ins_product_selected.premium}</strong></span>
+                                    </span>
+                                    <div class="f-mt10" align="right">
+                                    	<input type="text" id="max" value="1" style="display:none">
+                                       <input type="text" id="min" value="" style="display:none">
+                                       <input type="hidden" value="230.00" id="prodcutMarkPrice" name="prodcutMarkPrice">
+                                        <input type="hidden" value="1-5天" id="prodcutPeriod" name="prodcutPeriod">
+                                        <input type="hidden" value="1" id="factor_code_peroid" name="factor_code_peroid">
+                                        <button type="submit" class="btn-ec6941-1 f-tac"><i class="iconfont">&#xf0179;</i> {$lang.insure}</button> 
+                                    </div>
+                                </div>
+    				</form>
+<script>
+				//先设置默认值
+				var price = $("select#product_factor_price option:selected").val();		
+				//alert(price);
+				$("#productPrem_ strong").html(price);	
+				$("input#prodcutMarkPrice").val(price);
+				
+				var period = $("select#product_factor_price option:selected").text();		
+				var period_datavalue = $("select#product_factor_price option:selected").data("value");		
+				$("input#prodcutPeriod").val(period);
+				$('input#factor_code_peroid').val(period_datavalue);
+				/*
+				$("select#product_factor_price").change(function(){
+				
+				});
+				*/
+				  	function reFeeButtom(obj){
+						 
+					           // alert("sdfdsfdsf"+obj.value);
+							   
+							    var price = obj.value;
+								
+								var text = obj.text;
+			 var selectIndex = obj.selectedIndex;//获得是第几个被选中了
+			 var selectText = obj.options[selectIndex].text //获得被选中的项目的文本
+			 
+			 var factor_code_peroid = $(obj).find("option:selected").data("value"); //获得被选中的项目的文本
+			  
+			  //alert(factor_code);
+								// alert(selectText);
+                           		$("#productPrem_ strong").html(price);
+                           		$("input#prodcutMarkPrice").val(price);
+								$("input#prodcutPeriod").val(selectText);
+								$("input#factor_code_peroid").val(factor_code_peroid);
+                            }
+			
+							
+</script>			

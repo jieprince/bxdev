@@ -1,0 +1,212 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+<div id="toolbar">
+
+
+<ul>
+      
+     
+    <li class="button-80" onmouseover="this.className='button-over-80';" onmouseout="this.className='button-80';">
+        <a  onclick="submit_form();">
+		<img src="template/images/deleteButton.gif" alt="删除">
+            删除</a>
+    </li>
+    
+     
+ <li>
+	<form method="get" action="space.php" style="float:left;">
+		<script type="text/javascript" src="source/script_livesearch.js"></script>
+		<input name="searchkey" id="searchkey" value="" size="40" class="t_input" onkeyup="showResult_tmp(this,'mtag_search')" type="text" style="float:left;width:100px;">
+		<input name="searchsubmit" value="搜索" class="submit" type="submit">
+		<input name="searchmode" value="1" type="hidden">
+		<input name="do" value="admin_insurance_policy" type="hidden">
+		<input name="view" value="insurance_policy" type="hidden">
+		</form>	
+			
+    </li>
+    
+  
+</ul>
+
+</div>
+                                <div id="error">
+
+</div>
+                                <div id="navigator">
+
+
+    <div class="content">
+        当前位置：
+        
+             
+                险种类别
+            
+        
+    </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+    function selectAllCheckBox() {
+        checkAllBox(document.forms['productForm']);
+    }
+	
+	 function submit_form() 
+	 {
+	   // alert("dddddddddd");
+		document.getElementById('submitbutton').click();
+       // checkAllBox(document.forms['productForm']);
+    }
+	
+
+</script>
+
+<form name="productForm" method="post" action="cp.php?ac=admin_insurance_policy&op=delete">
+   
+    <input value="保存" id="submitbutton" type="submit" style="display:none;" onclick="return confirm('本操作不可恢复，确认删除？');">
+   	<input type="hidden" name="deletesubmit" id="deletesubmit" value="true" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+ 
+
+    <div class="list">
+        <div class="listData">
+            <div>
+
+
+<table class="listTable">
+    <tbody><tr class="listTitle">
+        <td width="5%">序号</td>
+        <td width="5%"><label>
+		<input name="checkAll" onclick="selectAllCheckBox()" type="checkbox"></label></td>
+		
+		 <td width="10%"><a href="/productAction.do?method=search&amp;order=code">保单</a></td>
+		 
+        <td width="10%"><a href="/productAction.do?method=search&amp;order=code">订单号</a></td>
+		
+	
+        <td width="5%"><a href="/productAction.do?method=search&amp;order=abbrName">投保份数</a></td>
+		
+        <td width="5%"><a href="/productAction.do?method=search&amp;order=parent">总费用</a></td>
+		
+		 <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">投保人</a></td>
+		
+		 <td width="8%"><a href="/productAction.do?method=search&amp;order=parent">代理人</a></td>
+		
+	
+			 <td width="8%">保单号</td>
+				
+			 <td width="8%">状态</td>
+			 
+			  <td width="8%">投保时间</td>
+		
+		 	 <td width="8%">修改</td>
+
+		
+			 <td width="10%">操作</td>
+			 
+     </tr>
+    
+      <!--{loop $list $key $value}-->   
+        
+            <tr class="tdContent">
+              
+                <td>$key</td>
+              
+                <td>
+				<input name="ids[]" value="$value[policy_id]" type="checkbox">
+				</td>
+              
+        
+				
+				     <td>
+                <a href="$theurl&policy_id=$value[policy_id]" target="_blank">$value[product_name]</a>
+                </td>
+              
+			     <td><a href="space.php?do=admin_insurance_order&order_id=$value[order_id]" target="_blank"><span title="订单号">$value[order_num]</span></a></td>
+					   
+                
+                <td>$value[apply_num]</td>
+                
+               <td>$value[total_premium]</td>
+			   
+			    <td>
+                <a href="space.php?uid=$value[applicant_uid]" target="_blank">$value[applicant_username]</a>
+                </td>
+						
+				<td>
+                <a href="space.php?uid=$value[agent_uid]" target="_blank">$value[agent_username]</a>
+                </td>	
+				
+			
+				
+				<td><a href="$theurl&policy_id=$value[policy_id]" target="_blank"><span title="保单号">$value[policy_no]</span></a></td>
+				
+				<td>$value[policy_status]</td>
+				
+				<td>$value[dateline]</td>
+				
+				
+				<td>
+				
+				<!--{if $value[policy_status] == 'saved' }-->
+				
+				 <a href="cp.php?ac=admin_insurance_order&id=$value[id]" target="_self"><img src="template/images/updateButton.gif" alt="修改">
+				修改</a>
+				
+				<!--{/if}-->
+				
+               </td>
+			 
+			 
+				<td>
+				
+				<!--{if $value[policy_status] == 'saved' }-->	
+					
+					<a href="$value[insurepolicyurl]">投保</a>
+					<a href="$value[getpolicyfileurl]">下载保单</a>			
+				<!--{elseif $value[policy_status] == 'insured' }-->
+				
+				<a href="$value[getpolicyfileurl]">下载保单</a>
+								
+				
+				<!--{if $_SGLOBAL[supe_uid] ==1}-->
+				<a href="$value[querypolicyfileurl]">查询保单</a>
+				<!--{/if}-->
+				
+				
+				<a href="$value[withdrawpolicyurl]">注销</a>
+				
+				<!--{elseif $value[policy_status] == 'canceled' }-->
+		
+				<!--{/if}-->
+				
+				</td>
+              
+            </tr>
+        
+      <!--{/loop}-->
+</tbody></table>
+</div>
+        </div>
+    </div>
+
+    <div style="border-bottom: 1px solid #A5B5C0;"></div>
+
+    
+    <div class="page">$multi</div>
+    
+</form>
+</div>
+
+ </div>  <!-- content-body -->
+ 
+ </div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$shop_name}</title>
+
+<link rel="stylesheet" href="dist/fonts/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="dist/css/shangcheng_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/SuperSlide/css/shangcheng_style.css">
+<link rel="stylesheet" type="text/css" href="dist/js/plugin/layer/skin/layer.css">
+<link rel="stylesheet" type="text/css" href="dist/css/tt_css.css">
+<script src="dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="dist/js/plugin/SuperSlide/js/jquery.shangcheng_SuperSlide.js"></script>
+<script src="dist/js/html5shiv.min.js"></script>
+<script src="dist/js/respond.min.js"></script>
+<script src="dist/js/custom/public.js"></script>
+<script type="text/javascript" src="dist/js/plugin/layer/layer.js"></script>
+<script src="dist/js/plugin/laydate/laydate.js"></script>
+{insert_scripts files='user_check.js'}
+<script src="dist/js/custom/index.js"></script>
+</head>
+<body class="s-bg-f6f6f6">
+ <!-- {if $smarty.session.is_iframe neq 1}-->
+ <div class="g-wA100 t-top">
+     <header class="g-w1200 f-mc f-cb s-lh38 ">
+         <div class="f-fl f-fs2">
+             <span class="s-c-666666">返回官网首页！</span>
+             <span class="s-c-666666">全国热线：</span>
+             <span class="s-c-666666 f-fs4 f-ff0">{$service_phone}</span>
+         </div>
+         <div class="f-fr f-tar">
+             <!-- {if $smarty.session.user_id}-->
+        	<span class="f-db f-fs2 s-c-666666">
+
+            	<a href="user.php" class="s-c-009c84 f-mr5 f-ml5">
+                    <!-- {if $smarty.session.real_name}-->
+                    {$smarty.session.real_name}
+                    <!-- {else}-->
+                    {$smarty.session.user_name}
+                    <!-- {/if}-->
+            	</a>
+                <a href="user.php?act=logout" class="s-c-009c84 f-mr5 f-ml5">退出</a>
+
+            </span>
+             <!-- {else} -->
+             <span class="f-db f-fs2 s-c-666666">
+
+            	请<a href="user.php" class="s-c-009c84 f-mr5 f-ml5">登录</a>或者<a href="user.php?act=register" class="s-c-009c84 f-mr5 f-ml5">立即注册</a>						<span class="f-pr5 f-pl5">|</span>
+                <span class="f-ml5">
+                	<i class="iconfont f-fs4 s-c-929292 f-pr5">&#xf0148;</i>
+                    <a href="user.php" class="t-link-666">我的购物车</a>
+                </span>
+            </span>
+             <!-- {/if} -->
+
+         </div>
+     </header>
+ </div>
+ <div class="g-w1200 f-mc">
+     <div class="f-mt25 f-cb">
+         <div class="f-fl g-w356"><a href="/"><img src="images/new_img/logo.png" width="326"></a></div>
+         <div class="t-search f-fr f-mt10">
+             <form action="category.php" method="get" class="f-cb" id="myform" >
+                 <input name="goods_name" id="search" type="text" placeholder="搜索热词：健康险 | 女性综合保障 | 短期旅游险 | 少儿险" class="sc-ipt" /><!--搜索框-->
+                 <button class="sc-btn" type="submit">搜索产品</button>
+             </form>
+         </div>
+     </div>
+     <nav class="f-mt20 f-cb">
+         <div class="f-fl g-w250">
+             <div class="s-bg-009c84 s-lh50 s-c-ffffff f-tac f-fs3">保险产品分类</div>
+             <ul class="m-list-3-1 f-cb" >
+             
+             <!--{foreach from=$categorie item=cat}-->
+                 <li>
+                     <span class="f-ib f-vam f-ml15"><img src="{$cat.category_img}" width="26"></span>
+                    <span class="f-ib f-vam f-ml15">
+                        <a href="category.php?act=hot_goods_list&cat_id={$cat.id}" class="big">{$cat.name|escape:html}</a>
+                        <!-- {if $cat.cat_id} -->
+                        <span class="f-db f-pb10">
+                        	<!--{foreach from=$cat.cat_id item=item}-->
+                        	<span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id={$item.id}" class="small">{$item.name}</a></span>
+                        	<!--{/foreach}-->
+                        </span>
+                        <!-- {/if} -->
+                    </span>
+                 </li>
+             <!--{/foreach}-->
+             
+             
+<!--                  <li>
+                     <span class="f-ib f-vam f-ml15"><img src="images/new_img/icon2.png" width="26"></span>
+                    <span class="f-ib f-vam f-ml15">
+                        <a href="javascript:;" class="big">健康险</a>
+                        <span class="f-db f-pb10">
+                        	<span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">健康险</a></span>
+                            <span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">健康险</a></span>
+                        </span>
+                    </span>
+                 </li>
+                 <li>
+                     <span class="f-ib f-vam f-ml15"><img src="images/new_img/icon3.png" width="26"></span>
+                    <span class="f-ib f-vam f-ml15">
+                        <a href="javascript:;" class="big">意外险</a>
+                        <span class="f-db f-pb10">
+                        	<span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">意外险</a></span>
+                            <span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">健康险</a></span>
+                        </span>
+                    </span>
+                 </li>
+                 <li>
+                     <span class="f-ib f-vam f-ml15"><img src="images/new_img/icon4.png" width="26"></span>
+                    <span class="f-ib f-vam f-ml15">
+                        <a href="javascript:;" class="big">旅游险</a>
+                        <span class="f-db f-pb10">
+                        	<span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">旅游险</a></span>
+                            <span class="f-mr5"><a href="category.php?act=hot_goods_list&cat_id=26" class="small">健康险</a></span>
+                        </span>
+                    </span>
+                 </li>
+                 <li>
+                     <span class="f-ib f-vam f-ml15"><img src="images/new_img/icon5.png" width="26"></span>
+                    <span class="f-ib f-vam f-ml15">
+                        <a href="javascript:;" class="big">财产险</a>
+                        <span class="f-db f-pb10">
+                        	<span class="f-mr5"><a href="javascript:;" class="small">财产险</a></span>
+                            <span class="f-mr5"><a href="javascript:;" class="small">健康险</a></span>
+                        </span>
+                    </span>
+                 </li> -->
+             </ul>
+         </div>
+         <div class="f-fl g-w950 s-bg-ffffff">
+             <ul data-ilog="1.1.gE8|a" class="m-nav-list s-bg-ffffff f-cb" ilogbinded="true">
+             
+              <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+                  <li>
+                     <a {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="active"{/if} href="{$nav.url}">{$nav.name}</a>
+                     {if $nav.child_nav_list}
+                     	<ul class="m-subnav">
+                     	{foreach from=$nav.child_nav_list item=item }
+                     		<li><a href="{$item.url}">{$item.name}</a></li>
+                     	{/foreach}	
+                     	</ul>
+                      {/if}
+                 </li>
+              
+              <!-- {/foreach} -->
+<!--                  <li>
+                     <a class="active" href="/">商城首页</a>
+                 </li>
+                 <li>
+                     <a href="javascript:;">保险产品</a>
+                     <ul class="m-subnav">
+                         <li><a href="javascript:;">众安平安联合车险</a></li>
+                         <li><a href="javascript:;">银行卡盗刷资金损失保险</a></li>
+                         <li><a href="javascript:;">多轴飞行器责任保险</a></li>
+                         <li><a href="javascript:;">途虎轮胎险</a></li>
+                         <li><a href="javascript:;">小米手机意外保</a></li>
+                         <li><a href="javascript:;">个人法律费用补偿保险</a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="javascript:;">保险品牌</a>
+                     <ul class="m-subnav">
+                         <li><a href="javascript:;">亲子旅行意外伤害保险</a></li>
+                         <li><a href="javascript:;">驴友旅行意外伤害保险</a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="javascript:;">保险排名</a>
+                     <ul class="m-subnav">
+                         <li><a href="javascript:;">航空意外险</a></li>
+                         <li><a href="javascript:;">营运交通意外险</a></li>
+                         <li><a href="javascript:;">公共场所意外险</a></li>
+                         <li><a href="javascript:;">私家车意外险</a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="javascript:;">特色推荐</a>
+                     <ul class="m-subnav">
+                         <li><a href="javascript:;">成年人重大疾病保险</a></li>
+                         <li><a href="javascript:;">女性特定疾病保险</a></li>
+                         <li><a href="javascript:;">未成年人重大疾病保险</a></li>
+                         <li><a href="javascript:;">儿童齿科医疗保险</a></li>
+                         <li><a href="javascript:;">好孕保</a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="javascript:;">保险服务</a>
+                 </li>
+                 <li><a href="javascript:;">常见问题</a></li> -->
+
+
+             </ul>
+             <div class="t-g-wA100">
+                 <div class="index_focus">
+                     <a href="javascript:;" class="index_focus_pre" title="上一张">上一张</a>
+                     <a href="javascript:;" class="index_focus_next" title="下一张">下一张</a>
+                     <div class="bd">
+                         <ul>
+                             {foreach from=$flash_data item=item key=n}
+                             <li>
+                                 <a href="{$item.img_url}" class="pic">
+                                     <img class="pic" src="{$item.img_file_src}" width="950" height="335" alt="">
+                                 </a>
+                             </li>
+                             {/foreach}
+
+                         </ul>
+                     </div>
+                     <div class="slide_nav" align="center">
+                         {foreach from=$flash_data item=item key=n name=name}
+                         {if $smarty.foreach.name.iteration eq 1}
+                         <a class="on" href="javascript:;">●</a>
+                         {else}
+                         <a href="javascript:;">●</a>
+                         {/if}
+                         {/foreach}
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </nav>
+ </div>
+<!-- {/if} -->

@@ -1,0 +1,88 @@
+<table  class="table_user_04">
+                  <tr  bgcolor="#f5f5f5">
+                    	<td style="border-right:0px;">
+                        	<span class="s-c-666666 f-fs4">账户余额（元）</span>
+                    		<span class="f-fs3 s-c-d22f08 f-fwb">
+                    		   <!-- {if $user_info.user_money} -->
+		                             {$user_info.formated_user_money}
+		                             <!-- {else} -->
+		                              0.00
+		                       <!-- {/if} -->
+                    		
+                    		</span>
+                         </td>
+                        <td align="right" style="border-left:0px; ">
+                            <span class="f-ml40"><a href="user.php?act=account_detail" {if $action eq 'account_detail'} class="link-title-1_on" {else} class="link-title-1" {/if}>全部</a></span>
+                            <span class="f-ml10 f-mr10">|</span>
+                            <span><a href="user.php?act=account_log&process_type=0" {if $action eq 'account_log' && $process_type eq 0 } class="link-title-1_on" {else} class="link-title-1" {/if}>充值记录</a></span>
+                            <span class="f-ml10 f-mr10">|</span>
+                            <span><a href="user.php?act=account_log&process_type=1" {if $action eq 'account_log' && $process_type eq 1} class="link-title-1_on" {else} class="link-title-1" {/if}>提现记录</a></span>
+                        </td>
+
+                    </tr>
+
+                    <tr bgcolor="#f5f5f5">
+                    	<td colspan="2">
+                    	  <form action="user.php" method="get" id="search_form">
+       						<input type="hidden" name="act" value="account_detail" />
+       						<input type="hidden" name="time_quantum" value="" id="time_quantum"/>
+                        	<span class="f-fs1">订单号：</span>
+                            <span><input type="text" class="s-input-4 g-w200" name="order_sn" value="{$condition.order_sn}"></span>
+                            <span class="f-fs1 f-ml5">开始时间：</span>
+                            <span><input type="text" name="s_add_time" id="start_time" value="{$condition.s_add_time}" class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+                            
+                            <span class="f-fs1 f-ml5">结束时间：</span>
+                            <span><input type="text" name="e_add_time" id="end_time"  value="{$condition.e_add_time}"class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+                            <span class="f-ib f-ml5"><input type="submit" class="btn-b18147-1"></span>
+                            </form>
+                        </td>
+                    </tr>
+                </table>  
+                <div class="s-bsc_dbdada s-bg-f5f5f5 f-pA10 f-tar f-mt20">
+                        <span class="f-ib f-ml10">
+                            <a href="javascript:zjsj('all');" {if $condition.time_quantum eq 'all'}class="btn-ffffff_on"{else} class="btn-ffffff"{/if}>全部</a>
+                        </span>
+                        <span class="f-ib f-ml10">
+                            <a href="javascript:zjsj('{$lang.one_week}');" {if $condition.time_quantum eq $lang.one_week} class="btn-ffffff_on"{else} class="btn-ffffff"{/if}>最近一周</a>
+                        </span>
+                        <span class="f-ib f-ml10">
+                            <a href="javascript:zjsj('{$lang.one_month}');" {if $condition.time_quantum eq $lang.one_month} class="btn-ffffff_on"{else} class="btn-ffffff"{/if}>一个月</a>
+                        </span>
+                        <span class="f-ib f-ml10">
+                            <a href="javascript:zjsj('{$lang.three_month}');" {if $condition.time_quantum eq $lang.three_month} class="btn-ffffff_on"{else} class="btn-ffffff"{/if}>三个月</a>
+                        </span>
+                        <span class="f-ib f-ml10">
+                            <a href="javascript:zjsj('{$lang.six_month}');" {if $condition.time_quantum eq $lang.six_month} class="btn-ffffff_on"{else} class="btn-ffffff"{/if}>六个月</a>
+                        </span>
+                </div> 
+                <div class="f-pl15 f-pr15">
+                    <table class="table_user_01">
+                        <tr>
+                            <th>操作时间</th>
+                            <th>类型</th>
+                            <th>金额（元）</th>
+                            <th>订单号</th>
+                            <th>备注</th>
+                             
+                        </tr>
+                         <!--{foreach from=$account_log item=item}-->
+                        <tr>
+                            <td>{$item.change_time}</td>
+                            <td>{$item.type}</td>
+                            <td>{$item.amount}</td>
+                            <td>{$item.order_sn}</td>
+                            <td>{$item.short_change_desc}</td>
+                             
+                        </tr>
+                          <!--{foreachelse}-->
+                          	<tr>
+                          		<td colspan="5" align="center">
+                          			没有记录
+                          		</td>
+                          	</tr>
+                         <!--{/foreach}-->
+                    </table>
+                </div>
+                <div class="pagelist f-mt40">
+    				 {include file='library/pages.lbi'} 
+                </div>

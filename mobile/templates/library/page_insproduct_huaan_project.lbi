@@ -1,0 +1,48 @@
+<script src="dist/js/custom/huaan_jiangongxian.js"></script>
+<div class="panel panel-default">
+    <ul class="list-group" >
+          <li class="list-group-item" ><span class="s-c-ed462f f-fs4 f-fwb">{$goods_info.attribute_name}</span></li>
+          <li class="list-group-item"><span class="s-c-aaaaaa">{$goods.product_characteristic}</span></li>                       
+          <input type="hidden" name="" value="">       
+          <a class="list-group-item" href="javascript:void(0)" id="project_cost_select_P" onClick="showSelect_project_cost('project_cost_select','project_cost_select_P')" data-value='[{foreach from=$arr_project_list item=item key=key}{if $key!=0},{/if}{"product_influencingfactor_id":"{$item.cost.product_influencingfactor_id}","factor_code":"{$item.cost.factor_code}","factor_name":"{$item.cost.factor_name}"}{/foreach}]'><span class="s-c-aaaaaa">工程造价</span><span class="pull-right"><span id="project_cost_select">20万之内</span><i class="fa fa-angle-right f-ml10 s-c-aaaaaa f-fs6"></i></span></a>
+           
+          <a class="list-group-item" href="javascript:void(0)" id="project_dates_select_P" onClick="showSelect_project_dates('project_dates_select','project_dates_select_P')" data-sumvalue='[{foreach from=$arr_project_list item=item key=key}{if $key!=0},{/if}{"code":"{$item.cost.factor_code}","name":"{$item.cost.factor_name}","id":"{$item.cost.product_influencingfactor_id}","period":[{foreach from=$item["period"] item=items key=index}{if $index!=0},{/if}{"c_code":"{$items.factor_code}","c_name":"{$items.factor_name}","c_id":"{$items.product_influencingfactor_id}"}{/foreach}]}{/foreach}]'><span class="s-c-aaaaaa">工期<span class="pull-right" ><span id="project_dates_select"></span><i class="fa fa-angle-right f-ml10 s-c-aaaaaa f-fs6"></i></span></span></a>
+          
+          <a id="project_baofei_select_P" onClick="showSelect_project_baofei('project_baofei_select','project_baofei_select_P')" href="javascript:void(0)" class="list-group-item f-cb ">
+                <div class="f-fl">
+                    <span>
+                        <span class="s-c-aaaaaa">第三者责任限额 <br>(累计,每次,每人)(万元)/保费(元起)</span>
+                    </span><br>
+                    <span class=""><span id="project_baofei_select">100,50,10/400.00</span></span>
+                </div>
+                <div class="f-fr">
+                    <i class="fa fa-angle-right s-c-aaaaaa f-fs6 f-ml10 pull-right f-mt20"></i>
+                </div>
+          </a>
+          <li class="list-group-item">
+              <span class="s-c-aaaaaa" id="duty_beizhu">
+                    
+              </span>
+          </li>
+          <li class="list-group-item text-center">
+                <span class="s-c-ed462f f-fwb  f-fs5">
+                    <i class="fa fa-jpy"></i>
+                    <span class=" f-ml5">
+                        <span id="productPrem_price">{$ins_product_selected.premium}</span>元起
+                    </span>
+                </span>
+          </li>
+    </ul>
+</div>
+<input type="hidden" id="duty_price_ids" name="duty_price_ids" value="" />
+<!--工程造价名称-->
+<input type="hidden" id="cost_name" name="cost_name" value="" />
+<!--工程造价cost_factor_code-->
+<input type="hidden" id="cost_factor_code" name="cost_factor_code" value="" />
+<!--工期名称-->
+<input type="hidden" id="period_name" name="period_name" value="" />
+<!--工期period_fator_code-->
+<input type="hidden" id="period_fator_code" name="period_fator_code" value="" />
+<!--价格-->
+<input type="hidden" id="price_temp" name="price" value="" />
+          

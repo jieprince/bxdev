@@ -1,0 +1,49 @@
+<script src="themes/inserance_02/js/custorm/picc_ttl.js"></script>	
+				
+                    <div class="xqcont">
+                       
+						<form action="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" method="post">
+                        <div class="dataForm">
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                    <li class="app_li" >
+                                    <label>产品特点：20倍基本保额的少儿重大疾病保额、6倍基本保额的意外与疾病身故保额、满期按所交保险费<br>的100％给付满期保险金  </label>
+                                    </li>
+                                    <li class="app_li">
+									<label>保障利益：满期保险金、身故保险金、重大疾病保险金</label>
+                                    </li>
+								    <li class="app_li"><label>适合人群：出生满28天-15周岁</label></li>
+									<li class="app_li">
+									<label>保障期限：至被保险人25周岁  </label>	 
+									</li>
+                                     
+								    <li class="app_li"><label>承保年龄：</label>
+										<label>{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</label></li>
+									<li class="app_li">
+									<label>最大购买份数：</label>
+										<label>每人限{$ins_product_selected.number}份
+										</label> 
+									</li>
+									 
+                                </ul> 
+                            <div class="buyBar">
+                                
+								<input type="hidden" name="attribute_id" id="attribute_id" value="{$ins_product_selected.attribute_id}">
+                                <input type="hidden" id="product_id" name="product_id" value="{$ins_product_selected.product_id}" />
+                                <input type="hidden" id="gid" name="gid" value="{$goods.goods_id}" />  
+                                <input type="hidden" name="duty_price_ids" id="duty_price_ids">
+                                <input type="hidden" name="insPeriod" value="25"> 
+                                <input type="hidden" name="applyNum" value="1">
+                                <input type="hidden" name="price" id="price">
+                                <input type="hidden" name="payPeriod" value="1">
+                                 <input type="hidden" name="payPeriodUnit" value="3">
+                                <input type="submit" id="buy_submit" value="{$lang.insure}" class="btn_products_02_01 margin_T0_30">
+                            </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+					
+					
+					
+					

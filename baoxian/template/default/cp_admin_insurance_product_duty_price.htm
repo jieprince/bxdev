@@ -1,0 +1,145 @@
+<!--{template header}-->
+
+<div id="main-content">
+
+<!--{template space_admin_sidebar}-->
+
+
+<div id="content-body">
+   <div id="toolbar">
+
+</div>
+   <div id="error">
+</div>
+   <div id="navigator">
+
+    <div class="content">
+        当前位置：
+        
+                <a href="space.php?do=admin_insurance_product">  保险产品 </a>
+			 			          
+              <label class="separator">&gt;</label>
+            <a href="space.php?do=admin_insurance_product&product_id=$product[product_id]">$product[product_name]</a>
+			 <label class="separator">&gt;</label>
+			   责任价格
+			  <label class="separator">&gt;</label> 
+		<a href="space.php?do=admin_insurance_product&product_id=$product_duty[product_id]"> $product_duty[duty_name] </a>
+      </div>
+
+</div>
+                                <div id="main-body">
+
+<script type="text/javascript">
+
+    function onDeleteAttachment(parentId, id, uploadFileId) {
+        deleteAttachment('/uploadFileAction.do?method=delete&time=1400741141051', parentId, id, uploadFileId);
+    }
+
+</script>
+
+
+
+<form name="insuranceKindForm" method="POST" action="cp.php?ac=admin_insurance_product_duty_price&product_duty_id=$product_duty_id&product_duty_price_id=$product_duty_price_id">
+
+
+<input type="hidden" name="product_duty_price_submit" id="product_duty_price_submit" value="true" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+
+
+<table class="view-table">
+    <tbody>
+	<tr>
+	
+        <td colspan="6" class="view-header">保费影响因素</td>
+    </tr>
+	
+	<tr class="listTitle">
+
+	  <td width="10%">保险期间</td>
+      <td width="30%">职业类别</td>	
+	  <td width="30%">承保年龄</td>	
+      <td width="10%">保额</td>	
+	  <td width="10%">限额</td>	
+	  <td width="10%">保费</td>	      
+
+   
+    </tr>
+	
+	<!--{loop $list_influencingfactor $key $value}-->
+	<tr>
+	<td>
+	<select id="period_$key" name="product_price_input[$key][period]">
+		<option value="0">&nbsp;</option>			
+		<!--{loop $list_product_influencingfactor_period $key1 $value}-->
+		<option value="$value[product_influencingfactor_id]">$value[factor_name]</option>
+		<!--{/loop}-->
+		
+	</select>
+	</td>
+	
+	
+	
+		<td>
+	<select id="career_$key" name="product_price_input[$key][career]">
+		<option value="0">&nbsp;</option>		
+		<!--{loop $list_product_influencingfactor_career $key1 $value}-->
+		<option value="$value[product_influencingfactor_id]">$value[factor_name]</option>
+		<!--{/loop}-->
+		
+	</select>
+	</td>
+	
+	
+	<td>
+	<select id="age_$key" name="product_price_input[$key][age]">
+		<option value="0">&nbsp;</option>		
+		<!--{loop $list_product_influencingfactor_age $key1 $value}-->
+			<option value="$value[product_influencingfactor_id]">$value[factor_name]</option>
+		<!--{/loop}-->
+		
+	</select>
+	</td>
+	
+	<td>
+	<input name="product_price_input[$key][amount]" value="" type="text">
+	</td>
+	<td>
+	<input name="product_price_input[$key][limitAmount]" value="0" type="text">
+	</td>
+	<td>
+	<input name="product_price_input[$key][premium]" value="" type="text">
+	</td>
+	
+    </tr>
+	<!--{/loop}-->
+	
+</tbody></table>
+
+     <table class="buttonArea">
+        <tbody><tr>
+            <td class="promptText">
+                请注意：红色标题所指示的数据项必须填写或选择。
+            </td>
+            <td class="buttons">
+                <input value="保存" class="webButton" type="submit">
+                <input value="清除" class="webButton" type="reset">
+            </td>
+        </tr>
+    </tbody></table>   
+</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["insuranceKindForm"].elements["insurerName"];
+
+  if (focusControl.type != "hidden" && !focusControl.disabled) {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+</div>
+                            </div>
+
+</div> <!--id="main-content"-->
+ 
+ <!--{template footer}-->

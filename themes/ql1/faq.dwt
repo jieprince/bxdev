@@ -1,0 +1,86 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bscT_009c84">
+    <div class="g-w1077 f-mc f-cb">
+    	<div class="f-fl g-w250">
+        	<ul class="m-list-3 f-cb">
+        		 <!--{foreach from=$child_article_cat_list item=item}-->
+        			 <li>
+	                	<a href="category.php?act=article_list&cat_id={$item.cat_id}"  {if $condition.cat_id eq $item.cat_id || $article_cat.cat_id eq $item.cat_id}class="nacitve"{/if}>{$item.cat_name}</a>
+	                </li>
+        	     <!--{/foreach}-->
+            </ul>
+            
+            <div class="f-mt20 g-w250">
+            	<div class="s-bscB_009c84">
+                    <span class="f-fs5 f-fwb s-bg-009c84 f-pl40 f-pr40 f-pt10 f-pb10 f-ib">
+                    	<span class="s-c-ffffff">热门</span><span class="s-c-ffffff">问题</span>
+                    </span>
+                </div>
+                <div>
+                	<ul>
+	                	{foreach from=$is_top_article_list item=item }
+	                    	<li class="f-mt15">
+	                        	<h2 class="s-lh25"><a href="article.php?act=article_detail&id={$item.article_id}&article_type=faq" class="link-777777 f-fs2">{$item.title}</a></h2>
+	                            <section class="f-fs1 s-lh20 s-c-777777 ">
+	                            	{$item.description|truncate:80}
+	                            </section>
+	                        </li>   
+	                    {/foreach}
+                    </ul>
+
+                </div>
+            </div>
+        </div> 
+    	<div class="f-fr g-w800">
+        	<div class="g-h48 s-bscB_d2d2d2 f-tar">
+            	<span class="s-c-666666 f-mt20 f-ib">
+                	<i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                    您的位置：
+                    <span class="s-c-777777">
+                        <a href="index.php" class="link-009c84">首页</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        <a href="category.php?act=article_list" class="link-009c84">常见问题</a>
+                        {if $article_cat}
+                        	<i class="iconfont f-fs2">&#xf02af;</i>
+                        	<a href="category.php?act=article_list&cat_id={$article_cat.cat_id}" class="link-009c84">{$article_cat.cat_name}</a>
+                        {/if}
+                        
+                        {if $article.title}
+	                        <i class="iconfont f-fs2">&#xf02af;</i>
+	                        {$article.title}
+                        {/if}
+                        </span>
+                </span>
+            </div>
+             
+            <div class="f-mt10">
+              {if $act eq 'article_list'}
+                <ul class="m-list-6">
+                 {foreach from=$article_list item=item}
+                     <li>
+                        <a href="article.php?act=article_detail&article_type=faq&id={$item.article_id}">
+                            <i class="iconfont f-fs0">&#xf01c4;</i>
+                           	{$item.title}
+                        </a>
+                    </li>
+                 {/foreach}
+                </ul>
+               {/if}
+               
+               {if $act eq 'article_detail'}
+               		<h2 class="f-fs4 s-c-666666 f-tac f-mt20">{$article.title}</h2>
+	                <div class="s-c-777777 f-fs2 s-lh25 f-mt20">
+						{$article.content}
+	                </div>
+               {/if}
+            </div>
+             {if $act eq 'article_list'}
+  					<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+    		 {/if}
+        </div>
+    </div>
+    
+     
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

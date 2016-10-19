@@ -1,0 +1,186 @@
+<!-- $Id: privilege_info.htm 16616 2009-08-27 01:56:35Z liuhui $ -->
+<html>
+<head>
+<title>{$lang.cp_home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/transport.js,common.js,jquery-1.8.3.min.js"} 
+<script language="JavaScript">
+
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+
+</script> 
+</head>
+<h1>
+	{if $action_link} {/if} {if $action_link2} <span class="action-span"><a href="{$action_link2.href}">{$action_link2.text}</a>&nbsp;&nbsp;</span> {/if} <span class="action-span1"><a
+		href="index.php?act=main">{$lang.cp_home}</a> </span><span id="search_id" class="action-span1">{if $ur_here} - {$ur_here} {/if}</span>
+	<div style="clear: both"></div>
+</h1>
+
+<div class="main-div">
+	<form name="theForm"  id="theForm" action="distributor.php" method="post">
+		<input value="update" name="request_type" type="hidden">
+		<input type="hidden" name="d_uid"  value={$distributor_info.d_uid}>
+		<table width="100%">
+			<tr>
+				<td class="label">{$lang.user_name}</td>
+				<td><input type="text" name="name" maxlength="20" value="{$distributor_info.d_name}" size="34" /></td>
+			</tr>
+			<!-- 企业组织代码 -->
+			<tr>
+				<td class="label">{$lang.identificationcode}</td>
+				<td><input type="text" name="identificationcode" maxlength="20" value="{$distributor_info.d_identificationcode}"  size="34" /></td>
+			</tr>
+			<!-- 渠道类型 -->
+			<tr>
+			<td class="label">{$lang.type}</td>
+			<!--<td><input type="text" name="type" maxlength="20" value="{$distributor_info.d_type}" size="34" /></td>
+			 -->
+			 <td>
+			 	<select name="type">
+			 		<option value="">--请选择--</option>
+			 		<option 
+			 		{if $distributor_info.d_type eq '保险代理公司'} 
+			 			selected='selected'
+			 		{/if}
+			 		value="保险代理公司">保险代理公司</option>
+			 		<option 
+			 		{if $distributor_info.d_type eq '保险经纪公司'} 
+			 			selected='selected'
+			 		{/if}
+			 		value="保险经纪公司">保险经纪公司</option>
+			 		<option 
+			 		{if $distributor_info.d_type eq '保险兼业渠道'} 
+			 			selected='selected'
+			 		{/if}
+			 		value="保险兼业渠道">保险兼业渠道</option>
+			 	</select>
+			 </td>
+
+			 </tr>
+			 <!-- 渠道会员审核 -->
+			 <tr>
+				<td class="label">{$lang.ischeck}</td>
+				<td>
+					{foreach from=$check_status_list item=item key=key}
+				   		<input type="radio" name="check" value="{$key}" {if $distributor_info.check_status eq $key }checked{/if}/> {$item}&nbsp;&nbsp;
+				    {/foreach}
+			    </td>
+			 </tr>
+			<!-- 从业资格证书 -->
+			<tr>
+				<td class="label">{$lang.qualificationNumber}</td>
+				<td><input type="text" name="qualificationNumber" maxlength="20"  value="{$distributor_info.d_qualificationNumber}" size="34" /></td>
+			</tr>
+			<!-- 联系人 -->
+			<tr>
+				<td class="label">{$lang.contacts}</td>
+				<td><input type="text" name="contacts" maxlength="20" value="{$distributor_info.d_contacts}" size="34" /></td>
+			</tr>
+
+
+			<!-- 移动电话 -->
+			<tr>
+				<td class="label">{$lang.mobilePhone}</td> 
+				<td><input type="text" name="mobilePhone" maxlength="20" value="{$distributor_info.d_mobilePhone}" size="34" /></td>
+			</tr>
+
+			<!-- Email  onblur="validate_email(this.value);" -->
+			<tr>
+				<td class="label">{$lang.email}</td>
+				<td><input type="text" name="email" maxlength="20"  value="{$distributor_info.d_email}"  size="34" /></td>
+			</tr>
+			<!-- QQ -->
+			<tr>
+				<td class="label">{$lang.qq}</td>
+				<td><input type="text" name="qq" maxlength="20" value="{$distributor_info.d_qq}" size="34" /></td>
+			</tr>
+
+			<!-- 所在地 -->
+			<tr>
+				<td><div align="right">
+						<strong>{$lang.zone}&nbsp;&nbsp;&nbsp;</strong>
+					</div></td>
+				<td colspan="3"><select name="country" id="selCountries" onchange="region.changed(this, 1, 'selProvinces')">
+						<option value="0">{$lang.select_please}</option> {foreach from=$country_list item=country}
+						<option value="{$country.region_id}" {if $province}selected{/if}>{$country.region_name}</option> {/foreach}
+				</select> 
+				<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+						<option value="0">{$lang.select_please}</option>
+						{foreach from=$province item=country}
+							{$country}
+						{/foreach}
+				</select> <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+						<option value="0">{$lang.select_please}</option>
+						{foreach from=$city item=country1}
+							{$country1}
+						{/foreach}
+				</select> <select name="district" id="selDistricts">
+						<option value="0">{$lang.select_please}</option>
+						{foreach from=$district item=country2}
+							{$country2}
+						{/foreach}
+				</select>
+				<input type="text" name="address" maxlength="20" value="{$distributor_info.d_address}" size="34" />
+			</tr>
+			<tr>
+			<tr>
+				<td colspan="2" align="center"><input onclick="submit_theForm();" value="{$lang.button_submit}" class="button" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;  <input type="hidden" name="act" value="{$form_act}" /> <input type="hidden"
+					name="token" value="{$token}" /> 
+			</tr>
+		</table>
+	</form>
+</div>
+{insert_scripts files="../js/transport.js,../js/region.js"} {literal}
+
+{literal}
+<script language="JavaScript">
+region.isAdmin = true;
+onload = function()
+{
+  startCheckOrder();
+}
+</script>
+{/literal}
+
+
+
+<script language="JavaScript">
+	function submit_theForm(){
+		var str = $("#theForm").serialize();
+		$.post("distributor.php", {
+			"request_type":"update",
+			"d_uid":$.trim($("[name=d_uid]").val()),
+			"name":$.trim($("[name=name]").val()),
+			"identificationcode":$.trim($("[name=identificationcode]").val()),
+			"type":$.trim($("[name=type]").val()),
+			"qualificationNumber":$.trim($("[name=qualificationNumber]").val()),
+			"contacts":$.trim($("[name=contacts]").val()),
+			"mobilePhone":$.trim($("[name=mobilePhone]").val()),
+			"email":$.trim($("[name=email]").val()),
+			"qq":$.trim($("[name=qq]").val()),
+			"province":$.trim($("[name=province]").val()),
+			"city":$.trim($("[name=city]").val()),
+			"district":$.trim($("[name=district]").val()),
+			"address":$.trim($("[name=address]").val()),
+			"check":$.trim($("[name=check]:checked").val())
+		},
+		function(data) {
+					if(data!=0){
+						alert(data);
+					}else{
+					   alert("更新成功");
+					   document.location.href = 'privilege.php?act=organization_list';
+					}
+	 	},"text");
+	}
+</script>
+
+{include file="pagefooter.htm"}
+
+</html>

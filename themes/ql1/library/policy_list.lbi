@@ -1,0 +1,41 @@
+            <div class="f-pt25 f-pb40 f-pl15 f-pr15">
+                <!-- {if $action neq 'order_detail'} -->
+            	<div class="f-tac">
+                	<span>
+                    	<input type="text" name="search" class=" g-w490 g-h35 f-pl10 f-pr10" placeholder="输入保单号或订单号查询">
+                        
+                    </span>
+                    <span class="f-ib">
+                    	<a href="#" class="btn-ec6941-4"><i class="iconfont">&#xf012c;</i> 立即查询</a>
+                    </span>  
+                </div>
+                <!-- {/if} -->
+                <div class="f-mt20">
+                	<table cellpadding="0" cellspacing="0" class="table_user_01">
+                    	<tr>
+                    		<th>序号</th>
+                        	<th>保险产品</th>
+                            <th>保单号</th>
+                            <th>保障期限</th>
+                            <th>金额（元）</th>
+                            <th><a href="#">状态
+                            	<i class="iconfont icon-xiangxia2 f-fs2"></i>
+                            </a></th>
+                            <th>操作渠道</th>
+                        </tr>
+                        <!--{foreach from=$warranty item=item}-->
+	                        <tr>
+	                        	<td><a href="user.php?act=policy_detail&policy_id={$item.policy_id}">{$item.policy_id}</a></td>
+	                        	<td>{$item.attribute_name}</td>
+	                            <td>{$item.policy_no}</td>
+	                            <td>{$item.formated_start_date}-{$item.formated_end_date}</td>
+	                            <td> {$item.total_premium}  </td>
+	                            <td>{$item.policy_status_str}</td>
+	                            <td>代理</td>
+	                        </tr>
+                        <!--{/foreach}--> 
+                    </table>
+                </div>
+            </div>
+              
+        

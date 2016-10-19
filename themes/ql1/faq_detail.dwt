@@ -1,0 +1,82 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="g-wA100 s-bscT_009c84">
+    <div class="g-w1077 f-mc f-cb">
+    	<div class="f-fl g-w250">
+        	<ul class="m-list-3 f-cb">
+        		 <!--{foreach from=$child_article_cat_list item=item}-->
+        			 <li>
+	                	<a href="category.php?act=article_list&cat_id={$item.cat_id}"  
+	                	{if $condition.cat_id eq $item.cat_id || $article_cat.cat_id eq $item.cat_id }class="nacitve"{/if}
+	                	
+	                	>{$item.cat_name}</a>
+	                </li>
+        	     <!--{/foreach}-->
+            </ul>
+            
+            <div class="f-mt20 g-w250">
+            	<div class="s-bscB_009c84">
+                    <span class="f-fs5 f-fwb s-bg-009c84 f-pl40 f-pr40 f-pt10 f-pb10 f-ib">
+                    	<span class="s-c-ffffff">热门</span><span class="s-c-ffffff">问题</span>
+                    </span>
+                </div>
+                <div>
+                	<ul>
+                    	<li class="f-mt15">
+                        	<h2 class="s-lh25"><a href="#" class="link-777777 f-fs2">关于职业责任险的常见问题？</a></h2>
+                            <section class="f-fs1 s-lh20 s-c-777777">
+                            	在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522 在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522...
+                            </section>
+                        </li>
+                        <li class="f-mt15">
+                        	<h2 class="s-lh25"><a href="#" class="link-777777 f-fs2">关于职业责任险的常见问题？</a></h2>
+                            <section class="f-fs1 s-lh20 s-c-777777">
+                            	在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522 在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522...
+                            </section>
+                        </li>
+                        <li class="f-mt15">
+                        	<h2 class="s-lh25"><a href="#" class="link-777777 f-fs2">关于职业责任险的常见问题？</a></h2>
+                            <section class="f-fs1 s-lh20 s-c-777777">
+                            	在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522 在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522在您的保单的保险期限内，如果您的联系地址发生变动，您可以尽快通过95522...
+                            </section>
+                        </li>
+                    </ul>
+                    <div class="f-mt15 f-tar"><a href="#" class="link-777777 f-fs2">更多问题 ></a></div>
+
+                </div>
+            </div>
+        </div> 
+    	<div class="f-fr g-w800">
+        	<div class="g-h48 s-bscB_d2d2d2 f-tar">
+            	<span class="s-c-666666 f-mt20 f-ib">
+                	<i class="iconfont f-fs2 s-c-009c84">&#xf014a;</i>
+                    您的位置：
+                    <span class="s-c-777777">
+                        <a href="index.php" class="link-009c84">首页</a>
+                        <i class="iconfont f-fs2">&#xf02af;</i>
+                        <a href="category.php?act=article_list" class="link-009c84">常见问题</a>
+                        {if $article_cat}
+                        	<i class="iconfont f-fs2">&#xf02af;</i>
+                        	<a href="category.php?act=article_list&cat_id={$article_cat.cat_id}" class="link-009c84">{$article_cat.cat_name}</a>
+                        {/if}
+                        
+                        {if $article.title}
+	                        <i class="iconfont f-fs2">&#xf02af;</i>
+	                        {$article.title}
+                        {/if}
+                        </span>
+                </span>
+            </div>
+             
+            <div class="f-mt10">
+				<h2 class="f-fs4 s-c-666666 f-tac f-mt20">{$article.title}</h2>
+                <div class="s-c-777777 f-fs2 s-lh25 f-mt20">
+					{$article.content}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

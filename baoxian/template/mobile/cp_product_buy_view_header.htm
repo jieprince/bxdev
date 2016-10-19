@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>全联诉讼财产保全微投保</title>
+    <link rel="stylesheet" href="../dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/fonts/iconfont_2/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/weixin_style.css">
+    <script src="../dist/js/jquery.min.js"></script>
+    <script src="../dist/js/bootstrap.min.js"></script>
+    <script src="../dist/js/html5shiv.min.js"></script>
+    <script src="../dist/js/respond.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!-- E 可根据自己喜好引入样式风格文件 -->
+    <script src="../mobile/dist/layer.m/layer.m.js"></script>
+    <script src="js/mobile/icheck-1.x/icheck.min.js"></script>
+    <script src="../mobile/dist/js/public.js"></script>
+    <script src="js/script_common_check.js"></script>
+    <script src="js/mobile/checked_function_base.js?1"></script>
+
+
+</head>
+
+<body>
+<header class="container-fluid f-pt15 f-pb15 s-bg-008fc7">
+	<div style="display: none;">
+		<img src="../mobile/images/logo.jpg" width="300" height="300">
+	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-8 f-pl0 f-pr0 f-tal">
+                <span class="f-ib f-vam"><a href="javascript:history.go(-1)"><i class="iconfont icon-zuojiantou s-c-ffffff  f-fs7"></i></a></span>
+                <span class="f-ib f-vam f-fs4 s-c-ffffff">审核资料预览</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 f-pl0 f-pr0 f-tar">
+
+
+            </div>
+        </div>
+    </div>
+</header>
+<form id="fgNewOrderSearchForm" onSubmit="return steptwo_queck()" name="fgNewOrderSearchForm" method="POST" action="cp.php?ac=product_buy&product_id=$product[product_id]&policy_id=$policy_id&gid=$gid&step=2&uid=$uid&flag_check_policy=$flag_check_policy">
+    		
+             <!-- app start-->
+                 <input type="hidden" id="userid_app" name="uid" value="{$uid}" />
+                 <input type="hidden" id="platformId" name="platformId" value="" />
+             <!-- app end-->
+            
+            <input type="hidden" name="orderbuysubmit" id="orderbuysubmit" value="true" />
+            <input type="hidden" name="is_weixin" value="1" />
+                                                
+            <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+            
+            <input type="hidden" id="goumaifangshi" name="goumaifangshi"  value="">
+            
+            <input type="hidden" id="cart_insure_id" name="cart_insure_id"  value="$cart_insure_id">
+            <input id="reprice" type="hidden" value="{$total_price}">
+            <!--{if 0}-->
+             <!--{loop $policy_ids $key1 $policy_id}-->
+            <input type="hidden" id="policy_ids_$key1" name="policy_ids[]"  value="$policy_id">
+            
+             <!--{/loop}-->
+            <!--{/if}-->

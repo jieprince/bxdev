@@ -1,0 +1,216 @@
+<!-- add yes123 2014-12-04  充值和提现记录 -->
+
+<div class="padd_A20">
+	<form action="user.php?act=account_log" method="post">
+		<input name="process_type" value="{$condition.process_type}" type="hidden">
+		<table class="table_user_04">
+            <tr  bgcolor="#f5f5f5">
+                <td style="border-right:0px;">
+                    <span class="s-c-666666 f-fs4">账户余额（元）</span>
+                    		<span class="f-fs3 s-c-d22f08 f-fwb">
+                    		   <!-- {if $user_info.user_money} -->
+		                             {$user_info.formated_user_money}
+		                             <!-- {else} -->
+		                              0.00
+		                       <!-- {/if} -->
+
+                    		</span>
+                </td>
+                <td align="right" style="border-left:0px; ">
+                    <span class="f-ml40"><a href="user.php?act=account_detail" {if $action eq 'account_detail'} class="link-title-1_on" {else} class="link-title-1" {/if}>全部</a></span>
+                    <span class="f-ml10 f-mr10">|</span>
+                    <span><a href="user.php?act=account_log&process_type=0" {if $action eq 'account_log' && $process_type eq 0 } class="link-title-1_on" {else} class="link-title-1" {/if}>充值记录</a></span>
+                    <span class="f-ml10 f-mr10">|</span>
+                    <span><a href="user.php?act=account_log&process_type=1" {if $action eq 'account_log' && $process_type eq 1} class="link-title-1_on" {else} class="link-title-1" {/if}>提现记录</a></span>
+                </td>
+
+            </tr>
+			<tr bgcolor="#f5f5f5">
+				<td colspan="2">
+			<!-- {if $process_type eq 0}  只有充值才显示支付方式-->
+				支付方式: 
+				<select name="payment" class="s-select">
+					<option value="">--请选择--</option>
+					<!--{foreach from=$payment_list item=item}-->
+					<!-- modify 2014-12-05 通过支付方式ID查询 -->
+						<option value="{$item.pay_id}" {if $condition.payment eq $item.pay_id} selected='selected' {/if} >{$item.pay_name}</option>
+					<!--{/foreach}-->
+				</select> 
+			<!-- {/if} -->
+				
+				状态: 
+				<select name="is_paid" class="s-select">
+					<option value="">--请选择--</option>
+					<option value="1" {if $condition.is_paid eq 1} selected='selected' {/if} >已完成</option>
+					<option value="2" {if $condition.is_paid eq 2} selected='selected' {/if} >未确认</option>
+				</select> 
+				<span class="f-fs1 f-ml5">开始时间：</span>
+				 <span><input type="text" name="start_time" id="start_time" value="{$condition.start_time}" class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+				<span class="f-fs1 f-ml5">截止时间：</span>
+				<span><input type="text" name="end_time" id="end_time"  value="{$condition.end_time}"class="laydate-icon s-input-4 g-w110" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></span>
+				<span class="f-ib f-ml5"><input class="btn-b18147-1" type="submit"></span>
+			 </td>
+			</tr>
+		</table>
+
+	</form>
+</div>
+<br/>
+<div class="f-pl15 f-pr15">
+    <table cellpadding="0" cellspacing="0" class="table_user_01">
+        <tr align="center">
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.process_time}</th>
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.surplus_pro_type}</th>
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.money}</th>
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.process_notic}</th>
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.admin_notic}</th>
+            <!-- {if $process_type eq 0} -->
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.payment}</th>
+            <!-- {/if} -->
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.is_paid}</th>
+            <th bgcolor="#ffffff" class="fontbloder table_head_bg ">{$lang.handle}</th>
+        </tr>
+        <!--{foreach from=$account_log item=item}-->
+        <tr>
+            <td align="center" bgcolor="#ffffff" class="color_94">{$item.add_time}</td>
+            <td align="center" bgcolor="#ffffff" class="color_94">{$item.type}</td>
+            <td align="right" bgcolor="#ffffff" class="padd_R10 color_94">{$item.amount}</td>
+            <td align="left" bgcolor="#ffffff" class="padd_L10 color_94">{$item.short_user_note}</td>
+            <td align="left" bgcolor="#ffffff" class="padd_L10 color_94">{$item.short_admin_note}</td>
+            <!-- {if $process_type eq 0}  只有充值才显示支付方式---->
+            <td align="center" bgcolor="#ffffff" class="padd_L10 color_94">{$item.payment}</td>
+            <!-- {/if} -->
+            <td align="center" bgcolor="#ffffff" class="color_94">{$item.pay_status}</td>
+            <td align="right" bgcolor="#ffffff" class="padd_R10 color_94">
+            <!--{if $item.pay_code=='bank' && $item.statusID eq 0 && $item.process_type eq 0 } -->
+                    <a href="javascript:upload_img_dialog('上传凭证','{$item.pay_document}','{$item.id}');">上传凭证</a>
+            <!--{/if}-->
+            <!--add yes123 2015-01-26 提现管理员尽快处理 -->
+            <!-- {if $item.process_type eq 1 && $item.is_paid eq 0 } -->
+                    <a href="javascript:reminder_withdraw('{$item.id}');">催办</a>
+            <!-- {/if} -->
+            {$item.handle}
+            <!-- {if ($item.is_paid eq 0 && $item.process_type eq 1) || $item.handle} -->
+                <!-- <a href="user.php?act=cancel&id={$item.id}&process_type={$process_type}" onclick="if (!confirm('{$lang.confirm_remove_account}')) return false;">{$lang.is_cancel}</a>  -->
+            <!-- {/if} -->
+            </td>
+        </tr>
+        <!--{/foreach}-->
+        <!--
+              <tr>
+                <td colspan="7" align="right" bgcolor="#ffffff">{$lang.current_surplus}{$user_money}</td>
+              </tr>-->
+    </table>
+    <div class="pagelist f-mt40">
+        {include file='library/pages.lbi'}
+    </div>
+</div>
+<div style="display: none;" id="upload_img_div">
+	<div class="padd_A10">
+	<form id='myupload' action='user.php?act=upload_img&path_type=3' method='post' enctype='multipart/form-data'>
+		<input class="padd_TB5" id="fileupload" type="file" name="image" onchange="upload_img()" />
+		<div class="progress">
+			<span class=bar></span>
+			<span class="percent">0%</span >
+		</div>
+		<div id="showimg">
+			
+		</div>
+	</form>
+	</div>
+
+</div>
+<script type="text/javascript">
+	var pageii;
+	var ua_id;
+	function upload_img_dialog(title_str,img_url,id){
+		ua_id = id;
+		if(img_url){
+			$("#showimg").html(' ');
+			$("#showimg").html('<img style="width: 480px;height:270px; float:left;margin-left:10px;" src="'+img_url+'">');
+		}
+		
+		pageii = layer.open({
+		    type: 1,
+		    skin: 'layui-layer-demo', //样式类名
+		    closeBtn: true, //不显示关闭按钮
+		    shift: 2,
+		 	area: ['500px', '400px'],
+		    shadeClose: true, //开启遮罩关闭
+		    content: $('#upload_img_div') 
+		});
+  			
+  	}
+	
+	
+	
+	  function upload_img()
+	  {
+		  var bar = $('.bar');
+		  var percent = $('.percent');
+		  var showimg = $('#showimg');
+		  var progress = $(".progress");
+		  var files = $(".files");
+		  
+		   $("#myupload").ajaxSubmit({
+	    	    dataType : 'json',
+	    	    beforeSend : function() {
+	        	     showimg.empty();
+	        	     progress.show();
+	        	     var percentVal = '0%';
+	        	     bar.width(percentVal);
+	        	     percent.html(percentVal);
+	        	     //btn.html("上传中...");
+	    	    },
+	    	    uploadProgress : function(event, position, total, percentComplete) {
+	        	     var percentVal = percentComplete + '%';
+	        	     bar.width(percentVal);
+	        	     percent.html(percentVal);
+	    	    },
+	    	    success : function(data) {
+	        	     if (data.code!=0) { //modify yes123 2014-12-09
+	        	      	alert(data.msg);
+	        	     } else {
+	        	      //files.html("<b>" + data.name + "(" + data.size + "k)</b> <span class='delimg"+num+"' rel='"+data.pic+"'>删除</span>");
+	        	      var img = data.pic;
+	        	      console.info("success-img:"+img);
+	        	      showimg.html(
+	        	    		  '<img style="width: 480px;height:270px; float:left;margin-left:10px;" src="'+img+'">'+
+	        	      		'<a class="btn-d22f08-3" style="float:left;margin-left:230px; margin-top:10px;"  href="javascript:save_img(\''+img+'\')">确定</a>'
+	        	      );
+	        	      			
+	        	     }
+	    
+	    	    },
+	    	    error : function(xhr) {
+	        	     btn.html("上传失败");
+	        	     bar.width('0')
+	        	     files.html(xhr.responseText);
+	    	    }
+		   });
+		  
+	  }
+	  
+	  function save_img(img)
+	  {		
+		  $.post(
+				  'user.php',
+				  {'act':'save_pay_document','img':img,'id':ua_id},
+				  function(r){
+			  		alert(r.msg);
+			  		layer.close(pageii);
+			  		window.location.reload();
+		  },'json');
+		
+	  }
+	  
+	  //add yes123 2015-01-26 提现管理员尽快处理
+	  function reminder_withdraw(id){
+		  $.post(
+				  'user.php',
+				  {'act':'reminder_withdraw','id':id},
+				  function(r){
+					alert(r.msg);
+		  },'json');
+	  }
+</script>

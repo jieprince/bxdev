@@ -1,0 +1,539 @@
+<!-- 用户中心-资金管理页 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+	<title>{if $action eq 'account_deposit'}
+                      			充值
+                      			{elseif $action eq 'account_withdraw'}
+                      			提现
+                      			{elseif $action eq 'account_transfer'}
+                      			转账 
+                      			{elseif $action eq 'account_detail'}
+                      			账户明细
+                                  {elseif $action eq 'account_income'}
+                                  收入明细
+                                  {elseif $condition.process_type eq '1'}
+                                  提现记录
+                                  {elseif $condition.process_type eq '0'}
+                                  充值记录
+                                  {else}
+                                  资金管理
+                                  {/if} - {$shop_name}</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="css/head.css" rel="stylesheet" type="text/css" />
+	<link href="css/foot.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/checkedweixin.js"></script>
+	<script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.md5.js" type="text/javascript"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="js/jquery.autocomplete.js" type="text/javascript"></script>
+	<script src="js/jquery.touchScroll.js" type="text/javascript"></script>
+	<script src="../js/public.js" type="text/javascript"></script>
+	<script src="../static/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+        document.write('<div id="global_loading" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;background-color: #eee;z-index:999"><div style="width: 100px;height: 75px;margin:auto;top:50%;position:relative"><span style="display:block;float:left;width:32px;height:32px;background:url(images/spacer.gif);margin-top:-5px;"></span>&nbsp;&nbsp;加载中...</div></div>');
+    </script>
+    
+    <!-- 手机弹窗 -->
+    <script src="layer-mobile/layer.m.js" type="text/javascript"></script>
+    <link href="layer-mobile/need/layer.css" rel="stylesheet" type="text/css" />
+    
+    <!-- 时间选择器 -->
+    <script src="laydate/laydate.js" type="text/javascript"></script>
+    <link href="laydate/need/laydate.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>
+
+<div class="header">
+	<a class="back" href="javascript:history.back();"></a><span class="headline">
+	{if $action eq 'account_deposit'}
+    充值
+    {elseif $action eq 'account_withdraw'}
+    提现
+    {elseif $action eq 'account_transfer'}
+    转账 
+    {elseif $action eq 'account_detail'}
+    账户明细
+       {elseif $action eq 'account_income'}
+       收入明细
+       {elseif $condition.process_type eq '1'}
+       提现记录
+       {elseif $condition.process_type eq '0'}
+       充值记录
+       {else}
+       资金管理
+       {/if}
+       </span>
+		{if $act eq 'account_detail' || $act eq 'account_income' || $act eq 'account_log'}
+		<a class="search" href="javascript:search();"></a>
+		{/if}
+	</div>
+	<section>
+	<div class="search_listdiv">
+		<div class="search_list" style="padding:12px 10px 20px 10px">
+		<table width=100% cellspacing=5 cellpadding=5 border=0 class="account_a"  style="border-bottom:3px solid #ccc; margin-bottom:20px;box-shadow:0px 3px 0px  #eee; ">
+			<tr>
+
+				<td><a href="account.php?act=account_deposit" class= {if $action eq 'account_deposit'} "account_on" {else} "account_out" {/if}>账户充值</a></td>
+				<td > <a href="account.php?act=account_withdraw" class= {if $action eq 'account_withdraw'} "account_on" {else} "account_out" {/if}>账户提现</a></td>
+	<!-- 			<td><a href="account.php?act=account_transfer" class= {if $action eq 'account_transfer'} "account_on" {else} "account_out" {/if}>转账</a></td> -->
+			</tr>
+			<tr>
+				<td><a href="account.php?act=account_detail" class= {if $action eq 'account_detail'} "account_on" {else} "account_out" {/if}>账户明细</a></td>
+				<td><a href="account.php?act=account_income" class= {if $action eq 'account_income'} "account_on" {else} "account_out" {/if}>收入明细</a></td>
+			</tr>
+			<tr>
+				<td><a href="account.php?act=account_log&process_type=1" class= {if $condition.process_type eq '1'} "account_on" {else} "account_out" {/if} >提现记录</a></td>
+				<td><a href="account.php?act=account_log&process_type=0" class= {if $condition.process_type eq '0'} "account_on" {else} "account_out" {/if}>充值记录</a></td>
+			</tr>
+			<tr>
+                <td colspan="3" height="10" >&nbsp;</td>
+            </tr>
+		</table>
+		
+       <!-- {if $act eq "account_log"}-->
+			<div class="account_list">
+				<ul>
+					<li><p>您当前的可用金额为:<font class="f2" color='red'>{$surplus_amount}</font></p></li>
+					<!--{foreach from=$account_log item=item}-->
+					<li>
+						<p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：{$item.type}</p>
+						<p>金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：{$item.amount}</p>
+						<p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：{$item.pay_status}</p>
+						<p>操作时间：{$item.add_time}</p>
+		<!-- 				<p>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：
+							{$item.handle}
+							{if ($item.is_paid eq 0 && $item.process_type eq 1) || $item.handle}
+							<a style="background-color:#e3e3e3; color:#aaa" href="account.php?act=cancel&id={$item.id}" onclick="if (!confirm('确定取消吗？')) return false;">取消</a>
+							{/if}
+						</p> -->
+					</li>
+					<!--{foreachelse}-->
+					<li>
+						<p>暂无信息</p>
+					</li>
+					<!--{/foreach}-->
+				</ul>
+				<div>
+				<!--{if $pagebar}-->
+					 {$pagebar}
+				<!--{/if}-->
+				</div>
+			</div>
+			<div id="{$act}_dialog" style="display: none;" >
+				<form action="account.php" id="{$act}_form" method="post" name="{$act}_form">
+					<input type="hidden" name="process_type" value="{$condition.process_type}">
+				    <table cellspacing=0 cellpadding=0 border=0>
+					    <tr>
+					    	<td height="35"> 状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</td>
+						    <td>
+						    	<select name=is_paid>
+									<option value=0>--请选择--</option>
+									<option value=1 {if $condition.is_paid eq 1} selected=selected {/if} >已完成</option>
+									<option value=2 {if $condition.is_paid eq 2} selected=selected {/if} >未确认</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td  height="35">开始时间：</td>
+		            		<td>
+		            			<input type="text" name="start_time" readonly value="{$condition.start_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})">
+		            		</td>
+	            		</tr>
+	            		
+	            		<tr>
+                			<td height="35">
+                				截至时间：
+                			</td>
+                			<td>
+                				<input type="text" name="end_time" readonly value="{$condition.end_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})">
+ 
+                				 
+                			</td>
+                		</tr>
+                		
+                		<tr>	
+							<td colspan="2" align=center>
+								<input type="submit" class="search_submit" value="提交">
+								<input type="button" class="search_reset" onclick="close_dialog();" value="关闭">
+							</td>
+						<tr>
+            		</table>
+            	</form>
+            </div>
+        
+        <!-- {/if} -->
+        
+        <!-- =======================add yes123 2015-01-13 收入明细============================ -->
+        <!-- {if $act eq "account_income"}-->
+
+			<div id="{$act}_dialog" style="display: none;">
+				<form action="account.php" method="post"  id="{$act}_form" name="{$act}_dialog">
+                	<input type="hidden" name="act" value="account_income">
+                	<table>
+                		<tr>
+                			<td height="35">订&nbsp;&nbsp;单&nbsp;&nbsp;号：</td>
+							<td><input name="order_sn" value="{$condition.order_sn}" class="padd_A5" /></td>
+                		</tr>
+                		
+                		<tr>
+                			<td height="35">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</td>
+                			<td>
+	                			<select name="incoming_type">
+										<option value="" {if $incoming_type eq ''}selected="selected"{/if}>--请选择--</option>
+										<option value="订单服务费" {if $condition.incoming_type eq '订单服务费'}selected="selected"{/if}>订单服务费</option>
+										<option value="渠道管理费" {if $condition.incoming_type eq '渠道管理费'}selected="selected"{/if}>渠道管理费</option>
+										<option value="推荐奖励" {if $condition.incoming_type eq '推荐奖励'}selected="selected"{/if}>推荐奖励</option>
+								</select>
+							</td>
+                		</tr>
+		                <tr>  
+							<td height="35">开始时间：</td>
+							<td><input readonly type="text" name="s_change_time" value="{$condition.s_change_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})" /></td>
+                		</tr>
+                		
+                		<tr>
+							<td height="35">结束时间：</td>
+							<td><input type="text" name="e_change_time" value="{$condition.e_change_time}" readonly onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})" /></td>
+                		</tr>
+                		 <tr>	
+							<td colspan="2" align=center>
+								<input type="submit" class="search_submit" value="提交">
+								<input type="button" class="search_reset" onclick="close_dialog();" value="关闭">
+							</td>
+						<tr>
+                	</table>
+                </form>
+            </div>
+			
+			<div class="account_list">
+				<ul>
+					<li><p>收入共计:<font class="f2" color='red'>{$shouru_money_total}</font></p></li>
+					<!--{foreach from=$account_log item=item}-->
+					<li>
+						<p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：{$item.incoming_type}</p>
+						<p>金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：{$item.amount}</p>
+						<p>收入来源：{$item.cname}</p>
+						<p>操作时间：{$item.change_time}</p>
+						<p>订&nbsp;&nbsp;单&nbsp;&nbsp;号：
+							{$item.order_sn}
+						</p>
+					</li>
+					<!--{foreachelse}-->
+					<li>
+						<p>暂无信息</p>
+					</li>
+					<!--{/foreach}-->
+				</ul>
+				<div>
+				<!--{if $pagebar}-->
+					 {$pagebar}
+				<!--{/if}-->
+				</div>
+			</div>
+        <!-- {/if} -->
+        
+        
+        <!-- {if $act eq "account_detail"} -->
+		<div id="{$act}_dialog" style="display: none;">
+            <form action="account.php?act=account_detail" id="{$act}_form" method="POST">
+            	<table>
+	            	<tr>
+	            		<td height="35">订&nbsp;&nbsp;单&nbsp;&nbsp;号：</td>
+	            		<td><input name="order_sn" type="text" style="width:120px;height:20px;" value="{$condition.order_sn}"/></td>
+	            	</tr>
+                		<tr>
+                			<td height="35">开始时间：</td>
+                			<td>
+                				<input type="text" name="s_add_time" value="{$condition.s_add_time}" readonly onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})" />
+                			</td>
+                		</tr>
+                		<tr>
+                			<td height="35">
+                				截至时间：
+                			</td>
+                			<td>
+                				<input type="text" name="e_add_time" value="{$condition.e_add_time}" readonly onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})" /> 
+                			</td>
+                		</tr>
+                		
+                		<tr>	
+							<td colspan="2" align=center>
+								<input type="submit" class="search_submit" value="提交">
+								<input type="button" class="search_reset" onclick="close_dialog();" value="关闭">
+							</td>
+						<tr>
+            	</table>
+
+            </form>
+		</div>
+		<div class="account_list">
+				<ul>
+					<li><p>您当前的可用金额为:<font class="f2" color='red'>{$surplus_amount}</font></p></li>
+					<!--{foreach from=$account_log item=item}-->
+					<li>
+						<p>类&#12288;&#12288;型：{$item.type}</p>
+						<p>金&#12288;&#12288;额：{$item.amount}</p>
+						 
+						<p>操作时间：{$item.change_time}</p>
+						<p>&#12288;订单号：{$item.order_sn}</p>
+						<p>备&#12288;&#12288;注：
+							{$item.short_change_desc}
+						</p>
+					</li>
+					<!--{foreachelse}-->
+					<li>
+						<p>暂无记录</p>
+					</li>
+					<!--{/foreach}-->
+				</ul>
+				<div>
+				<!--{if $pagebar}-->
+					 {$pagebar}
+				<!--{/if}-->
+				</div>
+		</div>
+             
+            
+        <!-- {/if} -->
+        <!-- {if $act eq "account_deposit"} -->
+        <script type="text/javascript">
+            /*function submit(obj){
+                obj.submit();
+            }*/
+            function check(theForm){
+                if(theForm.amount.value==""){
+                    alert("请输入充值金额!");theForm.amount.focus();return false;
+                }else if(theForm.amount.value <= 0){
+                     alert("充值金额为大于0的数字!");theForm.amount.focus();return false;
+                }else{
+                    var reg = /^[\.0-9]+/;
+                    if ( ! reg.test(theForm.amount.value)){
+                        alert("输入的金额格式不正确!");theForm.amount.focus();return false;
+                    }
+                }
+                var paymentSelected = false;
+                for (i = 0; i < theForm.elements.length; i ++ ){
+                    if (theForm.elements[i].name == 'pay_code' && theForm.elements[i].checked){
+                        paymentSelected = true;
+                    }
+                }
+                var flow_no_payment = "必须选定一个支付方式。";
+                if ( ! paymentSelected){
+                    alert(flow_no_payment);
+                    return false;
+                }
+                theform.submit();
+            }
+        </script>
+        <form name="theForm" method="post" action="account.php" onSubmit="javascript:return check(theForm);">
+        	<!-- add yes123 2015-01-20 防止重复提交的时间戳 -->
+        	<input type="hidden" name="operation_timestamp" value="{$operation_timestamp}">
+ 		<table width=100% align="center" cellspacing=0 cellpadding=0 border=0 style="margin-top:10px;">
+                <tr>
+                    <td width="80" align="left" bgcolor="#ffffff" height="35" class="text_right">
+                    	充值金额：
+                    </td>
+                    <td><input type="text" name="amount" value="{$order.amount|escape}" style="border:1px solid #ccc;" /></td>
+                </tr>
+                <tr>
+                    <td align="left" bgcolor="#ffffff" height="95" class="text_right">
+                    	备注：
+                    </td>
+                    <td><textarea name="user_note" rows="3" style="width:100%;border:1px solid #ccc;">{$order.user_note|escape}</textarea></td>
+                </tr>
+            </table>
+            <table width=100% align="center" cellspacing=0 cellpadding=0 border=1 bordercolor="#eee" style="margin-top:10px;">
+                <tr align="center">
+                    <td bgcolor="#fff" colspan="2" style="padding:8px 0;font-weight: bold;">支付方式</td>
+                </tr>
+                <tr align="left">
+                    <td bgcolor="#fff" class="text_center">名称</td>
+                    <td bgcolor="#fff" class="text_center">手续费</td>
+                </tr>
+                <!-- {foreach from=$payment item=list} -->
+                <tr align="left">
+                    <td bgcolor="#fff" class="text_center"><input type="radio" name="pay_code" value="{$list.pay_code}" /> {$list.pay_name}</td>
+                    <td bgcolor="#fff" class="text_center">{$list.pay_fee}</td>
+                </tr>
+                <!-- {/foreach} -->
+            </table>
+            <table width=100% align="center" cellspacing=5 cellpadding=5 border=0 bordercolor="#eee" >
+                <tr align="center">
+                    <td bgcolor="#fff" style="padding:8px 0;" class="cz_btn">
+                        <input type="hidden" name="surplus_type" value="0" />
+                        <input type="hidden" name="rec_id" value="{$order.id}" />
+                        <input type="hidden" name="act" value="act_account" />
+                        <input type="hidden" name="weixin" value="1" />
+                        <input type="submit" name="submit" value="提交申请" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!-- {/if} -->
+        <!--{if $act eq "act_account"}-->
+          <table width=100% align="center" cellspacing=5 cellpadding=5 border=1 bordercolor="#eee">
+             <tr align="left">
+                <td bgcolor="#fff" class="text_right">充值金额：</td>
+                <td bgcolor="#fff">{$amount}</td>
+            	</tr>
+                <tr align="left">
+                <td bgcolor="#fff" class="text_right">支付方式：</td>
+                <td bgcolor="#fff">{$payment.pay_name}</td>
+           		</tr>
+                <tr align="left">
+                <td bgcolor="#fff" class="text_right">手续费：</td>
+                <td bgcolor="#fff">{$pay_fee}</td>
+            	</tr>
+                <tr align="left">
+                <td bgcolor="#fff" class="text_right">描述：</td>
+                <td bgcolor="#fff">{$payment.pay_desc}</td>
+            </tr>
+            <tr align="center">
+                <td bgcolor="#fff" style="padding:8px 0;" colspan="2" class="cz_btn">
+                     {$payment.pay_button}
+                </td>
+            </tr>
+        </table>
+        <!--{/if}-->
+        <!-- 提现 -->
+        <!--{if $act eq "account_withdraw"}-->
+       			{include file='library/account_withdraw.lbi'} 
+        <!--{/if}-->
+        <!-- 转账 -->
+         <!--{if $act eq "account_transfer"}-->
+        <script type="text/javascript">
+            /*function submit(obj){
+                obj.submit();
+            }*/
+            function check_amount(theForm){
+                if(theForm.amount.value == ""){
+                    alert("请输入转账金额!");theForm.amount.focus();return false;
+                }else if(theForm.amount.value <= 0){
+                     alert("转账金额为大于0的数字!");theForm.amount.focus();return false;
+                }else{
+                    var reg = /^[\.0-9]+/;
+                    if ( ! reg.test(theForm.amount.value)){
+                        alert("输入的金额格式不正确!");theForm.amount.focus();return false;
+                    }
+                }
+                theform.submit();
+            }
+        </script>
+        <form name="theForm"  id="{$act}" method="post" action="account.php" onSubmit="javascript:return check_amount(theForm);">
+ 	    <table width=100% align="center" cellspacing=0 cellpadding=0 border=0>	
+                <tr>
+                    <td height="35" bgcolor="#ffffff" width="80" class="text_right">账号余额：</td>
+                    <td align="left" bgcolor="#ffffff" >
+                       {if $user_money}￥{$user_money}元{else}￥0元{/if}	
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" bgcolor="#ffffff" class="text_right">收款人：</td>
+                    <td align="left" bgcolor="#ffffff">
+                        <input type="text" name="payee_name" id="payee_name" style="width:100%;border:1px solid #ccc;"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td height="35" bgcolor="#ffffff" class="text_right">转账金额：</td>
+          	    	<td align="left" bgcolor="#ffffff" > <input type="text" name="amount" style="width:100%" /> {$lang.unit_yuan}</td>
+                </tr> 
+                
+                <tr>
+                    <td height="35" bgcolor="#ffffff" class="text_right">手机号：</td>
+                    <td align="left" bgcolor="#ffffff">{$username}</td>
+                </tr>
+                <tr id="tr">
+                    <td colspan="2" align="center" height="45">
+                        <input type="hidden" name="judge" value="3"/>
+                        <input type="hidden" name="username" value="{$username}"/>
+                        <input type="button" value="免费获取验证码" class="inputBg" id="btn" onClick="verification_code('{$act}',{$user_money})" style="width:50%;padding:5px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text_right" height="35">验证码：</td>
+                    <td><input type="text" name="checkCode" id="checkCode" class="inputBg" size="10" onkeyup="checkNum(this.value)"/><div id="div" style="width:15px;height:15px;margin-top:-15px;margin-left:90px"></div></td>
+                </tr>
+
+                 <tr>
+                    <td height="35" bgcolor="#ffffff" class="text_right">转账说明：</td>
+                    <td align="left" bgcolor="#ffffff"> <input type="text" name="desc" style="width:100%"/></td>
+                </tr>
+            </table>
+            <table width=100% align="center" cellspacing=5 cellpadding=5 border=0 bordercolor="#eee">
+                <tr align="center">
+                    <td bgcolor="#fff" style="padding:8px 0;" class="cz_btn">
+                        <input type="hidden" name="surplus_type" value="1" />
+                        <input type="hidden" name="rec_id" value="" />
+                        <input type="hidden" name="act" value="act_transfer" />
+                        <input type="button" onclick="javascript:account_transfer_submit('{$act}');" value="确定" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!--{/if}-->
+      </div>
+	</div>
+</section>
+{include file='foot.dwt'}
+<script type="text/javascript">
+    var global_loading=document.getElementById("global_loading");
+    global_loading.parentNode.removeChild(global_loading);
+</script>
+<script type="text/javascript">
+            var code = '';
+           //转账提交
+           function account_transfer_submit(action){
+        	   var money = $('#'+action+' input[name=amount]').val();
+	           //验证输入的金额是否正确..
+          	   var flag=ismoney(money);
+          	   if(!flag){
+          		return;
+          	   }
+        	   var checkCode = $('#'+action+' input[name=checkCode]').val();
+        	   var desc = $('#'+action+' input[name=desc]').val();
+        	   var payee_name = $('#'+action+' input[name=payee_name]').val();
+               $.post('account.php',{
+                   'act':'transfer_accounts_update',
+                   'checkCode':checkCode,
+                   'desc':desc,
+                   'judge':3,
+                   'payee_name':payee_name,
+                   'transfer_money':money,
+                   'username':payee_name,
+               	   'weixin':1
+                 },function(data){
+                	if(data){
+                		if(data.code==0){
+                			window.location="../mobile/account.php?act=account_detail";
+                		}else{
+	                		alert(data.msg);
+                		}
+                	}
+                 },'json');
+           }
+        var i_search;
+		function search(){
+			i_search = layer.open({
+				    content: $('#{$act}_dialog').html(),
+				    shadeClose: true
+				});
+		}
+		
+		function close_dialog(){
+			layer.close(i_search);
+		}
+			
+</script>
+</body>
+</html>

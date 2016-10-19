@@ -1,0 +1,117 @@
+<!-- add yes123 2014-12-23 窗口化的会员列表 -->
+
+{if $full_page}
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+{insert_scripts files="../js/transport.js,common.js"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div class="form-div">
+<form method="POST" action="users.php" name="listForm" onsubmit="return confirm_bath()">
+<!-- start users list -->
+<input type="hidden"  id="user_id_name" value=""/>
+<div class="list-div" id="listDiv">
+{/if}
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <a href="javascript:listTable.sort('user_id'); ">{$lang.record_id}</a>{$sort_user_id}
+    </th>
+    <th>用户名</th>
+	<th>渠道名称</th>
+	<th>企业组织代码</th>
+    <th>邮件地址</th>
+	<th>是否已审批</th>
+    <th>注册时间</th>
+  <tr>
+  {foreach from=$user_list item=user}
+  <tr>
+  
+  	
+    <td><input type=radio name=user_id  onclick="set_id(this);" value="{$user.user_id}~{$user.user_name|escape}" />{$user.user_id}</td>
+    <td class="first-cell">
+    	{$user.user_name|escape}
+	</td>
+	 <td class="first-cell">{$user.d_name}</td>
+	 <td>{$user.d_identificationcode}</td>
+	 <td align="center">{$user.email}</td>
+	<td align="center">{if $user.is_cheack}<font color="green">{$lang.is_cheack[1]}</font>{else}<font color="red">{$lang.is_cheack[0]}</font>{/if}</td>
+    
+    <td align="center">{$user.reg_time}</td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+  <tr><!-- <input type="button"  id="ok" value="确定" onclick="javascript:add_to_org();"> -->
+      <td align="right" nowrap="true" colspan="8">
+      {include file="page.htm"}
+      </td>
+  </tr>
+</table>
+{if $full_page}
+</div>
+<!-- end users list -->
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+{literal}
+onload = function()
+{
+    document.forms['searchForm'].elements['keyword'].focus();
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 搜索用户keyword
+ */
+function searchUser()
+{
+    listTable.filter['keywords'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+	
+	listTable.filter['realname'] = Utils.trim(document.forms['searchForm'].elements['realname'].value);
+		
+	listTable.filter['mobilephone'] = Utils.trim(document.forms['searchForm'].elements['mobilephone'].value);
+			
+	listTable.filter['email'] = Utils.trim(document.forms['searchForm'].elements['email'].value);
+	listTable.filter['type'] = Utils.trim(document.forms['searchForm'].elements['type'].value);
+    listTable.filter['page'] = 1;
+    listTable.loadList();
+}
+
+function confirm_bath()
+{
+  userItems = document.getElementsByName('checkboxes[]');
+
+  cfm = '{$lang.list_remove_confirm}';
+
+  for (i=0; userItems[i]; i++)
+  {
+    if (userItems[i].checked && userItems[i].notice == 1)
+    {
+      cfm = '{$lang.list_still_accounts}' + '{$lang.list_remove_confirm}';
+      break;
+    }
+  }
+
+  return confirm(cfm);
+}
+//-->
+	
+	function set_id(data){
+		$("#user_id_name").val(data.value);
+	}
+
+</script>
+{/literal}
+{/if}

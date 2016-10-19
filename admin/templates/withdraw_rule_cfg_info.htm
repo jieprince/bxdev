@@ -1,0 +1,90 @@
+<!-- $Id: user_account_check.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.min.js"></script>
+<div class="main-div" >
+		<form method="POST" action="user_account.php" name="theForm" >
+			<input type="hidden" name="id" value="{$wrc.id}">
+			{if $wrc.id}
+				<input type="hidden" name="money_type" value="{$wrc.money_type}">
+			{/if}
+		
+			<input type="hidden" name="act" value="withdraw_rule_cfg_save">
+				<table>
+					<tr>
+						<td align="right">提现类型：</td>
+						<td>
+						
+							<select name="money_type" {if $wrc.id}disabled{/if}>
+								<!-- {foreach from=$money_type_arr item=money_type key=key} -->
+									<option value="{$key}" {if $wrc.money_type eq $key}  selected='selected' {/if}>{$money_type}</option>
+								<!-- {/foreach} -->
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="right">允许提现：</td>
+						<td>
+           允许<input type="radio" name="is_permit_withdraw"  {if $wrc.is_permit_withdraw eq 'y'}   checked="checked" {/if} value="y" />
+            不允许<input type="radio" name="is_permit_withdraw"  {if $wrc.is_permit_withdraw eq 'n'}   checked="checked" {/if} value="n" /> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="right">每月提现次数：</td>
+						<td><input type="text" name="month_withdraw_num" value="{$wrc.month_withdraw_num}"></td>
+					</tr>
+					<tr>
+						<td align="right">提现最小金额：</td>
+						<td><input type="text" name="min_withdraw_money" value="{$wrc.min_withdraw_money}"></td>
+					</tr>
+					<tr>
+						<td align="right">提现最大金额：</td>
+						<td><input type="text" name="max_withdraw_money" value="{$wrc.max_withdraw_money}"></td>
+					</tr>
+					<tr>
+						<td align="right">个人所得税比例：</td>
+						<td><input type="text" name="income_tax" value="{$wrc.income_tax}">%</td>
+					</tr>
+					<tr>
+						<td align="right">手续费比例：</td>
+						<td><input type="text" name="withdraw_poundage" value="{$wrc.withdraw_poundage}">%</td>
+					</tr>
+					<tr>
+						<td align="right">联系人电话：</td>
+						<td><input type="text" name="mobile_phone" value="{$wrc.mobile_phone}"></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" align="center"><input type="submit" value="保存"></td>
+					</tr>
+			    </table>
+			    
+		</form>
+
+</div>
+
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['admin_note'].focus();
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("admin_note",  deposit_notic_empty);
+    return validator.passed();
+}
+
+
+  
+
+
+</script>
+{/literal}
+{include file="pagefooter.htm"}

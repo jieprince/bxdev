@@ -1,0 +1,374 @@
+{insert_scripts files='utils.js'}
+<script src="js/jquery.md5.js"></script>
+<script src="js/profile.js"></script>
+ <script type="text/javascript">
+          {foreach from=$lang.profile_js item=item key=key}
+            var {$key} = "{$item}";
+          {/foreach}
+        </script>
+ <h5>
+  <span style="margin-left: 20px;font-size: 16px;margin-top: 30px;">{$ur_here}</span>
+
+  <em style="text-align: right; line-height: 35px; padding-right: 10px;"> 
+  </em>
+ </h5>
+ <div class="blank"></div>
+ <div style="float: left;margin-left: 100px; width:500px;">
+ <form name="formEdit" action="user.php" id="salesman_info" method="post">
+  <input name="type" type="hidden" value="{$type}" />
+  <input name="salesman_id" type="hidden" value="{$profile.user_id}" />
+   <input type="hidden" name="Category"  value="{$profile.Category}"> 
+   <input name="CertificateNumber" type="hidden" size="25" class="f-pA10 n-invalid" value="{$profile.CertificateNumber}" maxlength="29" /> 
+   <input type="hidden" name="certificate_expiration_date_no"  value="{$profile.certificate_expiration_date}">
+
+  <table class="m-table-5">
+   <!-- 所属部门 -->
+   <!-- {if $organ_department_list} -->
+     <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10" {if $field.is_need} id="extend_field{$field.id}i"{/if}>所属部门：</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+    	<select name="department_id">
+    		<option value=''>--请选择--</option>
+    	<!-- {foreach from=$organ_department_list item=item } -->
+    		<option value="{$item.department_id}" {if $profile.department_id eq $item.department_id} selected = "selected"{/if}>{$item.department_name}</option>
+    	<!-- {/foreach} -->
+    	</select>
+    </td>
+   </tr>
+   <!-- {/if} -->
+  
+
+  
+  
+    <!-- 手机号码 -->
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10" {if $field.is_need} id="extend_field{$field.id}i"{/if}>手机号码：</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+    <!-- {if $type=='add'} -->
+     	<input name="mobile_phone" id="user_info_phone"  type="text" class="f-pA10 n-invalid" value="{$profile.mobile_phone}"  /> 
+     	<!-- {else} -->
+     		{$profile.mobile_phone}
+    <!-- {/if} -->
+     	<span style="color: #FF0000">*</span> 
+  	</td>
+   </tr>
+
+	<!-- {if $type=='add'} -->
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">初始密码：</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">
+	    <input name="password" id="password" data-rule="密码:required; password"  class="f-pA10 n-invalid" value="{$profile.password}" maxlength="18" /> <span style="color: #FF0000"> *</span>
+	    </td>
+	   </tr>
+	<!-- {/if} -->
+  
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.real_name}</td>
+    <td width="28%" align="left" bgcolor="#FFFFFF">
+    	<input type="text" name="real_name" id="real_name" value="{$profile.real_name}" class="f-pA10 n-invalid" />
+    </td>
+   </tr>
+
+  <!-- 邮件地址 -->
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.email}：</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+     	<input name="email" id="user_info_email" type="email" data-rule="email" value="{$profile.email}" size="25" class="f-pA10 n-invalid" /> 
+    </td>
+   </tr>
+
+   
+ <!-- 身份证号 -->
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.CardId}</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+     <input name="CardId" id="CardId" onchange="javascript:setBirthday();" type="text"  class="f-pA10 n-invalid" value="{$profile.CardId}" maxlength="18" /> 
+    </td>
+
+   </tr>
+   
+   
+    <!-- 生日 -->
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.birthday}：</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+    	<input type="text" class="f-pA10 n-invalid" name="birthday" id="birthday" value="{$profile.birthday}"> <span style="color: #FF0000"> * (格式：例1990-11-11)</span>
+    </td>
+   </tr>
+   
+   
+   
+ <!-- 性别-->
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.gender}：</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+	    <input type="radio" name="sex" value="1" {if $profile.sex==1}checked= "checked"{/if} />  {$lang.male}&nbsp;&nbsp; 
+	    <input type="radio" name="sex" value="2" {if $profile.sex==2}checked= "checked"{/if} /> {$lang.female}&nbsp;&nbsp;
+   </td>
+   </tr>
+	
+	<tr>
+	   <td bgcolor="#FFFFFF" class="padd_R10"><div align="right">{$lang.label_area}</div></td>
+	   <td colspan="3" bgcolor="#FFFFFF">
+	       <select class="s-select-1" name="province" id="selProvinces" onchange="region.changed(this.value, 2, 'selCities')">
+	         <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+	         <!-- {foreach from=$province_list item=province} -->
+	         <option value="{$province.region_id}" {if $profile.Province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+	         <!-- {/foreach} -->
+	       </select>
+	       <select class="s-select-1" name="city" id="selCities" onchange="region.changed(this.value, 3, 'selDistricts')">
+	         <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+	         <!-- {foreach from=$city_list item=city} -->
+	         <option value="{$city.region_id}" {if $profile.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+	         <!-- {/foreach} -->
+	       </select>
+	       <select class="s-select-1" name="district" id="selDistricts" {if $district_list} {else} style="display:none"{/if}>
+	         <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+	         <!-- {foreach from=$district_list item=district} -->
+	         <option value="{$district.region_id}" {if $profile.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+	         <!-- {/foreach} -->
+	        </select>
+	   <span style="color: #FF0000"> *</span> 
+	  </td>
+   </tr>
+
+   
+   <tr>
+    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.address}</td>
+    <td width="72%" align="left" bgcolor="#FFFFFF">
+    <input name="address" type="text" size="40" class="f-pA10 n-invalid" value="{$profile.address}" /> 
+    </td>
+   </tr>
+
+   <tr>
+    <td colspan="2" bgcolor="#FFFFFF" class="padd_T10" align="center"><br>
+    	<input name="act" type="hidden" value="salesman" /> 
+    	<input class="btn-ec6941-4" type="submit" value="确定">
+
+    </td>
+   </tr>
+    {if $profile.check_status neq 'checked'} 
+    
+   {else}
+  
+	    <!-- 手机号码 -->
+<!-- 	   <tr>
+	    	<td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10" {if $field.is_need} id="extend_field{$field.id}i"{/if}>手机号码：</td>
+	    	<td width="72%" align="left" bgcolor="#FFFFFF">{$profile.mobile_phone} 
+	    			<input name="mobile_phone"  type="hidden"  value="{$profile.mobile_phone}" /> 
+	    	</td>
+	   </tr>
+	  
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.real_name}</td>
+	    <td width="28%" align="left" bgcolor="#FFFFFF">{$profile.real_name}
+	     	<input type="hidden" name="real_name"  value="{$profile.real_name}"  />
+	    </td>
+	   </tr>
+	
+	  邮件地址
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.email}：</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.email}
+	    	<input name="email"  type="hidden" value="{$profile.email}"  />
+	    </td>
+	   </tr>
+	
+	   
+	 身份证号
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.CardId}</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.CardId}
+	       <input name="CardId"   value="{$profile.CardId}" type="hidden" />
+	    </td>
+	
+	   </tr>
+	   
+	   
+	    生日
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.birthday}：</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">{$profile.birthday}
+	    <input type="hidden"  name="birthday"  value="{$profile.birthday}"> 
+	    </td>
+	   </tr>
+	   
+	   
+	   
+	 性别
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.gender}：</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">
+		    <input type="radio" name="sex" value="1" {if $profile.sex==1}checked= "checked"{/if} disabled="disabled" />  {$lang.male}&nbsp;&nbsp; 
+		    <input type="radio" name="sex" value="2" {if $profile.sex==2}checked= "checked"{/if} disabled="disabled" /> {$lang.female}&nbsp;&nbsp;
+		    <input type="hidden" name="sex" value="{$profile.sex}">
+	   </td>
+	   </tr>
+		
+		<tr>
+		   <td bgcolor="#FFFFFF" class="padd_R10"><div align="right">{$lang.label_area}</div></td>
+		   <td colspan="3" bgcolor="#FFFFFF">
+		       <select class="s-select-1" name="province" id="selProvinces" onchange="region.changed(this.value, 2, 'selCities')" onmousedown="return false;">
+		         <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+		         {foreach from=$province_list item=province}
+		         <option value="{$province.region_id}" {if $profile.Province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+		         {/foreach}
+		       </select>
+		       <select class="s-select-1" name="city" id="selCities" onchange="region.changed(this.value, 3, 'selDistricts')" onmousedown="return false;">
+		         <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+		         {foreach from=$city_list item=city}
+		         <option value="{$city.region_id}" {if $profile.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+		         {/foreach}
+		       </select>
+		       <select class="s-select-1" name="district" id="selDistricts" {if $district_list} {else} style="display:none"{/if} onmousedown="return false;">
+		         <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+		         {foreach from=$district_list item=district}
+		         <option value="{$district.region_id}" {if $profile.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+		         {/foreach}
+		        </select>
+		   <span style="color: #FF0000"> *</span> 
+		  </td>
+	   </tr>
+	
+	   
+	   <tr>
+	    <td width="28%" align="right" bgcolor="#FFFFFF" class="padd_R10">{$lang.address}</td>
+	    <td width="72%" align="left" bgcolor="#FFFFFF">
+	    	<input name="address" type="text" size="35" class="f-pA10 n-invalid" value="{$profile.address}" /></td>
+	   </tr>
+	
+	   <tr>
+	    <td colspan="2" bgcolor="#FFFFFF" class="padd_T10" align="center"><br>
+	    	<input name="act" type="hidden" value="salesman" /> 
+	    	<a class="btn-ec6941-4"  onclick="check_revise();" href="javascript:void(0)">{$lang.confirm_edit}</a>
+	    </td>
+	   </tr> -->
+   {/if}
+  </table>
+
+<input type="hidden" name="check_status" id="check_status">
+
+ </form>
+ </div>
+
+ 
+<div class="clear"></div>
+ 
+ 
+
+
+ <script type="text/javascript">
+	{if $type=='add'}	{/if}
+	$('#salesman_info').validator({
+	    rules: {
+	    	mobile_phone: function(element){
+     		   if((/^1[1-9][0-9]\d{8}$/.test(element.value))){
+         		  //去判断手机号码是否存在
+         		  flag = is_exist_by_value('user_name',element.value,"{$profile.user_id}");
+         		  if(!flag){
+         			 return "手机号码已存在"
+         		  }
+    		   }else{
+    			   return "手机号码格式不对"
+    		   }
+	    	},
+	    	CardId: function(element){	 // == /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
+	     		   if((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(element.value))){
+	         		  //去判断手机号码是否存在
+	         		  flag = is_exist_by_value('CardId',element.value,"{$profile.user_id}");
+	         		  if(!flag){
+	         			 return "身份证号码已存在"
+	         		  }
+	    		   }else{
+	    			   return "身份证号码格式不对"
+	    		   }
+		    },
+	    	
+	    	
+	    },
+	    fields: {
+	    	mobile_phone: 'required; mobile_phone',
+	    	CardId: 'CardId',
+	    }
+	});
+
+ 
+   //提交审核
+   function submit_check(){
+	    $("#check_status").val('pending');
+		check_revise(); 
+   }
+   
+   function check_revise() {
+		var msg = data_validation();
+		if (msg) {
+			alert(msg);
+			return;
+		} else {
+			var data = $("#user_info").serialize();
+	 	  $.ajax({
+	 		   dataType:"json",
+	 		   type: "POST",
+	 		   url: "user.php",
+	 		   data: data,
+	 		   success: function(data){
+					if(data.code==1){
+						alert(data.msg);
+					}else if(data.code==0){
+						alert(data.msg);
+						window.location="user.php?act=salesman_list";
+					}
+	 		   }
+	 		});
+			
+			
+		}
+	}
+   function data_validation(){
+	   var msg="";
+	   {if $profile.check_status neq 'checked'}
+	    msg+=email_validate($("#user_info_email").val(),1);
+	    msg+=phone_validate($("#user_info_phone").val(),1);
+	    msg+=isCardNo($("#CardId").val(),1);  
+	    //msg+=certificate_expiration_date($("#certificate_expiration_date").val(),1); 
+	    msg+=real_name($.trim($("#real_name").val()),1); 
+	    // msg+=Zone_Code($("#user_info_ZoneCode").val(),1); 邮政编码取消
+	   {/if}
+	   // msg+=Zone_Code($("#user_info_ZoneCode").val(),1);
+	   return msg;
+   } 
+
+
+	 //通过 省份ID查询城市
+ 	 var region = new Object();
+	 region.changed = function(parentId, type, selName)
+	 {
+	 	  $.ajax({
+	 		   dataType:"json",
+	 		   type: "GET",
+	 		   url: "region.php",
+	 		   data: "type="+type+"&target="+selName+"&parent="+parentId,
+	 		   success: function(data){
+	 			   //判断data.regions是否有值，没有的话，隐藏区域，否则显示区域列表
+	 			   if(type==3){
+	 				   if(data.regions.length>0){
+	 					  $("#"+selName).show();
+	 				   }
+	 				   else{
+	 					  $("#"+selName).hide();
+	 				   }
+	 			   }
+	 			   
+	 			   var region_select ="<option value='0'>请选择</option>";
+	 			   $.each(data.regions,function (k,v)
+	 				{
+	 				  region_select+="<option value='"+v.region_id+"'>"+v.region_name+"</option>"
+	 				});
+	 			   
+	 			   $("#"+selName).html(region_select);
+	 		     	
+	 		   }
+	 		});
+
+	 }
+</script>

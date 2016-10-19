@@ -1,0 +1,27 @@
+body{background:#eeeeee;}
+.font_bolder{ font-weight:bolder;}
+
+.container-fluid{ padding:0px;}
+.border_brs{border:#CCC solid 1px; border-radius:3px; }
+.bg_fff{background:#fff;}
+.bg_ed462f{background:#ed462f;}
+
+.mar_L10{ margin-left:10px;}
+.mar_T10{ margin-top:10px;}
+.mar_T15{ margin-top:15px;}
+.padd_A10{padding:10px;}
+.padd_A20{padding:20px;}
+.padd_T15{ padding-top:15px;}
+ 
+
+
+.font_30{font-size:2.5em;}
+.font_14{font-size:1.3em;}
+.font_12{font-size:1.1em;}
+
+
+.line_h25{line-height:1.3em;}
+.line_h35{line-height:3em;}
+.color_fff{ color:#ffffff;}
+.color_36{color:#363636;}
+.color_a3{color:#a3a3a3;}

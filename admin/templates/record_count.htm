@@ -1,0 +1,219 @@
+<!-- $Id: account_list.htm 14928 2008-10-06 09:25:48Z testyang $ -->
+{if $full_page}
+<title>{$lang.cp_home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/common.js"} 
+{insert_scripts files="../js/transport.js"} 
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script language="JavaScript">
+<!--
+// 这里把JS用到的所有语言都赋值到这里     排序问题:711735
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+</head>
+<body>
+
+<h1>
+<!-- {if $action_link}
+<span class="action-span"><a href="{$action_link.href}">
+{$action_link.text}</a></span>
+{/if} -->
+{if $action_link2}
+<span class="action-span"><a href="{$action_link2.href}">{$action_link2.text}</a>&nbsp;&nbsp;</span>
+{/if}
+<span class="action-span1"><a href="index.php?act=main">{$lang.cp_home}</a> </span><span id="search_id" class="action-span1">{if $ur_here} - {$ur_here} {/if}</span>
+<div style="clear:both"></div>
+</h1>
+{insert_scripts files="../js/utils.js,record_listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+
+<div class="form-div">
+<form method="post" id="account_log_form" action="account_log.php?act=revenue_ranking">
+ <input type="hidden" name="order" value="{$filter.order}">
+ <input type="hidden" name="sort" value="{$filter.sort}">
+ <table>
+ 	<tr>
+		 	<td>开始日期：</td>
+		 	<td>
+		 		<input class="Wdate" type="text"  name="s_change_time" value="{$filter.s_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+		 	</td>
+		 	
+		 	<td>截止日期：</td>
+		 	<td>
+		 		<input class="Wdate" type="text"  name="e_change_time" value="{$filter.e_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+		 	</td>
+ 	</tr>
+ 	
+ 	<tr>
+ 		<td>&#12288;用户名：</td>
+ 		<td>
+ 			<input type="text" name="user_name" value="{$filter.user_name}"> 
+ 		</td>
+ 		
+ 		<td>&#12288;&#12288;姓名：</td>
+ 		<td>
+ 			<input style="width: 80px;" type="text" name="real_name" value="{$filter.real_name}"> 
+ 		</td>
+ 		<td>&#12288;&#12288;<input type="submit" value="查询"></td>
+ 		
+ 	</tr>
+ 	
+ 	
+ </table>
+</form>
+
+</div>
+{/if}
+<div class="list-div" id="listDiv">
+	<table id="tableSort">
+	   <thead>
+	    <tr>
+	     <!--  <th width="20px">序号</th> -->
+	      <th width="100px" type="string" >
+	      	<input onclick='selectAll(this)' type="checkbox" id="selectAll"/>
+	      	用户ID</th>
+	      <th width="100px" type="string" >{$lang.user_name}</th>
+	      <th width="100px" type="string" >姓名</th>
+	      <th width="50px" type="string" ><a href="javascript:sort('recommend_total');">推荐人总数</a></th>
+	      <th width="50px" type="string" ><a href="javascript:sort('checked_recommend_total');">正式会员总数</a></th>
+	      <th width="50px" type="string" ><a href="javascript:sort('child_xiaofei_total');">被推荐人消费总计</a></th>
+	      <th width="50px" type="number" ><a href="javascript:sort('income_geren_total');">{$lang.ge_ren}</a></th> 
+	      <th width="50px" type="number" ><a href="javascript:sort('income_tuijian_total');">{$lang.tuijian_service_charge}</a></th> 
+	      <th width="50px" type="number" ><a href="javascript:sort('income_tuijian_award_total');">{$lang.tui_jian}</a></th> 
+	      <th width="50px" type="number" ><a href="javascript:sort('income_ji_gou_total');">渠道管理费</a></th> 
+	  	  <th width="50px" type="number" ><a href="javascript:sort('income_total');">{$lang.shouru_total}</a></th> 
+	  	  <th width="20px" type="number" ><a href="javascript:sort('xiaofei_total');">{$lang.xiaofei_total}</a></th> 
+	  	  <th width="20px" type="number" ><a href="javascript:sort('recharge_total');">{$lang.recharge_total}</a></th> 
+	  	  <th width="20px" type="number" ><a href="javascript:sort('withdraw_total');">{$lang.withdraw_total}</a></th> 
+	  	  <th width="20px" type="number" ><a href="javascript:sort('user_money');">{$lang.yv_e}</a></th> 
+	    </tr>
+	    </thead>
+	       <tbody>
+	    {foreach from=$data_list item=item key=key name=name}
+	    <tr class="hover">
+	     <!--  <td align="center" class="sequence"> {$smarty.foreach.name.iteration} </td> -->
+	      <td align="left" class="sequence">
+	      	<input type="checkbox" name="user_id" value="{$item.user_id}" />
+	      	{$item.user_id}
+		 </td>
+	      <td align="center" class="sequence">
+	      	<a href="account_log.php?act=list&user_id={$item.user_id}&incoming_type={$filter.incoming_type}" >{$item.user_name}</a>
+		 </td>
+	      <td align="center" class="sequence">{$item.real_name}</td>
+	      <td align="center" class="sequence">
+	      	<a href="users.php?act=aff_list&auid={$item.user_id}">
+		      {$item.recommend_total}
+	      	</a>
+	      </td>
+	      <td align="center" class="sequence">
+	      	<a href="users.php?act=aff_list&auid={$item.user_id}">
+		      {$item.checked_recommend_total}
+	      	</a>
+	      </td>
+	      <td align="center" class="sequence">{$item.child_xiaofei_total}</td>
+	      <td align="center" class="sequence">{$item.income_geren_total}</td>
+	      <td align="center" class="sequence">{$item.income_tuijian_total}</td>
+	      <td align="center" class="sequence">{$item.income_tuijian_award_total}</td>
+	      <td align="center" class="sequence">{$item.income_ji_gou_total}</td>
+	      <td align="center" class="sequence">{$item.income_total}</td>
+	      <td align="center" class="sequence">{$item.xiaofei_total}</td>
+	      <td align="center" class="sequence">{$item.recharge_total}</td>
+	      <td align="center" class="sequence">{$item.withdraw_total}</td>
+	      <td align="center" class="sequence">{$item.user_money}</td>
+	    </tr>
+	    {$i++}
+	    {/foreach}
+	    </tbody>
+	  </table>
+  <input type="button" onclick="revenue_ranking_list();" value="导出">
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="center" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+</div>
+
+
+<script type="text/javascript" language="javascript">
+ 
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+	function hide_show_income(){
+		if('income_total'==$("select[name=sort]").val()){
+			$("#incoming_type").show();
+		}else{
+			$("#incoming_type").hide();
+		}
+			
+	}
+    function sort(sort){
+    	$("#account_log_form input[name=sort]").val(sort);
+    	var order = $("#account_log_form input[name=order]").val();
+    	
+    	if(order=='DESC')
+    	{
+    		$("#account_log_form input[name=order]").val("ASC");
+    	}
+    	else
+   		{
+    		$("#account_log_form input[name=order]").val("DESC");
+   		}
+    	
+    	$("#account_log_form").submit();
+    	
+    }
+	
+    
+    
+ 
+	function selectAll(){
+		var flag = $("#selectAll").is(':checked');
+    	$("input[name='user_id']").attr("checked",flag);
+	}
+    
+	//导出发票列表 2014-10-30 yes123
+	 function revenue_ranking_list(){
+		  var ids='';
+		  $('input[name="user_id"]:checked').each(function(){
+		    ids+=$(this).val()+',';
+		  }); 
+		  var reg=/,$/gi;
+		  ids=ids.replace(reg,"");
+		  ids = ids.split(",");
+		  if(ids!=""){
+			  var s_change_time = $("#account_log_form input[name=s_change_time]").val();
+			  var e_change_time = $("#account_log_form input[name=e_change_time]").val();
+			  var user_name = $("#account_log_form input[name=user_name]").val();
+			  var real_name = $("#account_log_form input[name=real_name]").val();
+			  var parm = "act=revenue_ranking_list&user_ids="+ids
+			  			 +"&s_change_time="+s_change_time+"&e_change_time="+e_change_time
+			  			 +"&user_name="+user_name+"&real_name="+real_name; 
+			  window.location.href="account_log.php?"+parm; 
+		  }else{
+			 alert("请选择要导出的数据!");
+		  }
+	 }	
+    
+    
+</script>
+<div align="center">
+{if $full_page}    
+{include file="pagefooter.htm"}
+{/if}
+
+</div>

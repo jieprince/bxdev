@@ -1,0 +1,360 @@
+<!--{template header_cshop}-->
+<!--{template cp_product_buy_header}-->	
+ 
+<!--cp_name 是批量上传的时候使用  区别是哪一个产品-->
+<input id="cp_name" value="taipingyang" type="hidden">
+<input name="applicant_type" value="2" id="applicant_type_single" type="hidden">
+<input type="hidden" name="currencycode" value="01" />
+<input type="hidden" name="fcurrencycode" value="01" />
+<input type="hidden" name="applyNum" value="1"/>
+<input type="hidden" name="classtype" value="11042700"/>
+<input type="hidden" id="product_sum_insured" value="{$product.sum_insured}" />
+{if $product.sum_insured!=0}
+<input type="hidden" name="BusinessType" value="01" />
+{else}
+<input type="hidden" name="BusinessType" value="05" />
+{/if}
+<div class="x_p_a_c c"><h2 class="l">购买信息</h2></div>
+<div class="c_p_a_d">
+    <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="80%">
+            <tr class="">
+                <th width="30%" colspan="2" height="20" ></th></tr>
+            <tr class="">
+                <th width="30%" >
+                    <span class="a_x">*</span>业务类型</th>
+                <td width="70%" >
+                    {if $product.sum_insured!=0}
+                    单车业务
+                    {else}
+                    单次业务
+                    {/if}
+                </td>
+            </tr>
+            <tr class="">
+                <th >
+                    <span class="a_x">*</span>保险起期</th>
+                <td>
+                    <input value="" maxlength="50" name="startDate" id="startDate" title="购保险起期" class="i_f pa_ui_element_normal" type="text" readonly="readonly">
+                    <span id="startDate_warn" style="float left;" class="warn_strong"></span>
+                </td>
+            </tr>
+            <tr class="">
+                <th>
+                    <span class="a_x">*</span>保险止期</th>
+                <td>
+                    <input value="" maxlength="50" name="endDate" id="endDate" title="购保险起期" class="i_f pa_ui_element_normal" type="text" readonly="readonly">
+                    <span id="endDate_warn" style="float left;" class="warn_strong"></span>
+                </td>
+            </tr>
+        
+    </table>
+</div> 
+ 
+<div class="pro_more">
+    <div class="pro_more_div">
+        <span onclick="change_pro2more(1)" class="pre_more_on">
+
+            <input class="pa_ui_element_normal" name="assured_input_type" value="1" id="assured_input_type_manual" title="手工输入" type="radio" checked="checked" >
+            <label for="man" class="ch" >单个录入</label>
+        </span>
+        <!--
+        <span onclick="change_pro2more(2)" class="pre_more_out">
+		
+            <input class="pa_ui_element_normal" name="assured_input_type" value="2" id="assured_input_type_xls" title="xls批量导入" type="radio" >
+            <label for="man" class="ch">批量导入</label>
+        </span>
+        <span class="pro_more_font">如果被保险人是多人，可以在此选择【批量导入】方式录入人员信息!</span>
+        -->
+    </div>
+</div>
+<div style="border:#CCC solid 1px;">
+    <div id="table_input_type_manual">
+        <!--投保人开始-->
+        <div class="x_p_a_c c"><h2 class="l">人员信息</h2></div>
+         
+        <div class="c_p_a_d"  id="applicant_info_single">
+            <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="80%">
+            <tbody>
+                
+                <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>被保险人名称</th>
+                    <td width="70%">
+                        <input  name="assured_fullname" id="assured_fullname" class="i_f pa_ui_element_normal" type="text" onblur="checked_str_length('assured_fullname',100)">
+                        <span id="assured_fullname_warn" class="right_strong"></span>
+                    </td>
+
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>被保险人身份证号码(组织机构代码)</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="assured_certificate" id="assured_certificate" onblur="checked_str_length('assured_certificate',200)">
+                        <span id="assured_certificate_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>邮政编码</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="assured_zipcode" id="assured_zipcode" onblur="check_zipcode('assured_zipcode')">
+                        <span id="assured_zipcode_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>被保险人联系地址</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="assured_address" id="assured_address" onblur="checked_str_length('assured_address',200)" style="width:350px;">
+                        <span id="assured_address_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>联系人</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="applicant_fullname" id="applicant_fullname" onblur="checked_str_length('applicant_fullname',100)">
+                        <span id="applicant_fullname_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>手机号码</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="applicant_mobiletelephone" id="applicant_mobiletelephone" onblur="check_mobilephones('applicant_mobiletelephone')">
+                        <span id="applicant_mobiletelephone_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>Email</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" name="applicant_email" id="applicant_email" type="text" onblur="check_emails('applicant_email')">
+                        <span id="applicant_email_warn" class="right_strong"></span>
+                  </td>
+
+                </tr> 
+                 
+            </tbody>
+        </table>
+        </div>
+        <!--个人投保人结束-->
+         
+       <!--div_assured-->
+    </div>
+     
+    <div class="x_p_a_c c"><h2 class="l">车辆运单信息</h2></div>
+    <div class="c_p_a_d">
+         <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="80%" >
+             
+                <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>道路运输许可证号码</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" type="text" name="RoadLicenseNumber" id="roadLicenseNumber" onblur="checked_str_length('roadLicenseNumber',200)">   
+                        <span id="roadLicenseNumber_warn" class="right_strong"></span>
+                    </td>
+
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>累计承保车辆</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" disabled="disabled" value="1">
+                         
+                  </td>
+
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>运输车辆号码</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" type="text" name="CarNumber" id="carNumber" onblur="checked_str_length('carNumber',50)">
+                  		<span id="carNumber_warn" class="right_strong"></span>
+                  </td>
+
+                </tr>
+                
+                
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>运输货物名称</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" name="GoodsName" id="goodsName" type="text" onblur="checked_str_length('goodsName',26)">
+                        <span id="goodsName_warn" class="right_strong"></span>
+                </td>
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>行驶证车主</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" type="text" name="VehicleOwners" id="vehicleOwners" onblur="checked_str_length('vehicleOwners',200)" >
+                        <span id="vehicleOwners_warn" class="right_strong"></span>
+                  </td>
+
+                </tr>
+                
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>运输车辆核定载质量</th>
+                    <td width="70%">
+                    	<input   class="i_f pa_ui_element_normal" type="text" id="transportVehiclesApprovedTotal" name="TransportVehiclesApprovedTotal" onblur="isCheckedNull('transportVehiclesApprovedTotal')" > KG
+                        <span id="transportVehiclesApprovedTotal_warn" class="right_strong"></span>
+                        
+                  </td>
+
+                </tr>
+                
+                 
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>运输车辆车架号/识别代码</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="FrameNumber" id="frameNumber" onblur="checked_str_length('frameNumber',200)">
+                        <span id="frameNumber_warn" class="right_strong"></span>
+                  </td>
+
+                </tr>
+                <tr class="">
+                    <th width="30%"><span class="a_x">*</span>发动机号码</th>
+                    <td width="70%">
+                        <input  class="i_f pa_ui_element_normal" type="text" name="EngineNo" id="engineNo" onblur="checked_str_length('engineNo',200)">
+                        <span id="engineNo_warn" class="right_strong"></span> 
+                  </td>
+
+                </tr>
+                {if $product.sum_insured==0}
+                <tr class="show_01">
+                    <th width="30%"><span class="a_x">*</span>运单号</th>
+                    <td width="70%">
+                        <input maxlength="50" name="DeliverorderNo" id="deliverorderNo" class="i_f pa_ui_element_normal" type="text" onblur="checked_str_length('deliverorderNo',200)">
+                        <span id="deliverorderNo_warn" class="right_strong"></span> 
+                  </td>
+
+                </tr>
+                <tr class="show_01">
+                    <th width="30%"><span class="a_x">*</span>起运日期</th>
+                    <td width="70%">
+                        <input maxlength="50" name="SailDate" id="saildate" class="i_f pa_ui_element_normal" type="text" readonly="readonly">
+                        <span id="saildate_warn" class="right_strong"></span> 
+                  </td>
+
+                </tr>
+                <tr class="show_01">
+                    <th width="30%"><span class="a_x">*</span>起 运 地</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" type="text" name="StartPlace" id="startPlace" onblur="checked_str_length('startPlace',100)">
+                        <span id="startPlace_warn" class="right_strong"></span> 
+                  </td>
+
+                </tr>
+                 <tr class="show_01">
+                    <th width="30%"><span class="a_x">*</span>目 的 地</th>
+                    <td width="70%">
+                        <input class="i_f pa_ui_element_normal" type="text" name="EndPlace" id="endPlace" onblur="checked_str_length('endPlace',100)">
+                        <span id="endPlace_warn" class="right_strong"></span> 
+                  </td>
+
+                </tr>
+                {/if}
+				 
+             
+        </table>
+    </div>
+     
+    <div class="x_p_a_c c"><h2 class="l">保险信息(金额以人民币"元"为单位)</h2></div>
+    <div class="c_p_a_d">
+         <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="80%" >
+             
+                 
+               <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>累计责任限额</th>
+                    <td width="70%">
+                    
+                    	{if $product.sum_insured!=0}
+                        <input type="text" class="i_f pa_ui_element_normal" name="SumAmount" id="amount"  {if $product.sum_insured!=0} value="{$product.sum_insured}" readonly="readonly" {else} onblur="isCheckedNull('amount')" {/if} /> 元
+                        <span id="amount_warn" class="right_strong"></span> 
+                        {else}
+                        <select onchange="isCheckedNull('amount')" name="SumAmount" id="amount" class="i_e">
+                        	<option value="">请选择</option>
+                        	<option value="50000">50000</option>
+                            <option value="100000">100000</option>
+                            <option value="150000">150000</option>
+                            <option value="200000">200000</option>
+                        </select> 元
+                        {/if}
+                    </td>
+
+                </tr>
+                <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>费率</th>
+                    <td width="70%">
+                        <input type="text" class="i_f pa_ui_element_normal" name="Rate" value="{$product['rate']}" id="rate" {if $product.premium ==0} onblur="isCheckedNull('rate')" {/if} readonly="readonly"/>
+                        <span id="rate_warn" class="right_strong"></span> 
+                    </td>
+                </tr>
+                <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>保费</th>
+                    <td width="70%">
+                        <input type="text" class="i_f pa_ui_element_normal" name="Premium" readonly="readonly" id="premium" {if $product.premium !=0} value="{$product.premium}" {/if} /> 元
+                    </td>
+
+                </tr>
+                <tr class="" >
+                    <th width="30%"><span class="a_x">*</span>每次事故赔偿限额</th>
+                    <td width="70%">
+                        <input type="text" class="i_f pa_ui_element_normal" name="TimeAmount" id="timeAmount" readonly="readonly" {if $product.sum_insured!=0} value="{$product.sum_insured}" {/if} /> 元
+                        <span id="amount_warn" class="right_strong"></span> 
+                    </td>
+
+                </tr>
+                 
+                
+                <tr class="" >
+                    <th width="30%">免赔条件</th>
+                    <td width="70%">
+                        <select name="EachAccidentFranchise" class="i_e" id="eachAccidentFranchise_cs">
+                        
+                        	{if $product.sum_insured==50000}
+                            	<option value="人民币3000元或损失的10%，以高者为准">人民币3000元或损失的10%，以高者为准</option>
+                            {elseif $product.sum_insured==100000}
+                            	<option value="人民币3000元或损失的10%，以高者为准">人民币3000元或损失的10%，以高者为准</option>
+                        	{elseif $product.sum_insured==150000}
+                            	<option value="人民币4000元或损失的15%，以高者为准">人民币4000元或损失的15%，以高者为准</option>
+                            {elseif $product.sum_insured==200000}
+                            	<option value="人民币4000元或损失的15%，以高者为准">人民币4000元或损失的15%，以高者为准</option>
+                            {elseif $product.sum_insured==0}
+                            	<option value="人民币3000元或损失的10%，以高者为准">人民币3000元或损失的10%，以高者为准</option>
+                                <option value="人民币4000元或损失的15%，以高者为准">人民币4000元或损失的15%，以高者为准</option>
+                            {/if}
+                        </select>
+                        
+                    </td>
+
+                </tr>
+                <!--
+                <tr class="" >
+                    <th width="30%">特别约定</th>
+                    <td width="70%">
+                        <textarea name="Specialterm" cols="70" rows="5"></textarea>
+                    </td>
+
+                </tr>
+                -->
+				 
+             
+        </table>
+    </div>
+    <!-- 
+    <div class="x_p_a_c c"><h2 class="l">投保说明(内容不显示在投保单上)</h2></div>
+    <div class="c_p_a_d">
+         <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="80%" >
+               
+                <tr class="">
+                   
+                    <td>
+                        <textarea style="width:100%; height:90px; text-align:left; font-size:12px;" name="comments"></textarea>
+                  </td>
+
+                </tr>
+               
+        </table>
+    </div>
+    --> 
+</div>
+
+
+<!--{template cp_product_buy_footer}-->
+<!--{template footer_cshop}-->

@@ -1,0 +1,184 @@
+       <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           <div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf01fe;</i></span>
+                                <span>投保信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+ 
+                  <tr >
+                    <td  >保险起期</td>
+                    <td  >{$policy.start_date}</td>
+                    <td  >保险止期</td>
+                    <td  >{$policy.end_date}</td>
+                  </tr>   
+                  
+                  
+                <!-- {if $policy.policy_status eq 'insured'} -->         
+                <tr >
+                    <td  >保单号</td>
+                    <td >
+                    
+                    
+                    <a href="baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=getpolicyfile" target="_blank">{$policy.policy_no}</a>
+                    
+                    
+                    </td>
+                    
+                    <td  >电子保单</td>
+                    <td >
+                 
+                    <a href="baoxian/cp.php?ac=product_buy&policy_id={$policy.policy_id}&op=getpolicyfile" target="_blank">下载</a>
+                    
+                    </td>
+        
+                  </tr>
+                  <!--{/if}-->
+                  
+                   <tr >
+                    <td  >保单状态</td>
+                    <td bgcolor="#f567ff" >{$policy.policy_status_str}</td>
+                    <td  >订单号</td>
+                    <td >
+                     <a href="user.php?act=order_detail&order_id={$policy.order_id}" target="_blank">{$policy.order_sn}</a></td>
+                   </tr>
+                   
+
+                  <!--{if $insurer_code=='CPIC_CARGO'}-->
+                  <tr >
+                    <td  >错误码</td>
+                    <td  >{$policy.errorCode}</td>
+                    <td  >错误信息</td>
+                    <td  >{$policy.errorMsg}</td>
+                  </tr>
+                 <!--{/if}-->
+                  
+                  <tr >
+                    <td  >业务类型</td>
+                    <td  >{$policy.business_type_str-bak}
+                    	
+                    	        {if $user_info_applicant.applicant_type==2}
+                            		单位
+                            		{else}
+                            		个人
+                            	{/if}
+                    
+                    </td>
+                    <td  >会员</td>
+                    <td  >{$policy.agent_username}</td>
+                  </tr>
+                  <tr >
+                    <td  >投保时间</td>
+                    <td  >{$policy.dateline_str}</td>
+                    <td  >操作</td>
+                    <td >
+                    
+                    <!-- {if $policy.policy_status eq 'insured' && !($insurer_code=='CPIC_CARGO' && ($policy.ret_code=='7' || $policy.ret_code=='15'))} -->
+                    <!-- <a href ="javascript:withdraw_policy({$policy.policy_id});">注销</a> -->
+                     <!--{/if}-->
+                     <!--{if $insurer_code=='CPIC_CARGO' && ($policy.ret_code=='7' || $policy.ret_code=='15')}-->
+                     <a href ="javascript:query_policy({$policy.policy_id});">手动查询</a>
+                     <!--{/if}-->
+                     
+                    </td>
+                  </tr> 
+               </table>
+           </div>
+       </div>
+       
+       
+       
+       
+      <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           	<div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                                <span class="f-ml30 s-c-666666"><i class="iconfont">&#xf00cc;</i></span>
+                                <span>被保险人信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+                    <!-- 投保人为单位（公司） -->
+                   {if $user_info_applicant.applicant_type==2}
+                    	 <tr >
+                            <td  >单位（公司）名称：</td>
+                            <td  >{$user_info_applicant.fullname}</td>
+                            
+                            <td  >联系人姓名</td>
+                            <td  >{$user_info_applicant.cus_contact}</td>
+                            
+                          </tr>
+                  {/if}  
+                  
+                  
+                   <!-- 投保人为单位（个人） -->
+                  {if $user_info_applicant.applicant_type eq 1}
+              	      <tr >
+                        <td  >姓名：</td>
+                        <td  >{$user_info_applicant.fullname}</td>
+                      </tr>
+                  	
+              	     <tr >
+                        <td  >证件类型</td>
+                        <td  >
+							{$policy.attr_certificates_type_ssbq[$user_info_applicant.certificates_type]}
+						</td>
+                        
+                        <td  >证件号码</td>
+                        <td  >{$user_info_applicant.certificates_code}</td>
+                        
+                      </tr>
+                  {/if}
+                  
+                    <tr >
+                      <td  >手机号码</td>
+                      <td  >{$user_info_applicant.mobiletelephone}</td>
+                      
+                      <td  >email</td>
+                      <td  >{$user_info_applicant.email}</td>
+                    </tr>
+               	    <tr>
+                        <td  >律师事务所</td>
+                        <td  >{$user_info_applicant.law_office}</td>
+                        
+                        <td  >联系地址</td>
+                        <td  >{$user_info_applicant.address}</td>
+                    </tr>
+                </table>
+               </div>
+             </div>
+       
+             <div class="f-pb40 f-pl15 f-pr15 s-bg-eff1f1 ">
+           	<div class="f-pt20">
+        		<table cellpadding="0" cellspacing="0" class="table_user_02">
+                    <tr>
+                        <th colspan="4">
+                            <span class="s-c-040404 f-fs3">
+                               
+                                <span>费用/费率信息</span>
+                            </span>
+                        </th>
+                        
+                    </tr>
+
+                  
+                    <tr >
+                      <td  >总保费</td>
+                      <td  >{$policy.total_premium}</td>
+                      
+                      <td  >个人佣金率</td>
+                      <td  >{$policy.rate_myself}%</td>
+                    </tr>
+             
+                </table>
+               </div>
+             </div>
+       

@@ -1,0 +1,76 @@
+
+				
+                    <div class="xqcont">
+                    
+					    {if $ins_product_list}
+					    <div class="xq_title2">
+						选择产品：
+						
+						<!--{foreach from=$ins_product_list key=key item=value}-->
+						
+						{assign var="sid" value=$value[product_id]}
+                            <span class="plan {$classattr[$sid]}">
+							<a href="goods.php?id={$goods.goods_id}&ins_product_id={$value[product_id]}">{$value[product_name]}</a>
+							</span>
+                            
+						<!--{/foreach}-->	
+                        </div>
+                        {/if}
+						
+                        <div class="dataForm">
+                            <div class="baseForm" id="baseForm">
+                                <ul class="personalInfo" id="divRiskAppFactor_204901012">
+                                  
+								    <input type="text" id="max" value="1" style="display:none"><input type="text" id="min" value="" style="display:none">
+                                  
+								  <!--
+								    <li class="app_li"><label>保单生效时间：</label><p><input id="effectivedate" type="text" value="{$ins_product_selected[]}" name="effectiveStartDate" class="date"> 0时起</p></li>
+									<li class="app_li"><label>保单终止时间：</label><p><input id="enddate" type="text" value="" readonly="readonly" name="enddate" class="date"> 24时止</p></li>                    -->
+									
+									<!--
+                                    <li class="app_li">
+									<label>保险期限：</label>
+										<label>{$ins_product_selected.period}个月</label>
+									</li>
+									-->
+									
+								<!--{if $ins_product_selected[product_duty_price_type]=='single'}-->
+									<li class="app_li">
+									<label>保险期限：</label>
+									<label>{$ins_product_selected.period}{$ins_product_selected.period_uint}</label> 
+									</li>
+							   <!--{/if}-->
+                                 
+								    <li class="app_li"><label>承保年龄：</label>
+										<label>{$ins_product_selected.age_min}-{$ins_product_selected.age_max}周岁</label> <select id="00000000000000002854_TextAge" name="TextAge_app" style="display:none"><option value="60D-6Y">60天-6周岁</option></select></li>
+									<li class="app_li">
+									<label>最大购买份数：</label>
+										<label>每人限{$ins_product_selected.number}份
+										</label> 
+									</li>
+									
+						
+								
+									
+                                </ul> 
+                            <div class="buyBar">
+                                
+								
+								<a href="baoxian/cp.php?ac=product_buy&product_id={$ins_product_selected.product_id}&gid={$goods.goods_id}" class="btn_products_02_01 margin_T0_50">{$lang.insure}</a>
+								
+								<!-- 
+                                <input type="button" class="buyBtn" value="立即购买" id="baoxian_an">
+                                <input type="button" value="" class="buyBtn disBuyBtn" disabled="disabled"/> -->
+                                <input type="submit" id="buy_submit" style="display:none">
+                                <input type="text" id="Prop2" value="" style="display:none">
+                                <input type="text" id="SupplierCode" value="2049" style="display:none">
+                                <input type="hidden" value="230.00" id="prodcutMarkPrice" name="prodcutMarkPrice">
+                            </div>
+                        </div>
+                      
+                      </div>
+                    </div>
+					
+					
+					
+					

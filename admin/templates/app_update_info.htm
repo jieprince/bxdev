@@ -1,0 +1,170 @@
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<div class="main-div">
+<form name="theForm" method="post" enctype="multipart/form-data" onsubmit="return validate();" id="app_update_theForm">
+<input type="hidden" name="act" value="insert_or_update" />
+<input type="hidden" name="id" value="{$data.ID}" />
+<input type="hidden" name="type" value="{$type}" />
+
+<table width="100%">
+  <tr>
+    <td class="label">文件名</td>
+    <td>
+      <input type="text" name="fileName" value="{$data.fileName}"  />{$lang.require_field}</td>
+  </tr>
+
+
+  <tr>
+    <td class="label">版本号</td>
+    <td>
+      <input type="text" name="version" value="{$data.version}" /></td>
+  </tr>
+
+  <tr>
+    <td class="label">文件大小</td>
+    <td>
+      <input type="text" name="size" value="{$data.size}" />{$lang.require_field}</td>
+  </tr>	
+  <tr>
+  	  <td class="label" width="25%" align="right">平台</td>
+      <td>
+      <select name="platformId">
+       <option value="">--请选择--</option>
+       <option 
+       {if $data.platformId eq 'android'} 
+        selected='selected'
+       {/if}
+       value="android">Android</option>
+       <option 
+       {if $data.platformId eq 'iPhone'} 
+        selected='selected'
+       {/if}
+       value="iPhone">IPhone</option>
+      </select>
+      </td>
+  </tr>
+
+  <tr>
+    <td class="label">发布时间</td>
+    <td>
+      <input class="Wdate" type="text"  name="releaseTime" value="{$data.releaseTime}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/>
+      </td>
+  </tr>
+  
+  <tr>
+    <td class="label">是否需要检查</td>
+    <td>
+    	<select name="releaseFlag">
+    	<option 
+	       {if $data.releaseFlag eq 1} 
+	        selected='selected'
+	       {/if}
+	       value="1">是</option>
+	       <option 
+	       {if $data.releaseFlag eq 0} 
+	        selected='selected'
+	       {/if}
+	       value="0">否</option>
+      </select>  
+      
+    </td>
+  </tr>
+    <tr>
+    <td class="label">更新内容</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr>
+  	<td></td>
+  	<td>
+  	    <script id="content" type="text/plain" name="content" style="width:500px;height:200px;">
+				{$data.content}
+    	</script>
+  	
+  	</td>
+  </tr>
+  <tr>
+  <td></td>
+    	<td>
+  		<input type="button" onclick="save();" value="{$lang.button_submit}" class="button" />
+  	</td>
+</table>
+</form>
+</div>
+<script type="text/javascript">
+var ue = UE.getEditor('content');		   
+   function save() {
+		var msg = data_validation();
+		if (msg!='undefined' && msg!='') {
+			alert(msg);
+			return;
+		} else {
+			var obj = $('#app_update_theForm').serialize();
+			$.ajax({
+				   type: "POST",
+				   url: "app.php",
+				   data: obj,
+				   success: function(data){
+					 var obj = $.parseJSON(data);
+				     if(obj.code==0){
+				    	 alert(obj.msg);
+				    	 window.location="app.php?act=list";
+				     }else{
+				    	alert(obj.msg); 
+				    }
+				   }
+			});
+			
+			
+		}
+	}
+			   
+   function data_validation(){
+	   var msg="";
+	    //文件名
+	   var fileName =  $.trim($("#app_update_theForm input[name=fileName]").val());
+	   if(!fileName){
+		   msg+="请输入文件名！"
+	   }
+	   
+	   //版本号
+	   var version =  $.trim($("#app_update_theForm input[name=version]").val());
+	   if(version.length<2){
+		   msg+="\n请输入版本号！"
+	   }
+	   
+	   //文件大小
+	   var size =  $.trim($("#app_update_theForm input[name=size]").val());
+	   if(!size){
+		   msg+="\n请输入文件大小"
+	   }
+	   
+	   //更新的内容
+/* 	   var content =  $.trim($("#content").val());
+	   if(content.length<2){
+		   msg+="\n请输入更新的内容"
+	   } */
+	   
+	  //发布的平台
+	  
+	  //发布时间
+	   
+	   return msg;
+	   
+   } 
+		
+		
+</script>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+
+{/literal}
+</script>
+{include file="pagefooter.htm"}

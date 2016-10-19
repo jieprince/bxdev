@@ -1,0 +1,57 @@
+<!-- $Id: link_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="post" action="" name="listForm">
+<!-- start ads list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th><a href="javascript:listTable.sort('name'); ">名称</a>{$sort_link_name}</th>
+    <th><a href="javascript:listTable.sort('img_url'); ">图片</a>{$sort_link_logo}</th>
+    <th><a href="javascript:listTable.sort('show_order'); ">{$lang.show_order}</a>{$sort_show_order}</th>
+    <th>{$lang.handler}</th>
+  </tr>
+  <tr>
+  {foreach from=$ubg_list item=item}
+  <tr>
+    <td class="first-cell">{$item.name|escape:html}</td>
+    <td align="center"><span>{$item.img_url}</span></td>
+    <td align="right"><span onclick="listTable.edit(this, 'edit_show_order', {$item.id})">{$item.show_order}</span></td>
+    <td align="center"><span>
+    	<a href="userbg_img.php?act=edit&id={$item.id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>&nbsp;
+    	<a href="javascript:;" onclick="listTable.remove({$item.id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a></span></td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_links}</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="10">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+  {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

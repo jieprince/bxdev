@@ -1,0 +1,157 @@
+<!-- $Id: account_list.htm 14928 2008-10-06 09:25:48Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,account_listtable.js"}
+<script src="../static/My97DatePicker/WdatePicker.js"></script>
+<div class="form-div">
+{if $user.user_name neq 'ebaoins_user'}
+<form method="post" action="account_log.php?act=list&user_id={$smarty.get.user_id}" name="searchForm">
+  <select name="incoming_type" onchange="document.forms['searchForm'].submit()">
+    <option value="" {if $incoming_type eq ''}selected="selected"{/if}>--请选择--</option>
+    <option value="{$lang.quan_bu}" {if $incoming_type eq '所有收入'}selected="selected"{/if}>{$lang.quan_bu}</option>
+    <option value="{$lang.ge_ren}" {if $incoming_type eq '个人服务费收入'}selected="selected"{/if}>{$lang.ge_ren}</option>
+    <option value="{$lang.ji_gou}" {if $incoming_type eq '渠道服务费收入'}selected="selected"{/if}>{$lang.ji_gou}</option>
+    <option value="{$lang.tui_jian}" {if $incoming_type eq '推荐收入'}selected="selected"{/if}>{$lang.tui_jian}</option>
+  </select>
+
+  {if $incoming_type neq ''}
+   <strong>{$lang.label_user_name}</strong>{$user.user_name}
+
+    &nbsp;<strong>{$lang.shouru_money}</strong>
+    
+       	 {if $total neq ''}
+       	 	￥{$total}元
+	    	{else}
+    			￥0元
+    	  {/if}
+    {else}
+          <strong>{$lang.label_user_name}</strong>{$user.user_name}
+		  <strong>{$lang.label_user_money}</strong>{$user.formated_user_money}
+		  <strong>{$lang.label_frozen_money}</strong>{$user.formated_frozen_money}
+		  <strong>{$lang.label_rank_points}</strong>{$user.rank_points}
+		  <strong>{$lang.label_pay_points}</strong>{$user.pay_points} 
+    	
+  {/if}
+  </form>
+   {/if}
+{if $user.user_name eq 'ebaoins_user'}   
+ <form method="post" action="account_log.php?act=web_account_list&user_id={$smarty.get.user_id}" name="searchForm"> 
+	 <table>
+	  <tr>
+	    <th>账户变动原因:</th>
+	    <th><input name="change_desc" type="text" value={$conditions.change_desc}></th>
+	     
+	    <td>开始日期:</td>
+	    <td><input class="Wdate" type="text"  name="s_change_time" value="{$conditions.s_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    
+	   	<td>截止日期:</td>
+	    <td><input class="Wdate" type="text"  name="e_change_time" value="{$conditions.e_change_time}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:true,readOnly:true})"/></td>
+	    
+	    <td><input type="submit" value="查询"></td>
+	    
+	    <td><strong>{$lang.label_user_name}</strong>{$user.user_name}
+	        <strong>{$lang.label_user_money}</strong>{$user.formated_user_money}
+	    </td>
+	  </tr>
+	  <tr>
+	  	<td></td>
+	  	<td></td>
+	  	<td></td>
+	  	<td></td>
+	  	<td></td>
+	  	<td></td>
+	    <td></td>
+	    <td>
+	    	<input type="submit" name="recent" value="{$lang.one_week}" />
+	    	<input type="submit" name="recent" value="{$lang.one_month}"/>
+	    	<input type="submit" name="recent" value="{$lang.three_month}"/>	
+	    </td>
+	  </tr>
+	</table>
+<!-- 
+	   	
+	   	账户变动原因: 
+	
+	  	开始日期:
+		截止日期:<input class="Wdate" type="text"  name="e_change_time" value="{$conditions.e_change_time}" onFocus="WdatePicker({isShowClear:false,readOnly:true})"/>
+		
+	  <input type="submit" value="查询">
+	  
+	            <strong>{$lang.label_user_name}</strong>{$user.user_name}
+		  <strong>{$lang.label_user_money}</strong>{$user.formated_user_money}
+		<div style="float: right;margin-right: 100px;">
+	       	<input type="submit" name="recent" value="{$lang.one_week}" />
+	       	<input type="submit" name="recent" value="{$lang.one_month}"/>
+	       	<input type="submit" name="recent" value="{$lang.three_month}"/>
+	    </div> -->
+		  
+</form>
+{/if}
+</div>
+
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+{/if}
+
+  <table >
+    <tr>
+      <th width="200px">{$lang.change_time}</th>
+      <th width="200px">{$lang.change_desc}</th>
+      <th width="100px">{$lang.surplus_pro_type}</th>
+      <th width="100px">{$lang.user_money}</th>
+      <th width="100px">姓名</th>
+    </tr>
+    {foreach from=$account_list item=account}
+    <tr>
+      <td >{$account.change_time}</td>
+	  <td>{$account.change_desc|escape:html}</td>
+	  
+  	  <td align="center">{$account.amount_type}</td>
+      <td align="center">
+        {if $account.user_money gt 0}
+          <span style="color:#0000FF">+{$account.user_money}</span>
+        {elseif $account.user_money lt 0}
+          <span style="color:#FF0000">{$account.user_money}</span>
+        {else}
+          {$account.user_money}
+        {/if}
+      </td>
+      
+      <td align="center">{$account.real_name}</td>
+    </tr>
+    {foreachelse}
+    <tr><td class="no-records" colspan="6">{$lang.no_records}</td></tr>
+    {/foreach}
+  </table>
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+</form>
+
+<script type="text/javascript" language="javascript">
+  <!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+      // 开始检查订单
+      startCheckOrder();
+  }
+  {/literal}
+  //-->
+</script>
+{include file="pagefooter.htm"}
+{/if}

@@ -1,0 +1,503 @@
+<!--{template header_cshop}-->
+<div id="simple_wrapper">
+
+<input type="hidden" name="lottery" value='' />
+
+
+<div id="contain">
+
+<div class="insure">
+		<div class="insure_main">
+		
+		<div class="insure_step"><img src="../images/insure11.jpg" width="386" height="47"><img src="../images/insure22.jpg" width="392" height="47"><img src="../images/insure03.jpg" width="332" height="47"></div>
+		<div class="insure_title">$policy_arr[attribute_name]&nbsp;&nbsp;> &nbsp;&nbsp;$policy_arr[product_name]&nbsp;&nbsp;<span style="color:#09c;margin:0;padding:0;"></span></div>
+        <div id="step_gaozhi">
+        	<div class="x_p_a_c c"><h2 class="l">告知事项</h2></div>
+            <div class="c_p_a_d" style="margin: 10px 0px 10px 30px;line-height: 30px;font-size:14px;">
+            	 
+                <div class="x_p_a_c c" style="margin-top:10px;"><h2> >> 特别说明</h2></div>
+                <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" style="font-size:12px; line-height:20px;">
+                	<tr class=""><td align="left" class="fwb" height="10"></td></tr> 
+                     
+                    <tr class="">
+                        <td align="left">
+                        	1. 本人已收到所投保险种的保险条款，本人已认真阅读上述条款，并知晓所有保险责任、责任免除等内容均以保险合同载明为准，除经人保寿险特别约定或批注的内容外，其他任何人（包括服务人员）对保险条款与投保单内容相违背或增减的口头说明及书面陈述均无需人保寿险负责。<br />
+2. 本人已了解如果同意接受人保寿险签发的保险单，则本人签署的任何文件均视为已认可人保寿险对投保单的附加和更改。<br />
+3. 对于所投保的分红保险、万能保险和投资连结保险等产品，本人已阅读保险条款、人身保险投保提示和产品说明书，了解本产品的特点和保单利益的不确定性。<br />
+4. 如本次投保计划含健康保险产品，本人已认真阅读并理解了人身保险投保提示中的健康保险提示内容。<br />
+5. 本人已了解无论采用何种交费方式，保险合同的生效仍需以保险合同成立、本人缴付保险费且人保寿险签发保险单为条件，本保险合同的生效日期以保险单上载明的日期为准。<br />
+6. 本人同意人保寿险向任何机构、组织和个人就本人任何有关保险事宜、健康及其它情况索取、查询有关资料和证明，并授权人保寿险或任何与人保寿险业务有关的机构或个人用于：1）处理及审核投保单及其它保险事宜；2）提供与该保险有关的服务；3）与本人联络。此授权书的影印本也同样有效。<br />
+7. 本人已了解人保寿险对留存于公司内本人全部健康、财务及其它个人资料将承担保密义务，除本声明第8条列明的情况外不作它用。<br />
+8. 本人授权人保寿险对本人进行所需的医疗评估和体格检查，并作为审核本投保申请的依据。<br />
+9. 本人同意如发生有关网上投保险种、保险金额等方面的分歧，以贵公司的电子记录凭证等数据电文作为判断本保险合同的唯一合法有效凭证，该凭证具有完全证据效力。
+                        </td>                
+                    </tr>
+                    <tr class=""><td align="left" class="fwb" height="10"></td></tr>  
+                </table>
+                <div class="x_p_a_c c"><h2> >> 未成年人告知</h2></div>
+                <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%"  style="font-size:12px; line-height:20px;">
+                    <tr class=""><td align="left" class="fwb" height="10"></td></tr> 
+                    <tr class="">
+                        <td align="left" colspan="3">
+                        	    您好！感谢您选择我们的保险产品。根据保监发[2010]95号文件要求，父母为其未成年子女投保以死亡为给付保险金条件的人身保险，在被保险人成年之前，各保险合同约定的被保险人死亡给付的保险金额总和、被保险人死亡时各保险公司实际给付的保险金总和均不得超过人民币10 万元。<br /> 
+    对于投保人为其未成年子女投保以死亡为给付保险金条件的每一份保险合同， 以下两项可以不计算在上述限额之中： （一）投保人已交保险费或被保险人死亡时合同的现金价值；对于投资连结保险合同、万能保险合同，该项为投保人已交保险费或被保险人死亡时合同的账户价值。（二）合同约定的航空意外死亡保险金额。<br />  
+    保险公司不得超过上述限额继续承保，尚未达到限额的，可以就差额部分进行承保。 注： 1、在本告知书中“您”指投保人， “我们”指中国人民人寿保险股份有限公司。 
+
+ 
+                        </td>                
+                    </tr>
+                    <tr class="">
+                        <td align="left"></td>                
+                    </tr>
+                    <tr class=""><td align="left" class="fwb" height="10"></td></tr> 
+                    <tr class="">
+                        <td align="left" class="fwb" colspan="3">
+                            为保证您及被保险人的权益，请您如实告知以下事项：
+						</td>                
+                    </tr>
+                    <tr class=""><td align="left" class="fwb" height="10"></td></tr> 
+                    <tr class="">
+                         
+                        <td align="left" class="fwb">
+                        	姓名：{$insurant_info[fullname]}
+                        </td>
+                        <td align="left" class="fwb">
+                        	性别：{$insurant_info[gender_str]}
+                        </td>
+                        <td align="left" class="fwb">
+                        	出生日期：{$insurant_info[birthday]}
+                        </td>
+                                            
+                    </tr>
+                    <tr class="">
+                        
+                        <td align="left" class="fwb">
+                        	证件类型：{$insurant_info[certificates_type_str]}
+                        </td>
+                        <td align="left" class="fwb" colspan="2">
+                        	证件号码：{$insurant_info[certificates_code]}
+                        </td>
+                         
+                                            
+                    </tr>
+                    <tr>
+                    	<td align="left" class="fwb" colspan="3">
+                        	已在其他保险公司投保的有效身故保额总和 :<input type="text" name="" id="text_zonghe" style="width:50px; height:25px;"  /> 万元 
+                        </td>
+                    </tr> 
+                     
+                </table>
+                <div class="x_p_a_c c" style="margin-top:10px;"><h2> >> 用户须知</h2></div>
+                <table class="c_t_a c_m_a" cellpadding="0" cellspacing="0" border="0" width="90%" id="jiankangxuzhi">
+                    
+                     <tr class=""><td align="left" class="fwb" height="10"></td></tr>    
+                    <tr class="">
+                        <td align="left" colspan="3">
+                        	  <span>
+                              	<input type="checkbox" id="abroad" name="abroad">
+                              </span>
+                              本人已认真阅读并理解 <a target="_blank" href="./ziliao/html_ziliao/picc/ttl_baoxiantiaokuan.html" style="color:#09F">《人保寿险淘淘乐两全保险条款》</a>、<a target="_blank" href="./ziliao/html_ziliao/picc/ttl_baoxiantiaokuan.html#TTL_informed" style="color:#09F">未成年人投保特别告知书</a> 、<a href="./ziliao/html_ziliao/picc/ttl_baoxiantiaokuan.html#TTL_item2" style="color:#09F">人身保险投保提示</a>全部内容，同意如发生有关网上投保险种、保险金额等方面的分歧，以贵公司的电子记录凭证等数据电文作为判断本保险合同的唯一合法有效凭证，该凭证具有完全证据效力。 
+                        </td>  
+                                
+                    </tr>                              
+                    
+                </table>
+            </div>
+        	<div style="margin:0 auto; text-align:center; padding-bottom:30px;">
+        		<img onclick="jiankangxuzhi();" src="../images/icon15.jpg" style="cursor:pointer;"> 
+            </div>
+        </div>
+		<div id="step_orderShow" style="display:none;">
+            <form id="fgNewOrderSearchForm" name="fgNewOrderSearchForm" method="POST" action="cp.php?ac=product_buy&product_id=$product[product_id]&policy_id=$policy_id&gid=$gid&step=2&uid=$uid&flag_check_policy=$flag_check_policy">
+                <div class="insure_cen">
+                
+        <input type="hidden" name="orderbuysubmit" id="orderbuysubmit" value="true" />
+                                            
+        <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+        
+        <input type="hidden" id="goumaifangshi" name="goumaifangshi"  value="">
+        
+        <input type="hidden" id="cart_insure_id" name="cart_insure_id"  value="$cart_insure_id">
+        <input name="other_totalAmount" type="hidden" id="other_totalAmount" /> 
+        <!--{if 0}-->
+         <!--{loop $policy_ids $key1 $policy_id}-->
+        <input type="hidden" id="policy_ids_$key1" name="policy_ids[]"  value="$policy_id">
+         <!--{/loop}-->
+        <!--{/if}-->
+        <!--{if $bat_post_policy == 0}-->
+        <div class="x_p_a_c c"><h2>投保人信息</h2></div>
+        <!--保险计划-->
+        <!--投保人信息-->
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+            <tbody>
+            <tr>
+                <td width="150" class="check_td_left">投保人姓名：</td>
+                <td width="190" class="check_td_right">{$user_info_applicant[fullname]}</td>
+                <td width="150" class="check_td_left">投保类型：</td>
+                <td width="190" class="check_td_right">个人</td> 
+            </tr>
+            <tr>
+                <td width="150" class="check_td_left">证件类型：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[certificates_type_str]</td>
+                <td width="150" class="check_td_left">证件号：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[certificates_code]</td>
+            </tr>
+            <tr>
+                <td width="150" class="check_td_left">性别：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[gender_str]</td>
+                <td width="150" class="check_td_left">出生日期：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[birthday]</td>
+            </tr>
+            <tr>
+                <td width="150" class="check_td_left">手机号：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[mobiletelephone]</td>
+                <td width="150" class="check_td_left">电子邮箱：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[email]</td>
+            </tr>
+            
+            <tr>
+                <td width="150" class="check_td_left">职业类别：</td>
+                <td width="190" class="check_td_right" >{$user_info_applicant[occupationClassCode]}</td>
+                <td width="150" class="check_td_left">邮政编码：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[zipcode]</td> 
+            </tr> 
+            
+            <tr>
+            
+                <td width="150" class="check_td_left">省份：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[province]</td>
+             
+                <td width="150" class="check_td_left">通信地址：</td>
+                <td width="190" class="check_td_right">$user_info_applicant[address]</td>
+             
+        
+            </tr> 
+             
+                            
+            
+            </tbody>
+        </table>
+        
+        <div class="x_p_a_c c"><h2>被保险人信息</h2></div>
+                                
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+            <tbody>
+            <tr>
+                <td width="150" class="check_td_left">被保人姓名：</td>
+                <td width="190" class="check_td_right">$insurant_info[fullname]</td>
+                <td width="150" class="check_td_left">被保险人是投保人：</td>
+                <td width="190" class="check_td_right">$relationship_with_insured_str</td>
+                
+            </tr>
+            <tr>
+                <td width="150" class="check_td_left">证件类型：</td>
+                <td width="190" class="check_td_right">$insurant_info[certificates_type_str]</td>
+                <td width="150" class="check_td_left">证件号：</td>
+                <td width="190" class="check_td_right">$insurant_info[certificates_code]</td>
+            </tr>
+                            
+            <tr>
+                <td width="150" class="check_td_left">性别：</td>
+                <td width="190" class="check_td_right">$insurant_info[gender_str]</td>
+                <td width="150" class="check_td_left">出生日期：</td>
+                <td width="190" class="check_td_right">$insurant_info[birthday]</td> 
+            </tr>
+              
+            </tbody>
+        </table>
+        <!--{elseif $bat_post_policy == 1}-->
+        <style>
+            .border_table_05 {}
+            .border_table_05 td {border-bottom: 1px solid #dddddd;}
+            .border_table_05 th { border-bottom: 1px solid #dddddd;border-top: 1px solid #dddddd;}
+            .tac{text-align:center;}
+        </style>
+        
+        <div class="x_p_a_c c"><h2>投保人和被保险人信息</h2></div>
+        <table width="90%" cellspacing="0" cellpadding="0" border="1" class="border_table_05" style="margin-top:10px;margin-bottom:10px;" >
+            <tr>
+                <th class="fwb tac">序号</th>
+                <th class="fwb tac">类型</th>
+                <th class="fwb tac">投保人类型</th>
+                <th class="fwb tac">姓名</th>
+                <th class="fwb tac">证件类型</th>
+                <th class="fwb tac">证件号码</th>
+                <th class="fwb tac">性别</th>
+                <th class="fwb tac">生日</th>
+                <th class="fwb tac">邮箱</th>
+                <th class="fwb tac">手机号</th>
+                <th class="fwb tac">与被保险人关系</th>
+                <th class="fwb tac">职业代码</th>
+            </tr>
+            <!--{eval $indexQs=1;}-->
+            <!--{loop $list_applicant_insuraned_info $index $value}-->
+            <!--{if $index%2==0}-->
+            <tr bgcolor="#faebd7" calss="applicant">
+                <!--{else}-->
+            <tr bgcolor="" calss="applicant">
+                <!--{/if}-->
+        
+                <td class="tac" rowspan="2">{$indexQs}</td>
+                <td>投保人</td>
+                <td data-value="applicant_type" class="tac">$value[applicant_type]</td>
+                <td data-value="applicant_name" class="tac">$value[applicant_name]</td>
+                <td data-value="applicant_certificates_type" class="tac">$value[applicant_certificates_type]</td>
+                <td data-value="applicant_certificates_code" class="tac">$value[applicant_certificates_code]</td>
+                <td data-value="applicant_gender" class="tac">$value[applicant_gender]</td>
+                <td data-value="applicant_birthday" class="tac">$value[applicant_birthday]</td>
+                <td data-value="applicant_email" class="tac">$value[applicant_email]</td>
+                <td data-value="applicant_mobilephone" class="tac">$value[applicant_mobilephone]</td>
+                <td data-value="relationship" class="tac">$value[relationship]</td>
+                <td class="tac">--</td>
+            </tr>
+            <!--{if $index%2==0}-->
+            <tr bgcolor="#faebd7" calss="assured">
+                <!--{else}-->
+            <tr bgcolor="" calss="assured">
+                <!--{/if}-->
+                <td>被保险人</td>
+                <td class="tac">--</td>
+                <td data-value="assured_name" class="tac">$value[assured_name]</td>
+                <td data-value="assured_certificates_type" class="tac">$value[assured_certificates_type]</td>
+                <td data-value="assured_certificates_code" class="tac">$value[assured_certificates_code]</td>
+                <td data-value="assured_gender" class="tac">$value[assured_gender]</td>
+                <td data-value="assured_birthday" class="tac">$value[assured_birthday]</td>
+                <td data-value="assured_email" class="tac">$value[assured_email]</td>
+                <td data-value="assured_mobilephone" class="tac">$value[assured_mobilephone]</td>
+                <td class="tac">--</td>
+                <td data-value="occupation" class="tac">$value[occupation]</td>
+            </tr>
+            <!--{eval $indexQs++;}-->
+            <!--{/loop}-->
+        </table>
+        <!--{/if}-->
+        <div class="x_p_a_c c"><h2>受益人</h2></div>
+        {if $policy_arr.beneficiary==1 }
+        <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                
+                <tr>
+                    <td width="150" class="check_td_left"></td>
+                    <td width="617" class="check_td_right">法定</td>
+                </tr>
+
+        </table>
+        {else}
+        <div>
+            <!--{loop $list_beneficiary $key $value}-->
+            <div style="padding-top:20px;">
+                <div class="benegiciary_title">
+                    <span style="float:left">受益人{if $key==0}一{elseif $key==1}二{else}三{/if}</span>
+                
+                    <span style="float:right">
+                           
+                    </span>
+                    <span style=" clear:both"></span>
+                </div>
+                <table width="785" cellpadding="0" cellspacing="1" style="padding:15px 0">
+                    <tr>
+                        <td width="150" class="check_td_left">姓名：</td>
+                        <td width="190" class="check_td_right">$value.name</td>
+                        <td width="150" class="check_td_left">与被保险人关系：</td>
+                        <td width="190" class="check_td_right">$value.benefitRelation</td>
+                    </tr>
+    
+                    <tr>
+                        <td width="150" class="check_td_left">证件类型：</td>
+                        <td width="190" class="check_td_right">$value.cardType</td>
+                        <td width="150" class="check_td_left">证件号：</td>
+                        <td width="190" class="check_td_right">$value.cardNo</td>
+    
+                    </tr>
+                     
+                    <tr>
+                        <td width="150" class="check_td_left">性别：</td>
+                        <td width="190" class="check_td_right">$value.sex</td>
+                        <td width="150" class="check_td_left">出生日期：</td>
+                        <td width="190" class="check_td_right">$value.birthday</td>
+                    </tr>
+                    <tr>
+                     
+                        
+                        <td width="150" class="check_td_left">受益顺序：</td>
+                        <td width="190" class="check_td_right">{$value.benefitSort}</td> 
+                        <td width="150" class="check_td_left">受益比例：</td>
+                        <td width="190" class="check_td_right">{$value.benefitScale}</td>
+                    </tr>
+                    
+                </table> 
+            </div>
+            <!--{/loop}-->
+        </div>
+        {/if}
+        
+        <div class="x_p_a_c c"><h2>保单信息</h2></div>
+        <table cellpadding="0" cellspacing="0" width="700">
+        
+            <tbody>
+            
+            <tr>
+            	<td width="176"  align="center" class="insure_cen_table_td insure_cen_table_das">保额：</td>
+                <td width="605" class="check_td_right" style="font-weight:bolder" align="left">{$total_price} 元</td>
+            </tr>
+        	<tr>
+            	<td width="176" align="center" class="insure_cen_table_td insure_cen_table_das">缴费类型：</td>
+                <td width="605" class="check_td_right" style="font-weight:bolder" align="left">一次性交清</td>
+            </tr>
+             
+            <tr>
+                <td width="176"  align="center" class="insure_cen_table_td insure_cen_table_das">保险期限：</td>
+                <td width="605" class="check_td_right" style="font-weight:bolder">
+                    $policy_arr[start_date]&nbsp;&nbsp;至&nbsp;&nbsp;$policy_arr[end_date]
+                </td>
+            </tr> 
+            </tbody>
+        </table>
+        
+        <div class="x_p_a_c c"><h2>保障信息</h2></div>
+        <div align="left">
+             <table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+     
+    <tr class="">
+        <th width="140" align="center" height="35">保障责任名称</th>
+        <th width="500" align="center">保障责任说明</th>
+        <th width="100" align="center">保额（元）</th>
+    </tr>
+    <tr class="">
+        <td align="center">满期保险金</td>
+        <td align="left">被保险人在保险期间届满时生存，我们按您已交的本合同和人保寿险附加淘淘乐重大疾病保险合同的保险费之和（不计利息）给付满期保险金，本合同终止。</td>
+        <td align="center"><!--{eval echo $policy_arr['apply_num']*1000}--></td>
+    </tr>  
+    <tr class="">
+        <td rowspan="2" align="center">重大疾病保险金</td>
+        <td align="left">被保险人自本附加合同生效（或最后复效）之日起180日内因疾病，初次被确诊患有本附加合同约定的重大疾病（点击查看重大疾病种类 ）（一种或多种），我们按您已交的本附加合同和主合同的保险费之和（不计利息）给付重大疾病保险金，本附加合同和主合同同时终止。 </td>
+        <td align="center"><!--{eval echo $policy_arr['apply_num']*1000}--></td>
+    </tr>  
+    <tr class="">
+        
+        <td align="left">被保险人因遭受意外伤害或自本附加合同生效（或最后复效）之日起180日后因疾病，初次被确诊患有本附加合同约定的重大疾病（一种或多种），我们按基本保险金额的20倍给付重大疾病保险金，本附加合同和主合同同时终止。 </td>
+        <td align="center"><!--{eval echo $policy_arr['apply_num']*20000}--></td>
+    </tr>  
+    
+    <tr class="">
+        <td rowspan="2" align="center">身故保险金 </td>
+        <td align="left">被保险人自本合同生效（或最后复效）之日起180日内因疾病导致身故，我们按您已交的本合同和附加合同的保险费之和（不计利息）给付身故保险金，本合同终止。</td>
+        <td align="center"><!--{eval echo $policy_arr['apply_num']*1000}--></td>
+    </tr>  
+    <tr class="">
+        
+        <td align="left">被保险人因遭受意外伤害或自本合同生效（或最后复效）之日起180日后因疾病导致身故，我们按基本保险金额的6倍给付身故保险金，本合同终止。 </td>
+        <td align="center"><!--{eval echo $policy_arr['apply_num']*6000}--></td>
+    </tr>  
+</table> 		
+        </div>
+<div class="x_p_a_c c"><h2>保险费用</h2></div>
+            <table>
+                            <tbody><tr width="785">
+                                <td>
+                                <div class="order_cost" style="color:#C33;">
+                                    <div id="newstat" class="cost_num_wap2">
+        
+                                                
+                                        <p>￥
+                                            <span style="font-size:20px;">
+                                                
+                                                <!--保费-->
+                                                <strong>
+                                                {$total_price}
+                                                </strong>元
+                                                    </span>
+                                                    <!--
+                                                <span class="sub">
+                                                    （您本次可以获得<font color="#3399FF">10.0</font>积分）
+                                                </span>
+                                                -->
+                                        </p>
+    <input id="reprice" type="hidden" value="200.00">
+    </div>
+                                    </div></td><td>
+                                
+                            </td></tr>
+                        </tbody>
+                        </table>
+             
+            <div class="x_p_a_c c"><h2>投保声明</h2></div>
+        
+            <div style=" padding:25px 0px 0px 25px; text-align:left;">
+                 <div>$product_attribute_arr[insurance_declare]</div>
+                 <div style="padding:10px 0px;"><h1 >保险条款</h1></div>
+                 <div style="padding:10px 0px;">
+                     
+                    $product_attribute_arr[insurance_clauses]
+                     
+                 </div>
+            </div>
+                
+            <div class="state_list" style="border:1px solid #ddd;padding-left:10px;">
+                    
+                    <label>
+                        <input type="checkbox" id="readerId" name="reader" value="true">&nbsp;我已认真阅读并同意以上投保声明
+                    </label>
+                    
+                
+            
+                    <!--重要通知-->
+                    <div class="order_state">
+                        <div class="order_btn" align="left">
+                            
+                        
+                            <div class="order_btn" align="center">
+                                <div id="sub1">
+                                    <img onclick="orderCheckSubmit(this,2);" src="../images/icon15.jpg" style="cursor:pointer;"> 
+                                </div>
+                                <div id="sub2" style="display:none;">
+                                    <div><img src="../images/big_load.gif" style="cursor:pointer;" width="181" height="47"></div>
+                                    <div><font color="#CC3333">正在与保险公司通讯中，请稍等(请不要刷新浏览器)</font></div>
+                                </div>
+                                <!-- 立即购买 -->
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        
+        </form>
+    	</div>
+</div>
+
+</div>
+			
+</div> <!--contain-->
+<script>
+	$().ready(function() {
+       $('#step_gaozhi').show();
+	   $('#step_orderShow').hide(); 
+	   
+    });
+	function jiankangxuzhi(){
+		var abroad = $('#abroad').attr("checked");
+		if($('#text_zonghe').val()==""){
+			layer.alert('已在其他保险公司投保的有效身故保额总和没有填写!',9,'温馨提示');	
+			$('.xubox_layer').css("top","100px"); 
+			return false;
+		}else{
+			$('#other_totalAmount').val($('#text_zonghe').val());	
+			if(!abroad){
+				$('#step_gaozhi').show();
+				$('#step_orderShow').hide();
+				layer.alert('请仔细阅读告知事项并勾选红色字体开头的选择框!',9,'温馨提示');	
+				$('.xubox_layer').css("top","100px"); 
+				return false;	
+			}else{
+				$('#step_gaozhi').hide();
+				$('#step_orderShow').show();	
+			}
+		}
+		
+		
+	}
+</script>	
+		
+</div> <!-- simple_wrapper -->
+<!--{template footer_cshop}-->		

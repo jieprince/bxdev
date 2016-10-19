@@ -1,0 +1,44 @@
+<h5><span>渠道产品</span></h5>
+<div class="blank"></div>
+<div class="padd_T20 padd_B10"></div>
+<form action="user.php" id="affiliate_query_form">
+	<input type="hidden" name="act" value="organ_goods_list">
+	<div>
+		 <span
+			style="float: right;"> 产品名： <input type="text"
+			name="attribute_name" value="{$condition.attribute_name}"
+			class="padd_TB5" /> <input type="submit" value="查询" class="chaxun" />
+		</span>
+
+	</div>
+</form>
+
+
+<div class="blank"></div>
+<table class="table_user_01">
+	<tr align="center">
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">产品名称</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">保险公司</td>
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">服务费率</td>
+		<!-- {if $institution_id } -->
+		<!-- {else} -->
+		<td bgcolor="#ffffff" class="fontbloder table_head_bg border_Tsc">渠道费率</td>
+		<!-- {/if} -->
+	</tr>
+
+	<!-- {foreach from=$attribute_list  item=val } -->
+	<tr align="center">
+		<td bgcolor="#ffffff"><a href="goods.php?id={$val.goods_id}">
+				{$val.attribute_name} </a></td>
+		<td bgcolor="#ffffff">{$val.insurer_name}</td>
+		<td bgcolor="#ffffff">{$val.rate_myself}</td>
+		<!-- {if $institution_id } -->
+		<!-- {else} -->
+		<td bgcolor="#ffffff" class="color_94">{$val.rate_organization}</td>
+		<!-- {/if} -->
+	</tr>
+
+
+	<!-- {/foreach} -->
+
+</table>
